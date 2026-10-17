@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Personal Jr Oliveira · Treino na praia em São Luís</title>
+<meta name="description" content="Modelo de demonstração de site para o personal trainer Jr Oliveira, em São Luís (MA).">
+<meta name="theme-color" content="#0B1E33">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --ocean:#0B1E33; --ocean-2:#13304F; --sea:#1E6F8E; --sun:#FF7A1A; --sun-2:#FFB23F; --sand:#F6EBDA; --paper:#FFFFFF; --ink:#0B1E33; --muted:#5B6B7C; --line:#E7DCCB; --zap:#1F8A4C;
+  --disp:"Anton","Arial Narrow",Impact,sans-serif; --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:22px; --wrap:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{margin:0;background:var(--sand);color:var(--ink);font:16.5px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+a{color:inherit}
+h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin:0;line-height:.95;letter-spacing:.005em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.demo{background:var(--sun);color:var(--ocean);font-size:13px;text-align:center;padding:7px 16px;font-weight:600}
+
+.top{position:sticky;top:0;z-index:20;background:rgba(11,30,51,.92);backdrop-filter:blur(10px);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:66px}
+.marca{text-decoration:none;font:400 26px var(--disp);text-transform:uppercase;letter-spacing:.02em}
+.marca span{color:var(--sun)}
+.marca{white-space:nowrap}
+@media (max-width:420px){.marca{font-size:22px}.top .btn.sm{padding:0 12px;font-size:12.5px}}
+@media (max-width:560px){.grade th,.grade td{padding:10px;font-size:14px}.grade th{font-size:15px}}
+.nav{display:flex;gap:24px;font-weight:700;font-size:14.5px}
+.nav a{text-decoration:none;color:#BFD0E0}
+.nav a:hover{color:#fff}
+@media (max-width:900px){.nav{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:12px;font:800 15.5px var(--sans);text-decoration:none;border:0;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
+.btn.sun{background:var(--sun);color:var(--ocean)}
+.btn.sun:hover{background:var(--sun-2)}
+.btn.out{border:2px solid #fff;color:#fff;background:transparent}
+.btn.dark{background:var(--ocean);color:#fff}
+.btn.sm{min-height:42px;padding:0 16px;font-size:13.5px}
+.btn svg{width:18px;height:18px}
+
+/* hero: pôr do sol na praia, desenhado em SVG */
+.hero{position:relative;color:#fff;background:var(--ocean);overflow:hidden}
+.cena{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;padding-top:80px;padding-bottom:120px;display:grid;gap:22px;max-width:var(--wrap)}
+@media (max-width:700px){.hero .wrap{padding-top:48px;padding-bottom:110px}}
+.hero .tag{display:inline-flex;align-self:start;justify-self:start;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-weight:700;font-size:13.5px}
+.hero h1{font-size:clamp(56px,11vw,140px);max-width:900px}
+.hero h1 em{font-style:normal;color:var(--sun-2)}
+.hero p{font-size:clamp(17px,2vw,20px);max-width:560px;color:#DCE7F1}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+
+.faixa{background:var(--sun);color:var(--ocean);overflow:hidden;padding:14px 0;transform:rotate(-1.2deg);margin-top:-26px;position:relative;z-index:2}
+.faixa .t{display:flex;gap:34px;width:max-content;animation:anda 26s linear infinite;font:400 26px var(--disp);text-transform:uppercase;white-space:nowrap}
+.faixa .t span::after{content:"✦";margin-left:34px}
+@keyframes anda{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.faixa .t{animation:none}}
+
+section{padding:90px 0}
+@media (max-width:700px){section{padding:60px 0}}
+.cab{max-width:700px;margin-bottom:40px}
+.cab .k{font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sea)}
+.cab h2{font-size:clamp(42px,6vw,76px);margin-top:10px}
+.cab p{color:var(--muted);margin-top:14px;font-size:17.5px}
+
+/* quiz */
+.quiz{background:var(--ocean);color:#fff;border-radius:32px;padding:40px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px}
+@media (max-width:900px){.quiz{grid-template-columns:minmax(0,1fr);padding:26px;border-radius:26px;gap:24px}}
+.quiz h2{font-size:clamp(40px,5.4vw,66px)}
+.quiz .lead{color:#BFD0E0;margin-top:14px}
+.passo{display:grid;gap:14px}
+.passo .n{font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-2)}
+.passo h3{font-size:30px}
+.ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:480px){.ops{grid-template-columns:minmax(0,1fr)}}
+.ops button{display:flex;gap:10px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);color:#fff;border-radius:14px;padding:14px;font:700 15.5px var(--sans);cursor:pointer;min-height:58px}
+.ops button span{font-size:22px}
+.ops button:hover{border-color:var(--sun)}
+.barra{height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
+.barra i{display:block;height:100%;background:var(--sun);transition:width .3s}
+.resultado{display:none;gap:14px;background:var(--paper);color:var(--ink);border-radius:20px;padding:24px}
+.resultado.on{display:grid}
+.resultado .n{color:var(--sea)}
+.resultado h3{font-size:38px;color:var(--ocean)}
+.resultado ul{margin:0;padding-left:20px;display:grid;gap:4px;color:var(--muted)}
+.resultado .acoes{display:flex;flex-wrap:wrap;gap:10px}
+.resultado .acoes button{background:none;border:0;font:700 14.5px var(--sans);color:var(--sea);text-decoration:underline;cursor:pointer;padding:0 6px}
+
+/* modalidades */
+.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.mods{grid-template-columns:minmax(0,1fr)}}
+.md{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.md .ic{font-size:34px}
+.md h3{font-size:34px}
+.md p{color:var(--muted)}
+.md ul{margin:4px 0 0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:3px}
+.md .preco{margin-top:auto;padding-top:10px;font-weight:800;color:var(--sea)}
+.md.top{background:var(--ocean);color:#fff;border-color:var(--ocean)}
+.md.top p,.md.top ul{color:#BFD0E0}
+.md.top .preco{color:var(--sun-2)}
+.md.top::after{content:"MAIS PROCURADO";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--sun);color:var(--ocean);font:800 11px var(--sans);letter-spacing:.08em;padding:5px 40px}
+
+/* horários na praia */
+.grade{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.grade table{width:100%;border-collapse:collapse;font-size:15px}
+.grade th,.grade td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line)}
+.grade th{background:var(--ocean);color:#fff;font:400 18px var(--disp);text-transform:uppercase;letter-spacing:.04em}
+.grade tr:last-child td{border-bottom:0}
+.grade td b{color:var(--sea)}
+.vaga{display:inline-block;font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:999px;background:#E3F3EA;color:#1D7A49}
+.vaga.pouca{background:#FFEAD9;color:#B3500C}
+.tabwrap{overflow-x:auto}
+.ilu{margin-top:12px;font-size:13.5px;color:var(--muted)}
+
+/* sobre + depoimentos */
+.sobre{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:46px;align-items:center}
+@media (max-width:900px){.sobre{grid-template-columns:minmax(0,1fr)}}
+.foto{aspect-ratio:4/5;border-radius:28px;background:linear-gradient(170deg,var(--sun-2),var(--sun) 40%,var(--sea) 100%);position:relative;overflow:hidden;display:grid;place-items:end center;padding:24px;color:#fff;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px}
+.foto::before{content:"";position:absolute;width:46%;aspect-ratio:1;border-radius:50%;background:rgba(255,236,190,.65);top:16%;left:27%}
+@media (max-width:900px){.foto{aspect-ratio:5/4}}
+.encher{border:2px dashed var(--sun);border-radius:18px;padding:18px;background:#FFF4E8;color:#8A4510;font-size:15px}
+.encher b{display:block;color:var(--ocean)}
+.depo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:900px){.depo{grid-template-columns:minmax(0,1fr)}}
+.dp{background:var(--paper);border:2px dashed var(--line);border-radius:var(--r);padding:24px;display:grid;gap:10px;color:var(--muted)}
+.dp b{color:var(--ink)}
+.dp .av{width:46px;height:46px;border-radius:50%;background:var(--sand)}
+
+.insta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:24px}
+.insta span{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,var(--sea),var(--ocean));opacity:.85}
+.insta span:nth-child(2n){background:linear-gradient(135deg,var(--sun-2),var(--sun))}
+
+.final{background:var(--ocean);color:#fff;border-radius:32px;padding:46px;text-align:center;display:grid;gap:18px;justify-items:center}
+@media (max-width:700px){.final{padding:30px 22px;border-radius:26px}}
+.final h2{font-size:clamp(42px,7vw,88px)}
+.final p{color:#BFD0E0;max-width:520px}
+
+footer.rodape{padding:30px 0 110px;font-size:13.5px;color:var(--muted)}
+footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;min-height:56px;padding:0 20px;border-radius:999px;background:var(--sun);color:var(--ocean);display:inline-flex;align-items:center;gap:8px;font:800 14.5px var(--sans);text-decoration:none;box-shadow:0 10px 30px rgba(11,30,51,.3);text-transform:uppercase}
+</style>
+</head>
+<body>
+<div class="demo">Modelo de demonstração · proposta de site para o Personal Jr Oliveira. Fotos, horários, planos e textos entram com a aprovação dele.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio">Jr <span>Oliveira</span></a>
+    <nav class="nav" aria-label="Seções"><a href="#plano">Qual treino?</a><a href="#modalidades">Modalidades</a><a href="#horarios">Horários na praia</a><a href="#sobre">Sobre</a></nav>
+    <a class="btn sun sm contato" href="#" target="_blank" rel="noopener">Aula experimental</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <svg class="cena" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1E33"/><stop offset=".55" stop-color="#3B3F6B"/><stop offset=".8" stop-color="#E0694A"/><stop offset="1" stop-color="#FFB23F"/></linearGradient>
+        <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E6F8E"/><stop offset="1" stop-color="#0B1E33"/></linearGradient>
+      </defs>
+      <rect width="1200" height="700" fill="url(#ceu)"/>
+      <circle cx="900" cy="470" r="120" fill="#FFC861" opacity=".9"/>
+      <rect y="480" width="1200" height="220" fill="url(#mar)"/>
+      <path d="M0 520 Q150 505 300 520 T600 520 T900 520 T1200 520" fill="none" stroke="#FFB23F" stroke-opacity=".35" stroke-width="3"/>
+      <path d="M0 560 Q150 545 300 560 T600 560 T900 560 T1200 560" fill="none" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="2"/>
+      <path d="M0 640 Q300 600 620 630 T1200 610 L1200 700 L0 700Z" fill="#E9C99A" opacity=".95"/>
+      <rect width="1200" height="700" fill="#0B1E33" opacity=".35"/>
+    </svg>
+    <div class="wrap">
+      <span class="tag">🌅 Treino ao ar livre · São Luís (MA)</span>
+      <h1>Seu melhor treino tem <em>vista para o mar.</em></h1>
+      <p>Treinos personalizados na praia, na academia ou online, com acompanhamento de perto para você chegar no seu objetivo.</p>
+      <div class="ctas"><a class="btn sun contato" href="#" target="_blank" rel="noopener">Quero uma aula experimental</a><a class="btn out" href="#plano">Descobrir meu treino</a></div>
+    </div>
+  </div>
+  <div class="faixa" aria-hidden="true"><div class="t" id="faixa"></div></div>
+
+  <section id="plano">
+    <div class="wrap">
+      <div class="quiz">
+        <div>
+          <span class="cab k" style="color:var(--sun-2);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase">Monte seu treino</span>
+          <h2 style="margin-top:10px">Qual treino é o seu? Descubra em 3 toques.</h2>
+          <p class="lead">Responda e receba a sugestão de modalidade. Depois é só mandar para o Jr e marcar a aula experimental.</p>
+        </div>
+        <div aria-live="polite">
+          <div class="barra" aria-hidden="true"><i id="prog" style="width:0%"></i></div>
+          <div class="passo" id="passo" style="margin-top:20px"></div>
+          <div class="resultado" id="res"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="modalidades" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="k">Modalidades</span><h2>Treine do seu jeito</h2></div>
+      <div class="mods">
+        <article class="md top"><span class="ic" aria-hidden="true">🏖️</span><h3>Treino na praia</h3><p>Funcional ao ar livre, com areia, sol e brisa do mar. Individual ou em grupo pequeno.</p><ul><li>Avaliação física inicial</li><li>Treino planejado para o seu objetivo</li><li>Correção de cada movimento</li></ul><span class="preco">Valores: a combinar</span></article>
+        <article class="md"><span class="ic" aria-hidden="true">🏋️</span><h3>Personal na academia</h3><p>Acompanhamento individual na sua academia, com periodização e evolução de cargas.</p><ul><li>Planejamento semanal</li><li>Ajuste a cada etapa</li><li>Foco em técnica e segurança</li></ul><span class="preco">Valores: a combinar</span></article>
+        <article class="md"><span class="ic" aria-hidden="true">📱</span><h3>Consultoria online</h3><p>Seu treino no celular, com vídeos dos exercícios e acompanhamento pelo WhatsApp.</p><ul><li>Treino montado para sua rotina</li><li>Ajustes periódicos</li><li>Dá para treinar de qualquer lugar</li></ul><span class="preco">Valores: a combinar</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="horarios" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="k">Horários na praia</span><h2>Turmas ao nascer e ao pôr do sol</h2><p>Veja os horários e garanta sua vaga antes que lote.</p></div>
+      <div class="grade tabwrap">
+        <table>
+          <thead><tr><th scope="col">Horário</th><th scope="col">Dias</th><th scope="col">Turma</th><th scope="col">Vagas</th></tr></thead>
+          <tbody>
+            <tr><td><b>5h30</b></td><td>Seg · Qua · Sex</td><td>Funcional na areia</td><td><span class="vaga pouca">Últimas vagas</span></td></tr>
+            <tr><td><b>6h30</b></td><td>Ter · Qui</td><td>Corrida e condicionamento</td><td><span class="vaga">Vagas abertas</span></td></tr>
+            <tr><td><b>17h30</b></td><td>Seg · Qua · Sex</td><td>Funcional ao pôr do sol</td><td><span class="vaga">Vagas abertas</span></td></tr>
+            <tr><td><b>Sábado 7h</b></td><td>Sábado</td><td>Aulão de fim de semana</td><td><span class="vaga">Vagas abertas</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ilu">Horários ilustrativos: na versão final entram os horários reais e a praia de cada turma.</p>
+    </div>
+  </section>
+
+  <section id="sobre" style="padding-top:0">
+    <div class="wrap sobre">
+      <div class="foto" role="img" aria-label="Espaço para a foto do Jr Oliveira treinando na praia"><span style="position:relative">Foto do Jr na praia</span></div>
+      <div>
+        <div class="cab" style="margin-bottom:18px"><span class="k">Sobre</span><h2>Jr Oliveira</h2></div>
+        <p style="color:var(--muted);font-size:17.5px">Personal trainer em São Luís, levando o treino para onde a cidade tem de mais bonito: a beira-mar. Treino sério, com planejamento e acompanhamento, num ambiente que dá vontade de voltar.</p>
+        <div class="encher" style="margin-top:20px"><b>Espaço para a história do Jr</b>Formação, CREF, especializações, tempo de experiência e resultados dos alunos. Preenchemos juntos na versão final.</div>
+        <div class="insta" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="ctas" style="margin-top:16px"><a class="btn dark" href="https://instagram.com/personaljroliveira" target="_blank" rel="noopener">Ver o Instagram @personaljroliveira</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="k">Depoimentos</span><h2>Quem treina com o Jr</h2><p>Aqui entram depoimentos reais dos alunos, com foto e o que mudou para eles.</p></div>
+      <div class="depo">
+        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
+        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
+        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="final"><h2>Bora treinar?</h2><p>Marque uma aula experimental e sinta como é treinar com vista para o mar.</p><a class="btn sun contato" href="#" target="_blank" rel="noopener">Marcar aula experimental</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape"><div class="wrap"><span>Personal Jr Oliveira · São Luís (MA) · CREF [número]</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+<a class="flutua contato" href="#" target="_blank" rel="noopener">Falar com o Jr</a>
+
+<script>
+  // Contato: enquanto não tivermos o WhatsApp dele, os botões abrem a conversa no Instagram.
+  const WHATS = ""; // ex.: "5598900000000"
+  const contato = t => WHATS ? `https://wa.me/${WHATS}?text=${encodeURIComponent(t)}` : "https://ig.me/m/personaljroliveira";
+  document.querySelectorAll(".contato").forEach(a => a.href = contato("Olá, Jr! Vi o site e quero marcar uma aula experimental."));
+
+  const PAL = ["Treino na praia", "Funcional", "Emagrecimento", "Condicionamento", "Corrida", "Hipertrofia", "Consultoria online", "Aula experimental"];
+  const f = PAL.map(p => `<span>${p}</span>`).join(""); document.getElementById("faixa").innerHTML = f + f;
+
+  // quiz: objetivo, onde e frequência
+  const P = [
+    ["Qual é o seu objetivo?", [["🔥", "Emagrecer"], ["💪", "Ganhar massa"], ["⚡", "Mais disposição"], ["🏃", "Correr melhor"]]],
+    ["Onde você prefere treinar?", [["🏖️", "Na praia"], ["🏋️", "Na academia"], ["📱", "Em casa / online"], ["🤷", "Tanto faz"]]],
+    ["Quantas vezes por semana?", [["2️⃣", "2 vezes"], ["3️⃣", "3 vezes"], ["4️⃣", "4 ou mais"], ["❓", "Ainda não sei"]]]
+  ];
+  const resp = []; const $ = id => document.getElementById(id);
+  function mostra(i) {
+    $("prog").style.width = (i / P.length * 100) + "%";
+    if (i === P.length) return final();
+    const [q, ops] = P[i];
+    $("passo").innerHTML = `<span class="n">Pergunta ${i + 1} de ${P.length}</span><h3>${q}</h3><div class="ops" role="group" aria-label="${q}">${ops.map(([e, l]) => `<button type="button" data-v="${l}"><span aria-hidden="true">${e}</span>${l}</button>`).join("")}</div>`;
+    $("passo").querySelectorAll("button").forEach(b => b.onclick = () => { resp[i] = b.dataset.v; mostra(i + 1); });
+  }
+  function final() {
+    const [obj, onde, freq] = resp;
+    const mod = onde === "Na academia" ? "Personal na academia" : onde === "Em casa / online" ? "Consultoria online" : "Treino na praia";
+    const foco = { "Emagrecer": "funcional com gasto calórico alto", "Ganhar massa": "força e progressão de carga", "Mais disposição": "condicionamento e mobilidade", "Correr melhor": "corrida e fortalecimento" }[obj];
+    $("passo").innerHTML = "";
+    $("res").innerHTML = `<span class="n" style="font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase">Seu treino ideal</span><h3>${mod}</h3>
+      <ul><li>Objetivo: ${obj.toLowerCase()}</li><li>Foco: ${foco}</li><li>Frequência: ${freq === "Ainda não sei" ? "definimos juntos na avaliação" : freq.toLowerCase() + " por semana"}</li><li>Começa com uma avaliação e uma aula experimental</li></ul>
+      <div class="acoes"><a class="btn sun" target="_blank" rel="noopener" href="${contato(`Olá, Jr! Fiz o teste no site: quero ${obj.toLowerCase()}, prefiro ${mod.toLowerCase()} e ${freq === "Ainda não sei" ? "ainda não sei quantas vezes por semana" : "treinar " + freq.toLowerCase() + " por semana"}. Como faço a aula experimental?`)}">Mandar para o Jr</a><button type="button" id="refaz">Refazer</button></div>`;
+    $("res").classList.add("on");
+    $("refaz").onclick = () => { resp.length = 0; $("res").classList.remove("on"); mostra(0); };
+  }
+  mostra(0);
+</script>
+</body>
+</html>
