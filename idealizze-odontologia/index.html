@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Idealizze Odontologia · Cohatrac, São Luís</title>
+<meta name="description" content="Modelo de demonstração de site para a Idealizze Odontologia & Harmonização Orofacial, da Dra. Mayane Oliveira, no Cohatrac IV, São Luís (MA).">
+<meta name="theme-color" content="#0E1726">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#0E1726; --ink-2:#1B2638; --muted:#5A6577; --bg:#F5F7FB; --paper:#FFFFFF; --line:#E1E6EF;
+  --mint:#12B89A; --mint-d:#0B8C75; --mint-soft:#DDF6F0; --violet:#6D5DFC; --violet-soft:#ECE9FF; --zap:#1F8A4C;
+  --disp:"Bricolage Grotesque",system-ui,sans-serif; --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:24px; --wrap:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16.5px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+h1,h2,h3{font-family:var(--disp);font-weight:800;margin:0;letter-spacing:-.025em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
+.demo{background:var(--ink);color:#DCE3EE;font-size:13px;text-align:center;padding:8px 16px}
+.demo b{color:#7CF0D6}
+
+.top{position:sticky;top:0;z-index:20;padding:12px 0;background:linear-gradient(var(--bg),rgba(245,247,251,.86));backdrop-filter:blur(12px)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo{width:40px;height:40px;border-radius:12px;background:conic-gradient(from 200deg,var(--mint),var(--violet),var(--mint));display:grid;place-items:center;color:#fff;font:800 20px var(--disp)}
+.marca b{font:800 21px/1 var(--disp);letter-spacing:-.02em;display:block}
+.marca small{font-size:12px;color:var(--muted)}
+.nav{display:flex;gap:6px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:5px}
+.nav a{text-decoration:none;font-size:14.5px;font-weight:600;color:var(--muted);padding:8px 14px;border-radius:999px}
+.nav a:hover{background:var(--bg);color:var(--ink)}
+@media (max-width:960px){.nav{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:999px;font:700 15.5px var(--sans);text-decoration:none;border:0;cursor:pointer;white-space:nowrap;transition:transform .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.mint{background:var(--mint);color:#04231D}
+.btn.ghost{background:var(--paper);color:var(--ink);border:1px solid var(--line)}
+.btn.sm{min-height:44px;padding:0 18px;font-size:14.5px}
+@media (prefers-reduced-motion:reduce){.btn{transition:none}.btn:hover{transform:none}}
+
+/* hero */
+.hero{position:relative;padding:40px 0 70px;overflow:hidden}
+.aurora{position:absolute;inset:-20% -10% auto -10%;height:120%;z-index:-1;background:radial-gradient(40% 50% at 18% 30%,rgba(18,184,154,.22),transparent 70%),radial-gradient(35% 45% at 85% 20%,rgba(109,93,252,.22),transparent 70%),radial-gradient(30% 40% at 60% 80%,rgba(18,184,154,.14),transparent 70%)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:44px;align-items:center}
+@media (max-width:960px){.hero{padding:24px 0 50px}.hero .wrap{grid-template-columns:minmax(0,1fr);gap:30px}}
+.pill{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px 6px 6px;font-size:14px;font-weight:600}
+.pill i{font-style:normal;background:var(--mint-soft);color:var(--mint-d);border-radius:999px;padding:3px 10px;font-weight:700}
+.hero h1{font-size:clamp(44px,7.4vw,92px);line-height:.95;margin:20px 0 22px}
+.hero h1 .grad{background:linear-gradient(90deg,var(--mint) 0%,var(--violet) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:540px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.score{background:rgba(255,255,255,.72);border:1px solid rgba(255,255,255,.9);backdrop-filter:blur(10px);border-radius:32px;padding:30px;box-shadow:0 30px 60px rgba(14,23,38,.08);display:grid;gap:18px}
+.score .grande{display:flex;align-items:flex-end;gap:14px}
+.score .grande b{font:800 108px/.85 var(--disp);letter-spacing:-.05em;background:linear-gradient(180deg,var(--ink),#3A4A66);-webkit-background-clip:text;background-clip:text;color:transparent}
+.score .grande span{font-size:15px;color:var(--muted);padding-bottom:10px}
+.estrelas{color:#F5B400;font-size:22px;letter-spacing:3px}
+.score .mini{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.score .mini div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.score .mini b{display:block;font:800 22px var(--disp)}
+.score .mini span{font-size:13px;color:var(--muted)}
+
+/* faixa de depoimentos rolando */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);overflow:hidden;padding:16px 0}
+.trilha{display:flex;gap:16px;width:max-content;animation:rola 60s linear infinite}
+.marquee:hover .trilha{animation-play-state:paused}
+@keyframes rola{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.trilha{animation:none;flex-wrap:wrap;width:auto;padding:0 20px}}
+.trilha figure{margin:0;display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:999px;padding:10px 18px;font-size:14.5px;white-space:nowrap}
+.trilha figure b{color:#F5B400}
+
+section{padding:88px 0}
+@media (max-width:700px){section{padding:58px 0}}
+.cab{max-width:680px;margin-bottom:40px}
+.eti{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--violet)}
+.cab h2{font-size:clamp(34px,5vw,58px);line-height:1;margin-top:12px}
+.cab p{color:var(--muted);margin-top:14px;font-size:17.5px}
+
+/* simulador de clareamento */
+.sim{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:40px;align-items:center;background:var(--ink);color:#E7ECF4;border-radius:36px;padding:48px}
+@media (max-width:960px){.sim{grid-template-columns:minmax(0,1fr);padding:28px;gap:26px;border-radius:28px}}
+.sim h2{color:#fff;font-size:clamp(32px,4.4vw,52px);line-height:1}
+.sim p{color:#AEB8C8;margin-top:14px}
+.palco{background:radial-gradient(70% 70% at 50% 45%,#2A3953,#121C2D);border-radius:26px;padding:26px;display:grid;gap:18px}
+.palco svg{width:100%;height:auto;display:block}
+.dente{fill:var(--tom,#E8D6AE);transition:fill .25s}
+@media (prefers-reduced-motion:reduce){.dente{transition:none}}
+.regua{display:grid;gap:10px}
+.regua .lin{display:flex;justify-content:space-between;font-size:13.5px;color:#AEB8C8}
+.regua .lin b{color:#fff;font:800 18px var(--disp)}
+input[type=range]{width:100%;accent-color:var(--mint);height:28px}
+.amostras{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.amostras span{height:14px;border-radius:5px}
+.aviso{font-size:12.5px;color:#8995A9}
+
+/* monte seu sorriso */
+.monte{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:36px;align-items:start}
+@media (max-width:960px){.monte{grid-template-columns:minmax(0,1fr)}}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips button{display:inline-flex;align-items:center;gap:8px;background:var(--paper);border:1.5px solid var(--line);border-radius:999px;padding:12px 18px;font:600 15px var(--sans);cursor:pointer;color:var(--ink)}
+.chips button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chips button span{font-size:18px}
+.plano{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:14px;min-height:260px;align-content:start}
+.plano h3{font-size:22px}
+.plano .vazio{color:var(--muted)}
+#plano{display:grid;gap:10px}
+@media (max-width:560px){.marca small{display:none}}
+.item{display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;padding:14px;border-radius:18px;background:var(--bg)}
+.item i{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-style:normal;font-size:20px;background:var(--mint-soft)}
+.item b{display:block;font-size:16.5px}
+.item span{color:var(--muted);font-size:14.5px}
+
+/* tratamentos */
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:960px){.grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.grade{grid-template-columns:minmax(0,1fr)}}
+.tt{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:8px;align-content:start;position:relative;overflow:hidden}
+.tt::after{content:"";position:absolute;right:-40px;top:-40px;width:120px;height:120px;border-radius:50%;background:var(--c,var(--mint-soft));opacity:.9}
+.tt h3{font-size:24px;position:relative;z-index:1}
+.tt p{color:var(--muted);font-size:15px;position:relative;z-index:1}
+.tt.dest{background:linear-gradient(140deg,var(--violet),#8E7BFF);color:#fff;border:0}
+.tt.dest p{color:#E6E2FF}
+.tt.dest::after{background:rgba(255,255,255,.15)}
+.conf{margin-top:14px;font-size:13.5px;color:var(--muted)}
+
+/* passos */
+.passos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;counter-reset:p}
+@media (max-width:860px){.passos{grid-template-columns:minmax(0,1fr)}}
+.ps{counter-increment:p;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.ps::before{content:counter(p);display:grid;place-items:center;width:44px;height:44px;border-radius:14px;background:var(--ink);color:#fff;font:800 20px var(--disp);margin-bottom:16px}
+.ps h3{font-size:22px;margin-bottom:6px}
+.ps p{color:var(--muted);font-size:15.5px}
+
+/* depoimentos */
+.depo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:960px){.depo{grid-template-columns:minmax(0,1fr)}}
+blockquote{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:flex;flex-direction:column;gap:14px}
+blockquote p{font-size:17px}
+blockquote footer{margin-top:auto;font-size:14px;color:var(--muted)}
+blockquote footer b{color:var(--ink)}
+
+/* contato */
+.final{background:var(--ink);color:#E7ECF4;border-radius:36px;padding:44px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+@media (max-width:960px){.final{grid-template-columns:minmax(0,1fr);padding:28px;border-radius:28px}}
+.final h2{color:#fff;font-size:clamp(32px,4.4vw,52px);line-height:1}
+.final .dados{display:grid;gap:18px;margin-top:24px}
+.final .dados h3{font:700 12.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#7CF0D6;margin-bottom:4px}
+.final .dados p{color:#C7D0DD}
+.horas{display:grid;grid-template-columns:auto 1fr;gap:3px 16px;color:#C7D0DD}
+.horas span:nth-child(odd){color:#8995A9}
+.mapa{border-radius:22px;overflow:hidden;min-height:340px;background:#1B2638}
+.mapa iframe{display:block;width:100%;height:100%;min-height:340px;border:0}
+
+footer.rodape{padding:30px 0 110px;font-size:13.5px;color:var(--muted)}
+footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;width:60px;height:60px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(14,23,38,.3)}
+.flutua svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+<div class="demo"><b>Modelo de demonstração</b> · proposta de site para a Idealizze Odontologia. Fotos, textos e tratamentos finais entram com a aprovação da Dra. Mayane.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Idealizze Odontologia, início"><span class="logo">i</span><span><b>Idealizze</b><small>Odontologia & Harmonização Orofacial</small></span></a>
+    <nav class="nav" aria-label="Seções"><a href="#clareamento">Simulador</a><a href="#sorriso">Monte seu sorriso</a><a href="#tratamentos">Tratamentos</a><a href="#contato">Contato</a></nav>
+    <a class="btn pri sm zap-link" href="#" target="_blank" rel="noopener">Agendar</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="aurora" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <span class="pill"><i>Cohatrac IV</i> São Luís (MA)</span>
+        <h1>O sorriso que você <span class="grad">idealizou</span>, feito com cuidado.</h1>
+        <p class="lead">Odontologia e harmonização orofacial com a Dra. Mayane Oliveira e equipe: procedimentos explicados com calma, atendimento atencioso e uma clínica que passa confiança.</p>
+        <div class="ctas"><a class="btn mint zap-link" href="#" target="_blank" rel="noopener">Agendar avaliação</a><a class="btn ghost" href="#clareamento">Testar o simulador de clareamento</a></div>
+      </div>
+      <div class="score" aria-label="Avaliações no Google">
+        <span class="estrelas" aria-hidden="true">★★★★★</span>
+        <div class="grande"><b>5,0</b><span>nota no Google</span></div>
+        <div class="mini">
+          <div><b data-conta="411">411</b><span>avaliações de pacientes</span></div>
+          <div><b>Seg a sáb</b><span>atendimento</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-label="Trechos de avaliações no Google">
+    <div class="trilha" id="trilha"></div>
+  </div>
+
+  <section id="clareamento">
+    <div class="wrap">
+      <div class="sim">
+        <div>
+          <span class="eti" style="color:#7CF0D6">Simulador</span>
+          <h2 style="margin-top:12px">Arraste e veja como o clareamento muda o sorriso</h2>
+          <p>A cor dos dentes é medida numa escala de tons. No clareamento, o dentista leva os dentes alguns tons para cima, com segurança e acompanhamento.</p>
+          <div class="ctas"><a class="btn mint zap-link" data-t="Quero saber mais sobre clareamento dental." href="#" target="_blank" rel="noopener">Quero avaliar meu clareamento</a></div>
+        </div>
+        <div class="palco">
+          <svg viewBox="0 0 400 210" role="img" aria-label="Ilustração de um sorriso cuja cor dos dentes muda com o controle">
+            <defs><clipPath id="boca"><path d="M40 80 Q200 30 360 80 Q300 190 200 190 Q100 190 40 80Z"/></clipPath>
+              <linearGradient id="brilho" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+            <path d="M28 78 Q200 10 372 78 Q310 206 200 206 Q90 206 28 78Z" fill="#C2606A"/>
+            <g clip-path="url(#boca)">
+              <rect x="0" y="0" width="400" height="210" fill="#5A1E2A"/>
+              <rect x="0" y="40" width="400" height="34" fill="#E58C95"/>
+              <g id="dentes"></g>
+              <path d="M30 150 Q200 120 370 150 L370 210 L30 210Z" fill="#6E2633" opacity=".8"/>
+            </g>
+            <path d="M40 80 Q200 30 360 80" fill="none" stroke="#A84B57" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+          <div class="regua">
+            <div class="lin"><span>Cor atual</span><b id="tomNome">A3</b><span>Mais clara</span></div>
+            <input type="range" id="tom" min="0" max="6" step="1" value="1" aria-label="Tom dos dentes, da cor atual até a mais clara">
+            <div class="amostras" id="amostras" aria-hidden="true"></div>
+            <span class="aviso">Ilustração. O resultado real depende da avaliação de cada paciente.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sorriso" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="eti">Monte seu sorriso</span><h2>O que você quer mudar no seu sorriso?</h2><p>Toque em tudo o que se aplica. A gente monta um caminho de tratamento e você manda direto para a clínica.</p></div>
+      <div class="monte">
+        <div class="chips" id="chips" role="group" aria-label="O que você quer mudar"></div>
+        <div class="plano" aria-live="polite">
+          <h3>Seu caminho de tratamento</h3>
+          <div id="plano"><p class="vazio">Escolha uma ou mais opções ao lado.</p></div>
+          <a class="btn pri zap-link" id="enviaPlano" href="#" target="_blank" rel="noopener" hidden>Enviar para a clínica no WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tratamentos" style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="cab"><span class="eti">Tratamentos</span><h2>Do check-up à harmonização</h2></div>
+      <div class="grade">
+        <article class="tt dest"><h3>Harmonização orofacial</h3><p>Equilíbrio entre sorriso e rosto, com avaliação individual e foco em naturalidade.</p></article>
+        <article class="tt"><h3>Clareamento dental</h3><p>Dentes mais claros, com acompanhamento do dentista em cada etapa.</p></article>
+        <article class="tt" style="--c:var(--violet-soft)"><h3>Ortodontia</h3><p>Aparelhos e alinhadores para alinhar os dentes e melhorar a mordida.</p></article>
+        <article class="tt" style="--c:var(--violet-soft)"><h3>Implantes</h3><p>Reposição de dentes perdidos, com função e estética.</p></article>
+        <article class="tt"><h3>Facetas e estética</h3><p>Ajustes de forma, cor e tamanho para um sorriso harmônico.</p></article>
+        <article class="tt" style="--c:var(--violet-soft)"><h3>Clínica geral e canal</h3><p>Limpeza, restaurações e tratamento de canal, sem dor e com calma.</p></article>
+      </div>
+      <p class="conf">Lista de exemplo: na versão final entram exatamente os tratamentos que a Idealizze oferece.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="cab"><span class="eti">Como funciona</span><h2>Sua primeira consulta em 3 passos</h2></div>
+      <div class="passos">
+        <div class="ps"><h3>Agende pelo WhatsApp</h3><p>Escolha o melhor dia. De segunda a sábado.</p></div>
+        <div class="ps"><h3>Avaliação completa</h3><p>Conversa, exame e explicação de cada opção, sem pressa.</p></div>
+        <div class="ps"><h3>Plano claro</h3><p>Você sai sabendo o que fazer, quanto tempo leva e o investimento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="eti">Depoimentos</span><h2>411 avaliações. Nota 5,0.</h2></div>
+      <div class="depo">
+        <blockquote><p>“Desde a recepção até o dentista, todos foram muito atenciosos e profissionais. O procedimento foi explicado com calma e realizado sem dor.”</p><footer><b>Wanderson V.</b> · avaliação no Google</footer></blockquote>
+        <blockquote><p>“Profissionais extremamente competentes, atenciosos e cuidadosos. A clínica é linda, organizada e transmite muita confiança.”</p><footer><b>Yasmin S.</b> · avaliação no Google</footer></blockquote>
+        <blockquote><p>“Uma clínica que realmente demonstra cuidado com o paciente. A equipe passou muita segurança e profissionalismo.”</p><footer><b>Paciente</b> · avaliação no Google</footer></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" style="padding-top:0">
+    <div class="wrap">
+      <div class="final">
+        <div>
+          <span class="eti" style="color:#7CF0D6">Contato</span>
+          <h2 style="margin-top:12px">Vamos idealizar o seu sorriso?</h2>
+          <div class="dados">
+            <div><h3>Endereço</h3><p>R. Dezessete, Quadra 32<br>Cohatrac IV, São Luís (MA), 65054-480</p></div>
+            <div><h3>Horário</h3><div class="horas"><span>Segunda a sexta</span><span>9h às 18h</span><span>Sábado</span><span>9h às 13h</span></div></div>
+            <div><h3>WhatsApp</h3><p>(98) 98165-5937</p></div>
+          </div>
+          <div class="ctas"><a class="btn mint zap-link" href="#" target="_blank" rel="noopener">Agendar pelo WhatsApp</a></div>
+        </div>
+        <div class="mapa"><iframe title="Mapa: R. Dezessete, Quadra 32, Cohatrac IV, São Luís" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Idealizze+Odontologia,+R.+Dezessete,+Quadra+32,+Cohatrac+IV,+S%C3%A3o+Lu%C3%ADs+-+MA&output=embed"></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape"><div class="wrap"><span>Idealizze Odontologia · Responsável técnica: Dra. Mayane Oliveira, CRO-MA [número]</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+
+<a class="flutua zap-link" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a>
+
+<script>
+  const ZAP = "5598981655937", link = t => `https://wa.me/${ZAP}?text=` + encodeURIComponent(t);
+  const $ = id => document.getElementById(id);
+  document.querySelectorAll(".zap-link").forEach(a => a.href = link(a.dataset.t ? "Olá! Vi o site. " + a.dataset.t : "Olá! Vi o site e gostaria de agendar uma avaliação."));
+
+  // faixa de trechos de avaliações (duplicada para rolar sem emenda)
+  const TRECHOS = ["Atendimento perfeito", "Procedimento explicado com calma e sem dor", "A clínica é linda e organizada", "Equipe passa muita segurança", "Indico sem medo", "Profissionais competentes e cuidadosos", "Saí muito satisfeito", "Amei os funcionários"];
+  const fig = TRECHOS.map(t => `<figure><b aria-hidden="true">★★★★★</b>${t}</figure>`).join("");
+  $("trilha").innerHTML = fig + `<span aria-hidden="true" style="display:contents">${fig}</span>`;
+
+  // simulador de clareamento: dentes desenhados no SVG, cor pela escala
+  const TONS = [["A3,5", "#DCC48F"], ["A3", "#E4CF9F"], ["A2", "#EBDBB4"], ["A1", "#F1E6CA"], ["B1", "#F6EFDD"], ["BL2", "#FAF7EE"], ["BL1", "#FFFFFF"]];
+  const g = $("dentes"), larg = [34, 38, 42, 46, 46, 42, 38, 34], x0 = 200 - larg.reduce((a, b) => a + b + 4, -4) / 2;
+  let x = x0, svg = "";
+  larg.forEach((w, i) => { const h = 58 - Math.abs(i - 3.5) * 5, y = 70 + Math.abs(i - 3.5) * 3;
+    svg += `<rect class="dente" x="${x}" y="${y}" width="${w}" height="${h}" rx="9"/><rect x="${x + 5}" y="${y + 4}" width="${w - 10}" height="${h * .45}" rx="6" fill="url(#brilho)"/>`; x += w + 4; });
+  g.innerHTML = svg;
+  $("amostras").innerHTML = TONS.map(([, c]) => `<span style="background:${c}"></span>`).join("");
+  const aplica = () => { const [n, c] = TONS[+$("tom").value]; document.querySelector("svg").style.setProperty("--tom", c); $("tomNome").textContent = n; };
+  $("tom").addEventListener("input", aplica); aplica();
+
+  // monte seu sorriso
+  const OPS = [
+    ["manchas", "🦷", "Dentes amarelados", "Clareamento dental", "Avaliação da cor e plano de clareamento com acompanhamento."],
+    ["tortos", "📐", "Dentes tortos", "Ortodontia ou alinhadores", "Avaliação da mordida e do alinhamento para indicar o aparelho ideal."],
+    ["falha", "➕", "Falta um dente", "Implante", "Avaliação do osso e planejamento da reposição do dente."],
+    ["forma", "✨", "Formato ou tamanho", "Facetas e estética", "Ajustes de forma e proporção para um sorriso harmônico."],
+    ["dor", "⚡", "Dor ou sensibilidade", "Avaliação clínica", "Diagnóstico da causa e tratamento, como restauração ou canal."],
+    ["rosto", "💜", "Harmonia do rosto", "Harmonização orofacial", "Avaliação do equilíbrio entre sorriso e rosto, com foco em naturalidade."]
+  ];
+  const sel = new Set();
+  $("chips").innerHTML = OPS.map(([k, e, l]) => `<button type="button" data-k="${k}" aria-pressed="false"><span aria-hidden="true">${e}</span>${l}</button>`).join("");
+  $("chips").onclick = ev => { const b = ev.target.closest("[data-k]"); if (!b) return;
+    sel.has(b.dataset.k) ? sel.delete(b.dataset.k) : sel.add(b.dataset.k); b.setAttribute("aria-pressed", sel.has(b.dataset.k));
+    const es = OPS.filter(o => sel.has(o[0]));
+    $("plano").innerHTML = es.length ? es.map(([, e, , t, d]) => `<div class="item"><i aria-hidden="true">${e}</i><div><b>${t}</b><span>${d}</span></div></div>`).join("") : `<p class="vazio">Escolha uma ou mais opções ao lado.</p>`;
+    $("enviaPlano").hidden = !es.length;
+    $("enviaPlano").href = link(`Olá! Montei meu sorriso no site e gostaria de uma avaliação para: ${es.map(o => o[3].toLowerCase()).join(", ")}.`);
+  };
+</script>
+</body>
+</html>
