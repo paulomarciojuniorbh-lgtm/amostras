@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Clínica Harmony · Dra. Lidiane Serra · Estética facial em São Luís</title>
+<meta name="description" content="Modelo de demonstração de site para a Clínica Harmony, da Dra. Lidiane Serra, no Jardim Renascença, São Luís (MA).">
+<meta name="theme-color" content="#2E2229">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink:#2E2229; --muted:#6E5F66; --bg:#FAF6F2; --paper:#FFFFFF; --nude:#F1E6DD; --line:#E6D8CD;
+  --clay:#B3705A; --clay-d:#8F5442; --rose:#EBD3C8; --zap:#1F8A4C;
+  --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:20px; --wrap:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;letter-spacing:-.005em;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.demo{background:var(--ink);color:#F4E9E2;font-size:13px;text-align:center;padding:8px 16px}
+.demo b{color:#F0C7B6}
+
+.top{position:sticky;top:0;z-index:10;background:rgba(250,246,242,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.marca{text-decoration:none;display:grid;line-height:1.05}
+.marca b{font:600 27px var(--serif);letter-spacing:.06em;text-transform:uppercase}
+.marca span{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.nav{display:flex;gap:28px;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted)}
+.nav a:hover{color:var(--ink)}
+@media (max-width:900px){.nav{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 26px;border-radius:999px;font:500 15.5px var(--sans);letter-spacing:.02em;text-decoration:none;border:1.5px solid transparent;cursor:pointer;white-space:nowrap}
+.btn.pri{background:var(--ink);color:#fff}
+.btn.pri:hover{background:#45333D}
+.btn.clay{background:var(--clay);color:#fff}
+.btn.lin{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn.sm{min-height:42px;padding:0 18px;font-size:14.5px}
+@media (max-width:520px){.top .btn.sm{padding:0 14px}}
+
+.hero{padding:56px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+@media (max-width:900px){.hero{padding:32px 0 56px}.hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px}}
+.over{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--clay-d);font-weight:500}
+.hero h1{font-size:clamp(44px,6.4vw,76px);line-height:1;margin:16px 0 22px;font-weight:500}
+.hero h1 i{color:var(--clay)}
+.hero p.lead{font-size:clamp(17px,2vw,19.5px);color:var(--muted);max-width:520px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.prova{display:flex;align-items:center;gap:14px;margin-top:34px;flex-wrap:wrap;font-size:15px;color:var(--muted)}
+.prova .est{color:var(--clay);letter-spacing:3px}
+.prova b{font:600 26px var(--serif);color:var(--ink)}
+.arco{position:relative;aspect-ratio:4/5;border-radius:240px 240px 24px 24px;background:linear-gradient(170deg,#EBD3C8 0%,#D9AE9B 55%,#B3705A 100%);overflow:hidden}
+.arco::before{content:"";position:absolute;left:50%;top:18%;width:58%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;border:1.5px solid rgba(255,255,255,.55)}
+.arco::after{content:"";position:absolute;left:50%;top:30%;width:34%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:rgba(255,255,255,.18)}
+.arco span{position:absolute;bottom:26px;left:0;right:0;text-align:center;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+@media (max-width:900px){.arco{aspect-ratio:5/4;border-radius:200px 200px 24px 24px}}
+
+section{padding:88px 0}
+@media (max-width:700px){section{padding:58px 0}}
+.cab{max-width:640px;margin-bottom:42px}
+.cab h2{font-size:clamp(36px,4.6vw,52px);line-height:1.05;margin-top:12px;font-weight:500}
+.cab p{color:var(--muted);margin-top:14px}
+.nude{background:var(--nude)}
+
+.procs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.procs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.procs{grid-template-columns:minmax(0,1fr)}}
+.pc{background:var(--paper);border-radius:var(--r);padding:28px 26px;display:flex;flex-direction:column;gap:10px;border:1px solid var(--line)}
+.pc .n{font:500 15px var(--serif);color:var(--clay);font-style:italic}
+.pc h3{font-size:28px;line-height:1.1}
+.pc p{color:var(--muted);font-size:15.5px}
+.pc button{margin-top:auto;align-self:flex-start;background:none;border:0;padding:6px 0 0;font:500 15px var(--sans);color:var(--clay-d);cursor:pointer;text-decoration:underline;text-underline-offset:4px}
+.pc.cta{background:var(--ink);color:#F4E9E2;border-color:var(--ink);justify-content:center}
+.pc.cta h3{color:#fff}
+.pc.cta p{color:#D8C7CF}
+
+.cuidado{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px}
+@media (max-width:900px){.cuidado{grid-template-columns:minmax(0,1fr);gap:26px}}
+.cuidado div{border-top:1.5px solid var(--clay);padding-top:20px}
+.cuidado h3{font-size:27px;margin-bottom:8px}
+.cuidado p{color:var(--muted);font-size:16px}
+
+.depo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:900px){.depo{grid-template-columns:minmax(0,1fr)}}
+blockquote{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:16px}
+blockquote p{font:500 21px/1.4 var(--serif)}
+blockquote footer{margin-top:auto;font-size:14px;color:var(--muted)}
+blockquote footer b{color:var(--ink);font-weight:500}
+.nota-g{display:flex;align-items:baseline;gap:12px;margin-top:26px;flex-wrap:wrap;color:var(--muted)}
+.nota-g b{font:600 40px var(--serif);color:var(--ink)}
+.nota-g a{color:var(--clay-d);font-weight:500}
+
+.agenda{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:start}
+@media (max-width:900px){.agenda{grid-template-columns:minmax(0,1fr);gap:28px}}
+.form{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:28px;display:grid;gap:18px}
+.campo{display:grid;gap:8px}
+.campo > span{font-size:14px;font-weight:500}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:9px 16px;border:1.5px solid var(--line);border-radius:999px;font-size:14.5px;cursor:pointer;background:var(--bg)}
+.chips input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chips input:focus-visible + span{outline:2px solid var(--clay);outline-offset:2px}
+.form input[type=text]{border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font:inherit;background:var(--bg);min-height:48px}
+.form small{color:var(--muted);font-size:13px}
+.info-lista{display:grid;gap:22px;margin-top:28px}
+.info-lista h3{font:500 13px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--clay-d);margin-bottom:4px}
+.mapa{margin-top:26px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--nude);min-height:260px}
+.mapa iframe{display:block;width:100%;min-height:260px;border:0}
+
+footer.rodape{padding:34px 0 110px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:20;width:60px;height:60px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(46,34,41,.3)}
+.flutua svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+<div class="demo"><b>Modelo de demonstração</b> · proposta de site para a Clínica Harmony. Fotos, textos e horários finais entram com a aprovação da Dra. Lidiane.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Clínica Harmony, início"><b>Harmony</b><span>Dra. Lidiane Serra</span></a>
+    <nav class="nav" aria-label="Seções"><a href="#procedimentos">Procedimentos</a><a href="#cuidado">Como cuidamos</a><a href="#depoimentos">Depoimentos</a><a href="#agendar">Agendar</a></nav>
+    <a class="btn pri sm" href="#agendar">Agendar avaliação</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="over">Estética facial · Jardim Renascença</span>
+        <h1>Beleza em <i>harmonia</i> com o seu rosto.</h1>
+        <p class="lead">Toxina botulínica, preenchimento, bioestimulador de colágeno e fios, com avaliação cuidadosa e foco em um resultado natural.</p>
+        <div class="ctas"><a class="btn pri" href="#agendar">Agendar minha avaliação</a><a class="btn lin" href="#procedimentos">Ver procedimentos</a></div>
+        <div class="prova"><span class="est" aria-hidden="true">★★★★★</span><b>4,9</b><span>em 179 avaliações no Google</span></div>
+      </div>
+      <div class="arco" role="img" aria-label="Espaço para a foto da Dra. Lidiane ou da clínica"><span>Foto da Dra. Lidiane</span></div>
+    </div>
+  </div>
+
+  <section id="procedimentos" class="nude">
+    <div class="wrap">
+      <div class="cab"><span class="over">Procedimentos</span><h2>Cada tratamento começa por uma avaliação</h2><p>Antes de qualquer procedimento, a Dra. Lidiane avalia o seu rosto, entende o que você deseja e indica o que faz sentido para você.</p></div>
+      <div class="procs">
+        <article class="pc"><span class="n">01</span><h3>Toxina botulínica</h3><p>Suaviza linhas de expressão da testa, entre as sobrancelhas e ao redor dos olhos, mantendo a naturalidade.</p><button type="button" data-proc="Toxina botulínica">Agendar avaliação</button></article>
+        <article class="pc"><span class="n">02</span><h3>Preenchimento</h3><p>Ácido hialurônico para devolver volume e contorno a lábios, olheiras, mandíbula e queixo.</p><button type="button" data-proc="Preenchimento">Agendar avaliação</button></article>
+        <article class="pc"><span class="n">03</span><h3>Bioestimulador de colágeno</h3><p>Estimula a produção de colágeno da própria pele, para mais firmeza e qualidade ao longo do tempo.</p><button type="button" data-proc="Bioestimulador de colágeno">Agendar avaliação</button></article>
+        <article class="pc"><span class="n">04</span><h3>Fios de sustentação</h3><p>Ajudam a reposicionar e sustentar os tecidos do rosto, com recuperação rápida.</p><button type="button" data-proc="Fios de sustentação">Agendar avaliação</button></article>
+        <article class="pc"><span class="n">05</span><h3>Laser</h3><p>Tecnologias a laser para textura, viço e rejuvenescimento da pele, em pacotes de sessões.</p><button type="button" data-proc="Laser">Agendar avaliação</button></article>
+        <article class="pc cta"><h3>Não sabe por onde começar?</h3><p>Agende uma avaliação: a Dra. Lidiane indica o melhor caminho para você.</p><button type="button" data-proc="Avaliação" style="color:#F0C7B6">Quero uma avaliação</button></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="cuidado">
+    <div class="wrap">
+      <div class="cab"><span class="over">Como cuidamos</span><h2>Atenção do começo ao fim</h2></div>
+      <div class="cuidado">
+        <div><h3>Avaliação sem pressa</h3><p>Conversa sobre o que te incomoda, o que você espera e o que é indicado para o seu rosto.</p></div>
+        <div><h3>Cada etapa explicada</h3><p>Você sabe exatamente o que será feito, os cuidados e o tempo de cada resultado.</p></div>
+        <div><h3>Acompanhamento</h3><p>Retorno e orientações de pós-procedimento para cuidar do resultado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="depoimentos" class="nude">
+    <div class="wrap">
+      <div class="cab"><span class="over">Depoimentos</span><h2>Quem passou pela Harmony</h2></div>
+      <div class="depo">
+        <blockquote><p>“A profissional explicou cada etapa do procedimento com muita clareza e me deixou bem à vontade. É a segunda vez que volto e recomendo.”</p><footer><b>Emmanuelle C.</b> · avaliação no Google</footer></blockquote>
+        <blockquote><p>“Sou paciente e indico pra muitas pessoas! Atendimento excelente e produtos de qualidade.”</p><footer><b>Isabela</b> · avaliação no Google</footer></blockquote>
+        <blockquote><p>“Clínica super aconchegante, atendimento excelente, gostei muito e irei voltar outras vezes com certeza.”</p><footer><b>Camila A.</b> · avaliação no Google</footer></blockquote>
+      </div>
+      <div class="nota-g"><b>4,9</b><span>nota média em 179 avaliações</span><a href="https://maps.google.com/?cid=5238577292761717669" target="_blank" rel="noopener">Ver no Google →</a></div>
+    </div>
+  </section>
+
+  <section id="agendar">
+    <div class="wrap agenda">
+      <div>
+        <span class="over">Agendar</span>
+        <h2 style="font-size:clamp(36px,4.6vw,52px);line-height:1.05;margin-top:12px;font-weight:500">Agende sua avaliação</h2>
+        <p style="color:var(--muted);margin-top:14px">Escolha o procedimento e o melhor período. Sua mensagem chega pronta no WhatsApp da clínica, e a equipe confirma o horário com você.</p>
+        <div class="info-lista">
+          <div><h3>Endereço</h3><p>Edifício Office Tower<br>Jardim Renascença, São Luís (MA), 65075-060</p></div>
+          <div><h3>WhatsApp</h3><p>(98) 97029-2590</p></div>
+          <div><h3>Instagram</h3><p><a href="https://instagram.com/dra.lidianeserra" target="_blank" rel="noopener">@dra.lidianeserra</a></p></div>
+        </div>
+      </div>
+      <div>
+        <form class="form" id="fAg">
+          <div class="campo"><span id="lP">Procedimento</span><div class="chips" role="radiogroup" aria-labelledby="lP" id="chProc"></div></div>
+          <div class="campo"><span id="lD">Melhor dia</span><div class="chips" role="radiogroup" aria-labelledby="lD" id="chDia"></div></div>
+          <div class="campo"><span id="lT">Período</span><div class="chips" role="radiogroup" aria-labelledby="lT" id="chPer"></div></div>
+          <label class="campo"><span>Seu nome</span><input type="text" id="nome" autocomplete="given-name" placeholder="Como podemos te chamar?"></label>
+          <button class="btn clay" type="submit">Enviar pelo WhatsApp</button>
+          <small>Na versão completa, este agendamento também envia lembrete automático na véspera, para ninguém esperar e nenhum horário ficar duplicado.</small>
+        </form>
+        <div class="mapa"><iframe title="Mapa: Edifício Office Tower, Jardim Renascença, São Luís" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Edif%C3%ADcio+Office+Tower,+Jardim+Renascen%C3%A7a,+S%C3%A3o+Lu%C3%ADs+-+MA&output=embed"></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape"><div class="wrap"><span>Clínica Harmony · Dra. Lidiane Serra · Jardim Renascença, São Luís (MA)</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+
+<a class="flutua zap-link" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a>
+
+<script>
+  const ZAP = "5598970292590";
+  const grupo = (id, nome, ops, sel) => document.getElementById(id).innerHTML = ops.map(o => `<label><input type="radio" name="${nome}" value="${o}" ${o === sel ? "checked" : ""}><span>${o}</span></label>`).join("");
+  grupo("chProc", "proc", ["Avaliação", "Toxina botulínica", "Preenchimento", "Bioestimulador de colágeno", "Fios de sustentação", "Laser"], "Avaliação");
+  grupo("chDia", "dia", ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"], "");
+  grupo("chPer", "per", ["Manhã", "Tarde", "Noite"], "");
+  document.querySelectorAll("[data-proc]").forEach(b => b.onclick = () => {
+    const r = document.querySelector(`input[name=proc][value="${b.dataset.proc}"]`); if (r) r.checked = true;
+    document.getElementById("agendar").scrollIntoView({ behavior: "smooth" });
+  });
+  document.getElementById("fAg").onsubmit = e => {
+    e.preventDefault();
+    const v = n => (document.querySelector(`input[name=${n}]:checked`) || {}).value;
+    const nome = document.getElementById("nome").value.trim();
+    let t = `Olá! ${nome ? "Sou " + nome + " e " : ""}gostaria de agendar: ${v("proc") || "Avaliação"}.`;
+    if (v("dia") || v("per")) t += ` De preferência ${[v("dia") && v("dia").toLowerCase(), v("per") && "no período da " + v("per").toLowerCase()].filter(Boolean).join(", ")}.`;
+    window.open(`https://wa.me/${ZAP}?text=${encodeURIComponent(t)}`, "_blank", "noopener");
+  };
+  document.querySelectorAll(".zap-link").forEach(a => a.href = `https://wa.me/${ZAP}?text=` + encodeURIComponent("Olá! Vi o site e gostaria de agendar uma avaliação."));
+</script>
+</body>
+</html>
