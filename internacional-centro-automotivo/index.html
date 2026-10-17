@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Internacional Centro Automotivo · Angelim, São Luís</title>
+<meta name="description" content="Modelo de demonstração de site para a Internacional Centro Automotivo, no Angelim, São Luís (MA).">
+<meta name="theme-color" content="#16181B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --ink:#16181B; --ink-2:#23262B; --steel:#3A3F46; --muted:#5E646C; --bg:#F4F3F0; --paper:#FFFFFF; --line:#DEDCD6;
+  --amber:#F2A900; --amber-d:#C98A00; --amber-soft:#FFF4D6; --ok:#1E8A4F; --zap:#1F8A4C;
+  --cond:"Barlow Condensed","Arial Narrow",sans-serif; --sans:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px; --wrap:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--cond);font-weight:800;text-transform:uppercase;letter-spacing:.005em;margin:0;line-height:.98;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.demo{background:var(--amber);color:var(--ink);font-size:13.5px;text-align:center;padding:7px 16px;font-weight:500}
+.demo b{font-weight:700}
+
+.top{position:sticky;top:0;z-index:10;background:var(--ink);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marca .sel{width:44px;height:44px;border-radius:10px;background:var(--amber);color:var(--ink);display:grid;place-items:center;font:800 24px var(--cond)}
+.marca b{display:block;font:800 21px/1 var(--cond);text-transform:uppercase;letter-spacing:.02em}
+.marca small{font-size:12.5px;color:#B9BEC5}
+.nav{display:flex;gap:26px;font-weight:600;font-size:15px}
+.nav a{text-decoration:none;color:#C9CDD2}
+.nav a:hover{color:#fff}
+@media (max-width:920px){.nav{display:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 24px;border-radius:10px;font-weight:700;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer;white-space:nowrap}
+.btn.amber{background:var(--amber);color:var(--ink)}
+.btn.amber:hover{background:#FFBA1A}
+.btn.out{border-color:#fff;color:#fff}
+.btn.dark{background:var(--ink);color:#fff}
+.btn.sm{min-height:42px;padding:0 16px;font-size:14.5px}
+.btn svg{width:19px;height:19px;flex:none}
+@media (max-width:520px){.top .btn.sm span{display:none}.top .btn.sm{padding:0 12px}}
+
+.hero{background:var(--ink);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,transparent 0 22px,rgba(255,255,255,.025) 22px 44px)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:48px;align-items:center;padding-top:64px;padding-bottom:72px}
+@media (max-width:920px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:32px;padding-top:36px;padding-bottom:48px}}
+.tag{display:inline-block;background:rgba(242,169,0,.14);color:var(--amber);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:6px}
+.hero h1{font-size:clamp(46px,7vw,84px);margin:18px 0 18px}
+.hero h1 span{color:var(--amber)}
+.hero p.lead{font-size:clamp(17px,2vw,20px);color:#C9CDD2;max-width:560px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.placar{background:var(--ink-2);border:1px solid #33373D;border-radius:18px;padding:26px;display:grid;gap:18px}
+.placar h2{font-size:22px;color:#C9CDD2;letter-spacing:.04em}
+.num{display:grid;gap:2px}
+.num b{font:800 64px/1 var(--cond);color:#fff;font-variant-numeric:tabular-nums}
+.num span{color:#B9BEC5;font-size:15px}
+.num .est{color:var(--amber);font-size:20px;letter-spacing:2px}
+.placar .linha{border-top:1px solid #33373D;padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.placar .linha b{font-size:44px}
+.placar .ilu{font-size:12px;color:#8E949B}
+
+section{padding:80px 0}
+@media (max-width:700px){section{padding:56px 0}}
+.cab{max-width:700px;margin-bottom:38px}
+.cab .tag{background:var(--amber-soft);color:var(--amber-d)}
+.cab h2{font-size:clamp(36px,5vw,56px);margin-top:14px}
+.cab p{color:var(--muted);margin-top:14px;font-size:18px}
+
+/* diferencial: acompanhe seu carro */
+.dif{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dif .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center}
+@media (max-width:920px){.dif .wrap{grid-template-columns:minmax(0,1fr)}}
+.lista{list-style:none;padding:0;margin:24px 0 28px;display:grid;gap:14px}
+.lista li{display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+.lista li i{width:32px;height:32px;border-radius:8px;background:var(--amber);display:grid;place-items:center;font-style:normal;font:800 18px var(--cond)}
+.lista li b{display:block}
+.lista li span{color:var(--muted);font-size:15.5px}
+.celular{text-decoration:none;color:inherit;display:block;justify-self:center;width:300px;max-width:100%;border-radius:38px;background:var(--ink);padding:12px;box-shadow:0 30px 60px rgba(22,24,27,.25)}
+.tela{border-radius:28px;background:var(--bg);overflow:hidden;font-size:13.5px}
+.tela .h{background:var(--ink);color:#fff;padding:16px 16px 14px}
+.tela .h small{color:#B9BEC5;display:block}
+.tela .h b{font:800 22px var(--cond);text-transform:uppercase}
+.tela .barra{height:6px;background:#3A3F46;border-radius:6px;margin-top:10px;overflow:hidden}
+.tela .barra i{display:block;height:100%;width:66%;background:var(--amber)}
+.etp{padding:14px 16px;display:grid;gap:10px}
+.etp div{display:grid;grid-template-columns:20px 1fr auto;gap:10px;align-items:center}
+.etp .b{width:20px;height:20px;border-radius:50%;background:var(--ok);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.etp .agora .b{background:var(--amber);color:var(--ink);box-shadow:0 0 0 4px rgba(242,169,0,.25)}
+.etp .prox .b{background:#D5D3CD}
+.etp .prox{color:#9AA0A6}
+.etp small{color:var(--muted)}
+.tela .ev{margin:0 16px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;grid-template-columns:54px 1fr;gap:10px;align-items:center}
+.tela .ev .img{height:54px;border-radius:8px;background:linear-gradient(135deg,#6B7078,#3A3F46)}
+
+.serv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:920px){.serv{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.serv{grid-template-columns:minmax(0,1fr)}}
+.sv{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:8px;align-content:start;border-top:4px solid var(--amber)}
+.sv h3{font-size:25px}
+.sv p{color:var(--muted);font-size:15.5px}
+.nota-conf{margin-top:14px;font-size:14px;color:var(--muted)}
+
+.aval{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:920px){.aval{grid-template-columns:minmax(0,1fr)}}
+blockquote{margin:0;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:14px;align-content:space-between}
+blockquote p{font-size:17px}
+blockquote .est{color:var(--amber-d);letter-spacing:2px}
+blockquote footer{font-size:14px;color:var(--muted)}
+blockquote footer b{color:var(--ink)}
+.vertodas{margin-top:22px;display:inline-block;font-weight:700;color:var(--ink)}
+
+.contato{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px}
+@media (max-width:920px){.contato{grid-template-columns:minmax(0,1fr)}}
+.info{background:var(--ink);color:#fff;border-radius:18px;padding:30px;display:grid;gap:22px;align-content:start}
+.info h3{font-size:18px;color:var(--amber);letter-spacing:.06em}
+.info p{color:#D6D9DD}
+.horas{display:grid;grid-template-columns:auto 1fr;gap:4px 18px;color:#D6D9DD}
+.horas span:nth-child(odd){color:#9AA0A6}
+.mapa{border-radius:18px;overflow:hidden;border:1px solid var(--line);min-height:360px;background:#E4E2DC}
+.mapa iframe{width:100%;height:100%;min-height:360px;border:0;display:block}
+
+footer.rodape{padding:28px 0 110px;font-size:14px;color:var(--muted)}
+footer.rodape .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:20;width:60px;height:60px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.flutua svg{width:30px;height:30px}
+</style>
+</head>
+<body>
+<div class="demo"><b>Modelo de demonstração</b> · proposta de site para a Internacional Centro Automotivo. Serviços, fotos e números finais entram com a aprovação da oficina.</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio" aria-label="Internacional Centro Automotivo, início"><span class="sel">I</span><span><b>Internacional</b><small>Centro Automotivo · Angelim</small></span></a>
+    <nav class="nav" aria-label="Seções"><a href="#acompanhe">Acompanhe seu carro</a><a href="#servicos">Serviços</a><a href="#avaliacoes">Avaliações</a><a href="#contato">Contato</a></nav>
+    <a class="btn amber sm zap-link" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.5 12.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Pedir orçamento</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <span class="tag">Angelim · São Luís (MA)</span>
+        <h1>Seu carro em boas mãos. <span>E você acompanha tudo.</span></h1>
+        <p class="lead">Mecânica com atendimento de primeira e transparência do começo ao fim: você recebe um link, vê cada etapa do serviço e as fotos do que foi trocado.</p>
+        <div class="ctas">
+          <a class="btn amber zap-link" href="#" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
+          <a class="btn out" href="acompanhe.html">Ver como funciona o acompanhamento</a>
+        </div>
+      </div>
+      <div class="placar" aria-label="Números da oficina">
+        <h2>Quem já passou por aqui</h2>
+        <div class="num"><span class="est" aria-hidden="true">★★★★★</span><b>4,9</b><span>nota no Google</span></div>
+        <div class="linha">
+          <div class="num"><b data-conta="1116">0</b><span>avaliações de clientes</span></div>
+          <div class="num"><b data-conta="327">0</b><span>carros entregues este mês</span></div>
+        </div>
+        <span class="ilu">O número de carros entregues é ilustrativo: no site final ele é contado sozinho pelo sistema de acompanhamento.</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="acompanhe" class="dif">
+    <div class="wrap">
+      <div>
+        <span class="tag" style="background:var(--amber-soft);color:var(--amber-d)">Diferencial</span>
+        <h2 style="font-size:clamp(36px,5vw,56px);margin-top:14px">Acompanhe seu carro como acompanha um pedido</h2>
+        <ul class="lista">
+          <li><i>1</i><div><b>Link no WhatsApp</b><span>Ao deixar o carro, você recebe um link só seu.</span></div></li>
+          <li><i>2</i><div><b>Etapa por etapa</b><span>Recebido, diagnóstico, orçamento, em serviço, teste e pronto para retirar.</span></div></li>
+          <li><i>3</i><div><b>Fotos do que foi trocado</b><span>A peça antiga e a nova, com a explicação do mecânico.</span></div></li>
+          <li><i>4</i><div><b>Aviso quando fica pronto</b><span>Sem precisar ligar para saber se já pode buscar.</span></div></li>
+        </ul>
+        <a class="btn dark" href="acompanhe.html">Ver um exemplo de acompanhamento</a>
+      </div>
+      <a class="celular" href="acompanhe.html" aria-label="Abrir o exemplo de acompanhamento">
+        <div class="tela">
+          <div class="h"><small>Onix 2019 · ABC-1D23 (exemplo)</small><b>Em serviço</b><div class="barra"><i></i></div></div>
+          <div class="etp">
+            <div><span class="b">✓</span><span>Carro recebido</span><small>8h12</small></div>
+            <div><span class="b">✓</span><span>Diagnóstico</span><small>9h40</small></div>
+            <div><span class="b">✓</span><span>Orçamento aprovado</span><small>10h05</small></div>
+            <div class="agora"><span class="b">●</span><b>Em serviço</b><small>agora</small></div>
+            <div class="prox"><span class="b"></span><span>Teste e qualidade</span><small></small></div>
+            <div class="prox"><span class="b"></span><span>Pronto para retirar</span><small>~16h</small></div>
+          </div>
+          <div class="ev"><span class="img"></span><span><b>Pastilhas de freio</b><br><small>foto da peça antiga e da nova</small></span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="servicos">
+    <div class="wrap">
+      <div class="cab"><span class="tag">Serviços</span><h2>Do diagnóstico à revisão completa</h2></div>
+      <div class="serv">
+        <article class="sv"><h3>Mecânica geral</h3><p>Motor, câmbio, embreagem e o que o carro precisar, com diagnóstico antes de qualquer troca.</p></article>
+        <article class="sv"><h3>Revisão preventiva</h3><p>Óleo, filtros, correias e checagem completa para evitar surpresa na estrada.</p></article>
+        <article class="sv"><h3>Freios</h3><p>Pastilhas, discos e fluido, com teste antes da entrega.</p></article>
+        <article class="sv"><h3>Suspensão</h3><p>Amortecedores, buchas e terminais para o carro voltar a andar firme.</p></article>
+        <article class="sv"><h3>Injeção eletrônica</h3><p>Leitura por scanner e correção de falhas da injeção.</p></article>
+        <article class="sv"><h3>Ar-condicionado</h3><p>Higienização, carga de gás e manutenção para o calor de São Luís.</p></article>
+      </div>
+      <p class="nota-conf">Lista de serviços de exemplo: na versão final entra exatamente o que a Internacional faz.</p>
+    </div>
+  </section>
+
+  <section id="avaliacoes" style="background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <div class="cab"><span class="tag">Avaliações</span><h2>Nota 4,9 com mais de mil avaliações</h2></div>
+      <div class="aval">
+        <blockquote><span class="est" aria-hidden="true">★★★★★</span><p>“Um atendimento de primeira, da chegada até a saída. Equipe altamente qualificada e experiente.”</p><footer><b>Robson C.</b> · avaliação no Google</footer></blockquote>
+        <blockquote><span class="est" aria-hidden="true">★★★★★</span><p>“Estava bem cheio por ter muita demanda, mas ainda assim me deram toda assistência necessária!”</p><footer><b>Pablo C.</b> · avaliação no Google</footer></blockquote>
+        <blockquote><span class="est" aria-hidden="true">★★★★★</span><p>“Muitíssimo satisfeito com os serviços realizados, com toda certeza voltarei. Parabéns, vocês são diferenciados!”</p><footer><b>Marcos M.</b> · avaliação no Google</footer></blockquote>
+      </div>
+      <a class="vertodas" href="https://maps.google.com/?cid=7925171679218498802" target="_blank" rel="noopener">Ver todas as avaliações no Google →</a>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="wrap">
+      <div class="cab"><span class="tag">Contato</span><h2>Traga seu carro</h2></div>
+      <div class="contato">
+        <div class="info">
+          <div><h3>Endereço</h3><p>Av. Jerônimo de Albuquerque, 288<br>Angelim, São Luís (MA), 65054-015</p></div>
+          <div><h3>Horário</h3><div class="horas"><span>Segunda a sexta</span><span>8h às 18h</span><span>Sábado</span><span>8h às 12h</span><span>Domingo</span><span>Fechado</span></div></div>
+          <div><h3>WhatsApp</h3><p>(98) 98871-4261</p></div>
+          <a class="btn amber zap-link" href="#" target="_blank" rel="noopener">Pedir orçamento no WhatsApp</a>
+        </div>
+        <div class="mapa"><iframe title="Mapa: Av. Jerônimo de Albuquerque, 288, Angelim, São Luís" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Av.+Jer%C3%B4nimo+de+Albuquerque,+288,+Angelim,+S%C3%A3o+Lu%C3%ADs+-+MA&output=embed"></iframe></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape"><div class="wrap"><span>Internacional Centro Automotivo · Angelim, São Luís (MA)</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+
+<a class="flutua zap-link" href="#" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg></a>
+
+<script>
+  document.querySelectorAll(".zap-link").forEach(a => a.href = "https://wa.me/5598988714261?text=" + encodeURIComponent("Olá! Vi o site e gostaria de um orçamento para o meu carro."));
+  // contador animado quando o placar aparece
+  const contar = el => { const alvo = +el.dataset.conta, t0 = performance.now(), d = 1400;
+    const passo = t => { const p = Math.min(1, (t - t0) / d), v = Math.round(alvo * (1 - Math.pow(1 - p, 3))); el.textContent = v.toLocaleString("pt-BR"); if (p < 1) requestAnimationFrame(passo); };
+    requestAnimationFrame(passo); };
+  const els = document.querySelectorAll("[data-conta]");
+  if ("IntersectionObserver" in window && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { contar(e.target); io.unobserve(e.target); } }), { threshold: .4 });
+    els.forEach(el => io.observe(el));
+  } else els.forEach(el => el.textContent = (+el.dataset.conta).toLocaleString("pt-BR"));
+</script>
+</body>
+</html>
