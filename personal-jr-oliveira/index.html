@@ -4,195 +4,254 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Personal Jr Oliveira · Treino na praia em São Luís</title>
-<meta name="description" content="Modelo de demonstração de site para o personal trainer Jr Oliveira, em São Luís (MA).">
-<meta name="theme-color" content="#0B1E33">
+<title>Júnior Oliveira · Personal Trainer em São Luís</title>
+<meta name="description" content="Modelo de demonstração de site para o personal trainer Júnior Oliveira, em São Luís (MA): saúde, hipertrofia, emagrecimento e prevenção de lesão.">
+<meta name="theme-color" content="#0E0E0F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
-  --ocean:#0B1E33; --ocean-2:#13304F; --sea:#1E6F8E; --sun:#FF7A1A; --sun-2:#FFB23F; --sand:#F6EBDA; --paper:#FFFFFF; --ink:#0B1E33; --muted:#5B6B7C; --line:#E7DCCB; --zap:#1F8A4C;
+  --bg:#0E0E0F; --bg-2:#17171A; --card:#1E1E22; --line:#2C2C31; --txt:#F2F2F0; --muted:#A3A3AA;
+  --yel:#FFD21F; --yel-d:#E6B800; --red:#FF3B3B; --paper:#FFFFFF; --ink:#0E0E0F; --zap:#1F8A4C;
   --disp:"Anton","Arial Narrow",Impact,sans-serif; --sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --r:22px; --wrap:1140px;
+  --r:20px; --wrap:1140px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:clip}
-body{margin:0;background:var(--sand);color:var(--ink);font:16.5px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--txt);font:16.5px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit}
 h1,h2,h3{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin:0;line-height:.95;letter-spacing:.005em;text-wrap:balance}
 p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
-.demo{background:var(--sun);color:var(--ocean);font-size:13px;text-align:center;padding:7px 16px;font-weight:600}
+:focus-visible{outline:3px solid var(--yel);outline-offset:3px}
+.demo{background:var(--yel);color:var(--ink);font-size:13px;text-align:center;padding:7px 16px;font-weight:600}
 
-.top{position:sticky;top:0;z-index:20;background:rgba(11,30,51,.92);backdrop-filter:blur(10px);color:#fff}
+.top{position:sticky;top:0;z-index:20;background:rgba(14,14,15,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:66px}
-.marca{text-decoration:none;font:400 26px var(--disp);text-transform:uppercase;letter-spacing:.02em}
-.marca span{color:var(--sun)}
-.marca{white-space:nowrap}
-@media (max-width:420px){.marca{font-size:22px}.top .btn.sm{padding:0 12px;font-size:12.5px}}
-@media (max-width:560px){.grade th,.grade td{padding:10px;font-size:14px}.grade th{font-size:15px}}
+.marca{text-decoration:none;font:400 25px var(--disp);text-transform:uppercase;letter-spacing:.02em;white-space:nowrap}
+.marca span{color:var(--yel)}
 .nav{display:flex;gap:24px;font-weight:700;font-size:14.5px}
-.nav a{text-decoration:none;color:#BFD0E0}
+.nav a{text-decoration:none;color:var(--muted)}
 .nav a:hover{color:#fff}
 @media (max-width:900px){.nav{display:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:12px;font:800 15.5px var(--sans);text-decoration:none;border:0;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.03em}
-.btn.sun{background:var(--sun);color:var(--ocean)}
-.btn.sun:hover{background:var(--sun-2)}
-.btn.out{border:2px solid #fff;color:#fff;background:transparent}
-.btn.dark{background:var(--ocean);color:#fff}
-.btn.sm{min-height:42px;padding:0 16px;font-size:13.5px}
-.btn svg{width:18px;height:18px}
+@media (max-width:560px){.so-desk{display:none}}
+@media (max-width:420px){.marca{font-size:21px}.top .btn.sm{padding:0 12px;font-size:12.5px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:10px;font:800 15px var(--sans);text-decoration:none;border:0;cursor:pointer;white-space:nowrap;text-transform:uppercase;letter-spacing:.04em}
+.btn.yel{background:var(--yel);color:var(--ink)}
+.btn.yel:hover{background:#FFE15C}
+.btn.out{border:2px solid var(--txt);color:var(--txt);background:transparent}
+.btn.sm{min-height:42px;padding:0 16px;font-size:13px}
 
-/* hero: pôr do sol na praia, desenhado em SVG */
-.hero{position:relative;color:#fff;background:var(--ocean);overflow:hidden}
-.cena{position:absolute;inset:0;width:100%;height:100%}
-.hero .wrap{position:relative;padding-top:80px;padding-bottom:120px;display:grid;gap:22px;max-width:var(--wrap)}
-@media (max-width:700px){.hero .wrap{padding-top:48px;padding-bottom:110px}}
-.hero .tag{display:inline-flex;align-self:start;justify-self:start;gap:8px;align-items:center;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 14px;font-weight:700;font-size:13.5px}
-.hero h1{font-size:clamp(56px,11vw,140px);max-width:900px}
-.hero h1 em{font-style:normal;color:var(--sun-2)}
-.hero p{font-size:clamp(17px,2vw,20px);max-width:560px;color:#DCE7F1}
-.ctas{display:flex;flex-wrap:wrap;gap:12px}
+/* hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 85% 30%,rgba(255,59,59,.22),transparent 65%),radial-gradient(50% 60% at 10% 90%,rgba(255,210,31,.12),transparent 70%)}
+.hero::after{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:.8}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:44px;align-items:center;padding-top:64px;padding-bottom:72px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:minmax(0,1fr);padding-top:36px;padding-bottom:48px;gap:30px}}
+.coach{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--yel)}
+.coach::before{content:"";width:28px;height:3px;background:var(--yel)}
+.hero h1{font-size:clamp(50px,8vw,96px);margin:16px 0 20px}
+.hero h1 em{font-style:normal;color:var(--yel)}
+.hero .lead{font-size:clamp(17px,2vw,19.5px);color:#CFCFD4;max-width:560px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.creds span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font-size:13.5px;font-weight:700}
+.retrato{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#2A2A30,#141416);border:1px solid var(--line)}
+.retrato::before{content:"";position:absolute;inset:auto -20% -30% -20%;height:70%;background:radial-gradient(50% 60% at 50% 50%,rgba(255,59,59,.35),transparent 70%)}
+.retrato .ph{position:absolute;inset:0;display:grid;place-items:center;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#77777E}
+.retrato .selo{position:absolute;left:16px;bottom:16px;right:16px;background:rgba(14,14,15,.82);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.retrato .selo b{display:block;font:400 22px var(--disp);text-transform:uppercase}
+.retrato .selo span{font-size:13px;color:var(--muted)}
+@media (max-width:900px){.retrato{aspect-ratio:5/4}}
 
-.faixa{background:var(--sun);color:var(--ocean);overflow:hidden;padding:14px 0;transform:rotate(-1.2deg);margin-top:-26px;position:relative;z-index:2}
-.faixa .t{display:flex;gap:34px;width:max-content;animation:anda 26s linear infinite;font:400 26px var(--disp);text-transform:uppercase;white-space:nowrap}
-.faixa .t span::after{content:"✦";margin-left:34px}
+.faixa{background:var(--yel);color:var(--ink);overflow:hidden;padding:12px 0}
+.faixa .t{display:flex;gap:30px;width:max-content;animation:anda 28s linear infinite;font:400 24px var(--disp);text-transform:uppercase;white-space:nowrap}
+.faixa .t span::after{content:"●";margin-left:30px;font-size:12px;vertical-align:middle}
 @keyframes anda{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.faixa .t{animation:none}}
 
-section{padding:90px 0}
-@media (max-width:700px){section{padding:60px 0}}
-.cab{max-width:700px;margin-bottom:40px}
-.cab .k{font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--sea)}
-.cab h2{font-size:clamp(42px,6vw,76px);margin-top:10px}
+section{padding:88px 0}
+@media (max-width:700px){section{padding:58px 0}}
+.cab{max-width:720px;margin-bottom:40px}
+.k{font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--yel)}
+.cab h2{font-size:clamp(40px,6vw,74px);margin-top:10px}
 .cab p{color:var(--muted);margin-top:14px;font-size:17.5px}
 
+/* áreas */
+.areas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+@media (max-width:1000px){.areas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.areas{grid-template-columns:minmax(0,1fr)}}
+.ar{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:10px;transition:border-color .2s}
+.ar:hover{border-color:var(--yel)}
+.ar .n{font:400 46px/1 var(--disp);color:var(--yel)}
+.ar h3{font-size:28px}
+.ar p{color:var(--muted);font-size:15px}
+
 /* quiz */
-.quiz{background:var(--ocean);color:#fff;border-radius:32px;padding:40px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px}
-@media (max-width:900px){.quiz{grid-template-columns:minmax(0,1fr);padding:26px;border-radius:26px;gap:24px}}
-.quiz h2{font-size:clamp(40px,5.4vw,66px)}
-.quiz .lead{color:#BFD0E0;margin-top:14px}
-.passo{display:grid;gap:14px}
-.passo .n{font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--sun-2)}
+.quiz{background:var(--bg-2);border:1px solid var(--line);border-radius:30px;padding:40px;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:40px}
+@media (max-width:900px){.quiz{grid-template-columns:minmax(0,1fr);padding:24px;border-radius:24px;gap:22px}}
+.quiz h2{font-size:clamp(38px,5vw,62px);margin-top:10px}
+.quiz .lead{color:var(--muted);margin-top:14px}
+.barra{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.barra i{display:block;height:100%;background:var(--yel);transition:width .3s}
+.passo{display:grid;gap:14px;margin-top:20px}
+.passo .n{font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--yel)}
 .passo h3{font-size:30px}
 .ops{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media (max-width:480px){.ops{grid-template-columns:minmax(0,1fr)}}
-.ops button{display:flex;gap:10px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.18);color:#fff;border-radius:14px;padding:14px;font:700 15.5px var(--sans);cursor:pointer;min-height:58px}
+.ops button{display:flex;gap:10px;align-items:center;text-align:left;background:var(--card);border:1.5px solid var(--line);color:var(--txt);border-radius:14px;padding:14px;font:700 15.5px var(--sans);cursor:pointer;min-height:58px}
 .ops button span{font-size:22px}
-.ops button:hover{border-color:var(--sun)}
-.barra{height:6px;border-radius:6px;background:rgba(255,255,255,.12);overflow:hidden}
-.barra i{display:block;height:100%;background:var(--sun);transition:width .3s}
-.resultado{display:none;gap:14px;background:var(--paper);color:var(--ink);border-radius:20px;padding:24px}
+.ops button:hover{border-color:var(--yel)}
+.resultado{display:none;gap:14px;background:var(--paper);color:var(--ink);border-radius:20px;padding:24px;margin-top:20px}
 .resultado.on{display:grid}
-.resultado .n{color:var(--sea)}
-.resultado h3{font-size:38px;color:var(--ocean)}
-.resultado ul{margin:0;padding-left:20px;display:grid;gap:4px;color:var(--muted)}
-.resultado .acoes{display:flex;flex-wrap:wrap;gap:10px}
-.resultado .acoes button{background:none;border:0;font:700 14.5px var(--sans);color:var(--sea);text-decoration:underline;cursor:pointer;padding:0 6px}
+.resultado .n{font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A6D00}
+.resultado h3{font-size:38px}
+.resultado ul{margin:0;padding-left:20px;display:grid;gap:4px;color:#4A4A50}
+.resultado .acoes{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.resultado .acoes .btn{white-space:normal;text-align:center}
+.resultado .acoes button{background:none;border:0;font:700 14.5px var(--sans);color:var(--ink);text-decoration:underline;cursor:pointer}
+
+/* frase */
+.frase{background:var(--yel);color:var(--ink);border-radius:30px;padding:50px 44px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:28px;align-items:center}
+@media (max-width:900px){.frase{grid-template-columns:minmax(0,1fr);padding:30px 24px;border-radius:24px}}
+.frase h2{font-size:clamp(40px,6.4vw,84px)}
+.frase p{font-size:17.5px;font-weight:600}
+
+/* método */
+.metodo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:3px solid var(--yel)}
+@media (max-width:900px){.metodo{grid-template-columns:minmax(0,1fr)}}
+.mt{padding:24px 22px 8px 0;counter-increment:m}
+.metodo{counter-reset:m}
+.mt::before{content:"0" counter(m);display:block;font:400 30px var(--disp);color:var(--yel);margin-bottom:10px}
+.mt h3{font-size:26px;margin-bottom:8px}
+.mt p{color:var(--muted);font-size:15.5px}
+@media (max-width:900px){.mt{border-bottom:1px solid var(--line);padding:22px 0}}
 
 /* modalidades */
-.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mods{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 @media (max-width:900px){.mods{grid-template-columns:minmax(0,1fr)}}
-.md{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
-.md .ic{font-size:34px}
-.md h3{font-size:34px}
+.md{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.md h3{font-size:32px}
 .md p{color:var(--muted)}
-.md ul{margin:4px 0 0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:3px}
-.md .preco{margin-top:auto;padding-top:10px;font-weight:800;color:var(--sea)}
-.md.top{background:var(--ocean);color:#fff;border-color:var(--ocean)}
-.md.top p,.md.top ul{color:#BFD0E0}
-.md.top .preco{color:var(--sun-2)}
-.md.top::after{content:"MAIS PROCURADO";position:absolute;top:18px;right:-34px;transform:rotate(35deg);background:var(--sun);color:var(--ocean);font:800 11px var(--sans);letter-spacing:.08em;padding:5px 40px}
+.md ul{margin:0;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:3px}
+.md .preco{margin-top:auto;padding-top:8px;font-weight:800;color:var(--yel)}
+.md.top{border-color:var(--yel);box-shadow:0 0 0 1px var(--yel) inset}
+.md.top::after{content:"MAIS PROCURADO";position:absolute;top:18px;right:-36px;transform:rotate(35deg);background:var(--yel);color:var(--ink);font:800 11px var(--sans);letter-spacing:.08em;padding:5px 42px}
 
-/* horários na praia */
-.grade{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.grade table{width:100%;border-collapse:collapse;font-size:15px}
-.grade th,.grade td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--line)}
-.grade th{background:var(--ocean);color:#fff;font:400 18px var(--disp);text-transform:uppercase;letter-spacing:.04em}
-.grade tr:last-child td{border-bottom:0}
-.grade td b{color:var(--sea)}
-.vaga{display:inline-block;font-size:12.5px;font-weight:800;padding:3px 10px;border-radius:999px;background:#E3F3EA;color:#1D7A49}
-.vaga.pouca{background:#FFEAD9;color:#B3500C}
-.tabwrap{overflow-x:auto}
-.ilu{margin-top:12px;font-size:13.5px;color:var(--muted)}
+/* resultados */
+.res-grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.res-grade{grid-template-columns:minmax(0,1fr)}}
+.aa{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.aa .fotos{display:grid;grid-template-columns:1fr 1fr;aspect-ratio:4/3}
+.aa .fotos span{display:grid;place-items:end center;padding:10px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8C8C93;background:linear-gradient(180deg,#26262B,#1A1A1E)}
+.aa .fotos span + span{border-left:2px solid var(--yel);color:var(--yel)}
+.aa div.t{padding:14px 16px;font-size:14.5px;color:var(--muted)}
+.aa div.t b{color:var(--txt)}
 
-/* sobre + depoimentos */
+/* dicas */
+.dicas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:900px){.dicas{grid-template-columns:minmax(0,1fr)}}
+.dc{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:10px;text-decoration:none}
+.dc .tag{justify-self:start;background:rgba(255,59,59,.15);color:#FF7A7A;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.dc h3{font-size:26px}
+.dc p{color:var(--muted);font-size:15px}
+.dc span.ver{font-weight:800;font-size:14px;color:var(--yel)}
+
 .sobre{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:46px;align-items:center}
 @media (max-width:900px){.sobre{grid-template-columns:minmax(0,1fr)}}
-.foto{aspect-ratio:4/5;border-radius:28px;background:linear-gradient(170deg,var(--sun-2),var(--sun) 40%,var(--sea) 100%);position:relative;overflow:hidden;display:grid;place-items:end center;padding:24px;color:#fff;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:12.5px}
-.foto::before{content:"";position:absolute;width:46%;aspect-ratio:1;border-radius:50%;background:rgba(255,236,190,.65);top:16%;left:27%}
-@media (max-width:900px){.foto{aspect-ratio:5/4}}
-.encher{border:2px dashed var(--sun);border-radius:18px;padding:18px;background:#FFF4E8;color:#8A4510;font-size:15px}
-.encher b{display:block;color:var(--ocean)}
-.depo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-@media (max-width:900px){.depo{grid-template-columns:minmax(0,1fr)}}
-.dp{background:var(--paper);border:2px dashed var(--line);border-radius:var(--r);padding:24px;display:grid;gap:10px;color:var(--muted)}
-.dp b{color:var(--ink)}
-.dp .av{width:46px;height:46px;border-radius:50%;background:var(--sand)}
+.sobre p{color:#CFCFD4;font-size:17.5px;margin-top:14px}
+.lista{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.lista li{display:flex;gap:12px;align-items:flex-start}
+.lista li::before{content:"";flex:none;width:10px;height:10px;margin-top:8px;background:var(--yel);transform:rotate(45deg)}
+.encher{margin-top:20px;border:2px dashed var(--yel-d);border-radius:16px;padding:16px;background:rgba(255,210,31,.06);color:#E8D89A;font-size:14.5px}
 
-.insta{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:24px}
-.insta span{aspect-ratio:1;border-radius:12px;background:linear-gradient(135deg,var(--sea),var(--ocean));opacity:.85}
-.insta span:nth-child(2n){background:linear-gradient(135deg,var(--sun-2),var(--sun))}
-
-.final{background:var(--ocean);color:#fff;border-radius:32px;padding:46px;text-align:center;display:grid;gap:18px;justify-items:center}
-@media (max-width:700px){.final{padding:30px 22px;border-radius:26px}}
-.final h2{font-size:clamp(42px,7vw,88px)}
-.final p{color:#BFD0E0;max-width:520px}
+.final{background:linear-gradient(135deg,#1E1E22,#141416);border:1px solid var(--line);border-radius:30px;padding:46px;text-align:center;display:grid;gap:18px;justify-items:center;position:relative;overflow:hidden}
+.final::before{content:"";position:absolute;inset:-40% -10% auto;height:100%;background:radial-gradient(50% 50% at 50% 50%,rgba(255,59,59,.18),transparent 70%)}
+.final > *{position:relative}
+.final h2{font-size:clamp(44px,7vw,90px)}
+.final p{color:var(--muted);max-width:540px}
+@media (max-width:700px){.final{padding:30px 22px;border-radius:24px}}
 
 footer.rodape{padding:30px 0 110px;font-size:13.5px;color:var(--muted)}
-footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;min-height:56px;padding:0 20px;border-radius:999px;background:var(--sun);color:var(--ocean);display:inline-flex;align-items:center;gap:8px;font:800 14.5px var(--sans);text-decoration:none;box-shadow:0 10px 30px rgba(11,30,51,.3);text-transform:uppercase}
+footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
+.flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;min-height:54px;padding:0 20px;border-radius:999px;background:var(--yel);color:var(--ink);display:inline-flex;align-items:center;gap:8px;font:800 14px var(--sans);text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.45);text-transform:uppercase}
 </style>
 </head>
 <body>
-<div class="demo">Modelo de demonstração · proposta de site para o Personal Jr Oliveira. Fotos, horários, planos e textos entram com a aprovação dele.</div>
+<div class="demo">Modelo de demonstração · proposta de site para o Júnior Oliveira. Fotos, resultados e valores entram com a aprovação dele.</div>
 
 <header class="top">
   <div class="wrap">
-    <a class="marca" href="#inicio">Jr <span>Oliveira</span></a>
-    <nav class="nav" aria-label="Seções"><a href="#plano">Qual treino?</a><a href="#modalidades">Modalidades</a><a href="#horarios">Horários na praia</a><a href="#sobre">Sobre</a></nav>
-    <a class="btn sun sm contato" href="#" target="_blank" rel="noopener">Aula experimental</a>
+    <a class="marca" href="#inicio">Júnior <span>Oliveira</span></a>
+    <nav class="nav" aria-label="Seções"><a href="#areas">Especialidades</a><a href="#teste">Qual treino?</a><a href="#metodo">Método</a><a href="#resultados">Resultados</a><a href="#sobre">Sobre</a></nav>
+    <a class="btn yel sm contato" href="#" target="_blank" rel="noopener">Agendar<span class="so-desk">&nbsp;avaliação</span></a>
   </div>
 </header>
 
 <main id="inicio">
   <div class="hero">
-    <svg class="cena" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0B1E33"/><stop offset=".55" stop-color="#3B3F6B"/><stop offset=".8" stop-color="#E0694A"/><stop offset="1" stop-color="#FFB23F"/></linearGradient>
-        <linearGradient id="mar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E6F8E"/><stop offset="1" stop-color="#0B1E33"/></linearGradient>
-      </defs>
-      <rect width="1200" height="700" fill="url(#ceu)"/>
-      <circle cx="900" cy="470" r="120" fill="#FFC861" opacity=".9"/>
-      <rect y="480" width="1200" height="220" fill="url(#mar)"/>
-      <path d="M0 520 Q150 505 300 520 T600 520 T900 520 T1200 520" fill="none" stroke="#FFB23F" stroke-opacity=".35" stroke-width="3"/>
-      <path d="M0 560 Q150 545 300 560 T600 560 T900 560 T1200 560" fill="none" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="2"/>
-      <path d="M0 640 Q300 600 620 630 T1200 610 L1200 700 L0 700Z" fill="#E9C99A" opacity=".95"/>
-      <rect width="1200" height="700" fill="#0B1E33" opacity=".35"/>
-    </svg>
     <div class="wrap">
-      <span class="tag">🌅 Treino ao ar livre · São Luís (MA)</span>
-      <h1>Seu melhor treino tem <em>vista para o mar.</em></h1>
-      <p>Treinos personalizados na praia, na academia ou online, com acompanhamento de perto para você chegar no seu objetivo.</p>
-      <div class="ctas"><a class="btn sun contato" href="#" target="_blank" rel="noopener">Quero uma aula experimental</a><a class="btn out" href="#plano">Descobrir meu treino</a></div>
+      <div>
+        <span class="coach">Coach · Personal Trainer · São Luís</span>
+        <h1>Treino com método para <em>saúde, músculo e resultado.</em></h1>
+        <p class="lead">Emagrecimento, hipertrofia e prevenção de lesão, começando por uma avaliação física e postural completa. Treino certo, execução correta e acompanhamento de perto.</p>
+        <div class="ctas"><a class="btn yel contato" href="#" target="_blank" rel="noopener">Agendar minha avaliação</a><a class="btn out" href="#teste">Descobrir meu treino</a></div>
+        <div class="creds"><span>🎓 Bacharel em Educação Física</span><span>🦴 Esp. reabilitação e prevenção de lesão</span><span>📊 Avaliador físico e postural</span></div>
+      </div>
+      <div class="retrato" role="img" aria-label="Espaço para a foto do Júnior Oliveira">
+        <span class="ph">Foto do Júnior</span>
+        <div class="selo"><b>Júnior Oliveira</b><span>Saúde · Hipertrofia · Emagrecimento</span></div>
+      </div>
     </div>
   </div>
   <div class="faixa" aria-hidden="true"><div class="t" id="faixa"></div></div>
 
-  <section id="plano">
+  <section id="areas">
+    <div class="wrap">
+      <div class="cab"><span class="k">Especialidades</span><h2>Um treino para cada objetivo</h2></div>
+      <div class="areas">
+        <article class="ar"><span class="n">01</span><h3>Emagrecimento</h3><p>Perda de gordura com treino de força e condicionamento, sem ficar refém da balança.</p></article>
+        <article class="ar"><span class="n">02</span><h3>Hipertrofia</h3><p>Ganho de massa muscular com técnica, progressão de carga e execução corrigida a cada série.</p></article>
+        <article class="ar"><span class="n">03</span><h3>Postura e prevenção de lesão</h3><p>Avaliação postural e exercícios para corrigir desvios como a hipercifose e voltar a treinar sem dor.</p></article>
+        <article class="ar"><span class="n">04</span><h3>Saúde em todas as idades</h3><p>Treino seguro e adaptado, inclusive para alunos acima dos 60 e 70 anos.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="teste" style="padding-top:0">
     <div class="wrap">
       <div class="quiz">
         <div>
-          <span class="cab k" style="color:var(--sun-2);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase">Monte seu treino</span>
-          <h2 style="margin-top:10px">Qual treino é o seu? Descubra em 3 toques.</h2>
-          <p class="lead">Responda e receba a sugestão de modalidade. Depois é só mandar para o Jr e marcar a aula experimental.</p>
+          <span class="k">Teste rápido</span>
+          <h2>Qual treino é o seu? Descubra em 3 toques.</h2>
+          <p class="lead">Responda e veja o plano indicado. Depois é só mandar para o Júnior e marcar sua avaliação física e postural.</p>
         </div>
         <div aria-live="polite">
           <div class="barra" aria-hidden="true"><i id="prog" style="width:0%"></i></div>
-          <div class="passo" id="passo" style="margin-top:20px"></div>
+          <div class="passo" id="passo"></div>
           <div class="resultado" id="res"></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="frase">
+        <h2>Perca peso, ganhe músculo e não se prenda à balança.</h2>
+        <p>O número na balança não conta a história toda. O que importa é a composição do corpo, a força, a disposição e a saúde. É isso que o treino acompanha.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="metodo" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="k">Método</span><h2>Como funciona</h2></div>
+      <div class="metodo">
+        <div class="mt"><h3>Avaliação física e postural</h3><p>Medidas, composição corporal, postura e histórico de lesões.</p></div>
+        <div class="mt"><h3>Plano sob medida</h3><p>Treino montado para o seu objetivo, sua rotina e o seu corpo.</p></div>
+        <div class="mt"><h3>Execução correta</h3><p>Acompanhamento de cada exercício para ter resultado sem se machucar.</p></div>
+        <div class="mt"><h3>Reavaliação</h3><p>A cada ciclo, novas medidas para ver a evolução e ajustar o treino.</p></div>
       </div>
     </div>
   </section>
@@ -201,79 +260,71 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
     <div class="wrap">
       <div class="cab"><span class="k">Modalidades</span><h2>Treine do seu jeito</h2></div>
       <div class="mods">
-        <article class="md top"><span class="ic" aria-hidden="true">🏖️</span><h3>Treino na praia</h3><p>Funcional ao ar livre, com areia, sol e brisa do mar. Individual ou em grupo pequeno.</p><ul><li>Avaliação física inicial</li><li>Treino planejado para o seu objetivo</li><li>Correção de cada movimento</li></ul><span class="preco">Valores: a combinar</span></article>
-        <article class="md"><span class="ic" aria-hidden="true">🏋️</span><h3>Personal na academia</h3><p>Acompanhamento individual na sua academia, com periodização e evolução de cargas.</p><ul><li>Planejamento semanal</li><li>Ajuste a cada etapa</li><li>Foco em técnica e segurança</li></ul><span class="preco">Valores: a combinar</span></article>
-        <article class="md"><span class="ic" aria-hidden="true">📱</span><h3>Consultoria online</h3><p>Seu treino no celular, com vídeos dos exercícios e acompanhamento pelo WhatsApp.</p><ul><li>Treino montado para sua rotina</li><li>Ajustes periódicos</li><li>Dá para treinar de qualquer lugar</li></ul><span class="preco">Valores: a combinar</span></article>
+        <article class="md top"><h3>Personal presencial</h3><p>Acompanhamento individual na academia, do aquecimento à última série.</p><ul><li>Avaliação física e postural</li><li>Correção de execução em tempo real</li><li>Reavaliações periódicas</li></ul><span class="preco">Valores: consulte</span></article>
+        <article class="md"><h3>Consultoria online</h3><p>Treino no celular, com vídeos dos exercícios e ajustes pelo WhatsApp.</p><ul><li>Plano montado para sua rotina</li><li>Correção por vídeo</li><li>Treine em qualquer academia</li></ul><span class="preco">Valores: consulte</span></article>
+        <article class="md"><h3>Avaliação física e postural</h3><p>Para quem quer saber onde está e o que precisa corrigir antes de começar.</p><ul><li>Composição corporal</li><li>Análise postural</li><li>Relatório com recomendações</li></ul><span class="preco">Valores: consulte</span></article>
       </div>
     </div>
   </section>
 
-  <section id="horarios" style="padding-top:0">
+  <section id="resultados" style="padding-top:0">
     <div class="wrap">
-      <div class="cab"><span class="k">Horários na praia</span><h2>Turmas ao nascer e ao pôr do sol</h2><p>Veja os horários e garanta sua vaga antes que lote.</p></div>
-      <div class="grade tabwrap">
-        <table>
-          <thead><tr><th scope="col">Horário</th><th scope="col">Dias</th><th scope="col">Turma</th><th scope="col">Vagas</th></tr></thead>
-          <tbody>
-            <tr><td><b>5h30</b></td><td>Seg · Qua · Sex</td><td>Funcional na areia</td><td><span class="vaga pouca">Últimas vagas</span></td></tr>
-            <tr><td><b>6h30</b></td><td>Ter · Qui</td><td>Corrida e condicionamento</td><td><span class="vaga">Vagas abertas</span></td></tr>
-            <tr><td><b>17h30</b></td><td>Seg · Qua · Sex</td><td>Funcional ao pôr do sol</td><td><span class="vaga">Vagas abertas</span></td></tr>
-            <tr><td><b>Sábado 7h</b></td><td>Sábado</td><td>Aulão de fim de semana</td><td><span class="vaga">Vagas abertas</span></td></tr>
-          </tbody>
-        </table>
+      <div class="cab"><span class="k">Resultados</span><h2>Antes era só na promessa</h2><p>Transformações reais de alunos acompanhados pelo Júnior. Aqui entram as fotos de antes e depois, com autorização de cada aluno.</p></div>
+      <div class="res-grade">
+        <div class="aa"><div class="fotos"><span>Antes</span><span>Depois</span></div><div class="t"><b>Aluna · emagrecimento</b><br>Tempo de treino e resultado</div></div>
+        <div class="aa"><div class="fotos"><span>Antes</span><span>Depois</span></div><div class="t"><b>Aluno · hipertrofia</b><br>Tempo de treino e resultado</div></div>
+        <div class="aa"><div class="fotos"><span>Antes</span><span>Atual</span></div><div class="t"><b>Aluna · postura</b><br>Tempo de treino e resultado</div></div>
       </div>
-      <p class="ilu">Horários ilustrativos: na versão final entram os horários reais e a praia de cada turma.</p>
+    </div>
+  </section>
+
+  <section id="dicas" style="padding-top:0">
+    <div class="wrap">
+      <div class="cab"><span class="k">Dicas do coach</span><h2>Conteúdo que ensina</h2></div>
+      <div class="dicas">
+        <a class="dc" href="https://instagram.com/personaljroliveira" target="_blank" rel="noopener"><span class="tag">Postura</span><h3>Exercício para corrigir a hipercifose</h3><p>Um dos melhores exercícios para quem tem os ombros e as costas curvados para a frente.</p><span class="ver">Ver no Instagram →</span></a>
+        <a class="dc" href="https://instagram.com/personaljroliveira" target="_blank" rel="noopener"><span class="tag">Execução</span><h3>Sua execução está correta?</h3><p>Com que frequência seu personal corrige sua execução? Detalhes fazem a diferença no resultado.</p><span class="ver">Ver no Instagram →</span></a>
+        <a class="dc" href="https://instagram.com/personaljroliveira" target="_blank" rel="noopener"><span class="tag">Hábitos</span><h3>Metas para a semana</h3><p>Beber mais água, 30 minutos de atividade, mais fruta, sono de qualidade e mais proteína.</p><span class="ver">Ver no Instagram →</span></a>
+      </div>
     </div>
   </section>
 
   <section id="sobre" style="padding-top:0">
     <div class="wrap sobre">
-      <div class="foto" role="img" aria-label="Espaço para a foto do Jr Oliveira treinando na praia"><span style="position:relative">Foto do Jr na praia</span></div>
+      <div class="retrato" role="img" aria-label="Espaço para foto do Júnior com alunos"><span class="ph">Foto do Júnior com alunos</span></div>
       <div>
-        <div class="cab" style="margin-bottom:18px"><span class="k">Sobre</span><h2>Jr Oliveira</h2></div>
-        <p style="color:var(--muted);font-size:17.5px">Personal trainer em São Luís, levando o treino para onde a cidade tem de mais bonito: a beira-mar. Treino sério, com planejamento e acompanhamento, num ambiente que dá vontade de voltar.</p>
-        <div class="encher" style="margin-top:20px"><b>Espaço para a história do Jr</b>Formação, CREF, especializações, tempo de experiência e resultados dos alunos. Preenchemos juntos na versão final.</div>
-        <div class="insta" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
-        <div class="ctas" style="margin-top:16px"><a class="btn dark" href="https://instagram.com/personaljroliveira" target="_blank" rel="noopener">Ver o Instagram @personaljroliveira</a></div>
+        <span class="k">Sobre</span>
+        <h2 style="font-size:clamp(40px,6vw,74px);margin-top:10px">Júnior Oliveira</h2>
+        <p>Coach e personal trainer em São Luís. Trabalha com saúde, hipertrofia e emagrecimento, com atenção especial à postura e à prevenção de lesões, para alunos de todas as idades.</p>
+        <ul class="lista"><li>Bacharel em Educação Física</li><li>Especialização em reabilitação e prevenção de lesão</li><li>Avaliador físico e postural</li><li>Cursos e atualizações constantes</li></ul>
+        <div class="encher">Espaço para a história do Júnior, o CREF e a academia onde atende. Preenchemos juntos na versão final.</div>
       </div>
     </div>
   </section>
 
   <section style="padding-top:0">
     <div class="wrap">
-      <div class="cab"><span class="k">Depoimentos</span><h2>Quem treina com o Jr</h2><p>Aqui entram depoimentos reais dos alunos, com foto e o que mudou para eles.</p></div>
-      <div class="depo">
-        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
-        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
-        <div class="dp"><span class="av"></span><b>Depoimento de aluno</b>Texto real do aluno, com autorização.</div>
-      </div>
-    </div>
-  </section>
-
-  <section style="padding-top:0">
-    <div class="wrap">
-      <div class="final"><h2>Bora treinar?</h2><p>Marque uma aula experimental e sinta como é treinar com vista para o mar.</p><a class="btn sun contato" href="#" target="_blank" rel="noopener">Marcar aula experimental</a></div>
+      <div class="final"><h2>Bora começar?</h2><p>O primeiro passo é a avaliação física e postural. Marque a sua e saia com o caminho claro até o seu objetivo.</p><a class="btn yel contato" href="#" target="_blank" rel="noopener">Agendar avaliação</a></div>
     </div>
   </section>
 </main>
 
-<footer class="rodape"><div class="wrap"><span>Personal Jr Oliveira · São Luís (MA) · CREF [número]</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
-<a class="flutua contato" href="#" target="_blank" rel="noopener">Falar com o Jr</a>
+<footer class="rodape"><div class="wrap"><span>Júnior Oliveira · Personal Trainer · São Luís (MA) · CREF [número]</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+<a class="flutua contato" href="#" target="_blank" rel="noopener">Falar com o Júnior</a>
 
 <script>
-  // Contato: enquanto não tivermos o WhatsApp dele, os botões abrem a conversa no Instagram.
+  // Contato: troque pelo WhatsApp dele (o link da bio). Sem número, abre a conversa no Instagram.
   const WHATS = ""; // ex.: "5598900000000"
   const contato = t => WHATS ? `https://wa.me/${WHATS}?text=${encodeURIComponent(t)}` : "https://ig.me/m/personaljroliveira";
-  document.querySelectorAll(".contato").forEach(a => a.href = contato("Olá, Jr! Vi o site e quero marcar uma aula experimental."));
+  document.querySelectorAll(".contato").forEach(a => a.href = contato("Olá, Júnior! Vi o site e quero agendar uma avaliação."));
 
-  const PAL = ["Treino na praia", "Funcional", "Emagrecimento", "Condicionamento", "Corrida", "Hipertrofia", "Consultoria online", "Aula experimental"];
+  const PAL = ["Saúde", "Hipertrofia", "Emagrecimento", "Avaliação postural", "Prevenção de lesão", "Consultoria online", "Personal presencial"];
   const f = PAL.map(p => `<span>${p}</span>`).join(""); document.getElementById("faixa").innerHTML = f + f;
 
-  // quiz: objetivo, onde e frequência
   const P = [
-    ["Qual é o seu objetivo?", [["🔥", "Emagrecer"], ["💪", "Ganhar massa"], ["⚡", "Mais disposição"], ["🏃", "Correr melhor"]]],
-    ["Onde você prefere treinar?", [["🏖️", "Na praia"], ["🏋️", "Na academia"], ["📱", "Em casa / online"], ["🤷", "Tanto faz"]]],
-    ["Quantas vezes por semana?", [["2️⃣", "2 vezes"], ["3️⃣", "3 vezes"], ["4️⃣", "4 ou mais"], ["❓", "Ainda não sei"]]]
+    ["Qual é o seu objetivo?", [["🔥", "Emagrecer"], ["💪", "Ganhar massa"], ["🦴", "Corrigir postura ou dor"], ["❤️", "Saúde e disposição"]]],
+    ["Como você treina hoje?", [["🛋️", "Estou parado"], ["🏋️", "Treino sozinho"], ["🔁", "Já tenho personal"], ["🩹", "Voltando de lesão"]]],
+    ["Como prefere ser acompanhado?", [["🤝", "Presencial"], ["📱", "Online"], ["🤷", "Ainda não sei"]]]
   ];
   const resp = []; const $ = id => document.getElementById(id);
   function mostra(i) {
@@ -284,13 +335,14 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
     $("passo").querySelectorAll("button").forEach(b => b.onclick = () => { resp[i] = b.dataset.v; mostra(i + 1); });
   }
   function final() {
-    const [obj, onde, freq] = resp;
-    const mod = onde === "Na academia" ? "Personal na academia" : onde === "Em casa / online" ? "Consultoria online" : "Treino na praia";
-    const foco = { "Emagrecer": "funcional com gasto calórico alto", "Ganhar massa": "força e progressão de carga", "Mais disposição": "condicionamento e mobilidade", "Correr melhor": "corrida e fortalecimento" }[obj];
+    const [obj, hoje, como] = resp;
+    const mod = como === "Online" ? "Consultoria online" : "Personal presencial";
+    const foco = { "Emagrecer": "força e condicionamento para perder gordura", "Ganhar massa": "hipertrofia com progressão de carga", "Corrigir postura ou dor": "correção postural e fortalecimento", "Saúde e disposição": "saúde, mobilidade e condicionamento" }[obj];
+    const extra = hoje === "Voltando de lesão" ? "Retorno gradual, com foco em prevenção de lesão" : hoje === "Estou parado" ? "Começo progressivo, no seu ritmo" : "Ajuste de técnica e execução";
     $("passo").innerHTML = "";
-    $("res").innerHTML = `<span class="n" style="font-weight:800;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase">Seu treino ideal</span><h3>${mod}</h3>
-      <ul><li>Objetivo: ${obj.toLowerCase()}</li><li>Foco: ${foco}</li><li>Frequência: ${freq === "Ainda não sei" ? "definimos juntos na avaliação" : freq.toLowerCase() + " por semana"}</li><li>Começa com uma avaliação e uma aula experimental</li></ul>
-      <div class="acoes"><a class="btn sun" target="_blank" rel="noopener" href="${contato(`Olá, Jr! Fiz o teste no site: quero ${obj.toLowerCase()}, prefiro ${mod.toLowerCase()} e ${freq === "Ainda não sei" ? "ainda não sei quantas vezes por semana" : "treinar " + freq.toLowerCase() + " por semana"}. Como faço a aula experimental?`)}">Mandar para o Jr</a><button type="button" id="refaz">Refazer</button></div>`;
+    $("res").innerHTML = `<span class="n">Seu plano indicado</span><h3>${mod}</h3>
+      <ul><li>Foco: ${foco}</li><li>${extra}</li><li>Começa com avaliação física e postural</li>${como === "Ainda não sei" ? "<li>Na avaliação vocês escolhem entre presencial e online</li>" : ""}</ul>
+      <div class="acoes"><a class="btn yel" target="_blank" rel="noopener" href="${contato(`Olá, Júnior! Fiz o teste no site: quero ${obj.toLowerCase()}, hoje ${hoje === "Voltando de lesão" ? "estou voltando de lesão" : hoje.toLowerCase()} e prefiro ${como === "Ainda não sei" ? "decidir na avaliação" : "acompanhamento " + como.toLowerCase()}. Como agendo minha avaliação?`)}">Mandar para o Júnior</a><button type="button" id="refaz">Refazer</button></div>`;
     $("res").classList.add("on");
     $("refaz").onclick = () => { resp.length = 0; $("res").classList.remove("on"); mostra(0); };
   }
