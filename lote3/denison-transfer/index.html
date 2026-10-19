@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Denison Transfer · São Luís ⇄ Barreirinhas</title>
+<meta name="description" content="Transfer privativo entre o Aeroporto de São Luís e Barreirinhas, 24 horas. Calcule horários e peça sua cotação pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500;62..125,700;62..125,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--asfalto:#14213d;--asfalto-2:#1d2f55;--duna:#fbfaf7;--areia:#efe9dc;--lagoa:#149e9a;--lagoa-clara:#dff3f2;--prata:#c9ced6;--ambar:#f2b134;--texto:#1b2438;--suave:#5d6779}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;font:400 17px/1.6 "Public Sans",system-ui,sans-serif;color:var(--texto);background:var(--duna)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--ambar);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:Archivo,system-ui,sans-serif;margin:0;line-height:1;color:var(--asfalto)}
+h1{font-weight:800;font-stretch:72%;font-size:clamp(3rem,9vw,6.6rem);letter-spacing:-.01em;text-transform:none}
+h2{font-weight:800;font-stretch:80%;font-size:clamp(2.2rem,5vw,3.6rem)}
+h3{font-weight:700;font-stretch:90%;font-size:1.3rem}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:.55em;font:700 1rem/1 "Public Sans",sans-serif;padding:1em 1.4em;border-radius:12px;text-decoration:none;border:0;cursor:pointer}
+.btn-ambar{background:var(--ambar);color:#2a1c00}
+.btn-ambar:hover{background:#ffc552}
+.btn-zap{background:#1fae5b;color:#fff}
+.btn-claro{color:#fff;border:1.5px solid rgba(255,255,255,.6)}
+.btn svg{width:1.15em;height:1.15em}
+
+header{background:var(--asfalto);color:#fff}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 20px;max-width:1140px;margin:0 auto}
+.marca{color:#fff;text-decoration:none;font:800 1.35rem/1 Archivo,sans-serif;font-stretch:75%;letter-spacing:.01em}
+.marca span{color:var(--ambar)}
+.h24{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.9rem;color:#dfe6f3}
+.h24 i{width:9px;height:9px;border-radius:50%;background:#3ddc84;box-shadow:0 0 0 4px rgba(61,220,132,.2)}
+.idiomas{display:flex;gap:2px;background:var(--asfalto-2);border-radius:10px;padding:3px}
+.idiomas button{border:0;background:none;color:#cfd8ea;font:700 .85rem/1 "Public Sans",sans-serif;padding:.55em .75em;border-radius:8px;cursor:pointer}
+.idiomas button[aria-pressed="true"]{background:#fff;color:var(--asfalto)}
+@media (max-width:640px){.h24{display:none}}
+
+.hero{background:var(--asfalto);color:#fff;padding:40px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:end}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero h1{color:#fff}
+.hero h1 .seta{color:var(--ambar)}
+.hero p{color:#cfd8ea;font-size:1.15rem;max-width:44ch;margin:20px 0 26px}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:40px}
+.hero img{border-radius:18px 18px 0 0;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 70%}
+
+/* rota */
+.rota{background:var(--asfalto-2);color:#dfe6f3;padding:22px 0}
+.rota .wrap{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center}
+.ponto b{display:block;font:800 1.25rem/1 Archivo,sans-serif;font-stretch:80%;color:#fff}
+.ponto span{font-size:.88rem}
+.estrada{position:relative;height:28px}
+.estrada svg{width:100%;height:28px}
+.estrada small{position:absolute;left:50%;top:-6px;transform:translateX(-50%);background:var(--asfalto-2);padding:0 10px;font-weight:600;color:var(--ambar);white-space:nowrap}
+.fim{text-align:right}
+@media (max-width:560px){.rota .wrap{grid-template-columns:1fr;text-align:center}.estrada{display:none}.rota .fim{text-align:center}}
+
+section{padding:86px 0}
+.intro{max-width:58ch;color:var(--suave);font-size:1.08rem;margin:14px 0 0}
+
+/* cotação */
+.cot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:36px;margin-top:40px;align-items:start}
+@media (max-width:900px){.cot{grid-template-columns:1fr}}
+.form{display:grid;gap:22px}
+fieldset{border:0;margin:0;padding:0}
+legend,.rot{display:block;font-weight:700;margin-bottom:8px;color:var(--asfalto)}
+.trechos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (max-width:560px){.trechos{grid-template-columns:1fr}}
+.trecho{position:relative;border:1.5px solid var(--prata);background:#fff;border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:600}
+.trecho small{display:block;font-weight:400;color:var(--suave);font-size:.88rem}
+.trecho input{position:absolute;opacity:0;width:1px;height:1px}
+.trecho:has(input:checked){border-color:var(--lagoa);background:var(--lagoa-clara);box-shadow:inset 0 0 0 1px var(--lagoa)}
+.trecho:has(input:focus-visible){outline:3px solid var(--ambar)}
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:560px){.grade{grid-template-columns:1fr 1fr}}
+.campo label{display:block;font-weight:600;font-size:.92rem;margin-bottom:6px}
+.campo input,.campo select{width:100%;font:500 1rem "Public Sans",sans-serif;padding:.7em .8em;border:1.5px solid var(--prata);border-radius:10px;background:#fff;color:var(--texto)}
+.check{display:flex;gap:10px;align-items:center;font-weight:500}
+.check input{width:20px;height:20px;accent-color:var(--lagoa)}
+.painel{position:sticky;top:16px;background:var(--asfalto);color:#e7edf8;border-radius:18px;padding:24px}
+.painel h3{color:#fff;margin-bottom:16px}
+.linha-tempo{list-style:none;margin:0 0 20px;padding:0 0 0 22px;border-left:2px dashed #3b5285;display:grid;gap:16px}
+.linha-tempo li{position:relative}
+.linha-tempo li::before{content:"";position:absolute;left:-29px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--ambar);box-shadow:0 0 0 3px var(--asfalto)}
+.linha-tempo b{display:block;font:800 1.6rem/1 Archivo,sans-serif;font-stretch:80%;color:#fff}
+.linha-tempo span{font-size:.92rem;color:#b9c6df}
+.painel .obs{font-size:.86rem;color:#9fb0d0;margin:0 0 18px}
+.painel .vazio{color:#b9c6df}
+.aviso{background:#fff4dc;color:#5b3d00;border-radius:10px;padding:10px 12px;font-size:.92rem}
+
+/* porque */
+.faixa{background:var(--areia)}
+.porque{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;margin-top:36px}
+@media (max-width:860px){.porque{grid-template-columns:1fr}}
+.porque div{border-top:3px solid var(--asfalto);padding-top:16px}
+.porque p{margin:8px 0 0;color:var(--suave)}
+
+.depos{columns:2 320px;column-gap:26px;margin-top:36px}
+.depo{break-inside:avoid;margin:0 0 26px;padding:0 0 0 18px;border-left:3px solid var(--lagoa)}
+.depo blockquote{margin:0 0 8px;font-size:1.06rem}
+.depo figcaption{font-weight:700;color:var(--asfalto)}
+.depo figcaption span{font-weight:500;color:var(--suave);font-size:.88rem}
+.orig{font-size:.88rem;color:var(--suave)}
+
+.fotos{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-top:36px}
+.fotos img{width:100%;height:100%;object-fit:cover;border-radius:14px;aspect-ratio:1}
+.fotos img:first-child{aspect-ratio:auto;grid-row:span 2}
+@media (max-width:640px){.fotos{grid-template-columns:1fr 1fr}.fotos img:first-child{grid-column:span 2;aspect-ratio:16/10;grid-row:auto}}
+
+.final{background:var(--asfalto);color:#e7edf8;text-align:left}
+.final h2{color:#fff}
+.final .wrap{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media (max-width:760px){.final .wrap{grid-template-columns:1fr}}
+.final dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;margin:18px 0 0;color:#cfd8ea}
+.final dt{font-weight:700;color:#fff}
+.final dd{margin:0}
+footer{background:#0d172c;color:#8d9bb8;padding:22px 0;font-size:.88rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.zap-flut{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#1fae5b;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.zap-flut svg{width:30px;height:30px;color:#fff}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="topo">
+    <a class="marca" href="#inicio">DENISON <span>TRANSFER</span></a>
+    <span class="h24"><i aria-hidden="true"></i><span data-t="h24">Atendimento 24 horas</span></span>
+    <div class="idiomas" role="group" aria-label="Idioma / Language / Idioma"><button type="button" data-l="pt" aria-pressed="true">PT</button><button type="button" data-l="en" aria-pressed="false">EN</button><button type="button" data-l="es" aria-pressed="false">ES</button></div>
+  </div>
+</header>
+<main id="inicio">
+<section class="hero" style="padding-bottom:0">
+  <div class="wrap">
+    <div>
+      <h1>São Luís <span class="seta" aria-hidden="true">⇄</span><span class="sr" style="position:absolute;left:-9999px">e</span> Barreirinhas</h1>
+      <p data-t="sub">Transfer privativo do aeroporto até a porta da sua pousada, com carro só para você e motorista que acompanha o seu voo.</p>
+      <div class="acoes"><a class="btn btn-ambar" href="#cotacao" data-t="cta1">Calcular meu transfer</a><a class="btn btn-claro zap" href="#" data-t="cta2">Falar no WhatsApp</a></div>
+    </div>
+    <img src="img/1.jpg" alt="Sedan prata do Denison Transfer estacionado entre coqueiros" fetchpriority="high">
+  </div>
+</section>
+<div class="rota" aria-label="Rota">
+  <div class="wrap">
+    <div class="ponto"><b data-t="r1">Aeroporto de São Luís</b><span data-t="r1d">ou hotel na capital</span></div>
+    <div class="estrada" aria-hidden="true"><svg viewBox="0 0 400 28" preserveAspectRatio="none"><path d="M4 14 C 100 2, 160 26, 260 12 S 360 8, 396 14" fill="none" stroke="#f2b134" stroke-width="2.5" stroke-dasharray="7 6"/></svg><small data-t="rkm">cerca de 250 km, perto de 4 horas</small></div>
+    <div class="ponto fim"><b>Barreirinhas</b><span data-t="r2d">porta da sua pousada</span></div>
+  </div>
+</div>
+
+<section id="cotacao">
+  <div class="wrap">
+    <h2 data-t="ct_t">Calcule seu transfer</h2>
+    <p class="intro" data-t="ct_i">Informe o trecho e o horário do voo. Mostramos a hora de saída e de chegada e você manda o pedido pronto pelo WhatsApp.</p>
+    <div class="cot">
+      <form class="form" onsubmit="return false">
+        <fieldset><legend data-t="f_tr">Trecho</legend>
+          <div class="trechos">
+            <label class="trecho"><input type="radio" name="tr" value="ida" checked><span data-t="t1">Aeroporto → Barreirinhas</span><small data-t="t1d">Busco você no desembarque</small></label>
+            <label class="trecho"><input type="radio" name="tr" value="volta"><span data-t="t2">Barreirinhas → Aeroporto</span><small data-t="t2d">Chega com folga para o voo</small></label>
+            <label class="trecho"><input type="radio" name="tr" value="ida-cidade"><span data-t="t3">São Luís (hotel) → Barreirinhas</span><small data-t="t3d">Saída de hotel ou rodoviária</small></label>
+            <label class="trecho"><input type="radio" name="tr" value="outro"><span data-t="t4">Outro trecho</span><small data-t="t4d">Santo Amaro, Paulino Neves, Rota das Emoções</small></label>
+          </div>
+        </fieldset>
+        <div class="campo" id="cOutro" hidden><label for="outro" data-t="f_outro">Qual trecho?</label><input id="outro" data-tp="f_outro_ph" placeholder="Ex.: Barreirinhas → Santo Amaro"></div>
+        <div class="grade">
+          <div class="campo"><label for="data" data-t="f_data">Data</label><input type="date" id="data"></div>
+          <div class="campo"><label for="hora" id="lbHora" data-t="f_pouso">Pouso do voo</label><input type="time" id="hora" value="10:00"></div>
+          <div class="campo" id="cVoo"><label for="voo" data-t="f_voo">Número do voo</label><input id="voo" placeholder="LA 3260"></div>
+        </div>
+        <div class="grade">
+          <div class="campo"><label for="pax" data-t="f_pax">Passageiros</label><select id="pax"><option>1</option><option selected>2</option><option>3</option><option>4</option><option value="5+">5+</option></select></div>
+          <div class="campo"><label for="malas" data-t="f_malas">Malas grandes</label><select id="malas"><option>0</option><option>1</option><option selected>2</option><option>3</option><option>4</option><option value="5+">5+</option></select></div>
+          <div class="campo"><label for="nome" data-t="f_nome">Seu nome</label><input id="nome" autocomplete="name"></div>
+        </div>
+        <label class="check"><input type="checkbox" id="cad"><span data-t="f_cad">Viajo com criança e preciso de cadeirinha</span></label>
+        <label class="check"><input type="checkbox" id="parada"><span data-t="f_parada">Quero uma parada na estrada para café ou almoço</span></label>
+        <div class="campo"><label for="pousada" data-t="f_pousada">Pousada ou endereço em Barreirinhas</label><input id="pousada"></div>
+      </form>
+      <aside class="painel" aria-live="polite">
+        <h3 data-t="p_t">Seu horário</h3>
+        <div id="painel"></div>
+        <a class="btn btn-zap" id="enviar" href="#" target="_blank" rel="noopener" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg><span data-t="enviar">Pedir cotação no WhatsApp</span></a>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="faixa">
+  <div class="wrap">
+    <h2 data-t="pq_t">Por que privativo</h2>
+    <div class="porque">
+      <div><h3 data-t="pq1">Acompanha o seu voo</h3><p data-t="pq1d">Atraso no pouso não é problema. O motorista ajusta a busca ao horário real, de dia ou de madrugada.</p></div>
+      <div><h3 data-t="pq2">Carro só para você</h3><p data-t="pq2d">Sem esperar outros passageiros nem passar em outras pousadas. Sai do aeroporto e vai direto.</p></div>
+      <div><h3 data-t="pq3">Viagem no seu ritmo</h3><p data-t="pq3d">Parada para café, almoço ou banheiro quando precisar. Família com criança pequena viaja tranquila.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 data-t="av_t">4,9 no Google, com 106 avaliações</h2>
+    <div class="depos">
+      <figure class="depo"><blockquote>“Nosso voo foi de madrugada, então chegamos cansados e dormimos boa parte da viagem. Ele fez uma parada para o café da manhã na estrada para Barreirinhas. Excelente!”</blockquote><figcaption>Raony Coronado <span data-t="g">· Google</span></figcaption></figure>
+      <figure class="depo"><blockquote>“Foi pontual, bem comunicativo e paciente. Estávamos com duas crianças pequenas no carro. Recomendo grandemente!”</blockquote><figcaption>Beatriz Jenkins <span data-t="g">· Google</span></figcaption></figure>
+      <figure class="depo"><blockquote>“Motorista pontual, super atencioso, muito profissional, dirige super bem e o carro é muito bom.”</blockquote><figcaption>Beatriz Almeida <span data-t="g">· Google</span></figcaption></figure>
+      <figure class="depo"><blockquote>“Foi uma viagem bem tranquila! O Denison é pontual com os horários e um excelente motorista.”</blockquote><figcaption>Rachel De la Vega <span data-t="g">· Google</span></figcaption></figure>
+    </div>
+    <p class="orig" data-t="orig"></p>
+    <div class="fotos">
+      <img src="img/3.jpg" alt="Lagoa azul entre as dunas brancas dos Lençóis Maranhenses" loading="lazy">
+      <img src="img/6.jpg" alt="Denison com passageiros sorrindo ao lado do carro" loading="lazy">
+      <img src="img/2.jpg" alt="Sedan prata estacionado em pátio com céu azul" loading="lazy">
+      <img src="img/4.jpg" alt="Sedan prata estacionado em gramado, com helicóptero ao fundo" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <div>
+      <h2 data-t="fi_t">Combine seu transfer</h2>
+      <dl><dt>WhatsApp</dt><dd>(98) 98718-5676</dd><dt data-t="fi_h">Horário</dt><dd data-t="fi_hd">24 horas, todos os dias</dd><dt data-t="fi_b">Base</dt><dd>Centro, Barreirinhas (MA)</dd></dl>
+    </div>
+    <a class="btn btn-ambar zap" href="#" data-t="cta2">Falar no WhatsApp</a>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>Denison Transfer, Barreirinhas (MA)</span><span data-t="demo">Site de demonstração</span></div></footer>
+<a class="zap-flut zap" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
+
+<script>
+const ZAP="5598987185676";
+const VIAGEM=240; // minutos de estrada, estimativa
+const T={
+ pt:{h24:"Atendimento 24 horas",sub:"Transfer privativo do aeroporto até a porta da sua pousada, com carro só para você e motorista que acompanha o seu voo.",cta1:"Calcular meu transfer",cta2:"Falar no WhatsApp",r1:"Aeroporto de São Luís",r1d:"ou hotel na capital",rkm:"cerca de 250 km, perto de 4 horas",r2d:"porta da sua pousada",ct_t:"Calcule seu transfer",ct_i:"Informe o trecho e o horário do voo. Mostramos a hora de saída e de chegada e você manda o pedido pronto pelo WhatsApp.",f_tr:"Trecho",t1:"Aeroporto → Barreirinhas",t1d:"Busco você no desembarque",t2:"Barreirinhas → Aeroporto",t2d:"Chega com folga para o voo",t3:"São Luís (hotel) → Barreirinhas",t3d:"Saída de hotel ou rodoviária",t4:"Outro trecho",t4d:"Santo Amaro, Paulino Neves, Rota das Emoções",f_outro:"Qual trecho?",f_outro_ph:"Ex.: Barreirinhas → Santo Amaro",f_data:"Data",f_pouso:"Pouso do voo",f_dec:"Decolagem do voo",f_saida:"Horário de saída",f_voo:"Número do voo",f_pax:"Passageiros",f_malas:"Malas grandes",f_nome:"Seu nome",f_cad:"Viajo com criança e preciso de cadeirinha",f_parada:"Quero uma parada na estrada para café ou almoço",f_pousada:"Pousada ou endereço em Barreirinhas",p_t:"Seu horário",enviar:"Pedir cotação no WhatsApp",pq_t:"Por que privativo",pq1:"Acompanha o seu voo",pq1d:"Atraso no pouso não é problema. O motorista ajusta a busca ao horário real, de dia ou de madrugada.",pq2:"Carro só para você",pq2d:"Sem esperar outros passageiros nem passar em outras pousadas. Sai do aeroporto e vai direto.",pq3:"Viagem no seu ritmo",pq3d:"Parada para café, almoço ou banheiro quando precisar. Família com criança pequena viaja tranquila.",av_t:"4,9 no Google, com 106 avaliações",g:"· Google",orig:"",fi_t:"Combine seu transfer",fi_h:"Horário",fi_hd:"24 horas, todos os dias",fi_b:"Base",demo:"Site de demonstração",
+  l_pouso:"Seu voo pousa",l_saida:"Saída do aeroporto",l_saida2:"Saída",l_cheg:"Chegada em Barreirinhas",l_cheg2:"Chegada prevista",l_saiB:"Saída de Barreirinhas",l_aero:"Chegada ao aeroporto",l_voo:"Decolagem",obs:"Estimativa com cerca de 4 horas de estrada. O Denison confirma o horário pelo WhatsApp.",obsV:"Sugerimos chegar ao aeroporto 2 horas antes do voo.",madr:"Busca de madrugada: tudo certo, o atendimento é 24 horas.",grupo:"Para mais de 4 passageiros, o Denison indica a melhor opção de veículo.",outro:"Para outros trechos, envie o pedido e o Denison calcula o tempo de viagem.",parada:" (com parada, some uns 40 minutos)",dia:"no dia seguinte"},
+ en:{h24:"Available 24 hours",sub:"Private transfer from the airport to your guesthouse door, with a car just for you and a driver who tracks your flight.",cta1:"Plan my transfer",cta2:"Chat on WhatsApp",r1:"São Luís Airport",r1d:"or a hotel in the city",rkm:"about 250 km, close to 4 hours",r2d:"your guesthouse door",ct_t:"Plan your transfer",ct_i:"Enter the route and your flight time. We show pickup and arrival times and you send the request on WhatsApp.",f_tr:"Route",t1:"Airport → Barreirinhas",t1d:"Pickup at arrivals",t2:"Barreirinhas → Airport",t2d:"Arrive with time to spare",t3:"São Luís (hotel) → Barreirinhas",t3d:"Pickup at a hotel or bus station",t4:"Other route",t4d:"Santo Amaro, Paulino Neves, Rota das Emoções",f_outro:"Which route?",f_outro_ph:"e.g. Barreirinhas → Santo Amaro",f_data:"Date",f_pouso:"Flight landing",f_dec:"Flight departure",f_saida:"Pickup time",f_voo:"Flight number",f_pax:"Passengers",f_malas:"Large bags",f_nome:"Your name",f_cad:"Traveling with a child, need a car seat",f_parada:"I'd like a stop for breakfast or lunch",f_pousada:"Guesthouse or address in Barreirinhas",p_t:"Your times",enviar:"Request a quote on WhatsApp",pq_t:"Why private",pq1:"Tracks your flight",pq1d:"Delayed landing is no problem. The driver adjusts pickup to the real time, day or night.",pq2:"A car just for you",pq2d:"No waiting for other passengers or stops at other guesthouses. Straight from the airport to you.",pq3:"Travel at your pace",pq3d:"Stops for coffee, lunch or the restroom whenever you need. Families with small kids travel at ease.",av_t:"4.9 on Google from 106 reviews",g:"· Google",orig:"Reviews translated from Portuguese.",fi_t:"Book your transfer",fi_h:"Hours",fi_hd:"24 hours, every day",fi_b:"Based in",demo:"Demo website",
+  l_pouso:"Your flight lands",l_saida:"Leave the airport",l_saida2:"Pickup",l_cheg:"Arrive in Barreirinhas",l_cheg2:"Estimated arrival",l_saiB:"Leave Barreirinhas",l_aero:"Arrive at the airport",l_voo:"Takeoff",obs:"Estimate based on about 4 hours of driving. Denison confirms the time on WhatsApp.",obsV:"We suggest arriving at the airport 2 hours before your flight.",madr:"Night pickup is fine: service runs 24 hours.",grupo:"For more than 4 passengers, Denison will suggest the right vehicle.",outro:"For other routes, send the request and Denison will work out the travel time.",parada:" (add about 40 minutes for the stop)",dia:"next day"},
+ es:{h24:"Atención 24 horas",sub:"Traslado privado del aeropuerto hasta la puerta de tu posada, con auto solo para ti y un conductor que sigue tu vuelo.",cta1:"Calcular mi traslado",cta2:"Hablar por WhatsApp",r1:"Aeropuerto de São Luís",r1d:"o un hotel en la ciudad",rkm:"unos 250 km, cerca de 4 horas",r2d:"la puerta de tu posada",ct_t:"Calcula tu traslado",ct_i:"Indica el trayecto y la hora del vuelo. Te mostramos la hora de salida y de llegada y envías el pedido por WhatsApp.",f_tr:"Trayecto",t1:"Aeropuerto → Barreirinhas",t1d:"Te recojo en llegadas",t2:"Barreirinhas → Aeropuerto",t2d:"Llegas con tiempo para el vuelo",t3:"São Luís (hotel) → Barreirinhas",t3d:"Salida de hotel o terminal",t4:"Otro trayecto",t4d:"Santo Amaro, Paulino Neves, Rota das Emoções",f_outro:"¿Qué trayecto?",f_outro_ph:"Ej.: Barreirinhas → Santo Amaro",f_data:"Fecha",f_pouso:"Aterrizaje del vuelo",f_dec:"Despegue del vuelo",f_saida:"Hora de salida",f_voo:"Número de vuelo",f_pax:"Pasajeros",f_malas:"Maletas grandes",f_nome:"Tu nombre",f_cad:"Viajo con niño y necesito silla",f_parada:"Quiero una parada para desayunar o almorzar",f_pousada:"Posada o dirección en Barreirinhas",p_t:"Tus horarios",enviar:"Pedir cotización por WhatsApp",pq_t:"Por qué privado",pq1:"Sigue tu vuelo",pq1d:"Si el vuelo se atrasa, no hay problema. El conductor ajusta la recogida a la hora real, de día o de madrugada.",pq2:"Auto solo para ti",pq2d:"Sin esperar a otros pasajeros ni pasar por otras posadas. Del aeropuerto directo a tu destino.",pq3:"Viaja a tu ritmo",pq3d:"Paradas para café, almuerzo o baño cuando lo necesites. Familias con niños pequeños viajan tranquilas.",av_t:"4,9 en Google, con 106 opiniones",g:"· Google",orig:"Opiniones traducidas del portugués.",fi_t:"Reserva tu traslado",fi_h:"Horario",fi_hd:"24 horas, todos los días",fi_b:"Base",demo:"Sitio de demostración",
+  l_pouso:"Tu vuelo aterriza",l_saida:"Salida del aeropuerto",l_saida2:"Salida",l_cheg:"Llegada a Barreirinhas",l_cheg2:"Llegada estimada",l_saiB:"Salida de Barreirinhas",l_aero:"Llegada al aeropuerto",l_voo:"Despegue",obs:"Estimación con unas 4 horas de carretera. Denison confirma el horario por WhatsApp.",obsV:"Sugerimos llegar al aeropuerto 2 horas antes del vuelo.",madr:"Recogida de madrugada: sin problema, la atención es 24 horas.",grupo:"Para más de 4 pasajeros, Denison indica el vehículo adecuado.",outro:"Para otros trayectos, envía el pedido y Denison calcula el tiempo de viaje.",parada:" (con parada, suma unos 40 minutos)",dia:"día siguiente"}
+};
+const DEP={ // depoimentos traduzidos
+ en:["Our flight was in the early morning, so we arrived tired and slept most of the way. He stopped for breakfast on the road to Barreirinhas. Excellent!","He was on time, communicative and patient. We had two small children in the car. Highly recommended!","Punctual, very attentive and professional driver, drives very well and the car is great.","A very smooth trip! Denison is punctual and an excellent driver."],
+ es:["Nuestro vuelo llegó de madrugada, estábamos cansados y dormimos buena parte del viaje. Paró para desayunar en la carretera a Barreirinhas. ¡Excelente!","Fue puntual, comunicativo y paciente. Íbamos con dos niños pequeños en el auto. ¡Lo recomiendo mucho!","Conductor puntual, súper atento, muy profesional, maneja muy bien y el auto es muy bueno.","¡Un viaje muy tranquilo! Denison es puntual y un excelente conductor."]};
+const PT_DEP=[...document.querySelectorAll(".depo blockquote")].map(b=>b.textContent);
+let L="pt"; const $=id=>document.getElementById(id); const t=k=>T[L][k];
+const hm=m=>{m=((m%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0")};
+function calc(){
+  const tr=document.querySelector("input[name=tr]:checked").value;
+  $("cOutro").hidden=tr!=="outro"; $("cVoo").hidden=!(tr==="ida"||tr==="volta");
+  $("lbHora").textContent= tr==="ida"?t("f_pouso"):tr==="volta"?t("f_dec"):t("f_saida");
+  const [h,m]=($("hora").value||"10:00").split(":").map(Number); const base=h*60+m;
+  const par=$("parada").checked?40:0; let it=[], extra=[];
+  const ddia=x=>x>=1440?` <small>(${t("dia")})</small>`:x<0?"":"";
+  if(tr==="ida"){ const s=base+40, c=s+VIAGEM+par; it=[[t("l_pouso"),base],[t("l_saida"),s],[t("l_cheg"),c]]; if(h<6||h>=22) extra.push(t("madr")); }
+  else if(tr==="volta"){ const a=base-120, s=a-VIAGEM-par-20; it=[[t("l_saiB"),s],[t("l_aero"),a],[t("l_voo"),base]]; extra.push(t("obsV")); }
+  else if(tr==="ida-cidade"){ it=[[t("l_saida2"),base],[t("l_cheg2"),base+VIAGEM+par]]; }
+  if($("pax").value==="5+") extra.push(t("grupo"));
+  if(tr==="outro") $("painel").innerHTML=`<p class="vazio">${t("outro")}</p>`;
+  else $("painel").innerHTML=`<ol class="linha-tempo">${it.map(([r,v])=>`<li><b>${hm(v)}${v>=1440?" +1":v<0?" -1":""}</b><span>${r}</span></li>`).join("")}</ol><p class="obs">${t("obs")}${par?t("parada"):""}</p>${extra.map(x=>`<p class="aviso">${x}</p>`).join("")}<div style="height:12px"></div>`;
+  // mensagem em português para o Denison
+  const nomeTr={ida:"Aeroporto de São Luís → Barreirinhas",volta:"Barreirinhas → Aeroporto de São Luís","ida-cidade":"São Luís (hotel) → Barreirinhas",outro:$("outro").value||"outro trecho"}[tr];
+  const dt=$("data").value?new Date($("data").value+"T12:00").toLocaleDateString("pt-BR"):"a definir";
+  const horaRot={ida:"Pouso do voo",volta:"Decolagem do voo","ida-cidade":"Saída",outro:"Horário"}[tr];
+  const linhas=[`Trecho: ${nomeTr}`,`Data: ${dt}`,`${horaRot}: ${$("hora").value}${$("voo").value&&(tr==="ida"||tr==="volta")?" (voo "+$("voo").value+")":""}`];
+  if(tr!=="outro"){ const s=it.find(x=>x[0]===t("l_saida")||x[0]===t("l_saiB")||x[0]===t("l_saida2")); if(s) linhas.push(`Saída estimada: ${hm(s[1])}`); }
+  linhas.push(`Passageiros: ${$("pax").value}`,`Malas grandes: ${$("malas").value}`);
+  if($("cad").checked) linhas.push("Preciso de cadeirinha infantil");
+  if($("parada").checked) linhas.push("Quero parada para café ou almoço");
+  if($("pousada").value) linhas.push(`Pousada/endereço: ${$("pousada").value}`);
+  if(L!=="pt") linhas.push(`Idioma: ${L==="en"?"inglês":"espanhol"}`);
+  const nome=$("nome").value.trim();
+  const msg=`Olá, Denison! ${nome?"Sou "+nome+". ":""}Quero uma cotação de transfer:\n\n${linhas.join("\n")}\n\nPode me passar o valor?`;
+  $("enviar").href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg);
+}
+function idioma(l){
+  L=l; document.documentElement.lang=l==="pt"?"pt-BR":l;
+  document.querySelectorAll("[data-t]").forEach(el=>{const v=T[l][el.dataset.t]; if(typeof v==="string") el.textContent=v;});
+  document.querySelectorAll("[data-tp]").forEach(el=>el.placeholder=T[l][el.dataset.tp]);
+  document.querySelectorAll(".idiomas button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===l));
+  document.querySelectorAll(".depo blockquote").forEach((b,i)=>b.textContent=l==="pt"?PT_DEP[i]:"“"+DEP[l][i]+"”");
+  const s={pt:"Olá, Denison! Vi o site e quero saber sobre o transfer.",en:"Hi Denison! I saw your website and would like info about a transfer (I speak English).",es:"¡Hola Denison! Vi el sitio y quiero información sobre el traslado (hablo español)."}[l];
+  document.querySelectorAll("a.zap").forEach(a=>{a.href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(s);a.target="_blank";a.rel="noopener"});
+  try{localStorage.setItem("den-lang",l)}catch(e){}
+  calc();
+}
+document.querySelectorAll(".idiomas button").forEach(b=>b.addEventListener("click",()=>idioma(b.dataset.l)));
+document.querySelector(".form").addEventListener("input",calc); document.querySelector(".form").addEventListener("change",calc);
+$("data").min=new Date().toISOString().slice(0,10);
+let ini="pt"; try{ ini=localStorage.getItem("den-lang")||((navigator.language||"").startsWith("es")?"es":(navigator.language||"").startsWith("en")?"en":"pt"); }catch(e){}
+idioma(ini);
+</script>
+</body>
+</html>

@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>MovFisio · Fisioterapia e Saúde em Barreirinhas</title>
+<meta name="description" content="Fisioterapia, osteopatia, estética e nutrição no centro de Barreirinhas. Faça sua pré-avaliação e agende pelo WhatsApp.">
+<link rel="icon" href="img/icone.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --champanhe:#f6ede0; --champanhe-2:#ecdcc4; --cacau:#3b2418; --cacau-2:#5a3a28; --ouro:#b5893d; --ouro-claro:#d9b46a;
+  --rose:#efcfc8; --branco:#fffdf9; --texto:#3b2a20; --suave:#7a6556; --alerta:#9b2c1f;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;font:400 17px/1.65 Jost,system-ui,sans-serif;color:var(--texto);background:var(--champanhe)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--ouro);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.05;margin:0;color:var(--cacau)}
+h1{font-size:clamp(2.7rem,6.4vw,4.9rem);letter-spacing:-.01em}
+h2{font-size:clamp(2.2rem,4.6vw,3.4rem)}
+h3{font-size:1.6rem}
+em.ouro{font-style:italic;color:var(--ouro)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:.55em;font:500 1rem/1 Jost,sans-serif;padding:1em 1.5em;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
+.btn-ouro{background:linear-gradient(180deg,#c99a48,#a87a2f);color:#fffaf0;box-shadow:0 6px 18px rgba(168,122,47,.28)}
+.btn-ouro:hover{filter:brightness(1.06)}
+.btn-linha{border:1.5px solid var(--cacau);color:var(--cacau);background:transparent}
+.btn svg{width:1.15em;height:1.15em}
+
+header{padding:14px 0}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.topo img{height:58px;width:auto}
+nav.menu{display:flex;gap:26px;font-weight:500}
+nav.menu a{color:var(--cacau);text-decoration:none}
+nav.menu a:hover{color:var(--ouro)}
+@media (max-width:860px){nav.menu{display:none}.topo img{height:46px}.topo .btn{padding:.8em 1.1em}}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:end;padding-top:30px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;gap:28px}}
+.hero p.lead{font-size:1.18rem;max-width:42ch;color:var(--cacau-2);margin:22px 0 30px}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px}
+.selo{display:flex;align-items:center;gap:12px;margin-top:34px;color:var(--suave);font-size:.95rem}
+.selo b{font:600 2rem/1 "Cormorant Garamond",serif;color:var(--cacau)}
+.selo .est{color:var(--ouro);letter-spacing:2px}
+.arco{position:relative;justify-self:center;width:min(100%,430px)}
+.arco img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 12%;border-radius:999px 999px 0 0;border:1.5px solid var(--ouro-claro);padding:10px;background:var(--branco)}
+.arco figcaption{position:absolute;left:-14px;bottom:28px;background:var(--cacau);color:#f6e7cf;padding:12px 18px;border-radius:14px;font-size:.92rem;line-height:1.35}
+.arco figcaption b{display:block;font:600 1.3rem/1.1 "Cormorant Garamond",serif;color:#fff}
+@media (max-width:860px){.arco figcaption{left:8px}.arco{width:min(100%,330px)}}
+
+section{padding:96px 0}
+.intro{max-width:58ch;color:var(--suave);font-size:1.08rem;margin:16px 0 0}
+
+/* serviços em lista, não cards */
+.servicos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:56px;margin-top:46px}
+@media (max-width:760px){.servicos{grid-template-columns:1fr}}
+.grupo{border-top:1px solid var(--ouro-claro);padding:24px 0 28px}
+.grupo h3{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.grupo h3 small{font:500 .85rem Jost,sans-serif;color:var(--ouro)}
+.grupo ul{list-style:none;padding:0;margin:12px 0 0;display:grid;gap:6px}
+.grupo li{padding-left:20px;position:relative;color:var(--cacau-2)}
+.grupo li::before{content:"";position:absolute;left:2px;top:.68em;width:7px;height:7px;border-radius:50%;background:var(--ouro)}
+
+/* método destrava */
+.destrava{background:var(--cacau);color:#f2e3cc}
+.destrava .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+@media (max-width:860px){.destrava .wrap{grid-template-columns:1fr}}
+.destrava h2{color:#fff}
+.destrava h2 span{display:block;font-size:.5em;font-style:italic;color:var(--ouro-claro);font-weight:500;margin-bottom:8px}
+.destrava p{color:#e3cfb3;max-width:46ch}
+.indic{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.indic span{border:1px solid rgba(217,180,106,.6);color:#f6e7cf;padding:.5em 1em;border-radius:999px;font-size:.95rem}
+.destrava img{border-radius:20px;width:100%;aspect-ratio:4/3;object-fit:cover}
+
+/* pré-avaliação */
+#avaliacao{background:var(--branco)}
+.pre{display:grid;grid-template-columns:120px minmax(0,1fr);gap:0;margin-top:44px}
+@media (max-width:760px){.pre{grid-template-columns:44px minmax(0,1fr)}.coluna::before{left:21px}}
+.coluna{position:relative}
+.coluna::before{content:"";position:absolute;left:59px;top:10px;bottom:10px;border-left:2px dotted var(--ouro-claro)}
+.passo{display:contents}
+.marca-passo{position:relative;display:flex;justify-content:center;padding-top:6px}
+.marca-passo i{width:34px;height:34px;border-radius:50%;background:var(--branco);border:2px solid var(--ouro);color:var(--ouro);display:grid;place-items:center;font:600 1.15rem/1 "Cormorant Garamond",serif;font-style:normal;position:relative;z-index:1}
+.passo.feito .marca-passo i{background:var(--ouro);color:#fff}
+.conteudo{padding:0 0 40px 10px}
+.conteudo h3{margin-bottom:6px}
+.conteudo p.dica{margin:0 0 14px;color:var(--suave)}
+.opcoes{display:flex;flex-wrap:wrap;gap:10px}
+.op{border:1.5px solid var(--champanhe-2);background:var(--champanhe);color:var(--cacau);font:500 .98rem Jost,sans-serif;padding:.65em 1.1em;border-radius:999px;cursor:pointer}
+.op[aria-pressed="true"]{background:var(--cacau);border-color:var(--cacau);color:#fff}
+.op:disabled{opacity:.4;cursor:not-allowed}
+.linha{display:grid;gap:8px;margin-top:18px}
+.linha label{font-weight:500}
+input[type=range]{width:100%;accent-color:var(--ouro)}
+.escala{display:flex;justify-content:space-between;color:var(--suave);font-size:.85rem}
+.sinais{display:grid;gap:8px;margin-top:8px}
+.sinais label{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.sinais input{margin-top:.35em;accent-color:var(--alerta);width:18px;height:18px;flex:none}
+.aviso{margin-top:16px;border:1.5px solid var(--alerta);background:#fbecea;color:#5c1a12;padding:14px 16px;border-radius:14px}
+.aviso b{display:block}
+input.txt{font:400 1rem Jost,sans-serif;padding:.75em .9em;border:1.5px solid var(--champanhe-2);border-radius:12px;background:var(--champanhe);width:100%;max-width:420px;color:var(--cacau)}
+.resumo{background:var(--champanhe);border-radius:18px;padding:20px 22px;white-space:pre-line;font-size:.98rem;color:var(--cacau-2);margin-bottom:16px}
+.legal{font-size:.88rem;color:var(--suave);margin-top:14px;max-width:62ch}
+[hidden]{display:none!important}
+
+/* espaço */
+.galeria{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:12px;margin-top:40px}
+.galeria img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.galeria img:nth-child(1){grid-row:span 2}
+.galeria img:nth-child(4){grid-column:span 2}
+@media (max-width:760px){.galeria{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.galeria img:nth-child(4){grid-column:span 2}}
+
+.contato{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media (max-width:860px){.contato{grid-template-columns:1fr}}
+.dados{display:grid;gap:14px;margin:26px 0 30px}
+.dados div{display:grid;grid-template-columns:120px 1fr;gap:12px;border-bottom:1px solid var(--champanhe-2);padding-bottom:12px}
+.dados dt{font-weight:600;color:var(--cacau)}
+.dados dd{margin:0;color:var(--cacau-2)}
+.contato img{border-radius:20px;aspect-ratio:4/5;object-fit:cover;width:100%}
+footer{background:var(--cacau);color:#d9c4a6;padding:28px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.zap-flut{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#1fae5b;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.zap-flut svg{width:30px;height:30px;color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap topo">
+    <a href="#inicio"><img src="img/logo.png" alt="MovFisio Fisioterapia e Saúde" width="553" height="238"></a>
+    <nav class="menu" aria-label="Seções"><a href="#servicos">Serviços</a><a href="#destrava">Método Destrava</a><a href="#espaco">Nosso espaço</a><a href="#contato">Contato</a></nav>
+    <a class="btn btn-ouro" href="#avaliacao">Agendar avaliação</a>
+  </div>
+</header>
+
+<main id="inicio">
+<div class="wrap hero">
+  <div>
+    <h1>Cuidado, movimento e qualidade de vida <em class="ouro">para todas as fases</em></h1>
+    <p class="lead">Fisioterapia, osteopatia, estética e nutrição num só lugar, no centro de Barreirinhas. Atendimento humanizado, com avaliação individual antes de qualquer tratamento.</p>
+    <div class="acoes">
+      <a class="btn btn-ouro" href="#avaliacao">Fazer minha pré-avaliação</a>
+      <a class="btn btn-linha zap" href="#">Falar no WhatsApp</a>
+    </div>
+    <div class="selo"><b>4,9</b><span><span class="est" aria-hidden="true">★★★★★</span><br>72 avaliações no Google</span></div>
+  </div>
+  <figure class="arco" style="margin:0">
+    <img src="img/andrea.jpg" alt="Andréa Araújo, da MovFisio" width="461" height="912">
+    <figcaption><b>Andréa Araújo</b>Criadora do Método Destrava</figcaption>
+  </figure>
+</div>
+
+<section id="servicos">
+  <div class="wrap">
+    <h2>O que tratamos</h2>
+    <p class="intro">Cada atendimento começa por uma avaliação. A partir dela, montamos o plano com a técnica certa para você, da reabilitação ao bem-estar.</p>
+    <div class="servicos">
+      <div class="grupo"><h3>Fisioterapia</h3><ul><li>Traumato-ortopédica: lesões, entorses, pós-cirúrgico</li><li>Neurofuncional adulto e infantil</li><li>Fisioterapia geriátrica, para idosos</li></ul></div>
+      <div class="grupo"><h3>Coluna <small>Método Destrava</small></h3><ul><li>Dor lombar e dor nas costas</li><li>Cervical travada e tensão muscular</li><li>Má postura e sobrecarga</li></ul></div>
+      <div class="grupo"><h3>Terapias manuais</h3><ul><li>Osteopatia e quiropraxia</li><li>Liberação miofascial</li><li>Ventosaterapia</li><li>Massagem relaxante</li></ul></div>
+      <div class="grupo"><h3>Estética e nutrição</h3><ul><li>Limpeza de pele</li><li>Tratamentos corporais</li><li>Consulta de nutrição</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="destrava" id="destrava">
+  <div class="wrap">
+    <img src="img/8.jpg" alt="Sessão de ventosaterapia nas costas de um paciente" loading="lazy">
+    <div>
+      <h2><span>Andréa Araújo</span>Método Destrava</h2>
+      <p>Um protocolo para a coluna que combina avaliação postural, terapia manual e exercícios. O foco é aliviar a dor e a tensão, devolver mobilidade e ensinar o corpo a se manter bem no dia a dia.</p>
+      <div class="indic"><span>Dor lombar</span><span>Cervical travada</span><span>Dor nas costas</span><span>Tensão muscular</span><span>Má postura</span></div>
+      <p style="margin-top:26px"><a class="btn btn-ouro" href="#avaliacao">Ver se o método é para mim</a></p>
+    </div>
+  </div>
+</section>
+
+<section id="avaliacao">
+  <div class="wrap">
+    <h2>Pré-avaliação online</h2>
+    <p class="intro">Responda em um minuto. Suas respostas chegam organizadas no WhatsApp da MovFisio e a equipe já te indica o horário e o profissional certo.</p>
+    <div class="pre coluna" id="pre">
+      <div class="passo" id="p1"><div class="marca-passo"><i>1</i></div><div class="conteudo">
+        <h3>O que você procura?</h3><p class="dica">Escolha a opção mais próxima.</p>
+        <div class="opcoes" data-grupo="motivo">
+          <button type="button" class="op" data-v="dor">Dor ou problema na coluna</button>
+          <button type="button" class="op" data-v="reab">Reabilitação de lesão ou cirurgia</button>
+          <button type="button" class="op" data-v="crianca">Fisioterapia para criança</button>
+          <button type="button" class="op" data-v="idoso">Fisioterapia para idoso</button>
+          <button type="button" class="op" data-v="massagem">Massagem ou terapia manual</button>
+          <button type="button" class="op" data-v="estetica">Estética</button>
+          <button type="button" class="op" data-v="nutri">Nutrição</button>
+        </div>
+      </div></div>
+
+      <div class="passo" id="p2" hidden><div class="marca-passo"><i>2</i></div><div class="conteudo" id="c2"></div></div>
+
+      <div class="passo" id="p3" hidden><div class="marca-passo"><i>3</i></div><div class="conteudo">
+        <h3>Quando fica melhor para você?</h3><p class="dica">Segunda a sexta das 8h30 às 20h. Sábado das 8h30 às 12h.</p>
+        <div class="opcoes" data-grupo="dias" data-multi="1">
+          <button type="button" class="op" data-v="Segunda">Seg</button><button type="button" class="op" data-v="Terça">Ter</button><button type="button" class="op" data-v="Quarta">Qua</button><button type="button" class="op" data-v="Quinta">Qui</button><button type="button" class="op" data-v="Sexta">Sex</button><button type="button" class="op" data-v="Sábado">Sáb</button>
+        </div>
+        <div class="opcoes" data-grupo="periodo" style="margin-top:12px">
+          <button type="button" class="op" data-v="manhã">Manhã</button><button type="button" class="op" data-v="tarde">Tarde</button><button type="button" class="op" data-v="noite (até 20h)">Noite, até 20h</button>
+        </div>
+        <div class="linha"><label for="nome">Seu nome</label><input class="txt" id="nome" autocomplete="given-name" placeholder="Como podemos te chamar?"></div>
+      </div></div>
+
+      <div class="passo" id="p4" hidden><div class="marca-passo"><i>4</i></div><div class="conteudo">
+        <h3>Tudo pronto</h3><p class="dica">Confira o resumo e envie. A equipe responde pelo WhatsApp.</p>
+        <div class="resumo" id="resumo"></div>
+        <a class="btn btn-ouro" id="enviar" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>Enviar pelo WhatsApp</a>
+        <p class="legal">A pré-avaliação não é diagnóstico. Ela só organiza as informações para a sua primeira consulta, onde a avaliação é feita pessoalmente.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="espaco">
+  <div class="wrap">
+    <h2>Nosso espaço</h2>
+    <p class="intro">Um ambiente acolhedor, pensado para você chegar, relaxar e ser cuidado com calma.</p>
+    <div class="galeria">
+      <img src="img/4.jpg" alt="Sala de espera com espelho em arco, poltronas brancas e orquídea" loading="lazy">
+      <img src="img/3.jpg" alt="Recepção da MovFisio com o logo na parede" loading="lazy">
+      <img src="img/1.jpg" alt="Fisioterapeuta usando pistola de massagem na perna de uma paciente" loading="lazy">
+      <img src="img/6.jpg" alt="Corredor e recepção com parede rosa e detalhes em dourado" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="contato" style="padding-top:20px">
+  <div class="wrap contato">
+    <div>
+      <h2>Venha nos visitar</h2>
+      <dl class="dados">
+        <div><dt>Endereço</dt><dd>R. Zuza Réis, 43, Centro, Barreirinhas (MA)</dd></div>
+        <div><dt>Horário</dt><dd>Segunda a sexta, das 8h30 às 20h<br>Sábado, das 8h30 às 12h</dd></div>
+        <div><dt>WhatsApp</dt><dd>(98) 98445-5991</dd></div>
+      </dl>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a class="btn btn-ouro zap" href="#">Falar no WhatsApp</a>
+        <a class="btn btn-linha" href="https://maps.google.com/?cid=16769854060340860316" target="_blank" rel="noopener">Ver no mapa</a>
+      </div>
+    </div>
+    <img src="img/2.jpg" alt="Fachada da MovFisio, com o nome em dourado e as palavras fisioterapia, osteopatia e estética na porta" loading="lazy">
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>MovFisio Fisioterapia e Saúde, Barreirinhas (MA)</span><span>Site de demonstração</span></div></footer>
+<a class="zap-flut zap" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
+
+<script>
+const ZAP="5598984455991";
+const $=id=>document.getElementById(id);
+const R={}; // respostas
+const MOTIVO={dor:"Dor ou problema na coluna",reab:"Reabilitação de lesão ou cirurgia",crianca:"Fisioterapia para criança",idoso:"Fisioterapia para idoso",massagem:"Massagem ou terapia manual",estetica:"Estética",nutri:"Nutrição"};
+const SINAIS=["Perda de força numa perna ou braço, ou dormência que está piorando","Dormência na região íntima ou perda de controle da urina ou das fezes","Dor que veio depois de queda, acidente ou pancada forte","Febre, perda de peso sem explicação ou dor que não alivia nem em repouso","Dor no peito, falta de ar ou dor de cabeça súbita e muito forte"];
+function opcoes(grupo,lista,multi){return `<div class="opcoes" data-grupo="${grupo}"${multi?' data-multi="1"':""}>${lista.map(v=>`<button type="button" class="op" data-v="${v}">${v}</button>`).join("")}</div>`}
+function passo2(m){
+  const c=$("c2"); let h="";
+  if(["dor","reab","idoso"].includes(m)){
+    h=`<h3>${m==="reab"?"Qual região está em tratamento?":"Onde é o incômodo?"}</h3><p class="dica">Pode marcar mais de uma.</p>
+    ${opcoes("regiao",["Cervical (pescoço)","Ombro","Costas (meio)","Lombar","Quadril","Joelho","Tornozelo ou pé","Punho ou mão","Cabeça ou mandíbula"],1)}
+    <div class="linha"><label for="intens">Intensidade da dor hoje: <b id="iv">5</b> de 10</label><input type="range" id="intens" min="0" max="10" value="5"><div class="escala"><span>Sem dor</span><span>Pior dor possível</span></div></div>
+    <div class="linha"><label>Há quanto tempo?</label>${opcoes("tempo",["Menos de 1 semana","1 a 4 semanas","1 a 6 meses","Mais de 6 meses"])}</div>
+    ${m==="reab"?`<div class="linha"><label>Fez cirurgia?</label>${opcoes("cirurgia",["Sim","Não"])}</div>`:""}
+    <div class="linha"><label>Você tem algum destes sinais?</label><div class="sinais">${SINAIS.map((s,i)=>`<label><input type="checkbox" class="sinal" value="${i}"><span>${s}</span></label>`).join("")}</div></div>
+    <div class="aviso" id="aviso" hidden><b>Procure atendimento médico antes da fisioterapia.</b>Esses sinais precisam ser avaliados por um médico ou no pronto-atendimento. Em emergência, ligue para o SAMU, no 192. Depois da liberação médica, a MovFisio cuida da sua recuperação.</div>`;
+  } else if(m==="crianca"){
+    h=`<h3>Sobre a criança</h3><p class="dica">Isso ajuda a indicar o profissional certo.</p>
+    <div class="linha"><label>Idade</label>${opcoes("idade",["Até 1 ano","1 a 3 anos","4 a 7 anos","8 anos ou mais"])}</div>
+    <div class="linha"><label>O que motivou a procura?</label>${opcoes("motivoInf",["Atraso no desenvolvimento motor","Indicação do pediatra ou neurologista","Postura ou marcha","Lesão ou pós-cirúrgico","Respiratório","Outro"],1)}</div>`;
+  } else if(m==="massagem"){
+    h=`<h3>Qual terapia te interessa?</h3><p class="dica">Pode marcar mais de uma.</p>${opcoes("terapia",["Massagem relaxante","Liberação miofascial","Ventosaterapia","Osteopatia","Quiropraxia"],1)}
+    <div class="linha"><label>Objetivo principal</label>${opcoes("objetivo",["Relaxar e aliviar o estresse","Tensão muscular","Recuperação de treino"])}</div>`;
+  } else if(m==="estetica"){
+    h=`<h3>Qual tratamento te interessa?</h3>${opcoes("trat",["Limpeza de pele","Tratamentos corporais","Quero orientação"],1)}`;
+  } else if(m==="nutri"){
+    h=`<h3>Qual o seu objetivo?</h3>${opcoes("obj",["Emagrecimento","Ganho de massa","Saúde intestinal","Gestação ou amamentação","Exames alterados","Outro"],1)}`;
+  }
+  c.innerHTML=h;
+  const r=$("intens"); if(r){ R.intens=5; r.addEventListener("input",()=>{ $("iv").textContent=r.value; R.intens=+r.value; atualiza(); }); }
+  c.querySelectorAll(".sinal").forEach(x=>x.addEventListener("change",atualiza));
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest(".op"); if(!b||b.disabled) return;
+  const g=b.parentElement, k=g.dataset.grupo, multi=g.dataset.multi;
+  if(multi){ R[k]=R[k]||[]; const i=R[k].indexOf(b.dataset.v); i>=0?R[k].splice(i,1):R[k].push(b.dataset.v); b.setAttribute("aria-pressed",i<0); }
+  else { g.querySelectorAll(".op").forEach(o=>o.setAttribute("aria-pressed",o===b)); R[k]=b.dataset.v; }
+  if(k==="motivo"){ Object.keys(R).forEach(x=>{if(x!=="motivo"&&x!=="dias"&&x!=="periodo")delete R[x]}); passo2(R.motivo); $("p2").hidden=false; $("p3").hidden=false; }
+  atualiza();
+});
+$("nome").addEventListener("input",atualiza);
+function atualiza(){
+  const sinais=[...document.querySelectorAll(".sinal:checked")].map(x=>SINAIS[x.value]);
+  if($("aviso")) $("aviso").hidden=!sinais.length;
+  // sábado só de manhã
+  const soSab=R.dias&&R.dias.length===1&&R.dias[0]==="Sábado";
+  document.querySelectorAll('[data-grupo=periodo] .op').forEach(o=>{ o.disabled=soSab&&o.dataset.v!=="manhã"; if(o.disabled&&R.periodo===o.dataset.v){R.periodo=null;o.setAttribute("aria-pressed",false)} });
+  $("p1").classList.toggle("feito",!!R.motivo);
+  const ok2=!!R.motivo; $("p2").classList.toggle("feito",ok2 && !!document.querySelector("#c2 .op[aria-pressed=true]"));
+  const ok3=R.dias&&R.dias.length&&R.periodo; $("p3").classList.toggle("feito",!!ok3);
+  $("p4").hidden=!(R.motivo&&ok3);
+  if($("p4").hidden) return;
+  const L=[];
+  L.push("Procuro: "+MOTIVO[R.motivo]);
+  const add=(rot,k)=>{ if(R[k]&&(!Array.isArray(R[k])||R[k].length)) L.push(rot+": "+(Array.isArray(R[k])?R[k].join(", "):R[k])); };
+  add("Região","regiao"); if(R.intens!=null&&$("intens")) L.push("Intensidade da dor: "+R.intens+"/10"); add("Há quanto tempo","tempo"); add("Cirurgia","cirurgia");
+  add("Idade da criança","idade"); add("Motivo","motivoInf"); add("Terapias","terapia"); add("Objetivo","objetivo"); add("Tratamento","trat"); add("Objetivo","obj");
+  if(sinais.length) L.push("Sinais de alerta marcados: "+sinais.join("; "));
+  L.push("Melhores dias: "+R.dias.join(", ")+", "+R.periodo);
+  const nome=$("nome").value.trim();
+  $("resumo").textContent=L.join("\n");
+  const msg=`Olá, MovFisio! ${nome?"Sou "+nome+". ":""}Fiz a pré-avaliação pelo site:\n\n${L.join("\n")}\n\nPodem me ajudar a agendar?`;
+  $("enviar").href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg);
+}
+const saud="https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá, MovFisio! Vi o site e gostaria de agendar uma avaliação.");
+document.querySelectorAll("a.zap").forEach(a=>{a.href=saud;a.target="_blank";a.rel="noopener"});
+</script>
+</body>
+</html>
