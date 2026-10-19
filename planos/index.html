@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Paulo Jr. · Sites e sistemas para pequenos negócios</title>
-<meta name="description" content="Site próprio com a identidade do seu negócio e um sistema que traz clientes prontos para o WhatsApp. Amostra grátis e planos a partir de R$ 69 por mês.">
+<meta name="description" content="Site próprio com a identidade do seu negócio e um sistema que traz clientes prontos para o WhatsApp. Amostra grátis e planos a partir de R$ 49,90 por mês.">
 <meta name="theme-color" content="#0b1124">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -114,15 +114,16 @@ section{padding:96px 0}
 .ciclo button{border:0;background:none;color:var(--suave);font:600 .95rem Geist,sans-serif;padding:.7em 1.1em;border-radius:9px;cursor:pointer}
 .ciclo button[aria-pressed="true"]{background:var(--superficie);color:var(--texto);box-shadow:0 0 0 1px var(--borda-2) inset}
 .ciclo em{font-style:normal;color:var(--ok);margin-left:6px;font-size:.82rem}
-.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
-@media (max-width:980px){.planos{grid-template-columns:1fr;max-width:540px}}
-.plano{border:1px solid var(--borda);border-radius:20px;padding:28px 26px;display:flex;flex-direction:column;background:var(--fundo-2)}
+.planos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+@media (max-width:1100px){.planos{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.planos{grid-template-columns:1fr}}
+.plano{border:1px solid var(--borda);border-radius:20px;padding:26px 22px;display:flex;flex-direction:column;background:var(--fundo-2)}
 .plano.destaque{position:relative;background:linear-gradient(180deg,#17224f,#111a3e);border-color:transparent;box-shadow:0 0 0 1px rgba(91,140,255,.6),0 30px 60px -30px rgba(91,140,255,.55)}
 .plano .selo{position:absolute;top:-12px;right:22px;background:var(--grad);color:#06122b;font-weight:700;font-size:.8rem;padding:.3em .75em;border-radius:8px}
 .plano .para{margin:8px 0 20px;color:var(--suave);font-size:.98rem;min-height:3.2em}
 @media (max-width:980px){.plano .para{min-height:0}}
 .preco{display:flex;align-items:baseline;gap:6px}
-.preco b{font-size:2.8rem;font-weight:800;letter-spacing:-.03em}
+.preco b{font-size:2.3rem;font-weight:800;letter-spacing:-.03em}
 .preco span{color:var(--suave)}
 .preco-nota{font-size:.88rem;color:var(--ok);margin:6px 0 0;min-height:1.4em}
 .plano hr{border:0;border-top:1px solid var(--borda);margin:20px 0}
@@ -194,7 +195,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <div>
       <span class="status"><i aria-hidden="true"></i>Atendendo negócios em todo o Maranhão</span>
       <h1>Seu negócio com site próprio e um sistema que <span class="grad">traz clientes prontos.</span></h1>
-      <p class="lead">Montamos o site com as suas cores, fotos e logo, mais um sistema de agendamento, reserva ou cotação que entrega o pedido organizado no seu WhatsApp. Sem taxa de entrada, a partir de R$ 69 por mês.</p>
+      <p class="lead">Montamos o site com as suas cores, fotos e logo, mais um sistema de agendamento, reserva ou cotação que entrega o pedido organizado no seu WhatsApp. Sem taxa de entrada, a partir de R$ 49,90 por mês.</p>
       <div class="acoes">
         <a class="btn btn-pri zap" data-msg="amostra" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>Quero minha amostra grátis</a>
         <a class="btn btn-sec" href="#planos">Ver planos</a>
@@ -248,24 +249,39 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <section id="planos">
   <div class="wrap">
     <h2>Planos sem taxa de entrada</h2>
-    <p class="intro">Hospedagem, domínio, segurança e ajustes já estão inclusos. Cobrança automática no Pix ou no cartão.</p>
+    <p class="intro">Comece simples e suba de plano quando quiser, sem refazer nada. Hospedagem e segurança sempre inclusas, com cobrança automática no Pix ou no cartão.</p>
     <div class="ciclo" role="group" aria-label="Forma de pagamento"><button type="button" data-c="mes" aria-pressed="true">Mensal</button><button type="button" data-c="ano" aria-pressed="false">Anual<em>2 meses grátis</em></button></div>
     <div class="planos">
       <article class="plano">
-        <h3>Essencial</h3>
-        <p class="para">Para ser encontrado no Google e receber contatos pelo WhatsApp.</p>
-        <div class="preco"><b data-m="69" data-a="690">R$ 69</b><span class="per">/mês</span></div>
+        <h3>Vitrine</h3>
+        <p class="para">O jeito mais simples de ter o seu negócio na internet.</p>
+        <div class="preco"><b data-m="49.90" data-a="499">R$ 49,90</b><span class="per">/mês</span></div>
         <p class="preco-nota"></p>
         <hr>
         <ul>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Site com a sua identidade</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Domínio .com.br no seu nome</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Site de 1 página com as suas cores e fotos</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Endereço gratuito no nosso domínio, como seunegocio.nossosite.com.br</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Botão de WhatsApp, mapa e horários</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Hospedagem rápida e segura</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Ajustes avulsos quando precisar</li>
+        </ul>
+        <a class="btn btn-sec zap" data-msg="Vitrine" href="#">Quero o Vitrine</a>
+      </article>
+      <article class="plano">
+        <h3>Essencial</h3>
+        <p class="para">Site completo com endereço próprio na internet.</p>
+        <div class="preco"><b data-m="69.90" data-a="699">R$ 69,90</b><span class="per">/mês</span></div>
+        <p class="preco-nota"></p>
+        <hr>
+        <ul>
+          <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Vitrine</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Domínio .com.br próprio, no seu nome</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>WhatsApp, mapa e horários</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>Ligado ao seu perfil no Google</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>Hospedagem rápida e segura</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>1 ajuste por mês</li>
         </ul>
-        <a class="btn btn-sec zap" data-msg="Essencial" href="#">Começar com o Essencial</a>
+        <a class="btn btn-sec zap" data-msg="Essencial" href="#">Quero o Essencial</a>
       </article>
       <article class="plano destaque">
         <span class="selo">Recomendado</span>
@@ -300,7 +316,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <a class="btn btn-sec zap" data-msg="Gestão" href="#">Quero o Gestão</a>
       </article>
     </div>
-    <p class="rodape-planos">Fidelidade de 12 meses. O domínio é sempre seu. Prefere pagar o site de uma vez? Também é possível, é só pedir o valor à vista.</p>
+    <p class="rodape-planos">Fidelidade de 12 meses. Nos planos com domínio próprio, ele fica sempre no seu nome. Prefere pagar o site de uma vez? Também é possível, é só pedir o valor à vista.</p>
   </div>
 </section>
 
@@ -335,6 +351,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <h2>Dúvidas frequentes</h2>
     <div class="faq">
       <details><summary>A amostra é grátis mesmo?</summary><p>É. Você recebe o site pronto para ver no celular e só decide depois. Se não gostar, não paga nada.</p></details>
+      <details><summary>Qual a diferença entre o Vitrine e o Essencial?</summary><p>O Vitrine é um site simples, com endereço dentro do nosso domínio. O Essencial tem endereço próprio (seunegocio.com.br), ligação com o seu perfil no Google e 1 ajuste por mês incluso. Dá para começar no Vitrine e subir depois, sem perder nada.</p></details>
       <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque todo o trabalho de criar o site e o sistema acontece no começo e não cobro taxa de entrada. No plano anual você ainda ganha 2 meses.</p></details>
       <details><summary>O domínio é meu?</summary><p>Sim. O endereço do site é registrado no seu nome, no Registro.br, e continua seu em qualquer situação.</p></details>
       <details><summary>E se eu cancelar depois da fidelidade?</summary><p>O site sai do ar no fim do último mês pago e o domínio continua seu. Se quiser ficar com o site, dá para comprá-lo à vista.</p></details>
@@ -370,7 +387,7 @@ function links(){
     a.href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg); a.target="_blank"; a.rel="noopener";
   });
 }
-const fmt=v=>"R$ "+Number(v).toLocaleString("pt-BR");
+const fmt=v=>{const n=Number(v);return "R$ "+n.toLocaleString("pt-BR",Number.isInteger(n)?{}:{minimumFractionDigits:2,maximumFractionDigits:2});};
 function precos(){
   document.querySelectorAll(".plano").forEach(pl=>{
     const b=pl.querySelector(".preco b"), per=pl.querySelector(".per"), nota=pl.querySelector(".preco-nota");
