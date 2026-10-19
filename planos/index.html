@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Paulo Jr. · Sites e sistemas para pequenos negócios</title>
+<meta name="description" content="Site próprio com a cara do seu negócio, sem pagar nada de entrada. Amostra grátis e planos a partir de R$ 69 por mês.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Schibsted+Grotesk:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--cobalto:#1d4f91;--cobalto-2:#163d70;--cobalto-claro:#e6eef9;--sol:#f5b700;--sol-claro:#fff4cc;--tinta:#152238;--suave:#56627a;--papel:#fbfaf6;--branco:#fff;--linha:#dfe5ee}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;font:400 17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;color:var(--tinta);background:var(--papel)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--sol);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:"Schibsted Grotesk",system-ui,sans-serif;margin:0;line-height:1.04;color:var(--tinta)}
+h1{font-weight:800;font-size:clamp(2.5rem,6vw,4.4rem);letter-spacing:-.02em}
+h2{font-weight:800;font-size:clamp(2rem,4.2vw,3rem);letter-spacing:-.015em}
+h3{font-weight:800;font-size:1.3rem}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font:700 1.02rem/1 "Atkinson Hyperlegible",sans-serif;padding:1em 1.4em;border-radius:12px;text-decoration:none;border:0;cursor:pointer}
+.btn-sol{background:var(--sol);color:#2a1d00}
+.btn-sol:hover{background:#ffc928}
+.btn-cobalto{background:var(--cobalto);color:#fff}
+.btn-cobalto:hover{background:var(--cobalto-2)}
+.btn-linha{border:2px solid var(--cobalto);color:var(--cobalto);background:#fff}
+.btn svg{width:1.15em;height:1.15em}
+
+/* azulejo: padrão de São Luís */
+.azulejo{background-color:var(--cobalto);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.28' stroke-width='2'%3E%3Cpath d='M32 6c6 10 16 16 26 26-10 10-20 16-26 26C26 48 16 42 6 32 16 22 26 16 32 6Z'/%3E%3Ccircle cx='32' cy='32' r='7'/%3E%3Cpath d='M0 0l10 10M64 0 54 10M0 64l10-10M64 64 54 54'/%3E%3C/g%3E%3C/svg%3E");background-size:64px 64px}
+
+header{background:#fff;border-bottom:1px solid var(--linha)}
+.topo{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 20px;max-width:1140px;margin:0 auto}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta)}
+.marca .ladrilho{width:38px;height:38px;border-radius:8px;flex:none}
+.marca b{display:block;font:800 1.2rem/1 "Schibsted Grotesk",sans-serif}
+.marca small{display:block;color:var(--suave);font-size:.8rem;margin-top:3px}
+nav.menu{display:flex;gap:24px;font-weight:700}
+nav.menu a{color:var(--tinta);text-decoration:none}
+@media (max-width:860px){nav.menu{display:none}}
+
+/* hero */
+.hero{padding:60px 0 80px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.hero p.lead{font-size:1.2rem;color:var(--suave);max-width:44ch;margin:22px 0 30px}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px}
+.garantias{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;color:var(--suave);font-weight:700;font-size:.95rem}
+.garantias span::before{content:"✓";color:var(--cobalto);margin-right:6px}
+
+/* celular com troca de identidade */
+.demo{display:flex;flex-direction:column;align-items:center;gap:16px}
+.troca{display:flex;gap:6px;background:#fff;border:1px solid var(--linha);border-radius:12px;padding:4px}
+.troca button{border:0;background:none;font:700 .9rem "Atkinson Hyperlegible",sans-serif;padding:.6em .9em;border-radius:9px;color:var(--suave);cursor:pointer}
+.troca button[aria-pressed="true"]{background:var(--cobalto);color:#fff}
+.celular{width:280px;border-radius:38px;background:#0f1a2c;padding:12px;box-shadow:0 30px 60px -20px rgba(21,34,56,.45)}
+.tela{border-radius:28px;overflow:hidden;background:var(--fundo,#fff);height:520px;display:flex;flex-direction:column;transition:background .4s}
+.tela .barra{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;color:var(--cor);font:800 .95rem "Schibsted Grotesk",sans-serif;transition:color .4s}
+.tela .barra i{width:22px;height:3px;background:currentColor;border-radius:2px;box-shadow:0 6px 0 currentColor,0 -6px 0 currentColor}
+.tela .capa{margin:0 12px;height:150px;border-radius:18px;background:var(--capa);transition:background .4s;position:relative;overflow:hidden}
+.tela .capa::after{content:"";position:absolute;inset:auto -20% -40% -20%;height:70%;border-radius:50%;background:rgba(255,255,255,.22)}
+.tela .txt{padding:16px}
+.tela .txt b{display:block;font:800 1.25rem/1.1 "Schibsted Grotesk",sans-serif;color:var(--cor);transition:color .4s}
+.tela .txt p{margin:8px 0 0;font-size:.82rem;color:#5d6678;line-height:1.4}
+.tela .form{margin:4px 16px 0;border:1.5px solid var(--borda,#e3e7ee);border-radius:14px;padding:12px;display:grid;gap:8px}
+.tela .form small{font-weight:700;font-size:.75rem;color:var(--cor)}
+.tela .chips{display:flex;flex-wrap:wrap;gap:5px}
+.tela .chips span{font-size:.7rem;border-radius:999px;padding:.3em .7em;background:var(--chip);color:var(--cor);transition:background .4s}
+.tela .zap{margin:auto 16px 18px;background:#1fae5b;color:#fff;border-radius:12px;text-align:center;font-weight:700;font-size:.85rem;padding:.8em}
+
+/* passos */
+section{padding:88px 0}
+.intro{max-width:58ch;color:var(--suave);font-size:1.1rem;margin:14px 0 0}
+.passos{list-style:none;padding:0;margin:44px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:30px;counter-reset:p}
+@media (max-width:860px){.passos{grid-template-columns:1fr}}
+.passos li{counter-increment:p;border-top:4px solid var(--cobalto);padding-top:18px}
+.passos li::before{content:counter(p);display:block;font:800 2.6rem/1 "Schibsted Grotesk",sans-serif;color:var(--sol);margin-bottom:10px;-webkit-text-stroke:1.5px var(--cobalto)}
+.passos p{color:var(--suave);margin:8px 0 0}
+
+/* planos */
+#planos{background:#fff;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.ciclo{display:inline-flex;margin-top:26px;background:var(--cobalto-claro);border-radius:12px;padding:4px}
+.ciclo button{border:0;background:none;font:700 .95rem "Atkinson Hyperlegible",sans-serif;padding:.7em 1.1em;border-radius:9px;color:var(--cobalto);cursor:pointer}
+.ciclo button[aria-pressed="true"]{background:var(--cobalto);color:#fff}
+.ciclo em{font-style:normal;background:var(--sol);color:#2a1d00;border-radius:6px;padding:.1em .4em;margin-left:6px;font-size:.8rem}
+.planos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px;align-items:stretch}
+@media (max-width:960px){.planos{grid-template-columns:1fr;max-width:520px}}
+.plano{border:1.5px solid var(--linha);border-radius:22px;padding:28px 26px;display:flex;flex-direction:column;background:var(--papel)}
+.plano.destaque{background:var(--cobalto);border-color:var(--cobalto);color:#e8effa;position:relative}
+.plano.destaque h3,.plano.destaque .preco b{color:#fff}
+.plano .selo{position:absolute;top:-13px;left:26px;background:var(--sol);color:#2a1d00;font-weight:700;font-size:.85rem;padding:.3em .8em;border-radius:8px}
+.plano .para{margin:6px 0 18px;color:var(--suave);min-height:4.9em}
+@media (max-width:960px){.plano .para{min-height:0}}
+.plano.destaque .para{color:#c8d6ee}
+.preco{display:flex;align-items:baseline;gap:6px}
+.preco b{font:800 2.8rem/1 "Schibsted Grotesk",sans-serif;color:var(--tinta)}
+.preco span{font-weight:700}
+.preco-nota{font-size:.9rem;color:var(--suave);margin:6px 0 20px;min-height:1.4em}
+.plano.destaque .preco-nota{color:#c8d6ee}
+.plano ul{list-style:none;padding:0;margin:0 0 24px;display:grid;gap:9px}
+.plano li{padding-left:26px;position:relative}
+.plano li::before{content:"";position:absolute;left:0;top:.45em;width:14px;height:14px;border-radius:4px;background:var(--cobalto)}
+.plano.destaque li::before{background:var(--sol)}
+.plano li.mais{font-weight:700}
+.plano .btn{margin-top:auto}
+.rodape-planos{margin-top:24px;color:var(--suave);font-size:.95rem;max-width:70ch}
+
+/* sistemas */
+.sistemas{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
+@media (max-width:960px){.sistemas{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.sistemas{grid-template-columns:1fr}}
+.sistema{padding:22px;border-radius:18px;background:var(--cobalto-claro)}
+.sistema .ic{width:44px;height:44px;border-radius:12px;background:#fff;display:grid;place-items:center;color:var(--cobalto);margin-bottom:12px}
+.sistema .ic svg{width:24px;height:24px}
+.sistema p{margin:6px 0 0;color:var(--suave);font-size:.97rem}
+.sistema small{display:block;margin-top:10px;font-weight:700;color:var(--cobalto);font-size:.88rem}
+
+/* faq */
+.faq{max-width:780px;margin-top:34px}
+.faq details{border-bottom:1px solid var(--linha);padding:18px 0}
+.faq summary{cursor:pointer;font:800 1.12rem "Schibsted Grotesk",sans-serif;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--cobalto);font-size:1.4rem;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--suave)}
+
+.final{color:#fff;padding:80px 0}
+.final .caixa{background:var(--cobalto-2);border-radius:24px;padding:40px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media (max-width:760px){.final .caixa{grid-template-columns:1fr;padding:28px}}
+.final h2{color:#fff}
+.final p{color:#c8d6ee;margin:10px 0 0;max-width:52ch}
+footer{background:var(--tinta);color:#a9b4c7;padding:24px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.zap-flut{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#1fae5b;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.zap-flut svg{width:30px;height:30px;color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="topo">
+    <a class="marca" href="#inicio"><span class="ladrilho azulejo" aria-hidden="true"></span><span><b>Paulo Jr.</b><small>Sites e sistemas para pequenos negócios</small></span></a>
+    <nav class="menu" aria-label="Seções"><a href="#como">Como funciona</a><a href="#planos">Planos</a><a href="#sistemas">Sistemas</a><a href="#duvidas">Dúvidas</a></nav>
+    <a class="btn btn-sol zap" data-msg="amostra" href="#">Quero minha amostra</a>
+  </div>
+</header>
+<main id="inicio">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Site próprio com a cara do seu negócio, sem pagar nada de entrada.</h1>
+      <p class="lead">Você recebe uma amostra grátis com as suas cores, fotos e logo. Gostou? Ele entra no ar a partir de R$ 69 por mês, com tudo incluso.</p>
+      <div class="acoes"><a class="btn btn-sol zap" data-msg="amostra" href="#">Quero minha amostra grátis</a><a class="btn btn-linha" href="#planos">Ver os planos</a></div>
+      <div class="garantias"><span>Amostra sem compromisso</span><span>Domínio no seu nome</span><span>Feito no Maranhão</span></div>
+    </div>
+    <div class="demo">
+      <div class="troca" role="group" aria-label="Ver exemplo de identidade">
+        <button type="button" data-n="0" aria-pressed="true">Pousada</button><button type="button" data-n="1" aria-pressed="false">Clínica</button><button type="button" data-n="2" aria-pressed="false">Transfer</button>
+      </div>
+      <div class="celular" aria-label="Exemplo de site no celular" role="img">
+        <div class="tela" id="tela">
+          <div class="barra"><span id="dNome">Pousada Maré Mansa</span><i aria-hidden="true"></i></div>
+          <div class="capa"></div>
+          <div class="txt"><b id="dTit">Acorde com vista para o rio</b><p id="dSub">Quartos com varanda a 5 minutos do centro. Reserve direto, sem taxa de plataforma.</p></div>
+          <div class="form"><small id="dForm">Monte sua reserva</small><div class="chips" id="dChips"></div></div>
+          <div class="zap" id="dZap">Enviar pelo WhatsApp</div>
+        </div>
+      </div>
+      <small style="color:var(--suave)">Exemplos fictícios, para mostrar como a identidade muda.</small>
+    </div>
+  </div>
+</section>
+
+<section id="como" style="padding-top:20px">
+  <div class="wrap">
+    <h2>Como funciona</h2>
+    <ol class="passos">
+      <li><h3>Você pede a amostra</h3><p>Me manda o nome do seu negócio no Google ou o seu Instagram. É só isso.</p></li>
+      <li><h3>Recebe em até 48 horas</h3><p>Um site de verdade, com as suas cores, fotos e serviços, para você ver no celular.</p></li>
+      <li><h3>Aprovou, entra no ar</h3><p>Ajustamos o que você quiser, registramos o seu domínio e em até 7 dias o site está publicado.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="wrap">
+    <h2>Planos</h2>
+    <p class="intro">Sem taxa de entrada. Você paga por mês, no Pix ou no cartão, e tudo já está incluso: hospedagem, domínio, segurança e ajustes.</p>
+    <div class="ciclo" role="group" aria-label="Forma de pagamento"><button type="button" data-c="mes" aria-pressed="true">Mensal</button><button type="button" data-c="ano" aria-pressed="false">Anual<em>2 meses grátis</em></button></div>
+    <div class="planos">
+      <article class="plano">
+        <h3>Essencial</h3>
+        <p class="para">Para quem ainda não tem site e quer ser encontrado.</p>
+        <div class="preco"><b data-m="69" data-a="690">R$ 69</b><span class="per">/mês</span></div>
+        <p class="preco-nota"></p>
+        <ul><li>Site com a sua identidade</li><li>Domínio próprio no seu nome (.com.br)</li><li>Botão de WhatsApp, mapa e horários</li><li>Ligado ao seu perfil no Google</li><li>Hospedagem e segurança</li><li>1 ajuste por mês</li></ul>
+        <a class="btn btn-linha zap" data-msg="Essencial" href="#">Começar com o Essencial</a>
+      </article>
+      <article class="plano destaque">
+        <span class="selo">Recomendado</span>
+        <h3>Profissional</h3>
+        <p class="para">Para quem quer que o site trabalhe por você e traga clientes prontos.</p>
+        <div class="preco"><b data-m="129" data-a="1290">R$ 129</b><span class="per">/mês</span></div>
+        <p class="preco-nota"></p>
+        <ul><li class="mais">Tudo do Essencial</li><li>Um sistema sob medida: agendamento, pré-avaliação, roteiro ou cotação</li><li>Pedido chega organizado no seu WhatsApp</li><li>Versão em inglês e espanhol</li><li>Galeria e avaliações do Google</li><li>3 ajustes por mês</li></ul>
+        <a class="btn btn-sol zap" data-msg="Profissional" href="#">Quero o Profissional</a>
+      </article>
+      <article class="plano">
+        <h3>Gestão</h3>
+        <p class="para">Para quem quer organizar o atendimento e acompanhar os resultados.</p>
+        <div class="preco"><b data-m="249" data-a="2490">R$ 249</b><span class="per">/mês</span></div>
+        <p class="preco-nota"></p>
+        <ul><li class="mais">Tudo do Profissional</li><li>Painel para organizar clientes, pacientes ou reservas</li><li>Relatório mensal de visitas e contatos</li><li>Atualização mensal do seu perfil no Google</li><li>Ajustes com prioridade</li></ul>
+        <a class="btn btn-linha zap" data-msg="Gestão" href="#">Quero o Gestão</a>
+      </article>
+    </div>
+    <p class="rodape-planos">Fidelidade de 12 meses. O domínio fica sempre no seu nome. Prefere pagar o site de uma vez? Também dá: é só pedir o valor à vista.</p>
+  </div>
+</section>
+
+<section id="sistemas">
+  <div class="wrap">
+    <h2>O sistema que vem no plano Profissional</h2>
+    <p class="intro">Cada negócio recebe o sistema que faz sentido para ele. Alguns exemplos que já montamos:</p>
+    <div class="sistemas">
+      <div class="sistema"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h12"/></svg></span><h3>Roteiro de passeios</h3><p>O turista escolhe os passeios e os dias, e o site organiza tudo por dia.</p><small>Agências e pousadas</small></div>
+      <div class="sistema"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><h3>Pré-avaliação</h3><p>O paciente conta o que sente antes da consulta, com alerta para sinais que pedem médico.</p><small>Fisioterapia, nutrição, psicologia</small></div>
+      <div class="sistema"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Cálculo de horário</h3><p>O cliente informa o voo e vê a hora de saída e de chegada.</p><small>Transfer e transporte</small></div>
+      <div class="sistema"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><h3>Agendamento</h3><p>Serviço, dia e período escolhidos pelo cliente, prontos para você confirmar.</p><small>Clínicas, estética, massagem</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="duvidas" style="background:#fff;border-top:1px solid var(--linha)">
+  <div class="wrap">
+    <h2>Dúvidas</h2>
+    <div class="faq">
+      <details><summary>A amostra é grátis mesmo?</summary><p>É. Você recebe o site pronto para ver no celular e só decide depois. Se não gostar, não paga nada.</p></details>
+      <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque o trabalho de criar o site é feito no começo e não cobro taxa de entrada. A fidelidade é o que permite isso. No plano anual você ainda ganha 2 meses.</p></details>
+      <details><summary>O domínio é meu?</summary><p>Sim. O endereço do site é registrado no seu nome, no Registro.br. Ele é seu em qualquer situação.</p></details>
+      <details><summary>E se eu cancelar depois da fidelidade?</summary><p>O site sai do ar no fim do mês pago e o domínio continua seu. Se quiser ficar com o site, dá para comprar ele à vista.</p></details>
+      <details><summary>O que conta como ajuste?</summary><p>Trocar fotos, textos, telefone, horários, preços ou serviços. Mudanças maiores, como um sistema novo, são combinadas à parte.</p></details>
+      <details><summary>Preciso mandar fotos e textos?</summary><p>Não para a amostra. Uso o que já está no seu Google e no seu Instagram. Depois você pode mandar fotos novas quando quiser.</p></details>
+      <details><summary>Como pago?</summary><p>Por Pix ou cartão, com cobrança automática todo mês. No anual, você paga de uma vez e ganha 2 meses.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="final azulejo">
+  <div class="wrap">
+    <div class="caixa">
+      <div><h2>Veja o seu site antes de decidir</h2><p>Me manda o nome do seu negócio e em até 48 horas você recebe a amostra com a sua cara. Sem compromisso.</p></div>
+      <a class="btn btn-sol zap" data-msg="amostra" href="#">Quero minha amostra</a>
+    </div>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>Paulo Jr. · Sites e sistemas · São Luís, MA</span><span>Atendimento pelo WhatsApp</span></div></footer>
+<a class="zap-flut zap" data-msg="amostra" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
+<script>
+// Número do WhatsApp do Paulo (DDI + DDD + número, só dígitos)
+const ZAP = "55XXXXXXXXXXX";
+const $=id=>document.getElementById(id);
+let ciclo="mes";
+function links(){
+  document.querySelectorAll("a.zap").forEach(a=>{
+    const p=a.dataset.msg;
+    const msg = p==="amostra" ? "Olá, Paulo! Vi a sua página e quero uma amostra grátis do site para o meu negócio. O nome no Google (ou Instagram) é: "
+      : `Olá, Paulo! Tenho interesse no plano ${p}${ciclo==="ano"?" anual":" mensal"}. Meu negócio é: `;
+    a.href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg); a.target="_blank"; a.rel="noopener";
+  });
+}
+const fmt=v=>"R$ "+Number(v).toLocaleString("pt-BR");
+function precos(){
+  document.querySelectorAll(".plano").forEach(pl=>{
+    const b=pl.querySelector(".preco b"), per=pl.querySelector(".per"), nota=pl.querySelector(".preco-nota");
+    if(ciclo==="mes"){ b.textContent=fmt(b.dataset.m); per.textContent="/mês"; nota.textContent=""; }
+    else { b.textContent=fmt(b.dataset.a); per.textContent="/ano"; nota.textContent=`Equivale a ${fmt((b.dataset.a/12).toFixed(0))} por mês. Você economiza ${fmt(b.dataset.m*2)}.`; }
+  });
+  document.querySelectorAll(".ciclo button").forEach(x=>x.setAttribute("aria-pressed",x.dataset.c===ciclo));
+  links();
+}
+document.querySelectorAll(".ciclo button").forEach(x=>x.addEventListener("click",()=>{ciclo=x.dataset.c;precos();}));
+// demonstração de identidade
+const D=[
+ {nome:"Pousada Maré Mansa",tit:"Acorde com vista para o rio",sub:"Quartos com varanda a 5 minutos do centro. Reserve direto, sem taxa de plataforma.",form:"Monte sua reserva",chips:["Casal","Família","2 noites","Café incluso"],cor:"#0f6e7a",fundo:"#fbf6ec",capa:"linear-gradient(135deg,#7fd3d9,#f6c27a)",chip:"#e0f2f3"},
+ {nome:"Clínica Equilíbrio",tit:"Cuidado para voltar a se mover",sub:"Fisioterapia e pilates com avaliação individual antes de começar.",form:"Pré-avaliação",chips:["Lombar","Joelho","Há 2 meses","Manhã"],cor:"#3a6b35",fundo:"#f6f8f2",capa:"linear-gradient(135deg,#b7d8a8,#e9e3c9)",chip:"#e5efdd"},
+ {nome:"Rota Lençóis Transfer",tit:"Do aeroporto à sua pousada",sub:"Transfer privativo 24 horas. Informe o voo e veja o horário de chegada.",form:"Calcule seu transfer",chips:["Pouso 10:00","2 pessoas","Chega 14:40"],cor:"#16213d",fundo:"#ffffff",capa:"linear-gradient(135deg,#16213d,#f2b134)",chip:"#fdf0d2"}
+];
+function demo(n){
+  const d=D[n], t=$("tela");
+  t.style.setProperty("--cor",d.cor); t.style.setProperty("--fundo",d.fundo); t.style.setProperty("--capa",d.capa); t.style.setProperty("--chip",d.chip);
+  $("dNome").textContent=d.nome; $("dTit").textContent=d.tit; $("dSub").textContent=d.sub; $("dForm").textContent=d.form;
+  $("dChips").innerHTML=d.chips.map(c=>`<span>${c}</span>`).join("");
+  document.querySelectorAll(".troca button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n));
+}
+document.querySelectorAll(".troca button").forEach(b=>b.addEventListener("click",()=>demo(+b.dataset.n)));
+demo(0); precos();
+</script>
+</body>
+</html>
