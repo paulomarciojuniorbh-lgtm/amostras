@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Spa Saúde · Fúlvio Galvani · Barreirinhas</title>
+<meta name="description" content="Fisioterapia, osteopatia, quiropraxia, ventosaterapia, pilates e massagem no centro de Barreirinhas. Agende pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#1f9a5b;--verde-claro:#d9f2e3;--verde-escuro:#0f5e3b;--azul:#1f5fae;--azul-claro:#e3edfa;--tinta:#13233a;--suave:#5a6678;--papel:#f7faf8;--branco:#fff;--rosa:#e2367f;--alerta:#a3261b}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{margin:0;font:400 17px/1.6 Figtree,system-ui,sans-serif;color:var(--tinta);background:var(--papel)}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:6px}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.02;color:var(--tinta)}
+h1{font-weight:800;font-size:clamp(2.6rem,6.6vw,5rem);letter-spacing:-.02em}
+h2{font-weight:800;font-size:clamp(2rem,4.4vw,3.2rem);letter-spacing:-.015em}
+h3{font-weight:600;font-size:1.35rem}
+.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
+.btn{display:inline-flex;align-items:center;gap:.5em;font:700 1rem/1 Figtree,sans-serif;padding:1em 1.4em;border-radius:14px;text-decoration:none;border:0;cursor:pointer}
+.btn-verde{background:var(--verde);color:#fff}
+.btn-verde:hover{background:var(--verde-escuro)}
+.btn-azul{background:var(--azul);color:#fff}
+.btn-linha{border:2px solid var(--tinta);color:var(--tinta);background:transparent}
+.btn svg{width:1.15em;height:1.15em}
+
+header{background:#fff;border-bottom:1px solid #e3e9e5}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 20px;max-width:1140px;margin:0 auto}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--azul)}
+.marca .s{font:800 2.4rem/1 "Bricolage Grotesque",sans-serif;color:var(--verde);text-shadow:3px 2px 0 var(--verde-escuro)}
+.marca b{display:block;font:800 1.3rem/1 "Bricolage Grotesque",sans-serif;color:var(--azul)}
+.marca small{display:block;font-size:.72rem;color:var(--suave);font-weight:600;margin-top:2px}
+nav.menu{display:flex;gap:24px;font-weight:600}
+nav.menu a{color:var(--tinta);text-decoration:none}
+@media (max-width:860px){nav.menu{display:none}}
+
+.hero{padding:56px 0 70px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero .pergunta{font:600 clamp(1.3rem,2.6vw,1.75rem)/1.2 "Bricolage Grotesque",sans-serif;color:var(--azul);margin:0 0 10px}
+.hero h1 span{color:var(--verde)}
+.hero p.lead{font-size:1.15rem;color:var(--suave);max-width:44ch;margin:20px 0 28px}
+.hero .acoes{display:flex;flex-wrap:wrap;gap:12px}
+.nota{display:flex;gap:10px;align-items:center;margin-top:28px;color:var(--suave);font-weight:500}
+.nota b{font:800 1.9rem/1 "Bricolage Grotesque",sans-serif;color:var(--tinta)}
+.nota i{font-style:normal;color:#f2a516;letter-spacing:2px}
+.foto-hero{position:relative}
+.foto-hero::before{content:"";position:absolute;inset:-6% -10% 8% 18%;background:var(--verde-claro);border-radius:48% 52% 40% 60%/55% 45% 55% 45%;z-index:0}
+.foto-hero img{position:relative;z-index:1;border-radius:28px;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 20%}
+.foto-hero figcaption{position:absolute;z-index:2;left:16px;bottom:16px;background:#fff;border-radius:14px;padding:10px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 20px rgba(19,35,58,.15)}
+.foto-hero figcaption b{display:block;font:800 1.15rem/1.1 "Bricolage Grotesque",sans-serif;color:var(--azul)}
+
+section{padding:88px 0}
+.intro{max-width:58ch;color:var(--suave);font-size:1.08rem;margin:14px 0 0}
+
+/* frentes */
+.frentes{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+@media (max-width:900px){.frentes{grid-template-columns:1fr}}
+.frente{background:#fff;border-radius:22px;overflow:hidden;border-top:6px solid var(--verde)}
+.frente:nth-child(2){border-top-color:var(--azul)}
+.frente:nth-child(3){border-top-color:var(--rosa)}
+.frente img{width:100%;aspect-ratio:16/11;object-fit:cover}
+.frente div{padding:20px 22px 24px}
+.frente ul{margin:10px 0 0;padding-left:18px;color:var(--suave)}
+.frente li{margin:3px 0}
+
+/* agendar */
+#agendar{background:var(--tinta);color:#e4ebf5}
+#agendar h2{color:#fff}
+#agendar .intro{color:#b4c1d6}
+.abas{display:flex;flex-wrap:wrap;gap:8px;margin:34px 0 22px}
+.aba{border:0;border-radius:12px;padding:.8em 1.2em;font:700 1rem Figtree,sans-serif;background:#1f3352;color:#cdd8ea;cursor:pointer}
+.aba[aria-selected="true"]{background:#fff;color:var(--tinta)}
+.painel{background:#1a2c48;border-radius:22px;padding:26px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:30px}
+@media (max-width:900px){.painel{grid-template-columns:1fr}}
+.q{margin-bottom:20px}
+.q>span{display:block;font-weight:700;color:#fff;margin-bottom:8px}
+.ops{display:flex;flex-wrap:wrap;gap:8px}
+.op{border:1.5px solid #34507c;background:transparent;color:#dfe7f4;border-radius:999px;padding:.55em 1em;font:600 .95rem Figtree,sans-serif;cursor:pointer}
+.op[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:#fff}
+.q input[type=text],.q input[type=date]{width:100%;font:500 1rem Figtree,sans-serif;padding:.7em .8em;border-radius:12px;border:1.5px solid #34507c;background:#13233a;color:#fff}
+.sinais label{display:flex;gap:10px;align-items:flex-start;margin:6px 0;color:#dfe7f4}
+.sinais input{margin-top:.3em;width:18px;height:18px;accent-color:#e3523f;flex:none}
+.alerta{background:#fdecea;color:#5c1810;border-radius:12px;padding:12px 14px;margin-top:10px}
+.alerta b{display:block}
+.resumo{background:#fff;color:var(--tinta);border-radius:18px;padding:20px;align-self:start;position:sticky;top:16px}
+.resumo h3{margin-bottom:10px}
+.resumo pre{font:400 .95rem/1.55 Figtree,sans-serif;white-space:pre-wrap;margin:0 0 16px;color:var(--suave)}
+.resumo .legal{font-size:.82rem;color:var(--suave);margin:12px 0 0}
+.lingua{font-size:.92rem;color:#b4c1d6;margin-top:6px}
+[hidden]{display:none!important}
+
+/* espaço */
+.espaco{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:210px;gap:12px;margin-top:36px}
+.espaco img{width:100%;height:100%;object-fit:cover;border-radius:18px}
+.espaco img:nth-child(1){grid-column:span 2;grid-row:span 2}
+@media (max-width:760px){.espaco{grid-template-columns:1fr 1fr;grid-auto-rows:160px}}
+.contato{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media (max-width:860px){.contato{grid-template-columns:1fr}}
+.dados{display:grid;gap:12px;margin:24px 0 28px}
+.dados div{display:grid;grid-template-columns:110px 1fr;gap:12px}
+.dados dt{font-weight:700}
+.dados dd{margin:0;color:var(--suave)}
+.contato img{border-radius:22px;aspect-ratio:4/3;object-fit:cover;width:100%}
+footer{background:var(--verde-escuro);color:#cfe9da;padding:24px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.zap-flut{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#1fae5b;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.zap-flut svg{width:30px;height:30px;color:#fff}
+</style>
+</head>
+<body>
+<header>
+  <div class="topo">
+    <a class="marca" href="#inicio" aria-label="Spa Saúde, início"><span class="s" aria-hidden="true">S</span><span><b>Spa Saúde</b><small>Centro desportivo e de saúde</small></span></a>
+    <nav class="menu" aria-label="Seções"><a href="#servicos">Serviços</a><a href="#agendar">Agendar</a><a href="#espaco">Espaço</a><a href="#contato">Contato</a></nav>
+    <a class="btn btn-verde" href="#agendar">Agendar</a>
+  </div>
+</header>
+<main id="inicio">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="pergunta">Você procura saúde, beleza e bem-estar?</p>
+      <h1>Entrou no <span>lugar certo.</span></h1>
+      <p class="lead">Fisioterapia, osteopatia, quiropraxia, pilates e massagem com o fisioterapeuta Fúlvio Galvani e equipe, no centro de Barreirinhas.</p>
+      <div class="acoes"><a class="btn btn-verde" href="#agendar">Agendar atendimento</a><a class="btn btn-linha zap" href="#">Falar no WhatsApp</a></div>
+      <div class="nota"><b>5,0</b><span><i aria-hidden="true">★★★★★</i><br>84 avaliações no Google</span></div>
+    </div>
+    <figure class="foto-hero" style="margin:0">
+      <img src="img/9.jpg" alt="Fúlvio Galvani e colega da equipe, de jaleco, diante do logo do Spa Saúde" fetchpriority="high">
+      <figcaption><b>Fúlvio Galvani</b>Fisioterapeuta</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section id="servicos" style="padding-top:20px">
+  <div class="wrap">
+    <h2>Três jeitos de cuidar de você</h2>
+    <p class="intro">Do tratamento da dor à atividade física do dia a dia, sempre com avaliação antes de começar.</p>
+    <div class="frentes">
+      <article class="frente"><img src="img/8.jpg" alt="Fúlvio aplicando técnica manual nas costas de uma paciente" loading="lazy"><div><h3>Fisioterapia e terapias manuais</h3><ul><li>Fisioterapia em geral</li><li>Osteopatia e quiropraxia</li><li>Ventosaterapia</li><li>Liberação e pistola de massagem</li></ul></div></article>
+      <article class="frente"><img src="img/2.jpg" alt="Turma de pilates no solo, sorrindo, no estúdio com jardim vertical" loading="lazy"><div><h3>Pilates e atividade física</h3><ul><li>Pilates em turma</li><li>Fortalecimento e mobilidade</li><li>Aulas para a melhor idade</li><li>Acompanhamento de fisioterapeuta</li></ul></div></article>
+      <article class="frente"><img src="img/5.jpg" alt="Recepção do Spa Saúde com luz quente e bancada de madeira" loading="lazy"><div><h3>Massagem e bem-estar</h3><ul><li>Massagem relaxante</li><li>Massagem para casal</li><li>Ideal depois de um dia de dunas</li><li>Atendimento para quem está de passagem</li></ul></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="agendar">
+  <div class="wrap">
+    <h2>Agende em um minuto</h2>
+    <p class="intro">Escolha o que procura, responda poucas perguntas e envie. Tudo chega organizado no WhatsApp do Spa Saúde.</p>
+    <div class="abas" role="tablist" aria-label="Tipo de atendimento">
+      <button class="aba" role="tab" aria-selected="true" data-aba="fisio" type="button">Fisioterapia</button>
+      <button class="aba" role="tab" aria-selected="false" data-aba="pilates" type="button">Pilates e atividade</button>
+      <button class="aba" role="tab" aria-selected="false" data-aba="massagem" type="button">Massagem</button>
+    </div>
+    <div class="painel">
+      <div id="perguntas"></div>
+      <aside class="resumo" aria-live="polite">
+        <h3>Seu pedido</h3>
+        <pre id="txt">Responda ao lado para montar o pedido.</pre>
+        <a class="btn btn-verde" id="enviar" href="#" target="_blank" rel="noopener" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>Enviar pelo WhatsApp</a>
+        <p class="legal" id="legal">As respostas não são diagnóstico. A avaliação é feita pessoalmente no primeiro atendimento.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section id="espaco">
+  <div class="wrap">
+    <h2>O espaço</h2>
+    <p class="intro">Estúdio amplo com jardim vertical, salas de atendimento e recepção no centro de Barreirinhas.</p>
+    <div class="espaco">
+      <img src="img/4.jpg" alt="Estúdio amplo com piso de madeira, espelhos e jardins verticais" loading="lazy">
+      <img src="img/1.jpg" alt="Fúlvio aplicando ventosa nas costas de um paciente" loading="lazy">
+      <img src="img/7.jpg" alt="Aluna fazendo exercício com elástico no estúdio" loading="lazy">
+      <img src="img/6.jpg" alt="Sala de espera com cadeiras e banner do Spa Saúde" loading="lazy">
+      <img src="img/3.jpg" alt="Fachada do Spa Saúde com o logo redondo e palmeira na entrada" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section id="contato" style="padding-top:20px">
+  <div class="wrap contato">
+    <div>
+      <h2>Venha conhecer</h2>
+      <dl class="dados">
+        <div><dt>Endereço</dt><dd>R. Zuza Réis, 80, Centro, Barreirinhas (MA)</dd></div>
+        <div><dt>Horário</dt><dd>Segunda a sexta, das 8h às 19h<br>Sábado, das 8h às 12h</dd></div>
+        <div><dt>WhatsApp</dt><dd>(98) 98791-3623</dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://instagram.com/spasaude_barreirinhas" target="_blank" rel="noopener">@spasaude_barreirinhas</a></dd></div>
+      </dl>
+      <div style="display:flex;flex-wrap:wrap;gap:12px"><a class="btn btn-verde zap" href="#">Falar no WhatsApp</a><a class="btn btn-linha" href="https://maps.google.com/?cid=2625114210286826773" target="_blank" rel="noopener">Ver no mapa</a></div>
+    </div>
+    <img src="img/3.jpg" alt="Fachada do Spa Saúde, Centro Desportivo e de Saúde" loading="lazy">
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><span>Spa Saúde, Centro Desportivo e de Saúde, Barreirinhas (MA)</span><span>Site de demonstração</span></div></footer>
+<a class="zap-flut zap" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
+<script>
+const ZAP="5598987913623";
+const $=id=>document.getElementById(id);
+const SINAIS=["Perda de força ou dormência que está piorando","Dormência na região íntima ou perda de controle da urina","Dor depois de queda, acidente ou pancada forte","Febre ou dor que não alivia nem em repouso","Dor no peito, falta de ar ou tontura forte"];
+const DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb"], PER=["Manhã","Tarde"];
+const F={
+ fisio:{titulo:"Fisioterapia",qs:[
+   {k:"regiao",r:"Onde é o incômodo?",m:1,o:["Pescoço","Ombro","Costas","Lombar","Quadril","Joelho","Tornozelo ou pé","Punho ou mão"]},
+   {k:"tempo",r:"Há quanto tempo?",o:["Menos de 1 semana","1 a 4 semanas","1 a 6 meses","Mais de 6 meses"]},
+   {k:"terapia",r:"Tem preferência de técnica?",m:1,o:["Fisioterapia","Osteopatia","Quiropraxia","Ventosaterapia","Quero orientação"]},
+   {k:"sinais",tipo:"sinais",r:"Você tem algum destes sinais?"},
+   {k:"dias",r:"Melhores dias",m:1,o:DIAS},{k:"periodo",r:"Período",o:PER},{k:"nome",tipo:"txt",r:"Seu nome"}]},
+ pilates:{titulo:"Pilates e atividade física",qs:[
+   {k:"objetivo",r:"Qual o seu objetivo?",m:1,o:["Dor nas costas","Fortalecer o corpo","Mobilidade e equilíbrio","Postura","Qualidade de vida","Pós-reabilitação"]},
+   {k:"faixa",r:"Sua faixa de idade",o:["Até 30","31 a 50","51 a 65","Mais de 65"]},
+   {k:"ativo",r:"Pratica atividade física hoje?",o:["Não","Às vezes","Sim, regularmente"]},
+   {k:"saude",r:"Alguma condição que devemos saber?",m:1,o:["Pressão alta","Diabetes","Cirurgia recente","Gestante","Hérnia de disco","Nenhuma"]},
+   {k:"dias",r:"Melhores dias para a aula experimental",m:1,o:DIAS},{k:"periodo",r:"Período",o:PER},{k:"nome",tipo:"txt",r:"Seu nome"}]},
+ massagem:{titulo:"Massagem",qs:[
+   {k:"tipo",r:"Qual massagem? / Which massage?",o:["Relaxante","Casal / Couples","Com ventosa","Liberação muscular"]},
+   {k:"pessoas",r:"Para quantas pessoas? / How many people?",o:["1","2","3+"]},
+   {k:"data",tipo:"data",r:"Data / Date"},
+   {k:"periodo",r:"Período / Time",o:["Manhã / Morning","Tarde / Afternoon"]},
+   {k:"turista",r:"Está de passagem por Barreirinhas?",o:["Moro aqui","Sou turista","I'm a tourist (English)","Soy turista (español)"]},
+   {k:"hosp",tipo:"txt",r:"Pousada ou hotel (se for turista)"},
+   {k:"nome",tipo:"txt",r:"Seu nome / Your name"}]}
+};
+let aba="fisio"; let R={};
+function render(){
+  const f=F[aba]; R={};
+  $("perguntas").innerHTML=f.qs.map(q=>{
+    if(q.tipo==="sinais") return `<div class="q sinais"><span>${q.r}</span>${SINAIS.map((s,i)=>`<label><input type="checkbox" class="sinal" value="${i}"><span>${s}</span></label>`).join("")}<div class="alerta" id="alerta" hidden><b>Procure um médico antes da fisioterapia.</b>Esses sinais precisam de avaliação médica ou no pronto-atendimento. Em emergência, ligue 192 (SAMU).</div></div>`;
+    if(q.tipo==="txt") return `<div class="q"><span><label for="q-${q.k}">${q.r}</label></span><input type="text" id="q-${q.k}" data-k="${q.k}"></div>`;
+    if(q.tipo==="data") return `<div class="q"><span><label for="q-${q.k}">${q.r}</label></span><input type="date" id="q-${q.k}" data-k="${q.k}"></div>`;
+    return `<div class="q"><span>${q.r}</span><div class="ops" data-k="${q.k}"${q.m?' data-m="1"':""}>${q.o.map(o=>`<button type="button" class="op" aria-pressed="false">${o}</button>`).join("")}</div></div>`;
+  }).join("");
+  $("legal").hidden = aba==="massagem";
+  atualiza();
+}
+document.addEventListener("click",e=>{
+  const a=e.target.closest(".aba"); if(a){ aba=a.dataset.aba; document.querySelectorAll(".aba").forEach(b=>b.setAttribute("aria-selected",b===a)); render(); return; }
+  const b=e.target.closest(".op"); if(!b) return; const g=b.parentElement, k=g.dataset.k, v=b.textContent;
+  if(g.dataset.m){ R[k]=R[k]||[]; const i=R[k].indexOf(v); i<0?R[k].push(v):R[k].splice(i,1); b.setAttribute("aria-pressed",i<0); }
+  else { g.querySelectorAll(".op").forEach(o=>o.setAttribute("aria-pressed",o===b)); R[k]=v; }
+  atualiza();
+});
+document.addEventListener("input",e=>{ if(e.target.dataset.k){ R[e.target.dataset.k]=e.target.value; atualiza(); } if(e.target.classList.contains("sinal")) atualiza(); });
+function atualiza(){
+  const sinais=[...document.querySelectorAll(".sinal:checked")].map(x=>SINAIS[x.value]);
+  if($("alerta")) $("alerta").hidden=!sinais.length;
+  const f=F[aba], L=[];
+  f.qs.forEach(q=>{ if(q.k==="nome"||q.tipo==="sinais") return; let v=R[q.k]; if(Array.isArray(v)) v=v.join(", ");
+    if(q.k==="data"&&v) v=new Date(v+"T12:00").toLocaleDateString("pt-BR");
+    if(v) L.push(q.r.split(" / ")[0].replace("?","")+": "+v); });
+  if(sinais.length) L.push("Sinais de alerta: "+sinais.join("; "));
+  $("txt").textContent = L.length? f.titulo+"\n"+L.join("\n") : "Responda ao lado para montar o pedido.";
+  const nome=(R.nome||"").trim();
+  const ing=R.turista&&R.turista.includes("English"), esp=R.turista&&R.turista.includes("español");
+  const ab=ing?"Hi Spa Saúde! ":esp?"¡Hola Spa Saúde! ":"Olá, Spa Saúde! ";
+  const msg=`${ab}${nome?(ing?"I'm ":esp?"Soy ":"Sou ")+nome+". ":""}${ing?"I'd like to book:":esp?"Quiero agendar:":"Quero agendar pelo site:"}\n\n${f.titulo}\n${L.join("\n")}`;
+  $("enviar").href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg);
+}
+const saud="https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá, Spa Saúde! Vi o site e gostaria de agendar um atendimento.");
+document.querySelectorAll("a.zap").forEach(a=>{a.href=saud;a.target="_blank";a.rel="noopener"});
+render();
+</script>
+</body>
+</html>
