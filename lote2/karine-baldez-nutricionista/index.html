@@ -99,6 +99,45 @@ footer.rod{padding:28px 0 110px;font-size:13.5px;color:var(--muted)}
 footer.rod .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px}
 .flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;width:60px;height:60px;border-radius:50%;background:var(--zap);color:#fff;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.28)}
 .flutua svg{width:30px;height:30px}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:880px){.stats{grid-template-columns:minmax(0,1fr)}}
+.st{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:8px;align-content:start}
+.st b{font:600 clamp(34px,4vw,46px)/1 var(--disp);color:var(--pri)}
+.st p{font-size:16px}
+.st small{color:var(--muted);font-size:12.5px}
+.ferr{background:var(--paper);border:1px solid var(--line);border-radius:calc(var(--r) * 1.6);padding:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+@media (max-width:880px){.ferr{grid-template-columns:minmax(0,1fr);padding:22px}}
+.campo{display:grid;gap:6px;margin-bottom:16px}
+.campo>span{font-weight:700;font-size:14.5px}
+.campo input:not([type=radio]):not([type=checkbox]),.campo select{font:500 16px var(--body);padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);width:100%}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px}
+.opcoes label{display:flex;align-items:center;justify-content:flex-start;text-align:left;gap:10px;border:1.5px solid var(--line);border-radius:14px;padding:10px 14px;line-height:1.35;cursor:pointer;font-size:15px;background:var(--bg)}
+.opcoes label:has(input:checked){border-color:var(--pri);background:var(--acc-soft)}
+.opcoes input{accent-color:var(--pri);flex:none;margin:0}
+.opcoes label span{flex:1}
+.res{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:12px;align-content:start}
+.res h3{font-size:22px}
+.res .big{font:600 clamp(26px,3vw,34px)/1.15 var(--disp);color:var(--pri)}
+.regras{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.regras li{display:flex;justify-content:space-between;gap:12px;border-bottom:1px dashed var(--line);padding-bottom:8px;font-size:15px}
+.regras li.melhor{font-weight:700;color:var(--pri)}
+.regras li span:last-child{text-align:right;white-space:nowrap}
+.docs{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.docs label{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}
+.docs input{margin-top:4px;accent-color:var(--pri);width:18px;height:18px;flex:none}
+.aviso{font-size:13px;color:var(--muted)}
+.res .btn{justify-self:start;white-space:normal;text-align:center}
+
+.faixa{display:flex;align-items:center;gap:12px}
+.faixa input[type=range]{flex:1;accent-color:var(--pri)}
+.faixa output{font:700 20px var(--disp);color:var(--pri);min-width:2ch;text-align:right}
+.alerta{background:#FDECEC;border:1px solid #F3B4B4;color:#7A1F1F;border-radius:10px;padding:12px 14px;font-size:14.5px;font-weight:600}
+.alerta[hidden]{display:none}
+.lista-simples{margin:0;padding-left:20px;display:grid;gap:6px;font-size:15px}
+.res .extra{margin:0;padding-left:20px;display:grid;gap:6px;font-size:14.5px;color:var(--muted)}
+.res .extra:empty{display:none}
 </style>
 </head>
 <body>
@@ -124,6 +163,67 @@ footer.rod .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:w
     <div class="servs"><article class="sv"><span class="num">01</span><h3>Saúde intestinal</h3><p>Acompanhamento nutricional para SIBO, IMO e disbiose.</p></article><article class="sv"><span class="num">02</span><h3>Síndrome do intestino irritado</h3><p>Estratégias alimentares para mais conforto no dia a dia.</p></article><article class="sv"><span class="num">03</span><h3>Saúde da mulher</h3><p>Alimentação como apoio em quadros como a endometriose.</p></article><article class="sv"><span class="num">04</span><h3>Acompanhamento</h3><p>Ajustes ao longo do tratamento, junto com seu médico.</p></article></div>
     <p class="obs">Lista de exemplo: na versão final entram exatamente os serviços da Karine.</p>
   </div></section>
+
+  <section class="sec"><div class="wrap">
+    <div class="cab"><span class="eti">Em números</span><h2>A saúde do brasileiro em números</h2><p class="sub" style="margin-top:12px">O retrato mais recente dos adultos das capitais, pelo Ministério da Saúde.</p></div>
+    <div class="stats"><div class="st"><b>62,6%</b><p>dos adultos das capitais estão com excesso de peso.</p><small>Fonte: Vigitel 2024, Ministério da Saúde</small></div><div class="st"><b>25,7%</b><p>convivem com obesidade, mais que o dobro de 2006 (11,8%).</p><small>Fonte: Vigitel 2024, Ministério da Saúde</small></div><div class="st"><b>12,9%</b><p>relatam diagnóstico de diabetes.</p><small>Fonte: Vigitel 2024, Ministério da Saúde</small></div></div>
+    <p class="obs">Por trás de cada número há uma rotina diferente. O plano alimentar precisa partir da sua.</p>
+  </div></section>
+  <section id="questionario" class="sec alt"><div class="wrap">
+    <div class="cab"><span class="eti">Pré-consulta gratuita</span><h2>Prepare-se para a sua primeira consulta</h2><p class="sub" style="margin-top:12px">Responda em 1 minuto e chegue à consulta com o que realmente importa.</p></div>
+    <div class="ferr">
+      <form id="fQ" onsubmit="return false"><div class="campo"><span>Qual é o seu principal objetivo?</span><div class="opcoes"><label><input type="radio" name="obj" value="emag"> <span>Emagrecer com saúde</span></label><label><input type="radio" name="obj" value="massa"> <span>Ganhar massa muscular</span></label><label><input type="radio" name="obj" value="exa"> <span>Melhorar exames</span></label><label><input type="radio" name="obj" value="int" checked> <span>Saúde intestinal</span></label><label><input type="radio" name="obj" value="onc"> <span>Durante tratamento oncológico</span></label><label><input type="radio" name="obj" value="inf"> <span>Alimentação do bebê ou da criança</span></label><label><input type="radio" name="obj" value="perf"> <span>Performance esportiva</span></label><label><input type="radio" name="obj" value="out"> <span>Outro objetivo</span></label></div></div><div class="campo"><span>Quantas refeições você faz por dia?</span><div class="opcoes"><label><input type="radio" name="ref" value="1"> <span>1 a 2</span></label><label><input type="radio" name="ref" value="2" checked> <span>3 a 4</span></label><label><input type="radio" name="ref" value="3"> <span>5 ou mais</span></label></div></div><div class="campo"><span>Como está a água?</span><div class="opcoes"><label><input type="radio" name="agua" value="p"> <span>Bebo pouco</span></label><label><input type="radio" name="agua" value="r" checked> <span>Razoável</span></label><label><input type="radio" name="agua" value="b"> <span>Bebo bastante</span></label></div></div><div class="campo"><span>Faz atividade física?</span><div class="opcoes"><label><input type="radio" name="ex" value="s"> <span>Não</span></label><label><input type="radio" name="ex" value="1" checked> <span>1 a 2 vezes por semana</span></label><label><input type="radio" name="ex" value="3"> <span>3 ou mais vezes</span></label></div></div><div class="campo"><span>Tem exames de sangue recentes?</span><div class="opcoes"><label><input type="radio" name="exa" value="s" checked> <span>Sim</span></label><label><input type="radio" name="exa" value="n"> <span>Não</span></label></div></div></form>
+      <div class="res" aria-live="polite">
+        <h3>Seu resultado</h3>
+        <div class="big" id="qBig">-</div>
+        <div class="alerta" id="qAl" hidden></div>
+        <p id="qTxt"></p>
+        <ul id="qLista"></ul>
+        <ul class="extra" id="qExtra"></ul>
+        <h3 id="qT2" style="font-size:18px" hidden></h3>
+        <ul class="docs" id="qL2"></ul>
+        <p class="aviso">Questionário de organização, não é avaliação nutricional. O plano é feito na consulta.</p>
+        <a class="btn pri" id="qZap" href="https://wa.me/5598991677254?text=Ol%C3%A1%2C%20Karine%21%20Vim%20pelo%20site." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Agendar minha consulta</a>
+      </div>
+    </div>
+  </div></section>
+<script>
+(function(){
+  const f=document.getElementById("fQ"), ZAP="https://wa.me/5598991677254?text=Ol%C3%A1%2C%20Karine%21%20Vim%20pelo%20site.", TIPOS={"obj": "radio", "ref": "radio", "agua": "radio", "ex": "radio", "exa": "radio"};
+  const R=V=>{
+  const lab=document.querySelector('[name=obj]:checked').parentElement.innerText.trim();
+  let lista=["Exames de sangue dos últimos 6 meses","Lista de medicamentos e suplementos","Anotação do que você comeu em 3 dias comuns","Suas dúvidas e preferências alimentares"];
+  if(V.obj==="inf") lista=["Caderneta de saúde da criança","Rotina de mamadas e refeições","Alergias ou reações já observadas","Suas dúvidas sobre a alimentação dela"];
+  if(V.obj==="onc") lista=["Relatório ou resumo do tratamento","Exames recentes","Lista de medicamentos","Sintomas que atrapalham a alimentação (enjoo, falta de apetite)"];
+  const dicas=[];
+  if(V.ref==="1") dicas.push("Poucas refeições no dia: um ponto para conversar na consulta.");
+  if(V.agua==="p") dicas.push("Pouca água: um ajuste simples para começar.");
+  if(V.ex==="s") dicas.push("Sem atividade física hoje: o plano considera a sua rotina real.");
+  if(V.exa==="n" && V.obj!=="inf") dicas.push("Sem exames recentes: na consulta você recebe a orientação de quais fazer.");
+  return {big:lab, txt:"Leve para a primeira consulta:", lista:lista, check:true, extra:dicas, alerta:"",
+          zap:" Fiz a pré-consulta do site. Meu objetivo: "+lab.toLowerCase()+"."};
+};
+  const $=id=>document.getElementById(id), esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  function calc(){
+    const V={};
+    for(const k in TIPOS){
+      if(TIPOS[k]==="check") V[k]=[...f.querySelectorAll('[name="'+k+'"]:checked')].map(i=>i.value);
+      else if(TIPOS[k]==="range"){ const i=f.querySelector('[name="'+k+'"]'); V[k]=+i.value; i.nextElementSibling.value=i.value; }
+      else { const i=f.querySelector('[name="'+k+'"]:checked'); V[k]=i?i.value:""; }
+    }
+    const r=R(V);
+    $("qBig").textContent=r.big; $("qTxt").textContent=r.txt||""; $("qTxt").hidden=!r.txt;
+    $("qAl").hidden=!r.alerta; $("qAl").textContent=r.alerta||"";
+    const L=$("qLista"); L.className=r.check?"docs":"lista-simples";
+    L.innerHTML=(r.lista||[]).map(x=>r.check?'<li><label><input type="checkbox"> '+esc(x)+'</label></li>':'<li>'+esc(x)+'</li>').join("");
+    $("qExtra").innerHTML=(r.extra||[]).map(x=>'<li>'+esc(x)+'</li>').join("");
+    $("qT2").hidden=!r.titulo2; $("qT2").textContent=r.titulo2||"";
+    $("qL2").innerHTML=(r.lista2||[]).map(x=>'<li><label><input type="checkbox"> '+esc(x)+'</label></li>').join("");
+    $("qZap").href=ZAP+encodeURIComponent(r.zap||"");
+  }
+  f.addEventListener("input",calc); f.addEventListener("change",calc); calc();
+})();
+</script>
 
   <section class="sec"><div class="wrap duo">
     <div><div class="cab" style="margin-bottom:22px"><span class="eti">Atendimento</span><h2>Como é ser atendido por mim</h2></div>
