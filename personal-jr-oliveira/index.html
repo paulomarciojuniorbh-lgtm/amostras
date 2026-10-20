@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
 <title>Júnior Oliveira · Personal Trainer em São Luís</title>
-<meta name="description" content="Modelo de demonstração de site para o personal trainer Júnior Oliveira, em São Luís (MA): saúde, hipertrofia, emagrecimento e prevenção de lesão.">
+<meta name="description" content="Júnior Oliveira, personal trainer em São Luís (MA): saúde, hipertrofia, emagrecimento e prevenção de lesão, com avaliação física e postural.">
 <meta name="theme-color" content="#0E0E0F">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap">
@@ -193,13 +193,23 @@ section{padding:88px 0}
 .final p{color:var(--muted);max-width:540px}
 @media (max-width:700px){.final{padding:30px 22px;border-radius:24px}}
 
+
+/* dia a dia: fotos postadas pelo Júnior no painel */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin:-16px 0 20px}
+.filtros button{border:1px solid var(--line);background:var(--card);color:var(--txt);border-radius:999px;padding:8px 16px;font:700 13.5px var(--sans);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--yel);border-color:var(--yel);color:var(--ink)}
+.galeria{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:900px){.galeria{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.galeria figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.galeria img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.galeria figcaption{padding:12px 14px;font-size:14px;color:var(--muted)}
+.galeria figcaption b{display:block;color:var(--txt);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
 footer.rodape{padding:30px 0 110px;font-size:13.5px;color:var(--muted)}
 footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px}
 .flutua{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:30;min-height:54px;padding:0 20px;border-radius:999px;background:var(--yel);color:var(--ink);display:inline-flex;align-items:center;gap:8px;font:800 14px var(--sans);text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.45);text-transform:uppercase}
 </style>
 </head>
 <body>
-<div class="demo">Modelo de demonstração · proposta de site para o Júnior Oliveira. Fotos, resultados e valores entram com a aprovação dele.</div>
 
 <header class="top">
   <div class="wrap">
@@ -249,8 +259,17 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
         <figure class="ba" style="--ar:4/3"><div class="cmp"><img src="img/flavia-costas-2020.jpg" alt="Flávia de costas em 2020" loading="lazy" style="object-position:50% 30%"><img class="dep" src="img/flavia-costas-2024.jpg" alt="Flávia de costas em 2024" loading="lazy" style="object-position:50% 30%"><span class="rot a">2020</span><span class="rot d">2024</span><i class="linha" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"></div><figcaption><b>Flávia B. · 2020 → 2024</b>Hipertrofia e definição das costas.</figcaption></figure>
         <figure class="ba" style="--ar:4/3"><div class="cmp"><img src="img/flavia-2021.jpg" alt="Flávia de frente em 2021" loading="lazy" style="object-position:50% 20%"><img class="dep" src="img/flavia-2024.jpg" alt="Flávia de frente em 2024" loading="lazy" style="object-position:50% 20%"><span class="rot a">2021</span><span class="rot d">2024</span><i class="linha" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"></div><figcaption><b>Flávia B. · 2021 → 2024</b>Ganho de massa muscular em braços e ombros.</figcaption></figure>
         <figure class="ba" style="--ar:16/9"><div class="cmp"><img src="img/costas60-a.jpg" alt="Costas no início do treino" loading="lazy"><img class="dep" src="img/costas60-b.jpg" alt="Costas após 60 dias de treino" loading="lazy"><span class="rot a">Início</span><span class="rot d">60 dias</span><i class="linha" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"></div><figcaption><b>Aluna · 60 dias</b>“Minhas costas com 60 dias de treino.”</figcaption></figure>
+        <div id="resNovos" style="display:contents"></div>
         <div class="ba cta-res"><h3>O próximo resultado pode ser o seu.</h3><p>Tudo começa com a avaliação física e postural.</p><a class="btn yel contato" href="#" target="_blank" rel="noopener">Agendar avaliação</a></div>
       </div>
+    </div>
+  </section>
+
+  <section id="diaadia" style="padding-top:0" hidden>
+    <div class="wrap">
+      <div class="cab"><span class="k">Dia a dia</span><h2>Treino de verdade, todo dia</h2><p>Fotos dos treinos, dos alunos e dos bastidores, postadas pelo próprio Júnior.</p></div>
+      <div class="filtros" id="filtros" role="group" aria-label="Filtrar fotos"></div>
+      <div class="galeria" id="galeria"></div>
     </div>
   </section>
 
@@ -323,7 +342,6 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
         <h2 style="font-size:clamp(40px,6vw,74px);margin-top:10px">Júnior Oliveira</h2>
         <p>Coach e personal trainer em São Luís. Trabalha com saúde, hipertrofia e emagrecimento, com atenção especial à postura e à prevenção de lesões, para alunos de todas as idades.</p>
         <ul class="lista"><li>Bacharel em Educação Física</li><li>Especialização em reabilitação e prevenção de lesão</li><li>Avaliador físico e postural</li><li>Cursos e atualizações constantes</li></ul>
-        <div class="encher">Espaço para a história do Júnior, o CREF e a academia onde atende. Preenchemos juntos na versão final.</div>
       </div>
     </div>
   </section>
@@ -335,7 +353,7 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
   </section>
 </main>
 
-<footer class="rodape"><div class="wrap"><span>Júnior Oliveira · Personal Trainer · São Luís (MA) · CREF [número]</span><span>Modelo de demonstração · não é o site oficial</span></div></footer>
+<footer class="rodape"><div class="wrap"><span>Júnior Oliveira · Personal Trainer · São Luís (MA)</span><span>Agende sua avaliação pelo botão “Falar com o Júnior”</span></div></footer>
 <a class="flutua contato" href="#" target="_blank" rel="noopener">Falar com o Júnior</a>
 
 <script>
@@ -375,6 +393,23 @@ footer.rodape .wrap{display:flex;justify-content:space-between;gap:14px;flex-wra
   mostra(0);
   // comparador antes/depois
   document.querySelectorAll(".cmp").forEach(c => { const r = c.querySelector("input"); const up = () => c.style.setProperty("--p", r.value + "%"); r.addEventListener("input", up); up(); });
+
+  // fotos postadas pelo Júnior no painel (personal-jr-oliveira/painel)
+  const esc = t => String(t||"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  fetch("https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/site_posts_lista", {method:"POST", headers:{apikey:"sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0","Content-Type":"application/json"}, body:JSON.stringify({p_site:"junior"})})
+    .then(r => r.ok ? r.json() : []).then(lista => {
+      const ad = lista.filter(p => p.tipo === "antes_depois"), fotos = lista.filter(p => p.tipo === "foto");
+      document.getElementById("resNovos").innerHTML = ad.map(p => `<figure class="ba" style="--ar:3/4"><div class="cmp"><img src="${esc(p.url_a)}" alt="${esc(p.legenda||"Aluno")} antes" loading="lazy"><img class="dep" src="${esc(p.url_b)}" alt="${esc(p.legenda||"Aluno")} depois" loading="lazy"><span class="rot a">${esc(p.rotulo_a||"Antes")}</span><span class="rot d">${esc(p.rotulo_b||"Depois")}</span><i class="linha" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"></div>${p.legenda?`<figcaption><b>${esc(p.legenda)}</b></figcaption>`:""}</figure>`).join("");
+      document.querySelectorAll("#resNovos .cmp").forEach(c => { const r = c.querySelector("input"); const up = () => c.style.setProperty("--p", r.value + "%"); r.addEventListener("input", up); up(); });
+      if (!fotos.length) return;
+      const sec = document.getElementById("diaadia"); sec.hidden = false;
+      const cats = [...new Set(fotos.map(p => p.secao).filter(Boolean))];
+      const desenha = cat => { document.getElementById("galeria").innerHTML = fotos.filter(p => !cat || p.secao === cat).map(p => `<figure><img src="${esc(p.url_a)}" alt="${esc(p.legenda||"Foto de treino")}" loading="lazy">${p.legenda||p.secao?`<figcaption>${p.secao?`<b>${esc(p.secao)}</b>`:""}${esc(p.legenda)}</figcaption>`:""}</figure>`).join("");
+        document.querySelectorAll("#filtros button").forEach(b => b.setAttribute("aria-pressed", (b.dataset.c||"") === (cat||""))); };
+      if (cats.length > 1) document.getElementById("filtros").innerHTML = `<button type="button" data-c="">Todas</button>` + cats.map(c => `<button type="button" data-c="${esc(c)}">${esc(c)}</button>`).join("");
+      document.getElementById("filtros").onclick = e => { const b = e.target.closest("button"); if (b) desenha(b.dataset.c); };
+      desenha("");
+    }).catch(() => {});
 </script>
 </body>
 </html>

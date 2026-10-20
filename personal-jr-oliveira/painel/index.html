@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel de fotos · Júnior Oliveira</title>
+<meta name="theme-color" content="#0E0E0F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;600;700;800&display=swap">
+<style>
+:root{--bg:#0E0E0F;--card:#1A1A1E;--card-2:#232328;--line:#2E2E34;--txt:#F2F2F0;--muted:#A3A3AA;--yel:#FFD21F;--ink:#0E0E0F;--ok:#36C46F;--erro:#FF5A4F;
+  --disp:"Anton","Arial Narrow",Impact,sans-serif;--sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding:18px max(16px,env(safe-area-inset-left,0px)) 60px max(16px,env(safe-area-inset-right,0px));display:grid;gap:16px}
+h1,h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;margin:0;line-height:1}
+h1{font-size:34px}h1 span{color:var(--yel)}
+h2{font-size:24px}
+p{margin:0}
+.muted{color:var(--muted);font-size:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:14px}
+.campo{display:grid;gap:6px}
+.campo>label,.rot{font-weight:700;font-size:14px}
+input[type=text],input[type=password],select,textarea{width:100%;background:var(--card-2);border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--txt);font:inherit}
+textarea{min-height:70px;resize:vertical}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 20px;border-radius:12px;border:0;font:800 15px var(--sans);text-transform:uppercase;letter-spacing:.04em;cursor:pointer;text-decoration:none}
+.btn.yel{background:var(--yel);color:var(--ink)}
+.btn.out{background:transparent;color:var(--txt);border:1.5px solid var(--line)}
+.btn:disabled{opacity:.5;cursor:wait}
+.full{width:100%}
+.tipo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tipo button{min-height:48px;border-radius:12px;border:1.5px solid var(--line);background:var(--card-2);color:var(--txt);font:700 15px var(--sans);cursor:pointer}
+.tipo button[aria-pressed="true"]{background:var(--yel);border-color:var(--yel);color:var(--ink)}
+.par{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.escolhe{position:relative;aspect-ratio:3/4;border:2px dashed var(--line);border-radius:14px;display:grid;place-items:center;text-align:center;color:var(--muted);font-size:14px;overflow:hidden;cursor:pointer;background:var(--card-2)}
+.escolhe.larga{aspect-ratio:4/3}
+.escolhe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.escolhe input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.escolhe b{display:block;color:var(--txt);font-size:15px}
+.escolhe .tag{position:absolute;left:8px;top:8px;background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:800;z-index:1}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:14px}
+.check input{width:22px;height:22px;accent-color:var(--yel);flex:none;margin-top:1px}
+.uso{display:grid;gap:6px}
+.barra{height:8px;background:var(--card-2);border-radius:8px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--yel)}
+.msg{border-radius:12px;padding:12px 14px;font-weight:600;font-size:14px}
+.msg.ok{background:rgba(54,196,111,.15);color:#8BE3AE}
+.msg.erro{background:rgba(255,90,79,.15);color:#FFB0A9}
+.lista{display:grid;gap:10px}
+.item{display:grid;grid-template-columns:84px minmax(0,1fr);gap:12px;align-items:center;background:var(--card-2);border:1px solid var(--line);border-radius:14px;padding:10px}
+.thumbs{display:flex;gap:3px;height:84px;border-radius:10px;overflow:hidden}
+.thumbs img{flex:1;min-width:0;height:100%;object-fit:cover}
+.item b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item small{color:var(--muted)}
+.acoes{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.acoes button{min-height:38px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--txt);font:700 13px var(--sans);cursor:pointer}
+.acoes button.del{color:#FFB0A9}
+.acoes button.del.conf{background:var(--erro);color:#fff;border-color:var(--erro)}
+[hidden]{display:none!important}
+.topo{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.topo a{color:var(--yel);font-weight:700;font-size:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topo"><h1>Júnior <span>Oliveira</span></h1><a href="../" target="_blank" rel="noopener">Ver o site</a></div>
+
+  <section class="card" id="entrar">
+    <h2>Painel de fotos</h2>
+    <p class="muted">Aqui você publica fotos de treinos e resultados no seu site, direto do celular.</p>
+    <form id="fEntrar" class="campo" style="gap:10px">
+      <label for="senha">Sua senha</label>
+      <input type="password" id="senha" autocomplete="current-password" required>
+      <button class="btn yel full" id="bEntrar">Entrar</button>
+      <div id="mEntrar" class="msg erro" hidden></div>
+    </form>
+  </section>
+
+  <div id="painel" hidden style="display:grid;gap:16px">
+    <section class="card">
+      <div class="uso"><div style="display:flex;justify-content:space-between"><span class="rot">Espaço do site</span><span class="muted" id="usoTxt"></span></div><div class="barra"><i id="usoBar"></i></div></div>
+    </section>
+
+    <form class="card" id="fPost">
+      <h2>Nova publicação</h2>
+      <div class="tipo" role="group" aria-label="Tipo de publicação">
+        <button type="button" data-t="foto" aria-pressed="true">Foto</button>
+        <button type="button" data-t="antes_depois" aria-pressed="false">Antes e depois</button>
+      </div>
+
+      <div id="blocoFoto" style="display:grid;gap:12px">
+        <label class="escolhe larga" id="eA1"><span><b>Escolher foto</b>da galeria ou câmera</span><input type="file" accept="image/*" id="fA1" aria-label="Escolher foto"></label>
+        <div class="campo"><label for="secao">Onde aparece</label>
+          <select id="secao"><option value="Treinos">Treinos</option><option value="Alunos">Alunos</option><option value="Bastidores">Bastidores</option><option value="Avaliação">Avaliação</option></select></div>
+      </div>
+
+      <div id="blocoAD" hidden style="display:grid;gap:12px">
+        <div class="par">
+          <label class="escolhe" id="eA"><span class="tag">Antes</span><span><b>Foto do antes</b>tocar para escolher</span><input type="file" accept="image/*" id="fA" aria-label="Foto do antes"></label>
+          <label class="escolhe" id="eB"><span class="tag">Depois</span><span><b>Foto do depois</b>tocar para escolher</span><input type="file" accept="image/*" id="fB" aria-label="Foto do depois"></label>
+        </div>
+        <div class="par">
+          <div class="campo"><label for="rA">Texto do antes</label><input type="text" id="rA" value="Antes" maxlength="20"></div>
+          <div class="campo"><label for="rB">Texto do depois</label><input type="text" id="rB" value="Depois" maxlength="20"></div>
+        </div>
+        <p class="muted">Dica: use as duas fotos no mesmo ângulo e na mesma distância. Ex.: "Jan/2026" e "Abr/2026".</p>
+      </div>
+
+      <div class="campo"><label for="leg">Legenda</label><textarea id="leg" maxlength="140" placeholder="Ex.: Aluno · 3 meses de treino focado em postura"></textarea></div>
+      <label class="check"><input type="checkbox" id="aut"><span>Tenho autorização da pessoa que aparece na foto para publicar no site.</span></label>
+      <button class="btn yel full" id="bPub">Publicar no site</button>
+      <div id="mPost" class="msg" hidden></div>
+    </form>
+
+    <section class="card">
+      <h2>No seu site</h2>
+      <p class="muted">A primeira da lista aparece primeiro no site. Use as setas para mudar a ordem.</p>
+      <div class="lista" id="lista"></div>
+    </section>
+
+    <button class="btn out full" id="sair" type="button">Sair</button>
+  </div>
+</div>
+
+<script>
+const SITE = "junior";
+const FN = "https://ryhyvzwqtktaaonznizn.supabase.co/functions/v1/site-fotos";
+const RPC = "https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/site_posts_lista";
+const KEY = "sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+const $ = id => document.getElementById(id);
+let senha = "", tipo = "foto", arqs = {};
+const guarda = { get(){ try{ return localStorage.getItem("jr-senha")||""; }catch(e){ return ""; } }, set(v){ try{ v?localStorage.setItem("jr-senha",v):localStorage.removeItem("jr-senha"); }catch(e){} } };
+
+async function chama(corpo){
+  const r = await fetch(FN,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({site:SITE,token:senha,...corpo})});
+  const j = await r.json().catch(()=>({erro:"Sem resposta do servidor. Confira a internet e tente de novo."}));
+  if(!r.ok || j.erro) throw new Error(j.erro || "Algo deu errado. Tente de novo.");
+  return j;
+}
+function aviso(el, texto, tipo){ el.hidden = !texto; el.textContent = texto||""; el.className = "msg " + (tipo||""); }
+
+async function entrar(s){
+  senha = s.trim();
+  $("bEntrar").disabled = true;
+  try{
+    const j = await chama({acao:"verificar"});
+    guarda.set(senha); $("entrar").hidden = true; $("painel").hidden = false;
+    uso(j.usados, j.limite); carrega();
+  }catch(e){ aviso($("mEntrar"), e.message, "erro"); guarda.set(""); }
+  $("bEntrar").disabled = false;
+}
+function uso(u,l){ $("usoTxt").textContent = `${u} de ${l} publicações`; $("usoBar").style.width = Math.min(100,u/l*100)+"%"; }
+
+async function carrega(){
+  const r = await fetch(RPC,{method:"POST",headers:{apikey:KEY,"Content-Type":"application/json"},body:JSON.stringify({p_site:SITE})});
+  const l = await r.json();
+  $("lista").innerHTML = l.length ? l.map((p,i)=>`<div class="item">
+    <div class="thumbs"><img src="${p.url_a}" alt="">${p.url_b?`<img src="${p.url_b}" alt="">`:""}</div>
+    <div><b>${p.legenda ? p.legenda.replace(/</g,"&lt;") : (p.tipo==="antes_depois"?"Antes e depois":"Foto")}</b>
+      <small>${p.tipo==="antes_depois" ? "Antes e depois · Resultados" : "Foto · "+(p.secao||"")} · ${new Date(p.criado_em).toLocaleDateString("pt-BR")}</small>
+      <div class="acoes"><button type="button" data-mv="${p.id}:cima" ${i===0?"disabled":""} aria-label="Subir">↑ Subir</button><button type="button" data-mv="${p.id}:baixo" ${i===l.length-1?"disabled":""} aria-label="Descer">↓ Descer</button><button type="button" class="del" data-del="${p.id}">Apagar</button></div></div></div>`).join("")
+    : `<p class="muted">Nenhuma publicação ainda. A primeira foto que você postar aparece aqui e no site.</p>`;
+  uso(l.length, 40);
+}
+
+// reduz a foto no próprio celular antes de enviar (máx. 1400 px, JPEG)
+function reduz(file){
+  return new Promise((ok,erro)=>{
+    const img = new Image(); const url = URL.createObjectURL(file);
+    img.onload = () => { const m = 1400, e = Math.min(1, m/Math.max(img.width,img.height));
+      const c = document.createElement("canvas"); c.width = Math.round(img.width*e); c.height = Math.round(img.height*e);
+      c.getContext("2d").drawImage(img,0,0,c.width,c.height); URL.revokeObjectURL(url); ok(c.toDataURL("image/jpeg",.82)); };
+    img.onerror = () => erro(new Error("Não consegui abrir essa foto. Tente outra ou tire um print dela."));
+    img.src = url;
+  });
+}
+function preview(input, caixa, chave){
+  input.addEventListener("change", async () => {
+    const f = input.files[0]; if(!f) return;
+    try{ const d = await reduz(f); arqs[chave] = d; let im = caixa.querySelector("img"); if(!im){ im = document.createElement("img"); im.alt=""; caixa.prepend(im); } im.src = d; }
+    catch(e){ aviso($("mPost"), e.message, "erro"); }
+  });
+}
+preview($("fA1"),$("eA1"),"a1"); preview($("fA"),$("eA"),"a"); preview($("fB"),$("eB"),"b");
+
+document.querySelectorAll(".tipo button").forEach(b => b.addEventListener("click", () => {
+  tipo = b.dataset.t; document.querySelectorAll(".tipo button").forEach(x => x.setAttribute("aria-pressed", x===b));
+  $("blocoFoto").hidden = tipo!=="foto"; $("blocoAD").hidden = tipo!=="antes_depois";
+}));
+
+$("fPost").addEventListener("submit", async e => {
+  e.preventDefault(); aviso($("mPost"),"");
+  const corpo = {acao:"criar", tipo, legenda:$("leg").value, autorizado:$("aut").checked};
+  if(tipo==="foto"){ if(!arqs.a1) return aviso($("mPost"),"Escolha a foto antes de publicar.","erro"); corpo.foto_a = arqs.a1; corpo.secao = $("secao").value; }
+  else { if(!arqs.a||!arqs.b) return aviso($("mPost"),"Escolha as duas fotos: a do antes e a do depois.","erro"); corpo.foto_a = arqs.a; corpo.foto_b = arqs.b; corpo.rotulo_a = $("rA").value; corpo.rotulo_b = $("rB").value; corpo.secao = "Resultados"; }
+  if(!corpo.autorizado) return aviso($("mPost"),"Marque a confirmação de autorização para publicar.","erro");
+  $("bPub").disabled = true; $("bPub").textContent = "Publicando…";
+  try{
+    await chama(corpo);
+    aviso($("mPost"),"Publicado! Já está no seu site.","ok");
+    arqs = {}; $("fPost").reset(); $("rA").value="Antes"; $("rB").value="Depois";
+    document.querySelectorAll(".escolhe img").forEach(i=>i.remove());
+    carrega();
+  }catch(err){ aviso($("mPost"), err.message, "erro"); }
+  $("bPub").disabled = false; $("bPub").textContent = "Publicar no site";
+});
+
+$("lista").addEventListener("click", async e => {
+  const mv = e.target.closest("[data-mv]"), del = e.target.closest("[data-del]");
+  try{
+    if(mv){ const [id,dir] = mv.dataset.mv.split(":"); mv.disabled = true; await chama({acao:"mover", id:+id, dir}); carrega(); }
+    if(del){
+      if(!del.classList.contains("conf")){ del.classList.add("conf"); del.textContent = "Toque de novo para apagar"; setTimeout(()=>{ if(del.isConnected){ del.classList.remove("conf"); del.textContent="Apagar"; } },4000); return; }
+      del.disabled = true; await chama({acao:"apagar", id:+del.dataset.del}); carrega();
+    }
+  }catch(err){ aviso($("mPost"), err.message, "erro"); }
+});
+
+$("fEntrar").addEventListener("submit", e => { e.preventDefault(); aviso($("mEntrar"),""); entrar($("senha").value); });
+$("sair").addEventListener("click", () => { guarda.set(""); senha=""; $("painel").hidden = true; $("entrar").hidden = false; $("senha").value=""; });
+const salva = guarda.get(); if(salva){ $("senha").value = salva; entrar(salva); }
+</script>
+</body>
+</html>
