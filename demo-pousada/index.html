@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pousada Lagoa Serena · Demonstração de reservas</title>
+<meta name="description" content="Demonstração de sistema de reserva direta para pousadas: disponibilidade, total da estadia e pedido no WhatsApp, em português, inglês e espanhol.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --areia:#F6EEE1; --areia2:#EFE3CF; --lagoa:#1E8C9F; --lagoa2:#5CC3CF; --fundo:#0E3A46; --sol:#E39B32;
+  --txt:#1C2B30; --mut:#5D6B70; --linha:#E2D6C3; --branco:#fff; --ok:#2E8B57; --erro:#C2453B;
+  --r:14px; --sombra:0 8px 30px rgba(14,58,70,.12);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",system-ui,sans-serif;color:var(--txt);background:var(--areia);line-height:1.55;font-size:16px;overflow-x:hidden}
+h1,h2,h3{font-family:"DM Serif Display",Georgia,serif;font-weight:400;line-height:1.15}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.demo{background:var(--fundo);color:#CFE7EA;font-size:13px}
+.demo .wrap{display:flex;gap:12px;align-items:center;justify-content:space-between;padding-top:8px;padding-bottom:8px;flex-wrap:wrap}
+.demo b{color:#fff}
+.demo button{background:var(--sol);color:#1b1206;border:0;border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(246,238,225,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-family:"DM Serif Display",serif;font-size:21px;color:var(--fundo);text-decoration:none;white-space:nowrap}
+.logo svg{flex:none}
+nav.menu{display:flex;gap:22px;font-size:15px}
+nav.menu a{color:var(--txt);text-decoration:none}
+nav.menu a:hover{color:var(--lagoa)}
+.lang{display:flex;border:1px solid var(--linha);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:0;background:none;padding:6px 10px;font-size:13px;font-weight:700;color:var(--mut)}
+.lang button.on{background:var(--fundo);color:#fff}
+.hero{position:relative;color:#fff;background:linear-gradient(180deg,#7CC9D6 0%,#B9E2E4 55%,var(--areia) 100%);overflow:hidden}
+.hero svg.cena{position:absolute;inset:auto 0 0 0;width:100%;height:auto}
+.hero .wrap{position:relative;padding-top:70px;padding-bottom:210px}
+.hero .kick{display:inline-block;background:rgba(14,58,70,.55);padding:5px 12px;border-radius:999px;font-size:13px;letter-spacing:.04em}
+.hero h1{font-size:clamp(36px,6vw,64px);margin:14px 0 10px;color:var(--fundo);max-width:760px}
+.hero p.sub{color:#18414b;font-size:18px;max-width:560px}
+.busca{position:relative;z-index:2;margin-top:-150px}
+.busca form{background:#fff;border-radius:18px;box-shadow:var(--sombra);padding:16px;display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;align-items:end}
+.busca label{display:block;font-size:12px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.busca input,.busca select{width:100%;border:1px solid var(--linha);border-radius:10px;padding:11px 12px;background:var(--areia);min-width:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 20px;font-weight:700;text-decoration:none;background:var(--lagoa);color:#fff;transition:filter .15s}
+.btn:hover{filter:brightness(1.08)}
+.btn.sol{background:var(--sol);color:#1b1206}
+.btn.esc{background:var(--fundo)}
+.btn.clara{background:#fff;color:var(--fundo);border:1px solid var(--linha)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+section{padding:72px 0}
+.tit{margin-bottom:28px}
+.tit small{color:var(--lagoa);font-weight:700;text-transform:uppercase;letter-spacing:.08em;font-size:12px}
+.tit h2{font-size:clamp(28px,4vw,40px);color:var(--fundo);margin-top:6px}
+.tit p{color:var(--mut);max-width:620px;margin-top:8px}
+.vant{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.vant div{background:#fff;border-radius:var(--r);padding:22px;border:1px solid var(--linha)}
+.vant b{display:block;font-size:17px;margin:8px 0 4px;color:var(--fundo)}
+.vant p{color:var(--mut);font-size:15px}
+.ico{width:40px;height:40px;border-radius:12px;background:var(--areia2);display:grid;place-items:center}
+.quartos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.q{background:#fff;border-radius:18px;overflow:hidden;border:2px solid transparent;box-shadow:0 2px 0 var(--linha);display:flex;flex-direction:column;transition:border-color .15s,transform .15s}
+.q.sel{border-color:var(--lagoa);transform:translateY(-3px)}
+.q .art{height:170px;display:block;width:100%}
+.q .in{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.q h3{font-size:24px;color:var(--fundo)}
+.q .cap{font-size:14px;color:var(--mut)}
+.q ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.q li{font-size:12px;background:var(--areia);border-radius:999px;padding:4px 10px}
+.q .pr{margin-top:auto;display:flex;align-items:end;justify-content:space-between;gap:10px;padding-top:10px}
+.q .pr strong{font-size:24px;color:var(--fundo)}
+.q .pr span{font-size:13px;color:var(--mut)}
+.reserva{background:#fff}
+.res-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:start}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:1px solid var(--linha);background:var(--areia);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500}
+.tabs button.on{background:var(--fundo);color:#fff;border-color:var(--fundo)}
+.cal{border:1px solid var(--linha);border-radius:18px;padding:16px;background:var(--areia)}
+.cal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-h strong{font-family:"DM Serif Display",serif;font-size:22px;font-weight:400;color:var(--fundo)}
+.cal-h button{width:38px;height:38px;border-radius:50%;border:1px solid var(--linha);background:#fff;font-size:18px}
+.dias,.sem{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.sem span{font-size:12px;text-align:center;color:var(--mut);font-weight:700;padding:4px 0}
+.d{aspect-ratio:1;border:0;border-radius:10px;background:#fff;font-size:15px;font-weight:500;position:relative;min-width:0}
+.d.vazio{background:none;pointer-events:none}
+.d.passado{color:#B9B0A2;background:transparent;pointer-events:none}
+.d.ocup{background:repeating-linear-gradient(135deg,#EADFCD 0 5px,#F3EADB 5px 10px);color:#A79C8A;text-decoration:line-through;pointer-events:none}
+.d.ini,.d.fim{background:var(--fundo)!important;color:#fff}
+.d.meio{background:#CDEBEE}
+.d:not(.ocup):not(.passado):not(.vazio):hover{outline:2px solid var(--lagoa)}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--mut);margin-top:12px}
+.leg i{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px}
+.aviso{margin-top:10px;font-size:14px;color:var(--erro);min-height:20px}
+.resumo{border:1px solid var(--linha);border-radius:18px;padding:20px;position:sticky;top:84px;background:#fff}
+.resumo h3{font-size:24px;color:var(--fundo);margin-bottom:10px}
+.lin{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border-bottom:1px dashed var(--linha);font-size:15px}
+.lin span:first-child{color:var(--mut)}
+.lin.tot{border:0;font-size:20px;font-weight:700;color:var(--fundo);padding-top:12px}
+.zero{background:#E6F4EA;color:var(--ok);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;margin:8px 0 14px}
+.extras{margin:12px 0;display:grid;gap:6px}
+.extras label{display:flex;gap:10px;align-items:center;font-size:14px;background:var(--areia);padding:8px 10px;border-radius:10px}
+.extras label span{margin-left:auto;color:var(--mut);white-space:nowrap}
+.campos{display:grid;gap:10px;margin-top:10px}
+.campos input,.campos textarea{width:100%;border:1px solid var(--linha);border-radius:10px;padding:11px 12px;background:var(--areia)}
+.campos textarea{min-height:64px;resize:vertical}
+.resumo .btn{width:100%;margin-top:12px}
+.mini{font-size:12px;color:var(--mut);margin-top:8px;text-align:center}
+.cta-final{background:var(--fundo);color:#E3F1F2;text-align:center}
+.cta-final h2{color:#fff;font-size:clamp(28px,4vw,42px);max-width:720px;margin:0 auto 12px}
+.cta-final p{max-width:600px;margin:0 auto 22px;color:#B8D6DA}
+.cta-final .bts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{background:#0A2C35;color:#8FB3B9;font-size:13px;padding:22px 0;text-align:center}
+footer a{color:#fff}
+/* painel do dono */
+#painel{position:fixed;inset:0;z-index:50;background:rgba(10,30,36,.55);display:none;overflow-y:auto}
+#painel.on{display:block}
+.pn{background:var(--areia);max-width:1040px;margin:24px auto;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.pn-h{background:var(--fundo);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pn-h h3{font-size:24px}
+.pn-h small{display:block;color:#9CC6CC;font-family:"DM Sans",sans-serif;font-size:13px}
+.pn-h button{white-space:nowrap;background:none;border:1px solid #3d6a75;color:#fff;border-radius:10px;padding:8px 12px}
+.pn-b{padding:20px 22px;display:grid;gap:18px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.kpi{background:#fff;border-radius:14px;padding:14px;border:1px solid var(--linha)}
+.kpi span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;font-weight:700}
+.kpi strong{display:block;font-size:26px;color:var(--fundo);font-family:"DM Serif Display",serif;font-weight:400}
+.kpi em{font-style:normal;font-size:12px;color:var(--ok)}
+.box{background:#fff;border-radius:14px;border:1px solid var(--linha);padding:16px;min-width:0}
+.box h4{font-size:16px;margin-bottom:10px;color:var(--fundo)}
+.ped{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--linha)}
+.ped:last-child{border:0}
+.ped b{display:block}
+.ped small{color:var(--mut);font-size:13px}
+.ped .acs{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.ped .acs button{border:1px solid var(--linha);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px;font-weight:700}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:999px;padding:3px 9px;text-transform:uppercase;letter-spacing:.04em}
+.tag.novo{background:#FFF1D6;color:#9A5B00}
+.tag.conf{background:#E6F4EA;color:var(--ok)}
+.tag.rec{background:#F8E1DE;color:var(--erro)}
+.grade{overflow-x:auto}
+.grade table{border-collapse:separate;border-spacing:3px;font-size:12px;min-width:620px;width:100%}
+.grade th{color:var(--mut);font-weight:700;text-align:center;padding:2px}
+.grade th:first-child{text-align:left;min-width:110px}
+.grade td{height:28px;border-radius:6px;background:#EAF6F7;text-align:center}
+.grade td.o{background:var(--lagoa);color:#fff}
+.grade td.b{background:#E7DCCB;color:#8b7d68}
+.grade td.n{background:var(--sol);color:#1b1206}
+.grade td:first-child{background:none;text-align:left;font-weight:700;font-size:13px}
+.duas{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+.bloq{display:flex;gap:8px;flex-wrap:wrap;align-items:end}
+.bloq input,.bloq select{border:1px solid var(--linha);border-radius:10px;padding:9px 10px;background:var(--areia);min-width:0}
+.bloq label{font-size:12px;color:var(--mut);font-weight:700;display:block;margin-bottom:3px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(120px);background:var(--fundo);color:#fff;padding:12px 18px;border-radius:12px;z-index:60;transition:transform .25s,opacity .25s;opacity:0;pointer-events:none;font-size:14px;max-width:calc(100% - 32px)}
+.toast.on{transform:translateX(-50%) translateY(0);opacity:1}
+@media (max-width:900px){
+  nav.menu{display:none}
+  .busca form{grid-template-columns:1fr 1fr}
+  .busca form .btn{grid-column:1/-1}
+  .vant,.quartos{grid-template-columns:1fr}
+  .res-grid,.duas{grid-template-columns:1fr}
+  .resumo{position:static}
+  .kpis{grid-template-columns:1fr 1fr}
+  .pn{margin:0;border-radius:0;min-height:100%}
+}
+@media (max-width:420px){
+  .logo span.nm{font-size:18px}
+  .hero .wrap{padding-top:44px}
+  section{padding:56px 0}
+  .ped{grid-template-columns:1fr}
+  .ped .acs{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">
+  <span><b>Demonstração</b> · <span data-t="demo">sistema de reserva direta para pousadas. Pousada fictícia; na sua, vão as suas cores, fotos e quartos.</span></span>
+  <button type="button" id="abrePainel">Ver painel do dono →</button>
+</div></div>
+
+<header class="top"><div class="wrap">
+  <a class="logo" href="#topo" aria-label="Pousada Lagoa Serena">
+    <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="16" fill="#0E3A46"/><path d="M4 22c4-5 8-6 13-3s9 2 13-3v8a13 13 0 0 1-26 0z" fill="#5CC3CF"/><path d="M6 19c5-6 10-7 15-3" stroke="#F6EEE1" stroke-width="2" fill="none"/><circle cx="23" cy="11" r="3.4" fill="#E39B32"/></svg>
+    <span class="nm">Lagoa Serena</span>
+  </a>
+  <nav class="menu">
+    <a href="#quartos" data-t="nQuartos">Quartos</a>
+    <a href="#reservar" data-t="nDisp">Disponibilidade</a>
+    <a href="#porque" data-t="nPorque">Por que reservar direto</a>
+  </nav>
+  <div class="lang" role="group" aria-label="Idioma">
+    <button type="button" data-l="pt" class="on">PT</button><button type="button" data-l="en">EN</button><button type="button" data-l="es">ES</button>
+  </div>
+</div></header>
+
+<div class="hero" id="topo">
+  <div class="wrap">
+    <span class="kick" data-t="kick">Santo Amaro · Lençóis Maranhenses</span>
+    <h1 data-t="h1">Acorde a dez minutos das lagoas.</h1>
+    <p class="sub" data-t="sub">Escolha as datas, veja o que está livre e mande seu pedido de reserva direto pra gente, sem intermediário.</p>
+  </div>
+  <svg class="cena" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 150 C220 70 380 80 560 140 S900 210 1100 120 1340 90 1440 120 V300 H0Z" fill="#FBF6EC"/>
+    <path d="M0 200 C260 130 470 150 640 200 S1000 250 1200 190 1380 170 1440 185 V300 H0Z" fill="#F3E9D7"/>
+    <ellipse cx="520" cy="215" rx="150" ry="18" fill="#5CC3CF" opacity=".9"/>
+    <ellipse cx="1090" cy="232" rx="110" ry="14" fill="#1E8C9F" opacity=".85"/>
+    <ellipse cx="250" cy="250" rx="80" ry="10" fill="#5CC3CF" opacity=".8"/>
+    <path d="M0 255 C300 225 600 245 860 262 S1260 270 1440 250 V300 H0Z" fill="#F6EEE1"/>
+  </svg>
+</div>
+
+<div class="busca"><div class="wrap">
+  <form id="fBusca">
+    <div><label for="bIn" data-t="lIn">Entrada</label><input type="date" id="bIn" required></div>
+    <div><label for="bOut" data-t="lOut">Saída</label><input type="date" id="bOut" required></div>
+    <div><label for="bHosp" data-t="lHosp">Hóspedes</label>
+      <select id="bHosp"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select></div>
+    <button class="btn sol" type="submit" data-t="bVer">Ver disponibilidade</button>
+  </form>
+</div></div>
+
+<section id="porque"><div class="wrap">
+  <div class="tit"><small data-t="pK">Reserva direta</small><h2 data-t="pH">Melhor pra você, melhor pra pousada</h2></div>
+  <div class="vant">
+    <div><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E3A46" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><b data-t="v1t">Disponibilidade na hora</b><p data-t="v1p">Você vê os dias livres de cada quarto, sem esperar resposta pra saber se tem vaga.</p></div>
+    <div><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E3A46" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span><b data-t="v2t">Sem taxa de intermediário</b><p data-t="v2p">O valor que você vê é o valor da pousada. Sem comissão de site de reserva no meio.</p></div>
+    <div><span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E3A46" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-5A8 8 0 1 1 21 12z"/></svg></span><b data-t="v3t">Atendimento de gente</b><p data-t="v3p">Seu pedido chega no nosso WhatsApp, e você fala direto com quem cuida da pousada.</p></div>
+  </div>
+</div></section>
+
+<section id="quartos" style="padding-top:0"><div class="wrap">
+  <div class="tit"><small data-t="qK">Acomodações</small><h2 data-t="qH">Escolha seu quarto</h2></div>
+  <div class="quartos" id="listaQuartos"></div>
+</div></section>
+
+<section class="reserva" id="reservar"><div class="wrap">
+  <div class="tit"><small data-t="rK">Disponibilidade</small><h2 data-t="rH">Toque na entrada e depois na saída</h2><p data-t="rP">Os dias riscados já estão ocupados. O total aparece ao lado na hora.</p></div>
+  <div class="res-grid">
+    <div>
+      <div class="tabs" id="tabs"></div>
+      <div class="cal">
+        <div class="cal-h"><button type="button" id="mAnt" aria-label="Mês anterior">‹</button><strong id="mNome"></strong><button type="button" id="mProx" aria-label="Próximo mês">›</button></div>
+        <div class="sem" id="sem"></div>
+        <div class="dias" id="dias"></div>
+        <div class="leg"><span><i style="background:#fff;border:1px solid #E2D6C3"></i><span data-t="lgL">Livre</span></span><span><i style="background:repeating-linear-gradient(135deg,#EADFCD 0 3px,#F3EADB 3px 6px)"></i><span data-t="lgO">Ocupado</span></span><span><i style="background:#0E3A46"></i><span data-t="lgS">Sua estadia</span></span></div>
+      </div>
+      <p class="aviso" id="aviso" role="status"></p>
+    </div>
+    <aside class="resumo">
+      <h3 data-t="sH">Sua reserva</h3>
+      <div class="lin"><span data-t="sQ">Quarto</span><span id="rQuarto">—</span></div>
+      <div class="lin"><span data-t="sIn">Entrada</span><span id="rIn">—</span></div>
+      <div class="lin"><span data-t="sOut">Saída</span><span id="rOut">—</span></div>
+      <div class="lin"><span id="rNoitesL" data-t="sN">Noites</span><span id="rNoites">—</span></div>
+      <div class="extras" id="extras"></div>
+      <div class="lin tot"><span data-t="sT">Total</span><span id="rTotal">—</span></div>
+      <div class="zero" data-t="sZ">Taxa de intermediário: R$ 0. Reserva direta com a pousada.</div>
+      <form id="fRes" class="campos">
+        <input id="cNome" required autocomplete="name" data-ph="cNome" placeholder="Seu nome">
+        <input id="cZap" required inputmode="tel" autocomplete="tel" data-ph="cZap" placeholder="Seu WhatsApp com DDD">
+        <textarea id="cObs" data-ph="cObs" placeholder="Algum pedido especial? (opcional)"></textarea>
+        <button class="btn" type="submit" id="bEnviar" disabled data-t="bEnv">Enviar pedido pelo WhatsApp</button>
+      </form>
+      <p class="mini" data-t="sMini">A pousada confirma pelo WhatsApp. Nada é cobrado agora.</p>
+    </aside>
+  </div>
+</div></section>
+
+<section class="cta-final"><div class="wrap">
+  <h2>Quer esse sistema na sua pousada?</h2>
+  <p>Com as suas cores, fotos e quartos, em português, inglês e espanhol. Os pedidos chegam no seu WhatsApp e você controla tudo pelo painel. Por assinatura mensal, sem custo de criação.</p>
+  <div class="bts">
+    <a class="btn sol" id="ctaZap" href="#" target="_blank" rel="noopener">Falar com o Paulo no WhatsApp</a>
+    <button type="button" class="btn clara" id="abrePainel2">Ver o painel do dono</button>
+    <a class="btn esc" href="../planos/" target="_blank" rel="noopener">Ver planos</a>
+  </div>
+</div></section>
+
+<footer>Pousada Lagoa Serena é fictícia, criada para demonstração. Sistema por <a href="../planos/" target="_blank" rel="noopener">Paulo Jr.</a> · São Luís, MA</footer>
+
+<!-- Painel do dono -->
+<div id="painel" role="dialog" aria-modal="true" aria-labelledby="pnTit">
+  <div class="pn">
+    <div class="pn-h">
+      <div><h3 id="pnTit">Painel da pousada</h3><small>O que o dono vê: pedidos, ocupação e bloqueio de datas</small></div>
+      <button type="button" id="fechaPainel">Fechar ✕</button>
+    </div>
+    <div class="pn-b">
+      <div class="kpis">
+        <div class="kpi"><span>Pedidos novos</span><strong id="kNovos">0</strong><em>aguardando resposta</em></div>
+        <div class="kpi"><span>Ocupação 30 dias</span><strong id="kOcup">0%</strong><em id="kOcupS"></em></div>
+        <div class="kpi"><span>Receita confirmada</span><strong id="kRec">R$ 0</strong><em>reservas diretas</em></div>
+        <div class="kpi"><span>Comissão economizada</span><strong id="kCom">R$ 0</strong><em>vs. 15% de site de reserva</em></div>
+      </div>
+      <div class="duas">
+        <div class="box"><h4>Pedidos de reserva</h4><div id="pedidos"></div></div>
+        <div class="box">
+          <h4>Bloquear datas (manutenção, uso próprio)</h4>
+          <form class="bloq" id="fBloq">
+            <div><label for="blQ">Quarto</label><select id="blQ"></select></div>
+            <div><label for="blIn">De</label><input type="date" id="blIn" required></div>
+            <div><label for="blOut">Até</label><input type="date" id="blOut" required></div>
+            <button class="btn esc" type="submit" style="padding:10px 14px">Bloquear</button>
+          </form>
+          <p class="mini" style="text-align:left">Datas bloqueadas somem do calendário do site na hora.</p>
+        </div>
+      </div>
+      <div class="box"><h4>Ocupação dos próximos 14 dias</h4><div class="grade" id="grade"></div>
+        <div class="leg"><span><i style="background:#1E8C9F"></i>Reservado</span><span><i style="background:#E39B32"></i>Pedido novo</span><span><i style="background:#E7DCCB"></i>Bloqueado</span><span><i style="background:#EAF6F7"></i>Livre</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const ZAP = "5598984149331";
+const COM = 0.15;
+const QUARTOS = [
+  {id:"lagoa", preco:320, cap:2, cor:["#5CC3CF","#1E8C9F"],
+   nome:{pt:"Suíte Lagoa",en:"Lagoon Suite",es:"Suite Laguna"},
+   desc:{pt:"Cama queen, varanda com rede",en:"Queen bed, balcony with hammock",es:"Cama queen, balcón con hamaca"},
+   it:{pt:["Ar-condicionado","Café da manhã","Wi-Fi"],en:["Air conditioning","Breakfast","Wi-Fi"],es:["Aire acondicionado","Desayuno","Wi-Fi"]}},
+  {id:"duna", preco:420, cap:3, cor:["#F1D9A8","#E39B32"],
+   nome:{pt:"Chalé Duna",en:"Dune Chalet",es:"Chalé Duna"},
+   desc:{pt:"Chalé privativo com jardim",en:"Private chalet with garden",es:"Chalé privado con jardín"},
+   it:{pt:["Até 3 pessoas","Frigobar","Café da manhã"],en:["Up to 3 guests","Minibar","Breakfast"],es:["Hasta 3 personas","Frigobar","Desayuno"]}},
+  {id:"familia", preco:520, cap:5, cor:["#9FD3C7","#0E3A46"],
+   nome:{pt:"Casa Família",en:"Family House",es:"Casa Familiar"},
+   desc:{pt:"Dois quartos e cozinha",en:"Two bedrooms and kitchen",es:"Dos cuartos y cocina"},
+   it:{pt:["Até 5 pessoas","Cozinha","Estacionamento"],en:["Up to 5 guests","Kitchen","Parking"],es:["Hasta 5 personas","Cocina","Estacionamiento"]}}
+];
+const EXTRAS = [
+  {id:"lagoas", preco:130, nome:{pt:"Passeio Lagoa Azul (por pessoa)",en:"Blue Lagoon tour (per person)",es:"Paseo Laguna Azul (por persona)"}, pp:true},
+  {id:"transfer", preco:180, nome:{pt:"Transfer do aeroporto",en:"Airport transfer",es:"Traslado del aeropuerto"}, pp:false}
+];
+const T = {
+ pt:{demo:"sistema de reserva direta para pousadas. Pousada fictícia; na sua, vão as suas cores, fotos e quartos.",nQuartos:"Quartos",nDisp:"Disponibilidade",nPorque:"Por que reservar direto",kick:"Santo Amaro · Lençóis Maranhenses",h1:"Acorde a dez minutos das lagoas.",sub:"Escolha as datas, veja o que está livre e mande seu pedido de reserva direto pra gente, sem intermediário.",lIn:"Entrada",lOut:"Saída",lHosp:"Hóspedes",bVer:"Ver disponibilidade",pK:"Reserva direta",pH:"Melhor pra você, melhor pra pousada",v1t:"Disponibilidade na hora",v1p:"Você vê os dias livres de cada quarto, sem esperar resposta pra saber se tem vaga.",v2t:"Sem taxa de intermediário",v2p:"O valor que você vê é o valor da pousada. Sem comissão de site de reserva no meio.",v3t:"Atendimento de gente",v3p:"Seu pedido chega no nosso WhatsApp, e você fala direto com quem cuida da pousada.",qK:"Acomodações",qH:"Escolha seu quarto",rK:"Disponibilidade",rH:"Toque na entrada e depois na saída",rP:"Os dias riscados já estão ocupados. O total aparece ao lado na hora.",lgL:"Livre",lgO:"Ocupado",lgS:"Sua estadia",sH:"Sua reserva",sQ:"Quarto",sIn:"Entrada",sOut:"Saída",sN:"Noites",sT:"Total",sZ:"Taxa de intermediário: R$ 0. Reserva direta com a pousada.",cNome:"Seu nome",cZap:"Seu WhatsApp com DDD",cObs:"Algum pedido especial? (opcional)",bEnv:"Enviar pedido pelo WhatsApp",sMini:"A pousada confirma pelo WhatsApp. Nada é cobrado agora.",noite:"noite",pessoas:"pessoas",ate:"até",escolher:"Escolher",escolhido:"Escolhido",
+  errOc:"Tem dia ocupado nesse intervalo. Escolha outras datas ou outro quarto.",errCap:"Esse quarto não comporta {n} hóspedes. Veja outro quarto.",errDt:"A saída precisa ser depois da entrada.",pickOut:"Agora toque no dia da saída.",ok:"Pedido enviado! A pousada responde pelo WhatsApp.",
+  msg:"Olá! Gostaria de reservar na Pousada Lagoa Serena:",mQ:"Quarto",mD:"Datas",mH:"Hóspedes",mE:"Extras",mT:"Total",mN:"Nome",mO:"Observação",dias:["D","S","T","Q","Q","S","S"]},
+ en:{demo:"direct booking system for guesthouses. Fictional guesthouse; yours gets your own colors, photos and rooms.",nQuartos:"Rooms",nDisp:"Availability",nPorque:"Why book direct",kick:"Santo Amaro · Lençóis Maranhenses",h1:"Wake up ten minutes from the lagoons.",sub:"Pick your dates, see what's free and send your booking request straight to us, no middleman.",lIn:"Check-in",lOut:"Check-out",lHosp:"Guests",bVer:"Check availability",pK:"Direct booking",pH:"Better for you, better for the guesthouse",v1t:"Live availability",v1p:"See the free days for each room right away, no waiting for a reply.",v2t:"No middleman fees",v2p:"The price you see is the guesthouse's price. No booking-site commission.",v3t:"Real people",v3p:"Your request goes to our WhatsApp and you talk directly to the hosts.",qK:"Rooms",qH:"Choose your room",rK:"Availability",rH:"Tap your check-in, then your check-out",rP:"Crossed-out days are taken. Your total shows up on the side instantly.",lgL:"Free",lgO:"Taken",lgS:"Your stay",sH:"Your booking",sQ:"Room",sIn:"Check-in",sOut:"Check-out",sN:"Nights",sT:"Total",sZ:"Middleman fee: R$ 0. Direct booking with the guesthouse.",cNome:"Your name",cZap:"Your WhatsApp (with country code)",cObs:"Any special request? (optional)",bEnv:"Send request via WhatsApp",sMini:"The guesthouse confirms on WhatsApp. Nothing is charged now.",noite:"night",pessoas:"guests",ate:"up to",escolher:"Choose",escolhido:"Selected",
+  errOc:"Some days in this range are taken. Pick other dates or another room.",errCap:"This room doesn't fit {n} guests. Try another room.",errDt:"Check-out must be after check-in.",pickOut:"Now tap your check-out day.",ok:"Request sent! The guesthouse will reply on WhatsApp.",
+  msg:"Hello! I'd like to book at Pousada Lagoa Serena:",mQ:"Room",mD:"Dates",mH:"Guests",mE:"Extras",mT:"Total",mN:"Name",mO:"Note",dias:["S","M","T","W","T","F","S"]},
+ es:{demo:"sistema de reserva directa para posadas. Posada ficticia; en la tuya van tus colores, fotos y habitaciones.",nQuartos:"Habitaciones",nDisp:"Disponibilidad",nPorque:"Por qué reservar directo",kick:"Santo Amaro · Lençóis Maranhenses",h1:"Despierta a diez minutos de las lagunas.",sub:"Elige las fechas, mira lo que está libre y envíanos tu pedido de reserva directo, sin intermediarios.",lIn:"Entrada",lOut:"Salida",lHosp:"Huéspedes",bVer:"Ver disponibilidad",pK:"Reserva directa",pH:"Mejor para ti, mejor para la posada",v1t:"Disponibilidad al instante",v1p:"Ves los días libres de cada habitación sin esperar respuesta.",v2t:"Sin comisión de intermediarios",v2p:"El precio que ves es el de la posada. Sin comisión de sitios de reserva.",v3t:"Atención de verdad",v3p:"Tu pedido llega a nuestro WhatsApp y hablas directo con los anfitriones.",qK:"Habitaciones",qH:"Elige tu habitación",rK:"Disponibilidad",rH:"Toca la entrada y luego la salida",rP:"Los días tachados ya están ocupados. El total aparece al lado al instante.",lgL:"Libre",lgO:"Ocupado",lgS:"Tu estadía",sH:"Tu reserva",sQ:"Habitación",sIn:"Entrada",sOut:"Salida",sN:"Noches",sT:"Total",sZ:"Comisión de intermediario: R$ 0. Reserva directa con la posada.",cNome:"Tu nombre",cZap:"Tu WhatsApp (con código de país)",cObs:"¿Algún pedido especial? (opcional)",bEnv:"Enviar pedido por WhatsApp",sMini:"La posada confirma por WhatsApp. No se cobra nada ahora.",noite:"noche",pessoas:"personas",ate:"hasta",escolher:"Elegir",escolhido:"Elegida",
+  errOc:"Hay días ocupados en ese rango. Elige otras fechas u otra habitación.",errCap:"Esta habitación no admite {n} huéspedes. Mira otra.",errDt:"La salida debe ser después de la entrada.",pickOut:"Ahora toca el día de salida.",ok:"¡Pedido enviado! La posada responde por WhatsApp.",
+  msg:"¡Hola! Quisiera reservar en Pousada Lagoa Serena:",mQ:"Habitación",mD:"Fechas",mH:"Huéspedes",mE:"Extras",mT:"Total",mN:"Nombre",mO:"Nota",dias:["D","L","M","M","J","V","S"]}
+};
+const LOC = {pt:"pt-BR",en:"en-US",es:"es-ES"};
+const $ = s => document.querySelector(s);
+const brl = v => "R$ " + v.toLocaleString("pt-BR");
+const hoje = new Date(); hoje.setHours(0,0,0,0);
+const iso = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+const deIso = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y,m-1,d); };
+const soma = (d,n) => { const x = new Date(d); x.setDate(x.getDate()+n); return x; };
+const noites = (a,b) => Math.round((b-a)/864e5);
+
+/* estado guardado: só conveniência da demonstração, funciona sem */
+const ST_KEY = "demo-pousada-v1";
+let st = {pedidos:[], bloqueios:[]};
+try { const s = JSON.parse(localStorage.getItem(ST_KEY)||"null"); if (s && Array.isArray(s.pedidos)) st = s; } catch(e) {}
+const salva = () => { try { localStorage.setItem(ST_KEY, JSON.stringify(st)); } catch(e) {} };
+
+/* ocupação fictícia determinística (mesma para todos os visitantes) */
+function hash(s){ let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h,16777619); } return (h>>>0)/4294967295; }
+const ocupFixo = {};
+QUARTOS.forEach(q => {
+  const set = new Set(); let d = soma(hoje,1);
+  for (let i=0;i<120;){
+    const r = hash(q.id+i);
+    if (r < .33) { const len = 2 + Math.floor(hash(q.id+"l"+i)*4); for (let k=0;k<len;k++) set.add(iso(soma(d,k))); d = soma(d,len); i += len; }
+    else { d = soma(d,1); i++; }
+  }
+  ocupFixo[q.id] = set;
+});
+function estado(qid, dIso){
+  if (ocupFixo[qid].has(dIso)) return "o";
+  for (const b of st.bloqueios) if (b.q===qid && dIso>=b.de && dIso<b.ate) return "b";
+  for (const p of st.pedidos) if (p.q===qid && p.status!=="rec" && dIso>=p.in && dIso<p.out) return p.status==="conf" ? "o" : "n";
+  return "";
+}
+
+let L = "pt", qSel = "lagoa", ini = null, fim = null, hosp = 2, mes = new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+const extrasSel = new Set();
+
+function t(k){ return (T[L][k] ?? T.pt[k]); }
+function aplicaIdioma(){
+  document.documentElement.lang = LOC[L];
+  document.querySelectorAll("[data-t]").forEach(el => { const v = T[L][el.dataset.t]; if (v) el.textContent = v; });
+  document.querySelectorAll("[data-ph]").forEach(el => el.placeholder = t(el.dataset.ph));
+  document.querySelectorAll(".lang button").forEach(b => b.classList.toggle("on", b.dataset.l===L));
+  desenhaQuartos(); desenhaTabs(); desenhaCal(); desenhaExtras(); atualiza();
+}
+function arte(q){
+  const [a,b] = q.cor;
+  return `<svg class="art" viewBox="0 0 400 170" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="400" height="170" fill="${a}"/><circle cx="320" cy="48" r="26" fill="#FBF6EC" opacity=".85"/>
+    <path d="M0 120 C90 80 170 90 240 118 S350 140 400 112 V170 H0Z" fill="#FBF6EC"/>
+    <path d="M0 140 C110 118 220 132 300 146 S380 150 400 142 V170 H0Z" fill="${b}" opacity=".55"/>
+    <g transform="translate(120 70)"><rect x="0" y="22" width="78" height="46" fill="#fff"/><path d="M-8 26 L39 -6 L86 26Z" fill="${b}"/><rect x="30" y="40" width="18" height="28" fill="${a}"/><rect x="8" y="32" width="14" height="12" fill="${a}"/><rect x="56" y="32" width="14" height="12" fill="${a}"/></g>
+  </svg>`;
+}
+function desenhaQuartos(){
+  $("#listaQuartos").innerHTML = QUARTOS.map(q => `
+    <article class="q ${q.id===qSel?"sel":""}">
+      ${arte(q)}
+      <div class="in">
+        <h3>${q.nome[L]}</h3>
+        <span class="cap">${q.desc[L]} · ${t("ate")} ${q.cap} ${t("pessoas")}</span>
+        <ul>${q.it[L].map(i=>`<li>${i}</li>`).join("")}</ul>
+        <div class="pr"><div><strong>${brl(q.preco)}</strong> <span>/ ${t("noite")}</span></div>
+          <button type="button" class="btn ${q.id===qSel?"esc":"clara"}" data-q="${q.id}" style="padding:10px 14px">${q.id===qSel?t("escolhido"):t("escolher")}</button></div>
+      </div>
+    </article>`).join("");
+  document.querySelectorAll("#listaQuartos [data-q]").forEach(b => b.onclick = () => { escolheQuarto(b.dataset.q); $("#reservar").scrollIntoView({behavior:"smooth"}); });
+}
+function desenhaTabs(){
+  $("#tabs").innerHTML = QUARTOS.map(q => `<button type="button" data-q="${q.id}" class="${q.id===qSel?"on":""}">${q.nome[L]}</button>`).join("");
+  document.querySelectorAll("#tabs button").forEach(b => b.onclick = () => escolheQuarto(b.dataset.q));
+}
+function escolheQuarto(id){
+  qSel = id; aviso("");
+  if (ini && fim && !livre(ini,fim)) { aviso(t("errOc")); }
+  desenhaQuartos(); desenhaTabs(); desenhaCal(); atualiza();
+}
+function livre(a,b){ for (let d=new Date(a); d<b; d=soma(d,1)) if (estado(qSel, iso(d))) return false; return true; }
+function aviso(s){ $("#aviso").textContent = s; }
+function desenhaCal(){
+  { const m = mes.toLocaleDateString(LOC[L], {month:"long", year:"numeric"}); $("#mNome").textContent = m.charAt(0).toUpperCase()+m.slice(1); }
+  $("#sem").innerHTML = t("dias").map(d=>`<span>${d}</span>`).join("");
+  const primeiro = mes.getDay(), total = new Date(mes.getFullYear(), mes.getMonth()+1, 0).getDate();
+  let h = ""; for (let i=0;i<primeiro;i++) h += `<span class="d vazio"></span>`;
+  for (let n=1;n<=total;n++){
+    const d = new Date(mes.getFullYear(), mes.getMonth(), n), s = iso(d);
+    let c = "d";
+    if (d < hoje) c += " passado";
+    else if (estado(qSel, s) && !(ini && !fim && d > ini && livre(ini,d))) c += " ocup";
+    if (ini && s===iso(ini)) c += " ini";
+    if (fim && s===iso(fim)) c += " fim";
+    if (ini && fim && d>ini && d<fim) c += " meio";
+    h += `<button type="button" class="${c}" data-d="${s}">${n}</button>`;
+  }
+  $("#dias").innerHTML = h;
+  document.querySelectorAll("#dias button[data-d]").forEach(b => b.onclick = () => clica(deIso(b.dataset.d)));
+  $("#mAnt").disabled = mes <= new Date(hoje.getFullYear(), hoje.getMonth(), 1);
+}
+function clica(d){
+  aviso("");
+  if (!ini || fim || d <= ini) { if (estado(qSel, iso(d))) return; ini = d; fim = null; aviso(t("pickOut")); }
+  else {
+    if (!livre(ini,d)) { aviso(t("errOc")); return; }
+    fim = d;
+  }
+  desenhaCal(); atualiza();
+}
+function desenhaExtras(){
+  $("#extras").innerHTML = EXTRAS.map(e => `<label><input type="checkbox" data-e="${e.id}" ${extrasSel.has(e.id)?"checked":""}> ${e.nome[L]} <span>${brl(e.preco)}</span></label>`).join("");
+  document.querySelectorAll("#extras input").forEach(c => c.onchange = () => { c.checked ? extrasSel.add(c.dataset.e) : extrasSel.delete(c.dataset.e); atualiza(); });
+}
+function calcula(){
+  const q = QUARTOS.find(x=>x.id===qSel);
+  if (!ini || !fim) return null;
+  const n = noites(ini,fim);
+  let tot = n*q.preco;
+  EXTRAS.forEach(e => { if (extrasSel.has(e.id)) tot += e.pp ? e.preco*hosp : e.preco; });
+  return {q, n, tot};
+}
+function fmtD(d){ return d.toLocaleDateString(LOC[L], {day:"2-digit", month:"short"}); }
+function atualiza(){
+  const q = QUARTOS.find(x=>x.id===qSel);
+  $("#rQuarto").textContent = q.nome[L];
+  $("#rIn").textContent = ini ? fmtD(ini) : "—";
+  $("#rOut").textContent = fim ? fmtD(fim) : "—";
+  const c = calcula();
+  $("#rNoites").textContent = c ? `${c.n} × ${brl(q.preco)}` : "—";
+  $("#rTotal").textContent = c ? brl(c.tot) : "—";
+  const capOk = hosp <= q.cap;
+  if (!capOk) aviso(t("errCap").replace("{n}",hosp));
+  $("#bEnviar").disabled = !(c && capOk);
+}
+/* busca do topo */
+$("#bIn").min = iso(hoje); $("#bOut").min = iso(soma(hoje,1));
+$("#bIn").value = iso(soma(hoje,7)); $("#bOut").value = iso(soma(hoje,10));
+$("#bIn").onchange = () => { $("#bOut").min = iso(soma(deIso($("#bIn").value),1)); };
+$("#fBusca").onsubmit = ev => {
+  ev.preventDefault();
+  const a = deIso($("#bIn").value), b = deIso($("#bOut").value); hosp = +$("#bHosp").value;
+  if (!(b > a)) { aviso(t("errDt")); $("#reservar").scrollIntoView({behavior:"smooth"}); return; }
+  ini = a; fim = b; mes = new Date(a.getFullYear(), a.getMonth(), 1);
+  const cabe = QUARTOS.filter(q => q.cap >= hosp);
+  const vago = cabe.find(q => { qSel = q.id; return livre(a,b); });
+  qSel = vago ? vago.id : (cabe[0]||QUARTOS[2]).id;
+  aviso(vago ? "" : t("errOc"));
+  desenhaQuartos(); desenhaTabs(); desenhaCal(); atualiza();
+  $("#reservar").scrollIntoView({behavior:"smooth"});
+};
+$("#mAnt").onclick = () => { mes = new Date(mes.getFullYear(), mes.getMonth()-1, 1); desenhaCal(); };
+$("#mProx").onclick = () => { mes = new Date(mes.getFullYear(), mes.getMonth()+1, 1); desenhaCal(); };
+document.querySelectorAll(".lang button").forEach(b => b.onclick = () => { L = b.dataset.l; aplicaIdioma(); });
+
+/* envio do pedido */
+$("#fRes").onsubmit = ev => {
+  ev.preventDefault();
+  const c = calcula(); if (!c) return;
+  const nome = $("#cNome").value.trim(), zap = $("#cZap").value.trim(), obs = $("#cObs").value.trim();
+  const ex = EXTRAS.filter(e=>extrasSel.has(e.id)).map(e=>e.nome[L]);
+  const linhas = [t("msg"), "",
+    `• ${t("mQ")}: ${c.q.nome[L]}`,
+    `• ${t("mD")}: ${fmtD(ini)} → ${fmtD(fim)} (${c.n} ${t("sN").toLowerCase()})`,
+    `• ${t("mH")}: ${hosp}`];
+  if (ex.length) linhas.push(`• ${t("mE")}: ${ex.join(", ")}`);
+  linhas.push(`• ${t("mT")}: ${brl(c.tot)}`, `• ${t("mN")}: ${nome} (${zap})`);
+  if (obs) linhas.push(`• ${t("mO")}: ${obs}`);
+  linhas.push("", "(Demonstração · sistema de reservas do Paulo Jr.)");
+  st.pedidos.unshift({id:Date.now(), q:c.q.id, in:iso(ini), out:iso(fim), hosp, nome, tot:c.tot, status:"novo", quando:new Date().toISOString()});
+  salva();
+  window.open("https://wa.me/"+ZAP+"?text="+encodeURIComponent(linhas.join("\n")), "_blank", "noopener");
+  toast(t("ok") + (L==="pt" ? " Abra o painel do dono (botão no topo) pra ver o pedido chegando." : ""));
+  ini = fim = null; desenhaCal(); atualiza();
+};
+function toast(s){ const el = $("#toast"); el.textContent = s; el.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(()=>el.classList.remove("on"), 3800); }
+$("#ctaZap").href = "https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá, Paulo! Vi a demonstração do sistema de reservas e quero ver como fica na minha pousada: ");
+
+/* ---------- painel do dono ---------- */
+const FIXOS = [
+  {nome:"Mariana Costa", q:"duna", d:2, n:3, hosp:2, status:"conf"},
+  {nome:"Lucas e Ana", q:"lagoa", d:5, n:2, hosp:2, status:"novo"},
+  {nome:"Família Ribeiro", q:"familia", d:9, n:4, hosp:5, status:"novo"},
+  {nome:"Sophie (França)", q:"lagoa", d:12, n:3, hosp:1, status:"conf"}
+];
+function pedidosFixos(){
+  return FIXOS.map((f,i) => {
+    const a = soma(hoje, f.d), b = soma(a, f.n), q = QUARTOS.find(x=>x.id===f.q);
+    return {id:"f"+i, fixo:true, q:f.q, in:iso(a), out:iso(b), hosp:f.hosp, nome:f.nome, tot:f.n*q.preco, status:(st.fixos||{})["f"+i]||f.status};
+  });
+}
+function todosPedidos(){ return [...st.pedidos, ...pedidosFixos()]; }
+function abrePainel(){ desenhaPainel(); $("#painel").classList.add("on"); document.body.style.overflow="hidden"; }
+function fechaPainel(){ $("#painel").classList.remove("on"); document.body.style.overflow=""; desenhaCal(); }
+$("#abrePainel").onclick = abrePainel; $("#abrePainel2").onclick = abrePainel; $("#fechaPainel").onclick = fechaPainel;
+$("#painel").onclick = e => { if (e.target.id==="painel") fechaPainel(); };
+document.addEventListener("keydown", e => { if (e.key==="Escape" && $("#painel").classList.contains("on")) fechaPainel(); });
+function mudaStatus(id, s){
+  const p = st.pedidos.find(x=>String(x.id)===String(id));
+  if (p) p.status = s; else { st.fixos = st.fixos||{}; st.fixos[id] = s; }
+  salva(); desenhaPainel();
+}
+function desenhaPainel(){
+  const ps = todosPedidos();
+  const nm = id => QUARTOS.find(q=>q.id===id).nome.pt;
+  const dd = s => deIso(s).toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
+  $("#pedidos").innerHTML = ps.map(p => `
+    <div class="ped"><div><b>${p.nome.replace(/</g,"&lt;")} <span class="tag ${p.status}">${{novo:"novo",conf:"confirmado",rec:"recusado"}[p.status]}</span></b>
+      <small>${nm(p.q)} · ${dd(p.in)} a ${dd(p.out)} · ${p.hosp} hósp. · ${brl(p.tot)}</small></div>
+      <div class="acs">${p.status==="novo" ? `<button type="button" data-s="conf" data-id="${p.id}">Confirmar</button><button type="button" data-s="rec" data-id="${p.id}">Recusar</button>` : `<button type="button" data-s="novo" data-id="${p.id}">Desfazer</button>`}</div></div>`).join("");
+  document.querySelectorAll("#pedidos [data-s]").forEach(b => b.onclick = () => mudaStatus(b.dataset.id, b.dataset.s));
+  $("#kNovos").textContent = ps.filter(p=>p.status==="novo").length;
+  const conf = ps.filter(p=>p.status==="conf").reduce((s,p)=>s+p.tot,0);
+  $("#kRec").textContent = brl(conf);
+  $("#kCom").textContent = brl(Math.round(conf*COM));
+  let oc = 0, tot = 0;
+  for (let i=0;i<30;i++) QUARTOS.forEach(q => { tot++; const e = estado(q.id, iso(soma(hoje,i))); if (e==="o") oc++; });
+  $("#kOcup").textContent = Math.round(oc/tot*100)+"%";
+  $("#kOcupS").textContent = `${oc} de ${tot} diárias`;
+  let h = "<table><tr><th>Quarto</th>";
+  for (let i=0;i<14;i++){ const d = soma(hoje,i); h += `<th>${d.getDate()}/${d.getMonth()+1}</th>`; }
+  h += "</tr>";
+  QUARTOS.forEach(q => {
+    h += `<tr><td>${q.nome.pt}</td>`;
+    for (let i=0;i<14;i++){ const e = estado(q.id, iso(soma(hoje,i))); h += `<td class="${e}">${e==="b"?"✕":""}</td>`; }
+    h += "</tr>";
+  });
+  $("#grade").innerHTML = h + "</table>";
+  $("#blQ").innerHTML = QUARTOS.map(q=>`<option value="${q.id}">${q.nome.pt}</option>`).join("");
+}
+$("#blIn").min = iso(hoje);
+$("#fBloq").onsubmit = ev => {
+  ev.preventDefault();
+  const de = $("#blIn").value, ate = $("#blOut").value;
+  if (!(ate > de)) { toast("A data final precisa ser depois da inicial."); return; }
+  st.bloqueios.push({q:$("#blQ").value, de, ate}); salva(); desenhaPainel(); toast("Datas bloqueadas. Já sumiram do calendário do site.");
+};
+/* pedidos fixos também ocupam o calendário */
+const _estado = estado;
+estado = function(qid, dIso){
+  const e = _estado(qid, dIso); if (e) return e;
+  for (const p of pedidosFixos()) if (p.q===qid && p.status!=="rec" && dIso>=p.in && dIso<p.out) return p.status==="conf" ? "o" : "n";
+  return "";
+};
+aplicaIdioma();
+</script>
+</body>
+</html>
