@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Express Car Gestão</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: app de oficina, barra lateral no computador e abas embaixo no celular; acento laranja de cera sobre grafite */
+:root{
+  --bg:#f3f4f6; --surface:#ffffff; --surface-2:#eef0f3; --line:#dde1e7; --fg:#15191f; --muted:#5f6875;
+  --accent:#ef6a1a; --accent-ink:#ffffff; --accent-soft:#fde9dc; --graphite:#1d232b; --graphite-fg:#e8ecf1;
+  --ok:#1f9d61; --ok-soft:#dcf3e7; --warn:#c98a06; --warn-soft:#fbefd2; --info:#2a6fd6; --info-soft:#e0ebfb;
+  --display:"Barlow Semi Condensed",system-ui,sans-serif; --body:"Barlow",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0f1216; --surface:#171b21; --surface-2:#1f252d; --line:#2a313b; --fg:#e9edf2; --muted:#9aa3af;
+  --accent:#ff7f33; --accent-ink:#1a0d03; --accent-soft:#3a2416; --graphite:#0b0e11; --graphite-fg:#e8ecf1;
+  --ok:#38c784; --ok-soft:#173226; --warn:#e4a92a; --warn-soft:#352a12; --info:#5b97f0; --info-soft:#18263b; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0f1216; --surface:#171b21; --surface-2:#1f252d; --line:#2a313b; --fg:#e9edf2; --muted:#9aa3af;
+  --accent:#ff7f33; --accent-ink:#1a0d03; --accent-soft:#3a2416; --graphite:#0b0e11; --graphite-fg:#e8ecf1;
+  --ok:#38c784; --ok-soft:#173226; --warn:#e4a92a; --warn-soft:#352a12; --info:#5b97f0; --info-soft:#18263b; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font:400 15px/1.5 var(--body)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+h1,h2,h3{font-family:var(--display);margin:0;line-height:1.1;text-wrap:balance}
+h1{font-size:1.75rem;font-weight:800}
+h2{font-size:1.25rem;font-weight:700}
+h3{font-size:1.05rem;font-weight:700}
+.app{display:grid;grid-template-columns:220px minmax(0,1fr);min-height:100%}
+.lado{background:var(--graphite);color:var(--graphite-fg);padding:18px 12px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh}
+.logo{display:flex;align-items:center;gap:10px;padding:4px 8px 18px}
+.logo i{width:34px;height:34px;border-radius:9px;background:var(--accent);display:grid;place-items:center;font:800 1.05rem var(--display);color:var(--accent-ink);font-style:normal}
+.logo b{font:800 1.2rem var(--display);letter-spacing:.01em}
+.logo small{display:block;font-size:.75rem;opacity:.7}
+.nav{border:0;background:none;color:inherit;text-align:left;padding:.65em .8em;border-radius:9px;cursor:pointer;display:flex;align-items:center;gap:10px;opacity:.82}
+.nav svg{width:18px;height:18px;flex:none}
+.nav[aria-current="page"]{background:rgba(255,255,255,.1);opacity:1}
+.nav .badge{margin-left:auto;background:var(--accent);color:var(--accent-ink);border-radius:999px;font-size:.72rem;font-weight:600;padding:0 .5em}
+.lado .rodape{margin-top:auto;font-size:.75rem;opacity:.6;padding:8px}
+main{padding-block:22px 90px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));min-width:0}
+.cont{max-width:1080px;margin:0 auto;display:grid;gap:18px}
+.topo{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px}
+.topo p{margin:4px 0 0;color:var(--muted)}
+.aviso{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 40%,transparent);color:var(--fg);border-radius:10px;padding:.55em .9em;font-size:.88rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.grid{display:grid;gap:14px}
+.k4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.k2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:900px){.k4{grid-template-columns:repeat(2,minmax(0,1fr))}.k2{grid-template-columns:1fr}}
+.kpi b{display:block;font:800 1.9rem/1 var(--display);font-variant-numeric:tabular-nums}
+.kpi span{color:var(--muted);font-size:.86rem}
+.btn{text-decoration:none;border:0;border-radius:10px;padding:.6em 1em;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.btn-pri{background:var(--accent);color:var(--accent-ink)}
+.btn-sec{background:var(--surface-2);color:var(--fg);border:1px solid var(--line)}
+.btn-zap{background:#1fae5b;color:#fff}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.lista{display:grid;gap:8px}
+.linha{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer;text-align:left;width:100%}
+.linha:hover{border-color:var(--accent)}
+.av{width:38px;height:38px;border-radius:50%;background:var(--accent-soft);color:var(--accent);display:grid;place-items:center;font:700 .95rem var(--display);flex:none}
+.linha .info{min-width:0;flex:1}
+.linha .info b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.linha .info small{color:var(--muted)}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:.15em .65em;font-size:.78rem;font-weight:600;white-space:nowrap}
+.p-ok{background:var(--ok-soft);color:var(--ok)}
+.p-warn{background:var(--warn-soft);color:var(--warn)}
+.p-info{background:var(--info-soft);color:var(--info)}
+.p-acc{background:var(--accent-soft);color:var(--accent)}
+.campo{display:grid;gap:5px}
+.campo label{font-weight:600;font-size:.86rem}
+.campo input,.campo select,.campo textarea{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.6em .7em;width:100%}
+.campo textarea{min-height:110px;resize:vertical}
+.busca{max-width:320px}
+/* esteira de status, estilo acompanhamento de pedido */
+.esteira{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:6px}
+.esteira li{display:grid;gap:6px;font-size:.8rem;color:var(--muted)}
+.esteira li i{height:6px;border-radius:6px;background:var(--surface-2)}
+.esteira li.feito i{background:var(--ok)}
+.esteira li.agora i{background:var(--accent)}
+.esteira li.agora{color:var(--fg);font-weight:600}
+.etapas{display:flex;flex-wrap:wrap;gap:6px}
+.etapas button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:.35em .8em;font-size:.82rem;cursor:pointer}
+.etapas button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+/* fotos */
+.fotos{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:560px){.fotos{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.foto{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--surface-2);border:1px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:.78rem;position:relative}
+.foto img{width:100%;height:100%;object-fit:cover}
+.foto span{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.6);color:#fff;border-radius:6px;padding:0 .4em;font-size:.7rem}
+.barra{height:8px;border-radius:8px;background:var(--surface-2);overflow:hidden}
+.barra i{display:block;height:100%;background:var(--accent)}
+/* acompanhamento (tela do cliente) */
+.celular{width:min(100%,360px);margin:0 auto;border-radius:30px;border:10px solid var(--graphite);background:var(--bg);overflow:hidden}
+.cel-topo{background:var(--accent);color:var(--accent-ink);padding:16px}
+.cel-topo b{font:800 1.3rem var(--display);display:block}
+.cel-corpo{padding:16px;display:grid;gap:14px}
+.passos{list-style:none;margin:0;padding:0 0 0 22px;border-left:2px solid var(--line);display:grid;gap:14px}
+.passos li{position:relative;color:var(--muted)}
+.passos li::before{content:"";position:absolute;left:-29px;top:3px;width:12px;height:12px;border-radius:50%;background:var(--line);border:2px solid var(--bg)}
+.passos li.feito{color:var(--fg)}
+.passos li.feito::before{background:var(--ok)}
+.passos li.agora{color:var(--fg);font-weight:600}
+.passos li.agora::before{background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft)}
+.passos small{display:block;font-weight:400;color:var(--muted)}
+.prev{white-space:pre-wrap;background:#e7f7ee;color:#163b27;border-radius:12px 12px 12px 2px;padding:10px 12px;font-size:.92rem}
+:root[data-theme="dark"] .prev{background:#173226;color:#d8f3e4}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .prev{background:#173226;color:#d8f3e4}}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600;font-size:.8rem}
+.tabela{overflow-x:auto}
+/* celular: abas embaixo */
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  .lado{position:fixed;inset:auto 0 0 0;height:auto;flex-direction:row;justify-content:space-around;padding:6px max(6px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px));z-index:20;gap:0}
+  .logo,.lado .rodape{display:none}
+  .nav{flex-direction:column;gap:2px;font-size:.68rem;padding:.4em .3em;flex:1;align-items:center;position:relative}
+  .nav .badge{position:absolute;top:0;right:18%;margin:0}
+  .esteira{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.dialogo{position:fixed;inset:0;background:rgba(10,12,15,.55);display:grid;place-items:center;z-index:40;padding:16px}
+.dialogo .card{width:min(100%,560px);max-height:90vh;overflow:auto}
+.vazio{color:var(--muted);font-size:.9rem}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <nav class="lado" aria-label="Menu">
+    <div class="logo"><i>EC</i><div><b>Express Car</b><small>Estética automotiva · Recife</small></div></div>
+    <button class="nav" data-v="painel" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-8 9 8M5 10v10h14V10"/></svg>Painel</button>
+    <button class="nav" data-v="patio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 16h18M5 16l2-6h10l2 6M7.5 19.5h.01M16.5 19.5h.01"/></svg>No pátio<span class="badge" id="bPatio"></span></button>
+    <button class="nav" data-v="clientes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.6c2 .7 3.2 2.5 3.5 5.4"/></svg>Clientes</button>
+    <button class="nav" data-v="campanhas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11v3a1 1 0 0 0 1 1h3l6 4V6L7 10H4a1 1 0 0 0-1 1ZM17 9a4 4 0 0 1 0 6"/></svg>Campanhas<span class="badge" id="bNiver"></span></button>
+    <button class="nav" data-v="cliente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>Tela do cliente</button>
+    <div class="rodape">Protótipo navegável com dados de exemplo.</div>
+  </nav>
+  <main><div class="cont" id="tela"></div></main>
+</div>
+<div id="modal"></div>
+
+<script>
+const HOJE = new Date(2026,9,20); // ter 20/10/2026, data de exemplo
+const ETAPAS = ["Recebido","Avaliação","Em serviço","Acabamento","Pronto para retirar","Entregue"];
+const DESC = {"Recebido":"Carro recebido na oficina e fotos de entrada registradas.","Avaliação":"Conferindo a pintura e os pontos a tratar.","Em serviço":"Equipe trabalhando no seu carro.","Acabamento":"Proteção, limpeza final e revisão de qualidade.","Pronto para retirar":"Pode vir buscar! Estamos te esperando.","Entregue":"Carro entregue. Obrigado pela confiança!"};
+const SERVICOS = ["Revitalização de pintura","Cristalização","Recuperação de para-choque","Remoção de mossas (martelinho)","Polimento técnico","Higienização interna","Vitrificação"];
+const LIMITE_FOTOS = 15;
+const COR = ["#9aa3af","#c9372c","#1f2937","#f2f2f2","#2a6fd6","#7a7f86"];
+function svgCarro(c, t){ // ilustração simples no lugar da foto real
+  return "data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' fill='${t%2?"#dfe3e8":"#cfd5dc"}'/><path d='M14 78h92l-6-18c-2-6-6-9-12-10l-14-10H46L32 50c-6 1-10 4-12 10z' fill='${c}'/><circle cx='36' cy='80' r='11' fill='#2b2f35'/><circle cx='86' cy='80' r='11' fill='#2b2f35'/><circle cx='36' cy='80' r='4' fill='#aab'/><circle cx='86' cy='80' r='4' fill='#aab'/></svg>`);
+}
+let clientes = [
+ {id:1,nome:"Rafaela Monteiro",fone:"(81) 99812-4410",nasc:"1990-10-22",carro:"Jeep Compass 2022",placa:"QYX2F31",cor:4,obs:"Prefere contato por WhatsApp à tarde.",fotos:6,servicos:[{d:"2026-08-14",s:"Cristalização",v:450},{d:"2026-03-02",s:"Higienização interna",v:220}]},
+ {id:2,nome:"Carlos Eduardo Lins",fone:"(81) 99677-2013",nasc:"1985-10-25",carro:"Toyota Corolla 2021",placa:"PFR8C12",cor:0,obs:"",fotos:9,servicos:[{d:"2026-10-19",s:"Revitalização de pintura",v:900}]},
+ {id:3,nome:"Juliana Barros",fone:"(81) 98844-3021",nasc:"1993-04-11",carro:"Honda HR-V 2020",placa:"PDT4J77",cor:1,obs:"Cliente desde 2024.",fotos:3,servicos:[{d:"2026-10-20",s:"Recuperação de para-choque",v:380},{d:"2025-12-10",s:"Polimento técnico",v:350}]},
+ {id:4,nome:"Marcos Albuquerque",fone:"(81) 99231-5566",nasc:"1979-11-02",carro:"VW Amarok 2019",placa:"KHB9D04",cor:2,obs:"Frota da empresa, 3 veículos.",fotos:15,servicos:[{d:"2026-10-18",s:"Remoção de mossas (martelinho)",v:300},{d:"2026-06-21",s:"Vitrificação",v:1200}]},
+ {id:5,nome:"Patrícia Cavalcanti",fone:"(81) 98710-9087",nasc:"1988-10-21",carro:"Fiat Pulse 2023",placa:"RBC1A55",cor:3,obs:"",fotos:4,servicos:[{d:"2026-05-30",s:"Cristalização",v:450}]},
+ {id:6,nome:"Diego Farias",fone:"(81) 99520-3344",nasc:"1995-02-17",carro:"Hyundai HB20 2020",placa:"PEX7H21",cor:5,obs:"Pediu orçamento de vitrificação.",fotos:2,servicos:[{d:"2026-01-12",s:"Polimento técnico",v:320}]}
+];
+let os = [
+ {id:101,cli:2,serv:"Revitalização de pintura",etapa:2,entrada:"19/10 08:30",previsao:"21/10 17:00",valor:900},
+ {id:102,cli:3,serv:"Recuperação de para-choque",etapa:1,entrada:"20/10 09:10",previsao:"20/10 18:00",valor:380},
+ {id:103,cli:4,serv:"Remoção de mossas (martelinho)",etapa:4,entrada:"18/10 14:00",previsao:"20/10 12:00",valor:300}
+];
+let vista="painel", clienteAberto=null, osCliente=101;
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const brl=v=>v.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});
+const ini=n=>n.split(" ").map(p=>p[0]).slice(0,2).join("");
+const cli=id=>clientes.find(c=>c.id===id);
+function diasAteNiver(nasc){ const [y,m,d]=nasc.split("-").map(Number); let n=new Date(HOJE.getFullYear(),m-1,d); if(n<HOJE) n=new Date(HOJE.getFullYear()+1,m-1,d); return Math.round((n-HOJE)/864e5); }
+function ultimo(c){ return c.servicos.slice().sort((a,b)=>b.d.localeCompare(a.d))[0]; }
+function diasDesde(d){ return Math.round((HOJE-new Date(d+"T12:00"))/864e5); }
+function zap(fone,msg){ return "https://wa.me/55"+fone.replace(/\D/g,"")+"?text="+encodeURIComponent(msg); }
+function esteira(et){ return `<ol class="esteira">${ETAPAS.map((e,i)=>`<li class="${i<et?"feito":i===et?"agora":""}"><i></i>${e}</li>`).join("")}</ol>`; }
+function badges(){ $("bPatio").textContent=os.filter(o=>o.etapa<5).length; const n=clientes.filter(c=>diasAteNiver(c.nasc)<=7).length; $("bNiver").textContent=n||""; $("bNiver").hidden=!n; }
+
+const V = {
+painel(){
+  const patio=os.filter(o=>o.etapa<5), prontos=os.filter(o=>o.etapa===4);
+  const niver=clientes.map(c=>({c,d:diasAteNiver(c.nasc)})).filter(x=>x.d<=7).sort((a,b)=>a.d-b.d);
+  const sumidos=clientes.filter(c=>diasDesde(ultimo(c).d)>120);
+  return `<div class="topo"><div><h1>Bom dia, equipe Express Car</h1><p>Terça, 20 de outubro</p></div><span class="aviso">Protótipo com dados de exemplo. Tudo aqui é clicável.</span></div>
+  <div class="grid k4">
+    <div class="card kpi"><b>${patio.length}</b><span>carros no pátio</span></div>
+    <div class="card kpi"><b>${prontos.length}</b><span>prontos para retirar</span></div>
+    <div class="card kpi"><b>${niver.length}</b><span>aniversários nesta semana</span></div>
+    <div class="card kpi"><b>${brl(patio.reduce((s,o)=>s+o.valor,0))}</b><span>em serviços no pátio</span></div>
+  </div>
+  <div class="grid k2">
+    <section class="card"><h2>No pátio agora</h2><div class="lista" style="margin-top:12px">${patio.map(o=>{const c=cli(o.cli);return `<button class="linha" data-os="${o.id}"><span class="av">${ini(c.nome)}</span><span class="info"><b>${esc(c.carro)} · ${c.placa}</b><small>${esc(o.serv)} · previsão ${o.previsao}</small></span><span class="pill ${o.etapa===4?"p-ok":"p-acc"}">${ETAPAS[o.etapa]}</span></button>`}).join("")}</div></section>
+    <section class="card"><h2>Lembretes de hoje</h2><div class="lista" style="margin-top:12px">
+      ${niver.map(x=>`<div class="linha" style="cursor:default"><span class="av">${ini(x.c.nome)}</span><span class="info"><b>${esc(x.c.nome)}</b><small>${x.d===0?"Faz aniversário hoje":"Aniversário em "+x.d+" dia(s)"}</small></span><a class="btn btn-zap" target="_blank" rel="noopener" href="${zap(x.c.fone,`Oi, ${x.c.nome.split(" ")[0]}! Aqui é da Express Car. Feliz aniversário! 🎉 Como presente, você ganha 15% de desconto em qualquer serviço até o fim do mês. É só falar com a gente.`)}">Parabenizar</a></div>`).join("")}
+      ${sumidos.map(c=>`<div class="linha" style="cursor:default"><span class="av">${ini(c.nome)}</span><span class="info"><b>${esc(c.nome)}</b><small>Último serviço há ${diasDesde(ultimo(c).d)} dias (${esc(ultimo(c).s)})</small></span><a class="btn btn-sec" target="_blank" rel="noopener" href="${zap(c.fone,`Oi, ${c.nome.split(" ")[0]}! Aqui é da Express Car. Faz um tempinho que o seu ${c.carro.split(" ").slice(0,2).join(" ")} não passa por aqui. Que tal agendar uma revitalização? Esta semana tem horário livre.`)}">Chamar de volta</a></div>`).join("")}
+    </div></section>
+  </div>`;
+},
+patio(){
+  return `<div class="topo"><div><h1>No pátio</h1><p>Mude a etapa e o cliente vê na hora, no link de acompanhamento.</p></div><button class="btn btn-pri" data-acao="novaos">Receber carro</button></div>
+  <div class="lista">${os.map(o=>{const c=cli(o.cli);return `<article class="card" style="display:grid;gap:12px">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center"><div><h3>${esc(c.carro)} · ${c.placa}</h3><small style="color:var(--muted)">${esc(c.nome)} · ${esc(o.serv)} · entrada ${o.entrada} · previsão ${o.previsao}</small></div><b style="font-family:var(--display);font-size:1.2rem">${brl(o.valor)}</b></div>
+    ${esteira(o.etapa)}
+    <div class="etapas" role="group" aria-label="Etapa do serviço">${ETAPAS.map((e,i)=>`<button data-etapa="${o.id}:${i}" aria-pressed="${i===o.etapa}">${e}</button>`).join("")}</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px"><a class="btn btn-zap" target="_blank" rel="noopener" href="${zap(c.fone,`Oi, ${c.nome.split(" ")[0]}! Atualização do seu ${c.carro}: ${ETAPAS[o.etapa]}. ${DESC[ETAPAS[o.etapa]]} Acompanhe aqui: expresscar.app/acompanhar/${o.id}`)}">Avisar cliente</a><button class="btn btn-sec" data-vercli="${o.id}">Ver como o cliente vê</button></div>
+  </article>`}).join("")}</div>`;
+},
+clientes(){
+  return `<div class="topo"><div><h1>Clientes</h1><p>${clientes.length} cadastrados</p></div><button class="btn btn-pri" data-acao="novocli">Novo cliente</button></div>
+  <div class="campo busca"><label for="busca">Buscar por nome, placa ou carro</label><input id="busca" placeholder="Ex.: Corolla ou QYX"></div>
+  <div class="lista" id="listaCli"></div>`;
+},
+campanhas(){
+  return `<div class="topo"><div><h1>Campanhas</h1><p>Escolha quem recebe, escreva a promoção e envie pelo WhatsApp.</p></div></div>
+  <div class="grid k2">
+    <section class="card" style="display:grid;gap:12px">
+      <div class="campo"><label for="pub">Quem recebe</label><select id="pub">
+        <option value="todos">Todos os clientes</option><option value="niver">Aniversariantes do mês</option><option value="sumidos">Sem visita há mais de 4 meses</option><option value="cristal">Fizeram cristalização ou vitrificação</option></select></div>
+      <div class="campo"><label for="tpl">Modelo</label><select id="tpl"><option value="0">Promoção da semana</option><option value="1">Aniversário</option><option value="2">Volte a nos visitar</option><option value="3">Manutenção da cristalização</option></select></div>
+      <div class="campo"><label for="txt">Mensagem ({nome} e {carro} são trocados por cada cliente)</label><textarea id="txt"></textarea></div>
+    </section>
+    <section class="card" style="display:grid;gap:10px;align-content:start">
+      <h2>Prévia</h2><div class="prev" id="prev"></div>
+      <h3 style="margin-top:6px" id="qtd"></h3>
+      <div class="lista" id="envios"></div>
+      <p class="vazio">No sistema real, o envio em massa sai pela API oficial do WhatsApp. Aqui, cada botão abre a conversa com a mensagem pronta.</p>
+    </section>
+  </div>`;
+},
+cliente(){
+  const o=os.find(x=>x.id===osCliente)||os[0], c=cli(o.cli);
+  return `<div class="topo"><div><h1>Tela do cliente</h1><p>O que o cliente vê no link que recebe no WhatsApp. Mude a etapa na aba "No pátio" e volte aqui.</p></div>
+    <div class="campo"><label for="selos">Ordem de serviço</label><select id="selos">${os.map(x=>`<option value="${x.id}" ${x.id===o.id?"selected":""}>${esc(cli(x.cli).carro)} · ${cli(x.cli).placa}</option>`).join("")}</select></div></div>
+  <div class="celular"><div class="cel-topo"><small>Express Car · Recife</small><b>${ETAPAS[o.etapa]}</b><small>${esc(c.carro)} · ${c.placa}</small></div>
+    <div class="cel-corpo">
+      <div class="barra" aria-hidden="true"><i style="width:${(o.etapa/(ETAPAS.length-1))*100}%"></i></div>
+      <p style="margin:0">${DESC[ETAPAS[o.etapa]]}</p>
+      <div style="display:flex;justify-content:space-between;font-size:.88rem"><span style="color:var(--muted)">Previsão</span><b>${o.previsao}</b></div>
+      <ol class="passos">${ETAPAS.map((e,i)=>`<li class="${i<o.etapa?"feito":i===o.etapa?"agora":""}">${e}${i===o.etapa?`<small>agora</small>`:""}</li>`).join("")}</ol>
+      <div><h3 style="margin-bottom:8px">Fotos do serviço</h3><div class="fotos" style="grid-template-columns:repeat(3,minmax(0,1fr))">${[0,1,2].map(i=>`<div class="foto"><img src="${svgCarro(COR[c.cor],i)}" alt=""><span>${["Entrada","Durante","Detalhe"][i]}</span></div>`).join("")}</div></div>
+      <a class="btn btn-zap" style="justify-content:center" target="_blank" rel="noopener" href="${zap("(81) 90000-0000","Oi! Tenho uma dúvida sobre o serviço do meu carro.")}">Falar com a oficina</a>
+    </div></div>`;
+}
+};
+
+function renderClientes(){
+  const q=($("busca")?.value||"").toLowerCase();
+  const l=clientes.filter(c=>(c.nome+c.placa+c.carro).toLowerCase().includes(q));
+  $("listaCli").innerHTML = l.length? l.map(c=>{const d=diasAteNiver(c.nasc);return `<button class="linha" data-cli="${c.id}"><span class="av">${ini(c.nome)}</span><span class="info"><b>${esc(c.nome)}</b><small>${esc(c.carro)} · ${c.placa} · último serviço há ${diasDesde(ultimo(c).d)} dias</small></span>${d<=7?`<span class="pill p-warn">aniversário em ${d} dia(s)</span>`:""}<span class="pill p-info">${c.fotos}/${LIMITE_FOTOS} fotos</span></button>`}).join("") : `<p class="vazio">Nenhum cliente encontrado. Confira a placa ou cadastre um novo.</p>`;
+}
+const MODELOS=[
+ "Oi, {nome}! Aqui é da Express Car. Esta semana a cristalização está com 20% de desconto. Seu {carro} merece! Quer agendar?",
+ "Oi, {nome}! A Express Car te deseja um feliz aniversário! 🎉 Você ganha 15% de desconto em qualquer serviço até o fim do mês.",
+ "Oi, {nome}! Faz um tempo que o seu {carro} não passa por aqui. Que tal uma revitalização? Temos horário livre esta semana.",
+ "Oi, {nome}! A cristalização do seu {carro} já está perto de completar 6 meses. Uma manutenção agora mantém o brilho e a proteção. Vamos agendar?"
+];
+function publico(){ const p=$("pub").value; return clientes.filter(c=> p==="todos"||(p==="niver"&&+c.nasc.split("-")[1]===HOJE.getMonth()+1)||(p==="sumidos"&&diasDesde(ultimo(c).d)>120)||(p==="cristal"&&c.servicos.some(s=>/Cristal|Vitrif/.test(s.s)))); }
+function preenche(t,c){ return t.replaceAll("{nome}",c.nome.split(" ")[0]).replaceAll("{carro}",c.carro.split(" ").slice(0,2).join(" ")); }
+function renderCamp(){
+  const l=publico(), t=$("txt").value;
+  $("prev").textContent = l[0]? preenche(t,l[0]) : t;
+  $("qtd").textContent = l.length+" cliente(s) vão receber";
+  $("envios").innerHTML = l.length? l.map(c=>`<div class="linha" style="cursor:default"><span class="av">${ini(c.nome)}</span><span class="info"><b>${esc(c.nome)}</b><small>${c.fone}</small></span><a class="btn btn-zap" target="_blank" rel="noopener" href="${zap(c.fone,preenche(t,c))}">Enviar</a></div>`).join("") : `<p class="vazio">Nenhum cliente nesse grupo. Escolha outro público.</p>`;
+}
+
+function fichaCliente(c){
+  const vagas=LIMITE_FOTOS-c.fotos;
+  $("modal").innerHTML=`<div class="dialogo" role="dialog" aria-modal="true" aria-labelledby="fT"><div class="card" style="display:grid;gap:14px">
+    <div style="display:flex;justify-content:space-between;gap:10px;align-items:start"><div style="display:flex;gap:12px;align-items:center"><span class="av">${ini(c.nome)}</span><div><h2 id="fT">${esc(c.nome)}</h2><small style="color:var(--muted)">${c.fone} · aniversário ${c.nasc.split("-").reverse().slice(0,2).join("/")}</small></div></div><button class="btn btn-sec" data-acao="fechar">Fechar</button></div>
+    <div class="card" style="background:var(--surface-2)"><b>${esc(c.carro)}</b> · ${c.placa}${c.obs?`<br><small style="color:var(--muted)">${esc(c.obs)}</small>`:""}</div>
+    <div><div style="display:flex;justify-content:space-between;align-items:baseline"><h3>Fotos</h3><small style="color:var(--muted)">${c.fotos} de ${LIMITE_FOTOS}</small></div>
+      <div class="barra" style="margin:8px 0 10px"><i style="width:${c.fotos/LIMITE_FOTOS*100}%"></i></div>
+      <div class="fotos">${Array.from({length:Math.min(c.fotos,10)},(_,i)=>`<div class="foto"><img src="${svgCarro(COR[c.cor],i)}" alt="Foto ${i+1} do carro"></div>`).join("")}${c.fotos>10?`<div class="foto">+${c.fotos-10}</div>`:""}</div>
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap"><button class="btn btn-pri" data-foto="${c.id}" ${vagas?"":"disabled"}>Adicionar foto</button><small style="color:var(--muted)">${vagas?`Cabem mais ${vagas} foto(s).`:"Espaço cheio: apague uma foto antiga para adicionar outra."}</small></div></div>
+    <div><h3>Histórico</h3><div class="tabela"><table><thead><tr><th>Data</th><th>Serviço</th><th>Valor</th></tr></thead><tbody>${c.servicos.slice().sort((a,b)=>b.d.localeCompare(a.d)).map(s=>`<tr><td>${s.d.split("-").reverse().join("/")}</td><td>${esc(s.s)}</td><td>${brl(s.v)}</td></tr>`).join("")}</tbody></table></div></div>
+  </div></div>`;
+}
+function formCliente(){
+  $("modal").innerHTML=`<div class="dialogo" role="dialog" aria-modal="true" aria-labelledby="nT"><form class="card" id="fNovo" style="display:grid;gap:12px">
+    <h2 id="nT">Novo cliente</h2>
+    <div class="campo"><label for="nNome">Nome</label><input id="nNome" required value="Fernanda Queiroz"></div>
+    <div class="grid k2"><div class="campo"><label for="nFone">WhatsApp</label><input id="nFone" required value="(81) 99123-4567"></div><div class="campo"><label for="nNasc">Aniversário</label><input id="nNasc" type="date" value="1991-10-24"></div></div>
+    <div class="grid k2"><div class="campo"><label for="nCarro">Carro</label><input id="nCarro" value="Renault Kwid 2022"></div><div class="campo"><label for="nPlaca">Placa</label><input id="nPlaca" value="QWE3R45"></div></div>
+    <div class="campo"><label for="nServ">Primeiro serviço</label><select id="nServ">${SERVICOS.map(s=>`<option>${s}</option>`).join("")}</select></div>
+    <div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn btn-sec" data-acao="fechar">Cancelar</button><button class="btn btn-pri">Cadastrar e receber carro</button></div>
+  </form></div>`;
+  $("fNovo").addEventListener("submit",e=>{e.preventDefault();
+    const id=Math.max(...clientes.map(c=>c.id))+1, serv=$("nServ").value;
+    clientes.push({id,nome:$("nNome").value,fone:$("nFone").value,nasc:$("nNasc").value||"1990-01-01",carro:$("nCarro").value,placa:$("nPlaca").value.toUpperCase(),cor:id%6,obs:"",fotos:0,servicos:[{d:"2026-10-20",s:serv,v:350}]});
+    os.push({id:Math.max(...os.map(o=>o.id))+1,cli:id,serv,etapa:0,entrada:"20/10 agora",previsao:"21/10 17:00",valor:350});
+    $("modal").innerHTML=""; ir("patio");
+  });
+}
+function ir(v){
+  vista=v; document.querySelectorAll(".nav").forEach(b=>b.setAttribute("aria-current",b.dataset.v===v?"page":"false"));
+  $("tela").innerHTML=V[v](); badges();
+  if(v==="clientes"){ renderClientes(); $("busca").addEventListener("input",renderClientes); }
+  if(v==="campanhas"){ $("txt").value=MODELOS[0]; ["pub","txt"].forEach(i=>$(i).addEventListener("input",renderCamp)); $("tpl").addEventListener("change",()=>{$("txt").value=MODELOS[+$("tpl").value]; if($("tpl").value==="1") $("pub").value="niver"; if($("tpl").value==="2") $("pub").value="sumidos"; if($("tpl").value==="3") $("pub").value="cristal"; renderCamp();}); renderCamp(); }
+  if(v==="cliente") $("selos").addEventListener("change",e=>{osCliente=+e.target.value; ir("cliente");});
+  window.scrollTo(0,0);
+}
+document.addEventListener("click",e=>{
+  const n=e.target.closest(".nav"); if(n) return ir(n.dataset.v);
+  const et=e.target.closest("[data-etapa]"); if(et){ const [id,i]=et.dataset.etapa.split(":").map(Number); os.find(o=>o.id===id).etapa=i; return ir("patio"); }
+  const vc=e.target.closest("[data-vercli]"); if(vc){ osCliente=+vc.dataset.vercli; return ir("cliente"); }
+  const o=e.target.closest("[data-os]"); if(o){ return ir("patio"); }
+  const c=e.target.closest("[data-cli]"); if(c) return fichaCliente(cli(+c.dataset.cli));
+  const f=e.target.closest("[data-foto]"); if(f){ const k=cli(+f.dataset.foto); if(k.fotos<LIMITE_FOTOS){k.fotos++; fichaCliente(k); if(vista==="clientes") renderClientes();} return; }
+  const a=e.target.closest("[data-acao]"); if(a){ if(a.dataset.acao==="fechar") $("modal").innerHTML=""; if(a.dataset.acao==="novocli"||a.dataset.acao==="novaos") formCliente(); return; }
+  if(e.target.classList.contains("dialogo")) $("modal").innerHTML="";
+});
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") $("modal").innerHTML=""; });
+ir("painel");
+</script>
+</body>
+</html>
