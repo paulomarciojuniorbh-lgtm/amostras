@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Prontuário da Família · demonstração</title>
+<meta name="description" content="Demonstração de prontuário pessoal: histórico de saúde organizado e modo consulta para mostrar ao médico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F3F6F8; --card:#fff; --txt:#16232B; --mut:#5E6E78; --linha:#E1E8EC;
+  --pri:#0F7C80; --pri2:#E3F3F2; --esc:#0B3D4A; --alerta:#C2410C; --alerta2:#FDEDE4;
+  --ok:#15803D; --ok2:#E5F4EA; --aviso:#B45309; --aviso2:#FEF3DC; --azul:#2563EB;
+  --r:16px; --sombra:0 1px 2px rgba(11,61,74,.06),0 6px 20px rgba(11,61,74,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--bg);color:var(--txt);font-size:15px;line-height:1.5;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.demo{background:var(--esc);color:#CDE6E6;font-size:12.5px;text-align:center;padding:7px 14px}
+.demo b{color:#fff}
+header.top{background:var(--card);border-bottom:1px solid var(--linha);position:sticky;top:0;z-index:20}
+.top .in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px}
+.avatar{width:44px;height:44px;border-radius:14px;background:var(--pri2);color:var(--pri);display:grid;place-items:center;font-weight:800;flex:none}
+.pac{min-width:0;flex:1}
+.pac b{display:block;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pac small{color:var(--mut);font-size:12.5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:11px 16px;font-weight:700;font-size:14px;background:var(--pri);color:#fff;text-decoration:none;white-space:nowrap}
+.btn.cons{background:var(--esc)}
+.btn.claro{background:var(--card);color:var(--esc);border:1px solid var(--linha)}
+.btn.perigo{background:var(--alerta2);color:var(--alerta)}
+.btn.peq{padding:7px 11px;font-size:13px;border-radius:10px}
+.btn svg{flex:none}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 110px}
+nav.abas{display:flex;gap:6px;max-width:1100px;margin:0 auto;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
+nav.abas::-webkit-scrollbar{display:none}
+nav.abas button{border:1px solid var(--linha);background:var(--card);border-radius:999px;padding:7px 14px;font-weight:600;font-size:14px;color:var(--mut);white-space:nowrap}
+nav.abas button.on{background:var(--esc);color:#fff;border-color:var(--esc)}
+.aba{display:none}.aba.on{display:block}
+h2{font-size:20px;margin:4px 0 12px;letter-spacing:-.01em}
+h3{font-size:15px;margin-bottom:10px}
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sombra);padding:16px;border:1px solid var(--linha);min-width:0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:600;background:var(--bg)}
+.chip.alerg{background:var(--alerta2);color:var(--alerta)}
+.chip.cond{background:var(--pri2);color:var(--esc)}
+.lin{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--linha);font-size:14px}
+.lin:last-child{border:0}
+.lin span:first-child{color:var(--mut)}
+.lin b{text-align:right}
+.mini{font-size:12.5px;color:var(--mut)}
+.kpi{display:flex;flex-direction:column;gap:2px}
+.kpi span{font-size:12px;color:var(--mut);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.kpi strong{font-size:24px;letter-spacing:-.02em}
+.kpi em{font-style:normal;font-size:12.5px;font-weight:600}
+.up{color:var(--alerta)}.down{color:var(--ok)}.est{color:var(--mut)}
+.fora{color:var(--alerta);font-weight:700}
+.alerta-box{background:var(--alerta2);border:1px solid #F7C9B0;color:#7C2D12;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;font-size:14px}
+/* linha do tempo */
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.filtros select,.filtros input{border:1px solid var(--linha);background:var(--card);border-radius:10px;padding:9px 11px;min-width:0}
+.filtros input{flex:1;min-width:160px}
+.ano{font-weight:800;color:var(--mut);font-size:13px;margin:16px 0 8px;letter-spacing:.06em}
+.doc{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:12px 14px;margin-bottom:8px;cursor:pointer;text-align:left;width:100%}
+.doc:hover{border-color:var(--pri)}
+.doc .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none}
+.doc b{display:block;font-size:14.5px}
+.doc small{color:var(--mut);font-size:12.5px}
+.doc .dt{font-size:12.5px;color:var(--mut);text-align:right;white-space:nowrap}
+.t-exame .ic{background:#E0F2FE;color:#0369A1}
+.t-laudo .ic{background:#EDE9FE;color:#6D28D9}
+.t-receita .ic{background:var(--ok2);color:var(--ok)}
+.t-internacao .ic{background:var(--alerta2);color:var(--alerta)}
+.t-vacina .ic{background:var(--aviso2);color:var(--aviso)}
+.t-consulta .ic{background:var(--pri2);color:var(--pri)}
+.t-cirurgia .ic{background:#FCE7F3;color:#BE185D}
+/* exames */
+.sel-ex{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.sel-ex button{border:1px solid var(--linha);background:var(--card);border-radius:999px;padding:7px 12px;font-size:13.5px;font-weight:600}
+.sel-ex button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.graf svg{width:100%;height:auto;display:block}
+.tab{width:100%;border-collapse:collapse;font-size:14px}
+.tab th{text-align:left;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:8px 6px;border-bottom:1px solid var(--linha)}
+.tab td{padding:9px 6px;border-bottom:1px solid var(--linha)}
+.tab tr:last-child td{border:0}
+/* remédios */
+.turnos{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.turno h3{display:flex;align-items:center;gap:8px}
+.rem{padding:10px 12px;border-radius:12px;background:var(--bg);margin-bottom:8px}
+.rem b{display:block;font-size:14.5px}
+.rem small{color:var(--mut)}
+/* form */
+.form{display:grid;gap:12px}
+.form label{font-size:12.5px;font-weight:700;color:var(--mut);display:block;margin-bottom:4px}
+.form input,.form select,.form textarea{width:100%;border:1px solid var(--linha);background:var(--bg);border-radius:10px;padding:10px 12px;min-width:0}
+.form textarea{min-height:70px;resize:vertical}
+.drop{border:2px dashed #B9D7D6;border-radius:14px;padding:22px;text-align:center;background:var(--pri2);color:var(--esc);cursor:pointer}
+.drop input{display:none}
+.drop small{display:block;color:var(--mut);margin-top:4px}
+.prev-arq{margin-top:10px;font-size:13px;color:var(--esc);font-weight:600}
+/* família e acessos */
+.pessoa{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--linha)}
+.pessoa:last-child{border:0}
+.pessoa .av{width:34px;height:34px;border-radius:50%;background:var(--pri2);color:var(--pri);display:grid;place-items:center;font-weight:800;font-size:13px;flex:none}
+.pessoa div{flex:1;min-width:0}
+.pessoa small{color:var(--mut);display:block;font-size:12.5px}
+.tag{font-size:11px;font-weight:800;border-radius:999px;padding:3px 9px;text-transform:uppercase;letter-spacing:.04em;background:var(--bg);color:var(--mut);white-space:nowrap}
+.tag.adm{background:var(--pri2);color:var(--pri)}
+/* modal documento */
+.modal{position:fixed;inset:0;background:rgba(11,30,38,.55);z-index:60;display:none;overflow-y:auto;padding:20px 12px}
+.modal.on{display:block}
+.folha{background:#fff;max-width:720px;margin:0 auto;border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.folha-h{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--linha)}
+.folha-b{padding:18px}
+.folha-b img,.folha-b iframe{width:100%;border-radius:10px;border:1px solid var(--linha)}
+.folha-b iframe{height:70vh}
+.papel{border:1px solid var(--linha);border-radius:12px;padding:18px;background:#FCFCFB}
+.papel .cab{display:flex;justify-content:space-between;gap:10px;border-bottom:2px solid var(--esc);padding-bottom:10px;margin-bottom:12px}
+.papel .cab b{font-size:15px}
+.papel p{margin:6px 0;font-size:14px}
+/* modo consulta */
+#consulta{position:fixed;inset:0;z-index:50;background:#fff;display:none;overflow-y:auto}
+#consulta.on{display:block}
+.c-top{background:var(--esc);color:#fff;position:sticky;top:0;z-index:2}
+.c-top .in{max-width:1000px;margin:0 auto;padding:12px 16px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.c-top small{color:#9CC9CB;display:block;font-size:12px}
+.c-top b{font-size:15px}
+.c-main{max-width:1000px;margin:0 auto;padding:18px 16px 60px;display:grid;gap:14px}
+.c-id{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.c-id h1{font-size:26px;letter-spacing:-.02em;line-height:1.15}
+.c-id .dados{color:var(--mut);font-size:14px}
+.c-alerg{background:var(--alerta);color:#fff;border-radius:14px;padding:12px 16px;font-weight:700;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.c-alerg span{background:rgba(255,255,255,.18);border-radius:999px;padding:4px 12px}
+.c-sec{border:1px solid var(--linha);border-radius:14px;padding:14px 16px;min-width:0}
+.c-sec h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut);margin-bottom:10px}
+.qr{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.qr-box{width:168px;height:168px;background:#fff;border:1px solid var(--linha);border-radius:12px;display:grid;place-items:center;padding:8px}
+.qr-box img,.qr-box svg{width:100%;height:100%}
+.cont{font-size:28px;font-weight:800;letter-spacing:-.02em;color:var(--esc)}
+.lgpd{font-size:12.5px;color:var(--mut);background:var(--bg);border-radius:12px;padding:12px 14px}
+.toast{position:fixed;left:50%;bottom:86px;transform:translateX(-50%);background:var(--esc);color:#fff;padding:11px 16px;border-radius:12px;z-index:80;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100% - 32px)}
+.toast.on{opacity:1}
+/* barra inferior celular */
+.barra{display:none}
+@media (max-width:820px){
+  .g2,.g3,.turnos{grid-template-columns:1fr}
+  #kpis{grid-template-columns:repeat(3,1fr);gap:8px}
+  #kpis .card{padding:12px 10px}
+  #kpis .kpi strong{font-size:20px}
+  #kpis .kpi span{font-size:10.5px}
+  #kpis .kpi em{font-size:11px}
+  nav.abas{display:none}
+  .barra{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--linha);z-index:30;padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+  .barra button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--mut);padding:4px 0}
+  .barra button.on{color:var(--pri)}
+  .barra button.mais span.b{background:var(--pri);color:#fff;border-radius:12px;width:40px;height:30px;display:grid;place-items:center}
+  .top .btn.cons .txt-l{display:none}
+  .qr{grid-template-columns:1fr;justify-items:center;text-align:center}
+}
+@media print{
+  body{background:#fff}
+  .demo,header.top,nav.abas,.barra,main,.c-top,.no-print{display:none!important}
+  #consulta{display:block!important;position:static}
+  .c-main{padding:0}
+}
+</style>
+</head>
+<body>
+
+<div class="demo"><b>Demonstração</b> · paciente e dados fictícios. Na versão real, cada família tem login próprio e os arquivos ficam criptografados.</div>
+
+<header class="top"><div class="in">
+  <div class="avatar" aria-hidden="true">JA</div>
+  <div class="pac"><b>José Almeida Santos</b><small>78 anos · Sangue O+ · cuidado por Ana e Carlos</small></div>
+  <button class="btn cons" id="abreConsulta" type="button">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4z"/><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"/></svg>
+    <span class="txt-l">Modo consulta</span><span class="txt-c" aria-hidden="true"></span>
+  </button>
+</div>
+<nav class="abas" id="abas">
+  <button data-a="resumo" class="on">Resumo</button>
+  <button data-a="historico">Histórico</button>
+  <button data-a="exames">Exames</button>
+  <button data-a="remedios">Remédios</button>
+  <button data-a="adicionar">+ Adicionar documento</button>
+  <button data-a="familia">Família e acessos</button>
+</nav>
+</header>
+
+<main>
+  <!-- RESUMO -->
+  <section class="aba on" id="a-resumo">
+    <div class="alerta-box" style="margin-bottom:14px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex:none;margin-top:1px"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div><b>Alergias:</b> <span id="txtAlerg"></span></div></div>
+    <div class="grid g3" style="margin-bottom:14px" id="kpis"></div>
+    <div class="grid g2">
+      <div class="card"><h3>Condições de saúde</h3><div id="condicoes"></div></div>
+      <div class="card"><h3>Remédios em uso</h3><div id="remResumo"></div><button class="btn claro peq" style="margin-top:10px" data-ir="remedios">Ver horários</button></div>
+      <div class="card"><h3>Cirurgias e procedimentos</h3><div id="cirurgias"></div></div>
+      <div class="card"><h3>Dados gerais</h3>
+        <div class="lin"><span>Nascimento</span><b>12/03/1948</b></div>
+        <div class="lin"><span>Tipo sanguíneo</span><b>O+</b></div>
+        <div class="lin"><span>Peso / altura</span><b>74 kg · 1,68 m</b></div>
+        <div class="lin"><span>Plano de saúde</span><b>Plano Exemplo · nº 0000 0000</b></div>
+        <div class="lin"><span>Emergência</span><b>Ana (filha) · (98) 90000-0000</b></div>
+      </div>
+      <div class="card" style="grid-column:1/-1"><h3>Médicos que acompanham</h3><div class="grid g3" id="medicos"></div></div>
+    </div>
+  </section>
+
+  <!-- HISTÓRICO -->
+  <section class="aba" id="a-historico">
+    <h2>Histórico</h2>
+    <div class="filtros">
+      <input id="fBusca" placeholder="Buscar: ecocardiograma, glicemia, alta…" aria-label="Buscar no histórico">
+      <select id="fTipo" aria-label="Tipo"><option value="">Todos os tipos</option></select>
+      <select id="fEsp" aria-label="Especialidade"><option value="">Todas as especialidades</option></select>
+    </div>
+    <div id="linhaTempo"></div>
+  </section>
+
+  <!-- EXAMES -->
+  <section class="aba" id="a-exames">
+    <h2>Evolução dos exames</h2>
+    <div class="sel-ex" id="selEx"></div>
+    <div class="card graf"><div id="grafico"></div><p class="mini" id="grafRef" style="margin-top:6px"></p></div>
+    <div class="card" style="margin-top:14px;overflow-x:auto"><h3>Últimos resultados</h3><table class="tab" id="tabUlt"></table></div>
+  </section>
+
+  <!-- REMÉDIOS -->
+  <section class="aba" id="a-remedios">
+    <h2>Remédios e horários</h2>
+    <div class="turnos" id="turnos"></div>
+    <div class="card" style="margin-top:14px"><h3>Mudanças recentes</h3><div id="mudancas"></div></div>
+  </section>
+
+  <!-- ADICIONAR -->
+  <section class="aba" id="a-adicionar">
+    <h2>Adicionar documento</h2>
+    <div class="grid g2">
+      <form class="card form" id="fDoc">
+        <label class="drop" for="arq">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+          <b style="display:block;margin-top:6px">Tirar foto ou escolher arquivo</b>
+          <small>Foto do exame, PDF do laboratório, receita, laudo…</small>
+          <input type="file" id="arq" accept="image/*,application/pdf" capture="environment">
+          <div class="prev-arq" id="prevArq"></div>
+        </label>
+        <div><label for="dTit">Título</label><input id="dTit" required placeholder="Ex.: Exames de sangue de rotina"></div>
+        <div class="grid g2" style="gap:12px">
+          <div><label for="dData">Data</label><input type="date" id="dData" required></div>
+          <div><label for="dTipo">Tipo</label><select id="dTipo"></select></div>
+        </div>
+        <div class="grid g2" style="gap:12px">
+          <div><label for="dEsp">Especialidade</label><select id="dEsp"></select></div>
+          <div><label for="dMed">Médico ou local</label><input id="dMed" placeholder="Ex.: Laboratório Central"></div>
+        </div>
+        <div><label for="dObs">Observações</label><textarea id="dObs" placeholder="O que o médico disse, o que mudou…"></textarea></div>
+        <details><summary style="cursor:pointer;font-weight:700;font-size:14px">Lançar valores de exame (opcional)</summary>
+          <div class="grid g2" style="gap:12px;margin-top:10px" id="valoresEx"></div>
+        </details>
+        <button class="btn" type="submit">Salvar no histórico</button>
+      </form>
+      <div class="card">
+        <h3>Como fica organizado</h3>
+        <p class="mini" style="font-size:14px">Cada documento entra na linha do tempo com data, tipo e especialidade. Os valores de exame que você lançar viram gráfico de evolução automaticamente.</p>
+        <p class="mini" style="font-size:14px;margin-top:10px">Na versão real, a leitura dos valores pode ser automática: você manda a foto do exame e o sistema preenche os números para você só conferir.</p>
+        <div class="lgpd" style="margin-top:14px">Nesta demonstração, o que você adicionar fica só neste navegador. Nada é enviado para a internet.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAMÍLIA E ACESSOS -->
+  <section class="aba" id="a-familia">
+    <h2>Família e acessos</h2>
+    <div class="grid g2">
+      <div class="card"><h3>Quem pode ver e editar</h3>
+        <div class="pessoa"><span class="av">A</span><div><b>Ana (filha)</b><small>Administra o prontuário</small></div><span class="tag adm">edita</span></div>
+        <div class="pessoa"><span class="av">C</span><div><b>Carlos (filho)</b><small>Acompanha as consultas de cardiologia</small></div><span class="tag adm">edita</span></div>
+        <div class="pessoa"><span class="av">J</span><div><b>José (paciente)</b><small>Autorizou o uso dos dados em 02/10/2026</small></div><span class="tag">vê</span></div>
+        <button class="btn claro peq" style="margin-top:10px" type="button" id="convidar">+ Convidar familiar</button>
+      </div>
+      <div class="card"><h3>Registro de acessos</h3><div id="acessos"></div></div>
+    </div>
+  </section>
+</main>
+
+<nav class="barra" id="barra">
+  <button data-a="resumo" class="on"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Resumo</button>
+  <button data-a="historico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Histórico</button>
+  <button data-a="adicionar" class="mais"><span class="b"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span>Adicionar</button>
+  <button data-a="exames"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l5-6 4 3 6-8 3 4"/></svg>Exames</button>
+  <button data-a="remedios"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="18" height="7" rx="3.5"/><path d="M12 9v7"/></svg>Remédios</button>
+</nav>
+
+<!-- documento -->
+<div class="modal" id="mDoc" role="dialog" aria-modal="true">
+  <div class="folha">
+    <div class="folha-h"><b id="mDocTit"></b><button class="btn claro peq" type="button" id="fechaDoc">Fechar ✕</button></div>
+    <div class="folha-b" id="mDocCorpo"></div>
+  </div>
+</div>
+
+<!-- MODO CONSULTA -->
+<div id="consulta" role="dialog" aria-modal="true" aria-label="Modo consulta">
+  <div class="c-top"><div class="in">
+    <div><small id="cModo">Modo consulta · somente leitura</small><b>Prontuário de José Almeida Santos</b></div>
+    <div style="display:flex;gap:8px" class="no-print">
+      <button class="btn claro peq" type="button" id="imprimir">Imprimir</button>
+      <button class="btn peq" type="button" id="fechaConsulta" style="background:#fff;color:var(--esc)">Sair</button>
+    </div>
+  </div></div>
+  <div class="c-main">
+    <div class="c-id">
+      <div class="avatar" style="width:58px;height:58px;font-size:20px">JA</div>
+      <div><h1>José Almeida Santos</h1><div class="dados">78 anos (12/03/1948) · Sangue O+ · 74 kg · 1,68 m</div></div>
+    </div>
+    <div class="c-alerg" id="cAlerg"></div>
+    <div class="grid g2">
+      <div class="c-sec"><h3>Condições</h3><div id="cCond"></div></div>
+      <div class="c-sec"><h3>Remédios em uso</h3><div id="cRem"></div></div>
+    </div>
+    <div class="c-sec" style="overflow-x:auto"><h3>Últimos exames</h3><table class="tab" id="cEx"></table><p class="mini" style="margin-top:8px">Seta compara com o exame anterior (verde melhorou, laranja piorou). Valor em laranja: fora da referência do laboratório.</p></div>
+    <div class="grid g2">
+      <div class="c-sec"><h3>Últimos 12 meses</h3><div id="cEventos"></div></div>
+      <div class="c-sec"><h3>Cirurgias e procedimentos</h3><div id="cCir"></div></div>
+    </div>
+    <div class="c-sec no-print" id="cCompart">
+      <h3>Mostrar no computador do médico</h3>
+      <div class="qr">
+        <div class="qr-box" id="qrBox"></div>
+        <div>
+          <p style="font-size:14px">O médico aponta a câmera para o código e abre este prontuário no computador dele, <b>só para leitura</b>.</p>
+          <p style="margin-top:8px" class="mini">Acesso expira em</p>
+          <div class="cont" id="contagem">4:00:00</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+            <button class="btn claro peq" type="button" id="copiaLink">Copiar link</button>
+            <button class="btn perigo peq" type="button" id="encerra">Encerrar acesso agora</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="lgpd">Informações organizadas pela família a partir de documentos de laboratórios, clínicas e hospitais. Não substituem o prontuário oficial de cada serviço de saúde. Os documentos originais estão no histórico.</div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* ===================== dados fictícios ===================== */
+const ALERGIAS = [["Penicilina","urticária em 2015"],["Dipirona","queda de pressão em 2021"]];
+const CONDICOES = [
+  ["Hipertensão arterial","desde 2008","Cardiologia"],
+  ["Diabetes tipo 2","desde 2012","Endocrinologia"],
+  ["Doença renal crônica (estágio 3a)","desde 2023","Nefrologia"],
+  ["Doença coronariana · stent em 2019","desde 2019","Cardiologia"]
+];
+const CIRURGIAS = [["Angioplastia coronária com stent","jun/2019","Hospital Exemplo"],["Cirurgia de catarata · olho direito","set/2022","Clínica de Olhos Exemplo"]];
+const MEDICOS = [["Dr. Ricardo Menezes","Cardiologia","última consulta jun/2026"],["Dra. Paula Rocha","Endocrinologia","última consulta ago/2026"],["Dr. Fábio Lima","Nefrologia","última consulta mar/2026"]];
+const REMEDIOS = [
+  {n:"Losartana 50 mg",d:"1 comprimido",t:["manha","noite"],para:"pressão"},
+  {n:"Anlodipino 5 mg",d:"1 comprimido",t:["manha"],para:"pressão"},
+  {n:"Metformina 500 mg",d:"1 comprimido após a refeição",t:["tarde","noite"],para:"diabetes"},
+  {n:"AAS 100 mg",d:"1 comprimido após o almoço",t:["tarde"],para:"coração (stent)"},
+  {n:"Atorvastatina 40 mg",d:"1 comprimido",t:["noite"],para:"colesterol"}
+];
+const MUDANCAS = [["28/08/2026","Metformina reduzida de 850 mg para 500 mg","Dra. Paula Rocha"],["22/03/2026","Anlodipino 5 mg incluído","Dr. Ricardo Menezes"],["10/10/2025","Amoxicilina por 7 dias (pneumonia), já encerrado","Hospital Exemplo"]];
+const TIPOS = {exame:"Exame de laboratório",laudo:"Laudo de imagem/teste",consulta:"Consulta",receita:"Receita",internacao:"Internação",cirurgia:"Cirurgia/procedimento",vacina:"Vacina"};
+const ESPS = ["Cardiologia","Endocrinologia","Nefrologia","Clínica médica","Oftalmologia","Laboratório","Imunização"];
+/* exames: valores por data */
+const EXDEF = {
+  hba1c:{n:"Hemoglobina glicada",u:"%",ref:[4,5.6],dec:1,bom:-1},
+  glic:{n:"Glicemia de jejum",u:"mg/dL",ref:[70,99],dec:0,bom:-1},
+  creat:{n:"Creatinina",u:"mg/dL",ref:[0.7,1.3],dec:2,bom:-1},
+  tfg:{n:"Filtração renal (TFG)",u:"mL/min",ref:[60,120],dec:0,bom:1},
+  ldl:{n:"Colesterol LDL",u:"mg/dL",ref:[0,100],dec:0,bom:-1},
+  pot:{n:"Potássio",u:"mEq/L",ref:[3.5,5.1],dec:1,bom:0}
+};
+const COLETAS = [
+  {d:"2024-11-12",v:{hba1c:7.9,glic:156,creat:1.30,tfg:54,ldl:92,pot:4.4}},
+  {d:"2025-03-10",v:{hba1c:7.4,glic:142,creat:1.35,tfg:52,ldl:85,pot:4.6}},
+  {d:"2025-07-14",v:{hba1c:7.1,glic:131,creat:1.40,tfg:50,ldl:78,pot:4.5}},
+  {d:"2025-11-18",v:{hba1c:6.9,glic:124,creat:1.42,tfg:49,ldl:74,pot:4.8}},
+  {d:"2026-03-15",v:{hba1c:7.2,glic:135,creat:1.48,tfg:46,ldl:70,pot:5.0}},
+  {d:"2026-08-20",v:{hba1c:6.8,glic:118,creat:1.45,tfg:47,ldl:66,pot:4.7}}
+];
+const DOCS_BASE = [
+  {id:"d1",d:"2026-08-28",tipo:"consulta",esp:"Endocrinologia",tit:"Consulta de endocrinologia",med:"Dra. Paula Rocha",obs:"Glicada em 6,8%. Metformina reduzida para 500 mg por causa da função dos rins. Retorno em 4 meses."},
+  {id:"d2",d:"2026-08-20",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2026-08-20"},
+  {id:"d3",d:"2026-06-10",tipo:"laudo",esp:"Cardiologia",tit:"Ecocardiograma",med:"Dr. Ricardo Menezes",obs:"Fração de ejeção 58%. Sem alterações importantes em relação a 2024."},
+  {id:"d4",d:"2026-04-02",tipo:"vacina",esp:"Imunização",tit:"Vacina da gripe 2026",med:"Posto de saúde"},
+  {id:"d5",d:"2026-03-22",tipo:"consulta",esp:"Cardiologia",tit:"Consulta de cardiologia",med:"Dr. Ricardo Menezes",obs:"Pressão em casa média 148/88. Incluído anlodipino 5 mg pela manhã."},
+  {id:"d6",d:"2026-03-18",tipo:"consulta",esp:"Nefrologia",tit:"Consulta de nefrologia",med:"Dr. Fábio Lima",obs:"Função renal estável. Evitar anti-inflamatórios. Repetir exames em 6 meses."},
+  {id:"d7",d:"2026-03-15",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2026-03-15"},
+  {id:"d8",d:"2025-11-18",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2025-11-18"},
+  {id:"d9",d:"2025-10-13",tipo:"internacao",esp:"Clínica médica",tit:"Internação por pneumonia · 3 dias",med:"Hospital Exemplo",obs:"Internado de 10 a 13/10/2025. Tratado com amoxicilina (sem reação). Alta com orientação de vacina pneumocócica."},
+  {id:"d10",d:"2025-10-28",tipo:"vacina",esp:"Imunização",tit:"Vacina pneumocócica",med:"Clínica de vacinas"},
+  {id:"d11",d:"2025-07-14",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2025-07-14"},
+  {id:"d12",d:"2025-05-20",tipo:"laudo",esp:"Cardiologia",tit:"Teste ergométrico",med:"Dr. Ricardo Menezes",obs:"Sem sinais de isquemia no esforço realizado."},
+  {id:"d13",d:"2025-03-10",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2025-03-10"},
+  {id:"d14",d:"2024-11-12",tipo:"exame",esp:"Laboratório",tit:"Exames de sangue de rotina",med:"Laboratório Central (fictício)",col:"2024-11-12"},
+  {id:"d15",d:"2022-09-14",tipo:"cirurgia",esp:"Oftalmologia",tit:"Cirurgia de catarata · olho direito",med:"Clínica de Olhos Exemplo",obs:"Sem intercorrências. Lente intraocular implantada."},
+  {id:"d16",d:"2019-06-18",tipo:"cirurgia",esp:"Cardiologia",tit:"Angioplastia com stent · relatório de alta",med:"Hospital Exemplo",obs:"Stent farmacológico em artéria descendente anterior. Uso contínuo de AAS."}
+];
+const ACESSOS_BASE = [
+  ["20/10/2026 14:12","Ana adicionou: Consulta de endocrinologia"],
+  ["28/08/2026 10:40","Dra. Paula Rocha abriu pelo código (acesso de 4 horas)"],
+  ["22/03/2026 09:05","Dr. Ricardo Menezes abriu pelo código (acesso de 4 horas)"],
+  ["15/03/2026 18:30","Carlos adicionou: Exames de sangue de rotina"]
+];
+
+/* ===================== estado local (só conveniência da demo) ===================== */
+const KEY = "pront-demo-v1";
+let st = {docs:[], coletas:[], acessos:[]};
+try { const s = JSON.parse(localStorage.getItem(KEY)||"null"); if (s && Array.isArray(s.docs)) st = s; } catch(e) {}
+const salva = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e) { toast("Arquivo grande demais para guardar nesta demonstração; ele some ao recarregar."); } };
+const arquivos = {}; // arquivos desta sessão (objectURL)
+
+/* ===================== utilidades ===================== */
+const $ = s => document.querySelector(s);
+const esc = s => String(s??"").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const dBR = iso => { const [y,m,d] = iso.split("-"); return `${d}/${m}/${y}`; };
+const MES = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+const dCurta = iso => { const [y,m] = iso.split("-"); return `${MES[+m-1]}/${y.slice(2)}`; };
+const num = (v,dec) => v.toLocaleString("pt-BR",{minimumFractionDigits:dec,maximumFractionDigits:dec});
+function toast(s){ const t=$("#toast"); t.textContent=s; t.classList.add("on"); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove("on"),3200); }
+function todasColetas(){ return [...COLETAS, ...st.coletas].sort((a,b)=>a.d.localeCompare(b.d)); }
+function todosDocs(){ return [...st.docs, ...DOCS_BASE].sort((a,b)=>b.d.localeCompare(a.d)); }
+function serie(k){ return todasColetas().filter(c=>c.v[k]!=null).map(c=>({d:c.d,v:c.v[k]})); }
+function corTend(k,diff){ if(Math.abs(diff)<1e-9) return "est"; const b=EXDEF[k].bom; if(!b) return "est"; return (diff*b>0)?"down":"up"; }
+function fora(k,v){ const r=EXDEF[k].ref; return v<r[0]||v>r[1]; }
+const ICONES = {
+  exame:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/></svg>',
+  laudo:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg>',
+  consulta:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3v6a4 4 0 0 0 8 0V3M10 13v3a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></svg>',
+  receita:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>',
+  internacao:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 18V8M3 14h18v4M21 14v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="2"/></svg>',
+  cirurgia:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>',
+  vacina:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2l4 4M15 5l4 4M17 7l-9 9H5v-3l9-9M5 19l-3 3"/></svg>'
+};
+
+/* ===================== navegação ===================== */
+function vai(a){
+  document.querySelectorAll(".aba").forEach(s=>s.classList.toggle("on", s.id==="a-"+a));
+  document.querySelectorAll("#abas button,#barra button").forEach(b=>b.classList.toggle("on", b.dataset.a===a));
+  window.scrollTo({top:0});
+}
+document.querySelectorAll("#abas button,#barra button").forEach(b=>b.onclick=()=>vai(b.dataset.a));
+document.querySelectorAll("[data-ir]").forEach(b=>b.onclick=()=>vai(b.dataset.ir));
+
+/* ===================== resumo ===================== */
+function desenhaResumo(){
+  $("#txtAlerg").innerHTML = ALERGIAS.map(([a,o])=>`${esc(a)} <span style="font-weight:400">(${esc(o)})</span>`).join(" · ");
+  $("#condicoes").innerHTML = CONDICOES.map(([c,d,e])=>`<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(c)}</span><b class="mini" style="font-weight:500">${esc(d)} · ${esc(e)}</b></div>`).join("");
+  $("#remResumo").innerHTML = REMEDIOS.map(r=>`<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(r.n)}</span><b class="mini" style="font-weight:500">${esc(r.para)}</b></div>`).join("");
+  $("#cirurgias").innerHTML = CIRURGIAS.map(([c,d,l])=>`<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(c)}</span><b class="mini" style="font-weight:500">${esc(d)}</b></div>`).join("");
+  $("#medicos").innerHTML = MEDICOS.map(([n,e,u])=>`<div class="pessoa" style="border:0"><span class="av">${n.split(" ")[1][0]}</span><div><b>${esc(n)}</b><small>${esc(e)} · ${esc(u)}</small></div></div>`).join("");
+  const k = (key,lbl)=>{ const s=serie(key); const a=s[s.length-1], b=s[s.length-2]; const d=EXDEF[key];
+    const diff = b ? a.v-b.v : 0; const cls = corTend(key,diff);
+    const seta = Math.abs(diff)<1e-9?"→":(diff>0?"↑":"↓");
+    return `<div class="card kpi"><span>${lbl}</span><strong class="${fora(key,a.v)?"fora":""}">${num(a.v,d.dec)} <small style="font-size:13px;font-weight:600;color:var(--mut)">${d.u}</small></strong><em class="${cls}">${seta} ${b?num(Math.abs(diff),d.dec)+" vs "+dCurta(b.d):""}</em><small class="mini">${dBR(a.d)}</small></div>`; };
+  $("#kpis").innerHTML = k("hba1c","Glicada") + k("tfg","Filtração renal") + k("ldl","LDL");
+}
+
+/* ===================== histórico ===================== */
+function preencheFiltros(){
+  $("#fTipo").innerHTML = '<option value="">Todos os tipos</option>' + Object.entries(TIPOS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  $("#fEsp").innerHTML = '<option value="">Todas as especialidades</option>' + ESPS.map(e=>`<option>${e}</option>`).join("");
+  $("#dTipo").innerHTML = Object.entries(TIPOS).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+  $("#dEsp").innerHTML = ESPS.map(e=>`<option>${e}</option>`).join("");
+  $("#valoresEx").innerHTML = Object.entries(EXDEF).map(([k,d])=>`<div><label for="v-${k}">${d.n} (${d.u})</label><input id="v-${k}" inputmode="decimal" placeholder="—"></div>`).join("");
+}
+function desenhaHistorico(){
+  const q = $("#fBusca").value.trim().toLowerCase(), t = $("#fTipo").value, e = $("#fEsp").value;
+  const docs = todosDocs().filter(x => (!t||x.tipo===t) && (!e||x.esp===e) && (!q || (x.tit+" "+(x.obs||"")+" "+(x.med||"")).toLowerCase().includes(q)));
+  let ano = "", h = "";
+  docs.forEach(x => {
+    const y = x.d.slice(0,4); if (y!==ano){ ano=y; h += `<div class="ano">${y}</div>`; }
+    h += `<button class="doc t-${x.tipo}" data-doc="${x.id}" type="button"><span class="ic">${ICONES[x.tipo]||""}</span><span><b>${esc(x.tit)}</b><small>${TIPOS[x.tipo]} · ${esc(x.esp)}${x.med?" · "+esc(x.med):""}</small></span><span class="dt">${dBR(x.d)}${x.novo?'<br><span class="tag adm">novo</span>':""}</span></button>`;
+  });
+  $("#linhaTempo").innerHTML = h || '<p class="mini">Nada encontrado com esses filtros.</p>';
+  document.querySelectorAll("#linhaTempo [data-doc]").forEach(b=>b.onclick=()=>abreDoc(b.dataset.doc));
+}
+["#fBusca","#fTipo","#fEsp"].forEach(s=>$(s).addEventListener("input",desenhaHistorico));
+
+/* ===================== documento ===================== */
+function abreDoc(id){
+  const x = todosDocs().find(d=>d.id===id); if(!x) return;
+  $("#mDocTit").textContent = x.tit;
+  let corpo = "";
+  if (arquivos[id]) {
+    corpo += arquivos[id].tipo.startsWith("image/") ? `<img src="${arquivos[id].url}" alt="${esc(x.tit)}">` : `<iframe src="${arquivos[id].url}" title="${esc(x.tit)}"></iframe>`;
+  } else if (x.arqDados) {
+    corpo += x.arqTipo.startsWith("image/") ? `<img src="${x.arqDados}" alt="${esc(x.tit)}">` : `<p class="mini">Arquivo PDF anexado: ${esc(x.arqNome)}</p>`;
+  }
+  corpo += `<div class="papel" style="margin-top:${corpo?"14px":"0"}"><div class="cab"><div><b>${esc(x.med||"")}</b><div class="mini">${TIPOS[x.tipo]} · ${esc(x.esp)}</div></div><div class="mini" style="text-align:right">Paciente: José Almeida Santos<br>Data: ${dBR(x.d)}</div></div>`;
+  if (x.col) {
+    const c = todasColetas().find(c=>c.d===x.col);
+    corpo += `<table class="tab"><tr><th>Exame</th><th>Resultado</th><th>Referência</th></tr>` + Object.entries(c.v).map(([k,v])=>{ const d=EXDEF[k]; return `<tr><td>${d.n}</td><td class="${fora(k,v)?"fora":""}">${num(v,d.dec)} ${d.u}</td><td class="mini">${num(d.ref[0],d.dec)} a ${num(d.ref[1],d.dec)} ${d.u}</td></tr>`; }).join("") + `</table>`;
+  }
+  if (x.obs) corpo += `<p>${esc(x.obs)}</p>`;
+  if (!x.col && !x.obs) corpo += `<p class="mini">Documento registrado sem observações.</p>`;
+  corpo += `</div><p class="mini" style="margin-top:10px">Na versão real, aqui aparece a foto ou o PDF original do documento.</p>`;
+  $("#mDocCorpo").innerHTML = corpo;
+  $("#mDoc").classList.add("on");
+}
+$("#fechaDoc").onclick = () => $("#mDoc").classList.remove("on");
+$("#mDoc").onclick = e => { if (e.target.id==="mDoc") $("#mDoc").classList.remove("on"); };
+
+/* ===================== exames / gráfico ===================== */
+let exSel = "hba1c";
+function desenhaSelEx(){
+  $("#selEx").innerHTML = Object.entries(EXDEF).map(([k,d])=>`<button type="button" data-ex="${k}" class="${k===exSel?"on":""}">${d.n}</button>`).join("");
+  document.querySelectorAll("#selEx [data-ex]").forEach(b=>b.onclick=()=>{ exSel=b.dataset.ex; desenhaSelEx(); desenhaGrafico(); });
+}
+function desenhaGrafico(){
+  const d = EXDEF[exSel], s = serie(exSel);
+  const W=760, H=300, ml=48, mr=26, mt=38, mb=40;
+  const vals = s.map(p=>p.v).concat(d.ref);
+  let lo = Math.min(...vals), hi = Math.max(...vals); const pad=(hi-lo)*0.15||1; lo-=pad; hi+=pad; if (lo<0) lo=0;
+  const x = i => ml + (s.length===1 ? (W-ml-mr)/2 : i*(W-ml-mr)/(s.length-1));
+  const y = v => mt + (hi-v)*(H-mt-mb)/(hi-lo);
+  const ticks = 4; let grid = "";
+  for (let i=0;i<=ticks;i++){ const v = lo + (hi-lo)*i/ticks; grid += `<line x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}" stroke="#E1E8EC"/><text x="${ml-8}" y="${y(v)+4}" text-anchor="end" font-size="12" fill="#5E6E78">${num(v,d.dec>1?1:d.dec)}</text>`; }
+  const r0 = Math.max(d.ref[0],lo), r1 = Math.min(d.ref[1],hi);
+  const faixa = r1>r0 ? `<rect x="${ml}" width="${W-ml-mr}" y="${y(r1)}" height="${y(r0)-y(r1)}" fill="#15803D" opacity=".08"/><text x="${W-mr-6}" y="${y(r1)+15}" text-anchor="end" font-size="12" fill="#15803D" font-weight="600">referência do laboratório</text>` : "";
+  const path = s.map((p,i)=>(i?"L":"M")+x(i)+" "+y(p.v)).join(" ");
+  const pts = s.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p.v)}" r="5" fill="${fora(exSel,p.v)?"#C2410C":"#0F7C80"}" stroke="#fff" stroke-width="2"/><text x="${x(i)}" y="${y(p.v)-12}" text-anchor="middle" font-size="12.5" font-weight="700" fill="#16232B">${num(p.v,d.dec)}</text><text x="${x(i)}" y="${H-mb+22}" text-anchor="middle" font-size="12" fill="#5E6E78">${dCurta(p.d)}</text>`).join("");
+  $("#grafico").innerHTML = `<h3>${d.n} <span class="mini" style="font-weight:500">(${d.u})</span></h3><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Evolução de ${d.n}">${grid}${faixa}<path d="${path}" fill="none" stroke="#0F7C80" stroke-width="2.5"/>${pts}</svg>`;
+  $("#grafRef").textContent = `Faixa verde: referência do laboratório (${num(d.ref[0],d.dec)} a ${num(d.ref[1],d.dec)} ${d.u}). A meta de cada paciente é definida pelo médico.`;
+}
+function linhasUltimos(){
+  return Object.entries(EXDEF).map(([k,d])=>{ const s=serie(k); const a=s[s.length-1], b=s[s.length-2];
+    const diff = b ? a.v-b.v : 0; const seta = !b||Math.abs(diff)<1e-9 ? '<span class="est">→</span>' : `<span class="${corTend(k,diff)}">${diff>0?"↑":"↓"}</span>`;
+    return `<tr><td>${d.n}</td><td class="${fora(k,a.v)?"fora":""}"><b>${num(a.v,d.dec)}</b> ${d.u}</td><td>${seta} ${b?`<span class="mini">antes ${num(b.v,d.dec)}</span>`:""}</td><td class="mini">${dBR(a.d)}</td></tr>`; }).join("");
+}
+function desenhaUltimos(){ $("#tabUlt").innerHTML = `<tr><th>Exame</th><th>Último</th><th>Tendência</th><th>Data</th></tr>` + linhasUltimos(); }
+
+/* ===================== remédios ===================== */
+function desenhaRemedios(){
+  const T = [["manha","Manhã","☀️"],["tarde","Almoço / tarde","🌤️"],["noite","Noite","🌙"]];
+  $("#turnos").innerHTML = T.map(([k,n,i])=>`<div class="card turno"><h3><span aria-hidden="true">${i}</span>${n}</h3>${REMEDIOS.filter(r=>r.t.includes(k)).map(r=>`<div class="rem"><b>${esc(r.n)}</b><small>${esc(r.d)} · ${esc(r.para)}</small></div>`).join("")}</div>`).join("");
+  $("#mudancas").innerHTML = MUDANCAS.map(([d,o,q])=>`<div class="lin"><span style="color:var(--txt)"><b style="font-weight:600">${esc(o)}</b><br><small class="mini">${esc(q)}</small></span><b class="mini" style="font-weight:500;white-space:nowrap">${d}</b></div>`).join("");
+}
+
+/* ===================== adicionar ===================== */
+let arqAtual = null;
+$("#dData").value = new Date().toISOString().slice(0,10);
+$("#arq").onchange = e => {
+  const f = e.target.files[0]; if (!f) return;
+  arqAtual = f; $("#prevArq").textContent = "📎 " + f.name + " (" + Math.round(f.size/1024) + " KB)";
+  if (!$("#dTit").value) $("#dTit").value = f.type==="application/pdf" ? "Documento em PDF" : "Foto de documento";
+};
+$("#fDoc").onsubmit = async ev => {
+  ev.preventDefault();
+  const id = "u"+Date.now();
+  const doc = {id, d:$("#dData").value, tipo:$("#dTipo").value, esp:$("#dEsp").value, tit:$("#dTit").value.trim(), med:$("#dMed").value.trim(), obs:$("#dObs").value.trim(), novo:true};
+  const v = {}; Object.keys(EXDEF).forEach(k=>{ const x = parseFloat(($("#v-"+k).value||"").replace(",",".")); if (!isNaN(x)) v[k]=x; });
+  if (Object.keys(v).length){ st.coletas.push({d:doc.d, v}); doc.col = doc.d; if (doc.tipo!=="exame") doc.tipo="exame"; }
+  if (arqAtual){
+    arquivos[id] = {url:URL.createObjectURL(arqAtual), tipo:arqAtual.type};
+    doc.arqNome = arqAtual.name; doc.arqTipo = arqAtual.type;
+    if (arqAtual.type.startsWith("image/") && arqAtual.size < 900*1024) {
+      doc.arqDados = await new Promise(r=>{ const fr=new FileReader(); fr.onload=()=>r(fr.result); fr.readAsDataURL(arqAtual); });
+    }
+  }
+  st.docs.push(doc);
+  st.acessos.unshift([agora(), "Ana adicionou: "+doc.tit]);
+  salva();
+  ev.target.reset(); $("#dData").value = new Date().toISOString().slice(0,10); $("#prevArq").textContent=""; arqAtual=null;
+  tudo(); vai("historico"); toast("Salvo no histórico" + (Object.keys(v).length?" e no gráfico de exames":"") + ".");
+};
+function agora(){ const d=new Date(); return d.toLocaleDateString("pt-BR")+" "+d.toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"}); }
+
+/* ===================== família / acessos ===================== */
+function desenhaAcessos(){
+  $("#acessos").innerHTML = [...st.acessos, ...ACESSOS_BASE].slice(0,12).map(([d,t])=>`<div class="lin"><span style="color:var(--txt)">${esc(t)}</span><b class="mini" style="font-weight:500;white-space:nowrap">${esc(d)}</b></div>`).join("");
+}
+$("#convidar").onclick = () => toast("Na versão real, o familiar recebe um convite por WhatsApp com login próprio.");
+
+/* ===================== modo consulta ===================== */
+const ehMedico = new URLSearchParams(location.search).has("medico");
+let fimAcesso = null, timer = null;
+function desenhaConsulta(){
+  $("#cAlerg").innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>ALERGIAS ` + ALERGIAS.map(([a,o])=>`<span>${esc(a)} · ${esc(o)}</span>`).join("");
+  $("#cCond").innerHTML = CONDICOES.map(([c,d])=>`<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(c)}</span><b class="mini" style="font-weight:500">${esc(d)}</b></div>`).join("");
+  $("#cRem").innerHTML = REMEDIOS.map(r=>{ const h={manha:"manhã",tarde:"almoço",noite:"noite"}; return `<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(r.n)}</span><b class="mini" style="font-weight:500">${r.t.map(t=>h[t]).join(" e ")}</b></div>`; }).join("");
+  $("#cEx").innerHTML = `<tr><th>Exame</th><th>Último</th><th>Tendência</th><th>Data</th></tr>` + linhasUltimos();
+  const lim = new Date(); lim.setFullYear(lim.getFullYear()-1); const limIso = lim.toISOString().slice(0,10);
+  $("#cEventos").innerHTML = todosDocs().filter(x=>x.d>=limIso && x.tipo!=="exame").slice(0,8).map(x=>`<div class="lin" style="cursor:pointer" data-doc="${x.id}"><span style="color:var(--txt)"><b style="font-weight:600">${esc(x.tit)}</b>${x.obs?`<br><small class="mini">${esc(x.obs)}</small>`:""}</span><b class="mini" style="font-weight:500;white-space:nowrap">${dBR(x.d)}</b></div>`).join("");
+  document.querySelectorAll("#cEventos [data-doc]").forEach(el=>el.onclick=()=>abreDoc(el.dataset.doc));
+  $("#cCir").innerHTML = CIRURGIAS.map(([c,d,l])=>`<div class="lin"><span style="color:var(--txt);font-weight:600">${esc(c)}<br><small class="mini" style="font-weight:400">${esc(l)}</small></span><b class="mini" style="font-weight:500">${esc(d)}</b></div>`).join("");
+}
+function linkMedico(){ return location.origin + location.pathname + "?medico=" + Math.random().toString(36).slice(2,10); }
+function abreConsulta(){
+  desenhaConsulta();
+  $("#consulta").classList.add("on"); document.body.style.overflow="hidden";
+  if (ehMedico){ $("#cModo").textContent = "Acesso temporário do médico · somente leitura"; $("#cCompart").style.display="none"; $("#fechaConsulta").style.display="none"; return; }
+  const link = linkMedico(); $("#copiaLink").dataset.link = link;
+  if (window.qrcode){ const q = qrcode(0,"M"); q.addData(link); q.make(); $("#qrBox").innerHTML = q.createSvgTag({cellSize:4, margin:0, scalable:true}); }
+  else $("#qrBox").innerHTML = '<span class="mini" style="text-align:center">Código QR<br>(aparece com internet)</span>';
+  fimAcesso = Date.now() + 4*3600*1000; tic(); clearInterval(timer); timer = setInterval(tic, 1000);
+  st.acessos.unshift([agora(), "Modo consulta aberto · código válido por 4 horas"]); salva(); desenhaAcessos();
+}
+function tic(){
+  const s = Math.max(0, Math.round((fimAcesso-Date.now())/1000));
+  $("#contagem").textContent = `${Math.floor(s/3600)}:${String(Math.floor(s%3600/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;
+}
+function fechaConsulta(){ $("#consulta").classList.remove("on"); document.body.style.overflow=""; clearInterval(timer); }
+$("#abreConsulta").onclick = abreConsulta;
+$("#fechaConsulta").onclick = fechaConsulta;
+$("#imprimir").onclick = () => window.print();
+$("#copiaLink").onclick = async e => { try { await navigator.clipboard.writeText(e.target.dataset.link); toast("Link copiado. Ele abre só a leitura."); } catch(err){ toast(e.target.dataset.link); } };
+$("#encerra").onclick = () => { clearInterval(timer); $("#contagem").textContent = "encerrado"; $("#qrBox").innerHTML = '<span class="mini">Código desativado</span>'; st.acessos.unshift([agora(),"Acesso do médico encerrado pela família"]); salva(); desenhaAcessos(); toast("Acesso encerrado. O link não abre mais."); };
+document.addEventListener("keydown", e => { if (e.key==="Escape"){ if ($("#mDoc").classList.contains("on")) $("#mDoc").classList.remove("on"); else if ($("#consulta").classList.contains("on") && !ehMedico) fechaConsulta(); } });
+
+/* ===================== início ===================== */
+function tudo(){ desenhaResumo(); desenhaHistorico(); desenhaSelEx(); desenhaGrafico(); desenhaUltimos(); desenhaRemedios(); desenhaAcessos(); }
+preencheFiltros(); tudo();
+if (ehMedico) abreConsulta();
+</script>
+</body>
+</html>
