@@ -1,0 +1,17 @@
+name: fotos-tmp
+on: workflow_dispatch
+permissions:
+  contents: write
+jobs:
+  baixar:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          set -e
+          mkdir out && cd out
+          curl -s -X POST "https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/neg_fotos_tmp" \
+            -H "apikey: sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0" -H "Content-Type: application/json" -d '{}' > lista.json
+          jq -r '.[] | "\(.place_id)-\(.ordem) \(.u)"' lista.json | while read n u; do curl -sL -o "$n.jpg" "$u" || true; done
+          rm lista.json; ls -la
+          git init -q -b fotos-tmp && git add . && git -c user.name=bot -c user.email=bot@x commit -qm fotos
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" fotos-tmp
