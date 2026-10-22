@@ -157,7 +157,8 @@ footer a{color:#fff}
 .toast.on{transform:translateX(-50%) translateY(0);opacity:1}
 @media (max-width:900px){
   nav.menu{display:none}
-  .busca form{grid-template-columns:1fr 1fr}
+  .busca form{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .busca input,.busca select{min-width:0;max-width:100%}
   .busca form .btn{grid-column:1/-1}
   .vant,.quartos{grid-template-columns:1fr}
   .res-grid,.duas{grid-template-columns:1fr}
