@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Elos · a quantos passos você está de qualquer pessoa</title>
+<meta name="description" content="Elos: diga quem você conhece, peça para confirmarem e descubra a quantos passos você está de qualquer pessoa.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060F;--bg2:#100E22;--card:rgba(255,255,255,.05);--linha:rgba(255,255,255,.1);--txt:#F2F0FF;--suave:#A6A1C7;--elo:#B8FF3C;--elo2:#7CF2FF;--rosa:#FF4FD8;--pend:#FFB547}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:radial-gradient(1200px 700px at 80% -10%,#2A1660 0,transparent 60%),radial-gradient(900px 600px at -10% 110%,#0E3A4A 0,transparent 60%),var(--bg);color:var(--txt);font-family:"Space Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh;line-height:1.45}
+button,input{font:inherit}button{cursor:pointer}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header{display:flex;align-items:center;gap:12px;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;letter-spacing:-.5px}
+.logo svg{filter:drop-shadow(0 0 10px rgba(184,255,60,.5))}
+.quem{margin-left:auto;font-size:14px;color:var(--suave);display:flex;align-items:center;gap:8px}
+.quem b{color:var(--txt)}
+.pill{border:1px solid var(--linha);background:var(--card);color:var(--txt);border-radius:999px;padding:8px 14px;font-weight:500}
+.pill.elo{background:var(--elo);color:#0A0A12;border-color:var(--elo);font-weight:700}
+.pill.zap{background:#25D366;border-color:#25D366;color:#042;font-weight:700;text-decoration:none;display:inline-block}
+.pill.ghost{background:transparent}
+.pill:disabled{opacity:.5;cursor:default}
+/* entrada */
+#entrada{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:center;min-height:calc(100vh - 64px);padding-bottom:40px}
+#entrada h1{font-size:clamp(38px,6.5vw,74px);line-height:.98;letter-spacing:-2.5px;margin:0 0 18px}
+#entrada h1 em{font-style:normal;background:linear-gradient(90deg,var(--elo),var(--elo2));-webkit-background-clip:text;background-clip:text;color:transparent}
+#entrada p{color:var(--suave);font-size:18px;max-width:520px;margin:0 0 22px}
+.campo{display:flex;gap:8px;max-width:520px}
+.campo input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid var(--linha);color:var(--txt);border-radius:14px;padding:14px 16px;outline:none}
+.campo input:focus{border-color:var(--elo)}
+.regras{display:flex;gap:18px;flex-wrap:wrap;margin-top:22px;color:var(--suave);font-size:14px}
+.regras span:before{content:"●";color:var(--elo);margin-right:6px}
+.convite-box{border:1px solid rgba(184,255,60,.4);background:rgba(184,255,60,.07);border-radius:14px;padding:12px 14px;margin-bottom:16px;max-width:520px}
+/* app */
+#app{display:none;padding-bottom:40px}
+.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--linha);border-radius:20px;padding:16px;backdrop-filter:blur(6px)}
+.card h2{font-size:15px;text-transform:uppercase;letter-spacing:1.5px;color:var(--suave);margin:0 0 12px;font-weight:500}
+#palco{position:relative;height:540px;padding:0;overflow:hidden}
+#palco svg{width:100%;height:100%;display:block}
+.legenda{position:absolute;left:14px;bottom:12px;display:flex;gap:14px;font-size:12px;color:var(--suave);flex-wrap:wrap}
+.legenda i{display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.stats{position:absolute;right:14px;top:12px;text-align:right;font-size:12px;color:var(--suave)}
+.stats b{display:block;font-size:24px;color:var(--txt)}
+.busca{display:flex;gap:8px}
+.busca input{flex:1;min-width:0;background:rgba(255,255,255,.06);border:1px solid var(--linha);color:var(--txt);border-radius:12px;padding:11px 14px;outline:none}
+.sugest{margin-top:6px;display:flex;flex-direction:column;gap:4px;max-height:180px;overflow:auto}
+.sugest button{text-align:left;background:transparent;border:1px solid transparent;color:var(--txt);padding:8px 10px;border-radius:10px}
+.sugest button:hover{border-color:var(--linha);background:rgba(255,255,255,.04)}
+.sugest small{color:var(--suave)}
+.dist{margin-top:14px;min-height:120px}
+.dist .num{font-size:64px;font-weight:700;line-height:1;letter-spacing:-3px;color:var(--elo)}
+.dist .num.pend{color:var(--pend)}
+.cadeia{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.cadeia .no{background:rgba(255,255,255,.08);border-radius:999px;padding:5px 11px;font-size:14px}
+.cadeia .no.eu{background:var(--elo);color:#0A0A12;font-weight:700}
+.cadeia .seta{color:var(--suave);font-size:13px}.cadeia .seta.p{color:var(--pend)}
+.item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px dashed var(--linha);font-size:14px}
+.item:last-child{border-bottom:0}
+.item small{color:var(--suave);display:block}
+.badge{font-size:11px;border-radius:999px;padding:2px 8px;font-weight:700;margin-left:6px}
+.badge.ok{background:rgba(184,255,60,.15);color:var(--elo)}.badge.p{background:rgba(255,181,71,.15);color:var(--pend)}
+.acoes{display:flex;gap:6px;flex-shrink:0}
+.vazio{color:var(--suave);font-size:14px}
+.col{display:flex;flex-direction:column;gap:16px}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--elo);color:#0A0A12;font-weight:700;padding:10px 18px;border-radius:999px;opacity:0;transition:.25s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+.demo-flag{font-size:12px;color:var(--pend)}
+@media (max-width:900px){#entrada{grid-template-columns:minmax(0,1fr);padding-top:20px}.grid{grid-template-columns:minmax(0,1fr)}#palco{height:420px}.quem span.nm{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="logo"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect x="3" y="12" width="20" height="16" rx="8" fill="none" stroke="#B8FF3C" stroke-width="3.5"/><rect x="17" y="12" width="20" height="16" rx="8" fill="none" stroke="#7CF2FF" stroke-width="3.5"/></svg>Elos</div>
+ <div class="quem" id="quem"></div>
+</header>
+
+<section id="entrada">
+ <div>
+  <h1>Você está a <em>poucos elos</em> de qualquer pessoa.</h1>
+  <p>Diga quem você conhece. Cada elo só vale quando <b>os dois lados confirmam</b>, até o mais famoso. Depois, descubra a quantos passos você está de quem quiser.</p>
+  <div id="conviteBox"></div>
+  <form class="campo" id="fEntrar"><input id="nomeEntrar" placeholder="Seu nome" maxlength="60" required autocomplete="name"><button class="pill elo">Entrar</button></form>
+  <div class="regras"><span>Sem senha, sem telefone guardado</span><span>Elo só conta com os dois de acordo</span><span>Famoso também confirma</span></div>
+ </div>
+ <div class="card" style="height:440px;padding:0;position:relative;overflow:hidden"><svg id="demo" style="width:100%;height:100%"></svg><div class="legenda"><span class="demo-flag">Rede de exemplo, nomes fictícios</span></div></div>
+</section>
+
+<section id="app">
+ <div class="grid">
+  <div class="card" id="palco"><svg id="rede"></svg>
+   <div class="stats"><b id="sPessoas">0</b>pessoas · <span id="sElos">0</span> elos confirmados</div>
+   <div class="legenda"><span><i style="background:var(--elo)"></i>elo confirmado</span><span><i style="background:var(--pend)"></i>aguardando o outro lado</span><span><i style="background:var(--rosa)"></i>caminho encontrado</span></div>
+  </div>
+  <div class="col">
+   <div class="card">
+    <h2>A quantos elos eu estou de…</h2>
+    <div class="busca"><input id="qBusca" placeholder="Digite um nome (ex.: alguém famoso)" autocomplete="off"></div>
+    <div class="sugest" id="sBusca"></div>
+    <div class="dist" id="dist"><div class="vazio">Escolha uma pessoa da rede para ver o caminho mais curto até ela.</div></div>
+   </div>
+   <div class="card">
+    <h2>Eu conheço…</h2>
+    <div class="busca"><input id="qConheco" placeholder="Nome de quem você conhece" autocomplete="off" maxlength="60"><button class="pill elo" id="bConheco">Adicionar</button></div>
+    <div class="sugest" id="sConheco"></div>
+   </div>
+   <div class="card"><h2>Pedem sua confirmação</h2><div id="pend"></div></div>
+   <div class="card"><h2>Meus elos</h2><div id="meus"></div></div>
+  </div>
+ </div>
+</section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const SB='https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/';
+const KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ5aHl2endxdGt0YWFvbnpuaXpuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg2MzUzMjQsImV4cCI6MjEwNDIxMTMyNH0.siQRwtuirUN1JYW7Reda_CyMJLpeCzw69Nc_smyZNRA';
+const rpc=async(fn,args={})=>{const r=await fetch(SB+fn,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(args)});const t=await r.text();if(!r.ok)throw new Error(t);return t?JSON.parse(t):null};
+const LS={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+const $=id=>document.getElementById(id);
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),2400)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+const URLBASE=location.origin+location.pathname;
+const Q=new URLSearchParams(location.search); const CONVITE=Q.get('c');
+let TOKEN=LS.get('elos_token'), EU=null, REDE={pessoas:[],ligacoes:[]}, ALVO=null;
+
+/* ---------- rede de exemplo (só na tela de entrada) ---------- */
+(function demo(){
+ const N=['Você','Primo Léo','Carla','João','Dona Rita','Marcos','Ana','Prefeito X','Cantor Y','Atleta Z','Bia','Rafa','Téo','Sol','Duda','Vini'];
+ const nodes=N.map((n,i)=>({id:i,n})), L=[[0,1],[0,2],[1,3],[3,7],[2,4],[4,5],[5,8],[3,6],[6,9],[0,10],[10,11],[11,12],[12,13],[2,14],[14,15],[15,8],[7,9],[1,13]];
+ const links=L.map(([a,b])=>({source:a,target:b})), path=new Set(['0-1','1-3','3-6','6-9']);
+ const svg=d3.select('#demo'), box=svg.node().getBoundingClientRect(), W=box.width||500,H=box.height||440;
+ const sim=d3.forceSimulation(nodes).force('l',d3.forceLink(links).distance(62)).force('c',d3.forceManyBody().strength(-210)).force('x',d3.forceX(W/2)).force('y',d3.forceY(H/2));
+ const ln=svg.append('g').selectAll('line').data(links).join('line').attr('stroke',d=>path.has(d.source.id+'-'+d.target.id)?'#FF4FD8':'rgba(184,255,60,.35)').attr('stroke-width',d=>path.has(d.source.id+'-'+d.target.id)?3:1.4);
+ const g=svg.append('g').selectAll('g').data(nodes).join('g');
+ g.append('circle').attr('r',d=>d.id==0?11:d.id==9?10:6).attr('fill',d=>d.id==0?'#B8FF3C':d.id==9?'#FF4FD8':'#7CF2FF');
+ g.append('text').text(d=>d.n).attr('x',12).attr('y',4).attr('fill','#A6A1C7').attr('font-size',11);
+ sim.on('tick',()=>{ln.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);g.attr('transform',d=>`translate(${d.x},${d.y})`)});
+})();
+
+/* ---------- entrada ---------- */
+if(CONVITE&&!TOKEN){$('conviteBox').innerHTML=`<div class="convite-box">Alguém disse que te conhece e criou um perfil seu no Elos. Entre com seu nome para assumir o perfil e confirmar (ou recusar) esse elo.</div>`}
+$('fEntrar').onsubmit=async e=>{e.preventDefault();const nome=$('nomeEntrar').value.trim();if(nome.length<2)return;
+ try{const r=await rpc('elo_entrar',{p_nome:nome,p_convite:CONVITE||null});TOKEN=r.token;LS.set('elos_token',TOKEN);history.replaceState(null,'',URLBASE);toast(r.assumiu?'Perfil assumido! Confirme quem você conhece.':'Bem-vindo ao Elos!');iniciar()}catch(err){toast('Não deu para entrar. Tente de novo.')}};
+
+/* ---------- app ---------- */
+async function iniciar(){
+ try{EU=await rpc('elo_eu',{p_token:TOKEN})}catch(e){EU=null}
+ if(!EU||!EU.id){LS.del('elos_token');TOKEN=null;return}
+ $('entrada').style.display='none';$('app').style.display='block';
+ $('quem').innerHTML=`<span class="nm">Você é <b>${esc(EU.nome)}</b></span><button class="pill ghost" id="sair">Sair</button>`;
+ $('sair').onclick=()=>{if(confirmarSaida())return};
+ await carregar();
+}
+function confirmarSaida(){LS.del('elos_token');location.href=URLBASE;return true}
+async function carregar(){
+ [EU,REDE]=await Promise.all([rpc('elo_eu',{p_token:TOKEN}),rpc('elo_rede')]);
+ painel();desenhar();if(ALVO)caminho(ALVO);
+}
+function linkConvite(l){return `${URLBASE}?c=${l.convite}`}
+function zapConvite(l){const txt=`Oi, ${l.nome.split(' ')[0]}! Disse no Elos que te conheço 😄 Confirma lá? É uma brincadeira pra descobrir a quantos passos a gente está de qualquer pessoa: ${linkConvite(l)}`;return 'https://wa.me/?text='+encodeURIComponent(txt)}
+function painel(){
+ const L=EU.ligacoes||[];
+ const pend=L.filter(l=>!l.eu_ok);
+ $('pend').innerHTML=pend.map(l=>`<div class="item"><span>${esc(l.nome)}<small>diz que conhece você</small></span><span class="acoes"><button class="pill elo" data-ok="${l.id}">Conheço</button><button class="pill ghost" data-no="${l.id}">Não</button></span></div>`).join('')||'<div class="vazio">Nada para confirmar agora.</div>';
+ const meus=L.filter(l=>l.eu_ok);
+ $('meus').innerHTML=meus.map(l=>`<div class="item"><span>${esc(l.nome)}${l.ele_ok?'<span class="badge ok">confirmado</span>':'<span class="badge p">aguardando</span>'}<small>${l.ele_ok?'os dois confirmaram':l.dono?'já está no Elos; falta confirmar':'ainda não entrou; mande o convite'}</small></span><span class="acoes">${!l.ele_ok&&l.convite?`<a class="pill zap" target="_blank" rel="noopener" href="${zapConvite(l)}">Convidar</a><button class="pill ghost" data-copy="${l.id}">Link</button>`:''}</span></div>`).join('')||'<div class="vazio">Adicione a primeira pessoa que você conhece.</div>';
+}
+document.addEventListener('click',async e=>{
+ const t=e.target.closest('[data-ok],[data-no],[data-copy],[data-alvo],[data-conhece]');if(!t)return;
+ if(t.dataset.ok||t.dataset.no){try{await rpc('elo_confirmar',{p_token:TOKEN,p_ligacao:t.dataset.ok||t.dataset.no,p_ok:!!t.dataset.ok});toast(t.dataset.ok?'Elo confirmado 🔗':'Elo recusado');await carregar()}catch(err){toast('Não deu certo, tente de novo.')}}
+ if(t.dataset.copy){const l=EU.ligacoes.find(x=>x.id==t.dataset.copy);try{await navigator.clipboard.writeText(linkConvite(l));toast('Link do convite copiado')}catch(err){prompt('Copie o link do convite:',linkConvite(l))}}
+ if(t.dataset.alvo){ALVO=t.dataset.alvo;$('qBusca').value='';$('sBusca').innerHTML='';caminho(ALVO)}
+ if(t.dataset.conhece){await adicionar(null,t.dataset.conhece)}
+});
+/* busca de pessoas */
+function achar(q){const n=norm(q);if(n.length<2)return[];return REDE.pessoas.filter(p=>p.id!=EU.id&&norm(p.nome).includes(n)).slice(0,8)}
+$('qBusca').oninput=()=>{const r=achar($('qBusca').value);$('sBusca').innerHTML=r.map(p=>`<button data-alvo="${p.id}">${esc(p.nome)} <small>${p.dono?'no Elos':'perfil aguardando o dono'}</small></button>`).join('')||($('qBusca').value.trim().length>1?'<div class="vazio">Ninguém com esse nome na rede ainda. Se você conhece, adicione em "Eu conheço".</div>':'')};
+$('qConheco').oninput=()=>{const v=$('qConheco').value;const r=achar(v).filter(p=>!(EU.ligacoes||[]).some(l=>l.outro==p.id));$('sConheco').innerHTML=r.map(p=>`<button data-conhece="${p.id}">É esta pessoa: ${esc(p.nome)} <small>${p.dono?'já está no Elos':'perfil criado por outra pessoa'}</small></button>`).join('')};
+$('bConheco').onclick=()=>adicionar($('qConheco').value.trim(),null);
+$('qConheco').onkeydown=e=>{if(e.key=='Enter')adicionar($('qConheco').value.trim(),null)};
+async function adicionar(nome,alvo){if(!alvo&&(!nome||nome.length<2))return;
+ try{const r=await rpc('elo_conheco',{p_token:TOKEN,p_nome:nome,p_alvo:alvo});$('qConheco').value='';$('sConheco').innerHTML='';toast(r.dono?`Pedido enviado para ${r.nome}`:`${r.nome} adicionado. Agora mande o convite!`);await carregar()}catch(err){toast('Não deu para adicionar.')}}
+
+/* ---------- caminho mais curto (busca em largura) ---------- */
+function caminho(alvoId){
+ const viz=new Map();REDE.pessoas.forEach(p=>viz.set(p.id,[]));
+ REDE.ligacoes.forEach(l=>{viz.get(l.a)?.push({to:l.b,ok:l.ok});viz.get(l.b)?.push({to:l.a,ok:l.ok})});
+ const bfs=soOk=>{const prev=new Map([[EU.id,null]]),fila=[EU.id];while(fila.length){const u=fila.shift();if(u==alvoId)break;for(const e of viz.get(u)||[]){if(soOk&&!e.ok)continue;if(!prev.has(e.to)){prev.set(e.to,{de:u,ok:e.ok});fila.push(e.to)}}}
+  if(!prev.has(alvoId))return null;const p=[];let c=alvoId;while(c){const s=prev.get(c);p.unshift({id:c,ok:s?s.ok:true});c=s&&s.de}return p};
+ const firme=bfs(true), qualquer=bfs(false), p=firme||qualquer, nome=id=>(REDE.pessoas.find(x=>x.id==id)||{}).nome||'?';
+ const alvoNome=nome(alvoId);
+ if(!p){$('dist').innerHTML=`<div class="num pend">?</div><div>Ainda não existe caminho até <b>${esc(alvoNome)}</b>. Convide mais gente: cada pessoa que entra aproxima a rede.</div>`;destacar([]);return}
+ const passos=p.length-1, pend=!firme;
+ $('dist').innerHTML=`<div class="num ${pend?'pend':''}">${passos}</div><div>${passos==1?'elo':'elos'} entre você e <b>${esc(alvoNome)}</b>${pend?' <span class="badge p">com elos ainda não confirmados</span>':' <span class="badge ok">todos confirmados</span>'}</div>
+ <div class="cadeia">${p.map((n,i)=>`${i?`<span class="seta ${n.ok?'':'p'}">${n.ok?'→':'⇢'}</span>`:''}<span class="no ${i==0?'eu':''}">${i==0?'Você':esc(nome(n.id))}</span>`).join('')}</div>`;
+ destacar(p.map(x=>x.id));
+}
+
+/* ---------- grafo ---------- */
+let SIM,svgSel,linkSel,nodeSel,CAM=[];
+function desenhar(){
+ const svg=d3.select('#rede');svg.selectAll('*').remove();svgSel=svg;
+ const box=svg.node().getBoundingClientRect(),W=box.width,H=box.height;
+ const nodes=REDE.pessoas.map(p=>({...p})), idx=new Map(nodes.map(n=>[n.id,n]));
+ const links=REDE.ligacoes.filter(l=>idx.has(l.a)&&idx.has(l.b)).map(l=>({source:l.a,target:l.b,ok:l.ok}));
+ $('sPessoas').textContent=nodes.length;$('sElos').textContent=links.filter(l=>l.ok).length;
+ const g=svg.append('g');
+ svg.call(d3.zoom().scaleExtent([.3,3]).on('zoom',e=>g.attr('transform',e.transform)));
+ linkSel=g.append('g').selectAll('line').data(links).join('line').attr('stroke-width',1.6).attr('stroke',d=>d.ok?'rgba(184,255,60,.55)':'rgba(255,181,71,.55)').attr('stroke-dasharray',d=>d.ok?null:'5 5');
+ nodeSel=g.append('g').selectAll('g').data(nodes).join('g').style('cursor','pointer').on('click',(e,d)=>{if(d.id!=EU.id){ALVO=d.id;caminho(d.id)}})
+  .call(d3.drag().on('start',(e,d)=>{if(!e.active)SIM.alphaTarget(.3).restart();d.fx=d.x;d.fy=d.y}).on('drag',(e,d)=>{d.fx=e.x;d.fy=e.y}).on('end',(e,d)=>{if(!e.active)SIM.alphaTarget(0);d.fx=null;d.fy=null}));
+ nodeSel.append('circle').attr('r',d=>d.id==EU.id?12:7).attr('fill',d=>d.id==EU.id?'#B8FF3C':d.dono?'#7CF2FF':'transparent').attr('stroke',d=>d.dono?'none':'#FFB547').attr('stroke-width',2);
+ nodeSel.append('text').text(d=>d.id==EU.id?'Você':d.nome).attr('x',12).attr('y',4).attr('fill','#CFCBEA').attr('font-size',12);
+ SIM=d3.forceSimulation(nodes).force('l',d3.forceLink(links).id(d=>d.id).distance(70)).force('c',d3.forceManyBody().strength(-260)).force('x',d3.forceX(W/2).strength(.06)).force('y',d3.forceY(H/2).strength(.08)).force('col',d3.forceCollide(22));
+ SIM.on('tick',()=>{linkSel.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);nodeSel.attr('transform',d=>`translate(${d.x},${d.y})`)});
+ destacar(CAM);
+}
+function destacar(ids){CAM=ids;if(!linkSel)return;const par=new Set();for(let i=1;i<ids.length;i++){par.add(ids[i-1]+'|'+ids[i]);par.add(ids[i]+'|'+ids[i-1])}
+ linkSel.attr('stroke',d=>par.has(d.source.id+'|'+d.target.id)?'#FF4FD8':d.ok?'rgba(184,255,60,.55)':'rgba(255,181,71,.55)').attr('stroke-width',d=>par.has(d.source.id+'|'+d.target.id)?4:1.6);
+ nodeSel.select('circle').attr('r',d=>d.id==EU.id?12:ids.includes(d.id)?10:7).attr('fill',d=>d.id==EU.id?'#B8FF3C':ids[ids.length-1]==d.id?'#FF4FD8':d.dono?'#7CF2FF':'transparent')}
+window.addEventListener('resize',()=>{if(EU&&EU.id)desenhar()});
+setInterval(()=>{if(EU&&EU.id&&document.visibilityState=='visible')carregar().catch(()=>{})},20000);
+if(TOKEN)iniciar();
+</script>
+</body>
+</html>
