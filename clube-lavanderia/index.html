@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lavô · Clube de assinatura da lavanderia</title>
+<meta name="description" content="Demonstração do Lavô: clube de assinatura para lavanderias, com cartão fidelidade, lavagem grátis e aviso pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#F3F8FC;--card:#fff;--tinta:#10233A;--suave:#5A6B80;--linha:#DCE6F0;--agua:#1E88E5;--agua2:#0B5FB3;--menta:#14B8A6;--sol:#FFB020;--ok:#16A34A;--alerta:#E11D48;--raio:18px}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Nunito,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--fundo);color:var(--tinta);line-height:1.5}
+a{color:inherit}button{font:inherit;cursor:pointer}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:rgba(243,248,252,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+header.top .wrap{display:flex;align-items:center;gap:12px;height:62px}
+.logo{display:flex;align-items:center;gap:9px;font-weight:900;font-size:20px;letter-spacing:-.3px}
+.logo small{display:block;font-size:11px;font-weight:700;color:var(--suave);letter-spacing:0}
+.tabs{margin-left:auto;display:flex;gap:6px;background:#E6EEF6;padding:4px;border-radius:999px}
+.tabs button{border:0;background:transparent;padding:7px 14px;border-radius:999px;font-weight:800;color:var(--suave);font-size:14px}
+.tabs button.on{background:#fff;color:var(--tinta);box-shadow:0 1px 4px rgba(16,35,58,.12)}
+.demo{background:#FFF7E6;border:1px solid #FFE1A3;color:#7A4B00;font-size:13px;font-weight:700;text-align:center;padding:7px 12px}
+.view{display:none}.view.on{display:block}
+/* público */
+.hero{position:relative;overflow:hidden;background:linear-gradient(160deg,#0B5FB3,#1E88E5 55%,#14B8A6);color:#fff}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:28px;align-items:center;padding-top:54px;padding-bottom:64px}
+.hero h1{font-size:clamp(30px,5vw,50px);line-height:1.05;margin:0 0 14px;font-weight:900;letter-spacing:-1px}
+.hero p{font-size:18px;opacity:.95;margin:0 0 22px;max-width:520px}
+.bolha{position:absolute;border-radius:50%;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25)}
+.btn{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font-weight:900;font-size:16px;text-decoration:none}
+.btn.branco{background:#fff;color:var(--agua2)}.btn.linha{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.btn.azul{background:var(--agua);color:#fff}.btn.verde{background:#25D366;color:#063}
+.btn.mini{padding:8px 14px;font-size:14px}
+.cartao{background:#fff;color:var(--tinta);border-radius:22px;padding:20px;box-shadow:0 20px 50px rgba(5,40,90,.35);max-width:360px;margin-left:auto}
+.cartao h3{margin:0;font-size:18px}.cartao .sub{color:var(--suave);font-size:13px;margin-bottom:14px}
+.selos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.selo{aspect-ratio:1;border-radius:50%;border:2px dashed #BFD3E8;display:grid;place-items:center;font-size:20px;color:#BFD3E8}
+.selo.on{border:0;background:linear-gradient(140deg,var(--agua),var(--menta));color:#fff}
+.selo.premio{border-color:var(--sol);color:var(--sol)}
+.cartao .rodape{display:flex;justify-content:space-between;margin-top:14px;font-size:13px;color:var(--suave)}
+section.bloco{padding:56px 0}
+h2{font-size:clamp(24px,3.4vw,34px);margin:0 0 8px;letter-spacing:-.5px;font-weight:900}
+.lead{color:var(--suave);margin:0 0 26px;font-size:17px}
+.passos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.passo{background:var(--card);border:1px solid var(--linha);border-radius:var(--raio);padding:20px}
+.passo b{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#E3F0FC;color:var(--agua2);font-weight:900;margin-bottom:8px}
+.passo h3{margin:0 0 4px;font-size:18px}.passo p{margin:0;color:var(--suave)}
+.planos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.plano{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:22px;display:flex;flex-direction:column;gap:6px}
+.plano.dest{border:2px solid var(--agua);box-shadow:0 10px 30px rgba(30,136,229,.15);position:relative}
+.plano.dest:before{content:"Mais escolhido";position:absolute;top:-12px;left:20px;background:var(--agua);color:#fff;font-size:12px;font-weight:900;padding:3px 10px;border-radius:999px}
+.plano h3{margin:0;font-size:20px}.preco{font-size:34px;font-weight:900;letter-spacing:-1px}.preco small{font-size:15px;color:var(--suave);font-weight:700}
+.plano ul{margin:6px 0 14px;padding-left:18px;color:var(--suave)}.plano li{margin:4px 0}
+.plano .btn{margin-top:auto;justify-content:center}
+.faq details{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.faq summary{font-weight:800;cursor:pointer}.faq p{margin:8px 0 0;color:var(--suave)}
+footer{padding:28px 0 40px;color:var(--suave);font-size:14px;text-align:center}
+/* painel */
+.painel{padding:24px 0 60px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:#fff;border:1px solid var(--linha);border-radius:16px;padding:14px 16px}
+.kpi span{display:block;color:var(--suave);font-size:13px;font-weight:700}.kpi strong{font-size:26px;font-weight:900;letter-spacing:-.5px}
+.grid2{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px}
+.caixa{background:#fff;border:1px solid var(--linha);border-radius:var(--raio);padding:16px}
+.caixa h3{margin:0 0 10px;font-size:17px;display:flex;align-items:center;gap:8px}
+.ferr{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.ferr input,.ferr select{flex:1;min-width:0;border:1px solid var(--linha);border-radius:10px;padding:9px 11px;font:inherit}
+.lista{display:flex;flex-direction:column;gap:8px;max-height:860px;overflow:auto}
+.cli{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 10px;align-items:center;border:1px solid var(--linha);border-radius:14px;padding:10px 12px}
+.cli .nome{font-weight:800}.cli .meta{font-size:13px;color:var(--suave)}
+.barra{grid-column:1/-1;display:flex;gap:4px}
+.barra i{flex:1;height:7px;border-radius:4px;background:#E6EEF6}.barra i.on{background:linear-gradient(90deg,var(--agua),var(--menta))}
+.acoes{display:flex;gap:6px}
+.tag{display:inline-block;font-size:11px;font-weight:900;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.tag.premio{background:#FFF1D6;color:#8A5800}.tag.sumido{background:#FDE7EC;color:var(--alerta)}.tag.plano{background:#E3F0FC;color:var(--agua2)}
+.ic{border:1px solid var(--linha);background:#fff;border-radius:10px;padding:6px 10px;font-weight:800;font-size:13px;text-decoration:none;display:inline-block}
+.ic.prim{background:var(--agua);color:#fff;border-color:var(--agua)}.ic.zap{background:#25D366;color:#063;border-color:#25D366}
+.alerta-item{display:flex;justify-content:space-between;gap:8px;align-items:center;border-bottom:1px dashed var(--linha);padding:9px 0;font-size:14px}
+.alerta-item:last-child{border-bottom:0}
+.vazio{color:var(--suave);font-size:14px;padding:6px 0}
+.import{font-size:13px;color:var(--suave)}.import textarea{width:100%;min-height:70px;border:1px solid var(--linha);border-radius:10px;padding:8px;font:12px ui-monospace,monospace;margin:6px 0}
+dialog{border:0;border-radius:18px;padding:0;max-width:420px;width:calc(100% - 32px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+dialog form{padding:18px;display:flex;flex-direction:column;gap:10px}dialog h3{margin:0}
+dialog input,dialog select{border:1px solid var(--linha);border-radius:10px;padding:10px;font:inherit}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-weight:800;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:60}
+.toast.on{opacity:1}
+@media (max-width:860px){
+ .hero .wrap{grid-template-columns:minmax(0,1fr)}.cartao{margin:0 auto}
+ .passos,.planos{grid-template-columns:minmax(0,1fr)}
+ .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr)}
+ .tabs button{padding:7px 10px}
+}
+@media (max-width:420px){.logo small{display:none}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <div class="logo"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E88E5"/><stop offset="1" stop-color="#14B8A6"/></linearGradient></defs><rect x="4" y="3" width="32" height="34" rx="8" fill="url(#lg)"/><circle cx="20" cy="22" r="10" fill="#fff"/><path d="M12 23c3-3 5 2 8 0s5-3 8 0" stroke="#1E88E5" stroke-width="2.6" fill="none" stroke-linecap="round"/><circle cx="11" cy="8.5" r="1.6" fill="#fff"/><circle cx="16" cy="8.5" r="1.6" fill="#fff" opacity=".7"/></svg>
+  <div><span id="marca">Lavô</span><small id="sublogo">clube da lavanderia</small></div></div>
+ <nav class="tabs" aria-label="Telas"><button class="on" data-v="publico">Para o cliente</button><button data-v="painel">Painel do dono</button></nav>
+</div></header>
+
+<!-- PÚBLICO -->
+<main id="publico" class="view on">
+ <section class="hero">
+  <span class="bolha" style="width:180px;height:180px;right:-40px;top:-50px"></span><span class="bolha" style="width:90px;height:90px;left:46%;bottom:-30px"></span><span class="bolha" style="width:40px;height:40px;left:8%;top:30px"></span>
+  <div class="wrap">
+   <div>
+    <h1>Roupa limpa todo mês, <br>sem pensar nisso.</h1>
+    <p>Assine o clube da <b class="nomeLav">Sua Lavanderia</b>: preço fixo por mês, prioridade na entrega e uma lavagem grátis a cada 10.</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn branco" href="#planos">Ver planos</a><a class="btn linha zapLink" href="#" target="_blank" rel="noopener">Falar no WhatsApp</a></div>
+   </div>
+   <div class="cartao" aria-label="Exemplo de cartão fidelidade">
+    <h3>Seu cartão do clube</h3><div class="sub">A cada visita, um selo. No 10º, a lavagem é por nossa conta.</div>
+    <div class="selos" id="selosHero"></div>
+    <div class="rodape"><span>7 de 10 lavagens</span><b style="color:var(--agua2)">Faltam 3 🎁</b></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="bloco"><div class="wrap">
+  <h2>Como funciona</h2><p class="lead">Simples para você, sem mudar nada na rotina da lavanderia.</p>
+  <div class="passos">
+   <div class="passo"><b>1</b><h3>Escolha o plano</h3><p>Paga uma vez por mês, no Pix ou no cartão. Cancela quando quiser.</p></div>
+   <div class="passo"><b>2</b><h3>Deixe as roupas</h3><p>Cada visita entra no seu cartão automaticamente, pelo seu número de telefone.</p></div>
+   <div class="passo"><b>3</b><h3>Ganhe lavagem grátis</h3><p>No 10º selo, você recebe o aviso no WhatsApp e a próxima lavagem sai de graça.</p></div>
+  </div>
+ </div></section>
+
+ <section class="bloco" id="planos" style="padding-top:0"><div class="wrap">
+  <h2>Planos do clube</h2><p class="lead">Valores de exemplo, ajustados com a lavanderia antes de ir ao ar.</p>
+  <div class="planos" id="planosBox"></div>
+ </div></section>
+
+ <section class="bloco faq" style="padding-top:0"><div class="wrap" style="max-width:760px">
+  <h2>Dúvidas</h2>
+  <details><summary>Posso cancelar quando quiser?</summary><p>Sim. Sem multa e sem fidelidade: é só avisar pelo WhatsApp.</p></details>
+  <details><summary>Lavagem que não usei acumula?</summary><p>Acumula por até 1 mês, depois volta ao normal. Assim o seu plano nunca vira desperdício.</p></details>
+  <details><summary>Como sei quantos selos eu tenho?</summary><p>É só mandar "meu cartão" no WhatsApp da lavanderia que a gente responde com o seu saldo.</p></details>
+ </div></section>
+ <footer>Demonstração do <b>Lavô</b>, clube de assinatura para lavanderias · feito pela Hélice Sites &amp; Sistemas</footer>
+</main>
+
+<!-- PAINEL -->
+<main id="painel" class="view">
+ <div class="demo">Painel de demonstração: clientes, visitas e valores abaixo são fictícios, só para mostrar como funciona.</div>
+ <div class="wrap painel">
+  <div class="kpis">
+   <div class="kpi"><span>Assinantes ativos</span><strong id="kAtivos">0</strong></div>
+   <div class="kpi"><span>Receita recorrente/mês</span><strong id="kMrr">R$ 0</strong></div>
+   <div class="kpi"><span>Visitas nos últimos 30 dias</span><strong id="kVisitas">0</strong></div>
+   <div class="kpi"><span>Lavagens grátis a liberar</span><strong id="kPremios">0</strong></div>
+  </div>
+  <div class="grid2">
+   <div class="caixa">
+    <h3>Assinantes</h3>
+    <div class="ferr"><input id="busca" placeholder="Buscar por nome ou telefone" aria-label="Buscar"><select id="filtro" aria-label="Filtro"><option value="todos">Todos</option><option value="premio">Com lavagem grátis</option><option value="sumido">Sumidos há 20+ dias</option></select><button class="ic prim" id="novo">+ Novo assinante</button></div>
+    <div class="lista" id="lista"></div>
+   </div>
+   <div style="display:flex;flex-direction:column;gap:16px">
+    <div class="caixa"><h3>🎁 Avisar lavagem grátis</h3><div id="avisos"></div></div>
+    <div class="caixa"><h3>👋 Chamar de volta</h3><div id="sumidos"></div></div>
+    <div class="caixa import"><h3>🔗 Integração com o sistema da loja</h3>
+     Exporte as visitas do caixa/sistema atual em planilha (telefone; data) e cole aqui. O Lavô soma os selos sozinho.
+     <textarea id="csv" placeholder="98988887777;2026-10-20&#10;98999990000;2026-10-21"></textarea>
+     <button class="ic prim" id="importar">Importar visitas</button> <button class="ic" id="zerar">Restaurar demonstração</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</main>
+
+<dialog id="dlg"><form method="dialog" id="fNovo">
+ <h3>Novo assinante</h3>
+ <input name="nome" placeholder="Nome" required>
+ <input name="tel" placeholder="WhatsApp com DDD" inputmode="tel" required>
+ <select name="plano" id="selPlano"></select>
+ <div style="display:flex;gap:8px;justify-content:flex-end"><button class="ic" value="cancel" formnovalidate>Cancelar</button><button class="ic prim" value="ok">Salvar</button></div>
+</form></dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+const Q=new URLSearchParams(location.search);
+const NOME=Q.get('nome')||'Sua Lavanderia';
+const ZAP=(Q.get('zap')||'5598984149331').replace(/\D/g,'');
+const META=10, KEY='lavo-demo-v1';
+const PLANOS=[
+ {id:'basico',nome:'Básico',preco:45,itens:['4 lavagens de até 5 kg por mês','1 selo por visita','Lavagem grátis a cada 10']},
+ {id:'familia',nome:'Família',preco:79,itens:['8 lavagens de até 5 kg por mês','Secagem e dobra inclusas','Prioridade na entrega','Lavagem grátis a cada 10']},
+ {id:'premium',nome:'Leva e traz',preco:129,itens:['8 lavagens por mês','Busca e entrega em casa','Edredom 1x por mês','Lavagem grátis a cada 10']}
+];
+const brl=v=>'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:v%1?2:0,maximumFractionDigits:2});
+const hoje=new Date(); const dias=n=>{const d=new Date(hoje);d.setDate(d.getDate()-n);return d.toISOString().slice(0,10)};
+const diff=s=>Math.floor((hoje-new Date(s+'T12:00'))/864e5);
+document.title=`${NOME} · Clube de assinatura (Lavô)`;
+document.querySelectorAll('.nomeLav').forEach(e=>e.textContent=NOME);
+if(Q.get('nome')){document.getElementById('marca').textContent=NOME;document.getElementById('sublogo').textContent='clube Lavô'}
+document.querySelectorAll('.zapLink').forEach(a=>a.href=`https://wa.me/${ZAP}?text=${encodeURIComponent('Oi! Quero saber do clube de assinatura da '+NOME+'.')}`);
+// selos do hero
+document.getElementById('selosHero').innerHTML=Array.from({length:10},(_,i)=>`<div class="selo ${i<7?'on':''} ${i==9?'premio':''}">${i<7?'✓':i==9?'🎁':''}</div>`).join('');
+// planos
+document.getElementById('planosBox').innerHTML=PLANOS.map((p,i)=>`<div class="plano ${i==1?'dest':''}"><h3>${p.nome}</h3><div class="preco">${brl(p.preco)}<small>/mês</small></div><ul>${p.itens.map(t=>`<li>${t}</li>`).join('')}</ul><a class="btn ${i==1?'azul':'verde'}" target="_blank" rel="noopener" href="https://wa.me/${ZAP}?text=${encodeURIComponent(`Oi! Quero assinar o plano ${p.nome} (${brl(p.preco)}/mês) do clube da ${NOME}.`)}">Assinar pelo WhatsApp</a></div>`).join('');
+document.getElementById('selPlano').innerHTML=PLANOS.map(p=>`<option value="${p.id}">${p.nome} · ${brl(p.preco)}</option>`).join('');
+// dados de demonstração (fictícios)
+const NOMES=['Ana Paula','Bruno Costa','Carla Mendes','Diego Rocha','Eliane Sousa','Fábio Lima','Gabriela Nunes','Hugo Pereira','Isabela Martins','João Victor','Karen Alves','Lucas Ferreira','Mariana Reis','Nathan Carvalho','Olívia Barros','Pedro Henrique','Quésia Ramos','Rafael Gomes','Sabrina Teixeira','Tiago Araújo','Ursula Pinto','Vanessa Lopes','Wesley Santos','Ximena Duarte','Yasmin Freitas','Zeca Moura','Aline Cardoso','Beatriz Melo','Caio Ribeiro','Daniela Castro','Eduardo Vieira','Fernanda Prado'];
+function semente(){let s=7;const r=()=>(s=(s*9301+49297)%233280)/233280;
+ return NOMES.map((n,i)=>{const pl=r()<.55?'basico':r()<.8?'familia':'premium';const sel=Math.floor(r()*11);const ult=Math.floor(r()*35);
+  const vis=[];for(let k=0;k<Math.min(sel,6);k++)vis.push(dias(ult+k*6));
+  return {id:i+1,nome:n,tel:'5598'+(988000000+Math.floor(r()*99999)),plano:pl,selos:sel,visitas:vis,avisado:false}})}
+let DB; try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){} if(!DB||!DB.length)DB=semente();
+const salvar=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),2200)};
+const ultima=c=>c.visitas.length?c.visitas.slice().sort().pop():null;
+const primeiro=n=>n.split(' ')[0];
+function zap(c,txt){return `https://wa.me/${c.tel}?text=${encodeURIComponent(txt)}`}
+function msgPremio(c){return `Oi, ${primeiro(c.nome)}! Você completou ${META} lavagens no clube da ${NOME} 🎉 A próxima é por nossa conta. É só trazer as roupas e falar seu nome no balcão.`}
+function msgVolta(c){return `Oi, ${primeiro(c.nome)}! Sentimos sua falta aqui na ${NOME}. Seu plano ainda tem lavagens disponíveis este mês e faltam ${Math.max(META-c.selos,0)} selos para a sua lavagem grátis. Quer que a gente separe um horário?`}
+function render(){
+ const ativos=DB.length, mrr=DB.reduce((s,c)=>s+PLANOS.find(p=>p.id==c.plano).preco,0);
+ const vis30=DB.reduce((s,c)=>s+c.visitas.filter(v=>diff(v)<=30).length,0);
+ const premios=DB.filter(c=>c.selos>=META);
+ kAtivos.textContent=ativos;kMrr.textContent=brl(mrr);kVisitas.textContent=vis30;kPremios.textContent=premios.length;
+ const q=busca.value.trim().toLowerCase(), f=filtro.value;
+ const lst=DB.filter(c=>(!q||c.nome.toLowerCase().includes(q)||c.tel.includes(q.replace(/\D/g,'')||'§')))
+  .filter(c=>f=='todos'||(f=='premio'&&c.selos>=META)||(f=='sumido'&&ultima(c)&&diff(ultima(c))>=20))
+  .sort((a,b)=>b.selos-a.selos);
+ lista.innerHTML=lst.map(c=>{const u=ultima(c);const pl=PLANOS.find(p=>p.id==c.plano);
+  return `<div class="cli"><div><div class="nome">${c.nome}<span class="tag plano">${pl.nome}</span>${c.selos>=META?'<span class="tag premio">🎁 grátis</span>':''}${u&&diff(u)>=20?'<span class="tag sumido">sumido</span>':''}</div>
+  <div class="meta">${c.selos}/${META} selos · última visita ${u?(diff(u)==0?'hoje':diff(u)+' dias atrás'):'—'}</div></div>
+  <div class="acoes"><button class="ic prim" data-visita="${c.id}">+ visita</button></div>
+  <div class="barra">${Array.from({length:META},(_,i)=>`<i class="${i<Math.min(c.selos,META)?'on':''}"></i>`).join('')}</div></div>`}).join('')||'<div class="vazio">Nenhum assinante encontrado.</div>';
+ avisos.innerHTML=premios.map(c=>`<div class="alerta-item"><span><b>${c.nome}</b><br><small>${c.avisado?'avisado ✓':'completou '+META+' selos'}</small></span><span class="acoes"><a class="ic zap" target="_blank" rel="noopener" data-av="${c.id}" href="${zap(c,msgPremio(c))}">Avisar</a><button class="ic" data-usar="${c.id}">Usou</button></span></div>`).join('')||'<div class="vazio">Ninguém completou o cartão ainda.</div>';
+ const sum=DB.filter(c=>ultima(c)&&diff(ultima(c))>=20).sort((a,b)=>diff(ultima(b))-diff(ultima(a))).slice(0,6);
+ sumidos.innerHTML=sum.map(c=>`<div class="alerta-item"><span><b>${c.nome}</b><br><small>${diff(ultima(c))} dias sem vir</small></span><a class="ic zap" target="_blank" rel="noopener" href="${zap(c,msgVolta(c))}">Chamar</a></div>`).join('')||'<div class="vazio">Todo mundo veio nos últimos 20 dias.</div>';
+}
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-visita],[data-usar],[data-av],.tabs button');if(!t)return;
+ if(t.dataset.v){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b==t));document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==t.dataset.v));scrollTo(0,0);return}
+ const id=+(t.dataset.visita||t.dataset.usar||t.dataset.av), c=DB.find(x=>x.id==id); if(!c)return;
+ if(t.dataset.visita){c.selos++;c.visitas.push(dias(0));salvar();render();toast(c.selos>=META?`🎁 ${primeiro(c.nome)} ganhou uma lavagem grátis!`:`Selo registrado para ${primeiro(c.nome)}`)}
+ if(t.dataset.usar){c.selos=Math.max(c.selos-META,0);c.avisado=false;salvar();render();toast('Lavagem grátis usada. Cartão reiniciado.')}
+ if(t.dataset.av){c.avisado=true;salvar();setTimeout(render,300)}
+});
+busca.oninput=render;filtro.onchange=render;
+novo.onclick=()=>{fNovo.reset();dlg.showModal()};
+dlg.addEventListener('close',()=>{if(dlg.returnValue!='ok')return;const d=new FormData(fNovo);const tel=String(d.get('tel')).replace(/\D/g,'');if(!d.get('nome')||tel.length<10)return;
+ DB.push({id:Math.max(0,...DB.map(c=>c.id))+1,nome:String(d.get('nome')).trim(),tel:(tel.startsWith('55')?tel:'55'+tel),plano:d.get('plano'),selos:0,visitas:[],avisado:false});salvar();render();toast('Assinante cadastrado')});
+importar.onclick=()=>{let n=0,x=0;csv.value.split(/\n/).forEach(l=>{const [t,d]=l.split(/[;,\t]/).map(s=>s&&s.trim());if(!t)return;const tel=t.replace(/\D/g,'');const c=DB.find(c=>c.tel.endsWith(tel.slice(-9)));if(c){c.selos++;c.visitas.push(/^\d{4}-\d\d-\d\d$/.test(d||'')?d:dias(0));n++}else x++});salvar();render();csv.value='';toast(`${n} visita(s) importada(s)${x?` · ${x} telefone(s) sem cadastro`:''}`)};
+zerar.onclick=()=>{DB=semente();salvar();render();toast('Demonstração restaurada')};
+render();
+</script>
+</body>
+</html>
