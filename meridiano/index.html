@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Meridiano · Radar de negócios internacionais</title>
+<meta name="description" content="Meridiano: radar semanal de oportunidades de negócios entre o Brasil, a China e a Europa, para escritórios de advocacia.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B1220;--bg2:#111A2E;--card:#131E35;--linha:#24314F;--txt:#EEF1F7;--suave:#9AA6C1;--ouro:#D6B26E;--ouro2:#F0D9A6;--cn:#E5484D;--dk:#C8102E;--eu:#3E7BFA;--br:#2BB673;--ok:#3DD68C}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
+a{color:var(--ouro2)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--linha);background:rgba(11,18,32,.9);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
+header .wrap{display:flex;align-items:center;gap:12px;height:62px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:700;letter-spacing:.2px}
+.ed{margin-left:auto;font-size:13px;color:var(--suave);text-align:right}
+.hero{padding:42px 0 26px;background:radial-gradient(900px 400px at 85% 0,rgba(214,178,110,.12),transparent 60%)}
+.kicker{color:var(--ouro);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
+h1{font-family:Fraunces,Georgia,serif;font-size:clamp(30px,4.6vw,48px);line-height:1.08;margin:10px 0 12px;font-weight:700;letter-spacing:-.5px}
+.hero p{color:var(--suave);font-size:17px;max-width:720px;margin:0}
+.para{display:inline-block;margin-top:16px;border:1px solid rgba(214,178,110,.45);color:var(--ouro2);border-radius:999px;padding:6px 14px;font-size:14px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 8px}
+.kpi{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:14px 16px}
+.kpi .v{font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700;color:var(--ouro2)}
+.kpi .l{font-size:13px;color:var(--suave)}.kpi .f{font-size:11px;color:#6F7C99;margin-top:4px}
+h2{font-family:Fraunces,Georgia,serif;font-size:26px;margin:36px 0 6px}
+.sub{color:var(--suave);margin:0 0 16px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.chip{border:1px solid var(--linha);background:transparent;color:var(--txt);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;cursor:pointer}
+.chip.on{background:var(--ouro);border-color:var(--ouro);color:#1A1405;font-weight:600}
+.lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.op{background:var(--card);border:1px solid var(--linha);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
+.op .topo{display:flex;align-items:flex-start;gap:12px}
+.score{flex-shrink:0;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:18px;background:conic-gradient(var(--ouro) calc(var(--s)*1%),#24314F 0);position:relative}
+.score:after{content:"";position:absolute;inset:5px;background:var(--card);border-radius:50%}
+.score span{position:relative;z-index:1}
+.op h3{margin:0;font-size:17px;line-height:1.3}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.tag{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;letter-spacing:.3px}
+.tag.cn{background:rgba(229,72,77,.15);color:#FF8A8D}.tag.dk{background:rgba(200,16,46,.15);color:#FF7A8F}.tag.eu{background:rgba(62,123,250,.15);color:#8FB0FF}
+.tag.t{background:#1C2846;color:var(--suave)}
+.op p{margin:0;color:#C7CEDF;font-size:15px}
+.angulo{border-left:3px solid var(--ouro);padding:6px 10px;background:rgba(214,178,110,.06);border-radius:0 10px 10px 0;font-size:14px}
+.angulo b{color:var(--ouro2)}
+.rod{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--suave);margin-top:auto}
+.btn{border:1px solid var(--linha);background:transparent;color:var(--txt);border-radius:10px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer}
+.btn.on{background:var(--ok);border-color:var(--ok);color:#06210F}
+.como{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.como div{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:14px}
+.como b{display:block;color:var(--ouro2);margin-bottom:4px}
+.como span{color:var(--suave);font-size:14px}
+.mod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.mod div{border:1px dashed var(--linha);border-radius:16px;padding:14px;color:var(--suave);font-size:14px}
+.mod b{color:var(--txt);display:block;margin-bottom:4px}
+.cta{margin:40px 0;background:linear-gradient(135deg,#1A2542,#131E35);border:1px solid rgba(214,178,110,.35);border-radius:22px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.cta h3{font-family:Fraunces,Georgia,serif;font-size:24px;margin:0 0 4px}
+.cta p{margin:0;color:var(--suave)}
+.cta a{background:var(--ouro);color:#1A1405;text-decoration:none;font-weight:700;border-radius:999px;padding:12px 20px}
+footer{color:#6F7C99;font-size:12px;padding:0 0 40px}
+.nota{font-size:12px;color:#6F7C99;margin-top:10px}
+.vazio{color:var(--suave)}
+@media (max-width:860px){.kpis,.como{grid-template-columns:repeat(2,minmax(0,1fr))}.lista,.mod{grid-template-columns:minmax(0,1fr)}.ed{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <div class="logo"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#D6B26E" stroke-width="2.4"/><path d="M20 4v32M4 20h32" stroke="#D6B26E" stroke-width="1.4" opacity=".6"/><ellipse cx="20" cy="20" rx="7" ry="16" fill="none" stroke="#F0D9A6" stroke-width="2"/></svg>Meridiano</div>
+ <div class="ed">Edição de demonstração · semana de 19 a 24 de outubro de 2026</div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+ <div class="kicker">Radar de negócios internacionais</div>
+ <h1>Quem está chegando, comprando e investindo entre o Brasil, a China e a Europa, antes de virar cliente do concorrente.</h1>
+ <p>Toda semana, o Meridiano lê notícias, dados de comércio, licitações e atos oficiais, separa o que gera trabalho jurídico e entrega cada oportunidade com o ângulo e quem procurar.</p>
+ <span class="para">Preparado para Daniel Manucci</span>
+ <div class="kpis">
+  <div class="kpi"><div class="v">US$ 84,6 bi</div><div class="l">exportações do Brasil para a China, jan–set/2026 (+12%)</div><div class="f">Fonte: Secex, via DGABC</div></div>
+  <div class="kpi"><div class="v">US$ 6,1 bi</div><div class="l">investimento chinês no Brasil em 2025 (+45%)</div><div class="f">Fonte: CEBC, via Estadão/ABFA</div></div>
+  <div class="kpi"><div class="v">R$ 210,7 bi</div><div class="l">em fusões e aquisições no Brasil, jan–ago/2026 (834 operações, −31%)</div><div class="f">Fonte: TTR Data</div></div>
+  <div class="kpi"><div class="v">1º/05/2026</div><div class="l">início da vigência provisória do acordo Mercosul–União Europeia</div><div class="f">Fonte: Governo federal, via JB</div></div>
+ </div>
+</div></section>
+
+<main class="wrap">
+ <h2>Oportunidades da semana</h2>
+ <p class="sub">Ordenadas pela nota de oportunidade (0 a 100): tamanho do negócio, urgência e quanto trabalho jurídico ele gera. Marque as que quer acompanhar.</p>
+ <div class="filtros" id="filtros"></div>
+ <div class="lista" id="lista"></div>
+ <p class="nota">A nota é calculada pelo Meridiano a partir de critérios fixos e serve para priorizar a leitura; não é recomendação de investimento.</p>
+
+ <h2>Como funciona</h2>
+ <p class="sub">Sem sistema novo para aprender: o radar chega pronto.</p>
+ <div class="como">
+  <div><b>1. Lê as fontes</b><span>Imprensa econômica, Secex, Diário Oficial, portal de licitações (PNCP), anúncios de empresas e câmaras de comércio.</span></div>
+  <div><b>2. Filtra o que importa</b><span>Só entra o que envolve China, Dinamarca, União Europeia e os setores que o escritório atende.</span></div>
+  <div><b>3. Explica o ângulo</b><span>Para cada item: qual trabalho jurídico ele gera e quem é a pessoa ou empresa a procurar.</span></div>
+  <div><b>4. Entrega</b><span>Resumo toda segunda no WhatsApp e no e-mail, alerta na hora quando algo grande acontece, e esta página atualizada.</span></div>
+ </div>
+
+ <h2>Próximos módulos</h2>
+ <p class="sub">Dá para ligar conforme o escritório quiser.</p>
+ <div class="mod">
+  <div><b>Empresas novas com sócio estrangeiro</b>Lista semanal de CNPJs abertos no Brasil com sócios da China, da Dinamarca ou da UE, a partir dos dados públicos da Receita Federal.</div>
+  <div><b>Crise com credor estrangeiro</b>Pedidos de recuperação judicial e falência em que há credores ou controladores estrangeiros (integração com o Radar Crise).</div>
+  <div><b>Licitações internacionais</b>Concorrências com fornecedores estrangeiros no PNCP e em estatais, com prazos de impugnação.</div>
+ </div>
+
+ <div class="cta">
+  <div><h3>Piloto de 30 dias, sem custo</h3><p>Ajustamos países, setores e clientes que o escritório quer acompanhar, e você recebe o radar toda semana.</p></div>
+  <a href="https://wa.me/5598984149331?text=Ol%C3%A1%2C%20Paulo!%20Vi%20o%20Meridiano%20e%20quero%20conversar%20sobre%20o%20piloto." target="_blank" rel="noopener">Quero o piloto</a>
+ </div>
+</main>
+<footer><div class="wrap">Meridiano · radar de negócios internacionais · feito pela Hélice Sites &amp; Sistemas. Edição de demonstração montada com notícias públicas; links para as fontes em cada item.</div></footer>
+
+<script>
+const OPS=[
+ {id:'byd',n:92,p:['cn'],t:'Indústria',data:'23/10/2026',tit:'BYD acelera a nacionalização em Camaçari (BA) para 2027',
+  txt:'A fábrica treina cerca de 1.100 pessoas para as novas linhas de solda e pintura, já passa de R$ 5,5 bilhões investidos e quer começar 2027 acima de 50% de conteúdo local para ser tratada como fabricante nacional.',
+  ang:'Contratos de fornecimento com a indústria local, incentivos fiscais ligados ao conteúdo nacional, trabalhista em escala (9 a 10 mil empregados) e exportação para México e Argentina.',
+  quem:'Fornecedores de autopeças da Bahia e do Nordeste que querem entrar na cadeia da BYD.',fonte:'https://www.piranot.com.br/2026/10/23/noticias/economia/automoveis-veiculos/byd-treina-profissionais-camacari-nacionalizacao/',fn:'Piranot (compila Motor1, Quatro Rodas, Reuters)'},
+ {id:'gwm',n:88,p:['cn'],t:'Indústria',data:'03/08/2026',tit:'GWM anuncia fábrica de R$ 4,6 bilhões em Aracruz (ES)',
+  txt:'A montadora chinesa escolheu uma área de 1,74 milhão de m² no Espírito Santo, com operação a partir de 2029 e cerca de 9 mil vagas diretas. A empresa prevê R$ 10 bilhões no Brasil em dez anos.',
+  ang:'Licenciamento ambiental, contratos de obra (EPC), acordos de incentivo com o estado, vistos e mobilidade de executivos chineses.',
+  quem:'Construtoras e fornecedores capixabas; o próprio jurídico da GWM no Brasil.',fonte:'https://www.bnews.com.br/noticias/geral/montadora-chinesa-anuncia-fabrica-no-brasil-de-r-46-bilhoes-e-deve-gerar-quase-10-mil-empregos.html',fn:'BNews'},
+ {id:'eu',n:86,p:['eu','dk'],t:'Regulação',data:'em vigor desde 01/05/2026',tit:'Acordo Mercosul–União Europeia em vigência provisória',
+  txt:'O acordo prevê redução gradual de tarifas e menos barreiras comerciais. Empresas da Dinamarca e do resto da UE passam a reavaliar exportação e produção no Brasil.',
+  ang:'Regras de origem, revisão de contratos de distribuição e de agência, planejamento aduaneiro e estrutura societária para quem decide produzir aqui.',
+  quem:'Exportadores dinamarqueses com distribuidor no Brasil e importadores brasileiros de produtos europeus.',fonte:'https://www.jb.com.br/economia/2026/03/1059083-acordo-mercosul-ue-valera-provisoriamente-em-maio-confirma-governo.html',fn:'Jornal do Brasil'},
+ {id:'emet',n:84,p:['dk'],t:'Energia',data:'acompanhamento',tit:'European Energy (Dinamarca) e a fábrica de e-metanol de R$ 2 bilhões em Suape (PE)',
+  txt:'A dinamarquesa European Energy planeja em Suape a primeira fábrica de e-metanol do Brasil, com cerca de 100 mil toneladas por ano. A Petrobras assinou acordo de princípios para estudar sociedade no projeto.',
+  ang:'Joint venture com estatal, contratos de compra de CO₂ de usinas do Nordeste, contratos de venda de longo prazo (offtake) e licenciamento.',
+  quem:'Usinas de cana de PE, PB e AL que podem fornecer CO₂; a própria European Energy.',fonte:'https://portaldeprefeitura.com.br/pernambuco/suape-petrobras-pode-se-tornar-socia-de-fabrica-de-e-metanol-com/588763/',fn:'Portal de Prefeitura'},
+ {id:'carne',n:81,p:['cn'],t:'Comércio',data:'06/10/2026',tit:'Exportação de carne bovina para a China cai 93,5% em setembro após a cota',
+  txt:'O Brasil atingiu a cota chinesa que dispara sobretaxa, e as vendas de carne bovina despencaram. No total, as exportações para a China caíram 7,6% em setembro, mas sobem 12% no ano.',
+  ang:'Revisão de contratos de exportação (força maior, preço, volume), defesa comercial e reorganização de cadeias para outros mercados.',
+  quem:'Frigoríficos exportadores e tradings com contratos firmes para a China.',fonte:'https://www.dgabc.com.br/Noticia/4351280/exportacoes-brasileiras-para-a-china-caem-7-6-em-setembro-ante-igual-mes-de-2025',fn:'DGABC'},
+ {id:'tus',n:74,p:['cn'],t:'Tecnologia',data:'12/10/2026',tit:'Grupo chinês Tus Holdings sonda parques tecnológicos no Rio Grande do Sul',
+  txt:'Delegação ligada à Universidade Tsinghua visitou o RS em setembro, convidada pela Invest RS, de olho em incubação de startups e parques tecnológicos.',
+  ang:'Estruturação de joint ventures, propriedade intelectual, acordos com universidades e entrada de capital estrangeiro em startups.',
+  quem:'Invest RS, parques tecnológicos gaúchos e startups com perfil de receber capital chinês.',fonte:'https://abfa.org.br/2026/10/13/china-mira-investimentos-em-tecnologia-e-industria-no-brasil/',fn:'ABFA, a partir do Estadão'},
+ {id:'novo',n:72,p:['dk'],t:'Saúde',data:'acompanhamento',tit:'Novo Nordisk (Dinamarca) e o investimento de R$ 6,4 bilhões em Montes Claros (MG)',
+  txt:'A dona do Ozempic anunciou a expansão da fábrica mineira para produzir medicamentos, um dos maiores investimentos dinamarqueses no país.',
+  ang:'Contratos com fornecedores e prestadores locais, trabalhista, regulatório sanitário e incentivos estaduais.',
+  quem:'Fornecedores industriais e de serviços do norte de Minas.',fonte:'https://mercadoeconsumo.com.br/08/04/2025/noticias/novo-nordisk-dona-do-ozempic-investira-r-64-bi-para-produzir-medicamentos-em-minas-gerais/',fn:'Mercado & Consumo'},
+ {id:'off',n:70,p:['dk'],t:'Energia',data:'13/02/2026',tit:'Brasil e Dinamarca aprovam o plano de 2026 da parceria em energia, com foco em eólica offshore',
+  txt:'O plano da Parceria Energética Brasil–Dinamarca vai até 2029 e já produziu estudos sobre licenciamento e convivência de parques eólicos no mar.',
+  ang:'Marco regulatório da eólica offshore, licenciamento e contratos de cessão de áreas, quando os leilões saírem.',
+  quem:'Desenvolvedores europeus de eólica offshore e fornecedores portuários do Nordeste.',fonte:'https://jornaldebrasilia.com.br/noticias/economia/brasil-e-dinamarca-aprovam-plano-de-trabalho-para-transicao-energetica-em-2026/',fn:'Jornal de Brasília'},
+ {id:'metro',n:69,p:['cn'],t:'Licitação',data:'07/07/2026',tit:'Metrô de Brasília abre licitação de R$ 1 bilhão para trens em meio a disputa com fabricantes chineses',
+  txt:'Empresas locais e outros países pressionam contra fabricantes chineses; o governo vê pouca margem para restringir a participação.',
+  ang:'Licitação internacional: impugnações de edital, isonomia entre estrangeiros e consórcios com fabricantes chineses.',
+  quem:'Fabricantes e consórcios que vão disputar ou contestar a concorrência.',fonte:'https://www.bnamericas.com/pt/feature/metro-de-brasilia-abre-licitacao-de-r1bi-para-compra-de-trens-em-meio-a-acirramento-contra-fabricantes-chineses',fn:'BNamericas'},
+ {id:'pe',n:66,p:['dk'],t:'Investimento',data:'acompanhamento',tit:'Pernambuco apresenta projetos a investidores dinamarqueses em Copenhague',
+  txt:'Reuniões na Dansk Industri com Topsoe, Novo Nordisk, Copenhagen Infrastructure Partners e European Energy, com o Porto de Suape como vitrine.',
+  ang:'Entrada de fundos dinamarqueses de infraestrutura: estrutura de investimento, garantias e contratos com o estado.',
+  quem:'Copenhagen Infrastructure Partners e empresas do Complexo de Suape.',fonte:'https://portaldeprefeitura.com.br/pernambuco/raquel-lyra-apresenta-pernambuco-a-investidores-dinamarqueses-em/606493/',fn:'Portal de Prefeitura'}
+];
+const PAISES={todos:'Todos',cn:'China',dk:'Dinamarca',eu:'União Europeia'};
+const TIPOS=[...new Set(OPS.map(o=>o.t))];
+let fP='todos',fT='todos';
+let SEG;try{SEG=new Set(JSON.parse(localStorage.getItem('meridiano_seg')||'[]'))}catch(e){SEG=new Set()}
+const salvar=()=>{try{localStorage.setItem('meridiano_seg',JSON.stringify([...SEG]))}catch(e){}};
+function filtros(){const f=document.getElementById('filtros');
+ f.innerHTML=Object.entries(PAISES).map(([k,v])=>`<button class="chip ${fP==k?'on':''}" data-p="${k}">${v}</button>`).join('')+'<span style="width:12px"></span>'+['todos',...TIPOS].map(t=>`<button class="chip ${fT==t?'on':''}" data-t="${t}">${t=='todos'?'Todos os tipos':t}</button>`).join('')}
+function lista(){const L=OPS.filter(o=>(fP=='todos'||o.p.includes(fP))&&(fT=='todos'||o.t==fT)).sort((a,b)=>b.n-a.n);
+ document.getElementById('lista').innerHTML=L.map(o=>`<article class="op"><div class="topo"><div class="score" style="--s:${o.n}"><span>${o.n}</span></div><div><h3>${o.tit}</h3><div class="tags">${o.p.map(p=>`<span class="tag ${p}">${PAISES[p]}</span>`).join('')}<span class="tag t">${o.t}</span><span class="tag t">${o.data}</span></div></div></div>
+ <p>${o.txt}</p><div class="angulo"><b>Ângulo jurídico:</b> ${o.ang}</div><div class="angulo"><b>Quem procurar:</b> ${o.quem}</div>
+ <div class="rod"><a href="${o.fonte}" target="_blank" rel="noopener">Fonte: ${o.fn}</a><button class="btn ${SEG.has(o.id)?'on':''}" data-seg="${o.id}">${SEG.has(o.id)?'✓ Acompanhando':'Acompanhar'}</button></div></article>`).join('')||'<p class="vazio">Nada nesse filtro esta semana.</p>'}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-p],[data-t],[data-seg]');if(!b)return;
+ if(b.dataset.p){fP=b.dataset.p;filtros();lista()} if(b.dataset.t){fT=b.dataset.t;filtros();lista()}
+ if(b.dataset.seg){const id=b.dataset.seg;SEG.has(id)?SEG.delete(id):SEG.add(id);salvar();lista()}});
+filtros();lista();
+</script>
+</body>
+</html>
