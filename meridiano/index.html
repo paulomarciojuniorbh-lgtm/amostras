@@ -32,8 +32,8 @@ a{color:var(--gr)}button,input{font:inherit;color:inherit}
 .f small{color:var(--mu)}
 .f.on{border-color:var(--gr);color:var(--gr);background:rgba(60,255,160,.07)}
 .main{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);align-items:start}
-.radar{position:sticky;top:57px;height:calc(100vh - 172px);min-height:520px;overflow:hidden;border-right:1px solid var(--ln);background:radial-gradient(circle at 50% 50%,#0A1712 0,#05080D 72%);touch-action:none}
-.radar svg{width:100%;height:100%;display:block;cursor:grab;user-select:none;-webkit-user-select:none}
+.radar{position:sticky;top:57px;height:calc(100vh - 172px);min-height:520px;overflow:hidden;border-right:1px solid var(--ln);background:radial-gradient(circle at 50% 50%,#0A1712 0,#05080D 72%)}
+.radar svg{width:100%;height:100%;display:block;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
 .radar svg.arr{cursor:grabbing}
 .uf{stroke:#2A6B50;stroke-width:.7;stroke-linejoin:round;vector-effect:non-scaling-stroke;transition:fill .25s}
 .uf:hover,.uf.hv{stroke:var(--gr);stroke-width:1.6}
@@ -100,7 +100,7 @@ a{color:var(--gr)}button,input{font:inherit;color:inherit}
 .nota{font-family:var(--mono);font-size:10px;color:var(--mu);margin-top:12px;line-height:1.6}
 .toast{position:fixed;right:16px;bottom:16px;background:var(--gr);color:#03130B;font-weight:600;padding:9px 14px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
 .toast.on{opacity:1}
-@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}.radar{position:relative;top:auto;height:500px;min-height:0;border-right:0;border-bottom:1px solid var(--ln)}.live{display:none}.busca{flex:1 1 auto}.leg{transform:scale(.78);transform-origin:left bottom}.leg .k{display:none}.para{font-size:10px;gap:4px 12px}}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}.radar{position:relative;top:auto;height:500px;min-height:0;border-right:0;border-bottom:1px solid var(--ln)}.live{display:none}.busca{flex:1 1 auto}.leg{transform:scale(.8);transform-origin:left bottom}.leg .k s{display:none}.ufchip{bottom:auto;top:62px;left:12px;right:auto}.fbar,.tabs{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}.para{font-size:10px;gap:4px 12px}}
 </style>
 </head>
 <body>
@@ -446,7 +446,7 @@ const BANDS=[[0,0,'#0A1411','0'],[1,2,'#0F2C21','1–2'],[3,5,'#14492F','3–5']
 const band=n=>BANDS.find(b=>n>=b[0]&&n<=b[1]);
 let VB={x:0,y:0,w:600,h:610};const VB0={...VB};
 const svg=$('map');
-const setVB=()=>{svg.setAttribute('viewBox',`${VB.x} ${VB.y} ${VB.w} ${VB.h}`);blips()};
+const setVB=()=>{svg.setAttribute('viewBox',`${VB.x} ${VB.y} ${VB.w} ${VB.h}`);svg.style.touchAction=VB.w>=599?'pan-y':'none';blips()};
 function mapa(){
  const v=vis(),cnt={};v.forEach(e=>cnt[e.st]=(cnt[e.st]||0)+1);
  let s=`<defs><radialGradient id="sw" cx="0" cy="0" r="1"><stop offset="0" stop-color="#3CFFA0" stop-opacity=".22"/><stop offset="1" stop-color="#3CFFA0" stop-opacity="0"/></radialGradient></defs><g id="ufs">`;
@@ -454,11 +454,11 @@ function mapa(){
  mapa._cnt=cnt;
  s+=`</g><g id="lbl" pointer-events="none"></g>`;
  s+=`<g transform="translate(${px(-52)},${py(-14)})" pointer-events="none"><g id="sweep"><path d="M0 0 L420 0 A420 420 0 0 0 ${420*Math.cos(-0.5)} ${420*Math.sin(-0.5)} Z" fill="url(#sw)"/><line x1="0" y1="0" x2="420" y2="0" stroke="#3CFFA0" stroke-opacity=".35"/></g></g><g id="blips"></g>`;
- svg.innerHTML=s;blips();
+ svg.innerHTML=s;setVB();
  const sw=$('sweep');let a=0;cancelAnimationFrame(mapa._r);(function rod(){a=(a+0.5)%360;sw&&sw.setAttribute('transform',`rotate(${a})`);mapa._r=requestAnimationFrame(rod)})();
  const est=Object.keys(cnt).length;
  $('hud').innerHTML=`ALVOS NO MAPA <b>${v.length}</b> · COM GATILHO <b>${v.filter(e=>e.g).length}</b><br>${FP=='todos'?`PAÍSES <b>${ORD.length}</b> · `:`${P[FP].n.toUpperCase()} · `}ESTADOS COM PRESENÇA <b>${est}</b>`;
- $('leg').innerHTML=`<div class="t">EMPRESAS POR ESTADO</div><div class="sw">${BANDS.map(b=>`<div><span style="background:${b[2]}"></span>${b[3]}</div>`).join('')}</div><div class="k"><s style="border-color:var(--am)"></s> gatilho ativo · cor do ponto = país</div>`;
+ $('leg').innerHTML=`<div class="t">EMPRESAS POR ESTADO</div><div class="sw">${BANDS.map(b=>`<div><span style="background:${b[2]}"></span>${b[3]}</div>`).join('')}</div><div class="k"><s style="border-color:var(--am)"></s> ${innerWidth<900?'anel amarelo = gatilho · toque num estado para filtrar':'gatilho ativo · cor do ponto = país · clique num estado para filtrar'}</div>`;
  const ch=$('ufchip');ch.classList.toggle('on',!!FU);ch.textContent=FU?`ESTADO: ${UFN[FU].toUpperCase()} ✕`:'';
 }
 function blips(){
@@ -499,7 +499,7 @@ svg.addEventListener('pointermove',ev=>{
   const r=svg.getBoundingClientRect(),sc=Math.max(drag.vb.w/r.width,drag.vb.h/r.height);VB.x=drag.vb.x-dx*sc;VB.y=drag.vb.y-dy*sc;svg.setAttribute('viewBox',`${VB.x} ${VB.y} ${VB.w} ${VB.h}`)}});
 const fim=ev=>{ptr.delete(ev.pointerId);svg.classList.remove('arr');if(ptr.size<2)pinch=null;
  if(drag&&!moved&&ptr.size==0){const t=document.elementFromPoint(ev.clientX,ev.clientY)||drag.t,b=t.closest&&t.closest('.blip'),u=t.closest&&t.closest('.uf');
-  if(b)abrir(b.dataset.id);else if(u){const uf=u.dataset.uf;if(FU==uf){FU='';VB={...VB0};tudo()}else{FU=uf;tudo();zoomUF(uf);aba('base')}}}
+  if(b)abrir(b.dataset.id);else if(u){const uf=u.dataset.uf;if(FU==uf){FU='';VB={...VB0};tudo()}else{FU=uf;tudo();zoomUF(uf);aba('base');const n=visU().length;toast(`${n} empresa${n==1?'':'s'} em ${UFN[uf]}${innerWidth<900?' · lista abaixo':''}`)}}}
  if(ptr.size==0)drag=null};
 svg.addEventListener('pointerup',fim);svg.addEventListener('pointercancel',fim);
 svg.addEventListener('pointerleave',()=>{$('tip').style.display='none';svg.querySelectorAll('.uf.hv').forEach(x=>x.classList.remove('hv'))});
@@ -513,7 +513,7 @@ function hover(ev){const tip=$('tip'),t=ev.target,b=t.closest('.blip'),u=t.close
  tip.innerHTML=h;tip.style.display='block';const x=ev.clientX-R.left,y=ev.clientY-R.top,w=tip.offsetWidth,hh=tip.offsetHeight;
  tip.style.left=Math.min(R.width-w-8,x+14)+'px';tip.style.top=(y+hh+20>R.height?y-hh-12:y+14)+'px'}
 $('zin').onclick=()=>zoomAt(1.5);$('zout').onclick=()=>zoomAt(1/1.5);$('zres').onclick=()=>{VB={...VB0};setVB()};
-$('ufchip').onclick=()=>{FU='';VB={...VB0};tudo()};
+$('ufchip').onclick=()=>{FU='';VB={...VB0};setVB();tudo()};
 
 /* ===== filtros por país ===== */
 function filtros(){const v=E.filter(casa);
