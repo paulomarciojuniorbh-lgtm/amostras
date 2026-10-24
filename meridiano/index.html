@@ -3,177 +3,314 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Meridiano · Radar de negócios internacionais</title>
-<meta name="description" content="Meridiano: radar semanal de oportunidades de negócios entre o Brasil, a China e a Europa, para escritórios de advocacia.">
+<title>Meridiano · Radar Brasil–China–Dinamarca</title>
+<meta name="description" content="Meridiano: mapa vivo das empresas chinesas e dinamarquesas no Brasil, com gatilhos, ângulo jurídico e caminho até quem decide.">
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0B1220;--bg2:#111A2E;--card:#131E35;--linha:#24314F;--txt:#EEF1F7;--suave:#9AA6C1;--ouro:#D6B26E;--ouro2:#F0D9A6;--cn:#E5484D;--dk:#C8102E;--eu:#3E7BFA;--br:#2BB673;--ok:#3DD68C}
+:root{--bg:#05080D;--p1:#0A1018;--p2:#0F1722;--ln:#1B2735;--ln2:#26364A;--tx:#E3EAF2;--mu:#7D8EA3;--gr:#3CFFA0;--gr2:#1FB873;--am:#FFC247;--cn:#FF5A5F;--dk:#FF8FA3;--eu:#6AA8FF;--mono:"IBM Plex Mono",ui-monospace,monospace}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.5}
-a{color:var(--ouro2)}
-.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
-header{border-bottom:1px solid var(--linha);background:rgba(11,18,32,.9);position:sticky;top:0;z-index:10;backdrop-filter:blur(8px)}
-header .wrap{display:flex;align-items:center;gap:12px;height:62px}
-.logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:700;letter-spacing:.2px}
-.ed{margin-left:auto;font-size:13px;color:var(--suave);text-align:right}
-.hero{padding:42px 0 26px;background:radial-gradient(900px 400px at 85% 0,rgba(214,178,110,.12),transparent 60%)}
-.kicker{color:var(--ouro);font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase}
-h1{font-family:Fraunces,Georgia,serif;font-size:clamp(30px,4.6vw,48px);line-height:1.08;margin:10px 0 12px;font-weight:700;letter-spacing:-.5px}
-.hero p{color:var(--suave);font-size:17px;max-width:720px;margin:0}
-.para{display:inline-block;margin-top:16px;border:1px solid rgba(214,178,110,.45);color:var(--ouro2);border-radius:999px;padding:6px 14px;font-size:14px}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 8px}
-.kpi{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:14px 16px}
-.kpi .v{font-family:Fraunces,Georgia,serif;font-size:28px;font-weight:700;color:var(--ouro2)}
-.kpi .l{font-size:13px;color:var(--suave)}.kpi .f{font-size:11px;color:#6F7C99;margin-top:4px}
-h2{font-family:Fraunces,Georgia,serif;font-size:26px;margin:36px 0 6px}
-.sub{color:var(--suave);margin:0 0 16px}
-.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
-.chip{border:1px solid var(--linha);background:transparent;color:var(--txt);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;cursor:pointer}
-.chip.on{background:var(--ouro);border-color:var(--ouro);color:#1A1405;font-weight:600}
-.lista{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.op{background:var(--card);border:1px solid var(--linha);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:10px}
-.op .topo{display:flex;align-items:flex-start;gap:12px}
-.score{flex-shrink:0;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:18px;background:conic-gradient(var(--ouro) calc(var(--s)*1%),#24314F 0);position:relative}
-.score:after{content:"";position:absolute;inset:5px;background:var(--card);border-radius:50%}
-.score span{position:relative;z-index:1}
-.op h3{margin:0;font-size:17px;line-height:1.3}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.tag{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;letter-spacing:.3px}
-.tag.cn{background:rgba(229,72,77,.15);color:#FF8A8D}.tag.dk{background:rgba(200,16,46,.15);color:#FF7A8F}.tag.eu{background:rgba(62,123,250,.15);color:#8FB0FF}
-.tag.t{background:#1C2846;color:var(--suave)}
-.op p{margin:0;color:#C7CEDF;font-size:15px}
-.angulo{border-left:3px solid var(--ouro);padding:6px 10px;background:rgba(214,178,110,.06);border-radius:0 10px 10px 0;font-size:14px}
-.angulo b{color:var(--ouro2)}
-.rod{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px;color:var(--suave);margin-top:auto}
-.btn{border:1px solid var(--linha);background:transparent;color:var(--txt);border-radius:10px;padding:6px 10px;font:inherit;font-size:13px;cursor:pointer}
-.btn.on{background:var(--ok);border-color:var(--ok);color:#06210F}
-.como{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.como div{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:14px}
-.como b{display:block;color:var(--ouro2);margin-bottom:4px}
-.como span{color:var(--suave);font-size:14px}
-.mod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.mod div{border:1px dashed var(--linha);border-radius:16px;padding:14px;color:var(--suave);font-size:14px}
-.mod b{color:var(--txt);display:block;margin-bottom:4px}
-.cta{margin:40px 0;background:linear-gradient(135deg,#1A2542,#131E35);border:1px solid rgba(214,178,110,.35);border-radius:22px;padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
-.cta h3{font-family:Fraunces,Georgia,serif;font-size:24px;margin:0 0 4px}
-.cta p{margin:0;color:var(--suave)}
-.cta a{background:var(--ouro);color:#1A1405;text-decoration:none;font-weight:700;border-radius:999px;padding:12px 20px}
-footer{color:#6F7C99;font-size:12px;padding:0 0 40px}
-.nota{font-size:12px;color:#6F7C99;margin-top:10px}
-.vazio{color:var(--suave)}
-@media (max-width:860px){.kpis,.como{grid-template-columns:repeat(2,minmax(0,1fr))}.lista,.mod{grid-template-columns:minmax(0,1fr)}.ed{display:none}}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:14px;line-height:1.45}
+a{color:var(--gr)}button,input{font:inherit;color:inherit}
+.top{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid var(--ln);background:var(--p1);position:sticky;top:0;z-index:20}
+.brand{font-family:var(--mono);font-weight:600;letter-spacing:3px;font-size:15px;display:flex;align-items:center;gap:8px}
+.brand i{width:9px;height:9px;border-radius:50%;background:var(--gr);box-shadow:0 0 10px var(--gr);animation:pis 1.6s infinite}
+@keyframes pis{50%{opacity:.25}}
+.live{font-family:var(--mono);font-size:11px;color:var(--mu)}
+.busca{margin-left:auto;display:flex;align-items:center;gap:8px;background:var(--p2);border:1px solid var(--ln2);border-radius:8px;padding:6px 10px;min-width:0;flex:0 1 320px}
+.busca input{background:none;border:0;outline:none;width:100%;min-width:0}
+.busca kbd{font-family:var(--mono);font-size:10px;color:var(--mu);border:1px solid var(--ln2);border-radius:4px;padding:0 4px}
+.ticker{overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--ln);background:#070B11;font-family:var(--mono);font-size:12px;color:var(--mu)}
+.ticker div{display:inline-block;padding:7px 0;animation:tk 70s linear infinite}
+.ticker b{color:var(--tx);font-weight:500}.ticker .up{color:var(--gr)}.ticker .dn{color:var(--cn)}
+@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.para{font-family:var(--mono);font-size:11px;color:var(--am);padding:8px 16px;border-bottom:1px solid var(--ln);display:flex;gap:16px;flex-wrap:wrap}
+.main{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0;min-height:calc(100vh - 120px)}
+.radar{position:relative;overflow:hidden;border-right:1px solid var(--ln);background:radial-gradient(circle at 50% 50%,#0B1A14 0,#05080D 70%)}
+.radar svg{width:100%;height:100%;display:block;min-height:520px}
+.radar .hud{position:absolute;left:12px;top:10px;font-family:var(--mono);font-size:11px;color:var(--mu);line-height:1.7}
+.radar .hud b{color:var(--gr);font-weight:500}
+.filtros{position:absolute;left:12px;bottom:12px;display:flex;gap:6px;flex-wrap:wrap}
+.f{background:rgba(10,16,24,.85);border:1px solid var(--ln2);border-radius:999px;padding:4px 10px;font-family:var(--mono);font-size:11px;cursor:pointer}
+.f.on{border-color:var(--gr);color:var(--gr)}
+.side{display:flex;flex-direction:column;min-width:0}
+.tabs{display:flex;border-bottom:1px solid var(--ln);background:var(--p1);overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;padding:11px 14px;font-family:var(--mono);font-size:12px;letter-spacing:1px;color:var(--mu);cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--gr);border-bottom-color:var(--gr)}
+.tabs .n{background:var(--ln2);border-radius:4px;padding:0 5px;margin-left:5px;color:var(--tx)}
+.pane{display:none;padding:14px 16px;overflow:auto}.pane.on{display:block}
+.vazio{color:var(--mu);font-family:var(--mono);font-size:12px;padding:30px 0;text-align:center}
+.dos h2{margin:0;font-size:22px;letter-spacing:-.3px}
+.dos .meta{font-family:var(--mono);font-size:11px;color:var(--mu);margin:4px 0 12px;display:flex;gap:10px;flex-wrap:wrap}
+.flag{font-family:var(--mono);font-size:10px;font-weight:600;border-radius:3px;padding:1px 6px}
+.flag.cn{background:rgba(255,90,95,.15);color:var(--cn)}.flag.dk{background:rgba(255,143,163,.13);color:var(--dk)}
+.sec{border:1px solid var(--ln);background:var(--p2);border-radius:10px;padding:10px 12px;margin-bottom:10px}
+.sec h4{margin:0 0 6px;font-family:var(--mono);font-size:11px;letter-spacing:1.5px;color:var(--mu);font-weight:500;text-transform:uppercase}
+.sec.gat{border-color:rgba(255,194,71,.45)}.sec.gat h4{color:var(--am)}
+.sec p{margin:0}
+.kv{display:grid;grid-template-columns:90px minmax(0,1fr);gap:4px 10px;font-size:13px}
+.kv span{color:var(--mu);font-family:var(--mono);font-size:11px;padding-top:2px}
+.kv div{overflow-wrap:anywhere}
+.acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.a{display:inline-block;border:1px solid var(--ln2);border-radius:6px;padding:5px 9px;font-size:12px;text-decoration:none;color:var(--tx);background:var(--p1);cursor:pointer}
+.a:hover{border-color:var(--gr);color:var(--gr)}
+.a.hot{border-color:var(--gr2);color:var(--gr)}
+.lnk{font-size:12px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center;padding:9px 0;border-bottom:1px solid var(--ln);cursor:pointer}
+.row:hover .nm{color:var(--gr)}
+.nm{font-weight:600}.sub{color:var(--mu);font-size:12px}
+.pill{font-family:var(--mono);font-size:10px;border:1px solid var(--ln2);border-radius:4px;padding:1px 6px;color:var(--mu)}
+.pill.g{border-color:var(--am);color:var(--am)}
+.score{font-family:var(--mono);font-size:18px;font-weight:600;color:var(--gr);text-align:right}
+.chega{border:1px solid rgba(60,255,160,.35);border-radius:10px;padding:12px;margin-bottom:10px;background:linear-gradient(180deg,rgba(60,255,160,.06),transparent)}
+.chega .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.chega .v{font-family:var(--mono);color:var(--gr);font-size:16px;font-weight:600;white-space:nowrap}
+.sinal{border-left:2px solid var(--ln2);padding:4px 0 10px 12px;position:relative}
+.sinal:before{content:"";position:absolute;left:-5px;top:9px;width:8px;height:8px;border-radius:50%;background:var(--gr)}
+.sinal .d{font-family:var(--mono);font-size:11px;color:var(--mu)}
+.ferr{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.nota{font-family:var(--mono);font-size:10px;color:var(--mu);margin-top:12px;line-height:1.6}
+.toast{position:fixed;right:16px;bottom:16px;background:var(--gr);color:#03130B;font-weight:600;padding:9px 14px;border-radius:8px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+@media (max-width:900px){.main{grid-template-columns:minmax(0,1fr)}.radar{border-right:0;border-bottom:1px solid var(--ln)}.radar svg{min-height:380px;height:380px}.live{display:none}.busca{flex:1 1 auto}}
 </style>
 </head>
 <body>
-<header><div class="wrap">
- <div class="logo"><svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="16" fill="none" stroke="#D6B26E" stroke-width="2.4"/><path d="M20 4v32M4 20h32" stroke="#D6B26E" stroke-width="1.4" opacity=".6"/><ellipse cx="20" cy="20" rx="7" ry="16" fill="none" stroke="#F0D9A6" stroke-width="2"/></svg>Meridiano</div>
- <div class="ed">Edição de demonstração · semana de 19 a 24 de outubro de 2026</div>
-</div></header>
+<div class="top">
+ <div class="brand"><i></i>MERIDIANO</div>
+ <div class="live" id="relogio"></div>
+ <label class="busca"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#7D8EA3" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" placeholder="Buscar empresa, setor, estado…" autocomplete="off" aria-label="Buscar"><kbd>/</kbd></label>
+</div>
+<div class="ticker"><div id="tick"></div></div>
+<div class="para"><span>▸ EDIÇÃO PREPARADA PARA DANIEL MANUCCI</span><span>▸ 32 EMPRESAS MAPEADAS COM ENDEREÇO E TELEFONE (GOOGLE, 24/10/2026)</span><span>▸ 6 ANUNCIARAM INVESTIMENTO E AINDA SEM ESTRUTURA CONFIRMADA</span></div>
 
-<section class="hero"><div class="wrap">
- <div class="kicker">Radar de negócios internacionais</div>
- <h1>Quem está chegando, comprando e investindo entre o Brasil, a China e a Europa, antes de virar cliente do concorrente.</h1>
- <p>Toda semana, o Meridiano lê notícias, dados de comércio, licitações e atos oficiais, separa o que gera trabalho jurídico e entrega cada oportunidade com o ângulo e quem procurar.</p>
- <span class="para">Preparado para Daniel Manucci</span>
- <div class="kpis">
-  <div class="kpi"><div class="v">US$ 84,6 bi</div><div class="l">exportações do Brasil para a China, jan–set/2026 (+12%)</div><div class="f">Fonte: Secex, via DGABC</div></div>
-  <div class="kpi"><div class="v">US$ 6,1 bi</div><div class="l">investimento chinês no Brasil em 2025 (+45%)</div><div class="f">Fonte: CEBC, via Estadão/ABFA</div></div>
-  <div class="kpi"><div class="v">R$ 210,7 bi</div><div class="l">em fusões e aquisições no Brasil, jan–ago/2026 (834 operações, −31%)</div><div class="f">Fonte: TTR Data</div></div>
-  <div class="kpi"><div class="v">1º/05/2026</div><div class="l">início da vigência provisória do acordo Mercosul–União Europeia</div><div class="f">Fonte: Governo federal, via JB</div></div>
+<div class="main">
+ <div class="radar">
+  <svg id="map" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid meet" aria-label="Mapa das empresas no Brasil"></svg>
+  <div class="hud" id="hud"></div>
+  <div class="filtros" id="filtros"></div>
  </div>
-</div></section>
-
-<main class="wrap">
- <h2>Oportunidades da semana</h2>
- <p class="sub">Ordenadas pela nota de oportunidade (0 a 100): tamanho do negócio, urgência e quanto trabalho jurídico ele gera. Marque as que quer acompanhar.</p>
- <div class="filtros" id="filtros"></div>
- <div class="lista" id="lista"></div>
- <p class="nota">A nota é calculada pelo Meridiano a partir de critérios fixos e serve para priorizar a leitura; não é recomendação de investimento.</p>
-
- <h2>Como funciona</h2>
- <p class="sub">Sem sistema novo para aprender: o radar chega pronto.</p>
- <div class="como">
-  <div><b>1. Lê as fontes</b><span>Imprensa econômica, Secex, Diário Oficial, portal de licitações (PNCP), anúncios de empresas e câmaras de comércio.</span></div>
-  <div><b>2. Filtra o que importa</b><span>Só entra o que envolve China, Dinamarca, União Europeia e os setores que o escritório atende.</span></div>
-  <div><b>3. Explica o ângulo</b><span>Para cada item: qual trabalho jurídico ele gera e quem é a pessoa ou empresa a procurar.</span></div>
-  <div><b>4. Entrega</b><span>Resumo toda segunda no WhatsApp e no e-mail, alerta na hora quando algo grande acontece, e esta página atualizada.</span></div>
+ <div class="side">
+  <div class="tabs" id="tabs">
+   <button data-t="dossie" class="on">DOSSIÊ</button>
+   <button data-t="chegando">CHEGANDO<span class="n" id="nCh">0</span></button>
+   <button data-t="base">BASE INSTALADA<span class="n" id="nBase">0</span></button>
+   <button data-t="sinais">SINAIS</button>
+   <button data-t="lista">MINHA LISTA<span class="n" id="nLista">0</span></button>
+  </div>
+  <div class="pane on" id="dossie"></div>
+  <div class="pane" id="chegando"></div>
+  <div class="pane" id="base"></div>
+  <div class="pane" id="sinais"></div>
+  <div class="pane" id="lista"></div>
  </div>
-
- <h2>Próximos módulos</h2>
- <p class="sub">Dá para ligar conforme o escritório quiser.</p>
- <div class="mod">
-  <div><b>Empresas novas com sócio estrangeiro</b>Lista semanal de CNPJs abertos no Brasil com sócios da China, da Dinamarca ou da UE, a partir dos dados públicos da Receita Federal.</div>
-  <div><b>Crise com credor estrangeiro</b>Pedidos de recuperação judicial e falência em que há credores ou controladores estrangeiros (integração com o Radar Crise).</div>
-  <div><b>Licitações internacionais</b>Concorrências com fornecedores estrangeiros no PNCP e em estatais, com prazos de impugnação.</div>
- </div>
-
- <div class="cta">
-  <div><h3>Piloto de 30 dias, sem custo</h3><p>Ajustamos países, setores e clientes que o escritório quer acompanhar, e você recebe o radar toda semana.</p></div>
-  <a href="https://wa.me/5598984149331?text=Ol%C3%A1%2C%20Paulo!%20Vi%20o%20Meridiano%20e%20quero%20conversar%20sobre%20o%20piloto." target="_blank" rel="noopener">Quero o piloto</a>
- </div>
-</main>
-<footer><div class="wrap">Meridiano · radar de negócios internacionais · feito pela Hélice Sites &amp; Sistemas. Edição de demonstração montada com notícias públicas; links para as fontes em cada item.</div></footer>
+</div>
+<div class="toast" id="toast"></div>
 
 <script>
-const OPS=[
- {id:'byd',n:92,p:['cn'],t:'Indústria',data:'23/10/2026',tit:'BYD acelera a nacionalização em Camaçari (BA) para 2027',
-  txt:'A fábrica treina cerca de 1.100 pessoas para as novas linhas de solda e pintura, já passa de R$ 5,5 bilhões investidos e quer começar 2027 acima de 50% de conteúdo local para ser tratada como fabricante nacional.',
-  ang:'Contratos de fornecimento com a indústria local, incentivos fiscais ligados ao conteúdo nacional, trabalhista em escala (9 a 10 mil empregados) e exportação para México e Argentina.',
-  quem:'Fornecedores de autopeças da Bahia e do Nordeste que querem entrar na cadeia da BYD.',fonte:'https://www.piranot.com.br/2026/10/23/noticias/economia/automoveis-veiculos/byd-treina-profissionais-camacari-nacionalizacao/',fn:'Piranot (compila Motor1, Quatro Rodas, Reuters)'},
- {id:'gwm',n:88,p:['cn'],t:'Indústria',data:'03/08/2026',tit:'GWM anuncia fábrica de R$ 4,6 bilhões em Aracruz (ES)',
-  txt:'A montadora chinesa escolheu uma área de 1,74 milhão de m² no Espírito Santo, com operação a partir de 2029 e cerca de 9 mil vagas diretas. A empresa prevê R$ 10 bilhões no Brasil em dez anos.',
-  ang:'Licenciamento ambiental, contratos de obra (EPC), acordos de incentivo com o estado, vistos e mobilidade de executivos chineses.',
-  quem:'Construtoras e fornecedores capixabas; o próprio jurídico da GWM no Brasil.',fonte:'https://www.bnews.com.br/noticias/geral/montadora-chinesa-anuncia-fabrica-no-brasil-de-r-46-bilhoes-e-deve-gerar-quase-10-mil-empregos.html',fn:'BNews'},
- {id:'eu',n:86,p:['eu','dk'],t:'Regulação',data:'em vigor desde 01/05/2026',tit:'Acordo Mercosul–União Europeia em vigência provisória',
-  txt:'O acordo prevê redução gradual de tarifas e menos barreiras comerciais. Empresas da Dinamarca e do resto da UE passam a reavaliar exportação e produção no Brasil.',
-  ang:'Regras de origem, revisão de contratos de distribuição e de agência, planejamento aduaneiro e estrutura societária para quem decide produzir aqui.',
-  quem:'Exportadores dinamarqueses com distribuidor no Brasil e importadores brasileiros de produtos europeus.',fonte:'https://www.jb.com.br/economia/2026/03/1059083-acordo-mercosul-ue-valera-provisoriamente-em-maio-confirma-governo.html',fn:'Jornal do Brasil'},
- {id:'emet',n:84,p:['dk'],t:'Energia',data:'acompanhamento',tit:'European Energy (Dinamarca) e a fábrica de e-metanol de R$ 2 bilhões em Suape (PE)',
-  txt:'A dinamarquesa European Energy planeja em Suape a primeira fábrica de e-metanol do Brasil, com cerca de 100 mil toneladas por ano. A Petrobras assinou acordo de princípios para estudar sociedade no projeto.',
-  ang:'Joint venture com estatal, contratos de compra de CO₂ de usinas do Nordeste, contratos de venda de longo prazo (offtake) e licenciamento.',
-  quem:'Usinas de cana de PE, PB e AL que podem fornecer CO₂; a própria European Energy.',fonte:'https://portaldeprefeitura.com.br/pernambuco/suape-petrobras-pode-se-tornar-socia-de-fabrica-de-e-metanol-com/588763/',fn:'Portal de Prefeitura'},
- {id:'carne',n:81,p:['cn'],t:'Comércio',data:'06/10/2026',tit:'Exportação de carne bovina para a China cai 93,5% em setembro após a cota',
-  txt:'O Brasil atingiu a cota chinesa que dispara sobretaxa, e as vendas de carne bovina despencaram. No total, as exportações para a China caíram 7,6% em setembro, mas sobem 12% no ano.',
-  ang:'Revisão de contratos de exportação (força maior, preço, volume), defesa comercial e reorganização de cadeias para outros mercados.',
-  quem:'Frigoríficos exportadores e tradings com contratos firmes para a China.',fonte:'https://www.dgabc.com.br/Noticia/4351280/exportacoes-brasileiras-para-a-china-caem-7-6-em-setembro-ante-igual-mes-de-2025',fn:'DGABC'},
- {id:'tus',n:74,p:['cn'],t:'Tecnologia',data:'12/10/2026',tit:'Grupo chinês Tus Holdings sonda parques tecnológicos no Rio Grande do Sul',
-  txt:'Delegação ligada à Universidade Tsinghua visitou o RS em setembro, convidada pela Invest RS, de olho em incubação de startups e parques tecnológicos.',
-  ang:'Estruturação de joint ventures, propriedade intelectual, acordos com universidades e entrada de capital estrangeiro em startups.',
-  quem:'Invest RS, parques tecnológicos gaúchos e startups com perfil de receber capital chinês.',fonte:'https://abfa.org.br/2026/10/13/china-mira-investimentos-em-tecnologia-e-industria-no-brasil/',fn:'ABFA, a partir do Estadão'},
- {id:'novo',n:72,p:['dk'],t:'Saúde',data:'acompanhamento',tit:'Novo Nordisk (Dinamarca) e o investimento de R$ 6,4 bilhões em Montes Claros (MG)',
-  txt:'A dona do Ozempic anunciou a expansão da fábrica mineira para produzir medicamentos, um dos maiores investimentos dinamarqueses no país.',
-  ang:'Contratos com fornecedores e prestadores locais, trabalhista, regulatório sanitário e incentivos estaduais.',
-  quem:'Fornecedores industriais e de serviços do norte de Minas.',fonte:'https://mercadoeconsumo.com.br/08/04/2025/noticias/novo-nordisk-dona-do-ozempic-investira-r-64-bi-para-produzir-medicamentos-em-minas-gerais/',fn:'Mercado & Consumo'},
- {id:'off',n:70,p:['dk'],t:'Energia',data:'13/02/2026',tit:'Brasil e Dinamarca aprovam o plano de 2026 da parceria em energia, com foco em eólica offshore',
-  txt:'O plano da Parceria Energética Brasil–Dinamarca vai até 2029 e já produziu estudos sobre licenciamento e convivência de parques eólicos no mar.',
-  ang:'Marco regulatório da eólica offshore, licenciamento e contratos de cessão de áreas, quando os leilões saírem.',
-  quem:'Desenvolvedores europeus de eólica offshore e fornecedores portuários do Nordeste.',fonte:'https://jornaldebrasilia.com.br/noticias/economia/brasil-e-dinamarca-aprovam-plano-de-trabalho-para-transicao-energetica-em-2026/',fn:'Jornal de Brasília'},
- {id:'metro',n:69,p:['cn'],t:'Licitação',data:'07/07/2026',tit:'Metrô de Brasília abre licitação de R$ 1 bilhão para trens em meio a disputa com fabricantes chineses',
-  txt:'Empresas locais e outros países pressionam contra fabricantes chineses; o governo vê pouca margem para restringir a participação.',
-  ang:'Licitação internacional: impugnações de edital, isonomia entre estrangeiros e consórcios com fabricantes chineses.',
-  quem:'Fabricantes e consórcios que vão disputar ou contestar a concorrência.',fonte:'https://www.bnamericas.com/pt/feature/metro-de-brasilia-abre-licitacao-de-r1bi-para-compra-de-trens-em-meio-a-acirramento-contra-fabricantes-chineses',fn:'BNamericas'},
- {id:'pe',n:66,p:['dk'],t:'Investimento',data:'acompanhamento',tit:'Pernambuco apresenta projetos a investidores dinamarqueses em Copenhague',
-  txt:'Reuniões na Dansk Industri com Topsoe, Novo Nordisk, Copenhagen Infrastructure Partners e European Energy, com o Porto de Suape como vitrine.',
-  ang:'Entrada de fundos dinamarqueses de infraestrutura: estrutura de investimento, garantias e contratos com o estado.',
-  quem:'Copenhagen Infrastructure Partners e empresas do Complexo de Suape.',fonte:'https://portaldeprefeitura.com.br/pernambuco/raquel-lyra-apresenta-pernambuco-a-investidores-dinamarqueses-em/606493/',fn:'Portal de Prefeitura'}
+/* ===== Dados: endereços e telefones do Google Places (consulta de 24/10/2026); gatilhos com fonte e data ===== */
+const S={
+ byd:['Piranot, 23/10/2026','https://www.piranot.com.br/2026/10/23/noticias/economia/automoveis-veiculos/byd-treina-profissionais-camacari-nacionalizacao/'],
+ gwm:['BNews, 03/08/2026','https://www.bnews.com.br/noticias/geral/montadora-chinesa-anuncia-fabrica-no-brasil-de-r-46-bilhoes-e-deve-gerar-quase-10-mil-empregos.html'],
+ sg:['Canal Solar','https://canalsolar.com.br/leiloes-transmissao-2026/'],
+ apex:['Congresso em Foco, 12/05/2025','https://www.congressoemfoco.com.br/noticia/108429/china-anuncia-r-27-bilhoes-em-investimentos-no-brasil'],
+ cofco:['Datamar News','https://datamarnews.com/noticias/cofco-international-to-launch-first-phase-of-new-terminal-at-port-of-santos/'],
+ keeta:['Caixin Global, 26/05/2026','https://www.caixinglobal.com/2026-05-26/meituans-keeta-sued-in-brazil-as-delivery-rivalry-intensifies-102447619.html'],
+ spic:['eixos','https://eixos.com.br/energias-renovaveis/spic-brasil-vai-investir-r-14-bilhao-na-expansao-da-hidreletrica-sao-simao/'],
+ novo:['Mercado & Consumo, 08/04/2025','https://mercadoeconsumo.com.br/08/04/2025/noticias/novo-nordisk-dona-do-ozempic-investira-r-64-bi-para-produzir-medicamentos-em-minas-gerais/'],
+ ee:['Portal de Prefeitura','https://portaldeprefeitura.com.br/pernambuco/suape-petrobras-pode-se-tornar-socia-de-fabrica-de-e-metanol-com/588763/'],
+ sts10:['Poder360','https://www.poder360.com.br/poder-infra/governo-adiou-leilao-do-sts-10-ao-menos-7-vezes-desde-2025/'],
+ vestas:['Diário do Nordeste','https://diariodonordeste.verdesmares.com.br/opiniao/colunistas/egidio-serpa/dinamarquesa-gigante-da-energia-eolica-investe-r-130-milhoes-no-ceara-1.3637475'],
+ mue:['Jornal do Brasil, 03/2026','https://www.jb.com.br/economia/2026/03/1059083-acordo-mercosul-ue-valera-provisoriamente-em-maio-confirma-governo.html'],
+ pe:['Portal de Prefeitura, 23/10/2025','https://portaldeprefeitura.com.br/pernambuco/raquel-lyra-apresenta-pernambuco-a-investidores-dinamarqueses-em/606493/'],
+ tus:['ABFA/Estadão, 12/10/2026','https://abfa.org.br/2026/10/13/china-mira-investimentos-em-tecnologia-e-industria-no-brasil/'],
+ carne:['DGABC, 06/10/2026','https://www.dgabc.com.br/Noticia/4351280/exportacoes-brasileiras-para-a-china-caem-7-6-em-setembro-ante-igual-mes-de-2025'],
+ metro:['BNamericas, 07/07/2026','https://www.bnamericas.com/pt/feature/metro-de-brasilia-abre-licitacao-de-r1bi-para-compra-de-trens-em-meio-a-acirramento-contra-fabricantes-chineses'],
+ off:['Jornal de Brasília, 13/02/2026','https://jornaldebrasilia.com.br/noticias/economia/brasil-e-dinamarca-aprovam-plano-de-trabalho-para-transicao-energetica-em-2026/']
+};
+const ANG={
+ ind:'Contratos de fornecimento e de conteúdo local, incentivos fiscais estaduais, trabalhista em escala e importação de máquinas.',
+ ene:'Contratos de concessão e de compra de energia (PPA), licenciamento ambiental, financiamento de projetos e fusões entre concessionárias.',
+ fin:'Operações de crédito para importadores e exportadores, estruturação de garantias e compliance regulatório do Banco Central.',
+ agro:'Contratos de exportação, logística portuária, operações estruturadas com produtores e defesa comercial.',
+ tec:'Proteção de dados (LGPD), contratos de tecnologia, propriedade intelectual e disputas concorrenciais.',
+ log:'Contratos de transporte e de terminal, regulação da Antaq, disputas concorrenciais no Cade e aduaneiro.',
+ saude:'Regulatório da Anvisa, contratos com o SUS e distribuidores, propriedade intelectual e trabalhista.',
+ cons:'Importação e regras de origem, contratos de franquia e distribuição, propriedade intelectual e varejo.',
+ serv:'Trabalhista de grande volume, contratos de terceirização e licitações privadas e públicas.'
+};
+const E=[
+ // ---------- CHINA ----------
+ {id:'byd',p:'cn',n:'BYD Auto do Brasil',set:'Automotivo',st:'BA',tipo:'Fábrica',end:'Av. BYD, Polo Petroquímico, Camaçari - BA, 42816-440',tel:'(71) 2886-0320',site:'',lat:-12.675,lng:-38.281,sc:94,ang:'ind',
+  g:'Treina 1.100 pessoas para solda e pintura e quer começar 2027 com mais de 50% de conteúdo local para ser tratada como fabricante nacional. Investimento já passa de R$ 5,5 bi.',gs:'byd',
+  rede:['Fornecedores de autopeças do Nordeste','Exportação para México e Argentina (50 mil pedidos cada)']},
+ {id:'gwm',p:'cn',n:'GWM Brasil (Great Wall Motor)',set:'Automotivo',st:'SP',tipo:'Fábrica',end:'Rod. Luiz Ometto (SP-306), km 44, Iracemápolis - SP, 13495-000',tel:'',site:'https://www.gwmmotors.com.br/',lat:-22.623,lng:-47.506,sc:90,ang:'ind',
+  g:'Anunciou segunda fábrica de R$ 4,6 bi em Aracruz (ES), com operação a partir de 2029 e cerca de 9 mil vagas. Prevê R$ 10 bi no Brasil em dez anos.',gs:'gwm',rede:['Governo do Espírito Santo (incentivos)','Construtoras e fornecedores capixabas']},
+ {id:'stategrid',p:'cn',n:'State Grid Brazil Holding',set:'Energia',st:'RJ',tipo:'Sede',end:'Av. Presidente Vargas, 955, Centro, Rio de Janeiro - RJ, 20071-004',tel:'(21) 2223-7388',site:'https://stategrid.com.br/',lat:-22.903,lng:-43.184,sc:86,ang:'ene',
+  g:'Formalizou a compra da Concessionária Mantiqueira Energia (13 linhas, mais de 1.300 km em MG). O governo prevê dois leilões de transmissão em 2026 que somam mais de R$ 25 bi.',gs:'sg',rede:['Leilões de transmissão da Aneel']},
+ {id:'ctg',p:'cn',n:'CTG Brasil (China Three Gorges)',set:'Energia',st:'SP',tipo:'Sede',end:'R. Funchal, 418, 3º andar, Vila Olímpia, São Paulo - SP, 04551-060',tel:'(11) 5632-3200',site:'https://www.ctgbr.com.br/',lat:-23.594,lng:-46.690,sc:72,ang:'ene',g:'',rede:['Hidrelétricas Jupiá e Ilha Solteira']},
+ {id:'spic',p:'cn',n:'SPIC Brasil',set:'Energia',st:'SP',tipo:'Sede',end:'Av. Pres. Juscelino Kubitschek, 1909, Torre Norte, 27º andar, São Paulo - SP, 04543-907',tel:'(11) 3149-4646',site:'https://www.spicbrasil.com.br/',lat:-23.591,lng:-46.688,sc:80,ang:'ene',
+  g:'Anunciou R$ 1,4 bi para expandir a hidrelétrica de São Simão.',gs:'spic',rede:['Usina São Simão (GO/MG)','Complexo solar Luiz Gonzaga (PE)']},
+ {id:'cgn',p:'cn',n:'CGN Brasil Energia',set:'Energia',st:'PR',tipo:'Sede',end:'Av. Cândido de Abreu, 70, Centro Cívico, Curitiba - PR, 80530-000',tel:'(41) 3079-7100',site:'https://www.cgnbe.com.br/',lat:-25.424,lng:-49.269,sc:78,ang:'ene',
+  g:'Anunciou R$ 3 bi para um hub de energia renovável no Piauí, no pacote de investimentos chineses de maio de 2025.',gs:'apex',rede:['Projetos eólicos e solares no Piauí']},
+ {id:'cofco',p:'cn',n:'COFCO International Brasil',set:'Agro e portos',st:'SP',tipo:'Sede',end:'R. Sansão Alves dos Santos, 400, Cidade Monções, São Paulo - SP, 04571-090',tel:'(11) 3566-8600',site:'http://www.cofcointernational.com/',lat:-23.604,lng:-46.694,sc:84,ang:'agro',
+  g:'Terminal STS11 no Porto de Santos (US$ 285 mi) para levar a capacidade de exportação de 4,5 para 14,5 milhões de toneladas por ano, meta prevista para 2026.',gs:'cofco',rede:['Porto de Santos','Produtores de soja e milho']},
+ {id:'99',p:'cn',n:'99 (grupo Didi)',set:'Tecnologia e delivery',st:'SP',tipo:'Sede',end:'R. Sansão Alves dos Santos, 400, Cidade Monções, São Paulo - SP, 04571-090',tel:'',site:'',lat:-23.6041,lng:-46.6939,sc:76,ang:'tec',
+  g:'Na guerra do delivery com o 99Food contra iFood e Keeta, o setor já tem disputas judiciais por concorrência desleal e segredo comercial em São Paulo.',gs:'keeta',rede:['Keeta (Meituan)','iFood']},
+ {id:'cmoc',p:'cn',n:'CMOC Brasil',set:'Mineração',st:'GO',tipo:'Operação',end:'Av. Raulina Fonseca Paschoal, 720, Setor Central, Catalão - GO, 75712-110',tel:'(64) 3411-8300',site:'https://cmocbrasil.com/br',lat:-18.170,lng:-47.953,sc:66,ang:'ind',g:'',rede:['Nióbio e fosfatos em Catalão e Ouvidor (GO)']},
+ {id:'huawei',p:'cn',n:'Huawei do Brasil',set:'Tecnologia',st:'SP',tipo:'Fábrica',end:'Av. Jerome Case, 2600, Éden, Sorocaba - SP, 18087-220',tel:'',site:'https://www.huawei.com/br/',lat:-23.443,lng:-47.390,sc:64,ang:'tec',g:'',rede:['Operadoras de telecomunicações']},
+ {id:'lenovo',p:'cn',n:'Lenovo Brasil',set:'Tecnologia',st:'SP',tipo:'Fábrica',end:'Marginal Norte, 438, Cidade Nova II, Indaiatuba - SP, 13337-200',tel:'(19) 3932-5400',site:'http://www.lenovo.com.br/',lat:-23.077,lng:-47.167,sc:60,ang:'tec',g:'',rede:[]},
+ {id:'xcmg',p:'cn',n:'XCMG Brasil Indústria',set:'Máquinas',st:'MG',tipo:'Fábrica',end:'BR-381, km 855, Distrito Industrial, Pouso Alegre - MG, 37550-000',tel:'0800 770 8866',site:'http://www.xcmg-america.com/',lat:-22.283,lng:-45.897,sc:62,ang:'ind',g:'',rede:['Concessionárias de máquinas pesadas']},
+ {id:'sany',p:'cn',n:'Sany do Brasil',set:'Máquinas',st:'SP',tipo:'Fábrica',end:'Av. Dr. Romeu Carlos Petrilli, 600, Parque Meia Lua, Jacareí - SP, 12335-490',tel:'(11) 3164-4821',site:'http://www.sanydobrasil.com/',lat:-23.270,lng:-45.970,sc:60,ang:'ind',g:'',rede:[]},
+ {id:'midea',p:'cn',n:'Midea Carrier',set:'Eletrodomésticos',st:'RS',tipo:'Fábrica',end:'R. Berto Círio, 521, São Luís, Canoas - RS, 92420-030',tel:'3003-1005',site:'http://www.mideacarrier.com.br/',lat:-29.884,lng:-51.187,sc:58,ang:'ind',g:'',rede:[]},
+ {id:'bocb',p:'cn',n:'Bank of China Brasil',set:'Banco',st:'SP',tipo:'Sede',end:'Av. Paulista, 14º andar, Bela Vista, São Paulo - SP, 01311-100',tel:'(11) 3508-3200',site:'http://www.bankofchina.com/br/pt/aboutus/',lat:-23.566,lng:-46.652,sc:70,ang:'fin',
+  g:'Comércio Brasil–China de US$ 128,6 bi nos 8 primeiros meses de 2026 (+12,7%) mantém alta a demanda por crédito e câmbio para importadores e exportadores.',gs:'tus',rede:['Importadores e exportadores Brasil–China']},
+ // ---------- DINAMARCA ----------
+ {id:'novo',p:'dk',n:'Novo Nordisk',set:'Farmacêutico',st:'MG',tipo:'Fábrica',end:'Av. Comendador Antonio Loureiro Ramos, 1413, Montes Claros - MG, 39404-004',tel:'(38) 3229-6200',site:'http://www.novonordisk.com.br/',lat:-16.689,lng:-43.858,sc:88,ang:'saude',
+  g:'Investimento de R$ 6,4 bi para produzir medicamentos na fábrica de Montes Claros, um dos maiores aportes dinamarqueses no país.',gs:'novo',rede:['Fornecedores industriais do norte de MG']},
+ {id:'ee',p:'dk',n:'European Energy Brazil',set:'Energia',st:'PE',tipo:'Escritório',end:'Av. República do Líbano, 251, Pina, Recife - PE, 51110-160',tel:'',site:'https://br.europeanenergy.com/',lat:-8.086,lng:-34.895,sc:87,ang:'ene',
+  g:'Primeira fábrica de e-metanol do Brasil em Suape (R$ 2 bi, cerca de 100 mil t/ano). A Petrobras assinou acordo de princípios para estudar sociedade.',gs:'ee',rede:['Petrobras','Usinas de cana de PE, PB e AL (CO₂)','Complexo de Suape']},
+ {id:'maersk',p:'dk',n:'Maersk Brasil',set:'Logística',st:'SP',tipo:'Sede',end:'Av. das Nações Unidas, 14401, Torre Aroeira, 10º andar, São Paulo - SP, 04794-000',tel:'(11) 3164-4752',site:'https://www.maersk.com/',lat:-23.625,lng:-46.705,sc:85,ang:'log',
+  g:'O leilão do megaterminal STS10 em Santos foi adiado ao menos 7 vezes desde 2025 e discute restringir quem já opera no porto, o que mexe com armadores como a Maersk.',gs:'sts10',rede:['APM Terminals','Porto de Santos','Antaq e TCU']},
+ {id:'apmt',p:'dk',n:'APM Terminals (grupo Maersk)',set:'Logística',st:'CE',tipo:'Escritório',end:'R. Des. Leite Albuquerque, 635, Aldeota, Fortaleza - CE, 60150-150',tel:'(85) 3133-2600',site:'https://www.apmterminals.com/',lat:-3.737,lng:-38.499,sc:74,ang:'log',g:'',rede:['Porto do Pecém']},
+ {id:'vestas',p:'dk',n:'Vestas do Brasil',set:'Energia eólica',st:'CE',tipo:'Fábrica',end:'Aquiraz - CE, 61700-000',tel:'(85) 3117-5052',site:'http://vestas.com/',lat:-3.949,lng:-38.512,sc:76,ang:'ind',
+  g:'Anunciou R$ 130 milhões para ampliar a produção de turbinas na fábrica do Ceará. A parceria Brasil–Dinamarca prepara o terreno para a eólica no mar (offshore).',gs:'vestas',rede:['Parques eólicos do Nordeste','Eólica offshore']},
+ {id:'danfoss',p:'dk',n:'Danfoss do Brasil',set:'Indústria',st:'SP',tipo:'Fábrica',end:'R. Américo Vespúcio, 85, Vila Menck, Osasco - SP, 06273-070',tel:'0800 878 7847',site:'http://www.danfoss.com.br/',lat:-23.495,lng:-46.762,sc:62,ang:'ind',g:'',rede:[]},
+ {id:'grundfos',p:'dk',n:'Bombas Grundfos do Brasil',set:'Indústria',st:'SP',tipo:'Fábrica',end:'Av. Humberto de Alencar Castelo Branco, 630, São Bernardo do Campo - SP, 09850-300',tel:'(11) 4393-5533',site:'https://www.grundfos.com/br',lat:-23.698,lng:-46.587,sc:60,ang:'ind',g:'',rede:['Saneamento (concessões)']},
+ {id:'novonesis',p:'dk',n:'Novonesis (ex-Novozymes)',set:'Biotecnologia',st:'PR',tipo:'Fábrica',end:'R. Prof. Francisco Ribeiro, 683, Barigui, Araucária - PR, 83707-660',tel:'(41) 3641-1000',site:'https://www.novozymes.com/pt',lat:-25.526,lng:-49.343,sc:64,ang:'agro',g:'',rede:['Etanol e agronegócio']},
+ {id:'flsmidth',p:'dk',n:'FLSmidth Brasil',set:'Mineração e cimento',st:'SP',tipo:'Fábrica',end:'Rua José Dolles, 264, Jardim Clarice I, Votorantim - SP, 18116-710',tel:'(15) 3500-9000',site:'http://www.flsmidth.com/',lat:-23.555,lng:-47.463,sc:58,ang:'ind',g:'',rede:[]},
+ {id:'dsv',p:'dk',n:'DSV Brasil',set:'Logística',st:'SP',tipo:'Escritório',end:'Av. Jornalista Roberto Marinho, 85, 12º andar, São Paulo - SP, 04576-010',tel:'(11) 4280-6500',site:'https://www.dsv.com/pt-br/',lat:-23.612,lng:-46.697,sc:66,ang:'log',
+  g:'Com o acordo Mercosul–UE em vigência provisória desde 01/05/2026, cresce o fluxo de importação europeia que passa por despachantes e operadores logísticos.',gs:'mue',rede:['Importadores europeus']},
+ {id:'iss',p:'dk',n:'ISS Brasil',set:'Serviços',st:'SP',tipo:'Sede',end:'Av. das Nações Unidas, 22833, Jurubatuba, São Paulo - SP, 04795-100',tel:'0800 15 1555',site:'',lat:-23.680,lng:-46.695,sc:56,ang:'serv',g:'',rede:[]},
+ {id:'coloplast',p:'dk',n:'Coloplast do Brasil',set:'Saúde',st:'SP',tipo:'Sede',end:'Rua Luís Correia de Melo, 92, Vila Cruzeiro, São Paulo - SP, 04726-220',tel:'0800 285 8687',site:'http://www.coloplast.com.br/',lat:-23.633,lng:-46.716,sc:56,ang:'saude',g:'',rede:[]},
+ {id:'topsoe',p:'dk',n:'Topsoe',set:'Energia e química',st:'RJ',tipo:'Escritório',end:'Praia de Botafogo, 440, 9º andar, Botafogo, Rio de Janeiro - RJ, 22200-050',tel:'',site:'http://www.topsoe.com/',lat:-22.949,lng:-43.183,sc:70,ang:'ene',
+  g:'Esteve nas reuniões do governo de Pernambuco com investidores em Copenhague, focadas em hidrogênio e transição energética.',gs:'pe',rede:['Hidrogênio verde em Suape']},
+ {id:'arla',p:'dk',n:'Arla Foods Ingredients',set:'Alimentos',st:'SP',tipo:'Escritório',end:'R. Cap. Antônio Rosa, 409, Jardim Paulistano, São Paulo - SP, 01443-010',tel:'(11) 3211-6231',site:'https://br.arlafoodsingredients.com/',lat:-23.567,lng:-46.685,sc:62,ang:'cons',
+  g:'Ingredientes lácteos importados da UE estão entre os produtos que mais sentem a redução gradual de tarifas do acordo Mercosul–UE.',gs:'mue',rede:['Indústria de alimentos']},
+ {id:'lego',p:'dk',n:'LEGO (lojas no Brasil)',set:'Varejo',st:'SP',tipo:'Loja',end:'R. Oscar Freire, 1106, Jardim Paulista, São Paulo - SP, 01426-002',tel:'(11) 91562-6376',site:'http://www.legostore.com.br/',lat:-23.562,lng:-46.670,sc:52,ang:'cons',g:'',rede:['Franquias e lojas certificadas']},
+ {id:'pandora',p:'dk',n:'Pandora (lojas no Brasil)',set:'Varejo',st:'SP',tipo:'Loja',end:'R. Olimpíadas, 360, Loja 117, Vila Olímpia, São Paulo - SP, 04551-000',tel:'(11) 98962-3589',site:'https://stores.pandora.net/pt-br/',lat:-23.595,lng:-46.687,sc:52,ang:'cons',g:'',rede:[]},
+ {id:'gn',p:'dk',n:'GN Danavox do Brasil (ReSound)',set:'Saúde',st:'SP',tipo:'Sede',end:'R. Prof. Artur Ramos, 241, Jardim Europa, São Paulo - SP, 01454-000',tel:'(11) 3032-0245',site:'',lat:-23.582,lng:-46.686,sc:54,ang:'saude',g:'',rede:['Centros auditivos ReSound']}
 ];
-const PAISES={todos:'Todos',cn:'China',dk:'Dinamarca',eu:'União Europeia'};
-const TIPOS=[...new Set(OPS.map(o=>o.t))];
-let fP='todos',fT='todos';
-let SEG;try{SEG=new Set(JSON.parse(localStorage.getItem('meridiano_seg')||'[]'))}catch(e){SEG=new Set()}
-const salvar=()=>{try{localStorage.setItem('meridiano_seg',JSON.stringify([...SEG]))}catch(e){}};
-function filtros(){const f=document.getElementById('filtros');
- f.innerHTML=Object.entries(PAISES).map(([k,v])=>`<button class="chip ${fP==k?'on':''}" data-p="${k}">${v}</button>`).join('')+'<span style="width:12px"></span>'+['todos',...TIPOS].map(t=>`<button class="chip ${fT==t?'on':''}" data-t="${t}">${t=='todos'?'Todos os tipos':t}</button>`).join('')}
-function lista(){const L=OPS.filter(o=>(fP=='todos'||o.p.includes(fP))&&(fT=='todos'||o.t==fT)).sort((a,b)=>b.n-a.n);
- document.getElementById('lista').innerHTML=L.map(o=>`<article class="op"><div class="topo"><div class="score" style="--s:${o.n}"><span>${o.n}</span></div><div><h3>${o.tit}</h3><div class="tags">${o.p.map(p=>`<span class="tag ${p}">${PAISES[p]}</span>`).join('')}<span class="tag t">${o.t}</span><span class="tag t">${o.data}</span></div></div></div>
- <p>${o.txt}</p><div class="angulo"><b>Ângulo jurídico:</b> ${o.ang}</div><div class="angulo"><b>Quem procurar:</b> ${o.quem}</div>
- <div class="rod"><a href="${o.fonte}" target="_blank" rel="noopener">Fonte: ${o.fn}</a><button class="btn ${SEG.has(o.id)?'on':''}" data-seg="${o.id}">${SEG.has(o.id)?'✓ Acompanhando':'Acompanhar'}</button></div></article>`).join('')||'<p class="vazio">Nada nesse filtro esta semana.</p>'}
-document.addEventListener('click',e=>{const b=e.target.closest('[data-p],[data-t],[data-seg]');if(!b)return;
- if(b.dataset.p){fP=b.dataset.p;filtros();lista()} if(b.dataset.t){fT=b.dataset.t;filtros();lista()}
- if(b.dataset.seg){const id=b.dataset.seg;SEG.has(id)?SEG.delete(id):SEG.add(id);salvar();lista()}});
-filtros();lista();
+// Anunciaram investimento no Brasil, sem estrutura confirmada no Google (consulta de 24/10/2026)
+const CH=[
+ {n:'Envision (China)',set:'Energia',v:'até R$ 5 bi',o:'Parque industrial net-zero para combustível sustentável de aviação, hidrogênio e amônia verdes. Na consulta, o Google não mostra escritório da Envision Energy no Brasil.',s:'apex',p:'cn',
+  ang:'Constituição da subsidiária, escolha do estado e negociação de incentivos, terrenos, licenciamento e contratos de longo prazo.'},
+ {n:'Meituan / Keeta (China)',set:'Delivery',v:'US$ 1 bi em 5 anos',o:'Operando desde out/2025 e processada pelo iFood em São Paulo por concorrência desleal e segredo comercial (mai/2026).',s:'keeta',p:'cn',
+  ang:'Contencioso concorrencial, defesa em ações de segredo industrial, trabalhista e regulação de plataformas.'},
+ {n:'Mixue (China)',set:'Bebidas e franquias',v:'R$ 3,2 bi',o:'Anunciou investimento com compra de frutas brasileiras, ligado à expansão da rede de sorveterias e bebidas.',s:'apex',p:'cn',
+  ang:'Modelo de franquia no Brasil, contratos com fornecedores agrícolas, marcas e vigilância sanitária.'},
+ {n:'Baiyin Nonferrous (China)',set:'Mineração',v:'R$ 2,4 bi',o:'Compra da mina de cobre Serrote, em Alagoas.',s:'apex',p:'cn',
+  ang:'Due diligence minerária, direitos na ANM, licenciamento e relação com comunidades.'},
+ {n:'Copenhagen Infrastructure Partners (Dinamarca)',set:'Fundo de infraestrutura',v:'não divulgado',o:'Esteve nas reuniões com o governo de Pernambuco em Copenhague. Na consulta, o Google só mostra a sede na Dinamarca (Gdanskgade 18, Copenhague, +45 70 70 51 51).',s:'pe',p:'dk',
+  ang:'Estrutura de investimento estrangeiro, veículo no Brasil, garantias e contratos com o estado.'},
+ {n:'Tus Holdings (China)',set:'Parques tecnológicos',v:'em prospecção',o:'Delegação ligada à Universidade Tsinghua visitou o Rio Grande do Sul em setembro de 2026 a convite da Invest RS.',s:'tus',p:'cn',
+  ang:'Joint ventures com universidades e parques, propriedade intelectual e entrada de capital em startups.'}
+];
+const SIN=[
+ {d:'23/10/2026',t:'BYD acelera a nacionalização em Camaçari para 2027',s:'byd',e:'byd'},
+ {d:'12/10/2026',t:'Comércio Brasil–China chega a US$ 128,6 bi em 8 meses (+12,7%); Tus Holdings sonda o RS',s:'tus',e:''},
+ {d:'06/10/2026',t:'Carne bovina para a China cai 93,5% em setembro após a cota com sobretaxa',s:'carne',e:''},
+ {d:'03/08/2026',t:'GWM anuncia fábrica de R$ 4,6 bi em Aracruz (ES)',s:'gwm',e:'gwm'},
+ {d:'07/07/2026',t:'Metrô de Brasília abre licitação de R$ 1 bi para trens, em disputa com fabricantes chineses',s:'metro',e:''},
+ {d:'26/05/2026',t:'iFood processa Meituan/Keeta em São Paulo por concorrência desleal',s:'keeta',e:'99'},
+ {d:'01/05/2026',t:'Acordo Mercosul–UE entra em vigência provisória',s:'mue',e:'dsv'},
+ {d:'13/02/2026',t:'Brasil e Dinamarca aprovam plano 2026 da parceria em energia (eólica offshore)',s:'off',e:'vestas'}
+];
+
+/* ===== util ===== */
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const PN={cn:'China',dk:'Dinamarca'};
+const li=(q)=>'https://www.linkedin.com/search/results/people/?keywords='+encodeURIComponent(q);
+const gnews=(q)=>'https://www.google.com/search?tbm=nws&q='+encodeURIComponent(q);
+const cnpj=(q)=>'https://www.google.com/search?q='+encodeURIComponent(q+' CNPJ razão social');
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),2000)};
+let LISTA;try{LISTA=new Set(JSON.parse(localStorage.getItem('meridiano_lista')||'[]'))}catch(e){LISTA=new Set()}
+const salvar=()=>{try{localStorage.setItem('meridiano_lista',JSON.stringify([...LISTA]))}catch(e){}};
+let FP='todos',SEL=null,Q='';
+
+/* ===== relógio e ticker ===== */
+setInterval(()=>{$('relogio').textContent='SÃO PAULO '+new Date().toLocaleTimeString('pt-BR',{timeZone:'America/Sao_Paulo'})+' · PEQUIM '+new Date().toLocaleTimeString('pt-BR',{timeZone:'Asia/Shanghai'})+' · COPENHAGUE '+new Date().toLocaleTimeString('pt-BR',{timeZone:'Europe/Copenhagen'})},1000);
+const TK=[['EXPORT BR→CN JAN–SET/26','US$ 84,6 bi','+12,0%','up'],['IMPORT CN→BR JAN–SET/26','US$ 58,6 bi','+9,9%','up'],['EXPORT BR→CN SET/26','US$ 7,9 bi','−7,6%','dn'],['CARNE BOVINA → CN SET/26','cota atingida','−93,5%','dn'],['INVEST. CHINÊS NO BR 2025','US$ 6,1 bi','+45%','up'],['M&A BRASIL JAN–AGO/26','R$ 210,7 bi','834 deals','dn'],['MERCOSUL–UE','vigência provisória','01/05/26','up'],['LEILÕES TRANSMISSÃO 2026','> R$ 25 bi','2 leilões','up']];
+const tk=TK.map(x=>`<b>${x[0]}</b> ${x[1]} <span class="${x[3]}">${x[2]}</span>`).join('   ◆   ');
+$('tick').innerHTML=tk+'   ◆   '+tk+'   ◆   ';
+
+/* ===== mapa radar ===== */
+const W=600,H=600,LON=[-74,-34],LAT=[5.5,-34];
+const px=(lng)=>40+(lng-LON[0])/(LON[1]-LON[0])*520, py=(lat)=>30+(LAT[0]-lat)/(LAT[0]-LAT[1])*540;
+const BR=[[-69.9,1.1],[-66.9,1.2],[-64.2,3.9],[-62.7,4.0],[-60.2,5.27],[-59.9,4.0],[-58.0,1.5],[-56.0,1.9],[-54.0,2.2],[-51.6,4.2],[-50.0,1.8],[-50.4,0.0],[-48.5,-1.4],[-44.3,-2.5],[-41.8,-2.9],[-38.5,-3.7],[-35.2,-5.5],[-34.8,-7.1],[-34.9,-8.0],[-35.7,-9.7],[-37.1,-11.0],[-38.5,-13.0],[-39.0,-15.0],[-39.2,-17.7],[-40.3,-20.3],[-41.0,-22.0],[-43.2,-22.9],[-44.6,-23.3],[-46.3,-24.0],[-48.5,-25.5],[-48.6,-27.6],[-49.5,-29.0],[-50.5,-30.5],[-52.1,-32.0],[-53.4,-33.7],[-53.5,-32.5],[-55.7,-30.9],[-57.6,-30.2],[-55.8,-28.0],[-53.8,-27.1],[-54.6,-25.6],[-54.3,-24.0],[-55.8,-22.3],[-57.9,-22.1],[-57.6,-19.0],[-58.4,-16.3],[-60.2,-16.3],[-60.2,-13.7],[-61.6,-13.5],[-65.3,-11.0],[-65.4,-9.7],[-68.0,-10.7],[-69.6,-11.0],[-72.4,-10.0],[-73.0,-9.0],[-73.9,-7.4],[-72.9,-5.2],[-70.0,-4.3],[-69.4,-1.1]];
+const REF=[['Manaus',-3.1,-60.0],['Belém',-1.46,-48.5],['Fortaleza',-3.73,-38.52],['Recife',-8.05,-34.9],['Salvador',-12.97,-38.5],['Brasília',-15.8,-47.9],['Belo Horizonte',-19.92,-43.94],['Rio',-22.9,-43.2],['São Paulo',-23.55,-46.63],['Curitiba',-25.43,-49.27],['Porto Alegre',-30.03,-51.23],['Cuiabá',-15.6,-56.1]];
+function mapa(){
+ const vis=E.filter(e=>(FP=='todos'||e.p==FP)&&casa(e));
+ let s=`<defs><radialGradient id="sw" cx="0" cy="0" r="1"><stop offset="0" stop-color="#3CFFA0" stop-opacity=".35"/><stop offset="1" stop-color="#3CFFA0" stop-opacity="0"/></radialGradient></defs>`;
+ s+=`<path d="M${BR.map(([g,l])=>px(g).toFixed(1)+' '+py(l).toFixed(1)).join(' L')} Z" fill="#0C1A16" stroke="#1F5A42" stroke-width="1.4" stroke-linejoin="round"/>`;
+ for(let i=0;i<=8;i++){s+=`<line x1="${40+i*65}" y1="30" x2="${40+i*65}" y2="570" stroke="#0E1A22" />`;s+=`<line x1="40" y1="${30+i*67.5}" x2="560" y2="${30+i*67.5}" stroke="#0E1A22"/>`}
+ const cx=px(-52),cy=py(-14);
+ [90,180,270].forEach(r=>s+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#123326" stroke-dasharray="2 4"/>`);
+ s+=`<g transform="translate(${cx},${cy})"><g id="sweep"><path d="M0 0 L340 0 A340 340 0 0 0 ${340*Math.cos(-0.6)} ${340*Math.sin(-0.6)} Z" fill="url(#sw)"/><line x1="0" y1="0" x2="340" y2="0" stroke="#3CFFA0" stroke-opacity=".6"/></g></g>`;
+ REF.forEach(r=>s+=`<circle cx="${px(r[2])}" cy="${py(r[1])}" r="1.6" fill="#2C4256"/><text x="${px(r[2])+5}" y="${py(r[1])+3}" font-size="9" fill="#3A5168" font-family="IBM Plex Mono">${r[0]}</text>`);
+ // agrupa pontos muito próximos (São Paulo) em leque
+ const grupos={};vis.forEach(e=>{const k=Math.round(px(e.lng)/14)+'_'+Math.round(py(e.lat)/14);(grupos[k]=grupos[k]||[]).push(e)});
+ Object.values(grupos).forEach(g=>g.forEach((e,i)=>{let x=px(e.lng),y=py(e.lat);if(g.length>1){const a=i/g.length*Math.PI*2;x+=Math.cos(a)*(10+g.length*1.6);y+=Math.sin(a)*(10+g.length*1.6)}e._x=x;e._y=y}));
+ vis.forEach(e=>{const c=e.p=='cn'?'#FF5A5F':'#FF8FA3',r=4+e.sc/30,on=SEL==e.id;
+  s+=`<g class="blip" data-id="${e.id}" style="cursor:pointer">${e.g?`<circle cx="${e._x}" cy="${e._y}" r="${r+5}" fill="none" stroke="#FFC247" stroke-opacity=".7"><animate attributeName="r" values="${r+2};${r+11};${r+2}" dur="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".8;0;.8" dur="2.4s" repeatCount="indefinite"/></circle>`:''}<circle cx="${e._x}" cy="${e._y}" r="${on?r+3:r}" fill="${c}" stroke="${on?'#3CFFA0':'#05080D'}" stroke-width="${on?2.5:1.5}"/></g>`});
+ const sel=E.find(e=>e.id==SEL&&vis.includes(e));if(sel)s+=`<text text-anchor="${sel._x>380?'end':'start'}" x="${sel._x>380?sel._x-12:sel._x+12}" y="${sel._y-10}" fill="#3CFFA0" font-size="12" font-family="IBM Plex Mono">${esc(sel.n)}</text>`;
+ $('map').innerHTML=s;
+ const sw=document.getElementById('sweep');let a=0;cancelAnimationFrame(mapa._r);(function rod(){a=(a+0.6)%360;sw&&sw.setAttribute('transform',`rotate(${a})`);mapa._r=requestAnimationFrame(rod)})();
+ $('hud').innerHTML=`ALVOS NO RADAR <b>${vis.length}</b><br>COM GATILHO ATIVO <b>${vis.filter(e=>e.g).length}</b><br>CHINA <b>${vis.filter(e=>e.p=='cn').length}</b> · DINAMARCA <b>${vis.filter(e=>e.p=='dk').length}</b>`;
+}
+$('map').addEventListener('click',e=>{const b=e.target.closest('.blip');if(b)abrir(b.dataset.id)});
+$('filtros').addEventListener('click',e=>{const b=e.target.closest('.f');if(!b)return;FP=b.dataset.p;tudo()});
+function filtros(){$('filtros').innerHTML=[['todos','TODOS'],['cn','CHINA'],['dk','DINAMARCA']].map(([k,v])=>`<button class="f ${FP==k?'on':''}" data-p="${k}">${v}</button>`).join('')}
+
+/* ===== busca ===== */
+const norm=s=>String(s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+const casa=e=>!Q||norm([e.n,e.set,e.st,e.tipo,e.end].join(' ')).includes(norm(Q));
+$('q').addEventListener('input',()=>{Q=$('q').value.trim();tudo();if(Q){const r=E.filter(casa);if(r.length==1)abrir(r[0].id);else aba('base')}});
+document.addEventListener('keydown',e=>{if(e.key=='/'&&document.activeElement!=$('q')){e.preventDefault();$('q').focus()}});
+
+/* ===== dossiê ===== */
+function abrir(id){SEL=id;aba('dossie');dossie();mapa();if(innerWidth<900)$('dossie').scrollIntoView({behavior:'smooth'})}
+function dossie(){
+ const e=E.find(x=>x.id==SEL);
+ if(!e){$('dossie').innerHTML=`<div class="vazio">CLIQUE EM UM PONTO DO RADAR<br>OU ESCOLHA UMA EMPRESA NAS ABAS AO LADO.<br><br>Pontos com anel amarelo têm gatilho ativo:<br>um motivo concreto para procurar a empresa agora.</div>`;return}
+ const fonte=e.gs&&S[e.gs], nomeBase=e.n.replace(/\s*\(.*\)/,'');
+ $('dossie').innerHTML=`<div class="dos">
+  <h2>${esc(e.n)}</h2>
+  <div class="meta"><span class="flag ${e.p}">${PN[e.p].toUpperCase()}</span><span>${esc(e.set)}</span><span>${esc(e.tipo)} · ${e.st}</span><span>NOTA ${e.sc}</span></div>
+  ${e.g?`<div class="sec gat"><h4>▲ Gatilho: por que procurar agora</h4><p>${esc(e.g)}</p>${fonte?`<div class="lnk" style="margin-top:6px">Fonte: <a href="${fonte[1]}" target="_blank" rel="noopener">${esc(fonte[0])}</a></div>`:''}</div>`:`<div class="sec"><h4>Gatilho</h4><p style="color:var(--mu)">Nenhum fato novo nesta edição. A empresa segue na base e o radar avisa quando aparecer um.</p></div>`}
+  <div class="sec"><h4>Ângulo jurídico</h4><p>${ANG[e.ang]}</p></div>
+  <div class="sec"><h4>Onde está</h4><div class="kv"><span>ENDEREÇO</span><div>${esc(e.end)}</div><span>TELEFONE</span><div>${e.tel?`<a href="tel:${e.tel.replace(/\D/g,'')}">${esc(e.tel)}</a>`:'<span style="color:var(--mu)">não publicado no Google</span>'}</div><span>SITE</span><div>${e.site?`<a href="${e.site}" target="_blank" rel="noopener">${esc(e.site.replace(/^https?:\/\//,'').replace(/\/$/,''))}</a>`:'<span style="color:var(--mu)">—</span>'}</div></div>
+   <div class="acts"><a class="a" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(e.end)}">Ver no mapa</a><a class="a" target="_blank" rel="noopener" href="${cnpj(nomeBase)}">Buscar CNPJ</a><a class="a" target="_blank" rel="noopener" href="${gnews(nomeBase+' Brasil')}">Notícias recentes</a></div></div>
+  <div class="sec"><h4>Caminho até quem decide</h4><p style="color:var(--mu);font-size:13px;margin-bottom:6px">Buscas prontas no LinkedIn: quem contrata escritório externo costuma ser o jurídico interno.</p>
+   <div class="acts"><a class="a hot" target="_blank" rel="noopener" href="${li('diretor jurídico '+nomeBase)}">Diretor(a) jurídico(a)</a><a class="a" target="_blank" rel="noopener" href="${li('general counsel '+nomeBase+' Brazil')}">General counsel</a><a class="a" target="_blank" rel="noopener" href="${li('CEO '+nomeBase+' Brasil')}">CEO / country manager</a><a class="a" target="_blank" rel="noopener" href="${li('compliance '+nomeBase+' Brasil')}">Compliance</a></div></div>
+  ${e.rede&&e.rede.length?`<div class="sec"><h4>Ligações</h4><div class="acts">${e.rede.map(r=>`<span class="pill">${esc(r)}</span>`).join('')}</div></div>`:''}
+  <div class="acts"><button class="a ${LISTA.has(e.id)?'hot':''}" data-lista="${e.id}">${LISTA.has(e.id)?'✓ Na minha lista':'+ Adicionar à minha lista'}</button></div>
+ </div>`;
+}
+/* ===== listas ===== */
+function linha(e){return `<div class="row" data-abrir="${e.id}"><div><div class="nm">${esc(e.n)} ${e.g?'<span class="pill g">GATILHO</span>':''}</div><div class="sub"><span class="flag ${e.p}">${PN[e.p].toUpperCase()}</span> ${esc(e.set)} · ${esc(e.tipo)} · ${e.st}${e.tel?' · '+esc(e.tel):''}</div></div><div class="score">${e.sc}</div></div>`}
+function base(){const v=E.filter(e=>(FP=='todos'||e.p==FP)&&casa(e)).sort((a,b)=>b.sc-a.sc);$('nBase').textContent=v.length;
+ $('base').innerHTML=`<div class="ferr"><button class="a" id="csvBase">Baixar planilha (CSV) para o CRM</button></div>`+(v.map(linha).join('')||'<div class="vazio">NENHUMA EMPRESA NESSE FILTRO</div>')+`<div class="nota">Endereços e telefones: Google Maps, consulta de 24/10/2026. A nota (0–100) combina tamanho da operação no Brasil, existência de gatilho recente e volume de trabalho jurídico típico do setor.</div>`}
+function chegando(){$('nCh').textContent=CH.length;
+ $('chegando').innerHTML=`<p style="color:var(--mu);margin:0 0 10px">Empresas que anunciaram dinheiro no Brasil e ainda não têm estrutura confirmada aqui. É o momento em que mais precisam de escritório local: abrir empresa, escolher estado, negociar incentivos, contratar.</p>`+
+ CH.map(c=>`<div class="chega"><div class="t"><div class="nm">${esc(c.n)}</div><div class="v">${esc(c.v)}</div></div><div class="sub" style="margin:2px 0 6px">${esc(c.set)}</div><p style="margin:0 0 6px">${esc(c.o)}</p><div class="sec" style="margin:0 0 6px"><h4>Ângulo jurídico</h4><p>${esc(c.ang)}</p></div><div class="acts"><a class="a hot" target="_blank" rel="noopener" href="${li(c.n.replace(/\s*\(.*\)/,'')+' Brazil')}">Quem cuida do Brasil (LinkedIn)</a><a class="a" target="_blank" rel="noopener" href="${gnews(c.n.replace(/\s*\(.*\)/,'')+' Brasil')}">Notícias</a><a class="a" target="_blank" rel="noopener" href="${S[c.s][1]}">Fonte: ${esc(S[c.s][0])}</a></div></div>`).join('')}
+function sinais(){$('sinais').innerHTML=SIN.map(x=>`<div class="sinal"><div class="d">${x.d}</div><div>${esc(x.t)}</div><div class="acts" style="margin-top:4px"><a class="a" target="_blank" rel="noopener" href="${S[x.s][1]}">Fonte: ${esc(S[x.s][0])}</a>${x.e?`<button class="a" data-abrir="${x.e}">Ver empresa</button>`:''}</div></div>`).join('')}
+function lista(){const v=E.filter(e=>LISTA.has(e.id));$('nLista').textContent=v.length;
+ $('lista').innerHTML=v.length?`<div class="ferr"><button class="a" id="csvLista">Baixar minha lista (CSV)</button></div>`+v.map(linha).join(''):'<div class="vazio">ABRA UM DOSSIÊ E TOQUE EM<br>"ADICIONAR À MINHA LISTA".</div>'}
+function csv(rows,nome){const cab=['Empresa','País','Setor','Estado','Tipo','Endereço','Telefone','Site','Nota','Gatilho','Ângulo jurídico'];
+ const L=[cab,...rows.map(e=>[e.n,PN[e.p],e.set,e.st,e.tipo,e.end,e.tel,e.site,e.sc,e.g||'',ANG[e.ang]])].map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(';')).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+L],{type:'text/csv'}));a.download=nome;a.click();toast('Planilha baixada')}
+document.addEventListener('click',ev=>{const t=ev.target.closest('[data-abrir],[data-lista],#csvBase,#csvLista,.tabs button');if(!t)return;
+ if(t.matches('.tabs button'))return aba(t.dataset.t);
+ if(t.dataset.abrir)return abrir(t.dataset.abrir);
+ if(t.dataset.lista){const id=t.dataset.lista;LISTA.has(id)?LISTA.delete(id):LISTA.add(id);salvar();dossie();lista();toast(LISTA.has(id)?'Adicionada à sua lista':'Removida da lista');return}
+ if(t.id=='csvBase')csv(E.filter(e=>(FP=='todos'||e.p==FP)&&casa(e)),'meridiano-base.csv');
+ if(t.id=='csvLista')csv(E.filter(e=>LISTA.has(e.id)),'meridiano-minha-lista.csv')});
+function aba(t){document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t==t));document.querySelectorAll('.pane').forEach(p=>p.classList.toggle('on',p.id==t))}
+function tudo(){filtros();mapa();base();chegando();sinais();lista();dossie()}
+SEL='byd';tudo();
 </script>
 </body>
 </html>
