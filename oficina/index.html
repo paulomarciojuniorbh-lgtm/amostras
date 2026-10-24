@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pátio · Acompanhamento do carro na oficina</title>
+<meta name="description" content="Demonstração do Pátio: o cliente acompanha o carro pelo celular, aprova o orçamento com um toque e recebe o lembrete da revisão no WhatsApp.">
+<meta name="theme-color" content="#16181D">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--fundo:#F2F2EF;--card:#fff;--tinta:#16181D;--suave:#5E636E;--linha:#E1E1DC;--laranja:#FF6A13;--laranja2:#D9520A;--asfalto:#16181D;--asf2:#23262E;--ok:#15803D;--azul:#2563EB;--amarelo:#E9A100;--verm:#DC2626;--raio:14px}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:Barlow,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--fundo);color:var(--tinta);line-height:1.45;font-size:15px}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+a{color:inherit}
+.cond{font-family:"Barlow Condensed",Barlow,sans-serif;letter-spacing:.2px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+header.top{position:sticky;top:0;z-index:20;background:var(--asfalto);color:#fff;border-bottom:3px solid var(--laranja)}
+header.top .wrap{display:flex;align-items:center;gap:12px;height:60px}
+.logo{display:flex;align-items:center;gap:10px;min-width:0}
+.logo b{font-family:"Barlow Condensed";font-weight:800;font-size:23px;letter-spacing:.5px;text-transform:uppercase;line-height:1}
+.logo small{display:block;color:#A9AEB8;font-size:12px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabs{margin-left:auto;display:flex;gap:4px;background:var(--asf2);padding:4px;border-radius:10px;flex-shrink:0}
+.tabs button{border:0;background:transparent;color:#C8CCD4;padding:7px 12px;border-radius:7px;font-weight:600;font-size:14px;white-space:nowrap}
+.tabs button[aria-selected="true"]{background:var(--laranja);color:#fff}
+.demo{background:#FFF4E5;border-bottom:1px solid #FFD9AD;color:#8A3B00;font-size:13px;font-weight:600;text-align:center;padding:7px 12px}
+.view{display:none}.view.on{display:block}
+/* ===== painel ===== */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.kpi{background:var(--card);border:1px solid var(--linha);border-radius:var(--raio);padding:12px 14px;position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--c,var(--laranja))}
+.kpi span{display:block;color:var(--suave);font-size:13px;font-weight:600}
+.kpi strong{font-family:"Barlow Condensed";font-size:32px;font-weight:800;line-height:1.1}
+.grid2{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:16px;align-items:start;padding-bottom:50px}
+.caixa{background:var(--card);border:1px solid var(--linha);border-radius:var(--raio);padding:14px}
+.caixa h2{font-family:"Barlow Condensed";font-weight:700;font-size:21px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:8px}
+.caixa h2 .n{background:var(--tinta);color:#fff;border-radius:6px;font-size:14px;padding:0 7px}
+.etapas{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-bottom:10px;scrollbar-width:thin}
+.etapas button{flex:0 0 auto;border:1px solid var(--linha);background:#FAFAF8;border-radius:999px;padding:6px 11px;font-weight:600;font-size:13px;display:flex;gap:6px;align-items:center}
+.etapas button i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.etapas button[aria-pressed="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+.etapas button small{opacity:.7}
+.ferr{display:flex;gap:8px;margin-bottom:10px}
+.ferr input{flex:1;min-width:0;border:1px solid var(--linha);border-radius:10px;padding:9px 11px;background:#FAFAF8}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--linha);background:#fff;border-radius:10px;padding:8px 12px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.btn.lar{background:var(--laranja);border-color:var(--laranja);color:#fff}.btn.lar:hover{background:var(--laranja2)}
+.btn.zap{background:#25D366;border-color:#25D366;color:#053B1D}
+.btn.esc{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.btn.peq{padding:6px 10px;font-size:13px}
+.os{border:1px solid var(--linha);border-radius:12px;padding:12px;margin-bottom:9px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px;border-left:5px solid var(--c)}
+.placa{grid-row:span 2;align-self:start;background:#fff;border:2px solid var(--tinta);border-radius:6px;font-family:"Barlow Condensed";font-weight:800;font-size:17px;letter-spacing:1.2px;padding:0 7px 1px;position:relative;line-height:1.5;text-align:center;min-width:92px}
+.placa:before{content:"BRASIL";display:block;background:#1D4ED8;color:#fff;font-size:8px;letter-spacing:1.5px;margin:0 -7px;line-height:1.5;border-radius:3px 3px 0 0}
+.os .t{font-weight:700;font-size:16px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.os .m{color:var(--suave);font-size:13.5px}
+.st{display:inline-block;font-size:11.5px;font-weight:700;border-radius:999px;padding:1px 9px;background:color-mix(in srgb,var(--c) 14%,#fff);color:color-mix(in srgb,var(--c) 85%,#000)}
+.os .acoes{grid-column:1/-1;display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.trilho{grid-column:1/-1;display:flex;gap:3px;margin-top:4px}
+.trilho i{flex:1;height:5px;border-radius:3px;background:#ECECE8}.trilho i.on{background:var(--c)}
+.alerta{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px dashed var(--linha);padding:9px 0;font-size:14px}
+.alerta:last-child{border-bottom:0}
+.alerta small{color:var(--suave)}
+.vazio{color:var(--suave);font-size:14px;padding:8px 0;text-align:center}
+.vazio .btn{margin-top:8px}
+/* ===== tela do cliente ===== */
+.cli-wrap{max-width:460px;margin:0 auto;padding:18px 16px 60px}
+.trocar{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--suave);margin-bottom:12px}
+.trocar select{flex:1;min-width:0;border:1px solid var(--linha);border-radius:9px;padding:7px 9px;background:#fff}
+.fone{background:#0E0F12;border-radius:34px;padding:10px;box-shadow:0 30px 60px -25px rgba(0,0,0,.45)}
+.tela{background:#F7F7F5;border-radius:26px;overflow:hidden}
+.tela .topo{background:var(--asfalto);color:#fff;padding:18px 18px 22px}
+.tela .topo small{color:#A9AEB8;font-size:12.5px}
+.tela .topo h1{font-family:"Barlow Condensed";font-weight:800;font-size:28px;margin:2px 0 8px;line-height:1.05;text-transform:uppercase}
+.tela .topo .linha{display:flex;align-items:center;gap:10px}
+.tela .topo .placa{min-width:0;color:var(--tinta)}
+.tela .corpo{padding:16px}
+.passos{list-style:none;margin:0 0 16px;padding:0;position:relative}
+.passos li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding-bottom:14px;position:relative}
+.passos li:before{content:"";position:absolute;left:13px;top:26px;bottom:0;width:2px;background:#DCDCD6}
+.passos li:last-child:before{display:none}
+.passos .b{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:2px solid #CFCFC8;background:#fff;font-size:13px;font-weight:700;color:#9A9A93;position:relative;z-index:1}
+.passos li.feito .b{background:var(--ok);border-color:var(--ok);color:#fff}
+.passos li.feito:before{background:var(--ok)}
+.passos li.agora .b{background:var(--laranja);border-color:var(--laranja);color:#fff;box-shadow:0 0 0 5px rgba(255,106,19,.18)}
+.passos b{display:block;font-size:15px}.passos span{font-size:13px;color:var(--suave)}
+.passos li.agora b{color:var(--laranja2)}
+.orc{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:12px;margin-bottom:12px}
+.orc h3{margin:0 0 4px;font-family:"Barlow Condensed";font-size:20px;text-transform:uppercase}
+.orc p{margin:0 0 8px;font-size:13px;color:var(--suave)}
+.item{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;padding:8px 0;border-top:1px solid #EFEFEA;font-size:14px}
+.item input{width:18px;height:18px;margin-top:2px;accent-color:var(--laranja)}
+.item small{display:block;color:var(--suave);font-size:12px}
+.item .tag{display:inline-block;font-size:10.5px;font-weight:700;border-radius:4px;padding:0 5px;margin-left:4px;vertical-align:1px}
+.tag.urg{background:#FEE2E2;color:#991B1B}.tag.rec{background:#FEF3C7;color:#854D0E}
+.item .v{font-weight:700;white-space:nowrap}
+.total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid var(--tinta);padding-top:8px;margin-top:4px;font-weight:700}
+.total b{font-family:"Barlow Condensed";font-size:26px}
+.cli-acoes{display:grid;gap:8px}
+.cli-acoes .btn{padding:12px;font-size:15px}
+.nota-mec{background:#FFF8EF;border:1px solid #FFE0BF;border-radius:12px;padding:10px 12px;font-size:13.5px;margin-bottom:12px}
+.nota-mec b{display:block;font-size:12px;color:#8A3B00;text-transform:uppercase;letter-spacing:.5px}
+.ok-box{background:#ECFDF3;border:1px solid #B7EBC9;border-radius:12px;padding:12px;font-size:14px;margin-bottom:12px}
+.explica{margin-top:14px;font-size:13px;color:var(--suave);text-align:center}
+dialog{border:0;border-radius:16px;padding:0;max-width:430px;width:calc(100% - 32px);box-shadow:0 25px 60px rgba(0,0,0,.35)}
+dialog form{padding:18px;display:flex;flex-direction:column;gap:9px}
+dialog h3{margin:0;font-family:"Barlow Condensed";font-size:22px;text-transform:uppercase}
+dialog label{font-size:13px;font-weight:600;color:var(--suave);display:flex;flex-direction:column;gap:3px}
+dialog input,dialog textarea{border:1px solid var(--linha);border-radius:9px;padding:9px 10px;background:#FAFAF8}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--tinta);color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1}
+:focus-visible{outline:3px solid var(--laranja);outline-offset:2px}
+@media (max-width:860px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:480px){.logo small{display:none}.tabs button{padding:7px 9px;font-size:13px}.placa{min-width:80px;font-size:15px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <div class="logo"><svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect x="2" y="2" width="36" height="36" rx="9" fill="#FF6A13"/><circle cx="20" cy="20" r="10.5" fill="none" stroke="#fff" stroke-width="3.2"/><circle cx="20" cy="20" r="3.2" fill="#fff"/><path d="M20 9.5v5M20 25.5v5M9.5 20h5M25.5 20h5" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>
+  <div><b id="marca">Pátio</b><small id="sublogo">acompanhamento do carro</small></div></div>
+ <nav class="tabs" role="tablist" aria-label="Telas"><button role="tab" aria-selected="true" data-v="painel">Painel da oficina</button><button role="tab" aria-selected="false" data-v="cliente">Tela do cliente</button></nav>
+</div></header>
+<div class="demo">Demonstração com carros e clientes fictícios. Os botões funcionam: teste à vontade.</div>
+
+<!-- ===== PAINEL DA OFICINA ===== -->
+<main id="painel" class="view on" role="tabpanel">
+ <div class="wrap">
+  <div class="kpis">
+   <div class="kpi" style="--c:var(--tinta)"><span>Carros no pátio</span><strong id="kPatio">0</strong></div>
+   <div class="kpi" style="--c:var(--amarelo)"><span>Esperando o cliente aprovar</span><strong id="kAprov">0</strong></div>
+   <div class="kpi" style="--c:var(--ok)"><span>Prontos para retirar</span><strong id="kPronto">0</strong></div>
+   <div class="kpi" style="--c:var(--laranja)"><span>Orçamentos aprovados no mês</span><strong id="kValor">R$ 0</strong></div>
+  </div>
+  <div class="grid2">
+   <section class="caixa" aria-labelledby="hPatio">
+    <h2 id="hPatio">No pátio agora <span class="n" id="nPatio">0</span></h2>
+    <div class="etapas" id="etapas" role="group" aria-label="Filtrar por etapa"></div>
+    <div class="ferr"><input id="busca" placeholder="Buscar placa, carro ou cliente" aria-label="Buscar placa, carro ou cliente"><button class="btn lar" id="novo">+ Entrada</button></div>
+    <div id="lista" aria-live="polite"></div>
+   </section>
+   <div style="display:flex;flex-direction:column;gap:16px">
+    <section class="caixa" aria-labelledby="hRev">
+     <h2 id="hRev">🔧 Revisão vencendo</h2>
+     <p style="margin:-4px 0 6px;font-size:13px;color:var(--suave)">Clientes que fizeram serviço há 5 meses ou mais. Um toque e a mensagem sai pronta no WhatsApp.</p>
+     <div id="revisoes"></div>
+    </section>
+    <section class="caixa" aria-labelledby="hComo">
+     <h2 id="hComo">Como funciona</h2>
+     <ol style="margin:0;padding-left:18px;font-size:14px;color:var(--suave);display:grid;gap:6px">
+      <li><b style="color:var(--tinta)">Entrada do carro:</b> placa, cliente e o que ele relatou. Leva 20 segundos.</li>
+      <li><b style="color:var(--tinta)">Link pelo WhatsApp:</b> o cliente acompanha cada etapa sem precisar ligar.</li>
+      <li><b style="color:var(--tinta)">Orçamento no celular:</b> o cliente marca o que quer fazer e aprova com um toque. Fica registrado.</li>
+      <li><b style="color:var(--tinta)">Pronto:</b> aviso automático para retirar e, meses depois, o lembrete da revisão.</li>
+     </ol>
+     <button class="btn peq" id="zerar" style="margin-top:10px">Restaurar demonstração</button>
+    </section>
+   </div>
+  </div>
+ </div>
+</main>
+
+<!-- ===== TELA DO CLIENTE ===== -->
+<main id="cliente" class="view" role="tabpanel">
+ <div class="cli-wrap">
+  <label class="trocar">Ver como o cliente de:<select id="selOs" aria-label="Escolher carro"></select></label>
+  <div class="fone"><div class="tela" id="tela"></div></div>
+  <p class="explica">É isso que o cliente abre no celular pelo link que chega no WhatsApp. Não precisa baixar aplicativo nem criar senha.</p>
+ </div>
+</main>
+
+<dialog id="dlg"><form method="dialog" id="fNovo">
+ <h3>Entrada de carro</h3>
+ <label>Placa<input name="placa" required maxlength="8" placeholder="ABC1D23" style="text-transform:uppercase"></label>
+ <label>Carro<input name="carro" required placeholder="Ex.: Onix 2019 prata"></label>
+ <label>Cliente<input name="nome" required placeholder="Nome"></label>
+ <label>WhatsApp com DDD<input name="tel" required inputmode="tel" placeholder="98 98888-7777"></label>
+ <label>O que o cliente relatou<textarea name="relato" rows="2" placeholder="Ex.: barulho na roda dianteira ao frear"></textarea></label>
+ <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:4px"><button class="btn" value="cancel" formnovalidate>Cancelar</button><button class="btn lar" value="ok">Registrar entrada</button></div>
+</form></dialog>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===== configuração (personalizável por link: ?nome=Oficina%20do%20Zé&zap=5598...) ===== */
+const Q=new URLSearchParams(location.search);
+const NOME=Q.get('nome')||'Oficina Modelo';
+const ZAP=(Q.get('zap')||'5598984149331').replace(/\D/g,'');
+const KEY='patio-demo-v1';
+const ETAPAS=[
+ {id:'recebido',n:'Recebido',c:'#64748B',cli:'Recebemos o seu carro',d:'Ele está na fila da oficina.'},
+ {id:'analise',n:'Em análise',c:'#2563EB',cli:'Mecânico avaliando',d:'Estamos descobrindo a causa do problema.'},
+ {id:'orcamento',n:'Aguardando aprovação',c:'#E9A100',cli:'Orçamento pronto',d:'Confira abaixo e aprove o que quiser fazer.'},
+ {id:'servico',n:'Em serviço',c:'#FF6A13',cli:'Serviço em andamento',d:'Peças separadas e mão na massa.'},
+ {id:'pronto',n:'Pronto',c:'#15803D',cli:'Pronto para retirar',d:'Pode vir buscar no horário de funcionamento.'}
+];
+const E=Object.fromEntries(ETAPAS.map((e,i)=>[e.id,{...e,i}]));
+const brl=v=>'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const hoje=new Date();const dias=n=>{const d=new Date(hoje);d.setDate(d.getDate()-n);return d.toISOString().slice(0,10)};
+const diff=s=>Math.floor((hoje-new Date(s+'T12:00'))/864e5);
+const primeiro=n=>n.split(' ')[0];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+document.title=`${NOME} · Acompanhe seu carro (Pátio)`;
+if(Q.get('nome')){$('marca').textContent=NOME;$('sublogo').textContent='acompanhe seu carro · Pátio'}
+
+/* ===== dados fictícios da demonstração ===== */
+function semente(){return {os:[
+ {id:1,placa:'QTE4B21',carro:'Onix 1.0 2019 prata',nome:'Marcos Vinícius',tel:'5598988110001',relato:'Barulho na roda dianteira ao frear',etapa:'orcamento',entrada:dias(1),nota:'Pastilhas no fim e disco dianteiro com sulco. O barulho vem daí.',itens:[
+   {d:'Pastilhas de freio dianteiras',t:'urg',v:189},{d:'Disco de freio dianteiro (par)',t:'urg',v:420},{d:'Mão de obra freios',v:150},{d:'Fluido de freio DOT 4',t:'rec',v:65}]},
+ {id:2,placa:'PSL7C03',carro:'HB20 1.6 2017 branco',nome:'Juliana Prado',tel:'5598988110002',relato:'Revisão de 60 mil km',etapa:'servico',entrada:dias(2),nota:'Cliente aprovou tudo pelo celular.',aprovado:dias(1),itens:[
+   {d:'Óleo 5W30 sintético + filtro',v:260,ok:true},{d:'Filtro de ar e de cabine',v:120,ok:true},{d:'Correia dentada + tensor',t:'urg',v:680,ok:true},{d:'Mão de obra revisão',v:220,ok:true}]},
+ {id:3,placa:'ROA2F88',carro:'Strada 1.4 2015 vermelha',nome:'Seu Raimundo',tel:'5598988110003',relato:'Luz da injeção acesa',etapa:'analise',entrada:dias(0),itens:[]},
+ {id:4,placa:'NWX9A12',carro:'Corolla 2.0 2020 preto',nome:'Dra. Patrícia Lemos',tel:'5598988110004',relato:'Ar-condicionado não gela',etapa:'pronto',entrada:dias(3),nota:'Recarga de gás e troca do filtro de cabine. Testado: 4 °C na saída.',aprovado:dias(2),itens:[
+   {d:'Higienização + recarga de gás R134a',v:280,ok:true},{d:'Filtro de cabine',v:70,ok:true}]},
+ {id:5,placa:'OJK3D45',carro:'Gol 1.0 2014 cinza',nome:'Anderson Lima',tel:'5598988110005',relato:'Carro puxando para a direita',etapa:'recebido',entrada:dias(0),itens:[]},
+ {id:6,placa:'QRB6E77',carro:'Kwid 2022 laranja',nome:'Camila Duarte',tel:'5598988110006',relato:'Troca de óleo',etapa:'orcamento',entrada:dias(0),nota:'Aproveitei para ver os pneus: os dianteiros estão no limite (TWI).',itens:[
+   {d:'Óleo 5W40 + filtro',v:190},{d:'Alinhamento e balanceamento',t:'rec',v:120},{d:'Par de pneus 165/70 R14',t:'urg',v:760}]},
+ {id:7,placa:'PTZ1G09',carro:'Hilux 2.8 2021 prata',nome:'Transportes Ilha',tel:'5598988110007',relato:'Revisão + barulho na suspensão',etapa:'servico',entrada:dias(3),nota:'Bucha da bandeja gasta. Peça chega amanhã cedo.',aprovado:dias(2),itens:[
+   {d:'Buchas da bandeja inferior',t:'urg',v:540,ok:true},{d:'Revisão 80 mil km',v:890,ok:true},{d:'Palhetas do limpador',t:'rec',v:90,ok:false}]}
+ ],
+ hist:[
+  {nome:'Rosângela Dias',tel:'5598988120001',carro:'Sandero 2018',ult:dias(172),serv:'troca de óleo'},
+  {nome:'Felipe Arruda',tel:'5598988120002',carro:'Civic 2016',ult:dias(196),serv:'revisão de 40 mil km'},
+  {nome:'Gisele Matos',tel:'5598988120003',carro:'Fox 2013',ult:dias(158),serv:'troca de óleo'},
+  {nome:'Pastelaria Bom Sabor',tel:'5598988120004',carro:'Fiorino 2019',ult:dias(214),serv:'revisão + freios'},
+  {nome:'Igor Nascimento',tel:'5598988120005',carro:'Argo 2021',ult:dias(61),serv:'alinhamento'}
+ ]}}
+let DB;try{DB=JSON.parse(localStorage.getItem(KEY))}catch(e){}if(!DB||!DB.os)DB=semente();
+const salvar=()=>{try{localStorage.setItem(KEY,JSON.stringify(DB))}catch(e){}};
+const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),2400)};
+
+/* ===== mensagens de WhatsApp ===== */
+const linkCli=o=>location.href.split('#')[0].split('?')[0]+`?${Q.get('nome')?'nome='+encodeURIComponent(NOME)+'&':''}os=${o.id}#cliente`;
+const wa=(tel,txt)=>`https://wa.me/${tel}?text=${encodeURIComponent(txt)}`;
+const total=(o,so)=>o.itens.filter(i=>!so||i.ok).reduce((s,i)=>s+i.v,0);
+function msg(o){const p=primeiro(o.nome),L=linkCli(o);
+ return {recebido:`Oi, ${p}! Aqui é da ${NOME}. Recebemos o seu ${o.carro} (${o.placa}). Você acompanha cada etapa por este link, sem precisar ligar: ${L}`,
+  analise:`Oi, ${p}! O mecânico já está avaliando o seu ${o.carro}. Assim que o orçamento sair, aviso por aqui. Acompanhe: ${L}`,
+  orcamento:`Oi, ${p}! O orçamento do seu ${o.carro} está pronto (${brl(total(o))}). Você pode ver item por item e aprovar só o que quiser fazer, direto pelo celular: ${L}`,
+  servico:`Oi, ${p}! Orçamento aprovado e o serviço do seu ${o.carro} já começou. Acompanhe por aqui: ${L}`,
+  pronto:`Oi, ${p}! Seu ${o.carro} (${o.placa}) está pronto para retirar 🚗✅ Total: ${brl(total(o,true))}. Estamos aqui até as 18h.`}[o.etapa]}
+const msgRev=h=>`Oi, ${primeiro(h.nome)}! Aqui é da ${NOME}. Já faz ${Math.round(diff(h.ult)/30)} meses da ${h.serv} do seu ${h.carro}. Quer agendar a próxima revisão? Responde com o melhor dia que a gente reserva o horário.`;
+
+/* ===== painel ===== */
+let FE='',QB='';
+function painel(){
+ const os=DB.os;
+ $('kPatio').textContent=os.length;$('kAprov').textContent=os.filter(o=>o.etapa=='orcamento').length;$('kPronto').textContent=os.filter(o=>o.etapa=='pronto').length;
+ $('kValor').textContent=brl(os.filter(o=>o.aprovado).reduce((s,o)=>s+total(o,true),0)).replace(',00','');
+ $('etapas').innerHTML=[{id:'',n:'Todos',c:'#16181D'},...ETAPAS].map(e=>`<button data-fe="${e.id}" aria-pressed="${FE==e.id}" style="--c:${e.c}">${e.id?'<i></i>':''}${e.n} <small>${e.id?os.filter(o=>o.etapa==e.id).length:os.length}</small></button>`).join('');
+ const q=QB.toLowerCase().replace(/[\s-]/g,'');
+ const v=os.filter(o=>(!FE||o.etapa==FE)&&(!q||(o.placa+o.carro+o.nome).toLowerCase().replace(/[\s-]/g,'').includes(q))).sort((a,b)=>E[a.etapa].i-E[b.etapa].i||b.id-a.id);
+ $('nPatio').textContent=v.length;
+ $('lista').innerHTML=v.map(o=>{const e=E[o.etapa],prox=ETAPAS[e.i+1];
+  return `<article class="os" style="--c:${e.c}"><div class="placa">${esc(o.placa)}</div>
+   <div class="t">${esc(o.carro)} <span class="st">${e.n}</span></div>
+   <div class="m">${esc(o.nome)} · ${esc(o.relato)}${o.itens.length?` · <b style="color:var(--tinta)">${brl(o.etapa=='orcamento'?total(o):total(o,true))}</b>`:''}<br>entrou ${diff(o.entrada)==0?'hoje':diff(o.entrada)==1?'ontem':'há '+diff(o.entrada)+' dias'}</div>
+   <div class="trilho" aria-hidden="true">${ETAPAS.map((x,i)=>`<i class="${i<=e.i?'on':''}"></i>`).join('')}</div>
+   <div class="acoes">
+    <a class="btn zap peq" target="_blank" rel="noopener" href="${wa(o.tel,msg(o))}" aria-label="Enviar atualização para ${esc(o.nome)} no WhatsApp">Avisar cliente</a>
+    ${o.etapa=='analise'?`<button class="btn lar peq" data-orc="${o.id}">Lançar orçamento</button>`:prox&&o.etapa!='orcamento'?`<button class="btn esc peq" data-av="${o.id}">→ ${prox.n}</button>`:''}
+    ${o.etapa=='orcamento'?`<button class="btn peq" data-ver="${o.id}">Ver o que o cliente vê</button>`:''}
+    ${o.etapa=='pronto'?`<button class="btn peq" data-saiu="${o.id}">Carro retirado</button>`:''}
+   </div></article>`}).join('')||`<div class="vazio">Nenhum carro ${FE?'nesta etapa':'encontrado'}.<br><button class="btn" data-limpa="1">Mostrar todos</button></div>`;
+ const rev=DB.hist.filter(h=>diff(h.ult)>=150).sort((a,b)=>diff(b.ult)-diff(a.ult));
+ $('revisoes').innerHTML=rev.map(h=>`<div class="alerta"><span><b>${esc(h.nome)}</b><br><small>${esc(h.carro)} · ${esc(h.serv)} há ${Math.round(diff(h.ult)/30)} meses</small></span><a class="btn zap peq" target="_blank" rel="noopener" data-lemb="${esc(h.tel)}" href="${wa(h.tel,msgRev(h))}">${h.lembrado?'Lembrado ✓':'Lembrar'}</a></div>`).join('')||'<div class="vazio">Nenhuma revisão vencendo.</div>';
+}
+/* orçamento rápido: itens comuns para a demo */
+const ORC_EX=[{d:'Diagnóstico com scanner',v:120},{d:'Sonda lambda',t:'urg',v:380},{d:'Limpeza dos bicos injetores',t:'rec',v:220},{d:'Mão de obra',v:150}];
+
+/* ===== tela do cliente ===== */
+let OS=+(Q.get('os')||1);
+function cliente(){
+ $('selOs').innerHTML=DB.os.map(o=>`<option value="${o.id}" ${o.id==OS?'selected':''}>${esc(o.placa)} · ${esc(o.carro)} (${E[o.etapa].n})</option>`).join('');
+ const o=DB.os.find(x=>x.id==OS)||DB.os[0];if(!o){$('tela').innerHTML='<div class="corpo vazio">Nenhum carro no pátio.</div>';return}OS=o.id;
+ const e=E[o.etapa];
+ let h=`<div class="topo"><small>${esc(NOME)}</small><h1>${e.cli}</h1><div class="linha"><span class="placa">${esc(o.placa)}</span><span>${esc(o.carro)}<br><small>${esc(o.relato)}</small></span></div></div><div class="corpo">
+ <ol class="passos">${ETAPAS.map((x,i)=>`<li class="${i<e.i?'feito':i==e.i?'agora':''}"><span class="b">${i<e.i?'✓':i+1}</span><span><b>${x.n}</b><span>${i==e.i?x.d:i<e.i?'Concluído':''}</span></span></li>`).join('')}</ol>`;
+ if(o.nota)h+=`<div class="nota-mec"><b>Recado do mecânico</b>${esc(o.nota)}</div>`;
+ if(o.etapa=='orcamento'){
+  h+=`<div class="orc"><h3>Orçamento</h3><p>Marque o que quer fazer agora. O que ficar desmarcado a gente anota para a próxima visita.</p>${o.itens.map((it,i)=>`<label class="item"><input type="checkbox" data-it="${i}" ${it.ok!==false?'checked':''}><span>${esc(it.d)}${it.t=='urg'?'<span class="tag urg">IMPORTANTE</span>':it.t=='rec'?'<span class="tag rec">RECOMENDADO</span>':''}</span><span class="v">${brl(it.v)}</span></label>`).join('')}
+  <div class="total"><span>Total aprovado</span><b id="tot">${brl(o.itens.filter(i=>i.ok!==false).reduce((s,i)=>s+i.v,0))}</b></div></div>
+  <div class="cli-acoes"><button class="btn lar" data-aprovar="${o.id}">Aprovar orçamento</button><a class="btn zap" target="_blank" rel="noopener" href="${wa(ZAP,`Oi! Tenho uma dúvida sobre o orçamento do ${o.carro} (${o.placa}).`)}">Tirar dúvida no WhatsApp</a></div>`;
+ }else if(o.itens.length&&o.aprovado){
+  h+=`<div class="ok-box">✅ Orçamento aprovado ${diff(o.aprovado)==0?'hoje':diff(o.aprovado)==1?'ontem':'há '+diff(o.aprovado)+' dias'}: <b>${brl(total(o,true))}</b></div><div class="orc"><h3>O que está sendo feito</h3>${o.itens.filter(i=>i.ok).map(it=>`<div class="item" style="grid-template-columns:22px 1fr auto"><span>✓</span><span>${esc(it.d)}</span><span class="v">${brl(it.v)}</span></div>`).join('')}${o.itens.some(i=>i.ok===false)?`<p style="margin-top:8px">Ficou para a próxima: ${o.itens.filter(i=>i.ok===false).map(i=>esc(i.d)).join(', ')}.</p>`:''}</div>
+  <div class="cli-acoes"><a class="btn zap" target="_blank" rel="noopener" href="${wa(ZAP,`Oi! Sobre o meu ${o.carro} (${o.placa}):`)}">Falar com a oficina</a></div>`;
+ }else h+=`<div class="cli-acoes"><a class="btn zap" target="_blank" rel="noopener" href="${wa(ZAP,`Oi! Sobre o meu ${o.carro} (${o.placa}):`)}">Falar com a oficina</a></div>`;
+ $('tela').innerHTML=h+'</div>';
+}
+
+/* ===== eventos ===== */
+function tela(v){document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.v==v));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==v));v=='cliente'?cliente():painel();scrollTo(0,0)}
+document.addEventListener('click',ev=>{
+ const t=ev.target.closest('[data-v],[data-fe],[data-av],[data-orc],[data-ver],[data-saiu],[data-aprovar],[data-lemb],[data-limpa]');if(!t)return;
+ if(t.dataset.v)return tela(t.dataset.v);
+ if(t.dataset.fe!=null){FE=t.dataset.fe;return painel()}
+ if(t.dataset.limpa){FE='';QB='';$('busca').value='';return painel()}
+ if(t.dataset.lemb){const h=DB.hist.find(x=>x.tel==t.dataset.lemb);if(h){h.lembrado=true;salvar();setTimeout(painel,300)}return}
+ const o=DB.os.find(x=>x.id==+(t.dataset.av||t.dataset.orc||t.dataset.ver||t.dataset.saiu||t.dataset.aprovar));if(!o)return;
+ if(t.dataset.av){o.etapa=ETAPAS[E[o.etapa].i+1].id;salvar();painel();toast(`${o.placa}: ${E[o.etapa].n}. Toque em "Avisar cliente" para mandar a atualização.`)}
+ if(t.dataset.orc){o.itens=ORC_EX.map(x=>({...x}));o.nota='Scanner apontou falha na sonda lambda. Bicos com resíduo.';o.etapa='orcamento';salvar();painel();toast(`Orçamento de ${brl(total(o))} lançado. Agora é só avisar o cliente.`)}
+ if(t.dataset.ver){OS=o.id;tela('cliente')}
+ if(t.dataset.saiu){DB.hist.unshift({nome:o.nome,tel:o.tel,carro:o.carro,ult:dias(0),serv:o.itens.length?o.itens.filter(i=>i.ok)[0].d.toLowerCase():'serviço'});DB.os=DB.os.filter(x=>x!==o);salvar();painel();toast('Carro entregue. O lembrete de revisão aparece daqui a 5 meses.')}
+ if(t.dataset.aprovar){if(!o.itens.some(i=>i.ok!==false)){toast('Marque pelo menos um item');return}o.itens.forEach(i=>i.ok=i.ok!==false);o.aprovado=dias(0);o.etapa='servico';salvar();cliente();toast('Orçamento aprovado! A oficina já foi avisada.')}
+});
+document.addEventListener('change',ev=>{const c=ev.target.closest('[data-it]');if(c){const o=DB.os.find(x=>x.id==OS);o.itens[+c.dataset.it].ok=c.checked;salvar();$('tot').textContent=brl(o.itens.filter(i=>i.ok!==false).reduce((s,i)=>s+i.v,0));return}
+ if(ev.target.id=='selOs'){OS=+ev.target.value;cliente()}});
+$('busca').addEventListener('input',e=>{QB=e.target.value.trim();painel()});
+$('novo').onclick=()=>{$('fNovo').reset();$('dlg').showModal()};
+$('dlg').addEventListener('close',()=>{if($('dlg').returnValue!='ok')return;const d=new FormData($('fNovo'));const tel=String(d.get('tel')).replace(/\D/g,'');
+ if(!d.get('placa')||!d.get('carro')||!d.get('nome')||tel.length<10){toast('Preencha placa, carro, cliente e WhatsApp');return}
+ const o={id:Math.max(0,...DB.os.map(x=>x.id))+1,placa:String(d.get('placa')).toUpperCase().replace(/[^A-Z0-9]/g,''),carro:String(d.get('carro')).trim(),nome:String(d.get('nome')).trim(),tel:tel.startsWith('55')?tel:'55'+tel,relato:String(d.get('relato')||'Avaliação geral').trim()||'Avaliação geral',etapa:'recebido',entrada:dias(0),itens:[]};
+ DB.os.push(o);salvar();FE='';painel();toast(`${o.placa} registrado. Toque em "Avisar cliente" para mandar o link.`)});
+document.addEventListener('keydown',e=>{if(e.key=='Escape'&&$('dlg').open)$('dlg').close()});
+$('zerar').onclick=()=>{DB=semente();salvar();FE='';painel();toast('Demonstração restaurada')};
+// restaurar demonstração: ?reset=1
+if(Q.get('reset')){DB=semente();salvar()}
+tela(location.hash=='#cliente'?'cliente':'painel');
+</script>
+</body>
+</html>

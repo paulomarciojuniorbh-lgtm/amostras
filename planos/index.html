@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hélice Sites &amp; Sistemas · para pequenos negócios</title>
+<title>Hélice Sites &amp; Sistemas · sistemas por assinatura para pequenos negócios</title>
 <link rel="icon" href="../marca/helice-simbolo.svg" type="image/svg+xml">
-<meta name="description" content="Site próprio com a identidade do seu negócio e um sistema que traz clientes prontos para o WhatsApp. Amostra grátis e planos a partir de R$ 49,90 por mês.">
+<meta name="description" content="Sistemas prontos para pequenos negócios: oficina, lavanderia, clínica, pet shop. Cliente organizado, fidelidade e aviso no WhatsApp, a partir de R$ 49,90 por mês. Teste grátis.">
 <meta name="theme-color" content="#0b1124">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,6 +161,32 @@ section{padding:96px 0}
 .grafico svg{width:100%;height:110px;display:block}
 
 
+/* comparação com IA */
+.ia{border-top:1px solid var(--borda);background:radial-gradient(70% 90% at 100% 0%,rgba(139,107,255,.12),transparent 60%)}
+.ia h2{max-width:24ch}
+.compara{margin-top:36px;border:1px solid var(--borda);border-radius:20px;overflow:hidden;background:var(--fundo-2)}
+.compara .cl{display:grid;grid-template-columns:.8fr 1fr 1fr;border-top:1px solid var(--borda)}
+.compara .cl:first-child{border-top:0}
+.compara .cl>span{padding:15px 18px;font-size:.98rem;color:var(--suave)}
+.compara .cl>span:first-child{color:var(--texto);font-weight:600}
+.compara .cl .hel{background:rgba(91,140,255,.08);color:var(--texto);border-left:1px solid var(--borda-2)}
+.compara .cl .hel b{color:var(--ok)}
+.compara .cab>span{font:500 .8rem "Geist Mono",monospace;text-transform:uppercase;letter-spacing:.06em;color:var(--fraco)}
+.compara .cab .hel{color:var(--ciano)}
+@media (max-width:700px){.compara .cl{grid-template-columns:1fr 1fr}.compara .cl>span:first-child{grid-column:1/-1;padding-bottom:0}.compara .cab>span:first-child{display:none}.compara .cl>span{padding:12px 14px;font-size:.92rem}}
+.fonte{font-size:.85rem;color:var(--fraco);margin-top:14px;max-width:80ch}
+.planos.tres{grid-template-columns:repeat(3,1fr)}
+@media (max-width:980px){.planos.tres{grid-template-columns:1fr}}
+.addon{margin-top:16px;border:1px dashed var(--borda-2);border-radius:16px;padding:18px 22px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+.addon b{display:block}.addon span{color:var(--suave);font-size:.95rem}
+.addon .v{display:flex;align-items:baseline;gap:4px}.addon .v b{font-size:1.5rem;font-weight:800}
+.ok-tag,.mt-tag{display:inline-block;font:500 .74rem "Geist Mono",monospace;border-radius:999px;padding:.2em .7em;margin-bottom:10px}
+.ok-tag{color:var(--ok);border:1px solid rgba(61,220,151,.45);background:rgba(61,220,151,.08)}
+.mt-tag{color:var(--suave);border:1px solid var(--borda-2)}
+.sis a.ver{display:inline-block;margin-top:14px;color:var(--azul);font-weight:600;text-decoration:none}
+.sis a.ver:hover{text-decoration:underline}
+.sis .para{display:block}
+
 /* portfólio */
 .port{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:44px}
 @media (max-width:880px){.port{grid-template-columns:1fr}}
@@ -207,8 +233,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <header>
   <div class="topo">
     <a class="marca" href="#inicio"><span class="logo" aria-hidden="true"><svg viewBox="0 0 100 100" width="34" height="34">  <defs>    <linearGradient id="hpa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7aa3ff"/><stop offset="1" stop-color="#5b8cff"/></linearGradient>    <linearGradient id="hpb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ee8f3"/><stop offset="1" stop-color="#2fd6e8"/></linearGradient>  </defs>  <g transform="rotate(-18 50 50)">    <path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#hpa)"/>    <path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#hpb)" transform="rotate(180 50 50)"/>  </g>  <circle cx="50" cy="50" r="7" fill="#0b1124"/>  <circle cx="50" cy="50" r="3" fill="#e9edfb"/></svg></span><span><b>Hélice</b><small>Sites &amp; Sistemas</small></span></a>
-    <nav class="menu" aria-label="Seções"><a href="#como">Como funciona</a><a href="#projetos">Projetos</a><a href="#planos">Planos</a><a href="#sistemas">Sistemas</a><a href="#duvidas">Dúvidas</a></nav>
-    <a class="btn btn-pri zap" data-msg="amostra" href="#">Pedir amostra grátis</a>
+    <nav class="menu" aria-label="Seções"><a href="#sistemas">Sistemas</a><a href="#ia">Por que a Hélice</a><a href="#planos">Planos</a><a href="#projetos">Projetos</a><a href="#duvidas">Dúvidas</a></nav>
+    <a class="btn btn-pri zap" data-msg="amostra" href="#">Testar grátis</a>
   </div>
 </header>
 
@@ -216,25 +242,25 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <section class="hero grade-bg">
   <div class="wrap">
     <div>
-      <span class="status"><i aria-hidden="true"></i>Atendendo pequenos negócios em todo o Brasil</span>
-      <h1>Seu negócio com site próprio e um sistema que <span class="grad">traz clientes prontos.</span></h1>
-      <p class="lead">Montamos o site com as suas cores, fotos e logo, mais um sistema de agendamento, reserva ou cotação que entrega o pedido organizado no seu WhatsApp. Sem taxa de entrada, a partir de R$ 49,90 por mês.</p>
+      <span class="status"><i aria-hidden="true"></i>Sistemas prontos para pequenos negócios · todo o Brasil</span>
+      <h1>O sistema que organiza o seu negócio e <span class="grad">traz o cliente de volta.</span></h1>
+      <p class="lead">O Instagram mostra o que você vende. A Hélice cuida do resto: cliente cadastrado, histórico, fidelidade, orçamento aprovado pelo celular e aviso pronto no WhatsApp. A gente usa inteligência artificial para construir, e você recebe pronto, com o nome do seu negócio.</p>
       <div class="acoes">
-        <a class="btn btn-pri zap" data-msg="amostra" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>Quero minha amostra grátis</a>
-        <a class="btn btn-sec" href="#planos">Ver planos</a>
+        <a class="btn btn-pri zap" data-msg="amostra" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>Quero ver no meu negócio</a>
+        <a class="btn btn-sec" href="#sistemas">Testar um sistema agora</a>
       </div>
       <div class="provas">
-        <span><svg aria-hidden="true"><use href="#ck"/></svg>Amostra pronta em até 48h</span>
-        <span><svg aria-hidden="true"><use href="#ck"/></svg>Domínio no seu nome</span>
-        <span><svg aria-hidden="true"><use href="#ck"/></svg>Português, inglês e espanhol</span>
+        <span><svg aria-hidden="true"><use href="#ck"/></svg>A partir de R$ 49,90 por mês</span>
+        <span><svg aria-hidden="true"><use href="#ck"/></svg>Sem taxa de entrada</span>
+        <span><svg aria-hidden="true"><use href="#ck"/></svg>Funciona no celular, sem instalar nada</span>
       </div>
     </div>
 
     <div>
-      <div class="janela" aria-label="Demonstração: um site sendo montado com a identidade de um negócio">
-        <div class="janela-topo"><span class="bolas" aria-hidden="true"><i></i><i></i><i></i></span><span class="url mono">https://<b id="dom">pousadaremanso</b>.com.br</span></div>
+      <div class="janela" aria-label="Demonstração: um sistema sendo montado para um tipo de negócio">
+        <div class="janela-topo"><span class="bolas" aria-hidden="true"><i></i><i></i><i></i></span><span class="url mono">hélice · sistema de <b id="dom">oficina-do-ze</b></span></div>
         <div class="abas" role="group" aria-label="Escolha um tipo de negócio">
-          <button type="button" data-n="0" aria-pressed="true">Pousada</button><button type="button" data-n="1" aria-pressed="false">Clínica</button><button type="button" data-n="2" aria-pressed="false">Transfer</button>
+          <button type="button" data-n="0" aria-pressed="true">Oficina</button><button type="button" data-n="1" aria-pressed="false">Lavanderia</button><button type="button" data-n="2" aria-pressed="false">Clínica</button>
         </div>
         <div class="corpo">
           <div>
@@ -247,45 +273,67 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
               <div class="capa"></div>
               <div class="tt" id="pTit"></div>
               <div class="fm" id="pChips"></div>
-              <div class="wz">Enviar pelo WhatsApp</div>
+              <div class="wz" id="pBotao">Enviar pelo WhatsApp</div>
             </div>
           </div>
         </div>
       </div>
-      <p class="nota-ex">Negócios fictícios, só para mostrar como cada site ganha identidade própria.</p>
+      <p class="nota-ex">Negócios fictícios, só para mostrar como cada sistema ganha o nome e o jeito de cada ramo.</p>
     </div>
   </div>
 </section>
 
-<section id="como">
+<section id="ia" class="ia">
   <div class="wrap">
-    <h2>Do Google ao site no ar em poucos dias</h2>
-    <p class="intro">Você não precisa mandar texto, foto nem logo. Partimos do que o seu negócio já tem na internet.</p>
+    <h2>Você até poderia montar com o ChatGPT. <span class="grad">Mas por que pagar mais e ainda fazer sozinho?</span></h2>
+    <p class="intro">A inteligência artificial já trabalha do nosso lado todos os dias. Em vez de você pagar a assinatura, aprender a pedir, testar e colocar no ar, a gente entrega o sistema funcionando, ajustado ao seu negócio, por menos.</p>
+    <div class="compara" role="table" aria-label="Comparação entre montar sozinho com IA e usar a Hélice">
+      <div class="cl cab" role="row"><span role="columnheader"></span><span role="columnheader">Montar sozinho com IA</span><span role="columnheader" class="hel">Hélice</span></div>
+      <div class="cl" role="row"><span role="rowheader">Quanto custa</span><span role="cell">R$ 99,90/mês do ChatGPT Plus*, mais o seu tempo</span><span role="cell" class="hel"><b>A partir de R$ 49,90/mês</b>, pronto para usar</span></div>
+      <div class="cl" role="row"><span role="rowheader">Quem monta</span><span role="cell">Você: pedir, corrigir, testar e repetir</span><span role="cell" class="hel">A gente monta, você só aprova</span></div>
+      <div class="cl" role="row"><span role="rowheader">Onde fica</span><span role="cell">Você precisa descobrir como hospedar</span><span role="cell" class="hel">Já no ar, com link para você e para os seus clientes</span></div>
+      <div class="cl" role="row"><span role="rowheader">Quando quebra</span><span role="cell">Você se vira</span><span role="cell" class="hel">Ajustes inclusos todo mês</span></div>
+      <div class="cl" role="row"><span role="rowheader">Seus clientes</span><span role="cell">Espalhados em conversas e planilhas</span><span role="cell" class="hel">Num só lugar, com histórico e aviso no WhatsApp</span></div>
+    </div>
+    <p class="fonte">* Preço do ChatGPT Plus no Brasil conferido em outubro de 2026. Não somos ligados à OpenAI: a comparação é só para mostrar quanto custa fazer sozinho.</p>
+  </div>
+</section>
+
+<section id="sistemas" style="border-top:1px solid var(--borda)">
+  <div class="wrap">
+    <h2>Um sistema para cada tipo de negócio</h2>
+    <p class="intro">Mesma base testada, com a cara e o jeito de trabalhar do seu ramo. Abra os exemplos e use como se fosse o dono.</p>
+    <div class="sistemas">
+      <article class="sis"><div><span class="ok-tag">pronto para testar</span><h3>Oficina: o cliente acompanha o carro</h3><p>O cliente recebe um link e vê a etapa do carro sem precisar ligar. Aprova o orçamento item por item pelo celular, e meses depois chega o lembrete da revisão.</p><span class="para">mecânica · funilaria · autoelétrica</span><a class="ver" href="../oficina/" target="_blank" rel="noopener">Abrir o exemplo da oficina →</a></div>
+        <div class="mini" aria-hidden="true"><div class="lin"><span>QTE4B21</span><b>Orçamento pronto</b></div><div class="lin"><span>Pastilhas</span><b>R$ 189</b></div><div class="lin"><span>Disco (par)</span><b>R$ 420</b></div><div class="zp">Aprovar orçamento</div></div></article>
+      <article class="sis"><div><span class="ok-tag">pronto para testar</span><h3>Lavanderia: clube e cartão fidelidade</h3><p>Plano mensal, selo a cada visita e lavagem grátis no 10º. O painel mostra quem sumiu e já deixa a mensagem pronta para chamar de volta.</p><span class="para">lavanderia · lava-jato · lava-rápido</span><a class="ver" href="../clube-lavanderia/" target="_blank" rel="noopener">Abrir o exemplo da lavanderia →</a></div>
+        <div class="mini" aria-hidden="true"><div class="lin"><span>Ana Paula</span><b>9/10 selos</b></div><div class="lin"><span>Bruno</span><b>sumido 24 dias</b></div><div class="alerta">2 lavagens grátis a liberar</div><div class="zp">Chamar de volta</div></div></article>
+      <article class="sis"><div><span class="mt-tag">sob encomenda</span><h3>Clínica e estética: pacotes de sessões</h3><p>Controle de pacote (6 de 10 sessões), aviso de falta, lembrete da próxima consulta e pré-avaliação antes do atendimento.</p><span class="para">fisioterapia · estética · nutrição · pilates</span></div>
+        <div class="mini" aria-hidden="true"><div class="lin"><span>Pacote</span><b>6 de 10</b></div><div class="lin"><span>Próxima</span><b>Qui 14h</b></div><div class="alerta">Lembrete enviado</div><div class="zp">Confirmar presença</div></div></article>
+      <article class="sis"><div><span class="mt-tag">sob encomenda</span><h3>Pet shop: banho, tosa e retorno</h3><p>Ficha do pet, pacote de banhos, aviso de "pode buscar" e lembrete quando chega a hora do próximo banho ou da vacina.</p><span class="para">pet shop · veterinária · hotel para pets</span></div>
+        <div class="mini" aria-hidden="true"><div class="lin"><span>Thor</span><b>banho 3 de 4</b></div><div class="lin"><span>Vacina</span><b>vence em 9 dias</b></div><div class="zp">Avisar o tutor</div></div></article>
+    </div>
+    <p class="rodape-planos">Seu ramo não está aqui? Funciona para quase todo negócio que atende cliente que volta: salão, barbearia, escola de idiomas, academia, assistência técnica, gráfica… Conta como você trabalha hoje que a gente mostra como fica.</p>
+
+    <div class="painel">
+      <div><h3>Você enxerga o que antes ficava no caderno</h3><p class="intro" style="font-size:1rem">Quantos clientes voltaram, quanto foi aprovado, quem sumiu e o que fazer hoje. No plano Profissional, todo mês chega um resumo no seu WhatsApp com os números e uma sugestão do que melhorar.</p></div>
+      <div aria-hidden="true">
+        <div class="kpis"><div class="kpi"><small>Clientes que voltaram</small><b>38</b><em>+12%</em></div><div class="kpi"><small>Avisos enviados</small><b>112</b><em>+30%</em></div><div class="kpi"><small>Orçamentos aprovados</small><b>R$ 9,4 mil</b></div></div>
+        <div class="grafico"><svg viewBox="0 0 400 110" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b8cff" stop-opacity=".45"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></linearGradient></defs><path d="M0 90 L40 82 L80 85 L120 70 L160 72 L200 58 L240 61 L280 45 L320 40 L360 30 L400 22 L400 110 L0 110Z" fill="url(#g1)"/><path d="M0 90 L40 82 L80 85 L120 70 L160 72 L200 58 L240 61 L280 45 L320 40 L360 30 L400 22" fill="none" stroke="#2fd6e8" stroke-width="2.5"/></svg></div>
+        <p class="nota-ex" style="text-align:left">Painel ilustrativo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como" style="border-top:1px solid var(--borda)">
+  <div class="wrap">
+    <h2>Do primeiro papo ao sistema rodando em poucos dias</h2>
+    <p class="intro">Você não precisa entender de tecnologia nem mudar a rotina de uma vez.</p>
     <div class="fluxo">
-      <div class="etapa"><span class="n">01</span><h3>Você pede a amostra</h3><p>Manda o nome do seu negócio no Google ou o seu Instagram pelo WhatsApp.</p><span class="t">2 minutos</span></div>
-      <div class="etapa"><span class="n">02</span><h3>Recebe o site pronto</h3><p>Com as suas cores, fotos, serviços e um sistema pensado para o seu ramo. Você vê no celular antes de decidir.</p><span class="t">até 48 horas</span></div>
-      <div class="etapa"><span class="n">03</span><h3>Aprovou, entra no ar</h3><p>Ajustamos o que você quiser, registramos o domínio no seu nome e publicamos.</p><span class="t">até 7 dias</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="projetos" style="border-top:1px solid var(--borda)">
-  <div class="wrap">
-    <h2>O que eu já construí</h2>
-    <p class="intro">Antes de fazer sites para pequenos negócios, construí sistemas de dados que rodam todos os dias. É a mesma tecnologia que vai para o seu site.</p>
-    <div class="port">
-      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/personal-jr.jpg" alt="Site do personal trainer Júnior Oliveira, com fundo escuro, título em amarelo e foto dele" loading="lazy"></div>
-        <div class="info"><span class="tag">site · cliente</span><h3>Júnior Oliveira, personal trainer</h3><p>Site com a identidade dele, métodos de treino e agendamento de avaliação pelo WhatsApp. <span class="num">O Júnior aprovou e vai usar o site nas redes para apresentar o trabalho aos alunos.</span></p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/amostras/personal-jr-oliveira/" target="_blank" rel="noopener">Ver o site</a></div></article>
-      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/fleetmanager.jpg" alt="Painel do FleetManager com lucro do mês, valores recebidos, despesas e cobranças em atraso" loading="lazy"></div>
-        <div class="info"><span class="tag">sistema próprio</span><h3>FleetManager</h3><p>Gestão de frota para quem aluga carro para motorista de aplicativo: carros, motoristas, cobrança semanal no Pix, despesas, manutenção e vencimentos num só lugar.</p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/" target="_blank" rel="noopener">Testar a frota de exemplo</a></div></article>
-      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-crise.jpg" alt="Radar Crise com pedidos de recuperação judicial e falência dos últimos 30 dias e gráfico por mês" loading="lazy"></div>
-        <div class="info"><span class="tag">sistema próprio · jurídico</span><h3>Radar Crise</h3><p>Acompanha todo dia os pedidos de recuperação judicial e falência nos 27 tribunais estaduais. <span class="num">Mais de 5.300 processos monitorados</span>, com a empresa identificada e os momentos que geram oportunidade.</p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/radar-crise/" target="_blank" rel="noopener">Ver o radar</a></div></article>
-      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-negocios.jpg" alt="Radar Negócios Locais com empresas no radar, percentual sem site próprio e leads quentes" loading="lazy"></div>
-        <div class="info"><span class="tag">sistema próprio · dados</span><h3>Radar de Negócios</h3><p>Lê o Google Maps e mostra quem tem boa reputação mas ainda não tem site. <span class="num">Mais de 5 mil negócios monitorados em 21 cidades do Norte e Nordeste.</span> É assim que encontro negócios como o seu.</p><span class="ver" style="color:var(--fraco)">Uso interno</span></div></article>
-    </div>
-    <div class="fundador">
-      <span class="av" aria-hidden="true">PJ</span>
-      <div><p>Passo os dias construindo sistemas que leem dados e transformam em decisão. Olhando esses dados, vi uma coisa que se repete: o pequeno negócio tem cliente fiel e nota alta no Google, mas perde gente todo dia porque não tem um lugar próprio na internet.</p><p>Então peguei a mesma tecnologia dos meus sistemas e coloquei a serviço desses negócios, com um preço que cabe no mês e uma amostra grátis para você ver antes de decidir.</p><p>O nome vem das minhas filhas: <b style="display:inline">HEL</b>ena e Clar<b style="display:inline">ICE</b>. Hélice é o que faz as coisas decolarem, e é o que eu quero fazer pelo seu negócio.</p><b>Paulo Jr.</b><small style="display:inline">fundador da Hélice · </small><small>atendimento em todo o Brasil</small></div>
+      <div class="etapa"><span class="n">01</span><h3>Conta como funciona hoje</h3><p>Pelo WhatsApp: como chega o cliente, o que você anota, o que mais dá dor de cabeça.</p><span class="t">15 minutos</span></div>
+      <div class="etapa"><span class="n">02</span><h3>Testa o sistema com o seu nome</h3><p>Você recebe o link do sistema montado para o seu negócio e usa no celular antes de decidir.</p><span class="t">até 72 horas</span></div>
+      <div class="etapa"><span class="n">03</span><h3>Aprovou, começa a usar</h3><p>A gente cadastra os seus clientes a partir da sua planilha ou caderno e ajusta o que for preciso.</p><span class="t">até 7 dias</span></div>
     </div>
   </div>
 </section>
@@ -293,36 +341,20 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <section id="planos">
   <div class="wrap">
     <h2>Planos sem taxa de entrada</h2>
-    <p class="intro">Comece simples e suba de plano quando quiser, sem refazer nada. Hospedagem e segurança sempre inclusas, com cobrança automática no Pix ou no cartão.</p>
+    <p class="intro">Comece com o essencial e suba quando quiser, sem perder nada. Hospedagem, segurança e cópia dos seus dados sempre inclusas.</p>
     <div class="ciclo" role="group" aria-label="Forma de pagamento"><button type="button" data-c="mes" aria-pressed="true">Mensal</button><button type="button" data-c="ano" aria-pressed="false">Anual<em>2 meses grátis</em></button></div>
-    <div class="planos">
+    <div class="planos tres">
       <article class="plano">
-        <h3>Vitrine</h3>
-        <p class="para">O jeito mais simples de ter o seu negócio na internet.</p>
+        <h3>Essencial</h3>
+        <p class="para">Um sistema pronto do seu ramo, com o nome do seu negócio.</p>
         <div class="preco"><b data-m="49.90" data-a="499">R$ 49,90</b><span class="per">/mês</span></div>
         <p class="preco-nota"></p>
         <hr>
         <ul>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Site de 1 página com as suas cores e fotos</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Endereço gratuito no nosso domínio, como seunegocio.nossosite.com.br</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Botão de WhatsApp, mapa e horários</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Hospedagem rápida e segura</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Ajustes avulsos quando precisar</li>
-        </ul>
-        <a class="btn btn-sec zap" data-msg="Vitrine" href="#">Quero o Vitrine</a>
-      </article>
-      <article class="plano">
-        <h3>Essencial</h3>
-        <p class="para">Site completo com endereço próprio na internet.</p>
-        <div class="preco"><b data-m="69.90" data-a="699">R$ 69,90</b><span class="per">/mês</span></div>
-        <p class="preco-nota"></p>
-        <hr>
-        <ul>
-          <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Vitrine</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Domínio .com.br próprio, no seu nome</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>WhatsApp, mapa e horários</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Ligado ao seu perfil no Google</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Hospedagem rápida e segura</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>1 sistema pronto: oficina, clube, pacotes ou agenda</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Até 300 clientes cadastrados</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Mensagens prontas para o WhatsApp</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Link para os seus clientes acompanharem</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>1 ajuste por mês</li>
         </ul>
         <a class="btn btn-sec zap" data-msg="Essencial" href="#">Quero o Essencial</a>
@@ -330,62 +362,61 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <article class="plano destaque">
         <span class="selo">Recomendado</span>
         <h3>Profissional</h3>
-        <p class="para">Para o site trabalhar por você e entregar clientes prontos.</p>
-        <div class="preco"><b data-m="129" data-a="1290">R$ 129</b><span class="per">/mês</span></div>
+        <p class="para">O sistema ajustado ao seu jeito de trabalhar.</p>
+        <div class="preco"><b data-m="99.90" data-a="999">R$ 99,90</b><span class="per">/mês</span></div>
         <p class="preco-nota"></p>
         <hr>
         <ul>
           <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Essencial</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Sistema sob medida: agendamento, pré-avaliação, roteiro ou cotação</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Pedido organizado direto no seu WhatsApp</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Versão em inglês e espanhol</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Galeria e avaliações do Google</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Campos, etapas e mensagens do seu jeito</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Clientes ilimitados e importação da sua planilha</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Lembretes de retorno e de quem sumiu</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Resumo mensal no seu WhatsApp</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>3 ajustes por mês</li>
         </ul>
         <a class="btn btn-pri zap" data-msg="Profissional" href="#">Quero o Profissional</a>
       </article>
       <article class="plano">
-        <h3>Gestão</h3>
-        <p class="para">Para organizar o atendimento e acompanhar os resultados.</p>
-        <div class="preco"><b data-m="249" data-a="2490">R$ 249</b><span class="per">/mês</span></div>
+        <h3>Sob medida</h3>
+        <p class="para">Para quem tem equipe, mais de uma unidade ou um processo próprio.</p>
+        <div class="preco"><b data-m="199" data-a="1990">R$ 199</b><span class="per">/mês</span></div>
         <p class="preco-nota"></p>
         <hr>
         <ul>
           <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Profissional</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Painel online com link e senha próprios: clientes, pacientes ou reservas</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Resumo mensal no seu WhatsApp com visitas, cliques e pedidos</li>
-          <li><svg aria-hidden="true"><use href="#ck"/></svg>Atualização mensal do perfil no Google</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Sistema desenhado para o seu processo</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Acesso para a equipe, cada um com o seu login</li>
+          <li><svg aria-hidden="true"><use href="#ck"/></svg>Ligação com o sistema que você já usa, quando ele permitir</li>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>Ajustes com prioridade</li>
         </ul>
-        <a class="btn btn-sec zap" data-msg="Gestão" href="#">Quero o Gestão</a>
+        <a class="btn btn-sec zap" data-msg="Sob medida" href="#">Quero conversar</a>
       </article>
     </div>
-    <p class="rodape-planos">Fidelidade de 12 meses. Nos planos com domínio próprio, ele fica sempre no seu nome. Prefere pagar o site de uma vez? Também é possível, é só pedir o valor à vista.</p>
+    <div class="addon">
+      <div><b>Quer também um site?</b><span>Página do seu negócio com as suas cores e fotos, ligada ao sistema e ao WhatsApp. É um complemento de qualquer plano.</span></div>
+      <div class="v"><b>+ R$ 29,90</b><span>/mês</span></div>
+    </div>
+    <p class="rodape-planos">Fidelidade de 12 meses, porque todo o trabalho de montar o sistema acontece no começo e não cobramos entrada. No anual você ganha 2 meses. Os dados dos seus clientes são seus: se cancelar, você recebe tudo em planilha.</p>
   </div>
 </section>
 
-<section id="sistemas" style="border-top:1px solid var(--borda)">
+<section id="projetos" style="border-top:1px solid var(--borda)">
   <div class="wrap">
-    <h2>O sistema muda conforme o seu negócio</h2>
-    <p class="intro">No plano Profissional, o site ganha uma ferramenta feita para o seu ramo. O cliente responde, o site organiza e você recebe tudo pronto.</p>
-    <div class="sistemas">
-      <article class="sis"><div><h3>Roteiro de passeios</h3><p>O turista escolhe passeios e dias de viagem, e o site monta o roteiro dia a dia, em três idiomas.</p><span class="para">agências · pousadas</span></div>
-        <div class="mini" aria-hidden="true"><div class="lin"><span>Ter 14</span><b>Lagoa Azul</b></div><div class="lin"><span>Qua 15</span><b>Barco + Caburé</b></div><div class="lin"><span>Qui 16</span><b>Atins</b></div><div class="zp">Enviar roteiro</div></div></article>
-      <article class="sis"><div><h3>Pré-avaliação</h3><p>O paciente conta o que sente antes da consulta. Se marcar um sinal de alerta, o site orienta procurar um médico.</p><span class="para">fisioterapia · nutrição · psicologia</span></div>
-        <div class="mini" aria-hidden="true"><div><span class="pill">Lombar</span><span class="pill">há 3 meses</span><span class="pill">dor 6/10</span></div><div class="lin"><span>Período</span><b>Manhã</b></div><div class="alerta">Sem sinais de alerta</div><div class="zp">Enviar avaliação</div></div></article>
-      <article class="sis"><div><h3>Cálculo de horário</h3><p>O cliente informa o voo e vê a hora de saída e de chegada antes de pedir o valor.</p><span class="para">transfer · transporte</span></div>
-        <div class="mini mono" aria-hidden="true"><div class="lin"><span>pouso</span><b>10:00</b></div><div class="lin"><span>saída</span><b>10:40</b></div><div class="lin"><span>chegada</span><b>14:40</b></div><div class="zp" style="font-family:Geist,sans-serif">Pedir cotação</div></div></article>
-      <article class="sis"><div><h3>Agendamento</h3><p>Serviço, dia e período escolhidos pelo cliente, prontos para você só confirmar.</p><span class="para">clínicas · estética · massagem</span></div>
-        <div class="mini" aria-hidden="true"><div class="lin"><span>Serviço</span><b>Massagem</b></div><div class="lin"><span>Dia</span><b>Sexta</b></div><div class="lin"><span>Período</span><b>Tarde</b></div><div class="zp">Agendar</div></div></article>
+    <h2>O que eu já construí</h2>
+    <p class="intro">Antes de fazer sistemas para pequenos negócios, construí sistemas de dados que rodam todos os dias. É a mesma tecnologia que vai para o seu.</p>
+    <div class="port">
+      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/fleetmanager.jpg" alt="Painel do FleetManager com lucro do mês, valores recebidos, despesas e cobranças em atraso" loading="lazy"></div>
+        <div class="info"><span class="tag">sistema próprio</span><h3>FleetManager</h3><p>Gestão de frota para quem aluga carro para motorista de aplicativo: carros, motoristas, cobrança semanal no Pix, despesas, manutenção e vencimentos num só lugar.</p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/" target="_blank" rel="noopener">Testar a frota de exemplo</a></div></article>
+      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-crise.jpg" alt="Radar Crise com pedidos de recuperação judicial e falência dos últimos 30 dias e gráfico por mês" loading="lazy"></div>
+        <div class="info"><span class="tag">sistema próprio · jurídico</span><h3>Radar Crise</h3><p>Acompanha todo dia os pedidos de recuperação judicial e falência nos 27 tribunais estaduais. <span class="num">Mais de 5.300 processos monitorados</span>, com a empresa identificada e os momentos que geram oportunidade.</p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/radar-crise/" target="_blank" rel="noopener">Ver o radar</a></div></article>
+      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-negocios.jpg" alt="Radar Negócios Locais com empresas no radar, percentual sem site próprio e leads quentes" loading="lazy"></div>
+        <div class="info"><span class="tag">sistema próprio · dados</span><h3>Radar de Negócios</h3><p>Lê o Google Maps e mostra os negócios de cada cidade, com reputação e contato. <span class="num">Mais de 5 mil negócios monitorados em 21 cidades do Norte e Nordeste.</span> É assim que encontro negócios como o seu.</p><span class="ver" style="color:var(--fraco)">Uso interno</span></div></article>
+      <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/personal-jr.jpg" alt="Site do personal trainer Júnior Oliveira, com fundo escuro, título em amarelo e foto dele" loading="lazy"></div>
+        <div class="info"><span class="tag">site · cliente</span><h3>Júnior Oliveira, personal trainer</h3><p>Site com a identidade dele, métodos de treino e agendamento de avaliação pelo WhatsApp. <span class="num">O Júnior aprovou e usa o site nas redes para apresentar o trabalho aos alunos.</span></p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/amostras/personal-jr-oliveira/" target="_blank" rel="noopener">Ver o site</a></div></article>
     </div>
-
-    <div class="painel">
-      <div><h3>No plano Gestão, você acompanha tudo</h3><p class="intro" style="font-size:1rem">Você ganha um painel online, com link e senha só seus, para ver a qualquer hora as visitas do site, quantas pessoas clicaram no WhatsApp e quais serviços mais procuram. E todo mês chega um resumo no seu WhatsApp com os números e uma sugestão do que melhorar.</p></div>
-      <div aria-hidden="true">
-        <div class="kpis"><div class="kpi"><small>Visitas</small><b>1.284</b><em>+18%</em></div><div class="kpi"><small>Cliques no WhatsApp</small><b>96</b><em>+24%</em></div><div class="kpi"><small>Pedidos pelo sistema</small><b>41</b><em>+9%</em></div></div>
-        <div class="grafico"><svg viewBox="0 0 400 110" preserveAspectRatio="none"><defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#5b8cff" stop-opacity=".45"/><stop offset="1" stop-color="#5b8cff" stop-opacity="0"/></linearGradient></defs><path d="M0 90 L40 82 L80 85 L120 70 L160 72 L200 58 L240 61 L280 45 L320 40 L360 30 L400 22 L400 110 L0 110Z" fill="url(#g1)"/><path d="M0 90 L40 82 L80 85 L120 70 L160 72 L200 58 L240 61 L280 45 L320 40 L360 30 L400 22" fill="none" stroke="#2fd6e8" stroke-width="2.5"/></svg></div>
-        <p class="nota-ex" style="text-align:left">Painel ilustrativo.</p>
-      </div>
+    <div class="fundador">
+      <span class="av" aria-hidden="true">PJ</span>
+      <div><p>Passo os dias construindo sistemas que leem dados e transformam em decisão. Olhando esses dados, vi uma coisa que se repete: o pequeno negócio tem cliente fiel e nota alta no Google, mas perde dinheiro porque tudo fica no caderno, na memória e em conversa solta no WhatsApp.</p><p>Então peguei a mesma tecnologia dos meus sistemas, junto com a inteligência artificial que uso todo dia, e coloquei a serviço desses negócios, por menos do que uma assinatura de IA e com um teste grátis para você ver antes de decidir.</p><p>O nome vem das minhas filhas: <b style="display:inline">HEL</b>ena e Clar<b style="display:inline">ICE</b>. Hélice é o que faz as coisas decolarem, e é o que eu quero fazer pelo seu negócio.</p><b>Paulo Jr.</b><small style="display:inline">fundador da Hélice · </small><small>atendimento em todo o Brasil</small></div>
     </div>
   </div>
 </section>
@@ -394,13 +425,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
   <div class="wrap">
     <h2>Dúvidas frequentes</h2>
     <div class="faq">
-      <details><summary>A amostra é grátis mesmo?</summary><p>É. Você recebe o site pronto para ver no celular e só decide depois. Se não gostar, não paga nada.</p></details>
-      <details><summary>Qual a diferença entre o Vitrine e o Essencial?</summary><p>O Vitrine é um site simples, com endereço dentro do nosso domínio. O Essencial tem endereço próprio (seunegocio.com.br), ligação com o seu perfil no Google e 1 ajuste por mês incluso. Dá para começar no Vitrine e subir depois, sem perder nada.</p></details>
-      <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque todo o trabalho de criar o site e o sistema acontece no começo e não cobro taxa de entrada. No plano anual você ainda ganha 2 meses.</p></details>
-      <details><summary>O domínio é meu?</summary><p>Sim. O endereço do site é registrado no seu nome, no Registro.br, e continua seu em qualquer situação.</p></details>
-      <details><summary>E se eu cancelar depois da fidelidade?</summary><p>O site sai do ar no fim do último mês pago e o domínio continua seu. Se quiser ficar com o site, dá para comprá-lo à vista.</p></details>
-      <details><summary>O que conta como ajuste?</summary><p>Trocar fotos, textos, telefone, horários, preços ou serviços. Mudanças maiores, como um sistema novo, são combinadas à parte.</p></details>
-      <details><summary>Preciso mandar fotos e textos?</summary><p>Não para a amostra. Uso o que já está no seu Google e no seu Instagram. Depois você manda fotos novas quando quiser.</p></details>
+      <details><summary>O teste é grátis mesmo?</summary><p>É. Você recebe o link do sistema montado com o nome do seu negócio, usa no celular e só decide depois. Se não gostar, não paga nada.</p></details>
+      <details><summary>Por que não faço direto pelo ChatGPT?</summary><p>Pode fazer, mas a assinatura custa R$ 99,90 por mês e você ainda precisa aprender a pedir, corrigir, colocar no ar e consertar quando der problema. Aqui a inteligência artificial trabalha do nosso lado: você paga a partir de R$ 49,90 e recebe pronto, com ajustes inclusos.</p></details>
+      <details><summary>Preciso instalar aplicativo?</summary><p>Não. Funciona pelo navegador do celular ou do computador. Você recebe um link e pode salvar na tela inicial como se fosse um aplicativo. Os seus clientes também não instalam nada.</p></details>
+      <details><summary>As mensagens saem sozinhas no WhatsApp?</summary><p>No começo, o sistema monta a mensagem e abre o seu WhatsApp com ela pronta: você só confere e aperta enviar. Assim não tem risco de bloqueio nem custo extra. Envio automático pode ser combinado no plano Sob medida, com o custo cobrado pelo próprio WhatsApp.</p></details>
+      <details><summary>E os dados dos meus clientes?</summary><p>São seus. Ficam guardados com cópia de segurança, só você acessa e, se um dia cancelar, recebe tudo em planilha.</p></details>
+      <details><summary>Já uso Instagram. Preciso de site?</summary><p>Não necessariamente. O Instagram é ótimo para mostrar o que você vende; o sistema cuida do que vem depois. Se quiser um site também, ele entra como complemento de R$ 29,90 por mês.</p></details>
+      <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque o trabalho de montar o sistema, cadastrar os clientes e ajustar acontece no começo e não cobramos entrada. No plano anual você ainda ganha 2 meses.</p></details>
       <details><summary>Como pago?</summary><p>No Pix ou no cartão, com cobrança automática todo mês. No anual, você paga de uma vez e ganha 2 meses.</p></details>
     </div>
   </div>
@@ -409,8 +440,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <section class="final">
   <div class="wrap">
     <div class="cta">
-      <div><h2>Veja o seu site antes de decidir</h2><p>Me manda o nome do seu negócio e em até 48 horas você recebe a amostra com a sua identidade. Sem compromisso.</p></div>
-      <a class="btn btn-pri zap" data-msg="amostra" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>Pedir amostra grátis</a>
+      <div><h2>Veja o sistema com o nome do seu negócio</h2><p>Me conta pelo WhatsApp qual é o seu negócio e como você trabalha hoje. Em até 72 horas você recebe o link para testar. Sem compromisso.</p></div>
+      <a class="btn btn-pri zap" data-msg="amostra" href="#"><svg aria-hidden="true"><use href="#wa"/></svg>Quero testar grátis</a>
     </div>
   </div>
 </section>
@@ -426,8 +457,8 @@ let ciclo="mes";
 function links(){
   document.querySelectorAll("a.zap").forEach(a=>{
     const p=a.dataset.msg;
-    const msg = p==="amostra" ? "Olá, Paulo! Vi a sua página e quero uma amostra grátis do site para o meu negócio. O nome no Google (ou Instagram) é: "
-      : `Olá, Paulo! Tenho interesse no plano ${p} ${ciclo==="ano"?"anual":"mensal"} e quero uma amostra grátis. Meu negócio no Google (ou Instagram) é: `;
+    const msg = p==="amostra" ? "Olá, Paulo! Vi a página da Hélice e quero testar um sistema no meu negócio. Meu negócio é (ramo e nome): "
+      : `Olá, Paulo! Tenho interesse no plano ${p} ${ciclo==="ano"?"anual":"mensal"} e quero testar grátis. Meu negócio é (ramo e nome): `;
     a.href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg); a.target="_blank"; a.rel="noopener";
   });
 }
@@ -445,12 +476,12 @@ document.querySelectorAll(".ciclo button").forEach(x=>x.addEventListener("click"
 
 // demonstração: o site sendo montado
 const D=[
- {dom:"pousadaremanso",nome:"Pousada Remanso",tit:"Acorde com vista para o rio",chips:["Casal","2 noites","Café incluso"],cor:"#0f6e7a",fundo:"#fbf6ec",capa:"linear-gradient(135deg,#7fd3d9,#f6c27a)",chip:"#e0f2f3",borda:"#e7dcc6",
-  log:[["Lendo o perfil no Google","4,8 ★ · 212 avaliações"],["Extraindo cores do Instagram","#0F6E7A #F6C27A"],["Selecionando fotos","9 fotos"],["Sistema","reserva direta"],["Idiomas","PT · EN · ES"]]},
- {dom:"clinicaequilibrio",nome:"Clínica Equilíbrio",tit:"Cuidado para voltar a se mover",chips:["Lombar","Há 2 meses","Manhã"],cor:"#3a6b35",fundo:"#f6f8f2",capa:"linear-gradient(135deg,#b7d8a8,#e9e3c9)",chip:"#e5efdd",borda:"#dfe6d6",
-  log:[["Lendo o perfil no Google","5,0 ★ · 96 avaliações"],["Extraindo cores do logo","#3A6B35 #E9E3C9"],["Selecionando fotos","7 fotos"],["Sistema","pré-avaliação"],["Sinais de alerta","ativados"]]},
- {dom:"rotatransfer",nome:"Rota Transfer",tit:"Do aeroporto à sua pousada",chips:["Pouso 10:00","2 pessoas","Chega 14:40"],cor:"#16213d",fundo:"#ffffff",capa:"linear-gradient(135deg,#16213d,#f2b134)",chip:"#fdf0d2",borda:"#e6e8ee",
-  log:[["Lendo o perfil no Google","4,9 ★ · 106 avaliações"],["Extraindo cores","#16213D #F2B134"],["Selecionando fotos","5 fotos"],["Sistema","cálculo de horário"],["Idiomas","PT · EN · ES"]]}
+ {dom:"oficina-do-ze",nome:"Oficina do Zé",tit:"Seu carro: orçamento pronto",chips:["Recebido ✓","Análise ✓","R$ 759"],botao:"Aprovar orçamento",cor:"#16181d",fundo:"#f4f4f1",capa:"linear-gradient(135deg,#16181d 0 55%,#ff6a13 55%)",chip:"#ffe9dc",borda:"#e3e3dd",
+  log:[["Ramo","oficina mecânica"],["Etapas do carro","5 etapas"],["Orçamento pelo celular","ativado"],["Mensagens do WhatsApp","prontas"],["Lembrete de revisão","a cada 6 meses"]]},
+ {dom:"lavanderia-bolha",nome:"Lavanderia Bolha",tit:"7 de 10 lavagens",chips:["Plano Família","Faltam 3","🎁 grátis no 10º"],botao:"Ver meu cartão",cor:"#0b5fb3",fundo:"#f3f8fc",capa:"linear-gradient(135deg,#1e88e5,#14b8a6)",chip:"#e3f0fc",borda:"#dce6f0",
+  log:[["Ramo","lavanderia"],["Clube de assinatura","3 planos"],["Cartão fidelidade","10 selos"],["Quem sumiu","aviso após 20 dias"],["Mensagens do WhatsApp","prontas"]]},
+ {dom:"clinica-movimento",nome:"Clínica Movimento",tit:"Pacote: 6 de 10 sessões",chips:["Próxima: qui 14h","Lombar","Sem faltas"],botao:"Confirmar presença",cor:"#3a6b35",fundo:"#f6f8f2",capa:"linear-gradient(135deg,#b7d8a8,#e9e3c9)",chip:"#e5efdd",borda:"#dfe6d6",
+  log:[["Ramo","fisioterapia"],["Pacotes de sessões","controle automático"],["Pré-avaliação","sinais de alerta"],["Lembrete de consulta","1 dia antes"],["Mensagens do WhatsApp","prontas"]]}
 ];
 const reduz = matchMedia("(prefers-reduced-motion: reduce)").matches;
 let timers=[];
@@ -459,10 +490,10 @@ function demo(n){
   const d=D[n], t=$("tela");
   document.querySelectorAll(".abas button").forEach(b=>b.setAttribute("aria-pressed",+b.dataset.n===n));
   $("dom").textContent=d.dom;
-  const linhas=[...d.log.map(([k,v])=>`<li><span class="ok">✓</span><span>${k} <span class="k">${v}</span></span></li>`),`<li class="fim"><span class="ok">●</span><span>Publicado em ${d.dom}.com.br</span></li>`];
+  const linhas=[...d.log.map(([k,v])=>`<li><span class="ok">✓</span><span>${k} <span class="k">${v}</span></span></li>`),`<li class="fim"><span class="ok">●</span><span>Sistema no ar para ${d.nome}</span></li>`];
   $("log").innerHTML=linhas.join("");
   const lis=[...$("log").children]; $("prog").style.width="0";
-  const aplica=()=>{ ["cor","fundo","capa","chip","borda"].forEach(k=>t.style.setProperty("--p-"+k,d[k])); $("pNome").textContent=d.nome; $("pTit").textContent=d.tit; $("pChips").innerHTML=d.chips.map(c=>`<span>${c}</span>`).join(""); };
+  const aplica=()=>{ ["cor","fundo","capa","chip","borda"].forEach(k=>t.style.setProperty("--p-"+k,d[k])); $("pNome").textContent=d.nome; $("pTit").textContent=d.tit; $("pChips").innerHTML=d.chips.map(c=>`<span>${c}</span>`).join(""); $("pBotao").textContent=d.botao; };
   if(reduz){ lis.forEach(l=>l.classList.add("on")); $("prog").style.width="100%"; aplica(); return; }
   lis.forEach((l,i)=>timers.push(setTimeout(()=>{ l.classList.add("on"); $("prog").style.width=((i+1)/lis.length*100)+"%"; if(i===1) aplica(); },350+i*420)));
 }
