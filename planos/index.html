@@ -127,6 +127,7 @@ section{padding:96px 0}
 .preco b{font-size:2.3rem;font-weight:800;letter-spacing:-.03em}
 .preco span{color:var(--suave)}
 .preco-nota{font-size:.88rem;color:var(--ok);margin:6px 0 0;min-height:1.4em}
+.inst{font-size:.86rem;color:var(--suave);margin:2px 0 0}.inst em{font-style:normal;color:var(--ok)}
 .plano hr{border:0;border-top:1px solid var(--borda);margin:20px 0}
 .plano ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:11px;font-size:.97rem}
 .plano li{display:grid;grid-template-columns:20px 1fr;gap:10px;color:#cdd5ef}
@@ -251,7 +252,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       </div>
       <div class="provas">
         <span><svg aria-hidden="true"><use href="#ck"/></svg>A partir de R$ 49,90 por mês</span>
-        <span><svg aria-hidden="true"><use href="#ck"/></svg>Sem taxa de entrada</span>
+        <span><svg aria-hidden="true"><use href="#ck"/></svg>Teste grátis antes de decidir</span>
         <span><svg aria-hidden="true"><use href="#ck"/></svg>Funciona no celular, sem instalar nada</span>
       </div>
     </div>
@@ -340,7 +341,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 
 <section id="planos">
   <div class="wrap">
-    <h2>Planos sem taxa de entrada</h2>
+    <h2>Planos</h2>
     <p class="intro">Comece com o essencial e suba quando quiser, sem perder nada. Hospedagem, segurança e cópia dos seus dados sempre inclusas.</p>
     <div class="ciclo" role="group" aria-label="Forma de pagamento"><button type="button" data-c="mes" aria-pressed="true">Mensal</button><button type="button" data-c="ano" aria-pressed="false">Anual<em>2 meses grátis</em></button></div>
     <div class="planos tres">
@@ -348,7 +349,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <h3>Essencial</h3>
         <p class="para">Um sistema pronto do seu ramo, com o nome do seu negócio.</p>
         <div class="preco"><b data-m="49.90" data-a="499">R$ 49,90</b><span class="per">/mês</span></div>
-        <p class="preco-nota"></p>
+        <p class="preco-nota"></p><p class="inst">Sem taxa de instalação</p>
         <hr>
         <ul>
           <li><svg aria-hidden="true"><use href="#ck"/></svg>1 sistema pronto: oficina, clube, pacotes ou agenda</li>
@@ -364,7 +365,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <h3>Profissional</h3>
         <p class="para">O sistema ajustado ao seu jeito de trabalhar.</p>
         <div class="preco"><b data-m="99.90" data-a="999">R$ 99,90</b><span class="per">/mês</span></div>
-        <p class="preco-nota"></p>
+        <p class="preco-nota"></p><p class="inst">+ instalação de R$ 390 <em>(grátis no anual)</em></p>
         <hr>
         <ul>
           <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Essencial</li>
@@ -380,7 +381,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
         <h3>Sob medida</h3>
         <p class="para">Para quem tem equipe, mais de uma unidade ou um processo próprio.</p>
         <div class="preco"><b data-m="199" data-a="1990">R$ 199</b><span class="per">/mês</span></div>
-        <p class="preco-nota"></p>
+        <p class="preco-nota"></p><p class="inst">+ instalação a partir de R$ 990</p>
         <hr>
         <ul>
           <li class="mais"><svg aria-hidden="true"><use href="#ck"/></svg>Tudo do Profissional</li>
@@ -396,7 +397,15 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <div><b>Quer também um site?</b><span>Página do seu negócio com as suas cores e fotos, ligada ao sistema e ao WhatsApp. É um complemento de qualquer plano.</span></div>
       <div class="v"><b>+ R$ 29,90</b><span>/mês</span></div>
     </div>
-    <p class="rodape-planos">Fidelidade de 12 meses, porque todo o trabalho de montar o sistema acontece no começo e não cobramos entrada. No anual você ganha 2 meses. Os dados dos seus clientes são seus: se cancelar, você recebe tudo em planilha.</p>
+    <p class="rodape-planos">Fidelidade de 12 meses, porque boa parte do trabalho de montar o sistema e cadastrar os seus clientes acontece no começo. No anual você ganha 2 meses. Os dados dos seus clientes são seus: se cancelar, você recebe tudo em planilha.</p>
+  </div>
+</section>
+
+<section id="maiores" style="border-top:1px solid var(--borda)">
+  <div class="wrap">
+    <h2>Empresa maior, com cliente devendo?</h2>
+    <p class="intro">Para quem vende a prazo e tem inadimplência pesando no caixa: diagnóstico da carteira, régua de cobrança automática no WhatsApp e recuperação das dívidas antigas, dentro do Código de Defesa do Consumidor.</p>
+    <div class="addon" style="margin-top:22px"><div><b>Hélice Cobrança</b><span>Diagnóstico por R$ 1.490, régua automática a partir de R$ 490/mês e recuperação paga só sobre o que entrar.</span></div><a class="btn btn-sec" href="../cobranca/">Conhecer →</a></div>
   </div>
 </section>
 
@@ -410,7 +419,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-crise.jpg" alt="Radar Crise com pedidos de recuperação judicial e falência dos últimos 30 dias e gráfico por mês" loading="lazy"></div>
         <div class="info"><span class="tag">sistema próprio · jurídico</span><h3>Radar Crise</h3><p>Acompanha todo dia os pedidos de recuperação judicial e falência nos 27 tribunais estaduais. <span class="num">Mais de 5.300 processos monitorados</span>, com a empresa identificada e os momentos que geram oportunidade.</p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/radar-crise/" target="_blank" rel="noopener">Ver o radar</a></div></article>
       <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/radar-negocios.jpg" alt="Radar Negócios Locais com empresas no radar, percentual sem site próprio e leads quentes" loading="lazy"></div>
-        <div class="info"><span class="tag">sistema próprio · dados</span><h3>Radar de Negócios</h3><p>Lê o Google Maps e mostra os negócios de cada cidade, com reputação e contato. <span class="num">Mais de 5 mil negócios monitorados em 21 cidades do Norte e Nordeste.</span> É assim que encontro negócios como o seu.</p><span class="ver" style="color:var(--fraco)">Uso interno</span></div></article>
+        <div class="info"><span class="tag">sistema próprio · dados</span><h3>Radar de Negócios</h3><p>Lê o Google Maps e mostra os negócios de cada cidade, com reputação e contato. <span class="num">Mais de 5 mil negócios monitorados em 21 cidades do Norte e Nordeste.</span> É assim que encontro negócios como o seu.</p><a class="ver" href="../oficinas-sao-luis/" target="_blank" rel="noopener">Ver o guia de oficinas de São Luís, feito com esses dados</a></div></article>
       <article class="proj"><div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="img/personal-jr.jpg" alt="Site do personal trainer Júnior Oliveira, com fundo escuro, título em amarelo e foto dele" loading="lazy"></div>
         <div class="info"><span class="tag">site · cliente</span><h3>Júnior Oliveira, personal trainer</h3><p>Site com a identidade dele, métodos de treino e agendamento de avaliação pelo WhatsApp. <span class="num">O Júnior aprovou e usa o site nas redes para apresentar o trabalho aos alunos.</span></p><a class="ver" href="https://paulomarciojuniorbh-lgtm.github.io/amostras/personal-jr-oliveira/" target="_blank" rel="noopener">Ver o site</a></div></article>
     </div>
@@ -431,7 +440,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
       <details><summary>As mensagens saem sozinhas no WhatsApp?</summary><p>No começo, o sistema monta a mensagem e abre o seu WhatsApp com ela pronta: você só confere e aperta enviar. Assim não tem risco de bloqueio nem custo extra. Envio automático pode ser combinado no plano Sob medida, com o custo cobrado pelo próprio WhatsApp.</p></details>
       <details><summary>E os dados dos meus clientes?</summary><p>São seus. Ficam guardados com cópia de segurança, só você acessa e, se um dia cancelar, recebe tudo em planilha.</p></details>
       <details><summary>Já uso Instagram. Preciso de site?</summary><p>Não necessariamente. O Instagram é ótimo para mostrar o que você vende; o sistema cuida do que vem depois. Se quiser um site também, ele entra como complemento de R$ 29,90 por mês.</p></details>
-      <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque o trabalho de montar o sistema, cadastrar os clientes e ajustar acontece no começo e não cobramos entrada. No plano anual você ainda ganha 2 meses.</p></details>
+      <details><summary>Por que tem fidelidade de 12 meses?</summary><p>Porque o trabalho de montar o sistema, cadastrar os clientes e ajustar acontece no começo, e a instalação cobre só uma parte disso (no Essencial, nem é cobrada). No plano anual você ainda ganha 2 meses.</p></details>
       <details><summary>Como pago?</summary><p>No Pix ou no cartão, com cobrança automática todo mês. No anual, você paga de uma vez e ganha 2 meses.</p></details>
     </div>
   </div>
