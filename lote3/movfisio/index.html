@@ -127,13 +127,43 @@ footer{background:var(--cacau);color:#d9c4a6;padding:28px 0;font-size:.9rem}
 footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 .zap-flut{position:fixed;right:18px;bottom:18px;z-index:20;width:58px;height:58px;border-radius:50%;background:#1fae5b;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2)}
 .zap-flut svg{width:30px;height:30px;color:#fff}
+.slogan{font:italic 500 1.35rem/1.3 "Cormorant Garamond",serif;color:var(--ouro);margin:14px 0 0}
+.hero .mais{color:var(--cacau-2);max-width:46ch;margin:0 0 12px;font-size:1.02rem}
+.arco img.fach{object-position:50% 40%}
+.fecho{margin-top:34px;font:italic 500 1.4rem/1.3 "Cormorant Garamond",serif;color:var(--ouro);text-align:center}
+.destrava .tag{font:600 .95rem Jost,sans-serif;color:var(--ouro-claro);margin:6px 0 16px;letter-spacing:.02em}
+.destrava .chamada{font:italic 600 1.5rem/1.2 "Cormorant Garamond",serif;color:#fff;margin:0 0 12px}
+.destrava img{aspect-ratio:4/5!important;object-position:50% 35%}
+textarea.txt{min-height:96px;resize:vertical;max-width:560px}
+.campos{display:grid;gap:12px;max-width:420px}
+.campos label{display:grid;gap:6px;font-weight:500}
+.pos-envio{margin:12px 0 0;color:var(--suave);font-size:.95rem;max-width:56ch}
+/* antes e depois */
+#resultados{background:var(--branco)}
+.res-grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:40px}
+@media (max-width:900px){.res-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.res-grade{grid-template-columns:1fr}}
+.ba{margin:0;background:var(--champanhe);border:1px solid var(--champanhe-2);border-radius:18px;overflow:hidden}
+.cmp{position:relative;aspect-ratio:var(--ar,3/4);overflow:hidden;background:#000;--p:50%}
+.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none;pointer-events:none}
+.cmp img.dep{clip-path:inset(0 0 0 var(--p))}
+.cmp .linha-c{position:absolute;top:0;bottom:0;left:var(--p);width:3px;margin-left:-1.5px;background:var(--ouro-claro);pointer-events:none}
+.cmp .linha-c::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:38px;height:38px;border-radius:50%;background:var(--ouro);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.cmp input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:ew-resize;touch-action:pan-y}
+.rot{position:absolute;top:10px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;pointer-events:none}
+.rot.a{left:10px;background:rgba(59,36,24,.8);color:#fff}
+.rot.d{right:10px;background:var(--ouro);color:#fff}
+.ba figcaption{padding:14px 16px;font-size:.95rem;color:var(--suave)}
+.ba figcaption b{display:block;color:var(--cacau)}
+.galeria-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.galeria-extra img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap topo">
-    <a href="#inicio"><img src="img/logo.png" alt="MovFisio Fisioterapia e Saúde" width="553" height="238"></a>
-    <nav class="menu" aria-label="Seções"><a href="#servicos">Serviços</a><a href="#destrava">Método Destrava</a><a href="#espaco">Nosso espaço</a><a href="#contato">Contato</a></nav>
+    <a href="#inicio"><img src="img/logo-novo.png" alt="MovFisio Fisioterapia e Saúde" width="750" height="426"></a>
+    <nav class="menu" aria-label="Seções"><a href="#servicos">Serviços</a><a href="#destrava">Método Destrava</a><a href="#resultados" id="navRes" hidden>Resultados</a><a href="#espaco">Nosso espaço</a><a href="#contato">Contato</a></nav>
     <a class="btn btn-ouro" href="#avaliacao">Agendar avaliação</a>
   </div>
 </header>
@@ -141,8 +171,11 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <main id="inicio">
 <div class="wrap hero">
   <div>
-    <h1>Cuidado, movimento e qualidade de vida <em class="ouro">para todas as fases</em></h1>
-    <p class="lead">Fisioterapia, osteopatia, estética e nutrição num só lugar, no centro de Barreirinhas. Atendimento humanizado, com avaliação individual antes de qualquer tratamento.</p>
+    <h1>Cuidado, movimento e qualidade de vida <em class="ouro">em todas as fases da vida</em></h1>
+    <p class="slogan">MovFisio · Movimento que cuida. Resultado que transforma.</p>
+    <p class="lead">Na MovFisio, em Barreirinhas (MA), oferecemos muito mais que tratamentos: proporcionamos cuidado individualizado, acolhimento e atenção à sua saúde.</p>
+    <p class="mais">Somos especializados em fisioterapia e osteopatia, com uma abordagem completa para identificar as causas das dores, recuperar movimentos e melhorar sua qualidade de vida.</p>
+    <p class="mais" style="margin-bottom:28px">Contamos também com Pilates, atendimentos pediátricos, cuidados para idosos, estética, nutrição e experiências de relaxamento no nosso MovSpa.</p>
     <div class="acoes">
       <a class="btn btn-ouro" href="#avaliacao">Fazer minha pré-avaliação</a>
       <a class="btn btn-linha zap" href="#">Falar no WhatsApp</a>
@@ -150,31 +183,38 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
     <div class="selo"><b>4,9</b><span><span class="est" aria-hidden="true">★★★★★</span><br>72 avaliações no Google</span></div>
   </div>
   <figure class="arco" style="margin:0">
-    <img src="img/andrea.jpg" alt="Andréa Araújo, da MovFisio" width="461" height="912">
-    <figcaption><b>Andréa Araújo</b>Criadora do Método Destrava</figcaption>
+    <img class="fach" src="img/fachada-nova.jpg" alt="Fachada da clínica MovFisio, no centro de Barreirinhas" width="720" height="1280">
+    <figcaption><b>Há mais de 5 anos</b>fazendo história, cuidando de vidas<br>e transformando resultados!</figcaption>
   </figure>
 </div>
 
 <section id="servicos">
   <div class="wrap">
     <h2>O que tratamos</h2>
-    <p class="intro">Cada atendimento começa por uma avaliação. A partir dela, montamos o plano com a técnica certa para você, da reabilitação ao bem-estar.</p>
+    <p class="intro">Na MovFisio, cada paciente recebe um cuidado único e individualizado. Nosso atendimento começa com uma avaliação completa para identificar a origem das dores e limitações, permitindo desenvolver um plano de tratamento específico para cada necessidade.</p>
+    <p class="intro">Nosso objetivo vai além de aliviar a dor: queremos recuperar seus movimentos, devolver sua independência e proporcionar mais qualidade de vida.</p>
     <div class="servicos">
-      <div class="grupo"><h3>Fisioterapia</h3><ul><li>Traumato-ortopédica: lesões, entorses, pós-cirúrgico</li><li>Neurofuncional adulto e infantil</li><li>Fisioterapia geriátrica, para idosos</li></ul></div>
-      <div class="grupo"><h3>Coluna <small>Método Destrava</small></h3><ul><li>Dor lombar e dor nas costas</li><li>Cervical travada e tensão muscular</li><li>Má postura e sobrecarga</li></ul></div>
-      <div class="grupo"><h3>Terapias manuais</h3><ul><li>Osteopatia e quiropraxia</li><li>Liberação miofascial</li><li>Ventosaterapia</li><li>Massagem relaxante</li></ul></div>
-      <div class="grupo"><h3>Estética e nutrição</h3><ul><li>Limpeza de pele</li><li>Tratamentos corporais</li><li>Consulta de nutrição</li></ul></div>
+      <div class="grupo"><h3>Fisioterapia e Reabilitação</h3><ul><li>Ortopédica: lesões, fraturas, entorses e pós-operatórios</li><li>Neurofuncional: AVC, alterações neurológicas e dificuldades motoras</li><li>Pediátrica: desenvolvimento motor e reabilitação infantil</li><li>Geriátrica: equilíbrio, mobilidade e independência dos idosos</li><li>Domiciliar: atendimento personalizado em casa</li></ul></div>
+      <div class="grupo"><h3>Coluna e Osteopatia <small>Método Destrava</small></h3><ul><li>Hérnia de disco e dor ciática</li><li>Dores lombares e cervicais</li><li>Coluna travada e tensão muscular</li><li>Dores irradiadas para braços e pernas</li><li>Alterações posturais e limitações de movimento</li></ul></div>
+      <div class="grupo"><h3>Terapias Manuais</h3><ul><li>Osteopatia e liberação miofascial</li><li>Mobilização articular e neural</li><li>Ventosaterapia e Dry Needling</li><li>Técnicas para alívio de dores e melhora da mobilidade</li></ul></div>
+      <div class="grupo"><h3>Pilates</h3><ul><li>Fortalecimento muscular</li><li>Melhora da postura e flexibilidade</li><li>Equilíbrio, mobilidade e consciência corporal</li></ul></div>
+      <div class="grupo"><h3>MovSpa <small>Estética e Bem-estar</small></h3><ul><li>Massagem relaxante e terapêutica</li><li>Drenagem linfática</li><li>Pós-operatório estético</li><li>Limpeza de pele</li><li>Massagem modeladora</li><li>Tratamentos para gordura localizada e medidas corporais</li><li>Spa dos pés e rituais de relaxamento</li><li>Experiências exclusivas do MovSpa</li></ul></div>
+      <div class="grupo"><h3>Nutrição</h3><ul><li>Avaliação e acompanhamento nutricional</li><li>Reeducação alimentar</li><li>Emagrecimento saudável</li><li>Planos alimentares individualizados</li><li>Promoção da saúde e qualidade de vida</li></ul></div>
     </div>
+    <p class="fecho">MovFisio · Movimento que cuida. Resultado que transforma.</p>
   </div>
 </section>
 
 <section class="destrava" id="destrava">
   <div class="wrap">
-    <img src="img/8.jpg" alt="Sessão de ventosaterapia nas costas de um paciente" loading="lazy">
+    <img src="img/destrava-andrea.jpg" alt="Dra. Andrea Araujo fazendo manobra de osteopatia na coluna de um paciente" loading="lazy" width="760" height="1111">
     <div>
-      <h2><span>Andréa Araújo</span>Método Destrava</h2>
-      <p>Um protocolo para a coluna que combina avaliação postural, terapia manual e exercícios. O foco é aliviar a dor e a tensão, devolver mobilidade e ensinar o corpo a se manter bem no dia a dia.</p>
-      <div class="indic"><span>Dor lombar</span><span>Cervical travada</span><span>Dor nas costas</span><span>Tensão muscular</span><span>Má postura</span></div>
+      <h2><span>Dra. Andrea Araujo</span>Método Destrava</h2>
+      <p class="tag">Fisioterapeuta e Osteopata · Criadora do Método Destrava</p>
+      <p class="chamada">Sua coluna merece viver sem limitações!</p>
+      <p>O Método Destrava é uma abordagem de tratamento individualizada, desenvolvida para identificar e tratar as causas das dores e limitações da coluna.</p>
+      <p>Associamos técnicas de osteopatia, terapias manuais e exercícios específicos para aliviar dores, reduzir tensões musculares, recuperar a mobilidade e melhorar sua qualidade de vida.</p>
+      <div class="indic"><span>Hérnia de disco</span><span>Dor ciática</span><span>Dores lombares e cervicais</span><span>Coluna travada</span><span>Dores que irradiam para braços e pernas</span><span>Tensões musculares</span><span>Má postura</span></div>
       <p style="margin-top:26px"><a class="btn btn-ouro" href="#avaliacao">Ver se o método é para mim</a></p>
     </div>
   </div>
@@ -183,41 +223,67 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <section id="avaliacao">
   <div class="wrap">
     <h2>Pré-avaliação online</h2>
-    <p class="intro">Responda em um minuto. Suas respostas chegam organizadas no WhatsApp da MovFisio e a equipe já te indica o horário e o profissional certo.</p>
+    <p class="intro">Queremos entender o que você precisa! Responda algumas perguntas rápidas para que nossa equipe possa conhecer sua necessidade e orientar você sobre o agendamento do atendimento mais adequado.</p>
     <div class="pre coluna" id="pre">
       <div class="passo" id="p1"><div class="marca-passo"><i>1</i></div><div class="conteudo">
-        <h3>O que você procura?</h3><p class="dica">Escolha a opção mais próxima.</p>
-        <div class="opcoes" data-grupo="motivo">
-          <button type="button" class="op" data-v="dor">Dor ou problema na coluna</button>
-          <button type="button" class="op" data-v="reab">Reabilitação de lesão ou cirurgia</button>
-          <button type="button" class="op" data-v="crianca">Fisioterapia para criança</button>
-          <button type="button" class="op" data-v="idoso">Fisioterapia para idoso</button>
-          <button type="button" class="op" data-v="massagem">Massagem ou terapia manual</button>
-          <button type="button" class="op" data-v="estetica">Estética</button>
-          <button type="button" class="op" data-v="nutri">Nutrição</button>
+        <h3>Como podemos ajudar você?</h3><p class="dica">Selecione o serviço que procura.</p>
+        <div class="opcoes" data-grupo="servico">
+          <button type="button" class="op" data-v="Dor na coluna, hérnia de disco ou dor ciática">Dor na coluna, hérnia de disco ou dor ciática</button>
+          <button type="button" class="op" data-v="Osteopatia e Método Destrava">Osteopatia e Método Destrava</button>
+          <button type="button" class="op" data-v="Fisioterapia ortopédica e pós-operatória">Fisioterapia ortopédica e pós-operatória</button>
+          <button type="button" class="op" data-v="Fisioterapia neurológica">Fisioterapia neurológica</button>
+          <button type="button" class="op" data-v="Fisioterapia pediátrica">Fisioterapia pediátrica</button>
+          <button type="button" class="op" data-v="Fisioterapia para idosos">Fisioterapia para idosos</button>
+          <button type="button" class="op" data-v="Terapias manuais e liberação miofascial">Terapias manuais e liberação miofascial</button>
+          <button type="button" class="op" data-v="Pilates e fortalecimento">Pilates e fortalecimento</button>
+          <button type="button" class="op" data-v="Atendimento domiciliar">Atendimento domiciliar</button>
+          <button type="button" class="op" data-v="Estética facial e corporal">Estética facial e corporal</button>
+          <button type="button" class="op" data-v="Nutrição">Nutrição</button>
+          <button type="button" class="op" data-v="MovSpa: massagens e relaxamento">MovSpa — Massagens e relaxamento</button>
         </div>
       </div></div>
 
-      <div class="passo" id="p2" hidden><div class="marca-passo"><i>2</i></div><div class="conteudo" id="c2"></div></div>
+      <div class="passo" id="p2" hidden><div class="marca-passo"><i>2</i></div><div class="conteudo">
+        <h3>Qual é sua principal queixa ou objetivo?</h3><p class="dica">Conte brevemente o que está sentindo ou qual atendimento deseja realizar.</p>
+        <textarea class="txt" id="queixa" maxlength="600" placeholder="Ex.: dor na lombar que desce para a perna há duas semanas"></textarea>
+        <div id="alerta" hidden>
+          <div class="linha"><label>Você tem algum destes sinais?</label><div class="sinais" id="listaSinais"></div></div>
+          <div class="aviso" id="aviso" hidden><b>Procure atendimento médico antes da fisioterapia.</b>Esses sinais precisam ser avaliados por um médico ou no pronto-atendimento. Em emergência, ligue para o SAMU, no 192. Depois da liberação médica, a MovFisio cuida da sua recuperação.</div>
+        </div>
+      </div></div>
 
       <div class="passo" id="p3" hidden><div class="marca-passo"><i>3</i></div><div class="conteudo">
-        <h3>Quando fica melhor para você?</h3><p class="dica">Segunda a sexta das 8h30 às 20h. Sábado das 8h30 às 12h.</p>
-        <div class="opcoes" data-grupo="dias" data-multi="1">
-          <button type="button" class="op" data-v="Segunda">Seg</button><button type="button" class="op" data-v="Terça">Ter</button><button type="button" class="op" data-v="Quarta">Qua</button><button type="button" class="op" data-v="Quinta">Qui</button><button type="button" class="op" data-v="Sexta">Sex</button><button type="button" class="op" data-v="Sábado">Sáb</button>
+        <h3>Há quanto tempo você apresenta essa queixa?</h3>
+        <div class="opcoes" data-grupo="tempo">
+          <button type="button" class="op" data-v="Há poucos dias">Há poucos dias</button><button type="button" class="op" data-v="Há algumas semanas">Há algumas semanas</button><button type="button" class="op" data-v="Há meses ou anos">Há meses ou anos</button><button type="button" class="op" data-v="Não sinto dor, busco prevenção ou bem-estar">Não sinto dor, busco prevenção ou bem-estar</button>
         </div>
-        <div class="opcoes" data-grupo="periodo" style="margin-top:12px">
-          <button type="button" class="op" data-v="manhã">Manhã</button><button type="button" class="op" data-v="tarde">Tarde</button><button type="button" class="op" data-v="noite (até 20h)">Noite, até 20h</button>
-        </div>
-        <div class="linha"><label for="nome">Seu nome</label><input class="txt" id="nome" autocomplete="given-name" placeholder="Como podemos te chamar?"></div>
       </div></div>
 
       <div class="passo" id="p4" hidden><div class="marca-passo"><i>4</i></div><div class="conteudo">
-        <h3>Tudo pronto</h3><p class="dica">Confira o resumo e envie. A equipe responde pelo WhatsApp.</p>
-        <div class="resumo" id="resumo"></div>
-        <a class="btn btn-ouro" id="enviar" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>Enviar pelo WhatsApp</a>
+        <h3>Como prefere ser atendido?</h3>
+        <div class="opcoes" data-grupo="local">
+          <button type="button" class="op" data-v="Na clínica">Na clínica</button><button type="button" class="op" data-v="Em domicílio">Em domicílio</button><button type="button" class="op" data-v="Gostaria de receber orientação da equipe">Gostaria de receber orientação da equipe</button>
+        </div>
+      </div></div>
+
+      <div class="passo" id="p5" hidden><div class="marca-passo"><i>5</i></div><div class="conteudo">
+        <h3>Seus dados para contato</h3>
+        <div class="campos"><label>Nome completo<input class="txt" id="nome" autocomplete="name"></label><label>Telefone/WhatsApp<input class="txt" id="fone" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000"></label></div>
+        <div class="resumo" id="resumo" style="margin-top:18px" hidden></div>
+        <a class="btn btn-ouro" id="enviar" href="#" target="_blank" rel="noopener" aria-disabled="true" style="opacity:.55;pointer-events:none"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg>Enviar e falar com a equipe MovFisio</a>
+        <p class="pos-envio">Após o envio, nossa equipe entrará em contato para orientar sobre os serviços e agendar sua avaliação.</p>
         <p class="legal">A pré-avaliação não é diagnóstico. Ela só organiza as informações para a sua primeira consulta, onde a avaliação é feita pessoalmente.</p>
       </div></div>
     </div>
+  </div>
+</section>
+
+<section id="resultados" hidden>
+  <div class="wrap">
+    <h2>Resultados que transformam</h2>
+    <p class="intro">Arraste a barra de cada foto para comparar o antes e o depois de pacientes da MovFisio. Fotos publicadas com autorização.</p>
+    <div class="res-grade" id="resGrade"></div>
+    <div class="galeria-extra" id="resFotos"></div>
   </div>
 </section>
 
@@ -259,67 +325,54 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 const ZAP="5598984455991";
 const $=id=>document.getElementById(id);
 const R={}; // respostas
-const MOTIVO={dor:"Dor ou problema na coluna",reab:"Reabilitação de lesão ou cirurgia",crianca:"Fisioterapia para criança",idoso:"Fisioterapia para idoso",massagem:"Massagem ou terapia manual",estetica:"Estética",nutri:"Nutrição"};
 const SINAIS=["Perda de força numa perna ou braço, ou dormência que está piorando","Dormência na região íntima ou perda de controle da urina ou das fezes","Dor que veio depois de queda, acidente ou pancada forte","Febre, perda de peso sem explicação ou dor que não alivia nem em repouso","Dor no peito, falta de ar ou dor de cabeça súbita e muito forte"];
-function opcoes(grupo,lista,multi){return `<div class="opcoes" data-grupo="${grupo}"${multi?' data-multi="1"':""}>${lista.map(v=>`<button type="button" class="op" data-v="${v}">${v}</button>`).join("")}</div>`}
-function passo2(m){
-  const c=$("c2"); let h="";
-  if(["dor","reab","idoso"].includes(m)){
-    h=`<h3>${m==="reab"?"Qual região está em tratamento?":"Onde é o incômodo?"}</h3><p class="dica">Pode marcar mais de uma.</p>
-    ${opcoes("regiao",["Cervical (pescoço)","Ombro","Costas (meio)","Lombar","Quadril","Joelho","Tornozelo ou pé","Punho ou mão","Cabeça ou mandíbula"],1)}
-    <div class="linha"><label for="intens">Intensidade da dor hoje: <b id="iv">5</b> de 10</label><input type="range" id="intens" min="0" max="10" value="5"><div class="escala"><span>Sem dor</span><span>Pior dor possível</span></div></div>
-    <div class="linha"><label>Há quanto tempo?</label>${opcoes("tempo",["Menos de 1 semana","1 a 4 semanas","1 a 6 meses","Mais de 6 meses"])}</div>
-    ${m==="reab"?`<div class="linha"><label>Fez cirurgia?</label>${opcoes("cirurgia",["Sim","Não"])}</div>`:""}
-    <div class="linha"><label>Você tem algum destes sinais?</label><div class="sinais">${SINAIS.map((s,i)=>`<label><input type="checkbox" class="sinal" value="${i}"><span>${s}</span></label>`).join("")}</div></div>
-    <div class="aviso" id="aviso" hidden><b>Procure atendimento médico antes da fisioterapia.</b>Esses sinais precisam ser avaliados por um médico ou no pronto-atendimento. Em emergência, ligue para o SAMU, no 192. Depois da liberação médica, a MovFisio cuida da sua recuperação.</div>`;
-  } else if(m==="crianca"){
-    h=`<h3>Sobre a criança</h3><p class="dica">Isso ajuda a indicar o profissional certo.</p>
-    <div class="linha"><label>Idade</label>${opcoes("idade",["Até 1 ano","1 a 3 anos","4 a 7 anos","8 anos ou mais"])}</div>
-    <div class="linha"><label>O que motivou a procura?</label>${opcoes("motivoInf",["Atraso no desenvolvimento motor","Indicação do pediatra ou neurologista","Postura ou marcha","Lesão ou pós-cirúrgico","Respiratório","Outro"],1)}</div>`;
-  } else if(m==="massagem"){
-    h=`<h3>Qual terapia te interessa?</h3><p class="dica">Pode marcar mais de uma.</p>${opcoes("terapia",["Massagem relaxante","Liberação miofascial","Ventosaterapia","Osteopatia","Quiropraxia"],1)}
-    <div class="linha"><label>Objetivo principal</label>${opcoes("objetivo",["Relaxar e aliviar o estresse","Tensão muscular","Recuperação de treino"])}</div>`;
-  } else if(m==="estetica"){
-    h=`<h3>Qual tratamento te interessa?</h3>${opcoes("trat",["Limpeza de pele","Tratamentos corporais","Quero orientação"],1)}`;
-  } else if(m==="nutri"){
-    h=`<h3>Qual o seu objetivo?</h3>${opcoes("obj",["Emagrecimento","Ganho de massa","Saúde intestinal","Gestação ou amamentação","Exames alterados","Outro"],1)}`;
-  }
-  c.innerHTML=h;
-  const r=$("intens"); if(r){ R.intens=5; r.addEventListener("input",()=>{ $("iv").textContent=r.value; R.intens=+r.value; atualiza(); }); }
-  c.querySelectorAll(".sinal").forEach(x=>x.addEventListener("change",atualiza));
-}
+const COM_DOR=["Dor na coluna, hérnia de disco ou dor ciática","Osteopatia e Método Destrava","Fisioterapia ortopédica e pós-operatória","Fisioterapia neurológica","Fisioterapia para idosos","Terapias manuais e liberação miofascial","Atendimento domiciliar"];
+$("listaSinais").innerHTML=SINAIS.map((s,i)=>`<label><input type="checkbox" class="sinal" value="${i}"><span>${s}</span></label>`).join("");
 document.addEventListener("click",e=>{
   const b=e.target.closest(".op"); if(!b||b.disabled) return;
-  const g=b.parentElement, k=g.dataset.grupo, multi=g.dataset.multi;
-  if(multi){ R[k]=R[k]||[]; const i=R[k].indexOf(b.dataset.v); i>=0?R[k].splice(i,1):R[k].push(b.dataset.v); b.setAttribute("aria-pressed",i<0); }
-  else { g.querySelectorAll(".op").forEach(o=>o.setAttribute("aria-pressed",o===b)); R[k]=b.dataset.v; }
-  if(k==="motivo"){ Object.keys(R).forEach(x=>{if(x!=="motivo"&&x!=="dias"&&x!=="periodo")delete R[x]}); passo2(R.motivo); $("p2").hidden=false; $("p3").hidden=false; }
+  const g=b.parentElement, k=g.dataset.grupo;
+  g.querySelectorAll(".op").forEach(o=>o.setAttribute("aria-pressed",o===b)); R[k]=b.dataset.v;
   atualiza();
 });
-$("nome").addEventListener("input",atualiza);
+document.addEventListener("change",e=>{if(e.target.classList.contains("sinal"))atualiza()});
+["queixa","nome","fone"].forEach(id=>$(id).addEventListener("input",atualiza));
 function atualiza(){
   const sinais=[...document.querySelectorAll(".sinal:checked")].map(x=>SINAIS[x.value]);
-  if($("aviso")) $("aviso").hidden=!sinais.length;
-  // sábado só de manhã
-  const soSab=R.dias&&R.dias.length===1&&R.dias[0]==="Sábado";
-  document.querySelectorAll('[data-grupo=periodo] .op').forEach(o=>{ o.disabled=soSab&&o.dataset.v!=="manhã"; if(o.disabled&&R.periodo===o.dataset.v){R.periodo=null;o.setAttribute("aria-pressed",false)} });
-  $("p1").classList.toggle("feito",!!R.motivo);
-  const ok2=!!R.motivo; $("p2").classList.toggle("feito",ok2 && !!document.querySelector("#c2 .op[aria-pressed=true]"));
-  const ok3=R.dias&&R.dias.length&&R.periodo; $("p3").classList.toggle("feito",!!ok3);
-  $("p4").hidden=!(R.motivo&&ok3);
-  if($("p4").hidden) return;
+  $("alerta").hidden=!COM_DOR.includes(R.servico);
+  $("aviso").hidden=!sinais.length||$("alerta").hidden;
+  $("p1").classList.toggle("feito",!!R.servico);
+  $("p2").hidden=!R.servico; $("p3").hidden=!R.servico; $("p4").hidden=!R.servico; $("p5").hidden=!R.servico;
+  const q=$("queixa").value.trim();
+  $("p2").classList.toggle("feito",q.length>3); $("p3").classList.toggle("feito",!!R.tempo); $("p4").classList.toggle("feito",!!R.local);
+  const nome=$("nome").value.trim(), fone=$("fone").value.trim();
+  $("p5").classList.toggle("feito",!!(nome&&fone.replace(/\D/g,"").length>=10));
   const L=[];
-  L.push("Procuro: "+MOTIVO[R.motivo]);
-  const add=(rot,k)=>{ if(R[k]&&(!Array.isArray(R[k])||R[k].length)) L.push(rot+": "+(Array.isArray(R[k])?R[k].join(", "):R[k])); };
-  add("Região","regiao"); if(R.intens!=null&&$("intens")) L.push("Intensidade da dor: "+R.intens+"/10"); add("Há quanto tempo","tempo"); add("Cirurgia","cirurgia");
-  add("Idade da criança","idade"); add("Motivo","motivoInf"); add("Terapias","terapia"); add("Objetivo","objetivo"); add("Tratamento","trat"); add("Objetivo","obj");
-  if(sinais.length) L.push("Sinais de alerta marcados: "+sinais.join("; "));
-  L.push("Melhores dias: "+R.dias.join(", ")+", "+R.periodo);
-  const nome=$("nome").value.trim();
-  $("resumo").textContent=L.join("\n");
-  const msg=`Olá, MovFisio! ${nome?"Sou "+nome+". ":""}Fiz a pré-avaliação pelo site:\n\n${L.join("\n")}\n\nPodem me ajudar a agendar?`;
-  $("enviar").href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg);
+  if(R.servico)L.push("Serviço: "+R.servico);
+  if(q)L.push("Queixa ou objetivo: "+q);
+  if(R.tempo)L.push("Há quanto tempo: "+R.tempo);
+  if(R.local)L.push("Atendimento: "+R.local);
+  if(sinais.length&&!$("alerta").hidden)L.push("Sinais de alerta marcados: "+sinais.join("; "));
+  if(nome)L.push("Nome: "+nome);
+  if(fone)L.push("Telefone/WhatsApp: "+fone);
+  $("resumo").hidden=!L.length; $("resumo").textContent=L.join("\n");
+  const pronto=!!(R.servico&&nome);
+  const en=$("enviar"); en.style.opacity=pronto?"1":".55"; en.style.pointerEvents=pronto?"auto":"none"; en.setAttribute("aria-disabled",!pronto);
+  const msg=`Olá, MovFisio! ${nome?"Sou "+nome+". ":""}Fiz a pré-avaliação pelo site:\n\n${L.join("\n")}\n\nPodem me orientar e agendar minha avaliação?`;
+  en.href="https://wa.me/"+ZAP+"?text="+encodeURIComponent(msg);
 }
+// antes e depois e fotos publicadas pela clínica no painel (lote3/movfisio/painel)
+(function(){
+  const esc=t=>String(t||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  fetch("https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/site_posts_lista",{method:"POST",headers:{apikey:"sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0","Content-Type":"application/json"},body:JSON.stringify({p_site:"movfisio"})})
+   .then(r=>r.ok?r.json():[]).then(lista=>{
+    const ad=lista.filter(p=>p.tipo==="antes_depois"), fotos=lista.filter(p=>p.tipo==="foto");
+    if(!ad.length&&!fotos.length)return;
+    $("resultados").hidden=false; $("navRes").hidden=false;
+    $("resGrade").innerHTML=ad.map(p=>`<figure class="ba" style="--ar:3/4"><div class="cmp"><img src="${esc(p.url_a)}" alt="${esc(p.legenda||"Paciente")} antes" loading="lazy"><img class="dep" src="${esc(p.url_b)}" alt="${esc(p.legenda||"Paciente")} depois" loading="lazy"><span class="rot a">${esc(p.rotulo_a||"Antes")}</span><span class="rot d">${esc(p.rotulo_b||"Depois")}</span><i class="linha-c" aria-hidden="true"></i><input type="range" min="0" max="100" value="50" aria-label="Comparar antes e depois"></div>${p.legenda||p.secao?`<figcaption>${p.secao?`<b>${esc(p.secao)}</b>`:""}${esc(p.legenda||"")}</figcaption>`:""}</figure>`).join("");
+    $("resFotos").innerHTML=fotos.map(p=>`<img src="${esc(p.url_a)}" alt="${esc(p.legenda||"Foto da MovFisio")}" loading="lazy">`).join("");
+    document.querySelectorAll("#resGrade .cmp").forEach(c=>{const r=c.querySelector("input");const up=()=>c.style.setProperty("--p",r.value+"%");r.addEventListener("input",up);up();});
+   }).catch(()=>{});
+})();
 const saud="https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá, MovFisio! Vi o site e gostaria de agendar uma avaliação.");
 document.querySelectorAll("a.zap").forEach(a=>{a.href=saud;a.target="_blank";a.rel="noopener"});
 </script>
