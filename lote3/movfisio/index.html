@@ -157,6 +157,38 @@ textarea.txt{min-height:96px;resize:vertical;max-width:560px}
 .ba figcaption b{display:block;color:var(--cacau)}
 .galeria-extra{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
 .galeria-extra img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:16px}
+
+/* ===== ajustes de celular ===== */
+.arco img,.destrava img,.contato img{height:auto}
+.grupo summary{list-style:none;cursor:pointer}
+.grupo summary::-webkit-details-marker{display:none}
+@media (max-width:860px){
+  section{padding:58px 0}
+  .hero{display:flex;flex-direction:column;gap:22px;padding-top:12px}
+  .hero h1{font-size:clamp(2.05rem,8.6vw,2.6rem);line-height:1.08}
+  .hero .slogan{font-size:1.15rem}
+  .hero p.lead{font-size:1.04rem;margin:16px 0 22px}
+  .hero .mais{display:none}
+  .hero .acoes{display:grid;gap:10px}
+  .hero .acoes .btn{width:100%;justify-content:center;text-align:center}
+  .selo{margin-top:22px}
+  .arco{order:-1;width:100%!important}
+  .arco img,.arco img.fach{aspect-ratio:16/11;border-radius:24px;padding:6px;object-position:50% 42%}
+  .arco figcaption{left:14px!important;bottom:14px;padding:9px 13px;font-size:.82rem}
+  .arco figcaption b{font-size:1.1rem}
+  .grupo{padding:0}
+  .grupo summary{padding:18px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .grupo summary h3{margin:0;font-size:1.35rem}
+  .grupo summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ouro-claro);color:var(--ouro);display:grid;place-items:center;font-size:1.2rem;transition:transform .2s}
+  .grupo[open] summary::after{transform:rotate(45deg)}
+  .grupo ul{margin:0 0 18px}
+  .servicos{margin-top:28px;border-bottom:1px solid var(--ouro-claro)}
+  .destrava img{aspect-ratio:4/3!important;object-position:50% 30%}
+  .contato img{aspect-ratio:4/3}
+  .dados div{grid-template-columns:96px 1fr}
+  .intro{font-size:1rem}
+  footer{padding-bottom:90px}
+}
 </style>
 </head>
 <body>
@@ -194,12 +226,12 @@ textarea.txt{min-height:96px;resize:vertical;max-width:560px}
     <p class="intro">Na MovFisio, cada paciente recebe um cuidado único e individualizado. Nosso atendimento começa com uma avaliação completa para identificar a origem das dores e limitações, permitindo desenvolver um plano de tratamento específico para cada necessidade.</p>
     <p class="intro">Nosso objetivo vai além de aliviar a dor: queremos recuperar seus movimentos, devolver sua independência e proporcionar mais qualidade de vida.</p>
     <div class="servicos">
-      <div class="grupo"><h3>Fisioterapia e Reabilitação</h3><ul><li>Ortopédica: lesões, fraturas, entorses e pós-operatórios</li><li>Neurofuncional: AVC, alterações neurológicas e dificuldades motoras</li><li>Pediátrica: desenvolvimento motor e reabilitação infantil</li><li>Geriátrica: equilíbrio, mobilidade e independência dos idosos</li><li>Domiciliar: atendimento personalizado em casa</li></ul></div>
-      <div class="grupo"><h3>Coluna e Osteopatia <small>Método Destrava</small></h3><ul><li>Hérnia de disco e dor ciática</li><li>Dores lombares e cervicais</li><li>Coluna travada e tensão muscular</li><li>Dores irradiadas para braços e pernas</li><li>Alterações posturais e limitações de movimento</li></ul></div>
-      <div class="grupo"><h3>Terapias Manuais</h3><ul><li>Osteopatia e liberação miofascial</li><li>Mobilização articular e neural</li><li>Ventosaterapia e Dry Needling</li><li>Técnicas para alívio de dores e melhora da mobilidade</li></ul></div>
-      <div class="grupo"><h3>Pilates</h3><ul><li>Fortalecimento muscular</li><li>Melhora da postura e flexibilidade</li><li>Equilíbrio, mobilidade e consciência corporal</li></ul></div>
-      <div class="grupo"><h3>MovSpa <small>Estética e Bem-estar</small></h3><ul><li>Massagem relaxante e terapêutica</li><li>Drenagem linfática</li><li>Pós-operatório estético</li><li>Limpeza de pele</li><li>Massagem modeladora</li><li>Tratamentos para gordura localizada e medidas corporais</li><li>Spa dos pés e rituais de relaxamento</li><li>Experiências exclusivas do MovSpa</li></ul></div>
-      <div class="grupo"><h3>Nutrição</h3><ul><li>Avaliação e acompanhamento nutricional</li><li>Reeducação alimentar</li><li>Emagrecimento saudável</li><li>Planos alimentares individualizados</li><li>Promoção da saúde e qualidade de vida</li></ul></div>
+      <details class="grupo"><summary><h3>Fisioterapia e Reabilitação</h3></summary><ul><li>Ortopédica: lesões, fraturas, entorses e pós-operatórios</li><li>Neurofuncional: AVC, alterações neurológicas e dificuldades motoras</li><li>Pediátrica: desenvolvimento motor e reabilitação infantil</li><li>Geriátrica: equilíbrio, mobilidade e independência dos idosos</li><li>Domiciliar: atendimento personalizado em casa</li></ul></details>
+      <details class="grupo"><summary><h3>Coluna e Osteopatia <small>Método Destrava</small></h3></summary><ul><li>Hérnia de disco e dor ciática</li><li>Dores lombares e cervicais</li><li>Coluna travada e tensão muscular</li><li>Dores irradiadas para braços e pernas</li><li>Alterações posturais e limitações de movimento</li></ul></details>
+      <details class="grupo"><summary><h3>Terapias Manuais</h3></summary><ul><li>Osteopatia e liberação miofascial</li><li>Mobilização articular e neural</li><li>Ventosaterapia e Dry Needling</li><li>Técnicas para alívio de dores e melhora da mobilidade</li></ul></details>
+      <details class="grupo"><summary><h3>Pilates</h3></summary><ul><li>Fortalecimento muscular</li><li>Melhora da postura e flexibilidade</li><li>Equilíbrio, mobilidade e consciência corporal</li></ul></details>
+      <details class="grupo"><summary><h3>MovSpa <small>Estética e Bem-estar</small></h3></summary><ul><li>Massagem relaxante e terapêutica</li><li>Drenagem linfática</li><li>Pós-operatório estético</li><li>Limpeza de pele</li><li>Massagem modeladora</li><li>Tratamentos para gordura localizada e medidas corporais</li><li>Spa dos pés e rituais de relaxamento</li><li>Experiências exclusivas do MovSpa</li></ul></details>
+      <details class="grupo"><summary><h3>Nutrição</h3></summary><ul><li>Avaliação e acompanhamento nutricional</li><li>Reeducação alimentar</li><li>Emagrecimento saudável</li><li>Planos alimentares individualizados</li><li>Promoção da saúde e qualidade de vida</li></ul></details>
     </div>
     <p class="fecho">MovFisio · Movimento que cuida. Resultado que transforma.</p>
   </div>
@@ -376,5 +408,6 @@ function atualiza(){
 const saud="https://wa.me/"+ZAP+"?text="+encodeURIComponent("Olá, MovFisio! Vi o site e gostaria de agendar uma avaliação.");
 document.querySelectorAll("a.zap").forEach(a=>{a.href=saud;a.target="_blank";a.rel="noopener"});
 </script>
+<script>if(matchMedia("(min-width:861px)").matches)document.querySelectorAll("details.grupo").forEach(d=>d.open=true);else{const d=document.querySelector("details.grupo");if(d)d.open=true}</script>
 </body>
 </html>
