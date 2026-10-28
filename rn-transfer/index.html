@@ -4,221 +4,294 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RN Transfer e Viagens · Transfer e passeios em Natal</title>
-<meta name="description" content="Transfer aeroporto–hotel e passeios em Natal e no litoral potiguar. Reserve online, com horário de busca calculado pelo voo e confirmação no WhatsApp.">
-<meta name="theme-color" content="#0B5C8C">
+<meta name="description" content="Partiu Natal? Transfer do aeroporto, buggy em Genipabu, piscinas naturais e muito mais. Monte seu roteiro, reserve online e receba tudo no WhatsApp.">
+<meta name="theme-color" content="#FF7A59">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--mar:#0B5C8C;--mar2:#084A72;--ceu:#E6F4FB;--areia:#FFF6E8;--duna:#F29F3D;--duna2:#DB8524;--tinta:#13293D;--suave:#5B6B7A;--linha:#E2E8EE;--ok:#16A34A;--card:#fff;--raio:18px;--sombra:0 10px 28px rgba(11,92,140,.10)}
+:root{--navy:#062A3A;--tinta:#0E2633;--suave:#5C6F7B;--linha:#E6ECF0;--turq:#00B4C6;--turq2:#0096A6;--turq-cl:#DDF7FA;--coral:#FF6B5A;--coral2:#F04E3C;--coral-cl:#FFE7E3;--sol:#FFC93C;--sol-cl:#FFF5D6;--roxo:#7B5CFF;--roxo-cl:#EEE9FF;--ok:#16A34A;--raio:22px;--sombra:0 14px 34px rgba(6,42,58,.12)}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#FAFCFE;color:var(--tinta);line-height:1.5;font-size:15px;overflow-x:hidden}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#FFFCF7;color:var(--tinta);line-height:1.5;font-size:15px;overflow-x:hidden}
 button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
-h1,h2,h3,h4{font-family:Poppins,Inter,sans-serif;letter-spacing:-.2px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
-.demo{background:var(--duna);color:#fff;font-size:13px;font-weight:700;text-align:center;padding:6px 12px}
-header.top{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
-header.top .wrap{display:flex;align-items:center;gap:10px;min-height:62px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta)}
-.logo .mk{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--mar),#1B8BC6);display:grid;place-items:center}
-.logo b{font-family:Poppins,sans-serif;font-size:18px;line-height:1.1;display:block}
-.logo small{color:var(--suave);font-size:12px;font-weight:600}
+h1,h2,h3,h4{font-family:Outfit,Inter,sans-serif;letter-spacing:-.3px}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+.demo{background:var(--navy);color:#BFE9EF;font-size:12.5px;font-weight:600;text-align:center;padding:6px 12px}
+/* header */
+header.top{position:absolute;left:0;right:0;z-index:30}
+header.top.fixo{position:sticky;top:0;background:rgba(255,252,247,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+header.top .wrap{display:flex;align-items:center;gap:10px;min-height:66px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+header.fixo .logo{color:var(--tinta)}
+.logo .mk{width:42px;height:42px;border-radius:14px;background:#fff;display:grid;place-items:center;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.logo b{font-family:Outfit,sans-serif;font-size:19px;line-height:1.05;display:block;font-weight:800}
+.logo small{font-size:12px;font-weight:600;opacity:.85}
 .dir{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.lang{display:flex;background:var(--ceu);border-radius:999px;padding:3px}
-.lang button{border:0;background:transparent;border-radius:999px;padding:5px 10px;font-weight:700;font-size:12px;color:var(--mar)}
-.lang button[aria-pressed="true"]{background:#fff;box-shadow:0 2px 8px rgba(11,92,140,.15)}
-.modo{display:flex;background:#F1F4F7;border-radius:999px;padding:3px}
-.modo button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-weight:700;font-size:13px;color:var(--suave)}
-.modo button[aria-pressed="true"]{background:var(--tinta);color:#fff}
+.lang,.modo{display:flex;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);border-radius:999px;padding:3px}
+header.fixo .lang,header.fixo .modo{background:#EEF2F5}
+.lang button,.modo button{border:0;background:transparent;border-radius:999px;padding:6px 11px;font-weight:700;font-size:12.5px;color:#fff}
+header.fixo .lang button,header.fixo .modo button{color:var(--suave)}
+.lang button[aria-pressed="true"],.modo button[aria-pressed="true"]{background:#fff;color:var(--tinta)!important;box-shadow:0 2px 8px rgba(0,0,0,.12)}
 .view{display:none}.view.on{display:block}
-.btn{border:0;border-radius:999px;padding:12px 20px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;min-height:46px;font-family:Poppins,sans-serif}
-.btn-d{background:var(--duna);color:#fff}.btn-d:hover{background:var(--duna2)}
-.btn-m{background:var(--mar);color:#fff}.btn-m:hover{background:var(--mar2)}
+.btn{border:0;border-radius:999px;padding:13px 22px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;min-height:48px;font-family:Outfit,sans-serif;font-size:16px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-c{background:linear-gradient(135deg,#FF8A5B,#FF5A6E);color:#fff;box-shadow:0 10px 24px rgba(255,90,110,.35)}
+.btn-t{background:linear-gradient(135deg,#19C9D8,#0096A6);color:#fff;box-shadow:0 10px 24px rgba(0,150,166,.3)}
+.btn-n{background:var(--navy);color:#fff}
 .btn-l{background:#fff;border:1.5px solid var(--linha);color:var(--tinta)}
-.btn-s{padding:7px 13px;min-height:36px;font-size:13px}
-.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn-s{padding:8px 14px;min-height:38px;font-size:14px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
 /* hero */
-.hero{background:linear-gradient(180deg,var(--ceu) 0%,#F4FAFD 60%,#FAFCFE 100%);position:relative;overflow:hidden}
-.hero .ondas{position:absolute;left:0;right:0;bottom:0;height:90px;pointer-events:none}
-.hero-g{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px;align-items:center;padding:36px 0 70px;position:relative;z-index:1}
-.nota{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:999px;padding:6px 13px;font-weight:700;font-size:13px;box-shadow:var(--sombra)}
-.nota b{color:#E8A317}
-.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.1;margin:14px 0 12px}
-.hero h1 span{color:var(--duna2)}
-.hero p.lead{font-size:17px;color:var(--suave);margin:0 0 18px;max-width:520px}
-.trust{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.trust span{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600}
-/* reserva box */
-.reserva{background:#fff;border-radius:24px;box-shadow:0 18px 50px rgba(11,92,140,.16);padding:18px}
-.reserva h2{margin:0 0 4px;font-size:20px}
-.reserva .sub{margin:0 0 12px;color:var(--suave);font-size:14px}
-.tipos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
-.tipos button{border:1.5px solid var(--linha);background:#fff;border-radius:14px;padding:10px 6px;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:4px}
-.tipos button span{font-size:22px}
-.tipos button[aria-pressed="true"]{border-color:var(--mar);background:var(--ceu);color:var(--mar)}
-label.f{display:block;font-size:12.5px;font-weight:700;margin:10px 0 5px;color:#33475B}
-.campo{width:100%;border:1.5px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff;min-height:44px}
-.campo:focus{outline:none;border-color:var(--mar);box-shadow:0 0 0 3px var(--ceu)}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-.calc{background:var(--areia);border:1px dashed #F3C58A;border-radius:14px;padding:11px 12px;margin-top:12px;font-size:14px}
-.calc b{color:var(--duna2)}
-.resumo{background:#F6F9FB;border-radius:14px;padding:10px 12px;margin-top:12px;font-size:14px}
-.resumo div{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
-.resumo div span:first-child{color:var(--suave)}
+.hero{position:relative;min-height:600px;padding:118px 0 150px;color:#fff;overflow:hidden;background:linear-gradient(180deg,#FF9A6B 0%,#FF7A85 34%,#B57CFF 70%,#5CC8F0 100%)}
+.sol{position:absolute;width:230px;height:230px;border-radius:50%;background:radial-gradient(circle,#FFE58A 0%,#FFC93C 55%,rgba(255,201,60,0) 72%);right:9%;top:110px;animation:sobe 7s ease-in-out infinite alternate}
+@keyframes sobe{to{transform:translateY(-16px) scale(1.04)}}
+.nuvem{position:absolute;background:rgba(255,255,255,.55);border-radius:999px;height:26px;filter:blur(1px);animation:nuvem 40s linear infinite}
+.nuvem.a{width:150px;top:150px;left:-160px}.nuvem.b{width:100px;top:230px;left:-120px;animation-duration:55s;animation-delay:-20s}
+@keyframes nuvem{to{transform:translateX(calc(100vw + 300px))}}
+.paisagem{position:absolute;left:0;right:0;bottom:0;height:200px;pointer-events:none}
+.mar{animation:mar 6s ease-in-out infinite alternate}
+@keyframes mar{to{transform:translateX(-40px)}}
+.hero-c{position:relative;z-index:2}
+.hero-c>*{max-width:660px}
+.pill{display:inline-flex;gap:8px;align-items:center;background:rgba(255,255,255,.22);backdrop-filter:blur(6px);border-radius:999px;padding:7px 14px;font-weight:700;font-size:13.5px}
+.hero h1{font-size:clamp(40px,7.5vw,78px);line-height:.98;margin:16px 0 14px;font-weight:900;text-shadow:0 6px 30px rgba(120,40,80,.25)}
+.hero h1 em{font-style:normal;color:var(--sol);text-shadow:0 2px 0 rgba(160,60,40,.25),0 8px 30px rgba(120,40,80,.3)}
+.hero p.lead{font-size:18px;margin:0 0 20px;max-width:560px;opacity:.95}
+.hero .ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero .btn-l{background:rgba(255,255,255,.95);border:0}
+/* busca */
+.busca{position:relative;z-index:5;margin-top:-104px}
+.box{background:#fff;border-radius:28px;box-shadow:0 24px 60px rgba(6,42,58,.18);padding:18px}
+.tipos{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tipos button{border:0;background:#F2F5F7;border-radius:999px;padding:9px 16px;font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px;font-family:Outfit}
+.tipos button[aria-pressed="true"]{background:var(--navy);color:#fff}
+.campos{display:grid;grid-template-columns:1.1fr 1fr 1fr 1.2fr .7fr .7fr .7fr;gap:10px;align-items:end}
+.campos.ps{grid-template-columns:1.6fr 1fr 1.2fr .7fr .7fr}
+label.f{display:block;font-size:12px;font-weight:700;margin:0 0 5px;color:#4A5D69;text-transform:uppercase;letter-spacing:.3px}
+.campo{width:100%;border:1.5px solid var(--linha);border-radius:14px;padding:10px 12px;background:#FAFCFD;min-height:46px}
+.campo:focus{outline:none;border-color:var(--turq);box-shadow:0 0 0 4px var(--turq-cl);background:#fff}
+.calc{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:14px;background:linear-gradient(90deg,var(--sol-cl),var(--coral-cl));border-radius:18px;padding:12px 14px;font-size:14.5px}
+.calc .ic{font-size:26px}
+.calc .tx{flex:1 1 300px}
+.calc b{color:var(--coral2)}
+.fim{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.fim .campo{flex:1 1 220px}
 .hide{display:none!important}
 /* secoes */
-.secao{padding:30px 0 8px}
-.secao h2{font-size:28px;margin:0 0 4px}
-.secao .sub{color:var(--suave);margin:0 0 16px}
-.passeios{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
-.ps{background:#fff;border-radius:var(--raio);overflow:hidden;box-shadow:var(--sombra);display:flex;flex-direction:column}
-.ps .img{height:120px;display:grid;place-items:center;font-size:46px;position:relative}
-.ps .img small{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.9);border-radius:999px;padding:3px 9px;font-size:12px;font-weight:700}
-.ps .c{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
-.ps h3{margin:0;font-size:17px}
-.ps p{margin:0;color:var(--suave);font-size:14px}
-.ps .rod{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:8px}
-.ps .rod b{font-family:Poppins;font-size:15px}
-.ps .rod small{color:var(--suave);font-weight:600}
-.van{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.van div{background:#fff;border-radius:var(--raio);padding:16px;box-shadow:var(--sombra)}
-.van b{font-family:Poppins;display:block;font-size:16px}
-.van span{color:var(--suave);font-size:14px}
-.dep{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.dep blockquote{margin:0;background:var(--areia);border-radius:var(--raio);padding:16px;font-size:14px}
-.dep cite{display:block;margin-top:8px;font-style:normal;font-weight:700;font-size:13px;color:var(--suave)}
-footer{padding:30px 0 70px;color:var(--suave);font-size:13px;text-align:center}
-.zap{position:fixed;right:16px;bottom:16px;z-index:40;background:#25D366;color:#fff;border-radius:999px;padding:12px 16px;font-weight:700;text-decoration:none;box-shadow:0 10px 26px rgba(37,211,102,.35);display:flex;gap:8px;align-items:center;font-family:Poppins}
+.secao{padding:56px 0 6px}
+.secao .kicker{font-family:Outfit;font-weight:800;color:var(--coral2);font-size:14px;text-transform:uppercase;letter-spacing:1px}
+.secao h2{font-size:clamp(28px,4vw,40px);margin:4px 0 6px;line-height:1.08;font-weight:800}
+.secao .sub{color:var(--suave);margin:0 0 18px;font-size:16px}
+.vibes{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none}
+.vibes::-webkit-scrollbar{display:none}
+.vibes button{flex:0 0 auto;border:2px solid var(--linha);background:#fff;border-radius:999px;padding:9px 16px;font-weight:700;font-family:Outfit;font-size:15px}
+.vibes button[aria-pressed="true"]{border-color:var(--navy);background:var(--navy);color:#fff}
+.trilho{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(260px,300px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 22px;scrollbar-width:thin}
+.card{scroll-snap-align:start;border-radius:28px;overflow:hidden;background:#fff;box-shadow:var(--sombra);display:flex;flex-direction:column;transition:transform .2s}
+.card:hover{transform:translateY(-6px) rotate(-.4deg)}
+.card .capa{height:190px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff;overflow:hidden}
+.card .capa .em{position:absolute;right:-8px;top:-8px;font-size:118px;line-height:1;transform:rotate(-10deg);filter:drop-shadow(0 10px 18px rgba(0,0,0,.18))}
+.card .capa .tags{display:flex;gap:6px;flex-wrap:wrap;position:relative}
+.card .capa .tags span{background:rgba(255,255,255,.9);color:var(--tinta);border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700}
+.card .capa .tags span.hot{background:var(--sol);}
+.card .c{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:20px;font-weight:800}
+.card p{margin:0;color:var(--suave);font-size:14px}
+.card .info{display:flex;gap:10px;font-size:13px;font-weight:600;color:#3D5260}
+.card .rod{display:flex;justify-content:space-between;align-items:center;margin-top:auto;padding-top:10px}
+.card .preco small{display:block;color:var(--suave);font-size:12px;font-weight:600}
+.card .preco b{font-family:Outfit;font-size:22px;font-weight:800}
+.add{border:0;border-radius:999px;padding:10px 14px;font-weight:700;font-family:Outfit;background:var(--turq-cl);color:var(--turq2);font-size:14px}
+.add[aria-pressed="true"]{background:var(--turq);color:#fff}
+/* como */
+.passos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.passo{border-radius:28px;padding:22px;position:relative;overflow:hidden}
+.passo:nth-child(1){background:var(--turq-cl)}.passo:nth-child(2){background:var(--sol-cl)}.passo:nth-child(3){background:var(--roxo-cl)}
+.passo .n{font-family:Outfit;font-weight:900;font-size:64px;line-height:.9;opacity:.18;position:absolute;right:16px;top:10px}
+.passo .ic{font-size:34px}
+.passo h3{margin:8px 0 4px;font-size:20px}
+.passo p{margin:0;color:#3D5260;font-size:14.5px}
+.frota{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.frota div{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--sombra);display:flex;gap:14px;align-items:center}
+.frota .ic{font-size:40px;width:64px;height:64px;border-radius:20px;background:#F3F6F8;display:grid;place-items:center;flex-shrink:0}
+.frota b{font-family:Outfit;font-size:18px;display:block}
+.frota span{color:var(--suave);font-size:14px}
+/* avaliacoes */
+.avals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.bal{background:#fff;border-radius:24px 24px 24px 6px;padding:16px;box-shadow:var(--sombra)}
+.bal .est{color:#F5A524;font-weight:800}
+.bal p{margin:6px 0 10px}
+.bal .quem{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--suave);font-weight:600}
+.bal .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-family:Outfit}
+.cta-fim{margin:56px 0 0;border-radius:32px;background:linear-gradient(120deg,#00B4C6,#7B5CFF);color:#fff;padding:34px 26px;display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta-fim h2{margin:0;font-size:clamp(26px,4vw,38px);font-weight:900}
+.cta-fim p{margin:4px 0 0;opacity:.92}
+footer{padding:34px 0 110px;color:var(--suave);font-size:13px;text-align:center}
+/* roteiro bar */
+.rbar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%) translateY(140%);z-index:45;background:var(--navy);color:#fff;border-radius:999px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 16px 40px rgba(6,42,58,.35);transition:transform .3s;max-width:calc(100% - 100px)}
+.rbar.on{transform:translateX(-50%) translateY(0);visibility:visible}
+.rbar{visibility:hidden}
+.rbar b{font-family:Outfit;font-size:16px;white-space:nowrap}
+.rbar small{display:block;opacity:.75;font-size:12px}
+.zap{position:fixed;right:16px;bottom:16px;z-index:44;background:#25D366;color:#fff;border-radius:50%;width:58px;height:58px;display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.4)}
+/* modal */
+.fundo-m{position:fixed;inset:0;background:rgba(6,42,58,.5);backdrop-filter:blur(3px);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.fundo-m.on{display:flex}
+.modal{background:#fff;width:100%;max-width:540px;max-height:92vh;overflow:auto;border-radius:28px 28px 0 0;padding:22px 18px 24px;position:relative}
+.modal .x{position:absolute;right:12px;top:12px;border:0;background:#F1F4F7;width:38px;height:38px;border-radius:50%;font-weight:800}
+.modal h3{margin:0 0 6px;font-size:24px;padding-right:44px;font-weight:800}
+.tl{list-style:none;margin:14px 0;padding:0 0 0 18px;border-left:3px dashed var(--turq-cl)}
+.tl li{position:relative;padding:0 0 14px 12px}
+.tl li:before{content:"";position:absolute;left:-27px;top:3px;width:14px;height:14px;border-radius:50%;background:var(--turq);border:3px solid #fff;box-shadow:0 0 0 2px var(--turq)}
+.tl b{font-family:Outfit;font-size:16px}
+.tl small{display:block;color:var(--suave)}
+.total{display:flex;justify-content:space-between;align-items:center;background:var(--sol-cl);border-radius:16px;padding:12px 14px;font-weight:700}
+.total b{font-family:Outfit;font-size:24px}
+.zapprev{background:#E7F8EE;border-radius:16px;padding:12px;font-size:14px;white-space:pre-wrap;margin:10px 0;border:1px solid #BFEACE}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-30px);background:var(--navy);color:#fff;padding:11px 16px;border-radius:14px;font-weight:600;font-size:14px;opacity:0;transition:.25s;z-index:80;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 /* painel */
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
-.kpi{background:#fff;border-radius:16px;padding:12px 14px;box-shadow:var(--sombra);border-left:4px solid var(--c,var(--mar))}
-.kpi span{display:block;color:var(--suave);font-size:13px;font-weight:600}
-.kpi strong{font-family:Poppins;font-size:28px}
-.pg{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start;padding-bottom:50px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.kpi{border-radius:20px;padding:14px 16px}
+.kpi:nth-child(1){background:var(--turq-cl)}.kpi:nth-child(2){background:var(--coral-cl)}.kpi:nth-child(3){background:var(--sol-cl)}.kpi:nth-child(4){background:var(--roxo-cl)}
+.kpi span{display:block;color:#3D5260;font-size:13px;font-weight:700}
+.kpi strong{font-family:Outfit;font-size:30px;font-weight:800}
+.pg{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:16px;align-items:start;padding-bottom:60px}
 .caixa{background:#fff;border-radius:var(--raio);padding:16px;box-shadow:var(--sombra)}
-.caixa h3{margin:0 0 10px;font-size:18px;display:flex;align-items:center;gap:8px}
+.caixa h3{margin:0 0 10px;font-size:19px}
 .dias{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
-.dias button{flex:0 0 auto;border:1.5px solid var(--linha);background:#fff;border-radius:12px;padding:6px 11px;font-weight:700;font-size:13px}
-.dias button[aria-pressed="true"]{background:var(--tinta);border-color:var(--tinta);color:#fff}
+.dias button{flex:0 0 auto;border:1.5px solid var(--linha);background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px}
+.dias button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
 .item{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px 0;border-bottom:1px solid #EEF2F6}
 .item:last-child{border-bottom:0}
-.hora{font-family:Poppins;font-weight:700;font-size:17px;text-align:center;background:var(--ceu);color:var(--mar);border-radius:12px;padding:6px 0}
-.item h4{margin:0;font-size:15px}
+.hora{font-family:Outfit;font-weight:800;font-size:17px;text-align:center;background:var(--turq-cl);color:var(--turq2);border-radius:14px;padding:6px 0}
+.item h4{margin:0;font-size:15.5px}
 .item .meta{color:var(--suave);font-size:13px}
 .st{font-size:12px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap;display:inline-block;margin-top:3px}
-.st.nv{background:#FFF1DD;color:#A35E00}.st.cf{background:#E3F6EA;color:#137A3A}.st.rt{background:var(--ceu);color:var(--mar)}.st.fm{background:#EEF1F4;color:#55626F}
+.st.nv{background:#FFF1DD;color:#A35E00}.st.cf{background:#E3F6EA;color:#137A3A}.st.rt{background:var(--turq-cl);color:var(--turq2)}.st.fm{background:#EEF1F4;color:#55626F}
 .acoes{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
 .mot{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #EEF2F6;font-size:14px}
 .mot:last-child{border-bottom:0}
-.mot b{display:block}
-.mot small{color:var(--suave)}
+.mot b{display:block}.mot small{color:var(--suave)}
 .vazio{color:var(--suave);text-align:center;padding:20px}
-.fundo-m{position:fixed;inset:0;background:rgba(19,41,61,.45);z-index:60;display:none;align-items:flex-end;justify-content:center}
-.fundo-m.on{display:flex}
-.modal{background:#fff;width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px 18px 24px;position:relative}
-.modal .x{position:absolute;right:12px;top:12px;border:0;background:#F1F4F7;width:36px;height:36px;border-radius:50%;font-weight:800}
-.modal h3{margin:0 0 6px;font-size:21px;padding-right:40px}
-.zapprev{background:#E7F8EE;border-radius:14px;padding:12px;font-size:14px;white-space:pre-wrap;margin:10px 0;border:1px solid #BFEACE}
-.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:var(--tinta);color:#fff;padding:11px 16px;border-radius:14px;font-weight:600;font-size:14px;opacity:0;transition:.25s;z-index:80;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
-.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
-@media (min-width:700px){.fundo-m{align-items:center;padding:20px}.modal{border-radius:24px}}
-@media (max-width:880px){.hero-g{grid-template-columns:1fr;padding-bottom:50px}.van,.dep{grid-template-columns:1fr}.pg{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:560px){header.top{position:static}.dir{margin-left:0;width:100%;justify-content:space-between}.g3{grid-template-columns:1fr 1fr}.item{grid-template-columns:54px minmax(0,1fr)}.item .acoes{grid-column:1/-1;justify-content:flex-start}.zap span{display:none}}
-:focus-visible{outline:3px solid var(--duna);outline-offset:2px}
+.pai-top{padding:30px 0 0}
+.pai-top h2{font-size:32px;margin:0;font-weight:800}
+.pai-top p{color:var(--suave);margin:4px 0 0}
+@media (min-width:700px){.fundo-m{align-items:center;padding:20px}.modal{border-radius:28px}}
+@media (max-width:980px){.campos,.campos.ps{grid-template-columns:repeat(2,minmax(0,1fr))}.passos,.frota,.avals{grid-template-columns:1fr}.pg{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.hero{padding-top:150px;min-height:640px}.sol{width:130px;height:130px;top:118px;right:-34px;opacity:.85}.dir{margin-left:0;width:100%;justify-content:space-between}.campos,.campos.ps{grid-template-columns:1fr 1fr}.campos>div.full{grid-column:1/-1}.item{grid-template-columns:54px minmax(0,1fr)}.item .acoes{grid-column:1/-1;justify-content:flex-start}.rbar{max-width:calc(100% - 96px);left:16px;transform:translateY(140%)}.rbar.on{transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:3px solid var(--sol);outline-offset:2px}
 </style>
 </head>
 <body>
 <div class="demo">Amostra feita pela Hélice para a RN Transfer · valores e reservas de exemplo</div>
-<header class="top"><div class="wrap">
+<header class="top" id="hdr"><div class="wrap">
   <a class="logo" href="#" onclick="modo('cli');return false">
-    <span class="mk"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 15c2.5-2 4.5-2 7 0s4.5 2 7 0 3.5-1.6 4-1.2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="7" r="3" fill="#F29F3D"/><path d="M3 19c2.5-2 4.5-2 7 0s4.5 2 7 0" stroke="#9FD3F0" stroke-width="2" stroke-linecap="round"/></svg></span>
-    <span><b>RN Transfer e Viagens</b><small>Natal · Rio Grande do Norte</small></span>
+    <span class="mk"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="16" cy="8" r="3.4" fill="#FFC93C"/><path d="M2 15.5c2.6-2.2 4.8-2.2 7.4 0s4.8 2.2 7.4 0 3.9-1.7 5.2-1.2" stroke="#00B4C6" stroke-width="2.2" stroke-linecap="round"/><path d="M2 19.5c2.6-2.2 4.8-2.2 7.4 0s4.8 2.2 7.4 0" stroke="#FF6B5A" stroke-width="2.2" stroke-linecap="round"/></svg></span>
+    <span><b>RN Transfer</b><small>e Viagens · Natal</small></span>
   </a>
   <div class="dir">
     <div class="lang" role="group" aria-label="Idioma"><button data-l="pt" aria-pressed="true">PT</button><button data-l="en" aria-pressed="false">EN</button><button data-l="es" aria-pressed="false">ES</button></div>
-    <div class="modo" role="group" aria-label="Ver como"><button data-m="cli" aria-pressed="true">Site do cliente</button><button data-m="pai" aria-pressed="false">Painel da agência</button></div>
+    <div class="modo" role="group" aria-label="Ver como"><button data-m="cli" aria-pressed="true">Site</button><button data-m="pai" aria-pressed="false">Painel</button></div>
   </div>
 </div></header>
 
 <main id="v-cli" class="view on">
-  <section class="hero"><div class="wrap hero-g">
-    <div>
-      <span class="nota"><b>★★★★★</b> <span data-t="nota">5,0 no Google · 136 avaliações</span></span>
-      <h1 data-t="h1">Do aeroporto ao hotel, e do hotel às <span>dunas</span>, sem preocupação.</h1>
-      <p class="lead" data-t="lead">Transfer e passeios em Natal e no litoral potiguar. Reserve em 1 minuto: a gente calcula o horário da busca pelo seu voo e confirma tudo no WhatsApp.</p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-d" href="#reservar" data-t="cta1">Reservar agora</a><a class="btn btn-l" href="#passeios" data-t="cta2">Ver passeios</a></div>
-      <div class="trust"><span data-t="t1">✈️ Monitoramos seu voo</span><span data-t="t2">🧳 Espera no desembarque</span><span data-t="t3">🗣️ Atendimento em 3 idiomas</span></div>
+  <section class="hero">
+    <div class="sol" aria-hidden="true"></div><div class="nuvem a" aria-hidden="true"></div><div class="nuvem b" aria-hidden="true"></div>
+    <div class="wrap hero-c">
+      <span class="pill">⭐ <span data-t="nota">5,0 no Google · 136 avaliações</span></span>
+      <h1 data-t="h1">Partiu Natal? <em>A gente leva você.</em></h1>
+      <p class="lead" data-t="lead">Do desembarque às dunas de Genipabu: transfer, passeios e roteiros prontos pra você só curtir. Reserva em 1 minuto, confirmação no WhatsApp.</p>
+      <div class="ctas"><a class="btn btn-c" href="#reservar" data-t="cta1">Reservar meu transfer</a><a class="btn btn-l" href="#passeios" data-t="cta2">Montar meu roteiro 🌴</a></div>
     </div>
-    <div class="reserva" id="reservar">
-      <h2 data-t="rTit">Faça sua reserva</h2>
-      <p class="sub" data-t="rSub">Escolha o serviço e receba a confirmação no WhatsApp.</p>
+    <svg class="paisagem" viewBox="0 0 1440 200" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 120 C 180 60 320 70 470 110 S 760 150 900 100 S 1240 50 1440 100 V200 H0Z" fill="#F7C98B"/>
+      <path d="M0 140 C 200 100 360 120 520 140 S 820 170 1000 135 S 1300 110 1440 135 V200 H0Z" fill="#F2B470"/>
+      <g class="mar"><path d="M-60 165 C 120 145 260 185 440 165 S 760 145 940 165 S 1260 185 1500 160 V200 H-60Z" fill="#2BC4D4"/></g>
+      <path d="M0 182 C 200 172 380 192 560 182 S 920 172 1100 184 S 1340 190 1440 180 V200 H0Z" fill="#FFFCF7"/>
+    </svg>
+  </section>
+
+  <div class="wrap busca" id="reservar">
+    <div class="box">
       <div class="tipos" id="tipos">
-        <button data-v="chegada" aria-pressed="true"><span>🛬</span><em data-t="tp1" style="font-style:normal">Chegada</em></button>
-        <button data-v="saida" aria-pressed="false"><span>🛫</span><em data-t="tp2" style="font-style:normal">Ida ao aeroporto</em></button>
-        <button data-v="passeio" aria-pressed="false"><span>🏝️</span><em data-t="tp3" style="font-style:normal">Passeio</em></button>
+        <button data-v="chegada" aria-pressed="true">🛬 <span data-t="tp1">Chegada</span></button>
+        <button data-v="saida" aria-pressed="false">🛫 <span data-t="tp2">Ida ao aeroporto</span></button>
+        <button data-v="passeio" aria-pressed="false">🏝️ <span data-t="tp3">Passeio</span></button>
       </div>
-      <div id="bPasseio" class="hide"><label class="f" for="rPasseio" data-t="lPas">Qual passeio?</label><select class="campo" id="rPasseio"></select></div>
-      <div class="g2">
+      <div class="campos" id="campos">
+        <div id="bPasseio" class="hide full"><label class="f" for="rPasseio" data-t="lPas">Qual passeio?</label><select class="campo" id="rPasseio"></select></div>
         <div><label class="f" for="rData" data-t="lData">Data</label><input class="campo" type="date" id="rData"></div>
-        <div id="bVoo"><label class="f" for="rHoraVoo" id="lHoraVoo" data-t="lPouso">Horário do pouso</label><input class="campo" type="time" id="rHoraVoo" value="14:30"></div>
-      </div>
-      <div class="g2" id="bVoo2">
-        <div><label class="f" for="rVoo" data-t="lVoo">Nº do voo</label><input class="campo" id="rVoo" placeholder="Ex.: G3 1650"></div>
-        <div><label class="f" for="rHotel" data-t="lHotel">Hotel / bairro</label><input class="campo" id="rHotel" list="hoteis" placeholder="Ex.: Ponta Negra"></div>
-      </div>
-      <datalist id="hoteis"><option value="Ponta Negra"><option value="Via Costeira"><option value="Praia do Meio"><option value="Areia Preta"><option value="Pipa"><option value="São Miguel do Gostoso"></datalist>
-      <div class="g3">
+        <div id="bVoo"><label class="f" for="rHoraVoo" id="lHoraVoo">Horário do pouso</label><input class="campo" type="time" id="rHoraVoo" value="14:30"></div>
+        <div id="bVooN"><label class="f" for="rVoo" data-t="lVoo">Nº do voo</label><input class="campo" id="rVoo" placeholder="G3 1650"></div>
+        <div><label class="f" for="rHotel" data-t="lHotel">Hotel / bairro</label><input class="campo" id="rHotel" list="hoteis" placeholder="Ponta Negra"></div>
         <div><label class="f" for="rAd" data-t="lAd">Adultos</label><input class="campo" type="number" min="1" max="15" id="rAd" value="2"></div>
         <div><label class="f" for="rCr" data-t="lCr">Crianças</label><input class="campo" type="number" min="0" max="10" id="rCr" value="0"></div>
         <div><label class="f" for="rMalas" data-t="lMalas">Malas</label><input class="campo" type="number" min="0" max="20" id="rMalas" value="2"></div>
       </div>
-      <div class="calc" id="calc"></div>
-      <label class="f" for="rNome" data-t="lNome">Seu nome</label><input class="campo" id="rNome" autocomplete="name">
-      <div class="resumo" id="resumo"></div>
-      <p style="margin:12px 0 0"><button class="btn btn-d" style="width:100%" id="rOk" onclick="reservar()" data-t="rBtn">Enviar reserva pelo WhatsApp</button></p>
+      <datalist id="hoteis"><option value="Ponta Negra"><option value="Via Costeira"><option value="Praia do Meio"><option value="Areia Preta"><option value="Pipa"><option value="São Miguel do Gostoso"></datalist>
+      <div class="calc"><span class="ic" id="calcIc">🛬</span><div class="tx" id="calc"></div></div>
+      <div class="fim"><input class="campo" id="rNome" autocomplete="name" placeholder="Seu nome" aria-label="Seu nome"><button class="btn btn-c" id="rOk" onclick="reservar()" data-t="rBtn">Reservar pelo WhatsApp</button></div>
     </div>
   </div>
-  <svg class="ondas" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true"><path d="M0 50 C 240 10 480 90 720 50 S 1200 10 1440 50 V90 H0Z" fill="#FAFCFE"/></svg>
-  </section>
 
   <div class="wrap">
     <section class="secao" id="passeios">
-      <h2 data-t="psTit">Passeios mais pedidos</h2>
-      <p class="sub" data-t="psSub">Saída do seu hotel, com motorista local que conhece cada cantinho.</p>
-      <div class="passeios" id="listaPasseios"></div>
+      <span class="kicker" data-t="k1">Passeios</span>
+      <h2 data-t="psTit">Qual é a sua vibe hoje?</h2>
+      <p class="sub" data-t="psSub">Toque em ＋ para montar seu roteiro. A gente organiza os dias e manda tudo no WhatsApp.</p>
+      <div class="vibes" id="vibes"></div>
+      <div class="trilho" id="trilho"></div>
     </section>
+
     <section class="secao">
-      <h2 data-t="vTit">Frota para cada grupo</h2>
+      <span class="kicker" data-t="k2">Sem estresse</span>
+      <h2 data-t="cTit">Férias começam no desembarque</h2>
+      <div class="passos">
+        <div class="passo"><span class="n">1</span><div class="ic">✈️</div><h3 data-t="c1t">A gente segue seu voo</h3><p data-t="c1">Atrasou? Tudo bem. O motorista ajusta o horário e te espera com plaquinha no desembarque.</p></div>
+        <div class="passo"><span class="n">2</span><div class="ic">🧭</div><h3 data-t="c2t">Roteiro pronto</h3><p data-t="c2">Escolha os passeios e a gente distribui pelos dias da sua viagem, sem correria.</p></div>
+        <div class="passo"><span class="n">3</span><div class="ic">💬</div><h3 data-t="c3t">Tudo no WhatsApp</h3><p data-t="c3">Confirmação, nome do motorista e horário da busca chegam direto no seu celular.</p></div>
+      </div>
+    </section>
+
+    <section class="secao">
+      <span class="kicker" data-t="k3">Frota</span>
+      <h2 data-t="vTit">Do casal à excursão inteira</h2>
       <p class="sub" data-t="vSub">O sistema sugere o carro certo pelo número de pessoas e malas.</p>
-      <div class="van">
-        <div><b>🚗 Sedan</b><span data-t="v1">Até 4 pessoas e 3 malas. Ar-condicionado e água a bordo.</span></div>
-        <div><b>🚙 SUV / Minivan</b><span data-t="v2">Até 6 pessoas e 6 malas. Ideal para famílias.</span></div>
-        <div><b>🚐 Van executiva</b><span data-t="v3">Até 15 pessoas. Grupos, eventos e excursões.</span></div>
+      <div class="frota">
+        <div><span class="ic">🚗</span><span><b>Sedan</b><span data-t="v1">Até 4 pessoas e 3 malas. Ar e água a bordo.</span></span></div>
+        <div><span class="ic">🚙</span><span><b>SUV / Minivan</b><span data-t="v2">Até 6 pessoas e 6 malas. Perfeito pra família.</span></span></div>
+        <div><span class="ic">🚐</span><span><b>Van executiva</b><span data-t="v3">Até 15 pessoas. Grupos, eventos e excursões.</span></span></div>
       </div>
     </section>
+
     <section class="secao">
-      <h2 data-t="dTit">Quem já viajou com a gente</h2>
-      <p class="sub" data-t="dSub">Avaliações reais você confere no Google. Aqui vão exemplos do formato.</p>
-      <div class="dep">
-        <blockquote>“Motorista esperando no desembarque com placa, carro limpinho e super pontual.”<cite>Exemplo de avaliação</cite></blockquote>
-        <blockquote>“O passeio de buggy em Genipabu foi o ponto alto da viagem!”<cite>Exemplo de avaliação</cite></blockquote>
-        <blockquote>“Nosso voo atrasou 2 horas e eles acompanharam tudo. Zero estresse.”<cite>Exemplo de avaliação</cite></blockquote>
+      <span class="kicker" data-t="k4">Quem já foi</span>
+      <h2 data-t="dTit">Nota 5 de quem já curtiu</h2>
+      <p class="sub" data-t="dSub">As avaliações reais estão no Google. Abaixo, exemplos do formato.</p>
+      <div class="avals">
+        <div class="bal"><span class="est">★★★★★</span><p>“Motorista esperando no desembarque com placa, carro limpinho e super pontual.”</p><div class="quem"><span class="av" style="background:#FF6B5A">C</span>Exemplo · família de SP</div></div>
+        <div class="bal"><span class="est">★★★★★</span><p>“O buggy em Genipabu foi o ponto alto da viagem. Com emoção, claro! 🏜️”</p><div class="quem"><span class="av" style="background:#00B4C6">R</span>Exemplo · casal de BH</div></div>
+        <div class="bal"><span class="est">★★★★★</span><p>“Nosso voo atrasou 2 horas e eles acompanharam tudo. Zero estresse.”</p><div class="quem"><span class="av" style="background:#7B5CFF">L</span>Exemplo · turista argentina</div></div>
       </div>
     </section>
+
+    <div class="cta-fim">
+      <div><h2 data-t="fTit">Bora pro sol? ☀️</h2><p data-t="fSub">Reserve o transfer agora e chegue em Natal já de férias.</p></div>
+      <a class="btn btn-l" href="#reservar" style="border:0" data-t="cta1">Reservar meu transfer</a>
+    </div>
   </div>
   <footer><div class="wrap">RN Transfer e Viagens · Natal (RN) · (84) 99898-5566<br>Amostra criada pela Hélice Sites &amp; Sistemas</div></footer>
-  <a class="zap" href="https://wa.me/5584998985566" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Z"/></svg><span>WhatsApp</span></a>
+  <div class="rbar" id="rbar" role="status"><div><b id="rbN">0 passeios</b><small id="rbT">no seu roteiro</small></div><button class="btn btn-c btn-s" onclick="verRoteiro()" data-t="rbBtn">Ver roteiro</button></div>
+  <a class="zap" href="https://wa.me/5584998985566" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm5.8 14.03c-.25.69-1.44 1.33-1.98 1.38-.51.05-1 .24-3.36-.7-2.84-1.12-4.65-4.03-4.79-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.34.25-.28.55-.35.74-.35l.53.01c.17.01.4-.06.62.48.24.57.8 1.95.87 2.09.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.17.28.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.29 1.41.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.69-.18 1.38Z"/></svg></a>
 </main>
 
 <section id="v-pai" class="view"><div class="wrap">
-  <div class="secao" style="padding-bottom:0"><h2>Painel da agência</h2><p class="sub">Todas as reservas do site num lugar só: confirme, escale o motorista e avise o cliente com um toque.</p></div>
+  <div class="pai-top"><h2>Painel da agência</h2><p>Todas as reservas do site num lugar só: confirme, escale o motorista e avise o cliente com um toque.</p></div>
   <div class="kpis" id="kpis"></div>
   <div class="pg">
-    <div class="caixa">
-      <h3>🗓️ Agenda</h3>
-      <div class="dias" id="dias"></div>
-      <div id="agenda"></div>
-    </div>
+    <div class="caixa"><h3>🗓️ Agenda</h3><div class="dias" id="dias"></div><div id="agenda"></div></div>
     <div>
       <div class="caixa" style="margin-bottom:16px"><h3>🚐 Motoristas</h3><div id="mots"></div></div>
       <div class="caixa"><h3>✈️ Voos de hoje</h3><div id="voos"></div><p style="margin:8px 0 0;font-size:12.5px;color:var(--suave)">Na versão real, o status do voo pode ser consultado automaticamente.</p></div>
@@ -232,66 +305,75 @@ footer{padding:30px 0 70px;color:var(--suave);font-size:13px;text-align:center}
 <script>
 const ZAP="5584998985566";
 const PASSEIOS=[
- {id:"genipabu",e:"🏜️",cor:"#FFE9C7",n:"Genipabu de buggy",d:"Dunas, lagoa de Pitangui e esquibunda. Com ou sem emoção!",dur:"Dia inteiro",p:"220"},
- {id:"pipa",e:"🐬",cor:"#D9F0FB",n:"Praia da Pipa",d:"Baía dos Golfinhos, Chapadão e o centrinho charmoso de Pipa.",dur:"Dia inteiro",p:"120"},
- {id:"maracajau",e:"🐠",cor:"#D7F5EE",n:"Parrachos de Maracajaú",d:"Piscinas naturais em alto-mar para mergulhar com os peixinhos.",dur:"Dia inteiro",p:"150"},
- {id:"gostoso",e:"🪁",cor:"#E6E9FD",n:"São Miguel do Gostoso",d:"Praia tranquila, vento perfeito e pôr do sol inesquecível.",dur:"Dia inteiro",p:"160"},
- {id:"perobas",e:"🏝️",cor:"#D9F0FB",n:"Parrachos de Perobas",d:"Águas cristalinas e areia branquinha, mais reservado e calmo.",dur:"Dia inteiro",p:"170"},
- {id:"city",e:"🏰",cor:"#FFE3DA",n:"City tour em Natal",d:"Forte dos Reis Magos, Ponte Newton Navarro e Cajueiro de Pirangi.",dur:"Meio período",p:"90"}
+ {id:"genipabu",e:"🏜️",g:"linear-gradient(135deg,#FFB75E,#ED8F03)",vibe:"aventura",n:"Genipabu de buggy",d:"Dunas, lagoa de Pitangui e esquibunda. Com ou sem emoção!",dur:"Dia inteiro",p:220,tags:["🔥 Mais vendido","Com emoção"]},
+ {id:"maracajau",e:"🐠",g:"linear-gradient(135deg,#00C9D6,#0077B6)",vibe:"mar",n:"Parrachos de Maracajaú",d:"Piscinas naturais em alto-mar pra mergulhar com os peixinhos.",dur:"Dia inteiro",p:150,tags:["Snorkel","Família"]},
+ {id:"pipa",e:"🐬",g:"linear-gradient(135deg,#43E5C4,#16A3A3)",vibe:"relax",n:"Praia da Pipa",d:"Baía dos Golfinhos, Chapadão e o centrinho mais charmoso do RN.",dur:"Dia inteiro",p:120,tags:["Golfinhos","Pôr do sol"]},
+ {id:"perobas",e:"🏝️",g:"linear-gradient(135deg,#5BC0F8,#3A7BD5)",vibe:"mar",n:"Parrachos de Perobas",d:"Águas cristalinas e areia branquinha, mais reservado e calmo.",dur:"Dia inteiro",p:170,tags:["Água cristalina"]},
+ {id:"gostoso",e:"🪁",g:"linear-gradient(135deg,#FF8A5B,#FF5A6E)",vibe:"relax",n:"São Miguel do Gostoso",d:"Vento perfeito, kitesurf e o pôr do sol mais bonito da viagem.",dur:"Dia inteiro",p:160,tags:["Kitesurf","Pôr do sol"]},
+ {id:"lagoas",e:"🛶",g:"linear-gradient(135deg,#9D7CFF,#6A4CFF)",vibe:"aventura",n:"Lagoas e tirolesa",d:"Lagoa de Jacumã, aerobunda e tirolesa direto na água.",dur:"Meio período",p:140,tags:["Tirolesa","Radical"]},
+ {id:"city",e:"🏰",g:"linear-gradient(135deg,#F7971E,#FFD200)",vibe:"cultura",n:"City tour em Natal",d:"Forte dos Reis Magos, Ponte Newton Navarro e o maior cajueiro do mundo.",dur:"Meio período",p:90,tags:["História","Fotos"]}
 ];
-const TR={
- pt:{},
- en:{nota:"5.0 on Google · 136 reviews",h1:"From the airport to your hotel, and from your hotel to the <span>dunes</span>, worry-free.",lead:"Transfers and tours in Natal and along the Rio Grande do Norte coast. Book in 1 minute: we calculate your pick-up time from your flight and confirm everything on WhatsApp.",cta1:"Book now",cta2:"See tours",t1:"✈️ We track your flight",t2:"🧳 Meet & greet at arrivals",t3:"🗣️ Service in 3 languages",rTit:"Make your booking",rSub:"Choose the service and get your confirmation on WhatsApp.",tp1:"Arrival",tp2:"To the airport",tp3:"Tour",lPas:"Which tour?",lData:"Date",lPouso:"Landing time",lDecola:"Departure time",lVoo:"Flight no.",lHotel:"Hotel / area",lAd:"Adults",lCr:"Children",lMalas:"Bags",lNome:"Your name",rBtn:"Send booking via WhatsApp",psTit:"Most popular tours",psSub:"Hotel pick-up, with a local driver who knows every corner.",vTit:"A vehicle for every group",vSub:"The system suggests the right car by number of people and bags.",v1:"Up to 4 people and 3 bags. Air conditioning and water on board.",v2:"Up to 6 people and 6 bags. Great for families.",v3:"Up to 15 people. Groups, events and excursions.",dTit:"Travelers who rode with us",dSub:"Check our real reviews on Google. These are format examples."},
- es:{nota:"5,0 en Google · 136 reseñas",h1:"Del aeropuerto al hotel, y del hotel a las <span>dunas</span>, sin preocupaciones.",lead:"Traslados y paseos en Natal y el litoral potiguar. Reserva en 1 minuto: calculamos la hora de recogida según tu vuelo y confirmamos todo por WhatsApp.",cta1:"Reservar ahora",cta2:"Ver paseos",t1:"✈️ Seguimos tu vuelo",t2:"🧳 Te esperamos en llegadas",t3:"🗣️ Atención en 3 idiomas",rTit:"Haz tu reserva",rSub:"Elige el servicio y recibe la confirmación por WhatsApp.",tp1:"Llegada",tp2:"Ida al aeropuerto",tp3:"Paseo",lPas:"¿Qué paseo?",lData:"Fecha",lPouso:"Hora de llegada",lDecola:"Hora de salida",lVoo:"Nº de vuelo",lHotel:"Hotel / barrio",lAd:"Adultos",lCr:"Niños",lMalas:"Maletas",lNome:"Tu nombre",rBtn:"Enviar reserva por WhatsApp",psTit:"Paseos más pedidos",psSub:"Salida desde tu hotel, con conductor local que conoce cada rincón.",vTit:"Un vehículo para cada grupo",vSub:"El sistema sugiere el auto ideal según personas y maletas.",v1:"Hasta 4 personas y 3 maletas. Aire acondicionado y agua a bordo.",v2:"Hasta 6 personas y 6 maletas. Ideal para familias.",v3:"Hasta 15 personas. Grupos, eventos y excursiones.",dTit:"Quienes ya viajaron con nosotros",dSub:"Mira nuestras reseñas reales en Google. Aquí van ejemplos del formato."}
-};
-let L="pt";const PT={};
-document.querySelectorAll("[data-t]").forEach(e=>PT[e.dataset.t]=e.innerHTML);
-TR.pt=Object.assign({lDecola:"Horário do voo"},PT);
-const tt=k=>(TR[L][k]||PT[k]||k);
+const VIBES=[["todos","✨ Todos"],["aventura","🏜️ Aventura"],["mar","🤿 Mar e mergulho"],["relax","🌅 Relax"],["cultura","🏰 Cultura"]];
+const TR={en:{nota:"5.0 on Google · 136 reviews",h1:"Heading to Natal? <em>We'll take you there.</em>",lead:"From the arrivals hall to the Genipabu dunes: transfers, tours and ready-made itineraries so you can just enjoy. Book in 1 minute, confirmation on WhatsApp.",cta1:"Book my transfer",cta2:"Build my trip 🌴",tp1:"Arrival",tp2:"To the airport",tp3:"Tour",lPas:"Which tour?",lData:"Date",lPouso:"Landing time",lDecola:"Flight time",lVoo:"Flight no.",lHotel:"Hotel / area",lAd:"Adults",lCr:"Kids",lMalas:"Bags",rBtn:"Book via WhatsApp",k1:"Tours",psTit:"What's your vibe today?",psSub:"Tap ＋ to build your trip. We plan the days and send everything on WhatsApp.",k2:"Stress-free",cTit:"Vacation starts at arrivals",c1t:"We track your flight",c1:"Delayed? No problem. Your driver adjusts and waits with a name sign.",c2t:"Ready-made itinerary",c2:"Pick the tours and we spread them across your trip, no rush.",c3t:"Everything on WhatsApp",c3:"Confirmation, driver's name and pick-up time straight to your phone.",k3:"Fleet",vTit:"From couples to whole groups",vSub:"The system suggests the right car by people and bags.",v1:"Up to 4 people and 3 bags. A/C and water on board.",v2:"Up to 6 people and 6 bags. Perfect for families.",v3:"Up to 15 people. Groups, events and excursions.",k4:"Been there",dTit:"5 stars from happy travelers",dSub:"Real reviews are on Google. Below are format examples.",fTit:"Ready for the sun? ☀️",fSub:"Book your transfer now and land in Natal already on vacation.",rbBtn:"See trip"},
+ es:{nota:"5,0 en Google · 136 reseñas",h1:"¿Rumbo a Natal? <em>Nosotros te llevamos.</em>",lead:"Del aeropuerto a las dunas de Genipabu: traslados, paseos y rutas listas para que solo disfrutes. Reserva en 1 minuto, confirmación por WhatsApp.",cta1:"Reservar mi traslado",cta2:"Armar mi viaje 🌴",tp1:"Llegada",tp2:"Ida al aeropuerto",tp3:"Paseo",lPas:"¿Qué paseo?",lData:"Fecha",lPouso:"Hora de llegada",lDecola:"Hora del vuelo",lVoo:"Nº de vuelo",lHotel:"Hotel / barrio",lAd:"Adultos",lCr:"Niños",lMalas:"Maletas",rBtn:"Reservar por WhatsApp",k1:"Paseos",psTit:"¿Cuál es tu vibra hoy?",psSub:"Toca ＋ para armar tu viaje. Organizamos los días y te enviamos todo por WhatsApp.",k2:"Sin estrés",cTit:"Las vacaciones empiezan al llegar",c1t:"Seguimos tu vuelo",c1:"¿Se atrasó? Tranquilo. El conductor ajusta el horario y te espera con cartel.",c2t:"Ruta lista",c2:"Elige los paseos y los distribuimos en los días de tu viaje.",c3t:"Todo por WhatsApp",c3:"Confirmación, nombre del conductor y hora de recogida en tu celular.",k3:"Flota",vTit:"De la pareja al grupo entero",vSub:"El sistema sugiere el auto ideal según personas y maletas.",v1:"Hasta 4 personas y 3 maletas. Aire y agua a bordo.",v2:"Hasta 6 personas y 6 maletas. Ideal para familias.",v3:"Hasta 15 personas. Grupos, eventos y excursiones.",k4:"Ya fueron",dTit:"Nota 5 de quienes ya disfrutaron",dSub:"Las reseñas reales están en Google. Abajo, ejemplos del formato.",fTit:"¿Vamos al sol? ☀️",fSub:"Reserva tu traslado ahora y llega a Natal ya de vacaciones.",rbBtn:"Ver viaje"}};
+let L="pt";const PT={lPouso:"Horário do pouso",lDecola:"Horário do voo"};
+document.querySelectorAll("[data-t]").forEach(e=>{if(!(e.dataset.t in PT))PT[e.dataset.t]=e.innerHTML});
+TR.pt=PT;const tt=k=>(TR[L][k]!==undefined?TR[L][k]:PT[k]);
 function idioma(l){L=l;document.documentElement.lang=l==="pt"?"pt-BR":l;document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.l===l)));
- document.querySelectorAll("[data-t]").forEach(e=>{const v=TR[l][e.dataset.t];e.innerHTML=v!==undefined?v:PT[e.dataset.t]});rTipo();calc()}
+ document.querySelectorAll("[data-t]").forEach(e=>e.innerHTML=tt(e.dataset.t));$("rNome").placeholder=l==="pt"?"Seu nome":l==="en"?"Your name":"Tu nombre";rTipo();calc()}
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>idioma(b.dataset.l));
-
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2800)}
+const brl=v=>"R$ "+v.toLocaleString("pt-BR");
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2600)}
+/* header muda ao rolar */
+const hdr=$("hdr");function hdrFix(){hdr.classList.toggle("fixo",scrollY>40||$("v-pai").classList.contains("on"))}addEventListener("scroll",hdrFix,{passive:true});
 /* datas */
-const hoje=new Date();const iso=d=>d.toISOString().slice(0,10);const amanha=new Date(hoje);amanha.setDate(hoje.getDate()+1);$("rData").value=iso(amanha);$("rData").min=iso(hoje);
-/* passeios */
-$("listaPasseios").innerHTML=PASSEIOS.map(p=>`<article class="ps"><div class="img" style="background:${p.cor}"><small>${p.dur}</small>${p.e}</div><div class="c"><h3>${p.n}</h3><p>${p.d}</p><div class="rod"><span><small>a partir de</small> <b>R$ ${p.p}</b><small>/pessoa</small></span><button class="btn btn-m btn-s" onclick="escolhe('${p.id}')">Reservar</button></div></div></article>`).join("");
+const hoje=new Date();const iso=d=>{const z=new Date(d.getTime()-d.getTimezoneOffset()*6e4);return z.toISOString().slice(0,10)};const amanha=new Date(hoje);amanha.setDate(hoje.getDate()+1);$("rData").value=iso(amanha);$("rData").min=iso(hoje);
+/* passeios + roteiro */
+let vibe="todos";const ROT=new Set();
+function rVibes(){$("vibes").innerHTML=VIBES.map(v=>`<button data-v="${v[0]}" aria-pressed="${vibe===v[0]}">${v[1]}</button>`).join("");$("vibes").querySelectorAll("button").forEach(b=>b.onclick=()=>{vibe=b.dataset.v;rVibes();rCards()})}
+function rCards(){$("trilho").innerHTML=PASSEIOS.filter(p=>vibe==="todos"||p.vibe===vibe).map(p=>`<article class="card"><div class="capa" style="background:${p.g}"><span class="em" aria-hidden="true">${p.e}</span><div class="tags">${p.tags.map(t=>`<span class="${/Mais/.test(t)?"hot":""}">${t}</span>`).join("")}</div></div><div class="c"><h3>${p.n}</h3><p>${p.d}</p><div class="info"><span>⏱ ${p.dur}</span><span>🚐 Busca no hotel</span></div><div class="rod"><span class="preco"><small>a partir de</small><b>${brl(p.p)}</b></span><button class="add" data-id="${p.id}" aria-pressed="${ROT.has(p.id)}" onclick="toggle('${p.id}')">${ROT.has(p.id)?"✓ No roteiro":"＋ Roteiro"}</button></div></div></article>`).join("")}
+function toggle(id){ROT.has(id)?ROT.delete(id):ROT.add(id);rCards();rBar();if(ROT.has(id))toast("Adicionado ao seu roteiro 🌴")}
+function totRot(){const ad=+$("rAd").value||1,cr=+$("rCr").value||0;let t=[...ROT].reduce((a,id)=>{const p=PASSEIOS.find(x=>x.id===id).p;return a+p*ad+p*cr*.5},0);const desc=ROT.size>=3?Math.round(t*.1):0;return{t,desc,f:t-desc,ad,cr}}
+function rBar(){const n=ROT.size;$("rbar").classList.toggle("on",n>0);$("rbN").textContent=n+(n===1?" passeio":" passeios");const o=totRot();$("rbT").textContent=(o.desc?"combo -10% · ":"")+brl(o.f)+" · "+o.ad+" adulto(s)"}
+function verRoteiro(){const o=totRot();const ini=new Date($("rData").value+"T12:00");const ids=[...ROT];
+ abre(`<h3>Seu roteiro em Natal 🌴</h3><p style="margin:0;color:var(--suave)">${o.ad} adulto(s)${o.cr?" + "+o.cr+" criança(s)":""} · busca no hotel todos os dias</p><ul class="tl">${ids.map((id,i)=>{const p=PASSEIOS.find(x=>x.id===id);const d=new Date(ini);d.setDate(ini.getDate()+i+1);return`<li><b>${p.e} ${p.n}</b><small>${d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"2-digit"})} · saída ${id==="city"||id==="lagoas"?"08:30":"07:30"} · ${p.dur.toLowerCase()}</small></li>`}).join("")}</ul>
+ ${o.desc?`<p style="margin:0 0 8px;font-weight:700;color:var(--ok)">🎉 Combo com 3+ passeios: ${brl(o.desc)} de desconto</p>`:`<p style="margin:0 0 8px;color:var(--suave);font-size:14px">Dica: com 3 passeios ou mais você ganha 10% de desconto no combo.</p>`}
+ <div class="total"><span>Total estimado</span><b>${brl(o.f)}</b></div>
+ <label class="f" for="rNome2" style="margin-top:12px">Seu nome</label><input class="campo" id="rNome2" value="${esc($("rNome").value)}">
+ <p style="margin:12px 0 0"><button class="btn btn-c" style="width:100%" onclick="enviaRoteiro()">Reservar roteiro pelo WhatsApp</button></p>`)}
+function enviaRoteiro(){const nome=$("rNome2").value.trim();if(!nome)return toast("Coloque seu nome 🙂");const o=totRot();const ini=new Date($("rData").value+"T12:00");
+ const m=`Olá, RN Transfer! Quero reservar este roteiro:\n${[...ROT].map((id,i)=>{const p=PASSEIOS.find(x=>x.id===id);const d=new Date(ini);d.setDate(ini.getDate()+i+1);return`• ${d.toLocaleDateString("pt-BR")} – ${p.n}`}).join("\n")}\n• ${o.ad} adulto(s)${o.cr?", "+o.cr+" criança(s)":""}\n• Hotel: ${$("rHotel").value||"a informar"}\n• Total estimado: ${brl(o.f)}${o.desc?" (combo -10%)":""}\nNome: ${nome}`;
+ abre(`<h3>Prontinho ✅</h3><p style="margin:0;color:var(--suave)">É assim que o pedido chega no WhatsApp da RN Transfer:</p><div class="zapprev">${esc(m)}</div><a class="btn btn-c" style="width:100%" target="_blank" rel="noopener" href="https://wa.me/${ZAP}?text=${encodeURIComponent(m)}">Abrir no WhatsApp</a><p style="margin:10px 0 0;text-align:center"><button class="btn btn-l btn-s" onclick="fecha();modo('pai')">Ver o painel da agência →</button></p>`)}
 $("rPasseio").innerHTML=PASSEIOS.map(p=>`<option value="${p.id}">${p.e} ${p.n}</option>`).join("");
-function escolhe(id){tipo="passeio";$("rPasseio").value=id;rTipo();calc();$("reservar").scrollIntoView({behavior:"smooth",block:"center"})}
-/* reserva */
+/* reserva rápida */
 let tipo="chegada";
 $("tipos").querySelectorAll("button").forEach(b=>b.onclick=()=>{tipo=b.dataset.v;rTipo();calc()});
-function rTipo(){$("tipos").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===tipo)));
- $("bPasseio").classList.toggle("hide",tipo!=="passeio");$("bVoo").classList.toggle("hide",tipo==="passeio");$("rVoo").parentElement.classList.toggle("hide",tipo==="passeio");
- $("lHoraVoo").textContent=tt(tipo==="saida"?"lDecola":"lPouso")}
+function rTipo(){$("tipos").querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.v===tipo)));const ps=tipo==="passeio";
+ $("bPasseio").classList.toggle("hide",!ps);$("bVoo").classList.toggle("hide",ps);$("bVooN").classList.toggle("hide",ps);$("campos").classList.toggle("ps",ps);
+ $("lHoraVoo").textContent=tt(tipo==="saida"?"lDecola":"lPouso");$("calcIc").textContent=ps?"🏝️":tipo==="saida"?"🛫":"🛬"}
 const TEMPO={"ponta negra":35,"via costeira":30,"praia do meio":30,"areia preta":30,"pipa":75,"são miguel do gostoso":95,"sao miguel do gostoso":95};
-function veic(n,m){return n<=4&&m<=3?"🚗 Sedan":n<=6&&m<=6?"🚙 SUV / Minivan":"🚐 Van executiva"}
-function hm(min){min=(min+1440)%1440;return String(Math.floor(min/60)).padStart(2,"0")+":"+String(min%60).padStart(2,"0")}
-function calc(){const ad=+$("rAd").value||0,cr=+$("rCr").value||0,ma=+$("rMalas").value||0,n=ad+cr;const hotel=$("rHotel").value.trim();const t=TEMPO[hotel.toLowerCase()]||40;
+const veic=(n,m)=>n<=4&&m<=3?"🚗 Sedan":n<=6&&m<=6?"🚙 SUV / Minivan":"🚐 Van executiva";
+const hm=min=>{min=(min+1440)%1440;return String(Math.floor(min/60)).padStart(2,"0")+":"+String(min%60).padStart(2,"0")};
+function calc(){const ad=+$("rAd").value||0,cr=+$("rCr").value||0,ma=+$("rMalas").value||0;const hotel=$("rHotel").value.trim();const t=TEMPO[hotel.toLowerCase()]||40;
  const [h,m]=($("rHoraVoo").value||"14:30").split(":").map(Number);const voo=h*60+m;let txt="";
- if(tipo==="chegada")txt=`🛬 Nosso motorista estará no desembarque às <b>${hm(voo+20)}</b>, com placa com seu nome. Acompanhamos o voo: se atrasar, a gente espera.`;
- else if(tipo==="saida")txt=`🛫 Para o voo das ${hm(voo)}, buscamos você no hotel às <b>${hm(voo-120-t)}</b> (2h de antecedência + ${t} min de trajeto${hotel?" desde "+esc(hotel):""}).`;
- else{const p=PASSEIOS.find(x=>x.id===$("rPasseio").value);txt=`🏝️ Saída do hotel às <b>${p.id==="city"?"08:30":"07:30"}</b> · ${p.dur.toLowerCase()} · valor estimado <b>R$ ${(+p.p*ad+(+p.p*cr*0.5)).toLocaleString("pt-BR")}</b> (crianças pagam meia).`}
- $("calc").innerHTML=txt+`<br>Veículo sugerido: <b>${veic(n,ma)}</b>`;
- const s=tipo==="passeio"?PASSEIOS.find(x=>x.id===$("rPasseio").value).n:tipo==="chegada"?"Transfer aeroporto → hotel":"Transfer hotel → aeroporto";
- $("resumo").innerHTML=`<div><span>Serviço</span><b>${s}</b></div><div><span>Data</span><b>${$("rData").value.split("-").reverse().join("/")}</b></div><div><span>Pessoas</span><b>${ad} adulto(s)${cr?" + "+cr+" criança(s)":""}</b></div>`;
- $("rOk").disabled=!$("rNome").value.trim()}
+ if(tipo==="chegada")txt=`Motorista no desembarque às <b>${hm(voo+20)}</b> com plaquinha com seu nome. Se o voo atrasar, a gente espera.`;
+ else if(tipo==="saida")txt=`Pro voo das ${hm(voo)}, buscamos você às <b>${hm(voo-120-t)}</b> (2h de antecedência + ${t} min de trajeto${hotel?" desde "+esc(hotel):""}).`;
+ else{const p=PASSEIOS.find(x=>x.id===$("rPasseio").value);txt=`Saída do hotel às <b>${p.id==="city"||p.id==="lagoas"?"08:30":"07:30"}</b> · ${p.dur.toLowerCase()} · estimado <b>${brl(p.p*ad+p.p*cr*.5)}</b> (criança paga meia).`}
+ $("calc").innerHTML=txt+` &nbsp;·&nbsp; Carro sugerido: <b>${veic(ad+cr,ma)}</b>`;$("rOk").disabled=!$("rNome").value.trim();rBar()}
 ["rData","rHoraVoo","rVoo","rHotel","rAd","rCr","rMalas","rNome","rPasseio"].forEach(i=>$(i).addEventListener("input",calc));
-function msgReserva(){const ad=+$("rAd").value||0,cr=+$("rCr").value||0;const c=$("calc").innerText.split("\n")[0].replace(/^\S+\s/,"");
+function msgReserva(){const ad=+$("rAd").value||0,cr=+$("rCr").value||0;const c=$("calc").innerText.split("·")[0].trim();
  const s=tipo==="passeio"?"Passeio: "+PASSEIOS.find(x=>x.id===$("rPasseio").value).n:tipo==="chegada"?"Transfer aeroporto → hotel":"Transfer hotel → aeroporto";
  return `Olá, RN Transfer! Quero reservar:\n• ${s}\n• Data: ${$("rData").value.split("-").reverse().join("/")}\n${tipo!=="passeio"?`• Voo: ${$("rVoo").value||"a informar"} (${$("rHoraVoo").value})\n`:""}• Hotel/bairro: ${$("rHotel").value||"a informar"}\n• ${ad} adulto(s)${cr?", "+cr+" criança(s)":""}, ${$("rMalas").value} mala(s)\n• ${c}\nNome: ${$("rNome").value.trim()}`}
-function reservar(){const m=msgReserva();
- const novo={id:Date.now(),dia:$("rData").value,hora:tipo==="chegada"?$("calc").querySelector("b").textContent:(tipo==="saida"?$("calc").querySelector("b").textContent:"07:30"),tipo,nome:$("rNome").value.trim(),pax:(+$("rAd").value)+(+$("rCr").value),hotel:$("rHotel").value||"A informar",voo:$("rVoo").value||"",st:"nv",mot:null,pas:tipo==="passeio"?$("rPasseio").value:null};
+function reservar(){const m=msgReserva();const b=$("calc").querySelector("b");
+ const novo={id:Date.now(),dia:$("rData").value,hora:tipo==="passeio"?"07:30":(b?b.textContent:"12:00"),tipo,nome:$("rNome").value.trim(),pax:(+$("rAd").value)+(+$("rCr").value),hotel:$("rHotel").value||"A informar",voo:$("rVoo").value||"",st:"nv",mot:null,pas:tipo==="passeio"?$("rPasseio").value:null};
  try{const a=JSON.parse(localStorage.getItem("rnt-demo")||"[]");a.push(novo);localStorage.setItem("rnt-demo",JSON.stringify(a))}catch(e){}
- abre(`<h3>Reserva pronta para enviar ✅</h3><p style="margin:0;color:var(--suave)">É essa mensagem que chega organizada no WhatsApp da RN Transfer:</p><div class="zapprev">${esc(m)}</div><a class="btn btn-d" style="width:100%" target="_blank" rel="noopener" href="https://wa.me/${ZAP}?text=${encodeURIComponent(m)}">Abrir no WhatsApp</a><p style="margin:10px 0 0;text-align:center"><button class="btn btn-l btn-s" onclick="fecha();modo('pai')">Ver como ela aparece no painel →</button></p>`)}
+ abre(`<h3>Reserva pronta ✅</h3><p style="margin:0;color:var(--suave)">É essa mensagem que chega organizada no WhatsApp da RN Transfer:</p><div class="zapprev">${esc(m)}</div><a class="btn btn-c" style="width:100%" target="_blank" rel="noopener" href="https://wa.me/${ZAP}?text=${encodeURIComponent(m)}">Abrir no WhatsApp</a><p style="margin:10px 0 0;text-align:center"><button class="btn btn-l btn-s" onclick="fecha();modo('pai')">Ver como aparece no painel →</button></p>`)}
 /* modal */
 function abre(h){$("mC").innerHTML=`<button class="x" onclick="fecha()" aria-label="Fechar">✕</button>`+h;$("fm").classList.add("on")}
 function fecha(){$("fm").classList.remove("on")}
 $("fm").addEventListener("click",e=>{if(e.target.id==="fm")fecha()});document.addEventListener("keydown",e=>{if(e.key==="Escape")fecha()});
-
 /* painel */
 const MOTS=[{n:"Carlos",v:"Sedan · Corolla"},{n:"Edilson",v:"Minivan · Spin"},{n:"Juliana",v:"SUV · Compass"},{n:"Marcos",v:"Van · Sprinter 15 lug."}];
 function base(){const d=i=>{const x=new Date(hoje);x.setDate(hoje.getDate()+i);return iso(x)};return[
@@ -308,27 +390,25 @@ function grava(){try{localStorage.setItem("rnt-painel",JSON.stringify(R))}catch(
 function importa(){try{const a=JSON.parse(localStorage.getItem("rnt-demo")||"[]");if(a.length){R.push(...a);localStorage.setItem("rnt-demo","[]");grava()}}catch(e){}}
 let diaSel=iso(hoje);
 const ST={nv:["nv","Nova · confirmar"],cf:["cf","Confirmada"],rt:["rt","Motorista a caminho"],fm:["fm","Concluída"]};
-const ROT={chegada:"🛬 Aeroporto → ",saida:"🛫 Hotel → Aeroporto",passeio:"🏝️ "};
 function rPainel(){importa();
  const dias=[...new Set([iso(hoje),...R.map(r=>r.dia)])].sort().slice(0,7);
- $("dias").innerHTML=dias.map(d=>{const dt=new Date(d+"T12:00");const l=d===iso(hoje)?"Hoje":dt.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit"});const n=R.filter(r=>r.dia===d).length;return`<button data-d="${d}" aria-pressed="${d===diaSel}">${l} · ${n}</button>`}).join("");
+ $("dias").innerHTML=dias.map(d=>{const dt=new Date(d+"T12:00");const l=d===iso(hoje)?"Hoje":dt.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit"});return`<button data-d="${d}" aria-pressed="${d===diaSel}">${l} · ${R.filter(r=>r.dia===d).length}</button>`}).join("");
  $("dias").querySelectorAll("button").forEach(b=>b.onclick=()=>{diaSel=b.dataset.d;rPainel()});
  const L2=R.filter(r=>r.dia===diaSel).sort((a,b)=>a.hora.localeCompare(b.hora));
- $("agenda").innerHTML=L2.length?L2.map(r=>{const s=ST[r.st];const rota=r.tipo==="passeio"?ROT.passeio+PASSEIOS.find(p=>p.id===r.pas).n:r.tipo==="chegada"?ROT.chegada+esc(r.hotel):ROT.saida;
+ $("agenda").innerHTML=L2.length?L2.map(r=>{const s=ST[r.st];const p=r.pas&&PASSEIOS.find(x=>x.id===r.pas);const rota=r.tipo==="passeio"?(p?p.e+" "+p.n:"🏝️ Passeio"):r.tipo==="chegada"?"🛬 Aeroporto → "+esc(r.hotel):"🛫 Hotel → Aeroporto";
   return`<div class="item"><div class="hora">${r.hora}</div><div><h4>${rota}</h4><div class="meta">${esc(r.nome)} · ${r.pax} pax${r.voo?" · voo "+esc(r.voo):""}${r.tipo!=="chegada"?" · "+esc(r.hotel):""}${r.mot?" · 🚐 "+r.mot:""}</div><span class="st ${s[0]}">${s[1]}</span></div>
-  <div class="acoes">${r.st==="nv"?`<select class="campo" style="min-height:36px;padding:5px 8px;width:auto" onchange="escala(${r.id},this.value)" aria-label="Escalar motorista"><option value="">Escalar motorista</option>${MOTS.map(m=>`<option>${m.n}</option>`).join("")}</select>`:""}${r.st==="cf"?`<button class="btn btn-l btn-s" onclick="avisa(${r.id})">Avisar cliente</button><button class="btn btn-m btn-s" onclick="muda(${r.id},'rt')">Saiu p/ busca</button>`:""}${r.st==="rt"?`<button class="btn btn-m btn-s" onclick="muda(${r.id},'fm')">Concluir</button>`:""}</div></div>`}).join(""):`<div class="vazio">Nenhum serviço neste dia.</div>`;
+  <div class="acoes">${r.st==="nv"?`<select class="campo" style="min-height:38px;padding:5px 10px;width:auto" onchange="escala(${r.id},this.value)" aria-label="Escalar motorista"><option value="">Escalar motorista</option>${MOTS.map(m=>`<option>${m.n}</option>`).join("")}</select>`:""}${r.st==="cf"?`<button class="btn btn-l btn-s" onclick="avisa(${r.id})">Avisar cliente</button><button class="btn btn-t btn-s" onclick="muda(${r.id},'rt')">Saiu p/ busca</button>`:""}${r.st==="rt"?`<button class="btn btn-t btn-s" onclick="muda(${r.id},'fm')">Concluir</button>`:""}</div></div>`}).join(""):`<div class="vazio">Nenhum serviço neste dia.</div>`;
  const H=R.filter(r=>r.dia===iso(hoje));
- $("kpis").innerHTML=`<div class="kpi"><span>Serviços hoje</span><strong>${H.length}</strong></div><div class="kpi" style="--c:var(--duna)"><span>A confirmar</span><strong>${R.filter(r=>r.st==="nv").length}</strong></div><div class="kpi" style="--c:var(--ok)"><span>Passageiros hoje</span><strong>${H.reduce((a,r)=>a+r.pax,0)}</strong></div><div class="kpi" style="--c:#7C5CD6"><span>Reservas pelo site (mês)</span><strong>${38+R.filter(r=>r.id>1e6).length}</strong></div>`;
+ $("kpis").innerHTML=`<div class="kpi"><span>Serviços hoje</span><strong>${H.length}</strong></div><div class="kpi"><span>A confirmar</span><strong>${R.filter(r=>r.st==="nv").length}</strong></div><div class="kpi"><span>Passageiros hoje</span><strong>${H.reduce((a,r)=>a+r.pax,0)}</strong></div><div class="kpi"><span>Reservas pelo site (mês)</span><strong>${38+R.filter(r=>r.id>1e6).length}</strong></div>`;
  $("mots").innerHTML=MOTS.map(m=>{const n=H.filter(r=>r.mot===m.n).length;return`<div class="mot"><div><b>${m.n}</b><small>${m.v}</small></div><span class="st ${n?"cf":"fm"}">${n?n+" serviço(s) hoje":"Livre hoje"}</span></div>`}).join("");
  const V=H.filter(r=>r.voo);$("voos").innerHTML=V.length?V.map((r,i)=>`<div class="mot"><div><b>${esc(r.voo)}</b><small>${r.tipo==="chegada"?"Pouso":"Decolagem"} · ${esc(r.nome)}</small></div><span class="st ${i===2?"nv":"cf"}">${i===2?"Atrasado 25 min":"No horário"}</span></div>`).join(""):`<div class="vazio">Sem voos hoje.</div>`}
 function escala(id,m){if(!m)return;const r=R.find(x=>x.id===id);r.mot=m;r.st="cf";grava();rPainel();toast(`Reserva confirmada com ${m} ✅`)}
 function muda(id,st){R.find(x=>x.id===id).st=st;grava();rPainel();toast(st==="rt"?"Cliente avisado: motorista a caminho 🚐":"Serviço concluído. Pedido de avaliação enviado ⭐")}
 function avisa(id){const r=R.find(x=>x.id===id);const m=`Olá, ${r.nome.split(" ")[0]}! Sua reserva com a RN Transfer está confirmada ✅\n🗓️ ${r.dia.split("-").reverse().join("/")} às ${r.hora}\n🚐 Motorista: ${r.mot} (${MOTS.find(x=>x.n===r.mot).v})\n${r.tipo==="chegada"?"Estaremos no desembarque com uma placa com seu nome.":"Esteja na recepção do hotel 5 minutos antes."}\nQualquer coisa, é só chamar por aqui!`;
- abre(`<h3>Mensagem pronta para o cliente</h3><div class="zapprev">${esc(m)}</div><p class="nota" style="color:var(--suave);font-size:13px;margin:0 0 10px">Na amostra, o envio é simulado. No sistema real, sai direto do seu WhatsApp.</p><button class="btn btn-d" style="width:100%" onclick="fecha();toast('Mensagem enviada (simulação) ✅')">Enviar</button>`)}
-/* modo */
-function modo(m){document.querySelectorAll(".modo button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));$("v-cli").classList.toggle("on",m==="cli");$("v-pai").classList.toggle("on",m==="pai");if(m==="pai")rPainel();window.scrollTo(0,0)}
+ abre(`<h3>Mensagem pronta pro cliente</h3><div class="zapprev">${esc(m)}</div><p style="color:var(--suave);font-size:13px;margin:0 0 10px">Na amostra, o envio é simulado. No sistema real, sai direto do seu WhatsApp.</p><button class="btn btn-c" style="width:100%" onclick="fecha();toast('Mensagem enviada (simulação) ✅')">Enviar</button>`)}
+function modo(m){document.querySelectorAll(".modo button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));$("v-cli").classList.toggle("on",m==="cli");$("v-pai").classList.toggle("on",m==="pai");if(m==="pai")rPainel();window.scrollTo(0,0);hdrFix()}
 document.querySelectorAll(".modo button").forEach(b=>b.onclick=()=>modo(b.dataset.m));
-rTipo();calc();
+rVibes();rCards();rTipo();calc();hdrFix();
 if(location.hash==="#painel")modo("pai");
 </script>
 </body>
