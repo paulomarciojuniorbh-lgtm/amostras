@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Top Sorriso · Clínica Odontológica em São Luís</title>
+<meta name="description" content="Top Sorriso, clínica odontológica no Centro Empresarial Shopping da Ilha, em São Luís. Limpeza, clareamento, ortodontia, implante e mais. Agende online em 1 minuto.">
+<meta name="theme-color" content="#0A2E4F">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--azul:#0A2E4F;--azul2:#14456F;--menta:#2FD3BC;--menta2:#14B39D;--menta-cl:#E2FAF6;--pessego:#FF8A65;--pessego-cl:#FFEDE6;--sol:#FFD166;--sol-cl:#FFF6DC;--lilas:#8B7CF6;--lilas-cl:#EFECFF;--fundo:#F6FAFC;--tinta:#0E2236;--suave:#5E7183;--linha:#E3EBF1;--raio:22px;--sombra:0 14px 36px rgba(10,46,79,.10)}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--fundo);color:var(--tinta);line-height:1.55;font-size:15.5px;overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}
+h1,h2,h3,h4{font-family:Sora,"DM Sans",sans-serif;letter-spacing:-.4px;line-height:1.12}
+.wrap{max-width:1140px;margin:0 auto;padding:0 16px}
+.demo{background:var(--azul);color:#BDEFE7;font-size:12.5px;font-weight:600;text-align:center;padding:6px 12px}
+header.top{position:sticky;top:0;z-index:30;background:rgba(246,250,252,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+header.top .wrap{display:flex;align-items:center;gap:12px;min-height:66px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--tinta)}
+.logo .mk{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--menta),var(--azul2));display:grid;place-items:center}
+.logo b{font-family:Sora;font-size:19px;font-weight:800;display:block;line-height:1}
+.logo small{font-size:12px;color:var(--suave);font-weight:600}
+nav.menu{display:flex;gap:18px;margin-left:auto}
+nav.menu a{text-decoration:none;color:var(--suave);font-weight:600;font-size:14.5px}
+nav.menu a:hover{color:var(--azul)}
+.modo{display:flex;background:#EAF1F5;border-radius:999px;padding:3px}
+.modo button{border:0;background:transparent;border-radius:999px;padding:7px 13px;font-weight:700;font-size:13px;color:var(--suave)}
+.modo button[aria-pressed="true"]{background:var(--azul);color:#fff}
+.view{display:none}.view.on{display:block}
+.btn{border:0;border-radius:999px;padding:13px 22px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;min-height:48px;font-family:Sora;font-size:15px;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-m{background:linear-gradient(135deg,#3BE3CB,#14B39D);color:#fff;box-shadow:0 10px 24px rgba(20,179,157,.32)}
+.btn-a{background:var(--azul);color:#fff}
+.btn-l{background:#fff;border:1.5px solid var(--linha);color:var(--tinta)}
+.btn-s{padding:8px 14px;min-height:38px;font-size:13.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+/* hero */
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,#CFF7F0 0%,rgba(207,247,240,0) 70%);right:-160px;top:-180px}
+.hero:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,#FFE6DC 0%,rgba(255,230,220,0) 70%);left:-160px;bottom:-200px}
+.hero-g{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:30px;align-items:center;padding:44px 0 40px}
+.chip-top{display:inline-flex;gap:8px;align-items:center;background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;box-shadow:var(--sombra)}
+.chip-top b{color:#E8A317}
+.hero h1{font-size:clamp(36px,6vw,64px);margin:16px 0 14px;font-weight:800}
+.hero h1 .up{display:inline-block;background:linear-gradient(90deg,var(--menta2),var(--azul2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .seta{display:inline-block;animation:sobe 1.6s ease-in-out infinite}
+@keyframes sobe{50%{transform:translateY(-8px)}}
+.hero p.lead{font-size:18px;color:var(--suave);margin:0 0 22px;max-width:540px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.mini-info{display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;font-size:14px;color:var(--suave);font-weight:600}
+/* cartao sorriso */
+.cartao{background:#fff;border-radius:30px;box-shadow:0 24px 60px rgba(10,46,79,.14);padding:22px;position:relative}
+.cartao h3{margin:0 0 4px;font-size:18px}
+.cartao p{margin:0 0 12px;color:var(--suave);font-size:14px}
+.sorriso{width:100%;height:auto;display:block;border-radius:20px;background:linear-gradient(180deg,#FFE3D8,#FFD2C2)}
+.tons{display:flex;justify-content:space-between;font-size:12px;font-weight:700;color:var(--suave);margin-top:10px}
+input[type=range]{width:100%;accent-color:var(--menta2)}
+.cartao .tag{position:absolute;right:16px;top:-14px;background:var(--sol);color:var(--azul);font-weight:800;font-size:12px;border-radius:999px;padding:5px 11px;font-family:Sora}
+/* momentos */
+.secao{padding:56px 0 6px}
+.kicker{font-family:Sora;font-weight:700;color:var(--menta2);font-size:13px;text-transform:uppercase;letter-spacing:1.2px}
+.secao h2{font-size:clamp(28px,4vw,40px);margin:6px 0 6px;font-weight:800}
+.secao .sub{color:var(--suave);margin:0 0 20px;font-size:16px;max-width:640px}
+.momentos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mo{border:0;border-radius:22px;padding:16px 14px;text-align:left;display:flex;flex-direction:column;gap:6px;min-height:118px;transition:transform .15s,box-shadow .15s;font-family:"DM Sans"}
+.mo:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(10,46,79,.1)}
+.mo .em{font-size:30px;line-height:1}
+.mo b{font-family:Sora;font-size:15.5px}
+.mo small{color:#4C5E70;font-weight:600;font-size:12.5px}
+.mo[aria-pressed="true"]{outline:3px solid var(--azul);outline-offset:2px}
+.c0{background:var(--pessego-cl)}.c1{background:var(--menta-cl)}.c2{background:var(--sol-cl)}.c3{background:var(--lilas-cl)}
+.resp{margin-top:16px;background:#fff;border-radius:26px;box-shadow:var(--sombra);padding:20px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:18px;align-items:center}
+.resp .big{width:76px;height:76px;border-radius:22px;display:grid;place-items:center;font-size:40px}
+.resp h3{margin:0 0 4px;font-size:21px}
+.resp p{margin:0;color:var(--suave)}
+.resp .fatos{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.resp .fatos span{background:var(--fundo);border:1px solid var(--linha);border-radius:999px;padding:4px 10px;font-size:12.5px;font-weight:700}
+/* procedimentos */
+.procs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.pc{background:#fff;border-radius:22px;padding:18px;box-shadow:var(--sombra);display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.pc:before{content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border-radius:50%;background:var(--bg,var(--menta-cl))}
+.pc .em{font-size:30px;position:relative}
+.pc h3{margin:6px 0 0;font-size:17px;position:relative}
+.pc p{margin:0;color:var(--suave);font-size:14px;flex:1}
+.pc button{align-self:flex-start;margin-top:8px}
+/* equipe */
+.equipe{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.eq{background:#fff;border-radius:24px;padding:20px;box-shadow:var(--sombra);text-align:center}
+.eq .av{width:86px;height:86px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-size:34px;border:4px dashed var(--linha)}
+.eq h3{margin:0;font-size:17px}
+.eq p{margin:4px 0 0;color:var(--suave);font-size:14px}
+.eq small{display:inline-block;margin-top:8px;background:var(--sol-cl);color:#8A6200;font-weight:700;border-radius:999px;padding:3px 10px;font-size:12px}
+/* agenda */
+.agendar{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.caixa{background:#fff;border-radius:26px;padding:20px;box-shadow:var(--sombra)}
+.caixa h3{margin:0 0 6px;font-size:20px}
+label.f{display:block;font-size:12.5px;font-weight:700;margin:12px 0 6px;color:#3F5366;text-transform:uppercase;letter-spacing:.3px}
+.campo{width:100%;border:1.5px solid var(--linha);border-radius:14px;padding:10px 12px;background:#FAFCFD;min-height:46px}
+.campo:focus{outline:none;border-color:var(--menta2);box-shadow:0 0 0 4px var(--menta-cl);background:#fff}
+.dias,.horas{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+.dias button{flex:0 0 auto;border:1.5px solid var(--linha);background:#fff;border-radius:16px;padding:8px 12px;font-weight:700;display:flex;flex-direction:column;align-items:center;min-width:62px;line-height:1.2}
+.dias button small{font-weight:600;color:var(--suave);font-size:11.5px}
+.dias button[aria-pressed="true"],.horas button[aria-pressed="true"]{background:var(--azul);border-color:var(--azul);color:#fff}
+.dias button[aria-pressed="true"] small{color:#BFD3E6}
+.horas{flex-wrap:wrap;overflow:visible}
+.horas button{border:1.5px solid var(--linha);background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:14px}
+.horas button:disabled{text-decoration:line-through;opacity:.4;cursor:not-allowed}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.resumo{background:var(--menta-cl);border-radius:18px;padding:14px;font-size:14.5px}
+.resumo div{display:flex;justify-content:space-between;gap:10px;padding:3px 0}
+.resumo span{color:#3F5A57}
+.lembra{display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;color:var(--suave)}
+.lembra input{width:18px;height:18px;margin-top:2px;accent-color:var(--menta2);flex:none}
+/* faq + local */
+.faq details{background:#fff;border-radius:18px;padding:0 18px;box-shadow:0 4px 14px rgba(10,46,79,.05);margin-bottom:10px}
+.faq summary{padding:16px 0;font-weight:700;font-family:Sora;font-size:15.5px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--menta2);font-size:22px;line-height:1}
+.faq details[open] summary:after{content:"–"}
+.faq p{margin:0 0 16px;color:var(--suave)}
+.local{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.local .caixa p{margin:6px 0;color:var(--suave)}
+.local .caixa b{color:var(--tinta)}
+.horario{width:100%;border-collapse:collapse;font-size:14px}
+.horario td{padding:6px 0;border-bottom:1px solid var(--linha)}
+.horario td:last-child{text-align:right;font-weight:700}
+footer{padding:36px 0 100px;color:var(--suave);font-size:13px;text-align:center}
+.zap{position:fixed;right:16px;bottom:16px;z-index:40;background:#25D366;color:#fff;border-radius:50%;width:58px;height:58px;display:grid;place-items:center;box-shadow:0 10px 26px rgba(37,211,102,.4)}
+/* painel */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:18px 0}
+.kpi{border-radius:20px;padding:14px 16px}
+.kpi:nth-child(1){background:var(--menta-cl)}.kpi:nth-child(2){background:var(--sol-cl)}.kpi:nth-child(3){background:var(--pessego-cl)}.kpi:nth-child(4){background:var(--lilas-cl)}
+.kpi span{display:block;color:#3F5366;font-size:13px;font-weight:700}
+.kpi strong{font-family:Sora;font-size:30px;font-weight:800}
+.pg{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;align-items:start;padding-bottom:60px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.col h4{margin:0 0 8px;font-size:13.5px;color:var(--suave);text-transform:uppercase;letter-spacing:.3px}
+.slot{background:var(--fundo);border-left:4px solid var(--menta);border-radius:12px;padding:8px 10px;margin-bottom:8px;font-size:13.5px}
+.slot b{display:block;font-family:Sora}
+.slot.nv{border-color:var(--sol);background:var(--sol-cl)}
+.slot .a{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.item{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--linha);font-size:14px}
+.item:last-child{border-bottom:0}
+.item small{color:var(--suave);display:block}
+.estrelas{color:#E8A317;font-weight:800}
+.fundo-m{position:fixed;inset:0;background:rgba(10,46,79,.45);backdrop-filter:blur(3px);z-index:60;display:none;align-items:flex-end;justify-content:center}
+.fundo-m.on{display:flex}
+.modal{background:#fff;width:100%;max-width:520px;max-height:92vh;overflow:auto;border-radius:26px 26px 0 0;padding:22px 18px 24px;position:relative}
+.modal .x{position:absolute;right:12px;top:12px;border:0;background:#EEF3F6;width:38px;height:38px;border-radius:50%;font-weight:800}
+.modal h3{margin:0 0 6px;font-size:22px;padding-right:44px}
+.zapprev{background:#E7F8EE;border-radius:16px;padding:12px;font-size:14px;white-space:pre-wrap;margin:10px 0;border:1px solid #BFEACE}
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-30px);background:var(--azul);color:#fff;padding:11px 16px;border-radius:14px;font-weight:600;font-size:14px;opacity:0;transition:.25s;z-index:80;pointer-events:none;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.hide{display:none!important}
+@media (min-width:700px){.fundo-m{align-items:center;padding:20px}.modal{border-radius:26px}}
+@media (max-width:980px){nav.menu{display:none}.hero-g,.agendar,.local,.pg{grid-template-columns:1fr}.momentos,.procs{grid-template-columns:repeat(2,minmax(0,1fr))}.equipe{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.modo{margin-left:auto}}
+@media (max-width:560px){.resp{grid-template-columns:1fr;text-align:left}.resp .big{width:60px;height:60px;font-size:32px}.cols{grid-template-columns:1fr}.hero-g{padding-top:26px}.logo small{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:3px solid var(--sol);outline-offset:2px}
+</style>
+</head>
+<body>
+<div class="demo">Amostra feita pela Hélice para a Top Sorriso · agenda e pacientes de exemplo</div>
+<header class="top"><div class="wrap">
+  <a class="logo" href="#" onclick="modo('site');return false">
+    <span class="mk"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3.5c-2.6 0-4 2-4 4.6 0 2.3 1 3.7 1.6 6 .6 2.4.9 6.4 2.6 6.4 1.6 0 1.6-3.6 2.4-5.4.5-1 1.2-1 1.7-1s1.4 0 1.9 1c.8 1.8.8 5.4 2.4 5.4 1.7 0 2-4 2.6-6.4.6-2.3 1.6-3.7 1.6-6 0-2.6-1.4-4.6-4-4.6-1.8 0-2.7 1-4.3 1S8.8 3.5 7 3.5Z" fill="#fff"/><path d="M8.5 9.5c1 1.2 2.2 1.8 3.5 1.8s2.5-.6 3.5-1.8" stroke="#14B39D" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+    <span><b>Top Sorriso</b><small>Clínica Odontológica · São Luís</small></span>
+  </a>
+  <nav class="menu" aria-label="Seções"><a href="#momento">Para você</a><a href="#tratamentos">Tratamentos</a><a href="#equipe">Equipe</a><a href="#agendar">Agendar</a><a href="#onde">Onde estamos</a></nav>
+  <div class="modo" role="group" aria-label="Ver como"><button data-m="site" aria-pressed="true">Site</button><button data-m="painel" aria-pressed="false">Painel</button></div>
+</div></header>
+
+<main id="v-site" class="view on">
+  <section class="hero"><div class="wrap hero-g">
+    <div>
+      <span class="chip-top"><b>★ 4,7</b> no Google · 14 avaliações</span>
+      <h1>Seu sorriso <span style="white-space:nowrap"><span class="up">no topo</span> <span class="seta" aria-hidden="true">↑</span></span></h1>
+      <p class="lead">Da limpeza ao implante, com três especialistas num só lugar, no Centro Empresarial Shopping da Ilha. Escolha o que você precisa e agende em 1 minuto.</p>
+      <div class="ctas"><a class="btn btn-m" href="#agendar">Agendar consulta</a><a class="btn btn-l" href="#momento">Me ajuda a escolher</a></div>
+      <div class="mini-info"><span>📍 Cohama, Shopping da Ilha</span><span>🕗 Seg a sex, 8h às 17h</span><span>🦷 8 especialidades</span></div>
+    </div>
+    <div class="cartao">
+      <span class="tag">Experimente ✨</span>
+      <h3>Simulador de clareamento</h3>
+      <p>Arraste e veja como o tom do sorriso pode mudar.</p>
+      <svg class="sorriso" viewBox="0 0 320 180" role="img" aria-label="Ilustração de um sorriso com a cor dos dentes mudando">
+        <path d="M30 70 Q160 190 290 70 Q160 120 30 70Z" fill="#B23B4B"/>
+        <path d="M44 74 Q160 112 276 74 L270 92 Q160 128 50 92Z" fill="#E86A7A" opacity=".35"/>
+        <g id="dentes" fill="#E9D3A6" stroke="#C9AE80" stroke-width="1.5">
+          <rect x="58" y="76" width="30" height="34" rx="9"/><rect x="90" y="80" width="34" height="38" rx="10"/><rect x="126" y="82" width="34" height="40" rx="10"/><rect x="162" y="82" width="34" height="40" rx="10"/><rect x="198" y="80" width="34" height="38" rx="10"/><rect x="234" y="76" width="30" height="34" rx="9"/>
+        </g>
+        <path d="M30 70 Q160 190 290 70" fill="none" stroke="#7E2433" stroke-width="7" stroke-linecap="round"/>
+        <path d="M30 70 Q160 120 290 70" fill="none" stroke="#7E2433" stroke-width="7" stroke-linecap="round"/>
+      </svg>
+      <input type="range" min="0" max="5" value="0" id="tom" aria-label="Tom do dente">
+      <div class="tons"><span>Antes</span><span id="tomTxt">Tom A3</span><span>Depois</span></div>
+      <p style="margin:10px 0 0;font-size:12.5px">Simulação ilustrativa. O resultado real depende da avaliação.</p>
+    </div>
+  </div></section>
+
+  <div class="wrap">
+    <section class="secao" id="momento">
+      <span class="kicker">Para você</span>
+      <h2>Qual é o seu momento?</h2>
+      <p class="sub">Toque no que você está sentindo ou quer melhorar. A gente explica o tratamento e já te leva pro agendamento.</p>
+      <div class="momentos" id="momentos"></div>
+      <div class="resp hide" id="resp"></div>
+    </section>
+
+    <section class="secao" id="tratamentos">
+      <span class="kicker">Tratamentos</span>
+      <h2>Tudo pro seu sorriso, num lugar só</h2>
+      <p class="sub">Explicado sem "dentistês", do jeito que a gente conversa no consultório.</p>
+      <div class="procs" id="procs"></div>
+    </section>
+
+    <section class="secao" id="equipe">
+      <span class="kicker">Equipe</span>
+      <h2>Três especialistas, um só cuidado</h2>
+      <p class="sub">Cada caso com quem mais entende do assunto.</p>
+      <div class="equipe">
+        <div class="eq"><div class="av" style="background:var(--menta-cl)">👩‍⚕️</div><h3>Especialista 1</h3><p>Clínica geral, estética e clareamento</p><small>Foto e nome a confirmar</small></div>
+        <div class="eq"><div class="av" style="background:var(--lilas-cl)">🧑‍⚕️</div><h3>Especialista 2</h3><p>Ortodontia e alinhamento</p><small>Foto e nome a confirmar</small></div>
+        <div class="eq"><div class="av" style="background:var(--pessego-cl)">👨‍⚕️</div><h3>Especialista 3</h3><p>Implante, canal e periodontia</p><small>Foto e nome a confirmar</small></div>
+      </div>
+    </section>
+
+    <section class="secao" id="agendar">
+      <span class="kicker">Agendamento</span>
+      <h2>Escolha o dia e o horário</h2>
+      <p class="sub">Os horários livres aparecem na hora. A confirmação chega no seu WhatsApp.</p>
+      <div class="agendar">
+        <div class="caixa">
+          <label class="f" for="aProc">O que você precisa?</label>
+          <select class="campo" id="aProc"></select>
+          <label class="f">Dia</label><div class="dias" id="aDias"></div>
+          <label class="f">Horário</label><div class="horas" id="aHoras"></div>
+        </div>
+        <div class="caixa">
+          <h3>Seus dados</h3>
+          <div class="g2">
+            <div><label class="f" for="aNome">Nome</label><input class="campo" id="aNome" autocomplete="name"></div>
+            <div><label class="f" for="aTel">WhatsApp</label><input class="campo" id="aTel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000"></div>
+          </div>
+          <label class="f">É sua primeira vez aqui?</label>
+          <div class="horas" id="aPrim"><button data-v="sim" aria-pressed="true">Sim</button><button data-v="nao" aria-pressed="false">Já sou paciente</button></div>
+          <div class="resumo" id="aRes" style="margin-top:14px"></div>
+          <label class="lembra"><input type="checkbox" id="aLembra" checked>Quero receber um lembrete no dia anterior e outro quando chegar a hora da próxima limpeza.</label>
+          <p style="margin:14px 0 0"><button class="btn btn-m" style="width:100%" id="aOk" onclick="agendar()">Confirmar pelo WhatsApp</button></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao faq">
+      <span class="kicker">Dúvidas</span>
+      <h2>Perguntas que todo mundo faz</h2>
+      <details><summary>Clareamento estraga o dente?</summary><p>Feito com avaliação e acompanhamento do dentista, não. Pode dar uma sensibilidade passageira, e por isso a gente avalia antes e indica o método certo pra você.</p></details>
+      <details><summary>Tratamento de canal dói?</summary><p>Hoje, com anestesia e técnica atual, o procedimento costuma ser bem tranquilo. A dor que a pessoa sente geralmente vem antes, da inflamação, e o canal é justamente o que resolve.</p></details>
+      <details><summary>Quanto tempo dura um implante?</summary><p>Com boa higiene e consultas de rotina, o implante pode durar muitos anos. Na avaliação o especialista explica cada etapa e o prazo do seu caso.</p></details>
+      <details><summary>De quanto em quanto tempo devo fazer limpeza?</summary><p>Em geral, a cada 6 meses. Se você marcar a opção de lembrete, a clínica te avisa quando chegar a hora.</p></details>
+    </section>
+
+    <section class="secao" id="onde">
+      <span class="kicker">Onde estamos</span>
+      <h2>Fácil de chegar, com estacionamento do shopping</h2>
+      <div class="local">
+        <div class="caixa"><h3>📍 Endereço</h3><p><b>Centro Empresarial Shopping da Ilha</b><br>Av. Daniel de La Touche, 987, Torre 01, sala 313<br>Cohama, São Luís (MA)</p><p><a class="btn btn-l btn-s" href="https://maps.google.com/?cid=9329995610281253751" target="_blank" rel="noopener">Abrir no Google Maps</a></p></div>
+        <div class="caixa"><h3>🕗 Horário</h3><table class="horario"><tr><td>Segunda a sexta</td><td>8h às 12h · 14h às 17h</td></tr><tr><td>Sábado e domingo</td><td>Fechado</td></tr></table><p style="margin-top:12px">📞 <b>(98) 98707-4597</b></p></div>
+      </div>
+    </section>
+  </div>
+  <footer><div class="wrap">Top Sorriso · Clínica Odontológica · São Luís (MA)<br>Amostra criada pela Hélice Sites &amp; Sistemas</div></footer>
+  <a class="zap" href="https://wa.me/5598987074597" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91A9.85 9.85 0 0 0 12.04 2Zm5.8 14.03c-.25.69-1.44 1.33-1.98 1.38-.51.05-1 .24-3.36-.7-2.84-1.12-4.65-4.03-4.79-4.22-.14-.19-1.14-1.52-1.14-2.9 0-1.38.72-2.06.98-2.34.25-.28.55-.35.74-.35l.53.01c.17.01.4-.06.62.48.24.57.8 1.95.87 2.09.07.14.12.31.02.5-.09.19-.14.31-.28.47-.14.17-.3.37-.42.5-.14.14-.29.29-.12.57.17.28.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.29 1.41.28.14.45.12.61-.07.17-.19.71-.83.9-1.11.19-.28.38-.24.64-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.69-.18 1.38Z"/></svg></a>
+</main>
+
+<section id="v-painel" class="view"><div class="wrap">
+  <div class="secao" style="padding-top:30px;padding-bottom:0"><h2 style="margin:0">Painel da clínica</h2><p class="sub" style="margin:4px 0 0">Agenda dos 3 especialistas, confirmações e retornos, tudo num lugar só.</p></div>
+  <div class="kpis" id="kpis"></div>
+  <div class="pg">
+    <div class="caixa"><h3>🗓️ Agenda de hoje</h3><p style="margin:0 0 12px;color:var(--suave);font-size:14px">Amarelo = pedido novo do site, aguardando confirmação.</p><div class="cols" id="cols"></div></div>
+    <div>
+      <div class="caixa" style="margin-bottom:16px"><h3>🔁 Retornos a lembrar</h3><p style="margin:0 0 6px;color:var(--suave);font-size:14px">Pacientes com limpeza vencendo. Um toque e o lembrete sai no WhatsApp.</p><div id="retornos"></div></div>
+      <div class="caixa"><h3>⭐ Google</h3><p style="margin:0 0 6px;color:var(--suave);font-size:14px">Depois do atendimento, peça a avaliação. Mais avaliações = mais gente achando a clínica.</p><div id="google"></div></div>
+    </div>
+  </div>
+</div></section>
+
+<div class="fundo-m" id="fm" role="dialog" aria-modal="true"><div class="modal" id="mC"></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const ZAP="5598987074597";
+const PROC=[
+ {id:"limpeza",e:"🪥",n:"Limpeza",d:"Remove tártaro e placa, deixa a boca saudável e o hálito em dia.",dur:"30 a 40 min",freq:"A cada 6 meses",bg:"var(--menta-cl)",esp:0},
+ {id:"restauracao",e:"🧩",n:"Restauração",d:"Trata a cárie e devolve a forma do dente com resina da mesma cor.",dur:"30 a 60 min",freq:"Sessão única na maioria dos casos",bg:"var(--sol-cl)",esp:0},
+ {id:"clareamento",e:"✨",n:"Clareamento",d:"Dentes alguns tons mais claros, no consultório ou com moldeira em casa.",dur:"Algumas sessões",freq:"Avaliação antes de começar",bg:"var(--lilas-cl)",esp:0},
+ {id:"ortodontia",e:"😁",n:"Ortodontia",d:"Aparelho fixo ou alinhadores pra deixar os dentes no lugar certo.",dur:"Manutenção mensal",freq:"Tratamento de médio prazo",bg:"var(--pessego-cl)",esp:1},
+ {id:"canal",e:"🔬",n:"Tratamento de canal",d:"Endodontia: trata a raiz inflamada e acaba com aquela dor latejante.",dur:"1 a 3 sessões",freq:"Indicado após avaliação",bg:"var(--menta-cl)",esp:2},
+ {id:"exodontia",e:"🦷",n:"Extração (siso e outros)",d:"Exodontia com segurança, anestesia e orientação de pós-operatório.",dur:"30 a 60 min",freq:"Com raio-x antes",bg:"var(--sol-cl)",esp:2},
+ {id:"implante",e:"🔩",n:"Implante",d:"Repõe o dente perdido com uma raiz de titânio e coroa fixa.",dur:"Em etapas",freq:"Planejamento com exames",bg:"var(--lilas-cl)",esp:2},
+ {id:"periodontia",e:"🌿",n:"Periodontia",d:"Cuida da gengiva: sangramento, retração e mau hálito persistente.",dur:"Sessões de raspagem",freq:"Acompanhamento periódico",bg:"var(--pessego-cl)",esp:2}
+];
+const MOM=[
+ {e:"😣",t:"Tô com dor de dente",s:"Latejando, pior à noite",p:"canal",c:0,msg:"Dor forte e latejante costuma ser sinal de inflamação na polpa do dente. O primeiro passo é uma avaliação rápida, e se for o caso, o tratamento de canal resolve a dor."},
+ {e:"✨",t:"Quero dentes mais brancos",s:"Pra foto, pro casamento…",p:"clareamento",c:2,msg:"O clareamento deixa os dentes alguns tons mais claros. Antes, a gente faz uma avaliação e uma limpeza pra garantir o melhor resultado."},
+ {e:"😬",t:"Quero alinhar os dentes",s:"Tortos ou separados",p:"ortodontia",c:3,msg:"Aparelho fixo ou alinhador: a ortodontista avalia sua mordida e mostra as opções, com prazo e manutenção de cada uma."},
+ {e:"🕳️",t:"Perdi um dente",s:"Ou vou precisar tirar",p:"implante",c:1,msg:"O implante repõe o dente com uma raiz fixa, sem dentadura. Com exames e planejamento, a gente mostra cada etapa do seu caso."},
+ {e:"🩸",t:"Minha gengiva sangra",s:"Ao escovar ou passar fio",p:"periodontia",c:0,msg:"Gengiva sangrando é sinal de inflamação. Dá pra tratar, e quanto antes, melhor: a periodontia cuida disso e evita que piore."},
+ {e:"🪥",t:"Faz tempo que não vou",s:"Quero um check-up",p:"limpeza",c:1,msg:"Perfeito pra recomeçar: avaliação completa e limpeza. Saindo daqui, você já sabe se precisa de mais alguma coisa."},
+ {e:"🍫",t:"Dente quebrou ou tem cárie",s:"Buraquinho, mancha escura",p:"restauracao",c:2,msg:"A restauração trata a cárie e devolve o formato do dente com resina da mesma cor. Na maioria das vezes, em uma sessão."},
+ {e:"🦷",t:"Preciso tirar o siso",s:"Dói ou o dentista indicou",p:"exodontia",c:3,msg:"A extração é feita com anestesia e raio-x antes. Você sai com todas as orientações de pós-operatório pra recuperar bem."}
+];
+const ESP=["Especialista 1","Especialista 2","Especialista 3"];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+function toast(t){const e=$("toast");e.textContent=t;e.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove("on"),2600)}
+/* simulador */
+const TONS=[["#E9D3A6","#C9AE80","Tom A3"],["#EFDDB8","#CFB68C","Tom A2"],["#F4E6C9","#D6C29E","Tom A1"],["#F8EEDB","#DCCDB0","Tom B1"],["#FBF5EA","#E2D7C3","Tom BL2"],["#FFFFFF","#E6E0D6","Tom BL1"]];
+$("tom").addEventListener("input",e=>{const t=TONS[+e.target.value];const g=$("dentes");g.setAttribute("fill",t[0]);g.setAttribute("stroke",t[1]);$("tomTxt").textContent=t[2]});
+/* momentos */
+$("momentos").innerHTML=MOM.map((m,i)=>`<button class="mo c${m.c}" data-i="${i}" aria-pressed="false"><span class="em">${m.e}</span><b>${m.t}</b><small>${m.s}</small></button>`).join("");
+$("momentos").querySelectorAll(".mo").forEach(b=>b.onclick=()=>{const m=MOM[+b.dataset.i];const p=PROC.find(x=>x.id===m.p);$("momentos").querySelectorAll(".mo").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+ $("resp").classList.remove("hide");$("resp").innerHTML=`<div class="big" style="background:${p.bg}">${p.e}</div><div><h3>${p.n}</h3><p>${m.msg}</p><div class="fatos"><span>⏱ ${p.dur}</span><span>📋 ${p.freq}</span><span>👩‍⚕️ ${ESP[p.esp]}</span></div></div><button class="btn btn-m" onclick="irAgendar('${p.id}')">Agendar ${p.n.toLowerCase().split(" ")[0]}</button>`;
+ $("resp").scrollIntoView({behavior:"smooth",block:"nearest"})});
+/* procedimentos */
+$("procs").innerHTML=PROC.map(p=>`<article class="pc" style="--bg:${p.bg}"><span class="em">${p.e}</span><h3>${p.n}</h3><p>${p.d}</p><button class="btn btn-l btn-s" onclick="irAgendar('${p.id}')">Agendar</button></article>`).join("");
+/* agendamento */
+$("aProc").innerHTML=`<option value="avaliacao">🩺 Avaliação / primeira consulta</option>`+PROC.map(p=>`<option value="${p.id}">${p.e} ${p.n}</option>`).join("");
+function irAgendar(id){$("aProc").value=id;rHoras();res();$("agendar").scrollIntoView({behavior:"smooth"})}
+const hoje=new Date();const DS=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+const dias=[];for(let i=1;dias.length<8;i++){const d=new Date(hoje);d.setDate(hoje.getDate()+i);if(d.getDay()>0&&d.getDay()<6)dias.push(d)}
+let A={dia:0,hora:null,prim:"sim"};
+const fmt=d=>String(d.getDate()).padStart(2,"0")+"/"+String(d.getMonth()+1).padStart(2,"0");
+$("aDias").innerHTML=dias.map((d,i)=>`<button data-i="${i}" aria-pressed="${i===0}">${DS[d.getDay()]}<small>${fmt(d)}</small></button>`).join("");
+$("aDias").querySelectorAll("button").forEach(b=>b.onclick=()=>{A.dia=+b.dataset.i;A.hora=null;$("aDias").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));rHoras();res()});
+const HS=["08:00","08:40","09:20","10:00","10:40","11:20","14:00","14:40","15:20","16:00"];
+function ocupado(i,h){const s=(i*7+h.charCodeAt(1)+h.charCodeAt(3)+$("aProc").selectedIndex)%5;return s===0||s===3}
+function rHoras(){$("aHoras").innerHTML=HS.map(h=>`<button data-h="${h}" ${ocupado(A.dia,h)?"disabled":""} aria-pressed="${A.hora===h}">${h}</button>`).join("");$("aHoras").querySelectorAll("button:not([disabled])").forEach(b=>b.onclick=()=>{A.hora=b.dataset.h;rHoras();res()})}
+$("aPrim").querySelectorAll("button").forEach(b=>b.onclick=()=>{A.prim=b.dataset.v;$("aPrim").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));res()});
+function procNome(){const v=$("aProc").value;return v==="avaliacao"?"Avaliação / primeira consulta":PROC.find(p=>p.id===v).n}
+function res(){const d=dias[A.dia];const v=$("aProc").value;const esp=v==="avaliacao"?ESP[0]:ESP[PROC.find(p=>p.id===v).esp];
+ $("aRes").innerHTML=`<div><span>Procedimento</span><b>${procNome()}</b></div><div><span>Com</span><b>${esp}</b></div><div><span>Quando</span><b>${DS[d.getDay()]}, ${fmt(d)}${A.hora?" às "+A.hora:" · escolha o horário"}</b></div>`;
+ $("aOk").disabled=!(A.hora&&$("aNome").value.trim().length>1&&$("aTel").value.replace(/\D/g,"").length>=10)}
+["aProc","aNome","aTel"].forEach(i=>$(i).addEventListener("input",()=>{if(i==="aProc"){A.hora=null;rHoras()}res()}));
+function agendar(){const d=dias[A.dia];const m=`Olá, Top Sorriso! Quero agendar:\n• ${procNome()}\n• ${DS[d.getDay()]}, ${fmt(d)} às ${A.hora}\n• ${A.prim==="sim"?"Primeira vez na clínica":"Já sou paciente"}\nNome: ${$("aNome").value.trim()}\nWhatsApp: ${$("aTel").value.trim()}${$("aLembra").checked?"\n(Quero receber lembretes)":""}`;
+ try{const a=JSON.parse(localStorage.getItem("ts-novos")||"[]");a.push({h:A.hora,n:$("aNome").value.trim(),p:procNome(),e:$("aProc").value==="avaliacao"?0:PROC.find(p=>p.id===$("aProc").value).esp});localStorage.setItem("ts-novos",JSON.stringify(a))}catch(e){}
+ abre(`<h3>Prontinho! 🦷✨</h3><p style="margin:0;color:var(--suave)">É essa mensagem que chega organizada no WhatsApp da clínica:</p><div class="zapprev">${esc(m)}</div><a class="btn btn-m" style="width:100%" target="_blank" rel="noopener" href="https://wa.me/${ZAP}?text=${encodeURIComponent(m)}">Abrir no WhatsApp</a><p style="margin:10px 0 0;text-align:center"><button class="btn btn-l btn-s" onclick="fecha();modo('painel')">Ver como aparece no painel →</button></p>`)}
+/* modal */
+function abre(h){$("mC").innerHTML=`<button class="x" onclick="fecha()" aria-label="Fechar">✕</button>`+h;$("fm").classList.add("on")}
+function fecha(){$("fm").classList.remove("on")}
+$("fm").addEventListener("click",e=>{if(e.target.id==="fm")fecha()});document.addEventListener("keydown",e=>{if(e.key==="Escape")fecha()});
+/* painel */
+let AG=[[{h:"08:00",n:"Carla M.",p:"Limpeza",st:"ok"},{h:"09:20",n:"Bruno S.",p:"Restauração",st:"ok"},{h:"14:00",n:"Ana Luíza",p:"Clareamento (2ª sessão)",st:"ok"}],
+ [{h:"08:40",n:"Pedro H.",p:"Manutenção do aparelho",st:"ok"},{h:"10:00",n:"Júlia R.",p:"Manutenção do aparelho",st:"ok"},{h:"15:20",n:"Marcos T.",p:"Avaliação ortodôntica",st:"nv"}],
+ [{h:"08:00",n:"Sr. Raimundo",p:"Implante · etapa 2",st:"ok"},{h:"10:40",n:"Fernanda C.",p:"Canal · 1ª sessão",st:"nv"},{h:"16:00",n:"Lucas P.",p:"Extração de siso",st:"ok"}]];
+let RET=[{n:"Patrícia Almeida",u:"Última limpeza: abr/2026"},{n:"Roberto Lima",u:"Última limpeza: mar/2026"},{n:"Dona Socorro",u:"Última limpeza: mai/2026"}];
+let GOO=[{n:"Carla M.",t:"Atendida hoje"},{n:"Bruno S.",t:"Atendido hoje"}];
+function rPainel(){try{const a=JSON.parse(localStorage.getItem("ts-novos")||"[]");a.forEach(x=>AG[x.e].push({h:x.h,n:x.n,p:x.p,st:"nv"}));localStorage.setItem("ts-novos","[]")}catch(e){}
+ AG.forEach(c=>c.sort((a,b)=>a.h.localeCompare(b.h)));
+ const tot=AG.flat().length,nv=AG.flat().filter(x=>x.st==="nv").length;
+ $("kpis").innerHTML=`<div class="kpi"><span>Consultas hoje</span><strong>${tot}</strong></div><div class="kpi"><span>A confirmar</span><strong>${nv}</strong></div><div class="kpi"><span>Retornos a lembrar</span><strong>${RET.length}</strong></div><div class="kpi"><span>Nota no Google</span><strong>★ 4,7</strong></div>`;
+ $("cols").innerHTML=AG.map((c,i)=>`<div class="col"><h4>${ESP[i]}</h4>${c.map((x,j)=>`<div class="slot ${x.st==="nv"?"nv":""}"><b>${x.h}</b>${esc(x.n)} · ${esc(x.p)}${x.st==="nv"?`<div class="a"><button class="btn btn-a btn-s" onclick="conf(${i},${j})">Confirmar</button></div>`:""}</div>`).join("")}</div>`).join("");
+ $("retornos").innerHTML=RET.length?RET.map((r,i)=>`<div class="item"><div><b>${r.n}</b><small>${r.u}</small></div><button class="btn btn-l btn-s" onclick="lembrar(${i})">Lembrar</button></div>`).join(""):`<p style="color:var(--suave);margin:8px 0 0">Todos lembrados ✅</p>`;
+ $("google").innerHTML=`<div class="item"><div><span class="estrelas">★★★★★ 4,7</span><small>14 avaliações no Google</small></div></div>`+GOO.map((g,i)=>`<div class="item"><div><b>${g.n}</b><small>${g.t}</small></div><button class="btn btn-m btn-s" onclick="pedir(${i})">Pedir avaliação</button></div>`).join("")}
+function conf(i,j){const x=AG[i][j];x.st="ok";rPainel();zapModal(`Olá, ${x.n.split(" ")[0]}! Sua consulta na Top Sorriso está confirmada ✅\n🦷 ${x.p}\n🕗 Hoje às ${x.h}\n📍 Centro Empresarial Shopping da Ilha, Torre 01, sala 313\nQualquer imprevisto, é só avisar por aqui!`)}
+function lembrar(i){const r=RET.splice(i,1)[0];rPainel();zapModal(`Oi, ${r.n.split(" ")[0]}! Aqui é da Top Sorriso 😊\nJá faz uns 6 meses da sua última limpeza. Que tal agendar a próxima? É só responder esta mensagem que a gente encaixa no melhor horário pra você.`)}
+function pedir(i){const g=GOO.splice(i,1)[0];rPainel();zapModal(`Oi, ${g.n.split(" ")[0]}! Obrigada por vir à Top Sorriso hoje 💚\nSe puder, conta como foi pra gente no Google? Leva 1 minutinho e ajuda muito outras pessoas a nos encontrarem:\nhttps://maps.google.com/?cid=9329995610281253751`)}
+function zapModal(m){abre(`<h3>Mensagem pronta</h3><div class="zapprev">${esc(m)}</div><p style="color:var(--suave);font-size:13px;margin:0 0 10px">Na amostra, o envio é simulado. No sistema real, sai direto do WhatsApp da clínica.</p><button class="btn btn-m" style="width:100%" onclick="fecha();toast('Mensagem enviada (simulação) ✅')">Enviar</button>`)}
+function modo(m){document.querySelectorAll(".modo button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.m===m)));$("v-site").classList.toggle("on",m==="site");$("v-painel").classList.toggle("on",m==="painel");if(m==="painel")rPainel();window.scrollTo(0,0)}
+document.querySelectorAll(".modo button").forEach(b=>b.onclick=()=>modo(b.dataset.m));
+rHoras();res();if(location.hash==="#painel")modo("painel");
+</script>
+</body>
+</html>
