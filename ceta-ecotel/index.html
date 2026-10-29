@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ceta Ecotel · Hotel em Macapá</title>
+<meta name="description" content="Hospedagem, eventos e restaurante em meio à natureza, na Fazendinha, em Macapá. Reserve direto pelo WhatsApp.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--mata:#1E4636;--mata2:#2C5E49;--folha:#7DB37F;--areia:#F6F1E7;--areia2:#EDE4D3;--rio:#2F7E8C;--sol:#E9A04F;--tx:#1B2B24;--mut:#5E6B63;--r:22px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--areia);color:var(--tx);font:16px/1.6 "Nunito Sans",system-ui,sans-serif;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+button,input,select,textarea{font:inherit;max-width:100%}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;letter-spacing:-.01em;line-height:1.1;margin:0}
+.wrap{width:min(1180px,100%);margin:0 auto;padding-left:20px;padding-right:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 24px;font-weight:800;cursor:pointer;text-decoration:none;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-sol{background:var(--sol);color:#2A1B08}
+.btn-mata{background:var(--mata);color:#fff}
+.btn-zap{background:#1FAF5F;color:#fff}
+.btn-v{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.eti{font-weight:800;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rio)}
+
+header{position:absolute;top:0;left:0;right:0;z-index:30;color:#fff}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:12px;height:76px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff}
+.marca .c{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.18);border:1.5px solid rgba(255,255,255,.6);display:grid;place-items:center;font:700 1.2rem Fraunces}
+.marca b{display:block;font:700 1.2rem Fraunces;line-height:1}
+.marca small{font-size:.66rem;letter-spacing:.16em;opacity:.85}
+nav{display:flex;gap:22px;font-weight:700;font-size:.94rem}
+nav a{color:#fff;text-decoration:none;opacity:.92}
+.idi{display:flex;gap:4px;background:rgba(0,0,0,.25);border-radius:999px;padding:4px}
+.idi button{border:0;background:transparent;color:#fff;font-weight:800;font-size:.78rem;padding:6px 10px;border-radius:999px;cursor:pointer}
+.idi button.on{background:#fff;color:var(--mata)}
+@media(max-width:940px){nav{display:none}}
+
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;color:#fff;padding:120px 0 40px}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,30,22,.55) 0,rgba(10,30,22,.15) 35%,rgba(10,30,22,.75) 100%)}
+.hero .wrap{position:relative;z-index:2;width:min(1180px,100%)}
+.nota{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.16);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:7px 14px;font-weight:700;font-size:.9rem}
+.nota b{color:#FFD58A}
+.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:600;margin:16px 0 12px;max-width:760px}
+.hero h1 em{font-style:italic;color:#CFE8C9}
+.hero p{font-size:1.12rem;max-width:560px;opacity:.95;margin:0 0 26px}
+
+.reserva{position:relative;z-index:3;margin-top:28px;background:#fff;color:var(--tx);border-radius:24px;padding:16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr)) auto;gap:10px;align-items:end;box-shadow:0 20px 50px rgba(0,0,0,.25)}
+.reserva label{display:grid;gap:4px;font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+.reserva .txt{border:1.5px solid var(--areia2);border-radius:14px;padding:11px 12px;font-weight:700;color:var(--tx);background:var(--areia);width:100%}
+.reserva .btn{height:48px}
+@media(max-width:900px){.reserva{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.reserva .btn{grid-column:1/-1}}
+.semcom{margin-top:10px;font-size:.88rem;opacity:.9}
+
+section.s{padding:84px 0}
+.tit{max-width:680px;margin:0 0 36px}
+.tit.c{margin-left:auto;margin-right:auto;text-align:center}
+.tit h2{font-size:clamp(1.9rem,4vw,2.9rem);margin:10px 0 10px;color:var(--mata)}
+.tit p{color:var(--mut);margin:0}
+
+/* experiências */
+.exp{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+.ex{position:relative;border-radius:var(--r);overflow:hidden;min-height:300px;color:#fff;display:flex;align-items:flex-end;cursor:pointer}
+.ex img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.ex:hover img{transform:scale(1.05)}
+.ex:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,30,22,.85))}
+.ex div{position:relative;z-index:2;padding:20px}
+.ex h3{font-size:1.4rem}
+.ex p{margin:6px 0 0;font-size:.92rem;opacity:.92}
+.ex:nth-child(1){grid-column:span 3}.ex:nth-child(2){grid-column:span 3}
+.ex:nth-child(3),.ex:nth-child(4),.ex:nth-child(5){grid-column:span 2}
+@media(max-width:800px){.exp{grid-template-columns:minmax(0,1fr)}.ex{grid-column:auto!important;min-height:230px}}
+
+/* acomodações */
+.acs{background:#fff}
+.ac-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:900px){.ac-g{grid-template-columns:minmax(0,1fr)}}
+.ac{border:1px solid var(--areia2);border-radius:var(--r);overflow:hidden;background:var(--areia);display:flex;flex-direction:column}
+.ac img{aspect-ratio:4/3;object-fit:cover;width:100%}
+.ac .bd{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ac h3{font-size:1.35rem;color:var(--mata)}
+.ac ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:6px}
+.ac li{background:#fff;border:1px solid var(--areia2);border-radius:999px;padding:4px 10px;font-size:.8rem;font-weight:700;color:var(--mata2)}
+.ac p{margin:0;color:var(--mut);font-size:.93rem;flex:1}
+.ac button{align-self:flex-start;margin-top:6px}
+
+/* comodidades */
+.com{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:800px){.com{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.com div{background:#fff;border-radius:18px;padding:16px;display:flex;gap:12px;align-items:center;font-weight:700;border:1px solid var(--areia2)}
+.com i{font-style:normal;font-size:1.5rem}
+
+/* eventos */
+.ev{background:var(--mata);color:#fff;position:relative;overflow:hidden}
+.ev .tit h2{color:#fff}.ev .tit p{color:#cfe1d6}.ev .eti{color:var(--folha)}
+.ev-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:center}
+@media(max-width:900px){.ev-g{grid-template-columns:minmax(0,1fr)}}
+.ev-f{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.ev-f img{border-radius:20px;aspect-ratio:3/4;object-fit:cover;width:100%}
+.ev-f img:last-child{margin-top:36px}
+.form{background:#fff;color:var(--tx);border-radius:24px;padding:22px;display:grid;gap:12px}
+.form h3{color:var(--mata);font-size:1.4rem}
+.form label{display:grid;gap:5px;font-weight:700;font-size:.86rem}
+.txt{width:100%;border:1.5px solid var(--areia2);border-radius:12px;padding:11px 12px;background:var(--areia);color:var(--tx)}
+.duas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips label{cursor:pointer;display:block}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;border:1.5px solid var(--areia2);border-radius:999px;padding:7px 12px;font-weight:700;font-size:.85rem;background:var(--areia)}
+.chips input:checked+span{background:var(--mata);color:#fff;border-color:var(--mata)}
+
+/* avaliações */
+.av-top{display:flex;flex-wrap:wrap;align-items:center;gap:18px;margin-bottom:24px}
+.av-top .n{font:700 3.4rem Fraunces;color:var(--mata);line-height:1}
+.av-top .st{color:var(--sol);font-size:1.3rem;letter-spacing:2px}
+.av-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:900px){.av-g{grid-template-columns:minmax(0,1fr)}}
+.av{background:#fff;border-radius:20px;padding:20px;border:1px solid var(--areia2)}
+.av .st{color:var(--sol);letter-spacing:2px}
+.av p{margin:8px 0 0;font-size:.95rem}
+.av small{display:block;margin-top:10px;color:var(--mut);font-size:.78rem}
+
+/* local */
+.loc-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:28px;align-items:stretch}
+@media(max-width:900px){.loc-g{grid-template-columns:minmax(0,1fr)}}
+.loc ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:12px}
+.loc li{display:flex;gap:12px;background:#fff;border-radius:16px;padding:14px;border:1px solid var(--areia2)}
+.loc li i{font-style:normal;font-size:1.3rem}
+.mapa{border-radius:var(--r);overflow:hidden;min-height:320px;border:1px solid var(--areia2)}
+.mapa iframe{width:100%;height:100%;min-height:320px;border:0;display:block}
+
+/* painel */
+.pn{background:#13281F;color:#fff}
+.pn .tit h2{color:#fff}.pn .tit p{color:#b8cdbf}.pn .eti{color:var(--folha)}
+.kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:18px}
+@media(max-width:800px){.kp{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kp div{background:#1B3A2D;border-radius:16px;padding:16px}
+.kp b{display:block;font:700 1.9rem Fraunces}
+.kp span{color:#b8cdbf;font-size:.82rem}
+.pn-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:16px}
+@media(max-width:900px){.pn-g{grid-template-columns:minmax(0,1fr)}}
+.box{background:#1B3A2D;border-radius:20px;padding:18px}
+.box h3{font-family:"Nunito Sans";font-size:1.05rem;margin-bottom:12px}
+.cal{display:grid;grid-template-columns:110px repeat(14,minmax(0,1fr));gap:3px;font-size:.7rem;overflow-x:auto}
+.cal .h{color:#b8cdbf;text-align:center;font-weight:700}
+.cal .q{color:#e3eee7;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding-right:6px}
+.cal .d{height:22px;border-radius:5px;background:#26503E}
+.cal .d.o{background:var(--sol)}
+.cal .d.p{background:var(--rio)}
+.leg{display:flex;gap:14px;margin-top:10px;font-size:.78rem;color:#b8cdbf}
+.leg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:middle}
+.sol{display:grid;gap:10px}
+.sol div{background:#13281F;border-radius:14px;padding:12px;display:grid;gap:4px}
+.sol b{font-size:.94rem}
+.sol small{color:#b8cdbf}
+.sol .bt{display:flex;gap:6px;margin-top:6px}
+.sol button{border:0;border-radius:10px;padding:7px 10px;font-weight:800;font-size:.78rem;cursor:pointer}
+.sol .c1{background:#1FAF5F;color:#fff}.sol .c2{background:#26503E;color:#e3eee7}
+@media(max-width:600px){.cal{grid-template-columns:80px repeat(14,22px)}}
+
+footer{background:#0D1D16;color:#b8cdbf;padding:40px 0 96px;font-size:.92rem}
+.rod{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer b{color:#fff}footer a{color:#fff}
+.flutua{position:fixed;right:18px;bottom:18px;z-index:50;width:60px;height:60px;border-radius:50%;background:#1FAF5F;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.flutua svg{width:32px;height:32px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--mata);color:#fff;padding:12px 20px;border-radius:14px;font-weight:700;z-index:60;transition:.3s;pointer-events:none;max-width:calc(100% - 40px);text-align:center}
+.toast.on{transform:translate(-50%,0);opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap topo">
+    <a class="marca" href="#topo"><span class="c">C</span><span><b>Ceta Ecotel</b><small>MACAPÁ · AMAPÁ</small></span></a>
+    <nav>
+      <a href="#experiencias" data-t="n1">Experiências</a>
+      <a href="#acomodacoes" data-t="n2">Acomodações</a>
+      <a href="#eventos" data-t="n3">Eventos</a>
+      <a href="#local" data-t="n4">Como chegar</a>
+    </nav>
+    <div class="idi" id="idi"><button data-l="pt" class="on">PT</button><button data-l="en">EN</button><button data-l="es">ES</button></div>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1800&q=72&auto=format&fit=crop" alt="Piscina cercada de natureza" width="1800" height="1200">
+  <div class="wrap">
+    <span class="nota">★ <b>4,4</b> <span data-t="h0">no Google · mais de 1.270 avaliações</span></span>
+    <h1 data-t="h1">Descanse onde a <em>natureza</em> te abraça.</h1>
+    <p data-t="h2">Hospedagem, restaurante e eventos na Fazendinha, em Macapá. Piscina, verde por todo lado e aquele atendimento que faz a gente querer voltar.</p>
+    <form class="reserva" id="reserva">
+      <label><span data-t="r1">Entrada</span><input class="txt" type="date" id="rIn" required></label>
+      <label><span data-t="r2">Saída</span><input class="txt" type="date" id="rOut" required></label>
+      <label><span data-t="r3">Hóspedes</span><select class="txt" id="rHosp"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5+</option></select></label>
+      <label><span data-t="r4">Acomodação</span><select class="txt" id="rTipo"><option data-t="o1">Apartamento</option><option data-t="o2">Flat</option><option data-t="o3">Pacote romântico</option></select></label>
+      <button class="btn btn-sol" type="submit" data-t="r5">Ver disponibilidade</button>
+    </form>
+    <p class="semcom" data-t="r6">✓ Reserva direto com o hotel, pelo WhatsApp. Sem comissão de site de viagem.</p>
+  </div>
+</section>
+
+<section class="s" id="experiencias">
+  <div class="wrap">
+    <div class="tit"><span class="eti" data-t="e0">Experiências</span><h2 data-t="e1">Mais que um quarto: um lugar pra desacelerar</h2><p data-t="e2">Toque numa experiência pra pedir informações direto pelo WhatsApp.</p></div>
+    <div class="exp" id="exp"></div>
+  </div>
+</section>
+
+<section class="s acs" id="acomodacoes">
+  <div class="wrap">
+    <div class="tit"><span class="eti" data-t="a0">Acomodações</span><h2 data-t="a1">Escolha o seu cantinho</h2><p data-t="a2">Quartos com ar-condicionado, TV, frigobar e banheiro privativo. Wi-Fi e estacionamento grátis.</p></div>
+    <div class="ac-g" id="acs"></div>
+    <div style="margin-top:40px" class="com" id="com"></div>
+  </div>
+</section>
+
+<section class="s ev" id="eventos">
+  <div class="wrap ev-g">
+    <div>
+      <div class="tit"><span class="eti" data-t="v0">Eventos</span><h2 data-t="v1">Seu evento cercado de verde</h2><p data-t="v2">Casamentos, aniversários, confraternizações e encontros de empresa, com restaurante próprio e hospedagem pros convidados.</p></div>
+      <div class="ev-f">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=70&auto=format&fit=crop" alt="Mesa de evento decorada" width="700" height="930">
+        <img loading="lazy" src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=700&q=70&auto=format&fit=crop" alt="Pessoas brindando" width="700" height="930">
+      </div>
+    </div>
+    <form class="form" id="evForm">
+      <h3 data-t="f0">Pedir orçamento de evento</h3>
+      <div class="chips" id="evTipos"></div>
+      <div class="duas">
+        <label><span data-t="f1">Data</span><input class="txt" type="date" id="evData"></label>
+        <label><span data-t="f2">Convidados</span><input class="txt" type="number" min="10" placeholder="ex.: 80" id="evQt"></label>
+      </div>
+      <label><span data-t="f3">Seu nome</span><input class="txt" id="evNome" autocomplete="name"></label>
+      <label class="chips" style="display:flex"><label><input type="checkbox" id="evHosp"><span data-t="f4">Precisa de hospedagem pros convidados</span></label></label>
+      <button class="btn btn-zap" type="submit" data-t="f5">Enviar pelo WhatsApp</button>
+    </form>
+  </div>
+</section>
+
+<section class="s" id="avaliacoes">
+  <div class="wrap">
+    <div class="av-top"><span class="n">4,4</span><div><div class="st">★★★★☆</div><b data-t="g0">Mais de 1.270 avaliações no Google</b></div></div>
+    <div class="av-g">
+      <div class="av"><span class="st">★★★★★</span><p>“É um ambiente muito lindo e tranquilo, o atendimento é excepcional. É uma ótima opção para quem quer descansar e ter um lazer prazeroso. A comida também é excepcional.”</p><small>Avaliação no Google</small></div>
+      <div class="av"><span class="st">★★★★★</span><p>“Perfeito o local, amei conhecer. Tudo bem limpinho e organizado e a vista é linda!”</p><small>Avaliação no Google</small></div>
+      <div class="av"><span class="st">★★★★★</span><p>“Experiência excelente! Atendimento impecável, ambiente limpo e aconchegante. Voltarei sempre!”</p><small>Avaliação no Google</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="s loc" id="local" style="padding-top:20px">
+  <div class="wrap loc-g">
+    <div>
+      <span class="eti" data-t="l0">Como chegar</span>
+      <h2 style="font-size:clamp(1.9rem,4vw,2.6rem);color:var(--mata);margin-top:10px" data-t="l1">Na Fazendinha, pertinho do verde e longe da correria</h2>
+      <ul>
+        <li><i>📍</i><div><b>R. do Matadouro, 640 · Fazendinha</b><br><span style="color:var(--mut)">Macapá · AP · 68911-080</span></div></li>
+        <li><i>✈️</i><div><b data-t="l2">Do aeroporto</b><br><span style="color:var(--mut)" data-t="l3">Cerca de 30 minutos de carro</span></div></li>
+        <li><i>🕛</i><div><b data-t="l4">Check-in e check-out</b><br><span style="color:var(--mut)" data-t="l5">Entrada a partir das 12h · saída até 12h</span></div></li>
+      </ul>
+    </div>
+    <div class="mapa"><iframe loading="lazy" title="Mapa" src="https://maps.google.com/maps?q=Ceta%20Ecotel%20Macap%C3%A1&output=embed"></iframe></div>
+  </div>
+</section>
+
+<section class="s pn" id="painel">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Área da recepção</span><h2>Reservas do site num painel só</h2><p>Cada pedido que chega pelo site aparece aqui. A equipe confirma com um toque e vê a ocupação das próximas duas semanas.</p></div>
+    <div class="kp">
+      <div><b id="k1">0</b><span>pedidos pelo site</span></div>
+      <div><b id="k2">0%</b><span>ocupação na semana</span></div>
+      <div><b id="k3">0</b><span>orçamentos de evento</span></div>
+      <div><b>R$ 0</b><span>pago de comissão</span></div>
+    </div>
+    <div class="pn-g">
+      <div class="box"><h3>🗓️ Ocupação · próximos 14 dias</h3><div class="cal" id="cal"></div><div class="leg"><span><i style="background:var(--sol)"></i>Ocupado</span><span><i style="background:var(--rio)"></i>Pedido do site</span><span><i style="background:#26503E"></i>Livre</span></div></div>
+      <div class="box"><h3>📥 Pedidos novos</h3><div class="sol" id="sol"></div></div>
+    </div>
+    <p style="font-size:.8rem;color:#8fa99a;margin:16px 0 0">Demonstração: dados de exemplo, salvos só neste navegador. <a href="#" id="zerar" style="color:var(--folha)">Restaurar</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap rod">
+    <div><b>Ceta Ecotel</b><br>Hospedagem · Eventos · Restaurante<br>R. do Matadouro, 640 · Fazendinha · Macapá</div>
+    <div>WhatsApp: <a href="https://wa.me/5596991827729" target="_blank" rel="noopener">(96) 99182-7729</a><br>Instagram: <a href="https://www.instagram.com/cetaecotel_oficial/" target="_blank" rel="noopener">@cetaecotel_oficial</a></div>
+    <div style="align-self:end">Modelo de demonstração · Hélice Sites &amp; Sistemas</div>
+  </div>
+</footer>
+<a class="flutua" href="https://wa.me/5596991827729" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2s0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.4c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg></a>
+<div class="toast" id="toast"></div>
+
+<script>
+const ZAP="5596991827729";
+const U=(id,w=900)=>`https://images.unsplash.com/${id}?w=${w}&q=70&auto=format&fit=crop`;
+const $=s=>document.querySelector(s);
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const zap=m=>window.open(`https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`,"_blank");
+let L="pt";
+
+const T={
+ en:{n1:"Experiences",n2:"Rooms",n3:"Events",n4:"Getting here",h0:"on Google · 1,270+ reviews",h1:"Rest where <em>nature</em> embraces you.",h2:"Rooms, restaurant and events in Fazendinha, Macapá. A pool, green all around and the kind of service that makes you want to come back.",r1:"Check-in",r2:"Check-out",r3:"Guests",r4:"Room",r5:"Check availability",r6:"✓ Book directly with the hotel on WhatsApp. No travel-site fees.",o1:"Room",o2:"Flat",o3:"Romantic package",e0:"Experiences",e1:"More than a room: a place to slow down",e2:"Tap an experience to ask us on WhatsApp.",a0:"Rooms",a1:"Pick your spot",a2:"Air-conditioned rooms with TV, minibar and private bathroom. Free Wi-Fi and parking.",v0:"Events",v1:"Your event surrounded by green",v2:"Weddings, birthdays, parties and company meetings, with our own restaurant and rooms for your guests.",f0:"Request an event quote",f1:"Date",f2:"Guests",f3:"Your name",f4:"Guests need accommodation",f5:"Send on WhatsApp",g0:"1,270+ reviews on Google",l0:"Getting here",l1:"In Fazendinha, close to nature and far from the rush",l2:"From the airport",l3:"About 30 minutes by car",l4:"Check-in and check-out",l5:"Check-in from 12pm · check-out by 12pm"},
+ es:{n1:"Experiencias",n2:"Habitaciones",n3:"Eventos",n4:"Cómo llegar",h0:"en Google · más de 1.270 reseñas",h1:"Descansa donde la <em>naturaleza</em> te abraza.",h2:"Hospedaje, restaurante y eventos en Fazendinha, Macapá. Piscina, verde por todas partes y una atención que da ganas de volver.",r1:"Entrada",r2:"Salida",r3:"Huéspedes",r4:"Habitación",r5:"Ver disponibilidad",r6:"✓ Reserva directo con el hotel por WhatsApp. Sin comisiones.",o1:"Habitación",o2:"Flat",o3:"Paquete romántico",e0:"Experiencias",e1:"Más que una habitación: un lugar para desacelerar",e2:"Toca una experiencia para preguntarnos por WhatsApp.",a0:"Habitaciones",a1:"Elige tu rincón",a2:"Habitaciones con aire acondicionado, TV, minibar y baño privado. Wi-Fi y estacionamiento gratis.",v0:"Eventos",v1:"Tu evento rodeado de verde",v2:"Bodas, cumpleaños, fiestas y reuniones de empresa, con restaurante propio y hospedaje para tus invitados.",f0:"Pedir presupuesto de evento",f1:"Fecha",f2:"Invitados",f3:"Tu nombre",f4:"Los invitados necesitan hospedaje",f5:"Enviar por WhatsApp",g0:"Más de 1.270 reseñas en Google",l0:"Cómo llegar",l1:"En Fazendinha, cerca del verde y lejos del apuro",l2:"Desde el aeropuerto",l3:"Unos 30 minutos en auto",l4:"Check-in y check-out",l5:"Entrada desde las 12h · salida hasta las 12h"}
+};
+const PT={};document.querySelectorAll("[data-t]").forEach(e=>PT[e.dataset.t]=e.innerHTML);
+const EXP={
+ pt:[["Piscina & bar","Água fresquinha, espreguiçadeira e um drink no fim da tarde."],["Tardezinha","Aquele pôr do sol com música, petisco e gente boa."],["Restaurante","Comida caprichada, servida no meio do verde."],["Romântico","Pacote a dois pra celebrar datas especiais."],["Sauna & lazer","Sauna, salão de jogos e área pra relaxar."]],
+ en:[["Pool & bar","Cool water, sun loungers and a drink at sunset."],["Tardezinha","Sunset sessions with music, snacks and good company."],["Restaurant","Delicious food served surrounded by green."],["Romantic","A package for two to celebrate special dates."],["Sauna & leisure","Sauna, game room and space to unwind."]],
+ es:[["Piscina y bar","Agua fresca, tumbonas y un trago al atardecer."],["Tardezinha","Atardecer con música, picoteo y buena compañía."],["Restaurante","Comida casera servida en medio del verde."],["Romántico","Paquete para dos para celebrar fechas especiales."],["Sauna y ocio","Sauna, sala de juegos y espacio para relajarse."]]
+};
+const EXPIMG=["photo-1610641818989-c2051b5e2cfd","photo-1584132967334-10e028bd69f7","photo-1519708227418-c8fd9a32b7a2","photo-1567455231583-6a1b94181ef4","photo-1707151476349-8675f8aa2c7b"];
+const ACS={
+ pt:[["Apartamento","Pra quem quer conforto e sossego, com tudo que precisa.",["Ar-condicionado","TV","Frigobar","Wi-Fi"],"Apartamento"],["Flat","Mais espaço pra estadias longas, trabalho ou família.",["Mais espaço","Estadia longa","Wi-Fi","Estacionamento"],"Flat"],["Pacote romântico","Hospedagem a dois com aquele clima especial.",["Para casais","Datas especiais","Restaurante"],"Pacote romântico"]],
+ en:[["Room","Comfort and quiet, with everything you need.",["A/C","TV","Minibar","Wi-Fi"],"Apartamento"],["Flat","More space for long stays, work or family.",["More space","Long stay","Wi-Fi","Parking"],"Flat"],["Romantic package","A stay for two with a special touch.",["Couples","Special dates","Restaurant"],"Pacote romântico"]],
+ es:[["Habitación","Comodidad y tranquilidad, con todo lo que necesitas.",["Aire acond.","TV","Minibar","Wi-Fi"],"Apartamento"],["Flat","Más espacio para estadías largas, trabajo o familia.",["Más espacio","Estadía larga","Wi-Fi","Estacionamiento"],"Flat"],["Paquete romántico","Hospedaje para dos con un toque especial.",["Parejas","Fechas especiales","Restaurante"],"Pacote romântico"]]
+};
+const ACIMG=["photo-1629140727571-9b5c6f6267b4","photo-1566073771259-6a8506099945","photo-1505944357431-27579db47558"];
+const COM={pt:[["🏊","Piscina"],["🍽️","Restaurante"],["🧖","Sauna"],["📶","Wi-Fi grátis"],["🚗","Estacionamento"],["🎱","Salão de jogos"],["🌳","Jardim e churrasqueira"],["♿","Quarto acessível"]],en:[["🏊","Pool"],["🍽️","Restaurant"],["🧖","Sauna"],["📶","Free Wi-Fi"],["🚗","Parking"],["🎱","Game room"],["🌳","Garden & BBQ"],["♿","Accessible room"]],es:[["🏊","Piscina"],["🍽️","Restaurante"],["🧖","Sauna"],["📶","Wi-Fi gratis"],["🚗","Estacionamiento"],["🎱","Sala de juegos"],["🌳","Jardín y parrilla"],["♿","Habitación accesible"]]};
+const EVT={pt:["Casamento","Aniversário","Confraternização","Empresa","Outro"],en:["Wedding","Birthday","Party","Company","Other"],es:["Boda","Cumpleaños","Fiesta","Empresa","Otro"]};
+const BTN={pt:["Quero reservar","Pedir info"],en:["Book now","Ask us"],es:["Quiero reservar","Consultar"]};
+
+function render(){
+  document.querySelectorAll("[data-t]").forEach(e=>{const k=e.dataset.t;e.innerHTML=L==="pt"?PT[k]:(T[L][k]||PT[k])});
+  $("#exp").innerHTML=EXP[L].map((x,i)=>`<article class="ex" data-i="${i}"><img loading="lazy" src="${U(EXPIMG[i])}" alt="${x[0]}" width="900" height="600"><div><h3>${x[0]}</h3><p>${x[1]}</p></div></article>`).join("");
+  $("#acs").innerHTML=ACS[L].map((a,i)=>`<article class="ac"><img loading="lazy" src="${U(ACIMG[i],800)}" alt="${a[0]}" width="800" height="600"><div class="bd"><h3>${a[0]}</h3><ul>${a[2].map(x=>`<li>${x}</li>`).join("")}</ul><p>${a[1]}</p><button class="btn btn-mata" data-ac="${a[3]}">${BTN[L][0]}</button></div></article>`).join("");
+  $("#com").innerHTML=COM[L].map(c=>`<div><i>${c[0]}</i>${c[1]}</div>`).join("");
+  $("#evTipos").innerHTML=EVT[L].map((t,i)=>`<label><input type="radio" name="evt" value="${EVT.pt[i]}" ${i?"":"checked"}><span>${t}</span></label>`).join("");
+  document.documentElement.lang=L==="pt"?"pt-BR":L;
+}
+$("#idi").onclick=e=>{const b=e.target.closest("button");if(!b)return;L=b.dataset.l;document.querySelectorAll("#idi button").forEach(x=>x.classList.toggle("on",x===b));render()};
+render();
+
+// datas padrão
+const hoje=new Date();const iso=d=>d.toISOString().slice(0,10);const mais=n=>{const d=new Date(hoje);d.setDate(d.getDate()+n);return d};
+$("#rIn").value=iso(mais(7));$("#rOut").value=iso(mais(9));$("#rIn").min=iso(hoje);
+const br=s=>s.split("-").reverse().join("/");
+const LANGN={pt:"",en:" (hóspede fala inglês)",es:" (hóspede fala espanhol)"};
+$("#reserva").onsubmit=e=>{e.preventDefault();
+  const n=Math.max(1,Math.round((new Date($("#rOut").value)-new Date($("#rIn").value))/864e5));
+  const m=`Olá, Ceta Ecotel! Vim pelo site e queria saber a disponibilidade 🌿${LANGN[L]}\n\n*Entrada:* ${br($("#rIn").value)}\n*Saída:* ${br($("#rOut").value)} (${n} noite${n>1?"s":""})\n*Hóspedes:* ${$("#rHosp").value}\n*Acomodação:* ${$("#rTipo").selectedOptions[0].dataset.t?PT[$("#rTipo").selectedOptions[0].dataset.t]:$("#rTipo").value}`;
+  registra("reserva",`${$("#rHosp").value} hósp. · ${br($("#rIn").value)} a ${br($("#rOut").value)}`);
+  zap(m)};
+$("#acs").onclick=e=>{const b=e.target.closest("[data-ac]");if(!b)return;const map={Apartamento:"o1",Flat:"o2","Pacote romântico":"o3"};
+  [...$("#rTipo").options].forEach(o=>o.selected=o.dataset.t===map[b.dataset.ac]);$("#topo").scrollIntoView({behavior:"smooth"});setTimeout(()=>$("#rIn").focus(),600);toast(L==="pt"?"Escolha as datas e veja a disponibilidade":L==="en"?"Pick your dates":"Elige tus fechas")};
+$("#exp").onclick=e=>{const a=e.target.closest("[data-i]");if(!a)return;zap(`Olá, Ceta Ecotel! Vim pelo site e queria mais informações sobre: *${EXP.pt[a.dataset.i][0]}* 🌿${LANGN[L]}`)};
+$("#evForm").onsubmit=e=>{e.preventDefault();const t=document.querySelector('[name="evt"]:checked').value;
+  let m=`Olá, Ceta Ecotel! Vim pelo site e queria um orçamento de evento 🎉${LANGN[L]}\n\n*Tipo:* ${t}`;
+  if($("#evData").value)m+=`\n*Data:* ${br($("#evData").value)}`;if($("#evQt").value)m+=`\n*Convidados:* ${$("#evQt").value}`;
+  if($("#evNome").value)m+=`\n*Nome:* ${$("#evNome").value}`;if($("#evHosp").checked)m+=`\n*Precisa de hospedagem pros convidados*`;
+  registra("evento",`${t}${$("#evQt").value?" · "+$("#evQt").value+" pessoas":""}`);zap(m)};
+
+// painel demo
+const QUARTOS=["Apto 101","Apto 102","Apto 103","Apto 104","Flat 01","Flat 02","Suíte Romântica"];
+const EX={occ:{"0":[0,1,2,5,6],"1":[0,1,2,3,4],"2":[4,5,6,7,8,9],"3":[1,2],"4":[0,1,2,3,4,5,6,7,8,9,10,11,12,13],"5":[5,6,7],"6":[4,5]},site:{"3":[5,6],"6":[11,12]},
+ sol:[{t:"reserva",d:"2 hósp. · Pacote romântico · sex a dom",q:"há 12 min"},{t:"evento",d:"Casamento · 90 pessoas · março",q:"há 1 h"},{t:"reserva",d:"4 hósp. · Flat · 5 noites (EN)",q:"há 3 h"}],n:9,ev:3};
+let D=ls.get("ceta-demo",null)||JSON.parse(JSON.stringify(EX));
+function registra(t,d){D.sol.unshift({t,d,q:"agora"});if(t==="evento")D.ev++;D.n++;ls.set("ceta-demo",D);painel()}
+function painel(){
+  const dias=[...Array(14)].map((_,i)=>mais(i));
+  let h=`<span></span>`+dias.map(d=>`<span class="h">${d.getDate()}</span>`).join("");
+  QUARTOS.forEach((q,i)=>{h+=`<span class="q">${q}</span>`+dias.map((_,j)=>{const o=(D.occ[i]||[]).includes(j),p=(D.site[i]||[]).includes(j);return `<span class="d ${o?"o":p?"p":""}"></span>`}).join("")});
+  $("#cal").innerHTML=h;
+  let tot=0,occ=0;QUARTOS.forEach((_,i)=>{for(let j=0;j<7;j++){tot++;if((D.occ[i]||[]).includes(j)||(D.site[i]||[]).includes(j))occ++}});
+  $("#k1").textContent=D.n;$("#k2").textContent=Math.round(occ/tot*100)+"%";$("#k3").textContent=D.ev;
+  $("#sol").innerHTML=D.sol.slice(0,5).map((s,i)=>`<div><b>${s.t==="evento"?"🎉 Evento":"🛏️ Reserva"} · ${s.d}</b><small>${s.q} · via site</small><div class="bt"><button class="c1" data-ok="${i}">Confirmar</button><button class="c2" data-x="${i}">Responder</button></div></div>`).join("")||'<small style="color:#b8cdbf">Nenhum pedido novo 🎉</small>';
+}
+$("#sol").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+  if(b.dataset.ok){const s=D.sol.splice(+b.dataset.ok,1)[0];if(s.t==="reserva"){const i=Math.floor(Math.random()*QUARTOS.length);D.site[i]=(D.site[i]||[]).concat([7,8])}ls.set("ceta-demo",D);painel();toast("Confirmado e marcado no mapa ✓")}
+  if(b.dataset.x)toast("Abre a conversa do hóspede no WhatsApp")};
+$("#zerar").onclick=e=>{e.preventDefault();D=JSON.parse(JSON.stringify(EX));ls.set("ceta-demo",D);painel();toast("Exemplo restaurado")};
+painel();
+</script>
+</body>
+</html>

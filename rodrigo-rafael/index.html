@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dr. Rodrigo Rafael dos Santos · Advogado em Porto Velho</title>
+<meta name="description" content="Advocacia e consultoria jurídica em Porto Velho/RO. Atendimento todos os dias. Conte seu caso e agende sua consulta.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--noite:#0B1624;--noite2:#12223A;--noite3:#1B2F4D;--cobre:#C8823E;--cobre2:#E3A266;--gelo:#EEF2F7;--tx:#E8EDF4;--mut:#93A3B8;--linha:#24395B;--r:18px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--noite);color:var(--tx);font:16px/1.6 Manrope,system-ui,sans-serif;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+button,input,select,textarea{font:inherit;max-width:100%}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;letter-spacing:-.025em;line-height:1.1;margin:0}
+.wrap{width:min(1180px,100%);margin:0 auto;padding-left:20px;padding-right:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:14px 22px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .15s,background .2s}
+.btn:hover{transform:translateY(-1px)}
+.btn-c{background:var(--cobre);color:#1A0F05}.btn-c:hover{background:var(--cobre2)}
+.btn-g{background:transparent;color:var(--tx);border:1.5px solid var(--linha)}
+.btn-zap{background:#22B864;color:#fff}
+.eti{display:inline-flex;gap:8px;align-items:center;font:600 .78rem Sora;letter-spacing:.14em;text-transform:uppercase;color:var(--cobre2)}
+.eti:before{content:"";width:8px;height:8px;background:var(--cobre);transform:rotate(45deg)}
+
+header{position:sticky;top:0;z-index:40;background:rgba(11,22,36,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:12px;height:72px}
+.marca{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--tx)}
+.marca .ic{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--cobre),#8C5524);display:grid;place-items:center;font:800 1rem Sora;color:#1A0F05}
+.marca b{display:block;font:700 1rem Sora;line-height:1.1}
+.marca small{font-size:.72rem;color:var(--mut)}
+nav{display:flex;gap:24px;font-size:.92rem;font-weight:600}
+nav a{color:var(--mut);text-decoration:none}nav a:hover{color:#fff}
+.topo .btn{padding:10px 16px;font-size:.88rem}
+@media(max-width:920px){nav{display:none}}
+
+.hero{position:relative;overflow:hidden;padding:70px 0 80px}
+.hero:before{content:"";position:absolute;right:-10%;top:-30%;width:70%;height:160%;background:radial-gradient(closest-side,rgba(200,130,62,.18),transparent);pointer-events:none}
+.hero-g{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:48px;align-items:center;position:relative}
+.hero h1{font-size:clamp(2.3rem,5vw,3.9rem);font-weight:700;margin:18px 0 18px}
+.hero h1 span{color:var(--cobre2)}
+.hero p.lead{font-size:1.1rem;color:var(--mut);max-width:540px;margin:0 0 28px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.badges span{background:var(--noite2);border:1px solid var(--linha);border-radius:999px;padding:8px 14px;font-size:.86rem;font-weight:600}
+.badges b{color:var(--cobre2)}
+.foto{position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--linha)}
+.foto img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:saturate(.85)}
+.foto:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(11,22,36,.9))}
+.foto .nota{position:absolute;left:18px;right:18px;bottom:18px;z-index:2;display:flex;align-items:center;gap:14px}
+.foto .nota b{font:800 2.6rem Sora;color:#fff;line-height:1}
+.foto .nota .st{color:var(--cobre2);letter-spacing:2px}
+.foto .nota small{color:var(--mut);display:block}
+@media(max-width:900px){.hero{padding:34px 0 56px}.hero-g{grid-template-columns:minmax(0,1fr)}.foto{order:-1}.foto img{aspect-ratio:16/11}}
+
+section.s{padding:84px 0}
+.tit{max-width:660px;margin-bottom:38px}
+.tit h2{font-size:clamp(1.8rem,3.8vw,2.7rem);margin-top:12px}
+.tit p{color:var(--mut);margin:12px 0 0}
+
+/* áreas */
+.ar-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:900px){.ar-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+@media(max-width:560px){.ar-g{grid-template-columns:minmax(0,1fr)}}
+.ar{background:var(--noite2);border:1px solid var(--linha);border-radius:var(--r);padding:24px;transition:border-color .2s,transform .2s}
+.ar:hover{border-color:var(--cobre);transform:translateY(-3px)}
+.ar .ic{font-size:1.6rem}
+.ar h3{font-size:1.15rem;margin:14px 0 8px}
+.ar p{margin:0;color:var(--mut);font-size:.92rem}
+.obs{font-size:.8rem;color:var(--mut);margin-top:14px}
+
+/* chat triagem */
+.tri{background:var(--noite2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.tri-g{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:44px;align-items:center}
+@media(max-width:900px){.tri-g{grid-template-columns:minmax(0,1fr)}}
+.chat{background:var(--noite);border:1px solid var(--linha);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;height:560px}
+.chat-top{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--linha);background:var(--noite3)}
+.chat-top .av{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--cobre),#8C5524);display:grid;place-items:center;font:800 .9rem Sora;color:#1A0F05}
+.chat-top b{display:block;font-size:.95rem}
+.chat-top small{color:#4ADE80;font-size:.78rem}
+.msgs{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+.m{max-width:82%;padding:11px 14px;border-radius:16px;font-size:.94rem;animation:sobe .3s ease}
+.m.b{background:var(--noite3);border-top-left-radius:4px;align-self:flex-start}
+.m.u{background:var(--cobre);color:#1A0F05;border-top-right-radius:4px;align-self:flex-end;font-weight:600}
+@keyframes sobe{from{opacity:0;transform:translateY(6px)}}
+.dig{align-self:flex-start;background:var(--noite3);border-radius:16px;padding:12px 16px;display:flex;gap:4px}
+.dig i{width:6px;height:6px;border-radius:50%;background:var(--mut);animation:pula 1s infinite}
+.dig i:nth-child(2){animation-delay:.15s}.dig i:nth-child(3){animation-delay:.3s}
+@keyframes pula{50%{transform:translateY(-4px)}}
+.resp{padding:12px;border-top:1px solid var(--linha);display:flex;flex-wrap:wrap;gap:8px;background:var(--noite2);min-height:64px}
+.resp button{border:1.5px solid var(--cobre);background:transparent;color:var(--cobre2);border-radius:999px;padding:8px 14px;font-weight:700;font-size:.86rem;cursor:pointer}
+.resp button:hover{background:var(--cobre);color:#1A0F05}
+.resp form{display:flex;gap:8px;width:100%}
+.resp input{flex:1;min-width:0;background:var(--noite);border:1.5px solid var(--linha);border-radius:12px;padding:10px 12px;color:#fff}
+.lista-t{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.lista-t li{display:flex;gap:12px;align-items:flex-start}
+.lista-t i{font-style:normal;width:30px;height:30px;border-radius:8px;background:var(--noite3);display:grid;place-items:center;flex:none;color:var(--cobre2);font-weight:800;font-size:.85rem}
+
+/* agenda */
+.ag-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media(max-width:900px){.ag-g{grid-template-columns:minmax(0,1fr)}}
+.dias{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px}
+.dia{flex:none;width:72px;border:1.5px solid var(--linha);background:var(--noite2);border-radius:14px;padding:10px 6px;text-align:center;cursor:pointer;color:var(--tx)}
+.dia small{display:block;color:var(--mut);font-size:.72rem;text-transform:uppercase}
+.dia b{font:700 1.3rem Sora}
+.dia.on{border-color:var(--cobre);background:var(--noite3)}
+.horas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:16px}
+.horas button{border:1.5px solid var(--linha);background:var(--noite2);color:var(--tx);border-radius:10px;padding:10px 4px;font-weight:700;cursor:pointer}
+.horas button.on{background:var(--cobre);color:#1A0F05;border-color:var(--cobre)}
+.horas button[disabled]{opacity:.3;text-decoration:line-through;cursor:not-allowed}
+.modo{display:flex;gap:8px;margin-top:16px}
+.modo button{flex:1;border:1.5px solid var(--linha);background:var(--noite2);color:var(--tx);border-radius:10px;padding:10px;font-weight:700;cursor:pointer}
+.modo button.on{border-color:var(--cobre);color:var(--cobre2)}
+.conf{background:var(--noite2);border:1px solid var(--linha);border-radius:20px;padding:22px}
+.conf h3{font-size:1.1rem;margin-bottom:12px}
+.conf .l{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed var(--linha);font-size:.94rem}
+.conf .l span{color:var(--mut)}
+.txt{width:100%;background:var(--noite);border:1.5px solid var(--linha);border-radius:12px;padding:12px;color:#fff;margin-top:14px}
+
+/* empresas */
+.emp{background:linear-gradient(135deg,#1B2F4D,#0B1624)}
+.emp-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+@media(max-width:900px){.emp-g{grid-template-columns:minmax(0,1fr)}}
+.emp img{border-radius:22px;width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--linha)}
+.check{list-style:none;padding:0;margin:20px 0 26px;display:grid;gap:10px}
+.check li{display:flex;gap:10px}
+.check li:before{content:"✓";color:var(--cobre2);font-weight:800}
+
+/* depoimentos */
+.dep-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media(max-width:900px){.dep-g{grid-template-columns:minmax(0,1fr)}}
+.dep{background:var(--noite2);border:1px solid var(--linha);border-radius:var(--r);padding:22px}
+.dep .st{color:var(--cobre2);letter-spacing:2px}
+.dep p{margin:10px 0 0;color:#D4DCE7}
+.dep small{display:block;margin-top:12px;color:var(--mut);font-size:.78rem}
+
+/* local */
+.loc-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:28px}
+@media(max-width:900px){.loc-g{grid-template-columns:minmax(0,1fr)}}
+.hor{display:grid;gap:6px;margin-top:16px;font-size:.92rem}
+.hor div{display:flex;justify-content:space-between;border-bottom:1px solid var(--linha);padding:6px 0}
+.hor div.hj{color:var(--cobre2);font-weight:700}
+.mapa{border-radius:var(--r);overflow:hidden;border:1px solid var(--linha);min-height:340px}
+.mapa iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:invert(.9) hue-rotate(180deg) saturate(.6)}
+
+/* painel */
+.painel{background:#070F1A;border-top:1px solid var(--linha)}
+.kb{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:900px){.kb{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.kb{grid-template-columns:minmax(0,1fr)}}
+.col{background:var(--noite2);border:1px solid var(--linha);border-radius:16px;padding:12px;min-height:200px}
+.col h3{font-size:.86rem;color:var(--mut);display:flex;justify-content:space-between;margin-bottom:10px}
+.col h3 b{color:var(--cobre2)}
+.cd{background:var(--noite);border:1px solid var(--linha);border-radius:12px;padding:10px;margin-bottom:8px;font-size:.86rem}
+.cd b{display:block}
+.cd small{color:var(--mut)}
+.cd button{margin-top:8px;border:0;background:var(--noite3);color:var(--cobre2);border-radius:8px;padding:6px 10px;font-weight:700;font-size:.76rem;cursor:pointer}
+
+footer{background:#050B14;color:var(--mut);padding:40px 0 96px;font-size:.88rem;border-top:1px solid var(--linha)}
+.rod{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer b{color:#fff}footer a{color:#fff}
+.flutua{position:fixed;right:18px;bottom:18px;z-index:50;width:58px;height:58px;border-radius:50%;background:#22B864;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+.flutua svg{width:30px;height:30px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--noite3);color:#fff;padding:12px 20px;border-radius:12px;font-weight:600;z-index:60;transition:.3s;pointer-events:none;max-width:calc(100% - 40px);text-align:center;border:1px solid var(--cobre)}
+.toast.on{transform:translate(-50%,0);opacity:1}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap topo">
+    <a class="marca" href="#topo"><span class="ic">RR</span><span><b>Dr. Rodrigo Rafael</b><small>Advocacia e Consultoria Jurídica</small></span></a>
+    <nav><a href="#atuacao">Atuação</a><a href="#triagem">Fale do seu caso</a><a href="#agenda">Agendar</a><a href="#empresas">Empresas</a><a href="#local">Contato</a></nav>
+    <a class="btn btn-c" href="#agenda">Agendar consulta</a>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="wrap hero-g">
+    <div>
+      <span class="eti">Porto Velho · Rondônia</span>
+      <h1>Seu direito explicado com <span>clareza</span>. Seu caso conduzido com firmeza.</h1>
+      <p class="lead">Advocacia e consultoria jurídica pra pessoas e empresas, com atendimento próximo e caminhos claros desde a primeira conversa.</p>
+      <div class="acoes"><a class="btn btn-c" href="#triagem">Falar do meu caso</a><a class="btn btn-g" href="#agenda">Ver horários</a></div>
+      <div class="badges"><span><b>5,0</b> ★ · 316 avaliações</span><span>Advogado e professor</span><span>Atendimento todos os dias</span></div>
+    </div>
+    <div class="foto">
+      <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1000&q=72&auto=format&fit=crop" alt="Biblioteca jurídica" width="1000" height="1250">
+      <div class="nota"><b>5,0</b><div><span class="st">★★★★★</span><small>316 avaliações no Google</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="atuacao">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Áreas de atuação</span><h2>Onde posso te ajudar</h2></div>
+    <div class="ar-g">
+      <div class="ar"><span class="ic">🏢</span><h3>Consultoria empresarial</h3><p>Orientação jurídica pra tomar decisões de negócio com segurança.</p></div>
+      <div class="ar"><span class="ic">📝</span><h3>Contratos</h3><p>Elaboração e revisão de contratos, pra evitar dor de cabeça no futuro.</p></div>
+      <div class="ar"><span class="ic">⚖️</span><h3>Direito cível</h3><p>Cobranças, indenizações e conflitos entre pessoas e empresas.</p></div>
+      <div class="ar"><span class="ic">🛒</span><h3>Direito do consumidor</h3><p>Cobranças indevidas, produtos com defeito e negativação.</p></div>
+      <div class="ar"><span class="ic">🏠</span><h3>Imobiliário</h3><p>Compra, venda, aluguel e regularização de imóveis.</p></div>
+      <div class="ar"><span class="ic">🎓</span><h3>Orientação a advogados</h3><p>Apoio e mentoria pra quem está começando na advocacia.</p></div>
+    </div>
+    <p class="obs">Áreas de exemplo para a demonstração. No site oficial entram as áreas exatas do escritório.</p>
+  </div>
+</section>
+
+<section class="s tri" id="triagem">
+  <div class="wrap tri-g">
+    <div>
+      <span class="eti">Pré-atendimento</span>
+      <h2 style="font-size:clamp(1.8rem,3.8vw,2.6rem);margin-top:12px">Conte seu caso como se fosse no WhatsApp</h2>
+      <p style="color:var(--mut)">Umas perguntinhas rápidas e o escritório já recebe tudo organizado: assunto, urgência e o melhor horário pra você.</p>
+      <ul class="lista-t"><li><i>1</i><span>Responda tocando nas opções</span></li><li><i>2</i><span>Diga se tem prazo ou audiência marcada</span></li><li><i>3</i><span>A mensagem pronta vai pro WhatsApp do escritório</span></li></ul>
+    </div>
+    <div class="chat">
+      <div class="chat-top"><span class="av">RR</span><div><b>Escritório Dr. Rodrigo Rafael</b><small>● online</small></div></div>
+      <div class="msgs" id="msgs"></div>
+      <div class="resp" id="resp"></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="agenda">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Agenda</span><h2>Escolha o melhor horário pra sua consulta</h2><p>Horários de acordo com o funcionamento do escritório. A confirmação chega pelo WhatsApp.</p></div>
+    <div class="ag-g">
+      <div>
+        <div class="dias" id="dias"></div>
+        <div class="horas" id="horas"></div>
+        <div class="modo" id="modo"><button class="on" data-m="Presencial">🏢 Presencial</button><button data-m="Online">💻 Online</button></div>
+      </div>
+      <div class="conf">
+        <h3>Sua consulta</h3>
+        <div class="l"><span>Dia</span><b id="cDia">—</b></div>
+        <div class="l"><span>Horário</span><b id="cHora">—</b></div>
+        <div class="l"><span>Formato</span><b id="cModo">Presencial</b></div>
+        <input class="txt" id="agNome" placeholder="Seu nome" autocomplete="name">
+        <input class="txt" id="agAss" placeholder="Assunto (ex.: contrato de aluguel)">
+        <button class="btn btn-zap" id="agEnv" style="width:100%;margin-top:14px">Solicitar pelo WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s emp" id="empresas">
+  <div class="wrap emp-g">
+    <img loading="lazy" src="https://images.unsplash.com/photo-1780733064275-d1ade9b83a3d?w=1000&q=70&auto=format&fit=crop" alt="Reunião de consultoria" width="1000" height="750">
+    <div>
+      <span class="eti">Para empresas</span>
+      <h2 style="font-size:clamp(1.8rem,3.8vw,2.6rem);margin-top:12px">Assessoria jurídica contínua pro seu negócio</h2>
+      <p style="color:var(--mut)">Em vez de procurar um advogado só quando o problema aparece, sua empresa conta com orientação o tempo todo.</p>
+      <ul class="check"><li>Revisão de contratos com clientes e fornecedores</li><li>Orientação antes de decisões importantes</li><li>Canal direto pra tirar dúvidas</li><li>Prevenção de passivos e conflitos</li></ul>
+      <a class="btn btn-c" href="https://wa.me/5569984772525?text=Ol%C3%A1%2C%20Dr.%20Rodrigo!%20Vim%20pelo%20site%20e%20quero%20saber%20sobre%20assessoria%20jur%C3%ADdica%20para%20minha%20empresa." target="_blank" rel="noopener">Quero saber mais</a>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="depoimentos">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Avaliações</span><h2>316 avaliações, nota 5,0 no Google</h2></div>
+    <div class="dep-g">
+      <div class="dep"><span class="st">★★★★★</span><p>“Desde o primeiro atendimento, demonstrou profundo conhecimento jurídico e total dedicação ao meu caso. Explicou todos os detalhes com clareza, sempre com paciência e profissionalismo.”</p><small>Avaliação no Google</small></div>
+      <div class="dep"><span class="st">★★★★★</span><p>“Uma assessoria e consultoria jurídica diferenciada, que zela pelo direito do cliente, norteando o melhor caminho a desenvolver o negócio por meio da lei.”</p><small>Avaliação no Google</small></div>
+      <div class="dep"><span class="st">★★★★★</span><p>“Você domina a lei, além disto é um grande professor, transforma conhecimento em legado.”</p><small>Avaliação no Google</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="local" style="padding-top:0">
+  <div class="wrap loc-g">
+    <div>
+      <span class="eti">Contato</span>
+      <h2 style="font-size:clamp(1.8rem,3.8vw,2.4rem);margin-top:12px">Av. Calama, 2300 · Sala 04</h2>
+      <p style="color:var(--mut);margin:6px 0 0">Porto Velho · RO · 76803-768</p>
+      <div class="hor" id="hor"></div>
+      <a class="btn btn-zap" style="margin-top:20px" href="https://wa.me/5569984772525" target="_blank" rel="noopener">(69) 98477-2525</a>
+    </div>
+    <div class="mapa"><iframe loading="lazy" title="Mapa" src="https://maps.google.com/maps?q=Av.%20Calama%2C%202300%20Porto%20Velho&output=embed"></iframe></div>
+  </div>
+</section>
+
+<section class="s painel" id="painel">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Área do escritório</span><h2>Cada contato do site vira um card</h2><p>Os pedidos chegam com assunto e urgência. A equipe arrasta o caso de coluna em coluna, do primeiro contato ao contrato fechado.</p></div>
+    <div class="kb" id="kb"></div>
+    <p style="font-size:.78rem;color:var(--mut);margin:14px 0 0">Demonstração com dados fictícios, salvos só neste navegador. <a href="#" id="zerar" style="color:var(--cobre2)">Restaurar</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap rod">
+    <div><b>Dr. Rodrigo Rafael dos Santos</b><br>Advocacia e Consultoria Jurídica · Porto Velho/RO</div>
+    <div>Av. Calama, 2300 · Sala 04<br>WhatsApp <a href="https://wa.me/5569984772525" target="_blank" rel="noopener">(69) 98477-2525</a></div>
+    <div style="max-width:340px">Site de caráter informativo, em conformidade com o Provimento 205/2021 da OAB.<br><span style="opacity:.7">Modelo de demonstração · Hélice Sites &amp; Sistemas</span></div>
+  </div>
+</footer>
+<a class="flutua" href="https://wa.me/5569984772525" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2s0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.4c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg></a>
+<div class="toast" id="toast"></div>
+
+<script>
+const ZAP="5569984772525";
+const $=s=>document.querySelector(s);
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const zap=m=>window.open(`https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`,"_blank");
+
+// ---- chat
+const C={};const msgs=$("#msgs"),resp=$("#resp");
+const FLUXO=[
+ {k:"quem",q:"Olá! 👋 Seja bem-vindo(a) ao escritório do Dr. Rodrigo Rafael. Pra começar: o atendimento é pra você ou pra sua empresa?",o:["Pra mim","Pra minha empresa"]},
+ {k:"assunto",q:"Entendi! E sobre qual assunto você precisa de ajuda?",o:["Contrato","Cobrança / dívida","Consumidor","Imóvel","Consultoria pra empresa","Outro"]},
+ {k:"urg",q:"Tem algum prazo correndo, audiência marcada ou você recebeu alguma intimação?",o:["Sim, é urgente","Não, posso aguardar","Não sei dizer"]},
+ {k:"modo",q:"Prefere ser atendido(a) como?",o:["Presencial","Online","Tanto faz"]},
+ {k:"nome",q:"Perfeito! Pra finalizar, qual é o seu nome?",txt:true}
+];
+let passo=0;
+function bot(t,cb){const d=document.createElement("div");d.className="dig";d.innerHTML="<i></i><i></i><i></i>";msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{d.remove();const m=document.createElement("div");m.className="m b";m.textContent=t;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight;cb&&cb()},650)}
+function eu(t){const m=document.createElement("div");m.className="m u";m.textContent=t;msgs.appendChild(m);msgs.scrollTop=msgs.scrollHeight}
+function pergunta(){const f=FLUXO[passo];resp.innerHTML="";
+  bot(f.q,()=>{if(f.txt){resp.innerHTML=`<form id="fn"><input id="inNome" placeholder="Digite seu nome" autocomplete="name"><button class="btn btn-c" style="padding:10px 16px">Enviar</button></form>`;
+      $("#fn").onsubmit=e=>{e.preventDefault();const v=$("#inNome").value.trim();if(!v)return;eu(v);C.nome=v;fim()};}
+    else resp.innerHTML=f.o.map(o=>`<button type="button">${o}</button>`).join("")})}
+resp.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||b.closest("form")||b.id||passo>=FLUXO.length)return;const f=FLUXO[passo];C[f.k]=b.textContent;eu(b.textContent);resp.innerHTML="";passo++;pergunta()});
+function fim(){resp.innerHTML="";
+  bot(`Obrigado, ${C.nome.split(" ")[0]}! ${C.urg==="Sim, é urgente"?"Como é urgente, seu caso vai com prioridade. ":""}Toque abaixo pra enviar o resumo pro WhatsApp do escritório.`,()=>{
+    resp.innerHTML=`<button type="button" id="mandar" style="background:#22B864;border-color:#22B864;color:#fff">Enviar resumo no WhatsApp</button><button type="button" id="recomeca">Recomeçar</button>`;
+    $("#mandar").onclick=()=>{let m=`Olá, Dr. Rodrigo! Vim pelo site.\n\n*Nome:* ${C.nome}\n*Para:* ${C.quem==="Pra mim"?"Pessoa física":"Empresa"}\n*Assunto:* ${C.assunto}\n*Prazo/urgência:* ${C.urg}\n*Atendimento:* ${C.modo}`;
+      KB.novo.unshift({n:C.nome,a:C.assunto,u:C.urg==="Sim, é urgente"});salvar();painel();zap(m)};
+    $("#recomeca").onclick=()=>{msgs.innerHTML="";passo=0;pergunta()};
+  })}
+pergunta();
+
+// ---- agenda (horários reais de funcionamento)
+const HOR={0:[9,21],1:[9,21],2:[9,21],3:[8,19.5],4:[9,21],5:[8,19.5],6:[9,21]};// 0=dom
+const NDIA=["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"];
+const hoje=new Date();let dSel=null,hSel=null,mSel="Presencial";
+const dias=[...Array(10)].map((_,i)=>{const d=new Date(hoje);d.setDate(d.getDate()+i+1);return d});
+$("#dias").innerHTML=dias.map((d,i)=>`<button class="dia" data-i="${i}"><small>${NDIA[d.getDay()].slice(0,3)}</small><b>${d.getDate()}</b></button>`).join("");
+function slots(d){const [a,b]=HOR[d.getDay()];const r=[];for(let h=Math.ceil(a);h+1<=b;h+=1.5)r.push(h);return r}
+const fh=h=>`${String(Math.floor(h)).padStart(2,"0")}:${h%1?"30":"00"}`;
+function rHoras(){if(dSel===null)return;const d=dias[dSel];const ocup=new Set([(d.getDate()*7)%3,(d.getDate()*5)%4+2]);
+  $("#horas").innerHTML=slots(d).map((h,i)=>`<button data-h="${h}" ${ocup.has(i)?"disabled":""} class="${hSel===h?"on":""}">${fh(h)}</button>`).join("")}
+$("#dias").onclick=e=>{const b=e.target.closest(".dia");if(!b)return;dSel=+b.dataset.i;hSel=null;document.querySelectorAll(".dia").forEach(x=>x.classList.toggle("on",x===b));
+  const d=dias[dSel];$("#cDia").textContent=`${NDIA[d.getDay()]}, ${d.toLocaleDateString("pt-BR")}`;$("#cHora").textContent="—";rHoras()};
+$("#horas").onclick=e=>{const b=e.target.closest("button");if(!b||b.disabled)return;hSel=+b.dataset.h;$("#cHora").textContent=fh(hSel);rHoras()};
+$("#modo").onclick=e=>{const b=e.target.closest("button");if(!b)return;mSel=b.dataset.m;document.querySelectorAll("#modo button").forEach(x=>x.classList.toggle("on",x===b));$("#cModo").textContent=mSel};
+document.querySelector(".dia").click();
+$("#agEnv").onclick=()=>{if(hSel===null)return toast("Escolha um horário");const n=$("#agNome").value.trim();if(!n){$("#agNome").focus();return toast("Informe seu nome")}
+  const d=dias[dSel];zap(`Olá, Dr. Rodrigo! Vim pelo site e gostaria de agendar uma consulta.\n\n*Nome:* ${n}\n*Dia:* ${NDIA[d.getDay()]}, ${d.toLocaleDateString("pt-BR")}\n*Horário:* ${fh(hSel)}\n*Formato:* ${mSel}${$("#agAss").value?`\n*Assunto:* ${$("#agAss").value}`:""}`);
+  KB.reuniao.unshift({n,a:$("#agAss").value||"Consulta",u:false});salvar();painel()};
+$("#hor").innerHTML=[1,2,3,4,5,6,0].map(i=>`<div class="${i===hoje.getDay()?"hj":""}"><span>${NDIA[i]}</span><span>${fh(HOR[i][0])} – ${fh(HOR[i][1])}</span></div>`).join("");
+
+// ---- painel kanban
+const COLS=[["novo","Novos contatos"],["analise","Em análise"],["reuniao","Consulta marcada"],["fechado","Contrato fechado"]];
+const EX={novo:[{n:"Luciana M.",a:"Cobrança / dívida",u:true},{n:"Transportadora Rio Madeira",a:"Consultoria pra empresa",u:false}],analise:[{n:"Carlos H.",a:"Imóvel",u:false}],reuniao:[{n:"Fernanda R.",a:"Contrato",u:false},{n:"Paulo S.",a:"Consumidor",u:true}],fechado:[{n:"Mercadinho Bom Preço",a:"Consultoria pra empresa",u:false}]};
+let KB=ls.get("rr-demo",null)||JSON.parse(JSON.stringify(EX));const salvar=()=>ls.set("rr-demo",KB);
+function painel(){$("#kb").innerHTML=COLS.map(([k,t],ci)=>`<div class="col"><h3>${t}<b>${KB[k].length}</b></h3>${KB[k].map((c,i)=>`<div class="cd"><b>${c.u?"🔴 ":""}${c.n}</b><small>${c.a}</small>${ci<3?`<br><button data-k="${k}" data-i="${i}">Avançar →</button>`:""}</div>`).join("")}</div>`).join("")}
+$("#kb").onclick=e=>{const b=e.target.closest("button");if(!b)return;const k=b.dataset.k;const ix=COLS.findIndex(c=>c[0]===k);const c=KB[k].splice(+b.dataset.i,1)[0];KB[COLS[ix+1][0]].unshift(c);salvar();painel();toast(`${c.n} → ${COLS[ix+1][1]}`)};
+$("#zerar").onclick=e=>{e.preventDefault();KB=JSON.parse(JSON.stringify(EX));salvar();painel();toast("Exemplo restaurado")};
+painel();
+</script>
+</body>
+</html>
