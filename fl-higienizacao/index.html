@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F.L Higienização · Limpeza de Estofados a Domicílio</title>
+<meta name="description" content="Higienização de sofás, colchões, poltronas, cadeiras e bancos de carro a domicílio. Orçamento rápido pelo WhatsApp.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2A6F;--azul:#1E5BD8;--aqua:#27C3E8;--ceu:#EAF5FD;--ceu2:#F5FAFE;
+  --tx:#0F1E3D;--mut:#5A6A85;--linha:#DCE7F3;--verde:#1FB866;--r:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--tx);font:16px/1.6 "Plus Jakarta Sans",system-ui,sans-serif;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+button,input,select,textarea{font:inherit;max-width:100%}
+.wrap{width:min(1160px,100%);margin:0 auto;padding-left:20px;padding-right:20px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:14px 22px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:var(--azul);color:#fff}
+.btn-p:hover{background:var(--navy)}
+.btn-zap{background:var(--verde);color:#fff}
+.btn-g{background:#fff;color:var(--navy);border:2px solid var(--linha)}
+.eti{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--azul)}
+.eti:before{content:"";width:22px;height:2px;background:var(--aqua)}
+h1,h2,h3{letter-spacing:-.02em;line-height:1.12}
+
+/* topo */
+header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.topo{display:flex;align-items:center;justify-content:space-between;gap:12px;height:70px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy)}
+.marca .ico{width:44px;height:44px;border-radius:50%;border:2px solid var(--navy);display:grid;place-items:center;background:#fff}
+.marca b{display:block;font-size:1.12rem;line-height:1.05;font-weight:800}
+.marca small{display:block;font-size:.66rem;letter-spacing:.12em;color:var(--mut);font-weight:600}
+nav{display:flex;gap:24px;font-weight:600;font-size:.94rem}
+nav a{text-decoration:none;color:var(--tx)}
+nav a:hover{color:var(--azul)}
+.topo .btn{padding:10px 16px;font-size:.9rem}
+@media(max-width:920px){nav{display:none}}
+
+/* hero */
+.hero{background:linear-gradient(180deg,var(--ceu) 0,#fff 100%);padding:54px 0 64px;position:relative;overflow:hidden}
+.bolhas span{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff,rgba(39,195,232,.18) 60%,rgba(39,195,232,.05));border:1px solid rgba(39,195,232,.25);animation:sobe 14s linear infinite;bottom:-60px}
+@keyframes sobe{to{transform:translateY(-760px)}}
+.hero-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:center;position:relative}
+.hero h1{font-size:clamp(2.2rem,5vw,3.7rem);margin:14px 0 16px;font-weight:800;color:var(--navy)}
+.hero h1 em{font-style:normal;color:var(--azul);position:relative;white-space:nowrap}
+.hero h1 em:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:10px;background:rgba(39,195,232,.3);z-index:-1;border-radius:6px}
+.hero p.lead{font-size:1.1rem;color:var(--mut);margin:0 0 26px;max-width:520px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px}
+.selos{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:28px;font-weight:600;font-size:.92rem;color:var(--navy)}
+.selos span{display:flex;align-items:center;gap:8px}
+.selos i{width:26px;height:26px;border-radius:50%;background:#fff;border:2px solid var(--aqua);display:grid;place-items:center;font-style:normal;font-size:.8rem;color:var(--azul)}
+.foto-hero{position:relative}
+.foto-hero img{width:100%;aspect-ratio:5/4;object-fit:cover;border-radius:28px;box-shadow:0 24px 50px rgba(11,42,111,.18)}
+.cartela{position:absolute;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 12px 30px rgba(11,42,111,.16);display:flex;align-items:center;gap:12px;font-size:.88rem}
+.cartela b{display:block;color:var(--navy);font-size:.95rem}
+.cartela small{color:var(--mut)}
+.cartela .em{font-size:1.6rem}
+.c1{left:-18px;bottom:28px}
+.c2{right:-14px;top:24px}
+@media(max-width:900px){
+  .hero{padding:30px 0 48px}
+  .hero-g{grid-template-columns:minmax(0,1fr)}
+  .foto-hero{order:-1}
+  .c1{left:8px;bottom:-18px}.c2{right:8px;top:12px}
+}
+
+section.s{padding:84px 0}
+.tit{max-width:700px;margin:0 auto 40px;text-align:center}
+.tit h2{font-size:clamp(1.8rem,3.8vw,2.7rem);margin:10px 0;color:var(--navy);font-weight:800}
+.tit p{color:var(--mut);margin:0}
+
+/* antes depois */
+.ad{background:var(--navy);color:#fff}
+.ad .tit h2{color:#fff}.ad .tit p{color:#bcd0f2}
+.ad .eti{color:var(--aqua)}
+.ad-g{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:36px;align-items:center}
+@media(max-width:900px){.ad-g{grid-template-columns:minmax(0,1fr)}}
+.comp{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/3;user-select:none;touch-action:pan-y;box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.comp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.comp .sujo{clip-path:inset(0 calc(100% - var(--x,50%)) 0 0)}
+.comp .sujo img{filter:sepia(.55) saturate(.8) brightness(.8) contrast(.92)}
+.manchas{position:absolute;inset:0;mix-blend-mode:multiply;background:
+ radial-gradient(ellipse 9% 6% at 30% 62%,rgba(120,80,30,.55),transparent 70%),
+ radial-gradient(ellipse 6% 9% at 46% 70%,rgba(90,60,25,.5),transparent 70%),
+ radial-gradient(ellipse 12% 5% at 22% 74%,rgba(110,75,35,.45),transparent 70%),
+ radial-gradient(ellipse 7% 5% at 62% 64%,rgba(100,70,30,.45),transparent 70%),
+ radial-gradient(ellipse 5% 4% at 38% 52%,rgba(80,55,20,.5),transparent 70%),
+ radial-gradient(ellipse 20% 12% at 40% 80%,rgba(120,90,50,.35),transparent 70%)}
+.comp .lab{position:absolute;top:16px;padding:6px 12px;border-radius:999px;font-weight:800;font-size:.78rem;letter-spacing:.06em;z-index:3}
+.lab.a{left:16px;background:#7a5a2a;color:#fff}
+.lab.d{right:16px;background:#fff;color:var(--azul)}
+.puxa{position:absolute;top:0;bottom:0;left:var(--x,50%);width:4px;margin-left:-2px;background:#fff;z-index:4;pointer-events:none}
+.puxa:after{content:"⟷";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:50px;height:50px;border-radius:50%;background:#fff;color:var(--azul);display:grid;place-items:center;font-weight:800;font-size:1.3rem;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.comp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:5;margin:0}
+.ad ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.ad li{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px}
+.ad li i{font-style:normal;font-size:1.4rem}
+.ad li b{display:block}
+.ad li span{color:#bcd0f2;font-size:.92rem}
+.ad .nota{font-size:.8rem;color:#8fa6d4;margin-top:14px}
+
+/* serviços */
+.grade{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media(max-width:900px){.grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+.serv{border:1px solid var(--linha);border-radius:var(--r);overflow:hidden;background:#fff;display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.serv:hover{box-shadow:0 16px 36px rgba(11,42,111,.12);transform:translateY(-3px)}
+.serv img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.serv .bd{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.serv h3{margin:0;font-size:1.12rem;color:var(--navy)}
+.serv p{margin:0;color:var(--mut);font-size:.9rem;flex:1}
+.serv button{align-self:flex-start;margin-top:8px;border:0;background:var(--ceu);color:var(--azul);font-weight:700;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.86rem}
+@media(max-width:600px){.serv p{display:none}.serv .bd{padding:12px}.serv h3{font-size:.98rem}.serv button{font-size:.78rem;padding:7px 10px}}
+
+/* teste */
+.teste{background:var(--ceu2)}
+.quiz{max-width:720px;margin:0 auto;background:#fff;border:1px solid var(--linha);border-radius:24px;padding:28px;box-shadow:0 14px 40px rgba(11,42,111,.08)}
+.prog{height:8px;border-radius:9px;background:var(--ceu);overflow:hidden;margin-bottom:22px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--aqua),var(--azul));transition:width .3s}
+.quiz h3{margin:0 0 16px;font-size:1.3rem;color:var(--navy)}
+.ops{display:grid;gap:10px}
+.ops button{text-align:left;border:2px solid var(--linha);background:#fff;border-radius:14px;padding:14px 16px;font-weight:600;cursor:pointer;color:var(--tx)}
+.ops button:hover{border-color:var(--aqua);background:var(--ceu2)}
+.res{text-align:center}
+.res .medidor{width:150px;height:150px;border-radius:50%;margin:0 auto 14px;display:grid;place-items:center;font-size:3rem;border:10px solid var(--cor)}
+.res h3{font-size:1.5rem}
+.res p{color:var(--mut);margin:0 auto 18px;max-width:480px}
+
+/* passos */
+.passos-g{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:44px;align-items:center}
+@media(max-width:900px){.passos-g{grid-template-columns:minmax(0,1fr)}}
+.passos-g img{border-radius:24px;width:100%;aspect-ratio:1/1;object-fit:cover}
+.linha-t{list-style:none;padding:0;margin:0;counter-reset:p}
+.linha-t li{position:relative;padding:0 0 26px 62px;counter-increment:p}
+.linha-t li:before{content:counter(p);position:absolute;left:0;top:0;width:42px;height:42px;border-radius:12px;background:var(--azul);color:#fff;display:grid;place-items:center;font-weight:800}
+.linha-t li:after{content:"";position:absolute;left:20px;top:46px;bottom:4px;width:2px;background:var(--linha)}
+.linha-t li:last-child:after{display:none}
+.linha-t b{display:block;color:var(--navy);font-size:1.05rem}
+.linha-t span{color:var(--mut);font-size:.94rem}
+
+/* pets */
+.pets{background:linear-gradient(135deg,#FFF8EC,#EAF5FD)}
+.pets-g{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
+@media(max-width:900px){.pets-g{grid-template-columns:minmax(0,1fr)}}
+.duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+.duo img{border-radius:20px;aspect-ratio:3/4;object-fit:cover;width:100%}
+.duo img:last-child{margin-top:40px}
+.pets h2{font-size:clamp(1.8rem,3.6vw,2.6rem);color:var(--navy);margin:10px 0}
+.pets p{color:var(--mut)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 24px}
+.tags span{background:#fff;border:1px solid var(--linha);border-radius:999px;padding:6px 12px;font-weight:600;font-size:.86rem;color:var(--navy)}
+
+/* orçamento */
+.orc{background:var(--ceu)}
+.orc-g{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:start}
+@media(max-width:900px){.orc-g{grid-template-columns:minmax(0,1fr)}}
+.card{background:#fff;border-radius:24px;padding:24px;border:1px solid var(--linha)}
+.card h3{margin:0 0 14px;color:var(--navy);font-size:1.15rem}
+.itens{display:grid;gap:10px}
+.it{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;border:1px solid var(--linha);border-radius:14px;padding:10px 12px}
+.it b{display:block;font-size:.95rem}
+.it small{color:var(--mut);font-size:.8rem}
+.qt{display:flex;align-items:center;gap:6px}
+.qt button{width:34px;height:34px;border-radius:10px;border:0;background:var(--ceu);color:var(--azul);font-weight:800;font-size:1.1rem;cursor:pointer}
+.qt span{min-width:22px;text-align:center;font-weight:800}
+.it.on{border-color:var(--aqua);background:var(--ceu2)}
+.chipz{display:flex;flex-wrap:wrap;gap:8px}
+.chipz label{cursor:pointer}
+.chipz input{position:absolute;opacity:0;pointer-events:none}
+.chipz span{display:inline-block;border:2px solid var(--linha);border-radius:999px;padding:7px 12px;font-weight:600;font-size:.86rem}
+.chipz input:checked+span{border-color:var(--azul);background:var(--azul);color:#fff}
+.campo{display:grid;gap:6px;font-weight:600;font-size:.88rem;margin-top:14px}
+.txt{width:100%;border:1.5px solid var(--linha);border-radius:12px;padding:12px 14px;background:#fff;color:var(--tx)}
+.txt:focus{outline:3px solid rgba(39,195,232,.35);border-color:var(--aqua)}
+.duas{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media(max-width:520px){.duas{grid-template-columns:minmax(0,1fr)}}
+.resumo{position:sticky;top:90px}
+.resumo ul{list-style:none;padding:0;margin:0 0 14px;display:grid;gap:8px}
+.resumo li{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--linha);padding-bottom:8px;font-size:.94rem}
+.resumo .vazio{color:var(--mut);font-size:.92rem}
+.lembra{display:flex;gap:10px;align-items:flex-start;background:var(--ceu2);border:1px dashed var(--aqua);border-radius:14px;padding:12px;font-size:.88rem;margin:14px 0}
+.lembra input{width:20px;height:20px;accent-color:var(--azul);flex:none;margin-top:2px}
+.dica{font-size:.8rem;color:var(--mut);margin:10px 0 0}
+
+/* faq */
+.faq{max-width:780px;margin:0 auto;display:grid;gap:10px}
+.faq details{border:1px solid var(--linha);border-radius:16px;padding:16px 18px;background:#fff}
+.faq summary{cursor:pointer;font-weight:700;color:var(--navy);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary:after{content:"+";color:var(--azul);font-size:1.3rem;line-height:1}
+.faq details[open] summary:after{content:"–"}
+.faq p{margin:10px 0 0;color:var(--mut)}
+
+/* painel */
+.painel{background:#0A1A44;color:#fff}
+.painel .tit h2{color:#fff}.painel .tit p{color:#a9bce6}.painel .eti{color:var(--aqua)}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+@media(max-width:800px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:#12275e;border:1px solid #23397a;border-radius:16px;padding:16px}
+.kpi b{display:block;font-size:1.8rem;line-height:1.1}
+.kpi span{color:#a9bce6;font-size:.82rem}
+.pn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+@media(max-width:900px){.pn{grid-template-columns:minmax(0,1fr)}}
+.box{background:#12275e;border:1px solid #23397a;border-radius:20px;padding:18px}
+.box h3{margin:0 0 4px;font-size:1.08rem}
+.box>p{margin:0 0 14px;color:#a9bce6;font-size:.86rem}
+.ag{display:grid;gap:10px}
+.ag div{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:12px;align-items:center;background:#0A1A44;border-radius:14px;padding:12px}
+.ag time{font-weight:800;color:var(--aqua);font-size:.9rem;line-height:1.2}
+.ag b{display:block;font-size:.94rem}
+.ag small{color:#a9bce6;font-size:.8rem}
+.ag button,.ret button{border:0;border-radius:10px;padding:8px 10px;font-weight:700;font-size:.78rem;cursor:pointer}
+.ok{background:var(--verde);color:#fff}
+.feito{background:#23397a;color:#a9bce6}
+.ret{display:grid;gap:10px}
+.ret div{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;background:#0A1A44;border-radius:14px;padding:12px}
+.ret b{display:block;font-size:.94rem}
+.ret small{color:#a9bce6;font-size:.8rem}
+.ret .z{background:var(--verde);color:#fff}
+.ret .atr{color:#ffb35c}
+
+footer{background:#06112E;color:#a9bce6;padding:40px 0 96px;font-size:.92rem}
+.rod{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+footer b{color:#fff}
+footer a{color:#fff}
+.flutua{position:fixed;right:18px;bottom:18px;z-index:50;width:60px;height:60px;border-radius:50%;background:var(--verde);display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.25)}
+.flutua svg{width:32px;height:32px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,40px);opacity:0;background:var(--navy);color:#fff;padding:12px 20px;border-radius:14px;font-weight:600;z-index:60;transition:.3s;pointer-events:none;max-width:calc(100% - 40px);text-align:center}
+.toast.on{transform:translate(-50%,0);opacity:1}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap topo">
+    <a class="marca" href="#topo">
+      <span class="ico"><svg width="26" height="26" viewBox="0 0 32 32" fill="none" stroke="#0B2A6F" stroke-width="2.4" stroke-linejoin="round"><path d="M6 15v-3a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v3"/><path d="M4 15a2 2 0 0 1 4 0v3h16v-3a2 2 0 0 1 4 0v7H4z"/><path d="M7 22v3M25 22v3"/><circle cx="27" cy="6" r="1.4" fill="#27C3E8" stroke="none"/><circle cx="23.5" cy="4" r="1" fill="#27C3E8" stroke="none"/></svg></span>
+      <span><b>F.L Higienização</b><small>ESTOFADOS LIMPOS, VIDA MAIS SAUDÁVEL</small></span>
+    </a>
+    <nav>
+      <a href="#antes-depois">Antes e depois</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#teste">Teste do sofá</a>
+      <a href="#orcamento">Orçamento</a>
+    </nav>
+    <a class="btn btn-p" href="#orcamento">Fazer orçamento</a>
+  </div>
+</header>
+
+<section class="hero" id="topo">
+  <div class="bolhas" aria-hidden="true">
+    <span style="left:6%;width:40px;height:40px;animation-delay:0s"></span>
+    <span style="left:18%;width:22px;height:22px;animation-delay:3s"></span>
+    <span style="left:44%;width:30px;height:30px;animation-delay:6s"></span>
+    <span style="left:70%;width:18px;height:18px;animation-delay:1.5s"></span>
+    <span style="left:88%;width:34px;height:34px;animation-delay:8s"></span>
+  </div>
+  <div class="wrap hero-g">
+    <div>
+      <span class="eti">Especialista em estofados</span>
+      <h1>Seu sofá limpo <em>de verdade</em>, sem você sair de casa.</h1>
+      <p class="lead">Higienização profunda de sofás, colchões, poltronas, cadeiras e bancos de carro. A gente vai até você, tira a sujeira que o pano não alcança e deixa tudo cheiroso.</p>
+      <div class="acoes">
+        <a class="btn btn-zap" href="#orcamento">Quero um orçamento</a>
+        <a class="btn btn-g" href="#antes-depois">Ver antes e depois</a>
+      </div>
+      <div class="selos">
+        <span><i>✓</i>Atendimento a domicílio</span>
+        <span><i>✓</i>Seguro pra crianças e pets</span>
+        <span><i>✓</i>Orçamento pelo WhatsApp</span>
+      </div>
+    </div>
+    <div class="foto-hero">
+      <img src="https://images.unsplash.com/photo-1758598737810-7489fde716af?w=1100&q=72&auto=format&fit=crop" alt="Mãe e filho sorrindo num sofá limpo" width="1100" height="880">
+      <div class="cartela c1"><span class="em">🛋️</span><div><b>Sofá novo de novo</b><small>sem manchas e sem cheiro</small></div></div>
+      <div class="cartela c2"><span class="em">🏠</span><div><b>Vamos até você</b><small>é só agendar</small></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="s ad" id="antes-depois">
+  <div class="wrap">
+    <div class="tit">
+      <span class="eti">Arraste e veja</span>
+      <h2>A diferença que a higienização faz</h2>
+      <p>Arraste a barra pro lado e compare o antes e o depois.</p>
+    </div>
+    <div class="ad-g">
+      <div class="comp" id="comp" style="--x:55%">
+        <img src="https://images.unsplash.com/photo-1587433701752-78cbf88ae429?w=1200&q=72&auto=format&fit=crop" alt="Sofá depois da higienização" width="1200" height="900">
+        <div class="sujo" style="position:absolute;inset:0"><img src="https://images.unsplash.com/photo-1587433701752-78cbf88ae429?w=1200&q=72&auto=format&fit=crop" alt="" width="1200" height="900"><div class="manchas"></div></div>
+        <span class="lab a">ANTES</span><span class="lab d">DEPOIS</span>
+        <div class="puxa"></div>
+        <input type="range" min="0" max="100" value="55" id="slider" aria-label="Comparar antes e depois">
+      </div>
+      <div>
+        <ul>
+          <li><i>🦠</i><div><b>Ácaros e bactérias</b><span>O estofado acumula suor, pele, poeira e restos de comida. É aí que eles moram.</span></div></li>
+          <li><i>🐶</i><div><b>Xixi e cheiro de pet</b><span>Tratamento que tira o odor, e não só disfarça.</span></div></li>
+          <li><i>🤧</i><div><b>Alergias e rinite</b><span>Menos poeira e ácaro significa respirar melhor em casa.</span></div></li>
+        </ul>
+        <p class="nota">Imagem ilustrativa. No site oficial entram fotos e vídeos reais dos serviços da F.L.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="servicos">
+  <div class="wrap">
+    <div class="tit">
+      <span class="eti">Serviços</span>
+      <h2>O que a gente deixa limpinho</h2>
+      <p>Toque em “Adicionar ao orçamento” e monte o seu pedido em segundos.</p>
+    </div>
+    <div class="grade" id="grade"></div>
+  </div>
+</section>
+
+<section class="s teste" id="teste">
+  <div class="wrap">
+    <div class="tit">
+      <span class="eti">Teste rápido</span>
+      <h2>Seu sofá está pedindo socorro?</h2>
+      <p>4 perguntas, 20 segundos. Descubra se está na hora de higienizar.</p>
+    </div>
+    <div class="quiz" id="quiz"></div>
+  </div>
+</section>
+
+<section class="s" id="como">
+  <div class="wrap passos-g">
+    <img src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?w=900&q=72&auto=format&fit=crop" alt="Profissional higienizando um estofado com extratora" width="900" height="900" loading="lazy">
+    <div>
+      <span class="eti">Como funciona</span>
+      <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem);color:var(--navy);margin:10px 0 24px">Simples pra você, caprichado da nossa parte</h2>
+      <ol class="linha-t">
+        <li><b>Orçamento no WhatsApp</b><span>Você escolhe os itens aqui no site e manda uma foto do estofado.</span></li>
+        <li><b>A gente vai até você</b><span>No dia e período combinados, com todo o equipamento.</span></li>
+        <li><b>Aspiração e pré-tratamento</b><span>Tira a sujeira solta e aplica o produto certo pro tecido e pra mancha.</span></li>
+        <li><b>Extração profunda</b><span>A extratora injeta e puxa de volta a sujeira de dentro da espuma.</span></li>
+        <li><b>Secagem e cheirinho</b><span>Orientamos sobre a secagem e o seu sofá volta a ser seu lugar favorito.</span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="s pets">
+  <div class="wrap pets-g">
+    <div class="duo">
+      <img src="https://images.unsplash.com/photo-1628528132630-f50513dc2743?w=600&q=72&auto=format&fit=crop" alt="Cachorro deitado numa poltrona" width="600" height="800" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1758687126864-96b61e1b3af0?w=600&q=72&auto=format&fit=crop" alt="Família sentada no sofá" width="600" height="800" loading="lazy">
+    </div>
+    <div>
+      <span class="eti">Casa com criança e pet</span>
+      <h2>Sofá é lugar de bagunça boa. A limpeza fica com a gente.</h2>
+      <p>Suco derramado, xixi do cachorro, pelo de gato, cheiro de mofo… A gente já viu de tudo e sabe como tratar cada caso.</p>
+      <div class="tags"><span>Manchas de comida</span><span>Xixi de pet</span><span>Odor</span><span>Mofo</span><span>Pelos</span><span>Ácaros</span></div>
+      <a class="btn btn-p" href="#orcamento">Resolver isso agora</a>
+    </div>
+  </div>
+</section>
+
+<section class="s orc" id="orcamento">
+  <div class="wrap">
+    <div class="tit">
+      <span class="eti">Orçamento</span>
+      <h2>Monte seu orçamento e mande no WhatsApp</h2>
+      <p>Escolha os itens, conte o problema e sugira um dia. A F.L responde com o valor certinho.</p>
+    </div>
+    <div class="orc-g">
+      <div class="card">
+        <h3>1. O que vamos limpar?</h3>
+        <div class="itens" id="itens"></div>
+        <h3 style="margin-top:22px">2. Qual o problema?</h3>
+        <div class="chipz" id="probs"></div>
+        <h3 style="margin-top:22px">3. Seus dados</h3>
+        <div class="duas">
+          <label class="campo">Seu nome<input class="txt" id="nome" autocomplete="name"></label>
+          <label class="campo">Bairro / cidade<input class="txt" id="bairro"></label>
+        </div>
+        <div class="duas">
+          <label class="campo">Dia de preferência<input class="txt" id="dia" type="date"></label>
+          <label class="campo">Período<select class="txt" id="periodo"><option>Manhã</option><option>Tarde</option><option>Tanto faz</option></select></label>
+        </div>
+      </div>
+      <div class="card resumo">
+        <h3>Seu pedido</h3>
+        <ul id="resumo"><li class="vazio">Nenhum item ainda.</li></ul>
+        <label class="lembra"><input type="checkbox" id="lembrete" checked><span><b>Me lembra daqui a 6 meses</b><br>A F.L te avisa quando for hora da próxima higienização.</span></label>
+        <button class="btn btn-zap" id="enviar" style="width:100%">Enviar no WhatsApp</button>
+        <p class="dica">💡 Dica: depois de enviar, mande uma foto do estofado. Ajuda a passar o valor certinho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" id="duvidas">
+  <div class="wrap">
+    <div class="tit"><span class="eti">Dúvidas</span><h2>Perguntas que todo mundo faz</h2></div>
+    <div class="faq">
+      <details><summary>Quanto tempo demora pra secar?</summary><p>Depende do tecido, do clima e da ventilação do ambiente. A F.L te orienta no dia pra secar o mais rápido possível.</p></details>
+      <details><summary>Os produtos fazem mal pra criança ou pet?</summary><p>Pode perguntar no orçamento quais produtos são usados no seu caso e como deixar o ambiente depois do serviço.</p></details>
+      <details><summary>Sai mancha antiga?</summary><p>Muitas saem ou clareiam bastante. Mande uma foto no WhatsApp que a gente avalia antes.</p></details>
+      <details><summary>De quanto em quanto tempo devo higienizar?</summary><p>Em casa com criança, pet ou alguém com alergia, o ideal é a cada 6 meses. Se marcar a opção de lembrete, a F.L te avisa.</p></details>
+      <details><summary>Vocês atendem em que região?</summary><p>Atendimento a domicílio. Informe seu bairro no orçamento.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="s painel" id="painel">
+  <div class="wrap">
+    <div class="tit">
+      <span class="eti">Área do Fernando</span>
+      <h2>Agenda e clientes de volta, num lugar só</h2>
+      <p>Tudo o que chega pelo site cai aqui. E o sistema mostra quem já está na hora de higienizar de novo, pra chamar com um toque.</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b id="k1">0</b><span>serviços na semana</span></div>
+      <div class="kpi"><b id="k2">0</b><span>pedidos pelo site</span></div>
+      <div class="kpi"><b id="k3">0</b><span>clientes pra retorno</span></div>
+      <div class="kpi"><b id="k4">0</b><span>pediram lembrete</span></div>
+    </div>
+    <div class="pn">
+      <div class="box">
+        <h3>📅 Agenda da semana</h3>
+        <p>Toque em “Concluir” e o cliente entra na lista de retorno de 6 meses.</p>
+        <div class="ag" id="agenda"></div>
+      </div>
+      <div class="box">
+        <h3>🔁 Hora de chamar de novo</h3>
+        <p>Clientes com 6 meses ou mais desde a última limpeza. A mensagem já vai pronta.</p>
+        <div class="ret" id="retorno"></div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:.8rem;color:#7f93c2;margin:18px 0 0">Demonstração: os dados ficam só neste navegador. <a href="#" id="zerar" style="color:var(--aqua)">Restaurar exemplo</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap rod">
+    <div><b>F.L Higienização</b><br>Especialista em limpeza e higienização de estofados<br>Atendimento a domicílio</div>
+    <div>WhatsApp: <a href="https://wa.me/5531995630498" target="_blank" rel="noopener">(31) 99563-0498</a><br>Instagram: <a href="https://www.instagram.com/flhigienizacao/" target="_blank" rel="noopener">@flhigienizacao</a></div>
+    <div style="align-self:end">Modelo de demonstração · Hélice Sites &amp; Sistemas</div>
+  </div>
+</footer>
+
+<a class="flutua" href="https://wa.me/5531995630498" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2s0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.4c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg></a>
+<div class="toast" id="toast"></div>
+
+<script>
+const ZAP="5531995630498";
+const U=(id,w=700)=>`https://images.unsplash.com/${id}?w=${w}&q=70&auto=format&fit=crop`;
+const $=s=>document.querySelector(s);
+const toast=t=>{const e=$("#toast");e.textContent=t;e.classList.add("on");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("on"),2600)};
+const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+
+// antes e depois
+$("#slider").oninput=e=>$("#comp").style.setProperty("--x",e.target.value+"%");
+
+// serviços / itens
+const S=[
+ {id:"sofa",n:"Sofá",d:"2, 3 lugares, retrátil, de canto. Tecido, suede ou couro.",img:"photo-1758687126877-b37052a20a4d",sub:"informe quantos lugares no recado"},
+ {id:"colchao",n:"Colchão",d:"Solteiro, casal, queen e king. Adeus ácaros e manchas.",img:"photo-1505693416388-ac5ce068fe85",sub:"solteiro, casal, queen ou king"},
+ {id:"poltrona",n:"Poltronas",d:"Aquela do cantinho da leitura merece carinho também.",img:"photo-1758915753395-a5dddea1d813",sub:"por unidade"},
+ {id:"cadeira",n:"Cadeiras estofadas",d:"Assento e encosto das cadeiras da sala de jantar.",img:"photo-1711533522750-0dfbf42d273d",sub:"por unidade"},
+ {id:"carro",n:"Bancos de carro",d:"Bancos, teto e carpete. Carro cheiroso por dentro.",img:"photo-1652860316277-370ca5b1b1df",sub:"por veículo"},
+ {id:"pet",n:"Caminhas e cantinho pet",d:"Tira cheiro e pelo de onde seu bichinho mais fica.",img:"photo-1628528132630-f50513dc2743",sub:"por unidade"}
+];
+const Q={};
+$("#grade").innerHTML=S.map(s=>`<article class="serv"><img loading="lazy" src="${U(s.img)}" alt="${s.n}" width="700" height="525"><div class="bd"><h3>${s.n}</h3><p>${s.d}</p><button type="button" data-add="${s.id}">+ Adicionar ao orçamento</button></div></article>`).join("");
+$("#grade").onclick=e=>{const b=e.target.closest("[data-add]");if(!b)return;Q[b.dataset.add]=(Q[b.dataset.add]||0)+1;itens();toast(S.find(s=>s.id===b.dataset.add).n+" adicionado ao orçamento")};
+function itens(){
+  $("#itens").innerHTML=S.map(s=>`<div class="it ${Q[s.id]?"on":""}"><div><b>${s.n}</b><small>${s.sub}</small></div><div class="qt"><button type="button" data-m="${s.id}" aria-label="Menos">−</button><span>${Q[s.id]||0}</span><button type="button" data-p="${s.id}" aria-label="Mais">+</button></div></div>`).join("");
+  const L=S.filter(s=>Q[s.id]);
+  $("#resumo").innerHTML=L.length?L.map(s=>`<li><span>${s.n}</span><b>${Q[s.id]}×</b></li>`).join(""):'<li class="vazio">Nenhum item ainda.</li>';
+}
+$("#itens").onclick=e=>{const b=e.target.closest("button");if(!b)return;const id=b.dataset.p||b.dataset.m;Q[id]=Math.max(0,(Q[id]||0)+(b.dataset.p?1:-1));itens()};
+itens();
+const PROBS=["Manchas","Xixi de pet","Mau cheiro","Mofo","Pelos","Só limpeza de rotina","Alergia em casa"];
+$("#probs").innerHTML=PROBS.map(p=>`<label><input type="checkbox" value="${p}"><span>${p}</span></label>`).join("");
+
+$("#enviar").onclick=()=>{
+  const L=S.filter(s=>Q[s.id]);
+  if(!L.length){toast("Escolhe pelo menos um item 😉");$("#itens").scrollIntoView({behavior:"smooth",block:"center"});return}
+  const nome=$("#nome").value.trim();
+  const pr=[...document.querySelectorAll("#probs input:checked")].map(i=>i.value);
+  const dia=$("#dia").value?$("#dia").value.split("-").reverse().join("/"):"";
+  let m=`Olá, F.L Higienização! Vim pelo site e queria um orçamento 🛋️\n\n`;
+  if(nome)m+=`*Nome:* ${nome}\n`;
+  m+=`*Itens:*\n${L.map(s=>`• ${Q[s.id]}× ${s.n}`).join("\n")}`;
+  if(pr.length)m+=`\n*Problema:* ${pr.join(", ")}`;
+  if($("#bairro").value)m+=`\n*Bairro/cidade:* ${$("#bairro").value}`;
+  if(dia)m+=`\n*Preferência:* ${dia} · ${$("#periodo").value}`;
+  else m+=`\n*Período:* ${$("#periodo").value}`;
+  if($("#lembrete").checked)m+=`\n\n🔔 Quero ser lembrado(a) da próxima higienização daqui a 6 meses.`;
+  m+=`\n\nVou mandar uma foto do estofado em seguida.`;
+  // demo: registra no painel
+  const P=ls.get("fl-pedidos",0)+1;ls.set("fl-pedidos",P);painel();
+  window.open(`https://wa.me/${ZAP}?text=${encodeURIComponent(m)}`,"_blank");
+};
+
+// quiz
+const QZ=[
+ {q:"Quando foi a última vez que o sofá foi higienizado?",o:[["Faz menos de 6 meses",0],["Entre 6 meses e 1 ano",2],["Mais de 1 ano",3],["Nunca 😅",4]]},
+ {q:"Tem criança ou pet em casa?",o:[["Não",0],["Criança",2],["Pet",2],["Os dois!",3]]},
+ {q:"Como ele está de cheiro?",o:[["Cheirinho de novo",0],["Normal",1],["Um cheiro estranho às vezes",3],["Melhor nem comentar",4]]},
+ {q:"E as manchas?",o:[["Nenhuma",0],["Uma ou outra",1],["Várias",3],["Já perdi as contas",4]]}
+];
+let qi=0,pts=0;
+function quiz(){
+  const el=$("#quiz");
+  if(qi<QZ.length){const x=QZ[qi];
+    el.innerHTML=`<div class="prog"><i style="width:${qi/QZ.length*100}%"></i></div><h3>${x.q}</h3><div class="ops">${x.o.map(o=>`<button type="button" data-v="${o[1]}">${o[0]}</button>`).join("")}</div>`;
+  }else{
+    const r=pts<=3?{c:"#1FB866",e:"😌",t:"Tá tudo sob controle",p:"Seu sofá está bem cuidado. Pra manter assim, o ideal é higienizar a cada 6 meses."}
+      :pts<=8?{c:"#F5B400",e:"🤔",t:"Tá na hora de dar um trato",p:"Ele ainda aguenta, mas já tem sujeira acumulada por dentro. Uma higienização agora evita mancha e cheiro que não saem mais."}
+      :{c:"#E5484D",e:"🆘",t:"Seu sofá está pedindo socorro!",p:"Ácaro, cheiro e mancha estão fazendo festa aí. Bora resolver isso essa semana?"};
+    el.innerHTML=`<div class="prog"><i style="width:100%"></i></div><div class="res"><div class="medidor" style="--cor:${r.c}">${r.e}</div><h3 style="color:${r.c}">${r.t}</h3><p>${r.p}</p><div class="acoes" style="justify-content:center"><a class="btn btn-zap" href="#orcamento" id="qOrc">Fazer orçamento</a><button class="btn btn-g" type="button" id="qDe">Refazer teste</button></div></div>`;
+    $("#qDe").onclick=()=>{qi=0;pts=0;quiz()};
+    $("#qOrc").onclick=()=>{if(!Q.sofa){Q.sofa=1;itens()}};
+  }
+}
+$("#quiz").onclick=e=>{const b=e.target.closest("[data-v]");if(!b)return;pts+=+b.dataset.v;qi++;quiz()};
+quiz();
+
+// painel (demo)
+const hoje=new Date();
+const dd=n=>{const d=new Date(hoje);d.setDate(d.getDate()+n);return d};
+const fd=d=>d.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit"}).replace(".","");
+const mes=(n)=>{const d=new Date(hoje);d.setMonth(d.getMonth()-n);return d.toISOString().slice(0,10)};
+const EX={
+ agenda:[
+  {id:1,d:0,h:"09:00",c:"Mariana Costa",s:"Sofá 3 lugares + 2 cadeiras",b:"Centro",ok:false},
+  {id:2,d:0,h:"14:00",c:"Roberto Alves",s:"Bancos do carro",b:"Jardim América",ok:false},
+  {id:3,d:1,h:"10:00",c:"Juliana Prado",s:"Colchão casal (xixi de pet)",b:"Vila Nova",ok:false},
+  {id:4,d:2,h:"08:30",c:"Clínica Bem Estar",s:"6 poltronas da recepção",b:"Centro",ok:false},
+  {id:5,d:3,h:"15:00",c:"Paula Menezes",s:"Sofá retrátil",b:"Santa Mônica",ok:false}
+ ],
+ clientes:[
+  {c:"Ana Lúcia",s:"Sofá 3 lugares",u:mes(7)},
+  {c:"Família Rocha",s:"Sofá + colchão",u:mes(6)},
+  {c:"Pet Shop Patinhas",s:"Caminhas pet",u:mes(6)},
+  {c:"Carlos Eduardo",s:"Bancos do carro",u:mes(9)},
+  {c:"Denise Martins",s:"Poltronas",u:mes(2)}
+ ]
+};
+let D=ls.get("fl-demo",null)||JSON.parse(JSON.stringify(EX));
+const salvar=()=>ls.set("fl-demo",D);
+const meses=u=>{const d=new Date(u+"T12:00");let m=(hoje.getFullYear()-d.getFullYear())*12+hoje.getMonth()-d.getMonth();if(hoje.getDate()<d.getDate())m--;return m};
+function painel(){
+  $("#agenda").innerHTML=D.agenda.map(a=>`<div><time>${fd(dd(a.d))}<br>${a.h}</time><div><b>${a.c}</b><small>${a.s} · ${a.b}</small></div><button type="button" class="${a.ok?"feito":"ok"}" data-ok="${a.id}" ${a.ok?"disabled":""}>${a.ok?"Feito ✓":"Concluir"}</button></div>`).join("");
+  const R=D.clientes.filter(c=>meses(c.u)>=6).sort((a,b)=>meses(b.u)-meses(a.u));
+  $("#retorno").innerHTML=R.length?R.map(c=>`<div><div><b>${c.c}</b><small>${c.s} · <span class="atr">${meses(c.u)} meses</span> desde a última</small></div><button type="button" class="z" data-z="${c.c}">Chamar</button></div>`).join(""):'<small style="color:#a9bce6">Ninguém pra chamar agora 🎉</small>';
+  $("#k1").textContent=D.agenda.length;
+  $("#k2").textContent=7+ls.get("fl-pedidos",0);
+  $("#k3").textContent=R.length;
+  $("#k4").textContent=D.clientes.length+3;
+}
+$("#agenda").onclick=e=>{const b=e.target.closest("[data-ok]");if(!b)return;const a=D.agenda.find(x=>x.id==b.dataset.ok);a.ok=true;
+  D.clientes.push({c:a.c,s:a.s,u:hoje.toISOString().slice(0,10)});salvar();painel();toast(`${a.c} vai receber lembrete em 6 meses 🔔`)};
+$("#retorno").onclick=e=>{const b=e.target.closest("[data-z]");if(!b)return;const c=D.clientes.find(x=>x.c===b.dataset.z);
+  const m=`Oi, ${c.c.split(" ")[0]}! Aqui é o Fernando, da F.L Higienização 😊\nJá faz ${meses(c.u)} meses desde a última higienização (${c.s}). Que tal agendar a próxima? Tenho horário essa semana!`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(m)}`,"_blank");
+  c.u=hoje.toISOString().slice(0,10);salvar();setTimeout(painel,400);};
+$("#zerar").onclick=e=>{e.preventDefault();D=JSON.parse(JSON.stringify(EX));ls.set("fl-pedidos",0);salvar();painel();toast("Exemplo restaurado")};
+painel();
+</script>
+</body>
+</html>
