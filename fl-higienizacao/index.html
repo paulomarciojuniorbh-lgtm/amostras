@@ -532,7 +532,7 @@ quiz();
 const hoje=new Date();
 const dd=n=>{const d=new Date(hoje);d.setDate(d.getDate()+n);return d};
 const fd=d=>d.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit"}).replace(".","");
-const mes=(n)=>{const d=new Date(hoje);d.setMonth(d.getMonth()-n);return d.toISOString().slice(0,10)};
+const mes=(n)=>{const d=new Date(hoje);d.setMonth(d.getMonth()-n);d.setDate(d.getDate()-10);return d.toISOString().slice(0,10)};
 const EX={
  agenda:[
   {id:1,d:0,h:"09:00",c:"Mariana Costa",s:"Sofá 3 lugares + 2 cadeiras",b:"Centro",ok:false},
