@@ -306,11 +306,11 @@ const ls={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}
 // mapa do rosto (posições em % sobre a foto)
 const Z=[
  {k:"testa",n:"Testa",x:50,y:20,d:"Linhas horizontais que aparecem ao levantar as sobrancelhas.",o:["Toxina botulínica para linhas de expressão","Skinbooster para qualidade da pele"]},
- {k:"olhos",n:"Olhos e olheiras",x:38,y:38,d:"Pés de galinha, olheiras e aspecto cansado.",o:["Toxina botulínica nos pés de galinha","Preenchimento de olheiras","Bioestimulador na região"]},
- {k:"macas",n:"Maçãs do rosto",x:66,y:50,d:"Perda de volume e de sustentação com o tempo.",o:["Preenchimento com ácido hialurônico","Bioestimulador de colágeno","Fios de sustentação"]},
- {k:"labios",n:"Lábios",x:50,y:68,d:"Contorno, hidratação e volume equilibrado.",o:["Preenchimento labial natural","Hidratação labial"]},
- {k:"mandibula",n:"Mandíbula",x:27,y:68,d:"Definição do contorno do rosto.",o:["Preenchimento de mandíbula","Bioestimulador para firmeza"]},
- {k:"queixo",n:"Queixo",x:50,y:84,d:"Projeção e equilíbrio do perfil.",o:["Preenchimento de mento","Avaliação de proporções do rosto"]}
+ {k:"olhos",n:"Olhos e olheiras",x:26,y:42,d:"Pés de galinha, olheiras e aspecto cansado.",o:["Toxina botulínica nos pés de galinha","Preenchimento de olheiras","Bioestimulador na região"]},
+ {k:"macas",n:"Maçãs do rosto",x:72,y:54,d:"Perda de volume e de sustentação com o tempo.",o:["Preenchimento com ácido hialurônico","Bioestimulador de colágeno","Fios de sustentação"]},
+ {k:"labios",n:"Lábios",x:47,y:74,d:"Contorno, hidratação e volume equilibrado.",o:["Preenchimento labial natural","Hidratação labial"]},
+ {k:"mandibula",n:"Mandíbula",x:19,y:82,d:"Definição do contorno do rosto.",o:["Preenchimento de mandíbula","Bioestimulador para firmeza"]},
+ {k:"queixo",n:"Queixo",x:47,y:89,d:"Projeção e equilíbrio do perfil.",o:["Preenchimento de mento","Avaliação de proporções do rosto"]}
 ];
 let ZS=Z[0].k;const SEL=new Set();
 $("#rosto").insertAdjacentHTML("beforeend",Z.map((z,i)=>`<button class="pin" data-k="${z.k}" style="left:${z.x}%;top:${z.y}%" aria-label="${z.n}">${i+1}</button>`).join(""));
