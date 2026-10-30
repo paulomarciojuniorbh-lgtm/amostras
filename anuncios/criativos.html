@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<title>Criativos Hélice</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--f:#0b1124;--s:#141e44;--b:#24305e;--t:#e9edfb;--su:#9aa6c8;--az:#5b8cff;--ci:#2fd6e8;--vi:#8b6bff;--ok:#3ddc97;--am:#ffcc4d;--g:linear-gradient(100deg,#5b8cff 0%,#2fd6e8 100%)}
+*{box-sizing:border-box}
+body{margin:0;background:#222;font-family:Geist,system-ui,sans-serif;color:var(--t)}
+.ab{width:1080px;height:1350px;position:relative;overflow:hidden;background:var(--f);margin:0 0 40px;padding:84px 80px;display:flex;flex-direction:column}
+.ab:before{content:"";position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(91,140,255,.28),transparent 65%);top:-380px;right:-360px}
+.ab:after{content:"";position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(47,214,232,.16),transparent 65%);bottom:-380px;left:-320px}
+.ab>*{position:relative;z-index:1}
+.marca{display:flex;align-items:center;gap:16px;font-weight:700;font-size:30px;letter-spacing:-.01em}
+.marca i{width:52px;height:52px;border-radius:15px;background:var(--g);display:grid;place-items:center;font-style:normal;font-weight:900;color:var(--f);font-size:30px}
+.marca span{color:var(--su);font-weight:500}
+.tag{display:inline-block;align-self:flex-start;margin-top:56px;border:2px solid var(--b);background:rgba(20,30,68,.7);border-radius:999px;padding:12px 26px;font-size:26px;font-weight:600;color:var(--ci)}
+h1{font-size:84px;line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:28px 0 0}
+h1 em{font-style:normal;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{font-size:34px;line-height:1.35;color:var(--su);margin:26px 0 0;max-width:860px}
+.cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.bt{background:var(--g);color:var(--f);font-weight:800;font-size:34px;border-radius:999px;padding:26px 44px;display:inline-flex;align-items:center;gap:14px}
+.bt svg{width:38px;height:38px;fill:var(--f)}
+.url{font-size:26px;color:var(--su);font-weight:500}
+/* phone mockup */
+.fone{position:absolute;width:390px;height:800px;border-radius:56px;background:#05070f;padding:14px;box-shadow:0 40px 90px rgba(0,0,0,.55),0 0 0 2px #2a3566}
+.fone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:44px;display:block}
+.fone:after{content:"";position:absolute;top:26px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#05070f}
+.chk{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:22px}
+.chk li{display:flex;gap:18px;align-items:center;font-size:36px;font-weight:600}
+.chk li:before{content:"✓";width:52px;height:52px;flex:none;border-radius:50%;background:rgba(61,220,151,.15);color:var(--ok);display:grid;place-items:center;font-weight:900;font-size:30px}
+.preco{display:flex;align-items:baseline;gap:14px;margin-top:40px}
+.preco small{font-size:32px;color:var(--su)}
+.preco b{font-size:150px;font-weight:900;letter-spacing:-.05em;background:var(--g);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.preco span{font-size:40px;color:var(--su);font-weight:600}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+.vs div{border-radius:28px;padding:34px;background:var(--s);border:2px solid var(--b)}
+.vs h3{margin:0 0 18px;font-size:34px}
+.vs ul{list-style:none;padding:0;margin:0;display:grid;gap:14px;font-size:28px;color:var(--su)}
+.vs .bom{border-color:var(--ci);background:linear-gradient(160deg,rgba(91,140,255,.18),rgba(47,214,232,.08))}
+.vs .bom ul{color:var(--t)}
+.passos{display:grid;gap:22px;margin-top:46px}
+.passos div{display:flex;gap:26px;align-items:center;background:var(--s);border:2px solid var(--b);border-radius:28px;padding:28px 32px}
+.passos b{width:76px;height:76px;flex:none;border-radius:22px;background:var(--g);color:var(--f);display:grid;place-items:center;font-size:40px;font-weight:900}
+.passos span{font-size:34px;font-weight:600;line-height:1.25}
+.passos small{display:block;font-size:26px;color:var(--su);font-weight:500;margin-top:4px}
+.notif{position:absolute;background:#fff;color:#111;border-radius:26px;padding:22px 26px;box-shadow:0 30px 60px rgba(0,0,0,.4);display:flex;gap:16px;align-items:center;width:520px}
+.notif i{width:62px;height:62px;flex:none;border-radius:16px;background:#1FAF5F;display:grid;place-items:center}
+.notif i svg{width:36px;height:36px;fill:#fff}
+.notif b{display:block;font-size:24px}
+.notif span{font-size:22px;color:#444;line-height:1.3}
+.nichos{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+.nichos span{font-size:30px;font-weight:600;padding:14px 26px;border-radius:999px;background:var(--s);border:2px solid var(--b)}
+</style>
+</head>
+<body>
+<!-- svg whatsapp -->
+<svg width="0" height="0" style="position:absolute"><symbol id="wa" viewBox="0 0 32 32"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.5.7 4.9 2 7L3 29l6.4-2c2 1.1 4.3 1.7 6.6 1.7 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-2.1 0-4.1-.6-5.9-1.7l-.4-.2-3.8 1.2 1.2-3.7-.3-.4c-1.2-1.8-1.8-3.8-1.8-5.9C5 9.9 9.9 5.2 16 5.2s11 4.7 11 10.6-4.9 10.6-11 10.6zm6-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2s0-.5.1-.6l.5-.6c.2-.2.2-.4.3-.6s0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.4c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8.6-.1 1.9-.8 2.2-1.5s.3-1.4.2-1.5c-.1-.2-.3-.3-.6-.4z"/></symbol></svg>
+
+<!-- 1 Amostra grátis -->
+<section class="ab" id="c1">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Para clínicas, consultórios e pequenos negócios</span>
+  <h1>Veja o site do seu negócio <em>pronto</em> antes de pagar qualquer coisa.</h1>
+  <p class="sub" style="max-width:560px">A gente monta uma amostra grátis com a sua cara. Gostou? Aí sim a gente conversa.</p>
+  <div class="fone" style="right:70px;top:430px;transform:rotate(4deg)"><img src="shots/geovanna.png" alt=""></div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero minha amostra</span></div>
+</section>
+
+<!-- 2 Preço vs IA -->
+<section class="ab" id="c2">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Site + sistema por assinatura</span>
+  <h1>Seu site com agenda online custa <em>menos que uma assinatura de IA</em>.</h1>
+  <div class="preco"><small>a partir de</small><b>R$49,90</b><span>/mês</span></div>
+  <ul class="chk"><li>Sem taxa de criação</li><li>Você só paga depois de ver no ar</li><li>Clientes chegando direto no WhatsApp</li></ul>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Ver planos</span><span class="url">helicesites.com.br</span></div>
+</section>
+
+<!-- 3 Saúde - agenda -->
+<section class="ab" id="c3">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Clínicas e consultórios</span>
+  <h1>O paciente te acha no Google. <em>E depois?</em></h1>
+  <p class="sub" style="max-width:540px">Com um site próprio ele vê seus tratamentos, suas avaliações e já pede a consulta pelo WhatsApp.</p>
+  <div class="fone" style="right:70px;top:420px;transform:rotate(-4deg)"><img src="shots/geovanna-mapa.png" alt=""></div>
+  <div class="notif" style="left:80px;top:860px"><i><svg><use href="#wa"/></svg></i><div><b>Novo pedido de consulta</b><span>“Vim pelo site e gostaria de agendar uma avaliação…”</span></div></div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero um site assim</span></div>
+</section>
+
+<!-- 4 Instagram não é site -->
+<section class="ab" id="c4">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Pequenos negócios</span>
+  <h1>Instagram é vitrine. <em>Site é endereço.</em></h1>
+  <div class="vs">
+    <div><h3>Só Instagram</h3><ul><li>✕ Some no feed</li><li>✕ Não aparece bem no Google</li><li>✕ Cliente pergunta tudo no direct</li><li>✕ Depende do algoritmo</li></ul></div>
+    <div class="bom"><h3>Com site próprio</h3><ul><li>✓ Seu domínio, seu nome</li><li>✓ Encontrado no Google</li><li>✓ Agenda e pedidos no WhatsApp</li><li>✓ Passa confiança</li></ul></div>
+  </div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Peça sua amostra grátis</span></div>
+</section>
+
+<!-- 5 Salão agenda -->
+<section class="ab" id="c5">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Salões e estúdios de beleza</span>
+  <h1>A cliente marca <em>sozinha</em>. Você só confirma.</h1>
+  <p class="sub" style="max-width:520px">Agenda online com serviço, dia e horário livre. O pedido chega pronto no seu WhatsApp.</p>
+  <div class="fone" style="right:70px;top:420px;transform:rotate(4deg)"><img src="shots/anapaula-agenda.png" alt=""></div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero essa agenda</span></div>
+</section>
+
+<!-- 6 Lojinha -->
+<section class="ab" id="c6">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Vende produto além do serviço?</span>
+  <h1>Coloque sua <em>lojinha</em> no site.</h1>
+  <p class="sub" style="max-width:520px">A cliente escolhe, põe na sacola e o pedido chega no seu WhatsApp com tudo certinho: itens, cores e total.</p>
+  <div class="fone" style="right:70px;top:420px;transform:rotate(-4deg)"><img src="shots/faby-loja.png" alt=""></div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero minha lojinha</span></div>
+</section>
+
+<!-- 7 Advogados -->
+<section class="ab" id="c7">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Advocacia</span>
+  <h1>Site para advogados <em>dentro das regras da OAB</em>.</h1>
+  <ul class="chk"><li>Conteúdo informativo, sem promessa de resultado</li><li>Triagem organizada do primeiro contato</li><li>Áreas de atuação claras pro cliente</li><li>Rodapé conforme o Provimento 205/2021</li></ul>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Ver uma amostra</span><span class="url">helicesites.com.br</span></div>
+</section>
+
+<!-- 8 Como funciona -->
+<section class="ab" id="c8">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Como funciona</span>
+  <h1>Do zero ao site no ar, <em>sem dor de cabeça</em>.</h1>
+  <div class="passos">
+    <div><b>1</b><span>Você chama no WhatsApp<small>Conta um pouco do seu negócio</small></span></div>
+    <div><b>2</b><span>A gente monta uma amostra grátis<small>Com a cara do seu segmento</small></span></div>
+    <div><b>3</b><span>Gostou? Coloca no ar<small>Com suas fotos e seu domínio</small></span></div>
+    <div><b>4</b><span>Só então começa a mensalidade<small>Sem taxa de criação</small></span></div>
+  </div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Começar agora</span></div>
+</section>
+
+<!-- 9 Retorno de pacientes -->
+<section class="ab" id="c9">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Sistema de gestão</span>
+  <h1>Saiba quem já passou da hora de <em>voltar</em>.</h1>
+  <p class="sub" style="max-width:520px">Um painel simples mostra os retornos do mês e deixa a mensagem de lembrete pronta pra enviar no WhatsApp.</p>
+  <div class="fone" style="right:70px;top:420px;transform:rotate(4deg)"><img src="shots/geovanna-painel.png" alt=""></div>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero esse painel</span></div>
+</section>
+
+<!-- 10 Nichos -->
+<section class="ab" id="c10">
+  <div class="marca"><i>H</i>Hélice <span>Sites &amp; Sistemas</span></div>
+  <span class="tag">Atendemos todo o Brasil</span>
+  <h1>Cada negócio com um site <em>do seu jeito</em>. Nada de modelo pronto.</h1>
+  <div class="nichos"><span>Clínicas</span><span>Urologia</span><span>Odontologia</span><span>Estética</span><span>Advocacia</span><span>Salões</span><span>Fisioterapia</span><span>Nutrição</span><span>Oficinas</span><span>Pousadas</span></div>
+  <p class="sub">Peça uma amostra grátis e veja o site do seu negócio antes de decidir.</p>
+  <div class="cta"><span class="bt"><svg><use href="#wa"/></svg>Quero ver o meu</span><span class="url">helicesites.com.br</span></div>
+</section>
+</body>
+</html>
