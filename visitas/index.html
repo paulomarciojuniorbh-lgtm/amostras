@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Visitas · Hélice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b1124;--card:#121a33;--line:#1f2a4d;--tx:#e8ecf7;--mut:#8d98b8;--a:#5b8cff;--b:#2fd6e8;--ok:#3ddc97}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 60px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px}
+.logo{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--a),var(--b));display:grid;place-items:center;color:#071026;font-weight:700}
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
+.seg button{background:none;border:0;color:var(--mut);font:inherit;font-size:13px;padding:6px 12px;border-radius:7px;cursor:pointer}
+.seg button.on{background:var(--line);color:var(--tx)}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.k{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.k b{display:block;font-size:30px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.k span{color:var(--mut);font-size:12.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px}
+.card h2{margin:0 0 12px;font-size:14px;font-weight:600;color:var(--mut);letter-spacing:.02em;text-transform:uppercase}
+.chart{display:flex;align-items:flex-end;gap:3px;height:140px;padding-top:18px}
+.bar{flex:1;min-width:4px;background:linear-gradient(180deg,var(--b),var(--a));border-radius:4px 4px 1px 1px;position:relative;opacity:.9}
+.bar:hover{opacity:1}
+.bar i{position:absolute;top:-17px;left:50%;transform:translateX(-50%);font-style:normal;font-size:10.5px;color:var(--mut)}
+.axis{display:flex;justify-content:space-between;color:var(--mut);font-size:11px;margin-top:6px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+table{width:100%;border-collapse:collapse}
+td{padding:9px 4px;border-top:1px solid var(--line);vertical-align:top}
+tr:first-child td{border-top:0}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;font-weight:600}
+.sub{color:var(--mut);font-size:12px}
+.tag{display:inline-block;font-size:10.5px;padding:1px 7px;border-radius:99px;background:rgba(91,140,255,.15);color:#9db8ff;margin-left:6px;vertical-align:1px}
+.tag.h{background:rgba(47,214,232,.14);color:var(--b)}
+.row{display:flex;align-items:center;gap:10px;padding:7px 0}
+.row .lb{width:96px;flex:none;font-size:13.5px;text-transform:capitalize}
+.row .tr{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.row .tr div{height:100%;background:linear-gradient(90deg,var(--a),var(--b))}
+.row .v{width:34px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.feed li{list-style:none;padding:8px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:10px}
+.feed{margin:0;padding:0}.feed li:first-child{border-top:0}
+a{color:var(--tx);text-decoration:none}a:hover{color:var(--b)}
+.empty{color:var(--mut);padding:10px 0}
+.lock{max-width:360px;margin:12vh auto;text-align:center}
+.lock input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--tx);font:inherit;margin:12px 0}
+.lock button,.btn{padding:11px 18px;border-radius:10px;border:0;background:linear-gradient(135deg,var(--a),var(--b));color:#071026;font:600 15px Geist,sans-serif;cursor:pointer}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin-top:18px}
+.live{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px;box-shadow:0 0 0 3px rgba(61,220,151,.18)}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}.k b{font-size:24px}.k{padding:12px}.kpis{gap:8px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+const URL_ = 'https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/stats_visitas';
+const K = 'sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0';
+const app = document.getElementById('app');
+const st = (()=>{try{return localStorage}catch(e){return null}})();
+const g = k => { try { return st && st.getItem(k); } catch(e){ return null; } };
+const s = (k,v) => { try { st && st.setItem(k,v); } catch(e){} };
+s('helice_eu','1'); // este aparelho não entra na contagem
+
+let chave = (location.hash.match(/k=([^&]+)/)||[])[1] || g('helice_painel_k');
+if (location.hash) history.replaceState(null,'',location.pathname);
+let dias = +(g('helice_painel_d')||30);
+const titulos = JSON.parse(g('helice_titulos')||'{}');
+
+function nomeDe(path){
+  if (path==='/'||path==='/planos/') return 'Planos · página da Hélice';
+  if (titulos[path]) return titulos[path];
+  const p = path.split('/').filter(Boolean).pop()||path;
+  return p.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
+}
+async function buscarTitulos(paths){
+  const falta = paths.filter(p=>!titulos[p] && p!=='/' && p!=='/planos/').slice(0,30);
+  await Promise.all(falta.map(async p=>{
+    try{ const h = await (await fetch(p)).text(); const m = h.match(/<title>([^<]+)<\/title>/i);
+      if(m) titulos[p] = m[1].replace(/&amp;/g,'&').split(/ [·|–-] /)[0].trim(); }catch(e){}
+  }));
+  if (falta.length){ s('helice_titulos', JSON.stringify(titulos)); }
+}
+const fmtH = t => new Date(t).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+function rel(t){ const m = Math.round((Date.now()-new Date(t))/60000);
+  if(m<1) return 'agora'; if(m<60) return `há ${m} min`; const h=Math.round(m/60); if(h<24) return `há ${h} h`;
+  const d=Math.round(h/24); return d===1?'ontem':`há ${d} dias`; }
+const esc = x => String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nomeOrigem = o => ({direto:'direto / WhatsApp',instagram:'Instagram',facebook:'Facebook',google:'Google',whatsapp:'WhatsApp',busca:'outras buscas'}[o]||o);
+
+function trava(msg){
+  app.innerHTML = `<div class="lock"><div class="logo" style="margin:0 auto 14px;width:44px;height:44px;font-size:20px">H</div>
+  <h1 style="font-size:20px;margin:0">Visitas do site</h1><p class="sub">${msg||'Digite a chave de acesso do painel.'}</p>
+  <input id="kk" type="password" placeholder="chave" autocomplete="off"><button class="lock-b" id="ok">Entrar</button></div>`;
+  document.getElementById('ok').onclick = ()=>{ chave = document.getElementById('kk').value.trim(); carregar(); };
+}
+
+async function carregar(){
+  if(!chave) return trava();
+  let r;
+  try{
+    r = await fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json',apikey:K},body:JSON.stringify({p_chave:chave,p_dias:dias})});
+  }catch(e){ app.innerHTML='<p class="empty">Sem conexão. Tentando de novo em 1 minuto…</p>'; return; }
+  if(!r.ok){ s('helice_painel_k',''); chave=null; return trava('Chave inválida. Tente de novo.'); }
+  s('helice_painel_k',chave);
+  const d = await r.json();
+  await buscarTitulos((d.paginas||[]).map(p=>p.path).concat((d.recentes||[]).map(p=>p.path)));
+  render(d);
+}
+
+function render(d){
+  // série diária completa (dias sem visita = 0)
+  const mapa = Object.fromEntries((d.por_dia||[]).map(x=>[x.dia,x]));
+  const serie=[]; const hoje=new Date();
+  for(let i=dias-1;i>=0;i--){ const t=new Date(hoje); t.setDate(t.getDate()-i);
+    const k=t.toLocaleDateString('sv-SE',{timeZone:'America/Sao_Paulo'}); serie.push({dia:k,p:(mapa[k]||{}).pessoas||0}); }
+  const max = Math.max(1,...serie.map(x=>x.p));
+  const dm = k => k.slice(8,10)+'/'+k.slice(5,7);
+  const maxO = Math.max(1,...(d.origens||[]).map(x=>x.pessoas));
+  const maxD = Math.max(1,...(d.devices||[]).map(x=>x.pessoas));
+  const amostras = (d.paginas||[]).filter(p=>p.path!=='/'&&p.path!=='/planos/');
+
+  app.innerHTML = `
+  <header><div class="brand"><div class="logo">H</div>Visitas do site</div>
+    <div class="seg">${[7,30,90].map(n=>`<button data-d="${n}" class="${n===dias?'on':''}">${n} dias</button>`).join('')}</div></header>
+  <div class="kpis">
+    <div class="k"><b>${d.hoje}</b><span>pessoas hoje</span></div>
+    <div class="k"><b>${d.pessoas}</b><span>pessoas em ${dias} dias</span></div>
+    <div class="k"><b>${d.total}</b><span>páginas vistas</span></div>
+  </div>
+  <div class="card"><h2>Pessoas por dia</h2>
+    <div class="chart">${serie.map(x=>`<div class="bar" title="${dm(x.dia)}: ${x.p} pessoa(s)" style="height:${x.p?Math.max(4,x.p/max*100):1.5}%">${x.p&&dias<=30?`<i>${x.p}</i>`:''}</div>`).join('')}</div>
+    <div class="axis"><span>${dm(serie[0].dia)}</span><span>hoje</span></div></div>
+  <div class="grid2">
+    <div class="card"><h2>De onde vieram</h2>${(d.origens||[]).length?(d.origens).map(o=>`<div class="row"><span class="lb">${esc(nomeOrigem(o.origem))}</span><span class="tr"><div style="width:${o.pessoas/maxO*100}%"></div></span><span class="v">${o.pessoas}</span></div>`).join(''):'<p class="empty">Ainda sem dados.</p>'}</div>
+    <div class="card"><h2>Aparelho</h2>${(d.devices||[]).length?(d.devices).map(o=>`<div class="row"><span class="lb">${esc(o.device)}</span><span class="tr"><div style="width:${o.pessoas/maxD*100}%"></div></span><span class="v">${o.pessoas}</span></div>`).join(''):'<p class="empty">Ainda sem dados.</p>'}</div>
+  </div>
+  <div class="card"><h2>Páginas mais vistas</h2>
+    ${(d.paginas||[]).length?`<table>${d.paginas.map(p=>`<tr><td><a href="${esc(p.path)}" target="_blank">${esc(nomeDe(p.path))}</a>${p.path==='/'||p.path==='/planos/'?'<span class="tag h">Hélice</span>':'<span class="tag">amostra</span>'}<div class="sub">última visita ${rel(p.ultima)} · ${p.views} visualizaç${p.views>1?'ões':'ão'}</div></td><td class="n">${p.pessoas} ${p.pessoas>1?'pessoas':'pessoa'}</td></tr>`).join('')}</table>`:'<p class="empty">Ainda sem visitas neste período.</p>'}</div>
+  <div class="card"><h2><span class="live"></span>Últimas visitas</h2>
+    ${(d.recentes||[]).length?`<ul class="feed">${d.recentes.map(v=>`<li><span>${esc(nomeDe(v.path))}<div class="sub">${esc(nomeOrigem(v.origem||'direto'))} · ${esc(v.device||'')}</div></span><span class="sub" title="${fmtH(v.ts)}">${rel(v.ts)}</span></li>`).join('')}</ul>`:'<p class="empty">Nenhuma visita ainda.</p>'}</div>
+  <p class="foot">Atualiza sozinho a cada minuto · suas visitas deste aparelho não entram na conta · ${amostras.length} amostra(s) abertas no período</p>`;
+  app.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{dias=+b.dataset.d;s('helice_painel_d',dias);carregar();});
+}
+carregar(); setInterval(()=>{ if(chave && !document.hidden) carregar(); },60000);
+</script>
+</body>
+</html>
