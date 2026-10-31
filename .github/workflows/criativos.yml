@@ -1,7 +1,7 @@
 name: Render criativos
 on:
   push:
-    paths: ['anuncios/criativos.html','anuncios/render.mjs','.github/workflows/criativos.yml']
+    paths: ['anuncios/marca.html','anuncios/criativos.html','anuncios/render.mjs','.github/workflows/criativos.yml']
   workflow_dispatch:
 permissions:
   contents: write
