@@ -42,7 +42,9 @@ def voz():
         f = os.path.join(OUT, f"voz_{c['id']}.wav")
         gravada = os.path.join(D, 'gravacao', f"voz_{c['id']}.wav")
         if os.path.exists(gravada):  # voz gravada pelo Paulo tem prioridade
-            gravar(f, ler_wav(gravada))
+            tmp = f + '.tmp.wav'  # acelera ~9% sem mudar o tom
+            subprocess.run(['ffmpeg', '-loglevel', 'error', '-y', '-i', gravada, '-af', 'atempo=1.09', tmp], check=True)
+            gravar(f, ler_wav(tmp)); os.remove(tmp)
         else:
           subprocess.run(['piper', '--model', MODEL, '--output_file', f, '--length_scale', '0.93',
                         '--noise_scale', '0.6', '--noise_w', '0.75'],
@@ -50,7 +52,7 @@ def voz():
         a = aparar(ler_wav(f)); gravar(f, a)
         dur = len(a) / SR
         cena = dict(id=c['id'], ini=round(t, 3), voz=round(t + 0.12, 3), dvoz=round(dur, 3))
-        t += 0.12 + dur + c.get('cauda', 0.28)
+        t += 0.12 + dur + c.get('cauda', 0.16)
         cena['fim'] = round(t, 3); cenas.append(cena)
     json.dump(dict(total=round(t, 3), cenas=cenas), open(os.path.join(OUT, 'timeline.json'), 'w'), indent=1)
     print('timeline', round(t, 2), 's')
@@ -111,6 +113,14 @@ def trilha(total):
     return (mus * fade)[: int(total * SR)]
 
 
+def transicao():
+    # 'pop' suave de interface: seno curto subindo de tom, com brilho leve
+    m = int(0.16 * SR); tt = np.arange(m) / SR
+    f = 520 + 380 * (1 - np.exp(-tt * 40))
+    s = np.sin(2 * np.pi * np.cumsum(f) / SR) + 0.25 * np.sin(4 * np.pi * np.cumsum(f) / SR)
+    env = np.minimum(1, tt / 0.006) * np.exp(-tt * 28)
+    return s * env * 0.18
+
 def whoosh(dur=0.6):
     m = int(dur * SR); x = np.random.default_rng(3).standard_normal(m)
     tt = np.arange(m) / m; env = np.sin(np.pi * tt) ** 2
@@ -134,7 +144,7 @@ def mix():
     for c in tl['cenas']:
         pos(voz, ler_wav(os.path.join(OUT, f"voz_{c['id']}.wav")), c['voz'])
         if c['id'] not in ('google',):
-            pos(sfx, whoosh(), max(0, c['ini'] - 0.3))
+            pos(sfx, transicao(), max(0, c['ini'] - 0.04))
         if c['id'] == 'zap':
             pos(sfx, ding(), c['ini'] + 0.35); pos(sfx, ding(), c['ini'] + 0.35 + c['dvoz'] * 0.5)
     mus = trilha(total)
