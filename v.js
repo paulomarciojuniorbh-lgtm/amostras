@@ -21,6 +21,7 @@
     if (refHost === location.hostname.replace(/^www\./, '') || /github\.io$/.test(refHost)) refHost = '';
 
     var origem = (q.get('utm_source') || '').toLowerCase();
+    if (origem === 'ig') origem = 'instagram'; else if (origem === 'fb') origem = 'facebook';
     if (!origem) {
       if (/Instagram/i.test(ua)) origem = 'instagram';
       else if (/FBAN|FBAV|FB_IAB/i.test(ua)) origem = 'facebook';
