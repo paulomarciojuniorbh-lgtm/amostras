@@ -40,7 +40,11 @@ def voz():
     t = 0.35; cenas = []
     for c in rot:
         f = os.path.join(OUT, f"voz_{c['id']}.wav")
-        subprocess.run(['piper', '--model', MODEL, '--output_file', f, '--length_scale', '0.93',
+        gravada = os.path.join(D, 'gravacao', f"voz_{c['id']}.wav")
+        if os.path.exists(gravada):  # voz gravada pelo Paulo tem prioridade
+            gravar(f, ler_wav(gravada))
+        else:
+          subprocess.run(['piper', '--model', MODEL, '--output_file', f, '--length_scale', '0.93',
                         '--noise_scale', '0.6', '--noise_w', '0.75'],
                        input=c['fala'].encode('utf-8'), check=True)
         a = aparar(ler_wav(f)); gravar(f, a)
