@@ -1,0 +1,11 @@
+[
+  {"id": "google", "fala": "Seu cliente te procurou no Google... e achou o quê?"},
+  {"id": "feed",   "fala": "Só um post perdido no feed, e um monte de pergunta no direct?"},
+  {"id": "site",   "fala": "Com a Hélice, seu negócio ganha um site com a sua cara."},
+  {"id": "agenda", "fala": "Agenda online, onde o cliente marca sozinho."},
+  {"id": "loja",   "fala": "Lojinha, pra vender seus produtos."},
+  {"id": "zap",    "fala": "E os pedidos chegam prontinhos no seu WhatsApp."},
+  {"id": "taxa",   "fala": "Sem taxa de criação."},
+  {"id": "passos", "fala": "Você vê uma amostra grátis, e só paga depois que o site estiver no ar."},
+  {"id": "fim",    "fala": "Hélice Sites e Sistemas. Peça a sua amostra.", "cauda": 2.2}
+]

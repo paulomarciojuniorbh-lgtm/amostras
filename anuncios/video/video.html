@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#0b1124}
+body{font-family:Geist,system-ui,sans-serif;color:#eef2ff;-webkit-font-smoothing:antialiased}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;background:#0b1124}
+.glow{position:absolute;border-radius:50%;filter:blur(120px);opacity:.55}
+#g1{width:900px;height:900px;background:#2b4fd6;left:-300px;top:-200px}
+#g2{width:800px;height:800px;background:#1aa9c4;right:-320px;bottom:-200px;opacity:.35}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:90px 90px}
+.brand{position:absolute;top:92px;left:0;right:0;display:flex;justify-content:center;align-items:center;gap:16px;font-weight:600;font-size:34px;letter-spacing:-.01em}
+.brand .lg{width:58px;height:58px;border-radius:17px;background:linear-gradient(135deg,#5b8cff,#2fd6e8);display:grid;place-items:center;color:#071026;font-weight:800;font-size:32px}
+.brand span{color:#8d98b8;font-weight:500}
+.lay{position:absolute;inset:0;opacity:0}
+.h{position:absolute;left:80px;right:80px;font-weight:800;letter-spacing:-.035em;line-height:1.02}
+.grad{background:linear-gradient(90deg,#6f9bff,#2fd6e8);-webkit-background-clip:text;background-clip:text;color:transparent}
+/* google */
+.search{position:absolute;left:90px;right:90px;top:640px;height:150px;border-radius:75px;background:#fff;display:flex;align-items:center;padding:0 56px;gap:30px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.search svg{flex:none}
+.search .q{font-size:48px;color:#202124;font-weight:500;white-space:nowrap;overflow:hidden}
+.caret{display:inline-block;width:4px;height:56px;background:#1a73e8;vertical-align:-10px;margin-left:4px}
+.res{position:absolute;left:90px;right:90px;top:840px;display:flex;flex-direction:column;gap:22px}
+.res div{height:44px;border-radius:22px;background:rgba(255,255,255,.08)}
+/* feed */
+.dm{position:absolute;padding:30px 42px;border-radius:44px 44px 44px 12px;background:#1d2850;font-size:46px;font-weight:600;box-shadow:0 20px 50px rgba(0,0,0,.3);white-space:nowrap}
+.dm small{display:block;font-size:26px;color:#8d98b8;font-weight:500;margin-bottom:6px}
+/* phone */
+#phone{position:absolute;left:50%;top:560px;width:600px;height:1230px;margin-left:-300px;border-radius:84px;background:#05070f;padding:22px;box-shadow:0 0 0 3px #2a3560,0 60px 120px rgba(0,0,0,.55)}
+#scr{position:relative;width:100%;height:100%;border-radius:64px;overflow:hidden;background:#fff}
+#scr img{position:absolute;left:0;top:0;width:100%;opacity:0}
+.notch{position:absolute;top:18px;left:50%;width:170px;height:46px;margin-left:-85px;border-radius:30px;background:#05070f;z-index:3}
+.chip{position:absolute;left:70px;padding:24px 36px;border-radius:999px;background:linear-gradient(135deg,#5b8cff,#2fd6e8);color:#071026;font-weight:700;font-size:44px;box-shadow:0 20px 50px rgba(47,214,232,.3);z-index:5;white-space:nowrap}
+.noti{position:absolute;left:60px;right:60px;border-radius:40px;background:rgba(246,248,252,.97);color:#111;padding:30px 34px;display:flex;gap:26px;align-items:flex-start;box-shadow:0 30px 70px rgba(0,0,0,.4);z-index:6}
+.noti .ic{flex:none;width:84px;height:84px;border-radius:22px;background:#25d366;display:grid;place-items:center}
+.noti b{font-size:34px;display:block}.noti p{font-size:31px;color:#444;line-height:1.3;margin-top:4px}
+.noti em{font-style:normal;font-size:26px;color:#888;float:right;font-weight:500}
+/* passos */
+.step{position:absolute;left:90px;right:90px;height:210px;border-radius:44px;background:#141d3c;border:2px solid #24305a;display:flex;align-items:center;gap:40px;padding:0 50px}
+.step .n{flex:none;width:110px;height:110px;border-radius:30px;background:linear-gradient(135deg,#5b8cff,#2fd6e8);display:grid;place-items:center;color:#071026;font-size:58px;font-weight:800}
+.step b{font-size:56px;letter-spacing:-.02em}
+.step span{display:block;font-size:34px;color:#8d98b8;font-weight:500;margin-top:4px}
+/* fim */
+.big-lg{position:absolute;left:50%;top:560px;width:260px;height:260px;margin-left:-130px;border-radius:72px;background:linear-gradient(135deg,#5b8cff,#2fd6e8);display:grid;place-items:center;color:#071026;font-weight:800;font-size:150px;box-shadow:0 40px 120px rgba(47,214,232,.35)}
+.cta{position:absolute;left:120px;right:120px;top:1380px;height:150px;border-radius:75px;background:#25d366;color:#05210f;font-size:50px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:20px}
+.url{position:absolute;left:0;right:0;top:1590px;text-align:center;font-size:52px;font-weight:600}
+.cap{position:absolute;left:70px;right:70px;bottom:120px;text-align:center;font-size:40px;font-weight:600;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.6);opacity:.0}
+</style></head>
+<body><div id="stage">
+<div class="glow" id="g1"></div><div class="glow" id="g2"></div><div class="grid"></div>
+<div class="brand" id="brand"><div class="lg">H</div>Hélice <span>Sites &amp; Sistemas</span></div>
+
+<!-- 1 google -->
+<div class="lay" id="L-google">
+  <div class="h" id="t-g1" style="top:330px;font-size:84px">Seu cliente te procurou no <span class="grad">Google</span>…</div>
+  <div class="search" id="srch"><svg width="56" height="56" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7" stroke="#5f6368" stroke-width="2.4" fill="none"/><path d="M15.5 15.5 21 21" stroke="#5f6368" stroke-width="2.4" stroke-linecap="round"/></svg><div class="q"><span id="qtx"></span><span class="caret" id="caret"></span></div></div>
+  <div class="res" id="res"><div style="width:86%"></div><div style="width:64%"></div><div style="width:74%"></div></div>
+  <div class="h" id="t-g2" style="top:1180px;font-size:150px;text-align:center">e achou<br><span class="grad">o quê?</span></div>
+</div>
+
+<!-- 2 feed -->
+<div class="lay" id="L-feed">
+  <div class="h" id="t-f1" style="top:330px;font-size:96px">Só um post perdido no feed…</div>
+  <div class="dm" id="dm1" style="left:90px;top:760px"><small>direct · agora</small>tem horário amanhã?</div>
+  <div class="dm" id="dm2" style="left:250px;top:1000px"><small>direct · agora</small>quanto custa? 🙏</div>
+  <div class="dm" id="dm3" style="left:130px;top:1240px"><small>direct · agora</small>onde fica o salão?</div>
+  <div class="dm" id="dm4" style="left:330px;top:1480px"><small>direct · 2 min</small>ainda atende sábado?</div>
+</div>
+
+<!-- 3-6 phone -->
+<div class="lay" id="L-phone">
+  <div class="h" id="t-p" style="top:310px;font-size:92px;text-align:center"></div>
+  <div id="phone"><div class="notch"></div><div id="scr">
+    <img id="im-site" src="shots/v-geovanna.jpg"><img id="im-agenda" src="shots/v-anapaula.jpg"><img id="im-loja" src="shots/v-faby.jpg">
+  </div></div>
+  <div class="chip" id="ch-agenda" style="top:1480px">📅 Agenda online</div>
+  <div class="chip" id="ch-loja" style="top:1480px">🛍️ Lojinha no site</div>
+  <div class="noti" id="n1" style="top:640px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></div><div style="flex:1"><em>agora</em><b>Novo pedido pelo site</b><p>1x Kit Creme + Body Splash<br>Total R$ 79,99 · retirar no salão</p></div></div>
+  <div class="noti" id="n2" style="top:900px"><div class="ic"><svg width="50" height="50" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg></div><div style="flex:1"><em>agora</em><b>Novo agendamento</b><p>Morena iluminada<br>Sexta · 15h</p></div></div>
+</div>
+
+<!-- 7 taxa -->
+<div class="lay" id="L-taxa">
+  <div class="h" id="t-t1" style="top:700px;font-size:170px;text-align:center">Sem taxa<br>de <span class="grad">criação.</span></div>
+  <div class="h" id="t-t2" style="top:1180px;font-size:50px;text-align:center;font-weight:500;color:#8d98b8;letter-spacing:-.01em">Mensalidade a partir de R$ 49,90</div>
+</div>
+
+<!-- 8 passos -->
+<div class="lay" id="L-passos">
+  <div class="h" id="t-s" style="top:330px;font-size:92px">Do jeito <span class="grad">mais seguro</span> pra você:</div>
+  <div class="step" id="s1" style="top:720px"><div class="n">1</div><div><b>Amostra grátis</b><span>montada pro seu negócio</span></div></div>
+  <div class="step" id="s2" style="top:970px"><div class="n">2</div><div><b>Você aprova</b><span>com suas fotos e seu domínio</span></div></div>
+  <div class="step" id="s3" style="top:1220px"><div class="n">3</div><div><b>Só paga no ar</b><span>sem taxa, sem surpresa</span></div></div>
+</div>
+
+<!-- 9 fim -->
+<div class="lay" id="L-fim">
+  <div class="big-lg" id="blg">H</div>
+  <div class="h" id="t-e1" style="top:900px;font-size:100px;text-align:center">Hélice</div>
+  <div class="h" id="t-e2" style="top:1020px;font-size:52px;text-align:center;color:#8d98b8;font-weight:500;letter-spacing:-.01em">Sites &amp; Sistemas · todo o Brasil</div>
+  <div class="cta" id="cta"><svg width="54" height="54" viewBox="0 0 24 24" fill="#05210f"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Z"/></svg>Peça sua amostra grátis</div>
+  <div class="url grad" id="url">helicesites.com.br</div>
+</div>
+</div>
+<script>
+const TL = window.TL || {total:26,cenas:[{id:'google',ini:0,fim:3.2},{id:'feed',ini:3.2,fim:6.6},{id:'site',ini:6.6,fim:9.6},{id:'agenda',ini:9.6,fim:12},{id:'loja',ini:12,fim:14},{id:'zap',ini:14,fim:16.8},{id:'taxa',ini:16.8,fim:18.4},{id:'passos',ini:18.4,fim:22.6},{id:'fim',ini:22.6,fim:26}]};
+const $=id=>document.getElementById(id);
+const C=Object.fromEntries(TL.cenas.map(c=>[c.id,c]));
+const cl=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const eo=x=>1-Math.pow(1-cl(x),3);           // ease-out
+const eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+const back=x=>{x=cl(x);const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+// progresso de t dentro da janela [a,a+d]
+const pr=(t,a,d)=>cl((t-a)/d);
+function inn(el,t,a,d=.45,dy=60,sc=0){const p=eo(pr(t,a,d));el.style.opacity=p;el.style.transform=`translateY(${(1-p)*dy}px) scale(${1-sc*(1-p)})`;return p}
+function lay(id,t,a,b,f=.3){const el=$('L-'+id);const o=Math.min(eo(pr(t,a-.05,f)),1-eo(pr(t,b-f*.6,f)));el.style.opacity=o;el.style.visibility=o<=0.001?'hidden':'visible';return o}
+
+function render(t){
+  // fundo vivo
+  $('g1').style.transform=`translate(${Math.sin(t*.35)*120}px,${Math.cos(t*.27)*90}px)`;
+  $('g2').style.transform=`translate(${Math.cos(t*.3)*110}px,${Math.sin(t*.22)*120}px)`;
+  const fim=C.fim; $('brand').style.opacity=t>fim.ini-.2?1-eo(pr(t,fim.ini-.2,.3)):eo(pr(t,.05,.5));
+
+  // 1 google
+  let c=C.google, d=c.fim-c.ini; lay('google',t,c.ini,c.fim);
+  inn($('t-g1'),t,c.ini+.05); inn($('srch'),t,c.ini+.2,.5,80,.04);
+  const q='salão de beleza perto de mim'; const k=Math.floor(q.length*eio(pr(t,c.ini+.5,d*.42)));
+  $('qtx').textContent=q.slice(0,k); $('caret').style.opacity=(Math.floor(t*2.4)%2)?1:.15;
+  $('res').style.opacity=.9*eo(pr(t,c.ini+.5+d*.42,.3));
+  const pg=inn($('t-g2'),t,c.ini+d*.55,.4,0,.25); $('t-g2').style.transform=`scale(${.75+.25*back(pr(t,c.ini+d*.55,.5))})`;
+
+  // 2 feed
+  c=C.feed; d=c.fim-c.ini; lay('feed',t,c.ini,c.fim);
+  inn($('t-f1'),t,c.ini+.05);
+  ['dm1','dm2','dm3','dm4'].forEach((id,i)=>{const a=c.ini+.35+i*d*.17;const p=back(pr(t,a,.45));const el=$(id);el.style.opacity=cl(pr(t,a,.2));el.style.transform=`scale(${.6+.4*p}) rotate(${(i%2?2:-2)*(1-cl(pr(t,a,.6)))}deg)`;el.style.transformOrigin='left bottom'});
+
+  // 3-6 phone (uma camada contínua)
+  const a0=C.site.ini, a1=C.zap.fim; lay('phone',t,a0,a1);
+  const ph=$('phone'); const pin=eo(pr(t,a0+.1,.7));
+  ph.style.transform=`translateY(${(1-pin)*900}px) rotate(${(1-pin)*-6}deg)`;
+  const tit=$('t-p');
+  const titulos=[['site','Um site com a <span class="grad">sua cara.</span>'],['agenda','O cliente <span class="grad">marca sozinho.</span>'],['loja','Vende <span class="grad">seus produtos.</span>'],['zap','Pedido pronto no <span class="grad">WhatsApp.</span>']];
+  let atual=titulos[0]; titulos.forEach(x=>{if(t>=C[x[0]].ini-.05)atual=x});
+  if(tit.dataset.k!==atual[0]){tit.innerHTML=atual[1];tit.dataset.k=atual[0]}
+  inn(tit,t,C[atual[0]].ini,.4,40);
+  // telas: crossfade + rolagem
+  const imgs=[['site','im-site'],['agenda','im-agenda'],['loja','im-loja']];
+  imgs.forEach(([cid,iid],i)=>{const cc=C[cid];const nx=i<2?C[imgs[i+1][0]].ini:a1+1;const el=$(iid);
+    const o=i===0?1:eo(pr(t,cc.ini-.1,.35)); el.style.opacity=t<nx?o:(i===2?1:1);
+    el.style.zIndex=i+1; if(t<cc.ini-.1&&i>0)el.style.opacity=0;
+    const h=el.naturalHeight?el.naturalHeight*(556/el.naturalWidth):2400; const maxs=Math.max(0,h-1186);
+    const end=i===2?C.zap.fim:nx; const sp=eio(pr(t,cc.ini+.2,(end-cc.ini)*.95));
+    el.style.transform=`translateY(${-sp*Math.min(maxs,cid==='site'?1500:900)}px)`});
+  // chips
+  [['agenda','ch-agenda'],['loja','ch-loja']].forEach(([cid,id])=>{const cc=C[cid];const el=$(id);
+    const p=back(pr(t,cc.ini+.15,.45)); const out=eo(pr(t,cc.fim-.25,.25));
+    el.style.opacity=cl(pr(t,cc.ini+.15,.2))*(1-out); el.style.transform=`translateX(${(1-p)*-500+out*-200}px)`});
+  // notificações
+  c=C.zap; d=c.fim-c.ini;
+  [['n1',c.ini+.35],['n2',c.ini+.35+d*.42]].forEach(([id,a])=>{const el=$(id);const p=back(pr(t,a,.5));
+    el.style.opacity=cl(pr(t,a,.15)); el.style.transform=`translateY(${(1-p)*-260}px) scale(${.9+.1*p})`});
+
+  // 7 taxa
+  c=C.taxa; lay('taxa',t,c.ini,c.fim);
+  const pt=back(pr(t,c.ini+.05,.55)); $('t-t1').style.opacity=cl(pr(t,c.ini+.05,.2)); $('t-t1').style.transform=`scale(${.6+.4*pt})`;
+  inn($('t-t2'),t,c.ini+.45,.4,30);
+
+  // 8 passos
+  c=C.passos; d=c.fim-c.ini; lay('passos',t,c.ini,c.fim);
+  inn($('t-s'),t,c.ini+.05);
+  ['s1','s2','s3'].forEach((id,i)=>{const a=c.ini+.3+i*d*.26;const p=back(pr(t,a,.5));const el=$(id);el.style.opacity=cl(pr(t,a,.2));el.style.transform=`translateX(${(1-p)*300}px)`});
+
+  // 9 fim
+  c=C.fim; lay('fim',t,c.ini,TL.total+1);
+  const pl=back(pr(t,c.ini+.05,.6)); $('blg').style.opacity=cl(pr(t,c.ini+.05,.2)); $('blg').style.transform=`scale(${.4+.6*pl}) rotate(${(1-pl)*-25}deg)`;
+  inn($('t-e1'),t,c.ini+.35); inn($('t-e2'),t,c.ini+.5);
+  const pc=inn($('cta'),t,c.ini+.75,.5,80); if(pc>=1){$('cta').style.transform=`scale(${1+Math.sin((t-c.ini)*5)*.025})`}
+  inn($('url'),t,c.ini+.95);
+}
+window.render=render;
+</script></body></html>

@@ -1,0 +1,38 @@
+name: Render video
+on:
+  push:
+    paths: ['anuncios/video/roteiro.json','anuncios/video/video.html','anuncios/video/audio.py','anuncios/video/render-video.mjs','.github/workflows/video.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  video:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Dependências
+        run: |
+          pip install piper-tts==1.2.0 numpy
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg fonts-noto-color-emoji
+          npm i playwright@1.48.2 && npx playwright install --with-deps chromium
+          cd anuncios/video
+          curl -sSL -o pt_BR-faber-medium.onnx https://huggingface.co/rhasspy/piper-voices/resolve/main/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx
+          curl -sSL -o pt_BR-faber-medium.onnx.json https://huggingface.co/rhasspy/piper-voices/resolve/main/pt/pt_BR/faber/medium/pt_BR-faber-medium.onnx.json
+      - name: Narração e trilha
+        run: cd anuncios/video && python audio.py voz && python audio.py mix
+      - name: Vídeo
+        run: node anuncios/video/render-video.mjs --shots
+      - name: Publicar resultado
+        run: |
+          mkdir -p anuncios/video/entrega
+          cp anuncios/video/out/helice-video.mp4 anuncios/video/out/helice-video-capa.jpg anuncios/video/out/timeline.json anuncios/video/entrega/
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add anuncios/video/entrega anuncios/video/shots
+          git commit -m "Vídeo renderizado [skip ci]" || exit 0
+          git pull --rebase && git push
