@@ -1,8 +1,9 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 const B='https://helicesites.com.br';
+const troca=async p=>p.evaluate(()=>{const P=[['Dra. Geovanna Marreiros','Dra. Helena Duarte'],['Geovanna Marreiros','Helena Duarte'],['Geovanna','Helena'],['São Luís · Calhau','Centro'],['São Luís','sua cidade'],['Calhau','Centro']];const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){for(const[a,b]of P)n.nodeValue=n.nodeValue.split(a).join(b)}});
 const shots=[
- {f:'geovanna',u:'/geovanna-marreiros/',sel:null},
+ {f:'geovanna',u:'/geovanna-marreiros/',sel:null,act:troca},
  {f:'geovanna-mapa',u:'/geovanna-marreiros/',sel:'#mapa',act:async p=>{await p.click('.pin[data-k="labios"]');await p.click('#add');}},
  {f:'geovanna-painel',u:'/geovanna-marreiros/',sel:'#painel'},
  {f:'anapaula-agenda',u:'/ana-paula-beauty-hair/',sel:'#agendar',act:async p=>{await p.click('[data-pre="mechas"]');await p.click('[data-sv="Morena iluminada"]');await p.click('#segue');await p.click('.dia:not([disabled])');await p.click('.hr:not([disabled])');}},
