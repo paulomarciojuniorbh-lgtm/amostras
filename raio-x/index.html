@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raio-X Digital grátis · Hélice</title>
+<link rel="icon" href="../marca/helice-simbolo.svg" type="image/svg+xml">
+<meta name="description" content="Descubra em 1 minuto a nota digital do seu negócio, sua posição no Google contra os concorrentes e o que fazer para sair na frente. Grátis.">
+<meta property="og:title" content="Raio-X Digital do seu negócio · grátis">
+<meta property="og:description" content="Sua nota de 0 a 5, seu ranking no Google contra os concorrentes e um plano de ação. Em 1 minuto.">
+<meta property="og:image" content="https://helicesites.com.br/raio-x/og.png">
+<meta name="theme-color" content="#0b1124">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fundo:#0b1124; --fundo-2:#10183a; --sup:#141e44; --borda:#24305e; --borda-2:#33427a;
+  --texto:#e9edfb; --suave:#9aa6c8; --fraco:#6c789c;
+  --azul:#5b8cff; --ciano:#2fd6e8; --ok:#3ddc97; --amarelo:#ffcc4d; --ruim:#ff6b7a;
+  --grad:linear-gradient(100deg,#5b8cff 0%,#2fd6e8 100%);
+}
+*{box-sizing:border-box}
+body{margin:0;font:400 17px/1.55 Geist,system-ui,sans-serif;color:var(--texto);background:var(--fundo);-webkit-font-smoothing:antialiased;min-height:100vh}
+body:before{content:"";position:fixed;inset:-20% -10% auto auto;width:70vw;height:70vw;max-width:700px;max-height:700px;border-radius:50%;background:#2b4fd6;filter:blur(140px);opacity:.28;z-index:-1}
+a{color:var(--ciano)}
+.wrap{max-width:640px;margin:0 auto;padding:22px 18px 60px}
+header{display:flex;align-items:center;gap:10px;font-weight:700}
+header img{width:30px;height:30px}
+header span{color:var(--suave);font-weight:500}
+h1{font-size:clamp(34px,8.5vw,52px);line-height:1.02;letter-spacing:-.035em;margin:34px 0 14px;font-weight:800}
+h2{font-size:26px;line-height:1.15;letter-spacing:-.02em;margin:0 0 8px}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--suave);font-size:18px;margin:0 0 26px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.chips span{font-size:14px;padding:6px 12px;border-radius:999px;border:1px solid var(--borda);color:var(--suave);background:rgba(255,255,255,.02)}
+.card{background:var(--sup);border:1px solid var(--borda);border-radius:20px;padding:20px}
+label{display:block;font-size:14px;font-weight:600;color:var(--suave);margin:0 0 6px}
+input,select{width:100%;font:inherit;color:var(--texto);background:var(--fundo-2);border:1px solid var(--borda-2);border-radius:12px;padding:13px 14px;outline:none}
+input:focus,select:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(91,140,255,.25)}
+.campo{margin-bottom:14px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font:700 17px Geist,sans-serif;color:#071026;background:var(--grad);border:0;border-radius:14px;padding:15px 18px;cursor:pointer;text-decoration:none}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sec{background:transparent;color:var(--texto);border:1px solid var(--borda-2)}
+.btn.zap{background:#25d366;color:#05210f}
+.mini{font-size:13px;color:var(--fraco);margin-top:10px;text-align:center}
+.lista{display:grid;gap:10px;margin:16px 0}
+.item{display:block;width:100%;text-align:left;font:inherit;color:inherit;background:var(--fundo-2);border:1px solid var(--borda);border-radius:14px;padding:13px 14px;cursor:pointer}
+.item:hover{border-color:var(--azul)}
+.item b{display:block;font-weight:600}
+.item small{color:var(--suave)}
+.oculto{display:none!important}
+/* quiz */
+.barra{height:6px;border-radius:9px;background:var(--borda);overflow:hidden;margin:6px 0 22px}
+.barra i{display:block;height:100%;background:var(--grad);transition:width .3s}
+.pq{font-size:23px;font-weight:700;letter-spacing:-.015em;line-height:1.25;margin:0 0 8px}
+.dica{color:var(--suave);font-size:15px;margin:0 0 18px}
+.ops{display:grid;gap:10px}
+.op{font:600 17px Geist,sans-serif;color:var(--texto);background:var(--fundo-2);border:1px solid var(--borda-2);border-radius:14px;padding:15px;cursor:pointer;text-align:left}
+.op:hover{border-color:var(--ciano)}
+/* resultado */
+.nota{display:flex;align-items:center;gap:20px}
+.anel{--p:0;flex:none;width:128px;height:128px;border-radius:50%;background:conic-gradient(var(--ciano) calc(var(--p)*1%),var(--borda) 0);display:grid;place-items:center}
+.anel div{width:104px;height:104px;border-radius:50%;background:var(--sup);display:grid;place-items:center;text-align:center}
+.anel b{font-size:36px;letter-spacing:-.03em;line-height:1}
+.anel small{display:block;color:var(--suave);font-size:13px}
+.nivel{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ciano)}
+.escala{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:18px 0 4px}
+.escala div{height:8px;border-radius:4px;background:var(--borda)}
+.escala div.on{background:var(--grad)}
+.escala-l{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;font-size:11px;color:var(--fraco);text-align:center}
+.rk{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.rk .card{padding:16px}
+.rk b{display:block;font-size:30px;letter-spacing:-.03em;line-height:1.1}
+.rk span{font-size:14px;color:var(--suave);line-height:1.35;display:block;margin-top:4px}
+.pilar{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--borda)}
+.pilar:last-child{border-bottom:0}
+.pilar i{flex:none;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:15px}
+.pilar i.s{background:rgba(61,220,151,.15);color:var(--ok)}
+.pilar i.m{background:rgba(255,204,77,.15);color:var(--amarelo)}
+.pilar i.n{background:rgba(255,107,122,.14);color:var(--ruim)}
+.pilar b{display:block;font-weight:600}
+.pilar small{color:var(--suave);font-size:14px}
+.insight{border-left:3px solid var(--ciano);padding:4px 0 4px 14px;color:var(--texto);margin:18px 0}
+.trava{position:relative;overflow:hidden}
+.trava .borra{filter:blur(6px);opacity:.55;pointer-events:none;user-select:none}
+.conc{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--borda)}
+.conc:last-child{border-bottom:0}
+.conc .pos{flex:none;width:36px;height:36px;border-radius:10px;background:var(--fundo-2);border:1px solid var(--borda-2);display:grid;place-items:center;font-weight:800}
+.conc b{display:block;font-weight:600;line-height:1.25}
+.conc small{color:var(--suave);font-size:14px}
+.passo{display:flex;gap:12px;padding:12px 0;border-bottom:1px solid var(--borda)}
+.passo:last-child{border-bottom:0}
+.passo .n{flex:none;width:30px;height:30px;border-radius:9px;background:var(--grad);color:#071026;font-weight:800;display:grid;place-items:center}
+.passo b{display:block}
+.passo small{color:var(--suave);font-size:15px}
+.ck{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--suave);margin:4px 0 14px}
+.ck input{width:18px;height:18px;flex:none;margin-top:2px;accent-color:var(--azul)}
+.sec-t{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fraco);margin:28px 0 10px}
+.erro{color:var(--ruim);font-size:14px;margin:-6px 0 12px}
+.load{display:inline-block;width:18px;height:18px;border:2px solid rgba(7,16,38,.3);border-top-color:#071026;border-radius:50%;animation:g .7s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}
+footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><img src="../marca/helice-simbolo.svg" alt="">Hélice <span>Sites &amp; Sistemas</span></header>
+
+  <!-- 1. busca -->
+  <section id="s-busca">
+    <h1>Raio-X digital do seu negócio. <span class="g">Grátis.</span></h1>
+    <p class="lead">Em 1 minuto você descobre sua nota digital de 0 a 5, em que posição está no Google contra os concorrentes e o que fazer para sair na frente.</p>
+    <div class="chips"><span>Nota de 0 a 5</span><span>Ranking no Google</span><span>Concorrentes</span><span>Plano de ação</span></div>
+    <form class="card" id="f-busca">
+      <div class="campo"><label for="q">Nome do seu negócio</label><input id="q" autocomplete="organization" placeholder="Ex.: Clínica Sorriso" required minlength="3"></div>
+      <div class="campo"><label for="cid">Cidade</label><select id="cid"><option value="">Carregando cidades…</option></select></div>
+      <button class="btn" id="b-busca">Fazer meu Raio-X</button>
+      <div class="mini">Usamos só dados públicos do Google. Sem cadastro para ver sua nota.</div>
+    </form>
+    <div id="res-busca" class="oculto">
+      <p class="sec-t">É algum destes?</p>
+      <div class="lista" id="lista"></div>
+      <button class="btn sec" id="b-naoachei">Meu negócio não está na lista</button>
+    </div>
+  </section>
+
+  <!-- 1b. cadastro manual -->
+  <section id="s-manual" class="oculto">
+    <h2 style="margin-top:30px">Sem problema, vamos montar na mão</h2>
+    <p class="lead" style="font-size:16px">Seu negócio ainda não está no nosso radar. Você faz o teste agora e o ranking contra os concorrentes chega no seu WhatsApp em até 24h.</p>
+    <form class="card" id="f-manual">
+      <div class="campo"><label for="m-nome">Nome do negócio</label><input id="m-nome" required minlength="2"></div>
+      <div class="campo"><label for="m-cid">Cidade</label><input id="m-cid" required minlength="2"></div>
+      <div class="campo"><label for="m-seg">Ramo</label>
+        <select id="m-seg" required>
+          <option value="">Escolha…</option><option>Clínica / saúde</option><option>Dentista</option><option>Estética / beleza</option>
+          <option>Advocacia</option><option>Pet / veterinária</option><option>Pousada / turismo</option><option>Restaurante / alimentação</option>
+          <option>Oficina / automotivo</option><option>Serviços para casa</option><option>Loja / comércio</option><option>Outro</option>
+        </select></div>
+      <button class="btn">Continuar</button>
+    </form>
+  </section>
+
+  <!-- 2. perguntas -->
+  <section id="s-quiz" class="oculto">
+    <p style="margin:30px 0 0;color:var(--suave);font-size:14px" id="q-neg"></p>
+    <div class="barra"><i id="q-barra" style="width:0"></i></div>
+    <div class="card">
+      <p class="pq" id="q-txt"></p>
+      <p class="dica" id="q-dica"></p>
+      <div class="ops" id="q-ops"></div>
+    </div>
+  </section>
+
+  <!-- 3. resultado -->
+  <section id="s-res" class="oculto">
+    <p style="margin:30px 0 6px;color:var(--suave);font-size:14px">Raio-X de</p>
+    <h2 id="r-nome"></h2>
+    <div class="card" style="margin-top:16px">
+      <div class="nota">
+        <div class="anel" id="r-anel"><div><div><b id="r-nota">0</b><small>de 5</small></div></div></div>
+        <div><div class="nivel" id="r-nivel"></div><div id="r-nivel-d" style="color:var(--suave);font-size:15px;margin-top:4px"></div></div>
+      </div>
+      <div class="escala" id="r-escala"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+      <div class="escala-l"><span>0 Invisível</span><span>1 Existe</span><span>2 Visível</span><span>3 Conversa</span><span>4 Profissional</span><span>5 Máquina</span></div>
+    </div>
+
+    <div class="rk" id="r-rk"></div>
+    <p class="insight" id="r-insight"></p>
+
+    <p class="sec-t">Seus 7 pilares</p>
+    <div class="card" id="r-pilares" style="padding:6px 18px"></div>
+
+    <p class="sec-t">Seus 3 maiores concorrentes e o plano de ação</p>
+    <div class="trava" id="r-trava">
+      <div class="borra card" id="r-borra">
+        <div class="conc"><div class="pos">1</div><div><b>████████ ██████</b><small>★ 4,9 · 312 avaliações · tem site</small></div></div>
+        <div class="conc"><div class="pos">2</div><div><b>██████ █████████</b><small>★ 4,8 · 207 avaliações · tem site</small></div></div>
+        <div class="conc"><div class="pos">3</div><div><b>█████ ███</b><small>★ 5,0 · 154 avaliações</small></div></div>
+      </div>
+      <form class="card" id="f-lead" style="margin-top:12px">
+        <h2 style="font-size:21px">Desbloqueie de graça</h2>
+        <p style="color:var(--suave);font-size:15px;margin:0 0 14px" id="lead-txt">Veja quem são seus 3 maiores concorrentes e receba um plano de ação de 3 passos para subir de nível.</p>
+        <div class="campo"><label for="l-nome">Seu nome</label><input id="l-nome" autocomplete="given-name" required minlength="2"></div>
+        <div class="campo"><label for="l-zap">Seu WhatsApp</label><input id="l-zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000" required></div>
+        <label class="ck"><input type="checkbox" id="l-ok" required> Aceito receber o resultado e contato da Hélice pelo WhatsApp. Não compartilhamos seus dados.</label>
+        <div class="erro oculto" id="l-erro">Confere o WhatsApp com DDD, por favor.</div>
+        <button class="btn" id="b-lead">Ver meus concorrentes e plano</button>
+      </form>
+    </div>
+
+    <div id="r-liberado" class="oculto">
+      <div class="card" id="r-conc" style="padding:6px 18px"></div>
+      <p class="sec-t">Seu plano de ação</p>
+      <div class="card" id="r-plano" style="padding:6px 18px"></div>
+      <div class="card" style="margin-top:16px;text-align:center">
+        <p style="margin:0 0 14px;font-weight:600" id="r-cta-txt">Quer ajuda para subir de nível? A primeira amostra do seu site é grátis.</p>
+        <a class="btn zap" id="r-zap" target="_blank" rel="noopener">Falar com o Paulo no WhatsApp</a>
+        <div class="mini">Sem taxa de entrada. Você só paga depois que o site estiver no ar.</div>
+      </div>
+    </div>
+    <button class="btn sec" style="margin-top:22px" onclick="location.href=location.pathname">Fazer outro Raio-X</button>
+  </section>
+
+  <footer>Hélice Sites &amp; Sistemas · São Luís-MA · <a href="/planos/">conheça os planos</a><br>Dados públicos do Google Maps. A nota é uma estimativa para orientar, não uma auditoria.</footer>
+</div>
+
+<script>
+const SB='https://ryhyvzwqtktaaonznizn.supabase.co', KEY='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0', ZAP='5598984149331';
+const $=s=>document.querySelector(s);
+const rpc=(f,b)=>fetch(SB+'/rest/v1/rpc/'+f,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(b||{})}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+const qs=new URLSearchParams(location.search);
+const utm={};['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{if(qs.get(k))utm[k]=qs.get(k)});
+const ua=navigator.userAgent;
+const ORIGEM=(qs.get('utm_source')||'').toLowerCase()||(/Instagram/i.test(ua)?'instagram':/FBAN|FBAV|FB_IAB/i.test(ua)?'facebook':(document.referrer?(()=>{try{return new URL(document.referrer).hostname}catch(e){return ''}})():'direto'));
+const SEG={dentista:'dentistas',advogado:'escritórios de advocacia',fisioterapeuta:'fisioterapeutas',nutricionista:'nutricionistas',estetica:'clínicas de estética',veterinario:'veterinárias',psicologo:'psicólogos',medico:'médicos',pousada:'pousadas',turismo:'agências de turismo',transfer:'transfers',restaurante:'restaurantes',oficina:'oficinas',servicos_casa:'prestadores de serviço',personal:'personal trainers',imobiliaria:'imobiliárias',construtora:'construtoras',fotografo:'fotógrafos',contabilidade:'contabilidades',kitesurf:'escolas de kite'};
+const fmt=n=>Number(n).toLocaleString('pt-BR',{maximumFractionDigits:1});
+const show=id=>{['#s-busca','#s-manual','#s-quiz','#s-res'].forEach(s=>$(s).classList.toggle('oculto',s!==id));scrollTo({top:0,behavior:'smooth'})};
+let D=null, NEG=null, R={}, NOTA=0, NIVEL='';
+
+// cidades
+rpc('raiox_cidades').then(c=>{
+  $('#cid').innerHTML='<option value="">Todas as cidades</option>'+c.map(x=>`<option${x==='São Luís'?' selected':''}>${x}</option>`).join('')+'<option value="__outra">Outra cidade</option>';
+}).catch(()=>{$('#cid').innerHTML='<option value="">Todas as cidades</option>'});
+
+$('#f-busca').onsubmit=async e=>{
+  e.preventDefault();
+  if($('#cid').value==='__outra'){ $('#m-nome').value=$('#q').value; show('#s-manual'); return; }
+  const b=$('#b-busca'); b.disabled=true; b.innerHTML='<span class="load"></span> Procurando no Google…';
+  try{
+    const r=await rpc('raiox_buscar',{p_q:$('#q').value,p_cidade:$('#cid').value,p_origem:ORIGEM});
+    $('#lista').innerHTML=r.length?r.map((x,i)=>`<button type="button" class="item" data-i="${i}"><b>${esc(x.nome)}</b><small>${esc(x.bairro?x.bairro+' · ':'')}${esc(x.cidade)}${x.rating?` · ★ ${fmt(x.rating)} (${x.avaliacoes})`:''}</small></button>`).join(''):'<p style="color:var(--suave);margin:0">Não achamos com esse nome. Tente só uma parte do nome ou siga sem ele.</p>';
+    $('#res-busca').classList.remove('oculto');
+    document.querySelectorAll('#lista .item').forEach(el=>el.onclick=()=>escolher(r[+el.dataset.i].place_id));
+    $('#res-busca').scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(err){ $('#lista').innerHTML='<p style="color:var(--ruim)">Falhou a conexão. Tenta de novo?</p>'; $('#res-busca').classList.remove('oculto'); }
+  b.disabled=false; b.textContent='Fazer meu Raio-X';
+};
+$('#b-naoachei').onclick=()=>{ $('#m-nome').value=$('#q').value; const c=$('#cid').value; if(c&&c!=='__outra')$('#m-cid').value=c; show('#s-manual'); };
+$('#f-manual').onsubmit=e=>{ e.preventDefault(); D=null; NEG={nome:$('#m-nome').value.trim(),cidade:$('#m-cid').value.trim(),segmento:$('#m-seg').value,manual:true}; iniciarQuiz(); };
+
+async function escolher(pid){
+  document.querySelectorAll('#lista .item').forEach(el=>el.disabled=true);
+  try{ D=await rpc('raiox_analisar',{p_place_id:pid}); NEG=D.neg; iniciarQuiz(); }
+  catch(e){ alert('Não consegui carregar agora. Tenta de novo em instantes.'); document.querySelectorAll('#lista .item').forEach(el=>el.disabled=false); }
+}
+
+// perguntas
+let PERG=[], qi=0;
+function iniciarQuiz(){
+  R={}; qi=0;
+  const temSite=NEG.site_tipo==='proprio', fora=NEG.site_tipo==='fora_do_ar';
+  PERG=[];
+  if(NEG.manual) PERG.push({k:'google',t:'Seu negócio aparece no Google Maps quando alguém procura pelo nome?',d:'Aquele cartão com endereço, horário e avaliações.',o:[['Sim, aparece',1],['Aparece, mas com poucas avaliações',.5],['Não aparece / não sei',0]]});
+  PERG.push({k:'insta',t:'Seu Instagram tem post novo toda semana?',d:'Stories contam pouco. Vale post ou reels no feed.',o:[['Sim, toda semana',1],['Tenho, mas posto de vez em quando',.5],['Não tenho Instagram do negócio',0]]});
+  PERG.push({k:'zap',t:'Você usa WhatsApp Business e responde em até 1 hora?',d:'O cliente que espera muito costuma chamar o concorrente.',o:[['Sim, uso e respondo rápido',1],['Uso, mas às vezes demoro',.5],['Uso o WhatsApp comum',.25]]});
+  if(!temSite) PERG.push({k:'site',t:'Seu negócio tem site próprio?',d:fora?'No Google, o link do seu site está fora do ar.':(NEG.manual?'Com endereço seu, tipo seunegocio.com.br. Link do Instagram não conta.':'No Google não aparece site próprio. Link do Instagram ou do WhatsApp não conta.'),o:[['Sim, tenho',1],['Tenho, mas está desatualizado ou fora do ar',.3],['Não tenho',0]]});
+  PERG.push({k:'agenda',t:'O cliente consegue agendar, reservar ou pedir orçamento sozinho, pela internet?',d:'Sem precisar esperar alguém responder.',o:[['Sim',1],['Mais ou menos (formulário, link solto)',.5],['Não, tudo é pelo WhatsApp/telefone',0]]});
+  PERG.push({k:'ads',t:'Você investe em anúncios no Instagram ou no Google?',d:'Mesmo que pouco.',o:[['Sim, todo mês',1],['Já fiz, mas parei',.4],['Nunca fiz',0]]});
+  $('#q-neg').textContent=NEG.nome;
+  show('#s-quiz'); pergunta();
+}
+function pergunta(){
+  const p=PERG[qi]; $('#q-barra').style.width=(qi/PERG.length*100)+'%';
+  $('#q-txt').textContent=p.t; $('#q-dica').textContent=p.d;
+  $('#q-ops').innerHTML=p.o.map((o,i)=>`<button class="op" data-i="${i}">${o[0]}</button>`).join('');
+  document.querySelectorAll('#q-ops .op').forEach(b=>b.onclick=()=>{ R[p.k]={v:p.o[+b.dataset.i][1],r:p.o[+b.dataset.i][0]}; qi++; qi<PERG.length?pergunta():resultado(); });
+}
+
+// nota
+const NIVEIS=[['Invisível','Quem procura não te encontra. Hoje você depende só de indicação.'],['Existe','Você aparece, mas ainda não chama atenção de quem pesquisa.'],['Visível','Você aparece e tem presença. Falta transformar visita em cliente.'],['Conversa','Você atende bem quem chega. Falta ter a sua casa na internet.'],['Profissional','Você passa confiança. Agora é automatizar e crescer.'],['Máquina','Seu digital trabalha por você. Raridade no seu ramo.']];
+function calcular(){
+  const P=[];
+  let gPres, gRep, gRepTxt;
+  if(D){
+    gPres=.75;
+    const med=Math.max(20,Math.round(D.mediana_aval||0)), boaNota=NEG.rating>=4.5, muitas=NEG.avaliacoes>=med;
+    gRep=boaNota&&muitas?.75:(boaNota||muitas?.4:.1);
+    gRepTxt=`★ ${fmt(NEG.rating)} com ${NEG.avaliacoes} avaliações (média do ramo na cidade: ★ ${fmt(D.media_rating)})`;
+  }else{
+    const v=R.google.v; gPres=v>0?.75:0; gRep=v>=1?.4:(v>0?.2:0); gRepTxt=v>0?'Vamos medir no seu Raio-X completo':'Sem perfil, sem avaliações';
+  }
+  const sitev=NEG.site_tipo==='proprio'?1:R.site.v;
+  P.push(['Aparece no Google Maps',gPres/.75,gPres,D?'Seu perfil está no Google':'Pela sua resposta']);
+  P.push(['Reputação no Google',gRep/.75,gRep,gRepTxt]);
+  P.push(['Instagram ativo',R.insta.v,R.insta.v*.75,R.insta.r]);
+  P.push(['WhatsApp profissional',R.zap.v,R.zap.v*.75,R.zap.r]);
+  P.push(['Site próprio',sitev,sitev*1,NEG.site_tipo==='proprio'?'Encontramos seu site no Google':R.site.r]);
+  P.push(['Agendamento ou pedido online',R.agenda.v,R.agenda.v*.5,R.agenda.r]);
+  P.push(['Anúncios',R.ads.v,R.ads.v*.5,R.ads.r]);
+  const n=Math.min(5,P.reduce((s,p)=>s+p[2],0));
+  return {P,n:Math.round(n*10)/10};
+}
+function resultado(){
+  $('#q-barra').style.width='100%';
+  const {P,n}=calcular(); NOTA=n;
+  const lv=n>=4.75?5:Math.min(4,Math.floor(n)); NIVEL=NIVEIS[lv][0];
+  $('#r-nome').textContent=NEG.nome;
+  $('#r-nota').textContent=fmt(n); $('#r-anel').style.setProperty('--p',n/5*100);
+  $('#r-nivel').textContent='Nível '+lv+' · '+NIVEIS[lv][0]; $('#r-nivel-d').textContent=NIVEIS[lv][1];
+  document.querySelectorAll('#r-escala div').forEach((d,i)=>d.classList.toggle('on',i<=lv));
+  $('#r-pilares').innerHTML=P.map(p=>`<div class="pilar"><i class="${p[1]>=.9?'s':p[1]>=.3?'m':'n'}">${p[1]>=.9?'✓':p[1]>=.3?'~':'✕'}</i><div><b>${p[0]}</b><small>${esc(p[3])}</small></div></div>`).join('');
+  const seg=D?(SEG[NEG.segmento]||NEG.segmento):'';
+  if(D){
+    const pm=NEG.pos_maps;
+    $('#r-rk').innerHTML=`<div class="card"><b>${D.pos_rep}º</b><span>de ${D.total} ${seg} em ${esc(NEG.cidade)} em reputação no Google</span></div>
+      <div class="card"><b>${pm?pm+'º':'Fora'}</b><span>${pm?'na busca do Google Maps por “'+esc(NEG.termo||NEG.segmento)+'”':'dos primeiros resultados quando buscam “'+esc(NEG.termo||NEG.segmento)+' em '+esc(NEG.cidade)+'”'}</span></div>`;
+    const tm=D.top_maps||[], cs=tm.filter(x=>x.site_tipo==='proprio').length;
+    $('#r-insight').innerHTML=tm.length?`Dos 3 primeiros no Google Maps, <b>${cs} de 3 têm site próprio</b>. No seu ramo em ${esc(NEG.cidade)}, só <b>${D.pct_site}%</b> têm site. Quem tem sai na frente.`:`No seu ramo em ${esc(NEG.cidade)}, só <b>${D.pct_site}%</b> têm site próprio. Quem tem sai na frente.`;
+  }else{
+    $('#r-rk').innerHTML=`<div class="card" style="grid-column:1/-1"><b>Em 24h</b><span>Seu ranking contra os concorrentes de ${esc(NEG.cidade)} chega no seu WhatsApp. A gente monta na mão.</span></div>`;
+    $('#r-insight').textContent='Negócios com site próprio, Google bem avaliado e WhatsApp rápido costumam aparecer primeiro e fechar mais.';
+    $('#lead-txt').textContent='Deixe seu WhatsApp para receber o ranking contra seus concorrentes e um plano de ação de 3 passos.';
+    $('#b-lead').textContent='Quero meu ranking completo';
+  }
+  show('#s-res');
+  window.__P=P;
+}
+
+// lead
+$('#f-lead').onsubmit=async e=>{
+  e.preventDefault();
+  const zap=$('#l-zap').value.replace(/\D/g,'');
+  if(zap.length<10||zap.length>13){ $('#l-erro').classList.remove('oculto'); return; }
+  $('#l-erro').classList.add('oculto');
+  const b=$('#b-lead'); b.disabled=true; b.innerHTML='<span class="load"></span> Liberando…';
+  const resp={}; Object.keys(R).forEach(k=>resp[k]=R[k].r);
+  try{
+    await rpc('raiox_lead',{p_nome:$('#l-nome').value,p_whats:zap,p_place_id:D?NEG.place_id:null,p_negocio:NEG.nome,p_cidade:NEG.cidade,p_segmento:NEG.segmento,p_nota:NOTA,p_nivel:NIVEL,p_respostas:resp,p_origem:ORIGEM,p_utm:utm});
+  }catch(err){}
+  liberar();
+};
+function liberar(){
+  $('#r-trava').classList.add('oculto'); $('#r-liberado').classList.remove('oculto');
+  if(D&&D.top.length){
+    $('#r-conc').innerHTML=D.top.map(c=>`<div class="conc"><div class="pos">${c.pos}º</div><div><b>${esc(c.nome)}</b><small>★ ${fmt(c.rating)} · ${c.avaliacoes} avaliações${c.site_tipo==='proprio'?' · tem site':''}${c.pos_maps?' · '+c.pos_maps+'º no Maps':''}</small></div></div>`).join('');
+  }else{
+    $('#r-conc').innerHTML='<div class="conc"><div class="pos">⏳</div><div><b>Estamos levantando seus concorrentes</b><small>O Paulo te manda no WhatsApp em até 24h.</small></div></div>';
+  }
+  const P=window.__P, passos=[];
+  const g=P[1], s=P[4], z=P[3], i=P[2], a=P[5], ad=P[6];
+  if(s[1]<.9) passos.push(['Tenha a sua casa na internet','Um site próprio com seus serviços, fotos reais e botão de WhatsApp. É o que os primeiros do Google costumam ter.']);
+  if(g[1]<.9) passos.push(['Peça avaliação no Google a cada atendimento',D?`A meta é passar de ${Math.max(20,Math.round(D.mediana_aval||0))} avaliações, a mediana do seu ramo na cidade. Um QR code no balcão ajuda muito.`:'Crie ou complete seu perfil e mande o link de avaliação para cada cliente satisfeito.']);
+  if(z[1]<.9) passos.push(['Profissionalize o WhatsApp','WhatsApp Business com mensagem de boas-vindas, catálogo e respostas rápidas. Responder em minutos muda o jogo.']);
+  if(a[1]<.9) passos.push(['Deixe o cliente agendar sozinho','Agendamento, reserva ou pedido de orçamento online, que chega organizado no seu WhatsApp.']);
+  if(i[1]<.9) passos.push(['Instagram com constância','Um post por semana mostrando bastidores, resultados e equipe. Constância vale mais que perfeição.']);
+  if(ad[1]<.9) passos.push(['Só depois, anúncio','Anúncio levando para um site bem feito rende muito mais do que levando para um perfil solto.']);
+  if(!passos.length) passos.push(['Você está no topo','Agora é medir: quantas visitas, quantos contatos e quantos viram cliente. Dá pra automatizar isso.']);
+  $('#r-plano').innerHTML=passos.slice(0,3).map((p,k)=>`<div class="passo"><div class="n">${k+1}</div><div><b>${p[0]}</b><small>${p[1]}</small></div></div>`).join('');
+  const msg=`Oi, Paulo! Fiz o Raio-X da Hélice: ${NEG.nome} tirou ${fmt(NOTA)} de 5 (nível ${NIVEL}). Quero ajuda para subir de nível.`;
+  $('#r-zap').href='https://wa.me/'+ZAP+'?text='+encodeURIComponent(msg);
+  $('#r-liberado').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function esc(t){return String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+</script>
+<script src="/v.js" defer></script>
+</body>
+</html>
