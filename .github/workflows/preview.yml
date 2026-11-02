@@ -1,7 +1,7 @@
 name: Preview screenshots
 on:
   push:
-    paths: ['_preview/urls.txt','_preview/reel.mjs']
+    paths: ['_preview/urls.txt','_preview/reel.mjs','_preview/raiox.mjs']
 permissions:
   contents: write
 jobs:
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
       - run: npm i playwright@1.48.2 && npx playwright install --with-deps chromium
-      - run: sleep 30 && if [ "${{ startsWith(github.event.head_commit.message, 'reel') }}" = "true" ]; then node _preview/reel.mjs; else node _preview/shot.mjs; fi
+      - run: sleep 30 && if [ "${{ startsWith(github.event.head_commit.message, 'reel') }}" = "true" ]; then node _preview/reel.mjs; elif [ "${{ startsWith(github.event.head_commit.message, 'raiox') }}" = "true" ]; then node _preview/raiox.mjs; else node _preview/shot.mjs; fi
       - run: |
           git config user.name "github-actions"
           git config user.email "github-actions@users.noreply.github.com"
