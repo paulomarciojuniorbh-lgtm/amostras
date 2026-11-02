@@ -1,14 +1,15 @@
 import { chromium } from 'playwright';
 import fs from 'fs';
 fs.mkdirSync('_preview/reel', { recursive: true });
+const troca = async (p, pares) => p.evaluate(pares => { const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT); let n; while ((n = w.nextNode())) { for (const [a, b] of pares) n.nodeValue = n.nodeValue.split(a).join(b); } document.title = ''; }, pares);
 const S = [
-  { f: 'fleet-cel', u: 'https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/', w: 390, h: 844 },
-  { f: 'fleet-pc', u: 'https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/', w: 1280, h: 800 },
-  { f: 'salao', u: 'https://helicesites.com.br/ana-paula-beauty-hair/', w: 390, h: 844, sel: '#agendar', act: async p => { await p.click('[data-pre="mechas"]'); await p.click('[data-sv="Morena iluminada"]'); await p.click('#segue'); await p.click('.dia:not([disabled])'); await p.click('.hr:not([disabled])'); } },
-  { f: 'tattoo', u: 'https://helicesites.com.br/pulsar-art-tattoo/', w: 390, h: 844, sel: '#res', act: async p => { for (const s of ['[data-q=tam] .op[data-v="3"]','[data-q=cor] .op[data-v="3"]','[data-q=ida] .op[data-v="0"]','[data-q=loc] .op[data-v="0.5"]']) await p.click(s); } },
-  { f: 'tattoo-hero', u: 'https://helicesites.com.br/pulsar-art-tattoo/', w: 390, h: 844 },
-  { f: 'advogado', u: 'https://helicesites.com.br/lote1/ricardo-aragao-advogado/', w: 390, h: 844 },
-  { f: 'salao-pc', u: 'https://helicesites.com.br/ana-paula-beauty-hair/', w: 1280, h: 800 },
+  { f: 'fleet-cel', u: 'https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/', w: 390, h: 844, act: async p => { await p.click('text=Ver a frota de exemplo'); await p.waitForTimeout(2500); } },
+  { f: 'fleet-pc', u: 'https://paulomarciojuniorbh-lgtm.github.io/fleetmanager-pro/', w: 1280, h: 800, act: async p => { await p.click('text=Ver a frota de exemplo'); await p.waitForTimeout(2500); } },
+  { f: 'salao', u: 'https://helicesites.com.br/ana-paula-beauty-hair/', w: 390, h: 844, sel: '#agendar', act: async p => { await p.click('[data-pre="mechas"]'); await p.click('[data-sv="Morena iluminada"]'); await p.click('#segue'); await p.click('.dia:not([disabled])'); await p.click('.hr:not([disabled])'); await troca(p, [['Ana Paula Santos','Studio Bella'],['Ana Paula','a Bella'],['AP','SB']]); } },
+  { f: 'tattoo', u: 'https://helicesites.com.br/pulsar-art-tattoo/', w: 390, h: 844, sel: '#res', act: async p => { for (const s of ['[data-q=tam] .op[data-v="3"]','[data-q=cor] .op[data-v="3"]','[data-q=ida] .op[data-v="0"]','[data-q=loc] .op[data-v="0.5"]']) await p.click(s); await troca(p, [['Hugo','Rafa'],['Pulsar','Inkfire']]); } },
+  { f: 'tattoo-hero', u: 'https://helicesites.com.br/pulsar-art-tattoo/', w: 390, h: 844, act: async p => { await troca(p, [['Hugo Oliveira','Rafa Lima'],['Hugo','Rafa'],['Pulsar','Inkfire'],['Barreiro, BH','Centro']]); } },
+  { f: 'advogado', u: 'https://helicesites.com.br/lote1/ricardo-aragao-advogado/', w: 390, h: 844, act: async p => { await troca(p, [['Ricardo Pinto Aragão','Marcos Lima'],['Ricardo','Marcos'],['RA','ML'],['São Luís','sua cidade']]); await p.evaluate(() => { const b = [...document.querySelectorAll('body *')].find(e => /Modelo de demonstração/.test(e.textContent) && e.children.length < 4); if (b) b.style.display = 'none'; }); } },
+  
 ];
 const b = await chromium.launch();
 for (const s of S) {
