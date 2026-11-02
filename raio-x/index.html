@@ -183,9 +183,10 @@ footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
         <h2 style="font-size:21px">Desbloqueie de graça</h2>
         <p style="color:var(--suave);font-size:15px;margin:0 0 14px" id="lead-txt">Veja quem são seus 3 maiores concorrentes e receba um plano de ação de 3 passos para subir de nível.</p>
         <div class="campo"><label for="l-nome">Seu nome</label><input id="l-nome" autocomplete="given-name" required minlength="2"></div>
-        <div class="campo"><label for="l-zap">Seu WhatsApp</label><input id="l-zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000" required></div>
-        <label class="ck"><input type="checkbox" id="l-ok" required> Aceito receber o resultado e contato da Hélice pelo WhatsApp. Não compartilhamos seus dados.</label>
-        <div class="erro oculto" id="l-erro">Confere o WhatsApp com DDD, por favor.</div>
+        <div class="campo"><label for="l-zap">Seu WhatsApp</label><input id="l-zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000"></div>
+        <div class="campo"><label for="l-ig">ou seu Instagram</label><input id="l-ig" autocapitalize="none" autocomplete="off" placeholder="@seunegocio"></div>
+        <label class="ck"><input type="checkbox" id="l-ok" required> Aceito receber o resultado e contato da Hélice pelo WhatsApp ou Instagram. Não compartilhamos seus dados.</label>
+        <div class="erro oculto" id="l-erro">Deixe o WhatsApp com DDD ou o @ do Instagram.</div>
         <button class="btn" id="b-lead">Ver meus concorrentes e plano</button>
       </form>
     </div>
@@ -322,12 +323,14 @@ function resultado(){
 $('#f-lead').onsubmit=async e=>{
   e.preventDefault();
   const zap=$('#l-zap').value.replace(/\D/g,'');
-  if(zap.length<10||zap.length>13){ $('#l-erro').classList.remove('oculto'); return; }
+  const ig=$('#l-ig').value.trim().replace(/^.*instagram\.com\//i,'').replace(/^@/,'').replace(/[\/?#].*$/,'');
+  const zapOk=zap.length>=10&&zap.length<=13, igOk=/^[A-Za-z0-9._]{2,30}$/.test(ig);
+  if(!zapOk&&!igOk){ $('#l-erro').classList.remove('oculto'); return; }
   $('#l-erro').classList.add('oculto');
   const b=$('#b-lead'); b.disabled=true; b.innerHTML='<span class="load"></span> Liberando…';
   const resp={}; Object.keys(R).forEach(k=>resp[k]=R[k].r);
   try{
-    await rpc('raiox_lead',{p_nome:$('#l-nome').value,p_whats:zap,p_place_id:D?NEG.place_id:null,p_negocio:NEG.nome,p_cidade:NEG.cidade,p_segmento:NEG.segmento,p_nota:NOTA,p_nivel:NIVEL,p_respostas:resp,p_origem:ORIGEM,p_utm:utm});
+    await rpc('raiox_lead',{p_nome:$('#l-nome').value,p_whats:zapOk?zap:null,p_place_id:D?NEG.place_id:null,p_negocio:NEG.nome,p_cidade:NEG.cidade,p_segmento:NEG.segmento,p_nota:NOTA,p_nivel:NIVEL,p_respostas:resp,p_origem:ORIGEM,p_utm:utm,p_insta:igOk?ig:null});
   }catch(err){}
   liberar();
 };
