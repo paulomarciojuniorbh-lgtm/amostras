@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Baggit · Bolsas térmicas de luxo feitas à mão</title>
+<meta name="description" content="Bolsas térmicas e funcionais de luxo, em couro legítimo com matelassê feito à mão. Belo Horizonte para todo o Brasil.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d0d0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Galeria branca para as fotos de estúdio, preto e latão envelhecido da marca, matelassê como assinatura */
+:root{
+  --preto:#0d0d0d; --grafite:#2a2a2a; --branco:#ffffff; --nevoa:#f5f5f3; --linha:#e6e4df; --cinza:#6e6b66;
+  --latao:#a8844f; --latao-claro:#d6b680; --ok:#1e7a46;
+  --f-disp:"Bodoni Moda",Didot,"Times New Roman",serif; --f-texto:"Jost","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--branco);color:var(--preto);font:400 16px/1.6 var(--f-texto);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+.w{max-width:1240px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+.demo{background:var(--latao);color:var(--preto);text-align:center;font-size:13px;padding:6px 16px;letter-spacing:.02em}
+/* topo */
+header.topo{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none}
+.marca img{width:40px;height:40px;object-fit:contain}
+.marca b{font:600 26px var(--f-disp);letter-spacing:.14em}
+nav.cats{display:flex;gap:26px;font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+nav.cats a{text-decoration:none;padding:6px 0;border-bottom:1px solid transparent}
+nav.cats a:hover,nav.cats a[aria-current]{border-color:var(--latao)}
+.acoes{display:flex;gap:6px;align-items:center}
+.ic{background:none;border:0;width:42px;height:42px;display:grid;place-items:center;border-radius:50%;position:relative}
+.ic:hover{background:var(--nevoa)}
+.ic svg{width:22px;height:22px}
+.qtd{position:absolute;top:4px;right:2px;background:var(--latao);color:var(--preto);font-size:11px;font-weight:600;min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 4px}
+.menu-btn{display:none}
+@media (max-width:900px){nav.cats{display:none}.menu-btn{display:grid}}
+.gaveta-menu{position:fixed;inset:0;z-index:60;display:none}
+.gaveta-menu.on{display:block}
+.gaveta-menu .fundo{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.gaveta-menu nav{position:absolute;left:0;top:0;bottom:0;width:min(320px,85vw);background:var(--branco);padding:24px;display:flex;flex-direction:column;gap:4px}
+.gaveta-menu nav a{text-decoration:none;padding:12px 0;border-bottom:1px solid var(--linha);text-transform:uppercase;letter-spacing:.08em;font-size:14px}
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;min-height:560px;border-bottom:1px solid var(--linha)}
+.hero-txt{background:var(--preto);color:var(--branco);position:relative;overflow:hidden;display:flex;align-items:center}
+.hero-txt::before{content:"";position:absolute;inset:0;opacity:.13;
+  background:repeating-linear-gradient(45deg,transparent 0 27px,var(--latao-claro) 27px 28px),repeating-linear-gradient(-45deg,transparent 0 27px,var(--latao-claro) 27px 28px)}
+.hero-txt .in{position:relative;padding:64px max(20px,6vw)}
+.sobre{font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--latao-claro)}
+h1{font:500 clamp(40px,5.4vw,74px)/1.02 var(--f-disp);letter-spacing:-.01em;margin:18px 0 20px;text-wrap:balance}
+h1 em{font-style:italic;color:var(--latao-claro)}
+.hero-txt p{max-width:440px;color:#cfcac2;font-size:17px;margin:0 0 30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:15px 26px;font:500 14px var(--f-texto);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid currentColor;background:none;color:inherit}
+.btn.ouro{background:var(--latao);border-color:var(--latao);color:var(--preto)}
+.btn.ouro:hover{background:var(--latao-claro);border-color:var(--latao-claro)}
+.btn.preto{background:var(--preto);border-color:var(--preto);color:var(--branco)}
+.btn.preto:hover{background:var(--grafite)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.hero-img{background:var(--branco);display:grid;place-items:center;padding:30px;position:relative}
+.hero-img img{max-height:500px;object-fit:contain}
+.hero-img .tag{position:absolute;bottom:26px;right:26px;text-align:right;font-size:13px;color:var(--cinza)}
+.hero-img .tag b{display:block;font:500 22px var(--f-disp);color:var(--preto)}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.hero-img{min-height:340px}.hero-img img{max-height:320px}}
+/* faixas */
+.selos{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--linha)}
+.selos div{padding:22px 18px;border-right:1px solid var(--linha);font-size:14px;color:var(--cinza)}
+.selos div:last-child{border-right:0}
+.selos b{display:block;color:var(--preto);font-weight:500;font-size:15px}
+@media (max-width:760px){.selos{grid-template-columns:1fr 1fr}.selos div:nth-child(2){border-right:0}.selos div:nth-child(-n+2){border-bottom:1px solid var(--linha)}}
+section{padding:72px 0}
+.cab{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+h2{font:500 clamp(30px,3.6vw,44px)/1.1 var(--f-disp);margin:0;text-wrap:balance}
+.cab a{font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--latao);padding-bottom:3px}
+/* linhas */
+.linhas{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.linha{position:relative;text-decoration:none;background:var(--nevoa);aspect-ratio:3/4;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.linha img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:22px 18px 70px;mix-blend-mode:multiply;transition:transform .5s}
+.linha:hover img{transform:scale(1.05)}
+.linha span{position:relative;padding:16px;font:500 21px var(--f-disp)}
+.linha small{position:relative;padding:0 16px 16px;margin-top:-12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+@media (max-width:900px){.linhas{grid-template-columns:repeat(2,1fr)}}
+/* grade de produtos */
+.grade{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 18px}
+@media (max-width:1000px){.grade{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.grade{grid-template-columns:repeat(2,1fr);gap:26px 12px}}
+.prod{text-decoration:none;display:flex;flex-direction:column;gap:10px;min-width:0}
+.prod .foto{position:relative;aspect-ratio:1;background:var(--branco);border:1px solid var(--linha);overflow:hidden}
+.prod .foto img{width:100%;height:100%;object-fit:contain;transition:opacity .35s}
+.prod .foto img.b{position:absolute;inset:0;opacity:0}
+.prod:hover .foto img.b{opacity:1}
+.selo{position:absolute;top:10px;left:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 8px;background:var(--preto);color:var(--branco)}
+.selo.esg{background:var(--cinza)}
+.selo.off{background:var(--latao);color:var(--preto)}
+.prod h3{font:500 15px/1.35 var(--f-texto);margin:0}
+.preco{font-variant-numeric:tabular-nums;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.preco b{font-weight:600}
+.preco s{color:var(--cinza);font-size:14px}
+.parc{font-size:13px;color:var(--cinza)}
+/* história */
+.historia{background:var(--preto);color:var(--branco);position:relative;overflow:hidden}
+.historia::before{content:"";position:absolute;right:-10%;top:0;bottom:0;width:55%;opacity:.12;
+  background:repeating-linear-gradient(45deg,transparent 0 27px,var(--latao-claro) 27px 28px),repeating-linear-gradient(-45deg,transparent 0 27px,var(--latao-claro) 27px 28px)}
+.historia .w{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.historia p{color:#d3cec6;font-size:17px;max-width:540px}
+.historia .sobre{margin-bottom:12px;display:block}
+.feito{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#333}
+.feito div{background:var(--preto);padding:24px}
+.feito b{display:block;font:500 28px var(--f-disp);color:var(--latao-claro)}
+.feito span{font-size:14px;color:#bbb}
+@media (max-width:860px){.historia .w{grid-template-columns:1fr}}
+/* depoimentos */
+.deps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.dep{border:1px solid var(--linha);padding:24px;display:flex;flex-direction:column;gap:14px}
+.dep q{font:500 18px/1.45 var(--f-disp);quotes:"“" "”"}
+.dep span{font-size:13px;color:var(--cinza);margin-top:auto}
+@media (max-width:860px){.deps{grid-template-columns:1fr}}
+/* página de categoria */
+.titulo-pag{padding:46px 0 26px;border-bottom:1px solid var(--linha);margin-bottom:34px}
+.trilha{font-size:13px;color:var(--cinza);margin-bottom:10px}
+.trilha a{text-decoration:none}
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.chip{border:1px solid var(--linha);background:var(--branco);padding:8px 14px;font-size:13px;letter-spacing:.06em;text-decoration:none}
+.chip[aria-current]{background:var(--preto);color:var(--branco);border-color:var(--preto)}
+/* página de produto */
+.pp{display:grid;grid-template-columns:1.15fr 1fr;gap:56px;padding:34px 0 70px}
+@media (max-width:900px){.pp{grid-template-columns:1fr;gap:26px}}
+.galeria{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:start;min-width:0}
+.galeria .principal{border:1px solid var(--linha);aspect-ratio:1;background:var(--branco)}
+.galeria .principal img{width:100%;height:100%;object-fit:contain}
+.thumbs{display:flex;flex-direction:column;gap:8px;max-height:620px;overflow:auto}
+.thumbs button{border:1px solid var(--linha);background:var(--branco);padding:0;aspect-ratio:1}
+.thumbs button[aria-current]{border-color:var(--preto)}
+.thumbs img{width:100%;height:100%;object-fit:contain}
+@media (max-width:640px){.galeria{grid-template-columns:1fr}.thumbs{flex-direction:row;order:2;max-height:none;overflow-x:auto}.thumbs button{width:64px;flex:none}}
+.info h1{font-size:clamp(30px,3.4vw,42px);margin:6px 0 14px;color:var(--preto)}
+.info .preco b{font-size:26px}
+.info .parc{margin:4px 0 24px}
+.opc{margin:0 0 22px}
+.opc label{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza);margin-bottom:8px}
+.cores{display:flex;gap:8px;flex-wrap:wrap}
+.cores button{border:1px solid var(--linha);background:var(--branco);padding:9px 14px;font-size:14px}
+.cores button[aria-pressed="true"]{border-color:var(--preto);box-shadow:inset 0 0 0 1px var(--preto)}
+.qtdsel{display:inline-flex;border:1px solid var(--linha)}
+.qtdsel button{width:42px;height:46px;border:0;background:var(--branco);font-size:18px}
+.qtdsel span{width:42px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.compra{display:grid;gap:10px;margin:8px 0 26px}
+.compra .btn{width:100%}
+.frete{border:1px solid var(--linha);padding:16px;display:grid;gap:10px;font-size:14px}
+.frete .linha-cep{display:flex;gap:8px}
+input,select{font:inherit;font-size:15px;border:1px solid var(--linha);padding:12px 13px;background:var(--branco);color:var(--preto);width:100%;border-radius:0}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--latao);outline-offset:2px}
+.frete small{color:var(--cinza)}
+.desc{margin-top:28px;border-top:1px solid var(--linha)}
+details{border-bottom:1px solid var(--linha)}
+summary{padding:18px 0;font-size:13px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;list-style:none;display:flex;justify-content:space-between}
+summary::after{content:"+";font-size:18px}
+details[open] summary::after{content:"–"}
+details .ct{padding:0 0 20px;white-space:pre-line;color:var(--grafite);font-size:15px}
+.zap{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;text-decoration:none;color:var(--ok);padding:6px}
+/* sacola */
+.sacola{position:fixed;inset:0;z-index:70;display:none}
+.sacola.on{display:block}
+.sacola .fundo{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.sacola aside{position:absolute;right:0;top:0;bottom:0;width:min(420px,100vw);background:var(--branco);display:flex;flex-direction:column}
+.sac-top{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--linha)}
+.sac-top h2{font-size:26px}
+.itens{flex:1;overflow:auto;padding:8px 22px}
+.item{display:grid;grid-template-columns:76px 1fr auto;gap:14px;padding:16px 0;border-bottom:1px solid var(--linha);align-items:start}
+.item img{border:1px solid var(--linha);aspect-ratio:1;object-fit:contain}
+.item h4{margin:0;font-weight:500;font-size:14px}
+.item small{color:var(--cinza)}
+.item .rm{background:none;border:0;color:var(--cinza);font-size:13px;text-decoration:underline;padding:0}
+.sac-fim{border-top:1px solid var(--linha);padding:20px 22px;display:grid;gap:12px}
+.tot{display:flex;justify-content:space-between;font-size:17px}
+.vazio{padding:40px 0;color:var(--cinza);text-align:center}
+/* checkout */
+.ck{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;padding:40px 0 80px}
+@media (max-width:900px){.ck{grid-template-columns:1fr}}
+.passo{border:1px solid var(--linha);padding:24px;margin-bottom:16px}
+.passo h3{font:500 22px var(--f-disp);margin:0 0 16px}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.campos .full{grid-column:1/-1}
+@media (max-width:560px){.campos{grid-template-columns:1fr}}
+.campos label{font-size:13px;color:var(--cinza);display:grid;gap:5px}
+.pag{display:grid;gap:10px}
+.pag label{display:flex;gap:12px;align-items:center;border:1px solid var(--linha);padding:14px;cursor:pointer}
+.pag label:has(input:checked){border-color:var(--preto)}
+.pag input{width:auto}
+.resumo{background:var(--nevoa);padding:24px;align-self:start;position:sticky;top:96px}
+.resumo .item{grid-template-columns:60px 1fr auto}
+.nota{font-size:13px;color:var(--cinza)}
+.ok-box{text-align:center;padding:80px 0;max-width:560px;margin:0 auto}
+.ok-box h1{color:var(--preto)}
+/* rodapé */
+footer{background:var(--preto);color:#bdb8b0;padding:60px 0 30px;font-size:14px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+footer h5{color:var(--branco);font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px;font-weight:500}
+footer a{text-decoration:none;display:block;padding:3px 0}
+footer a:hover{color:var(--latao-claro)}
+footer .marca b{color:var(--branco)}
+footer .base{border-top:1px solid #2c2c2c;margin-top:40px;padding-top:20px;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:860px){footer .cols{grid-template-columns:1fr 1fr}}
+.zap-flut{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:#25d366;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.zap-flut svg{width:30px;height:30px;fill:#fff}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--preto);color:var(--branco);padding:12px 20px;font-size:14px;z-index:90;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="demo">Amostra de demonstração da nova loja Baggit · pagamentos desativados</div>
+<header class="topo">
+  <div class="w tb">
+    <button class="ic menu-btn" id="abrir-menu" aria-label="Abrir menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+    <a class="marca" href="#/"><img src="https://cdn.awsli.com.br/400x300/1818/1818822/logo/1fc2fe276a.png" alt=""><b>BAGGIT</b></a>
+    <nav class="cats" id="nav-cats"></nav>
+    <div class="acoes">
+      <button class="ic" id="abrir-sacola" aria-label="Abrir sacola"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="qtd" id="qtd" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+<div class="gaveta-menu" id="menu"><div class="fundo" data-fecha></div><nav id="nav-mob"></nav></div>
+<main id="app"></main>
+<footer>
+  <div class="w">
+    <div class="cols">
+      <div><a class="marca" href="#/"><b>BAGGIT</b></a><p style="max-width:300px">Bolsas térmicas e funcionais de luxo, cortadas e costuradas à mão em Belo Horizonte.</p><a href="https://instagram.com/baggitbr" target="_blank" rel="noopener">Instagram @baggitbr</a></div>
+      <div><h5>Loja</h5><div id="foot-cats"></div></div>
+      <div><h5>Atendimento</h5><span>WhatsApp (31) 9685-0060</span><span style="display:block">contato@baggit.com.br</span><span style="display:block;margin-top:8px">Seg a sex, 10h às 18h<br>Sáb, 10h às 14h</span></div>
+      <div><h5>Institucional</h5><a href="#/a-baggit">A Baggit</a><a href="#/trocas">Trocas e devoluções</a></div>
+    </div>
+    <div class="base"><span>Baggit · CNPJ 57.725.684/0001-06</span><span>Pagamento seguro via Mercado Pago · Pix e cartão em até 4x sem juros</span></div>
+  </div>
+</footer>
+<a class="zap-flut" href="https://wa.me/553196850060?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20Baggit." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg></a>
+<div class="sacola" id="sacola"><div class="fundo" data-fecha></div><aside aria-label="Sacola">
+  <div class="sac-top"><h2>Sua sacola</h2><button class="ic" data-fecha aria-label="Fechar">✕</button></div>
+  <div class="itens" id="itens"></div>
+  <div class="sac-fim" id="sac-fim"></div>
+</aside></div>
+<div class="toast" id="toast"></div>
+<script src="dados.js"></script>
+<script>
+const B=window.BAGGIT, CDN='https://cdn.awsli.com.br/';
+const img=(p,t=600)=>p.startsWith('http')?p:CDN+t+'x'+t+'/'+p;
+const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const slug=s=>s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+const $=s=>document.querySelector(s);
+const CAT_INFO={'Edição Limitada':'Peças numeradas, produzidas em pequenas tiragens','Bolsas Box':'Térmicas para levar as refeições do dia','Bolsas Sociais':'Para o treino, o trabalho e a viagem','Maxi Bags':'Espaço de sobra, sem abrir mão do luxo','Mochilas':'Funcionais, com compartimento térmico','Ofertas':'Peças selecionadas com preço especial'};
+const DEP=[['Fernanda Cassinelli','Minas Gerais','Eu amei! Ela é linda, e se arrumar tudo direitinho cabe bastante coisa! Fora que é super versátil, dá pra usar em todo lugar e ninguém fala que é térmica.'],['Tamires Rivera','São Paulo','Uso todo santo dia e cabe tudo! Vocês estão de parabéns, atendimento e produtos impecáveis, sempre indico.'],['Cassia Schmidt','Florianópolis','Qualidade muito superior das que já tive, uso muito, até para viagens internacionais.']];
+// sacola
+let sac=[]; try{sac=JSON.parse(localStorage.getItem('baggit-sacola')||'[]')}catch(e){}
+const salvar=()=>{try{localStorage.setItem('baggit-sacola',JSON.stringify(sac))}catch(e){};contar()};
+const P=s=>B.prods.find(p=>p.s===s);
+function contar(){const n=sac.reduce((a,i)=>a+i.q,0);const q=$('#qtd');q.textContent=n;q.hidden=!n}
+function total(){return sac.reduce((a,i)=>a+(P(i.s)?.p||0)*i.q,0)}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2200)}
+function addSac(s,cor,q){const k=s+'|'+(cor||'');const ex=sac.find(i=>i.k===k);if(ex)ex.q+=q;else sac.push({k,s,cor,q});salvar();abrirSac()}
+function abrirSac(){renderSac();$('#sacola').classList.add('on')}
+function renderSac(){
+  $('#itens').innerHTML=sac.length?sac.map((i,n)=>{const p=P(i.s);return `<div class="item"><img src="${img(p.i[0],200)}" alt=""><div><h4>${esc(p.n)}</h4><small>${i.cor?esc(i.cor)+' · ':''}Qtd ${i.q}</small><br><button class="rm" data-rm="${n}">Remover</button></div><b>${brl(p.p*i.q)}</b></div>`}).join(''):'<p class="vazio">Sua sacola está vazia.</p>';
+  $('#sac-fim').innerHTML=sac.length?`<div class="tot"><span>Subtotal</span><b>${brl(total())}</b></div><span class="nota">ou 4x de ${brl(total()/4)} sem juros · frete calculado no checkout</span><a class="btn preto" href="#/checkout" data-fecha>Finalizar compra</a>`:'';
+}
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-fecha]')){$('#sacola').classList.remove('on');$('#menu').classList.remove('on')}
+  const rm=e.target.closest('[data-rm]');if(rm){sac.splice(+rm.dataset.rm,1);salvar();renderSac()}
+});
+$('#abrir-sacola').onclick=abrirSac;$('#abrir-menu').onclick=()=>$('#menu').classList.add('on');
+// navegação
+const navHtml=B.cats.map(c=>`<a href="#/c/${slug(c)}" data-c="${slug(c)}">${esc(c)}</a>`).join('');
+$('#nav-cats').innerHTML=navHtml;$('#nav-mob').innerHTML='<a href="#/" data-fecha>Início</a>'+navHtml.replace(/<a /g,'<a data-fecha ');$('#foot-cats').innerHTML=navHtml;
+function card(p){const off=p.a?Math.round((1-p.p/p.a)*100):0;return `<a class="prod" href="#/p/${p.s}"><div class="foto"><img src="${img(p.i[0])}" alt="${esc(p.n)}" loading="lazy">${p.i[1]?`<img class="b" src="${img(p.i[1])}" alt="" loading="lazy">`:''}${p.e?'<span class="selo esg">Esgotado</span>':off?`<span class="selo off">−${off}%</span>`:p.c.includes('Edição Limitada')?'<span class="selo">Edição limitada</span>':''}</div><h3>${esc(p.n)}</h3>${p.p?`<div class="preco">${p.ap?'<span class="parc">a partir de</span>':''}<b>${brl(p.p)}</b>${p.a?`<s>${brl(p.a)}</s>`:''}</div><div class="parc">4x de ${brl(p.p/4)} sem juros</div>`:'<div class="parc">Indisponível no momento</div>'}</a>`}
+const destaque=['Funcional Clássica Legend','Bolsa Clássica Lusty','Mochila Funcional Baggit','Urban Luxo','Funcional Clássica Baby','Foodbag Maxi Náutica','Urban Maxi Luxo','Funcional Baby Nude'];
+function home(){
+  const heroP=B.prods.find(p=>p.n==='Funcional Clássica Legend');
+  const linhas=B.cats.filter(c=>c!=='Ofertas').map(c=>{const p=B.prods.find(x=>x.c.includes(c)&&!x.e);return `<a class="linha" href="#/c/${slug(c)}"><img src="${img(p.i[0])}" alt="" loading="lazy"><span>${esc(c)}</span><small>${B.prods.filter(x=>x.c.includes(c)).length} peças</small></a>`}).join('');
+  const dest=destaque.map(n=>B.prods.find(p=>p.n===n)).filter(Boolean);
+  return `<section class="hero" style="padding:0"><div class="hero-txt"><div class="in"><span class="sobre">Couro legítimo · matelassê à mão</span><h1>A bolsa térmica que ninguém <em>diz</em> que é térmica.</h1><p>Bolsas funcionais de luxo para quem treina, trabalha e viaja no mesmo dia. Cortadas e costuradas à mão, peça por peça, em Belo Horizonte.</p><div class="btns"><a class="btn ouro" href="#/c/bolsas-sociais">Ver coleção</a><a class="btn" href="#/c/edicao-limitada">Edição limitada</a></div></div></div><div class="hero-img"><img src="${img(heroP.i[0],1000)}" alt="${esc(heroP.n)}"><a class="tag" href="#/p/${heroP.s}" style="text-decoration:none">Funcional Clássica<b>Legend</b>${brl(heroP.p)}</a></div></section>
+  <div class="selos"><div><b>Tripla camada térmica</b>Mantém a temperatura por horas</div><div><b>Couro legítimo</b>Matelassê feito à mão</div><div><b>Metais nobres</b>Zíperes e conexões dourados</div><div><b>4x sem juros</b>Pix ou cartão, via Mercado Pago</div></div>
+  <section><div class="w"><div class="cab"><h2>As linhas Baggit</h2></div><div class="linhas">${linhas}</div></div></section>
+  <section style="padding-top:0"><div class="w"><div class="cab"><h2>Mais desejadas</h2><a href="#/c/bolsas-sociais">Ver todas</a></div><div class="grade">${dest.map(card).join('')}</div></div></section>
+  <section class="historia"><div class="w"><div><span class="sobre">A Baggit</span><h2>Mais que uma bolsa, uma peça feita à mão.</h2><p>A Baggit nasceu do sonho de um casal que largou tudo para fazer algo novo: bolsas térmicas e funcionais de luxo, inéditas no mercado fitness. Um sócio veio da moda; o outro, da vontade de criar um produto que une praticidade, originalidade e beleza.</p><a class="btn ouro" href="#/a-baggit" style="margin-top:12px">Conheça a história</a></div><div class="feito"><div><b>100%</b><span>cortada e costurada à mão</span></div><div><b>3</b><span>camadas de isolamento térmico</span></div><div><b>200 ml</b><span>termogéis de alta performance inclusos</span></div><div><b>Única</b><span>o couro faz cada peça diferente</span></div></div></div></section>
+  <section><div class="w"><div class="cab"><h2>Quem usa, recomenda</h2></div><div class="deps">${DEP.map(d=>`<div class="dep"><q>${esc(d[2])}</q><span>${esc(d[0])} · ${esc(d[1])}</span></div>`).join('')}</div></div></section>`;
+}
+function categoria(sl){
+  const c=B.cats.find(x=>slug(x)===sl);if(!c)return naoAchou();
+  const lista=B.prods.filter(p=>p.c.includes(c)).sort((a,b)=>(a.e-b.e));
+  return `<div class="w"><div class="titulo-pag"><div class="trilha"><a href="#/">Início</a> / ${esc(c)}</div><h2>${esc(c)}</h2><p class="nota" style="margin:8px 0 0">${esc(CAT_INFO[c]||'')} · ${lista.length} peças</p><div class="filtros">${B.cats.map(x=>`<a class="chip" href="#/c/${slug(x)}" ${x===c?'aria-current="page"':''}>${esc(x)}</a>`).join('')}</div></div><div class="grade" style="padding-bottom:70px">${lista.map(card).join('')}</div></div>`;
+}
+function produto(s){
+  const p=P(s);if(!p)return naoAchou();
+  const rel=B.prods.filter(x=>x.s!==s&&x.c.some(c=>p.c.includes(c))&&!x.e).slice(0,4);
+  setTimeout(()=>ligarProduto(p),0);
+  return `<div class="w"><div class="trilha" style="padding-top:22px"><a href="#/">Início</a> / <a href="#/c/${slug(p.c[0])}">${esc(p.c[0])}</a> / ${esc(p.n)}</div>
+  <div class="pp"><div class="galeria"><div class="thumbs">${p.i.map((x,k)=>`<button data-th="${k}" ${k?'':'aria-current="true"'} aria-label="Foto ${k+1}"><img src="${img(x,200)}" alt="" loading="lazy"></button>`).join('')}</div><div class="principal"><img id="foto-principal" src="${img(p.i[0],1000)}" alt="${esc(p.n)}"></div></div>
+  <div class="info"><span class="sobre" style="color:var(--latao)">${esc(p.c.includes('Edição Limitada')?'Edição limitada':p.c[0])}</span><h1>${esc(p.n)}</h1>
+  ${p.p?`<div class="preco">${p.ap?'<span class="parc">a partir de</span>':''}<b>${brl(p.p)}</b>${p.a?`<s>${brl(p.a)}</s>`:''}</div><div class="parc">ou 4x de ${brl(p.p/4)} sem juros · Pix no Mercado Pago</div>`:'<p class="parc">Esta peça está esgotada no momento.</p>'}
+  ${p.v.length?`<div class="opc"><label>Cor</label><div class="cores">${p.v.map((v,k)=>`<button data-cor="${esc(v)}" aria-pressed="${k?'false':'true'}">${esc(v)}</button>`).join('')}</div></div>`:''}
+  ${p.e?`<div class="compra"><a class="btn preto" target="_blank" rel="noopener" href="https://wa.me/553196850060?text=${encodeURIComponent('Olá! Quero ser avisada quando a '+p.n+' voltar ao estoque.')}">Avise-me quando chegar</a></div>`:`<div class="opc"><label>Quantidade</label><div class="qtdsel"><button data-q="-1" aria-label="Diminuir">−</button><span id="q">1</span><button data-q="1" aria-label="Aumentar">+</button></div></div>
+  <div class="compra"><button class="btn preto" id="add">Adicionar à sacola</button><a class="zap" target="_blank" rel="noopener" href="https://wa.me/553196850060?text=${encodeURIComponent('Olá! Tenho interesse na '+p.n+'.')}">Tirar dúvidas pelo WhatsApp</a></div>`}
+  <div class="frete"><b style="font-weight:500">Calcular frete</b><div class="linha-cep"><input id="cep" inputmode="numeric" maxlength="9" placeholder="Seu CEP" aria-label="CEP"><button class="btn preto" id="calc" style="padding:12px 18px">OK</button></div><small id="frete-res">Envio para todo o Brasil pelos Correios e transportadoras.</small></div>
+  <div class="desc"><details open><summary>Descrição</summary><div class="ct">${esc(p.d)}</div></details><details><summary>Cuidados com o couro</summary><div class="ct">O couro é matéria-prima natural: tonalidade, espessura e detalhes variam de uma peça para outra, e isso faz cada Baggit ser única. Limpe com pano macio e seco e guarde longe do sol direto.</div></details><details><summary>Trocas e devoluções</summary><div class="ct">Você pode trocar por outro modelo ou vale-compras dentro do prazo legal, com etiquetas e lacres intactos e na embalagem original. <a href="#/trocas">Ver a política completa</a>.</div></details></div></div></div>
+  ${rel.length?`<section style="padding-top:0"><div class="cab"><h2>Combina com</h2></div><div class="grade">${rel.map(card).join('')}</div></section>`:''}</div>`;
+}
+function ligarProduto(p){
+  let q=1,cor=p.v[0]||null;
+  document.querySelectorAll('[data-th]').forEach(b=>b.onclick=()=>{$('#foto-principal').src=img(p.i[+b.dataset.th],1000);document.querySelectorAll('[data-th]').forEach(x=>x.removeAttribute('aria-current'));b.setAttribute('aria-current','true')});
+  document.querySelectorAll('[data-cor]').forEach(b=>b.onclick=()=>{cor=b.dataset.cor;document.querySelectorAll('[data-cor]').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{q=Math.max(1,Math.min(9,q+ +b.dataset.q));$('#q').textContent=q});
+  const add=$('#add');if(add)add.onclick=()=>addSac(p.s,cor,q);
+  $('#calc').onclick=()=>{const c=$('#cep').value.replace(/\D/g,'');$('#frete-res').textContent=c.length===8?'Na loja final, aqui aparecem os preços e prazos reais de PAC, SEDEX e transportadora para o seu CEP.':'Digite um CEP com 8 números.'};
+}
+function checkout(){
+  if(!sac.length)return `<div class="w ok-box"><h2>Sua sacola está vazia</h2><p class="nota">Escolha uma peça para continuar.</p><a class="btn preto" href="#/">Ver a coleção</a></div>`;
+  setTimeout(ligarCheckout,0);
+  return `<div class="w"><div class="ck"><form id="fck" novalidate>
+  <div class="passo"><h3>1. Seus dados</h3><div class="campos"><label class="full">Nome completo<input id="ck-nome" required autocomplete="name"></label><label>E-mail<input id="ck-email" type="email" required autocomplete="email"></label><label>WhatsApp<input id="ck-tel" type="tel" required autocomplete="tel"></label></div></div>
+  <div class="passo"><h3>2. Entrega</h3><div class="campos"><label>CEP<input id="ck-cep" inputmode="numeric" required autocomplete="postal-code"></label><label>Número<input id="ck-num" required></label><label class="full">Endereço<input id="ck-end" required autocomplete="street-address"></label><label>Complemento<input id="ck-comp"></label><label>Cidade / UF<input id="ck-cid" required></label></div><p class="nota" style="margin:12px 0 0">Na loja final, o endereço é preenchido sozinho pelo CEP e você escolhe entre PAC, SEDEX e transportadora com preço e prazo reais.</p></div>
+  <div class="passo"><h3>3. Pagamento</h3><div class="pag"><label><input type="radio" name="pag" value="pix" checked> <span><b style="font-weight:500">Pix</b><br><span class="nota">Aprovação na hora, pelo Mercado Pago</span></span></label><label><input type="radio" name="pag" value="cartao"> <span><b style="font-weight:500">Cartão de crédito</b><br><span class="nota">Em até 4x sem juros, pelo Mercado Pago</span></span></label></div></div>
+  <button class="btn preto" style="width:100%" id="ck-ok">Revisar pedido de demonstração</button><p class="nota" id="ck-erro" hidden style="color:#b3261e">Preencha os campos obrigatórios para continuar.</p></form>
+  <aside class="resumo"><h3 style="font:500 22px var(--f-disp);margin:0 0 10px">Resumo</h3>${sac.map(i=>{const p=P(i.s);return `<div class="item"><img src="${img(p.i[0],200)}" alt=""><div><h4>${esc(p.n)}</h4><small>${i.cor?esc(i.cor)+' · ':''}Qtd ${i.q}</small></div><b>${brl(p.p*i.q)}</b></div>`}).join('')}<div class="tot" style="margin-top:16px"><span>Subtotal</span><b>${brl(total())}</b></div><p class="nota">Frete calculado após o CEP · ou 4x de ${brl(total()/4)} sem juros</p></aside></div></div>`;
+}
+function ligarCheckout(){
+  $('#fck').onsubmit=e=>{e.preventDefault();const req=[...document.querySelectorAll('#fck [required]')];const falta=req.filter(i=>!i.value.trim());$('#ck-erro').hidden=!falta.length;if(falta.length){falta[0].focus();return}
+    $('#app').innerHTML=`<div class="w ok-box"><span class="sobre" style="color:var(--latao)">Amostra</span><h1>Aqui o cliente seguiria para o pagamento.</h1><p>Na loja final, este botão abre o pagamento do Mercado Pago (Pix ou cartão em até 4x), o pedido entra no painel da Baggit e o cliente recebe a confirmação por e-mail e WhatsApp.</p><p class="nota">Nenhum valor foi cobrado e nenhum dado foi enviado.</p><a class="btn preto" href="#/" style="margin-top:12px">Voltar para a loja</a></div>`;scrollTo(0,0)};
+}
+const PAG={
+  'a-baggit':`<div class="w" style="max-width:760px;padding-block:56px"><span class="sobre" style="color:var(--latao)">A Baggit</span><h1 style="color:var(--preto)">Bolsas que são obra de arte.</h1><p>A Baggit nasceu do sonho de um casal que largou tudo pelo desafio de fazer algo novo, diferente e melhor: oferecer algo inédito no mercado fitness, bolsas térmicas e funcionais de luxo.</p><p>Cada sócio colabora com sua experiência. Um vem do mercado da moda. O outro trouxe a visão de um produto diferenciado: bolsas funcionais que aliam praticidade, originalidade, luxo e beleza.</p><p>Produzida com materiais cuidadosamente selecionados e acessórios de qualidade superior, uma Baggit é mais que uma bolsa. Cortada e costurada artesanalmente, cada peça é única, pronta para atender ao gosto dos clientes mais exigentes.</p></div>`,
+  'trocas':`<div class="w" style="max-width:760px;padding-block:56px"><h1 style="color:var(--preto)">Trocas e devoluções</h1><p>A Baggit trabalha com couro, matéria-prima de origem animal. Tonalidade, espessura, gramatura e detalhes podem variar de uma peça para outra, e isso é considerado variação normal, não motivo de troca fora do prazo legal.</p><p>Na troca, você escolhe um vale-compras no valor do produto ou outro modelo disponível em estoque. O frete de ida e volta fica por conta do cliente, exceto em caso de defeito. Peças com alterações feitas a pedido não podem ser trocadas, salvo defeito.</p><p>A peça é aceita com etiquetas e lacres intactos, na embalagem original, sem uso, lavagem, odores, manchas ou alterações.</p></div>`
+};
+function naoAchou(){return `<div class="w ok-box"><h2>Página não encontrada</h2><a class="btn preto" href="#/">Voltar para a loja</a></div>`}
+function rota(){
+  const h=location.hash.replace(/^#\/?/,'');const [a,b]=h.split('/');
+  let html;if(!a)html=home();else if(a==='c')html=categoria(b);else if(a==='p')html=produto(b);else if(a==='checkout')html=checkout();else if(PAG[a])html=PAG[a];else html=naoAchou();
+  $('#app').innerHTML=html;scrollTo(0,0);
+  document.querySelectorAll('nav.cats a').forEach(x=>x.toggleAttribute('aria-current',a==='c'&&x.dataset.c===b));
+  const p=a==='p'&&P(b);document.title=p?p.n+' · Baggit':'Baggit · Bolsas térmicas de luxo feitas à mão';
+}
+addEventListener('hashchange',rota);rota();contar();
+</script>
+</body>
+</html>
