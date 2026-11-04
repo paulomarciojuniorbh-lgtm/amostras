@@ -207,6 +207,12 @@ footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
 <script>
 const SB='https://ryhyvzwqtktaaonznizn.supabase.co', KEY='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0', ZAP='5598984149331';
 const $=s=>document.querySelector(s);
+const EVK='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0', EVS=(()=>{try{let v=sessionStorage.getItem('helice_sid');return v||''}catch(e){return ''}})(); const EVD={};
+function ev(nome,extra){ if(EVD[nome])return; EVD[nome]=1; try{ const q=new URLSearchParams(location.search); fetch('https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/registrar_visita',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json',apikey:EVK},body:JSON.stringify({p_path:'/raio-x/ev/'+nome,p_ref:extra?String(extra).slice(0,200):null,p_origem:null,p_us:q.get('utm_source'),p_um:null,p_uc:null,p_vis:null,p_ses:EVS||null,p_dev:null,p_tela:(innerWidth||0)+'x'+(innerHeight||0)})}).catch(()=>{}) }catch(e){} }
+addEventListener('error',e=>ev('erro',(e.message||'')+' @'+(e.lineno||'')));
+addEventListener('unhandledrejection',e=>ev('erro-promessa',String(e.reason&&e.reason.message||e.reason)));
+setTimeout(()=>ev('10s'),10000); setTimeout(()=>ev('30s'),30000);
+addEventListener('scroll',()=>ev('rolou'),{passive:true});
 const rpc=(f,b)=>fetch(SB+'/rest/v1/rpc/'+f,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(b||{})}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
 const qs=new URLSearchParams(location.search);
 const utm={};['utm_source','utm_medium','utm_campaign','utm_content'].forEach(k=>{if(qs.get(k))utm[k]=qs.get(k)});
@@ -219,12 +225,13 @@ let D=null, NEG=null, R={}, NOTA=0, NIVEL='';
 
 let LEAD=null, CIDS=[];
 const norm=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+['neg','cid'].forEach(id=>{const el=document.getElementById(id); if(el) el.addEventListener('focus',()=>ev('tocou-campo'),{once:true})});
 rpc('raiox_cidades').then(c=>{CIDS=c;$('#cidades').innerHTML=c.map(x=>`<option value="${esc(x)}">`).join('')}).catch(()=>{});
 function manual(){ show('#s-ramo'); }
 $('#f-ramo').onsubmit=e=>{ e.preventDefault(); D=null; NEG={nome:$('#neg').value.trim(),cidade:$('#cid').value.trim(),segmento:$('#seg').value,manual:true}; iniciarQuiz(); };
 
-$('#f').onsubmit=async ev=>{
-  ev.preventDefault();
+$('#f').onsubmit=async e0=>{
+  e0.preventDefault(); ev('buscou');
   const b=$('#b'); b.disabled=true; b.innerHTML='<span class="load"></span> Procurando no Google…';
   const neg=$('#neg').value.trim(), cidTxt=$('#cid').value.trim();
   let lista=[];
@@ -249,7 +256,7 @@ async function escolher(pid){
 
 // perguntas
 let PERG=[], qi=0;
-function iniciarQuiz(){
+function iniciarQuiz(){ ev('quiz');
   R={}; qi=0;
   const temSite=NEG.site_tipo==='proprio', fora=NEG.site_tipo==='fora_do_ar';
   PERG=[];
@@ -315,11 +322,11 @@ function resultado(){
   }
   window.__P=P;
   $('#g-txt').innerHTML='O Raio-X de <b>'+esc(NEG.nome)+'</b> está pronto. Deixe seu nome e WhatsApp para ver sua nota, sua posição no Google e o plano de ação agora.';
-  show('#s-gate');
+  show('#s-gate'); ev('gate');
 }
 function erro(t){const e=$('#erro');e.textContent=t;e.classList.remove('oculto')}
-$('#f-gate').onsubmit=async ev=>{
-  ev.preventDefault(); $('#erro').classList.add('oculto');
+$('#f-gate').onsubmit=async e1=>{
+  e1.preventDefault(); $('#erro').classList.add('oculto');
   const zap=$('#zap').value.replace(/\D/g,'');
   if(zap.length<10||zap.length>13) return erro('Confere o WhatsApp: precisa ter DDD, ex.: (98) 9 8888-7777.');
   const ig=$('#ig').value.trim().replace(/^.*instagram\.com\//i,'').replace(/^@/,'').replace(/[\/?#].*$/,'');
@@ -330,7 +337,7 @@ $('#f-gate').onsubmit=async ev=>{
     if(!r||r.ok===false) throw new Error('dados');
   }catch(e){ b.disabled=false; b.textContent='Ver minha nota agora'; return erro('Não consegui enviar agora. Confere os dados e tenta de novo em instantes.'); }
   try{ if(window.fbq) fbq('track','Lead'); }catch(e){}
-  show('#s-res'); liberar();
+  ev('lead'); show('#s-res'); liberar();
 };
 
 function liberar(){
