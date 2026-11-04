@@ -18,6 +18,7 @@
   --f-disp:"Bodoni Moda",Didot,"Times New Roman",serif; --f-texto:"Jost","Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--branco);color:var(--preto);font:400 16px/1.6 var(--f-texto);-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
@@ -281,7 +282,7 @@ function card(p){const off=p.a?Math.round((1-p.p/p.a)*100):0;return `<a class="p
 const destaque=['Funcional Clássica Legend','Bolsa Clássica Lusty','Mochila Funcional Baggit','Urban Luxo','Funcional Clássica Baby','Foodbag Maxi Náutica','Urban Maxi Luxo','Funcional Baby Nude'];
 function home(){
   const heroP=B.prods.find(p=>p.n==='Funcional Clássica Legend');
-  const linhas=B.cats.filter(c=>c!=='Ofertas').map(c=>{const p=B.prods.find(x=>x.c.includes(c)&&!x.e);return `<a class="linha" href="#/c/${slug(c)}"><img src="${img(p.i[0])}" alt="" loading="lazy"><span>${esc(c)}</span><small>${B.prods.filter(x=>x.c.includes(c)).length} peças</small></a>`}).join('');
+  const usados=new Set();const linhas=B.cats.filter(c=>c!=='Ofertas').map(c=>{const p=B.prods.find(x=>x.c.includes(c)&&!x.e&&!usados.has(x.s))||B.prods.find(x=>x.c.includes(c));usados.add(p.s);return `<a class="linha" href="#/c/${slug(c)}"><img src="${img(p.i[0])}" alt="" loading="lazy"><span>${esc(c)}</span><small>${B.prods.filter(x=>x.c.includes(c)).length} peças</small></a>`}).join('');
   const dest=destaque.map(n=>B.prods.find(p=>p.n===n)).filter(Boolean);
   return `<section class="hero" style="padding:0"><div class="hero-txt"><div class="in"><span class="sobre">Couro legítimo · matelassê à mão</span><h1>A bolsa térmica que ninguém <em>diz</em> que é térmica.</h1><p>Bolsas funcionais de luxo para quem treina, trabalha e viaja no mesmo dia. Cortadas e costuradas à mão, peça por peça, em Belo Horizonte.</p><div class="btns"><a class="btn ouro" href="#/c/bolsas-sociais">Ver coleção</a><a class="btn" href="#/c/edicao-limitada">Edição limitada</a></div></div></div><div class="hero-img"><img src="${img(heroP.i[0],1000)}" alt="${esc(heroP.n)}"><a class="tag" href="#/p/${heroP.s}" style="text-decoration:none">Funcional Clássica<b>Legend</b>${brl(heroP.p)}</a></div></section>
   <div class="selos"><div><b>Tripla camada térmica</b>Mantém a temperatura por horas</div><div><b>Couro legítimo</b>Matelassê feito à mão</div><div><b>Metais nobres</b>Zíperes e conexões dourados</div><div><b>4x sem juros</b>Pix ou cartão, via Mercado Pago</div></div>
