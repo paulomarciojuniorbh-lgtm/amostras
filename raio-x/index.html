@@ -110,22 +110,11 @@ footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
   <!-- 1. formulário -->
   <section id="s-form">
     <h1>Raio-X digital do seu negócio. <span class="g">Grátis.</span></h1>
-    <p class="lead">Preencha em 1 minuto e veja na hora sua nota digital de 0 a 5, sua posição no Google contra os concorrentes e o que fazer para sair na frente.</p>
+    <p class="lead">Digite o nome do seu negócio e veja em 1 minuto sua nota digital de 0 a 5, sua posição no Google contra os concorrentes e o que fazer para sair na frente.</p>
     <div class="chips"><span>Nota de 0 a 5</span><span>Ranking no Google</span><span>Concorrentes</span><span>Plano de ação</span></div>
     <form class="card" id="f">
       <div class="campo"><label for="neg">Nome do seu negócio</label><input id="neg" autocomplete="organization" placeholder="Ex.: Clínica Sorriso" required minlength="2"></div>
       <div class="campo"><label for="cid">Cidade</label><input id="cid" list="cidades" placeholder="Ex.: São Luís" required minlength="2"><datalist id="cidades"></datalist></div>
-      <div class="campo"><label for="seg">Ramo</label>
-        <select id="seg" required>
-          <option value="">Escolha…</option><option>Clínica / saúde</option><option>Dentista</option><option>Estética / beleza</option>
-          <option>Advocacia</option><option>Pet / veterinária</option><option>Pousada / turismo</option><option>Restaurante / alimentação</option>
-          <option>Oficina / automotivo</option><option>Serviços para casa</option><option>Loja / comércio</option><option>Outro</option>
-        </select></div>
-      <div class="campo"><label for="ig">Instagram do negócio <span style="font-weight:400;color:var(--fraco)">(opcional)</span></label><input id="ig" autocapitalize="none" autocomplete="off" placeholder="@seunegocio"></div>
-      <div class="campo"><label for="nome">Seu nome</label><input id="nome" autocomplete="given-name" required minlength="2"></div>
-      <div class="campo"><label for="zap">Seu WhatsApp</label><input id="zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000" required></div>
-      <label class="ck"><input type="checkbox" id="ok" required> Aceito receber o Raio-X e o contato da Hélice pelo WhatsApp. Não compartilhamos seus dados.</label>
-      <div class="erro oculto" id="erro"></div>
       <button class="btn" id="b">Ver meu Raio-X grátis</button>
       <div class="mini">Usamos dados públicos do Google. Sem custo e sem compromisso.</div>
     </form>
@@ -139,6 +128,21 @@ footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
     <button class="btn sec" id="b-naoachei">Meu negócio não está na lista</button>
   </section>
 
+  <!-- 1c. ramo (quando não achamos no Google) -->
+  <section id="s-ramo" class="oculto">
+    <h2 style="margin-top:30px">Qual é o ramo do seu negócio?</h2>
+    <p class="lead" style="font-size:16px">Não achamos no nosso radar do Google, mas dá para fazer o Raio-X do mesmo jeito.</p>
+    <form class="card" id="f-ramo">
+      <div class="campo"><label for="seg">Ramo</label>
+        <select id="seg" required>
+          <option value="">Escolha…</option><option>Clínica / saúde</option><option>Dentista</option><option>Estética / beleza</option>
+          <option>Advocacia</option><option>Pet / veterinária</option><option>Pousada / turismo</option><option>Restaurante / alimentação</option>
+          <option>Oficina / automotivo</option><option>Serviços para casa</option><option>Loja / comércio</option><option>Outro</option>
+        </select></div>
+      <button class="btn">Continuar</button>
+    </form>
+  </section>
+
   <!-- 2. perguntas -->
   <section id="s-quiz" class="oculto">
     <p style="margin:30px 0 0;color:var(--suave);font-size:14px" id="q-neg"></p>
@@ -148,6 +152,21 @@ footer{margin-top:40px;color:var(--fraco);font-size:13px;text-align:center}
       <p class="dica" id="q-dica"></p>
       <div class="ops" id="q-ops"></div>
     </div>
+  </section>
+
+  <!-- 2b. contato antes da nota -->
+  <section id="s-gate" class="oculto">
+    <div class="ok-ic" style="width:64px;height:64px;border-radius:50%;background:rgba(47,214,232,.14);color:var(--ciano);display:grid;place-items:center;font-size:30px;margin:30px 0 16px">✓</div>
+    <h2>Seu Raio-X está pronto!</h2>
+    <p class="lead" style="font-size:16px" id="g-txt">Para onde mandamos? Deixe seu nome e WhatsApp para ver sua nota, sua posição no Google e o plano de ação agora.</p>
+    <form class="card" id="f-gate">
+      <div class="campo"><label for="nome">Seu nome</label><input id="nome" autocomplete="given-name" required minlength="2"></div>
+      <div class="campo"><label for="zap">Seu WhatsApp</label><input id="zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000" required></div>
+      <div class="campo"><label for="ig">Instagram do negócio <span style="font-weight:400;color:var(--fraco)">(opcional)</span></label><input id="ig" autocapitalize="none" autocomplete="off" placeholder="@seunegocio"></div>
+      <label class="ck"><input type="checkbox" id="ok" required> Aceito receber o Raio-X e o contato da Hélice pelo WhatsApp. Não compartilhamos seus dados.</label>
+      <div class="erro oculto" id="erro"></div>
+      <button class="btn" id="b-gate">Ver minha nota agora</button>
+    </form>
   </section>
 
   <!-- 3. resultado -->
@@ -195,28 +214,19 @@ const ua=navigator.userAgent;
 const ORIGEM=(qs.get('utm_source')||'').toLowerCase()||(/Instagram/i.test(ua)?'instagram':/FBAN|FBAV|FB_IAB/i.test(ua)?'facebook':(document.referrer?(()=>{try{return new URL(document.referrer).hostname}catch(e){return ''}})():'direto'));
 const SEG={dentista:'dentistas',advogado:'escritórios de advocacia',fisioterapeuta:'fisioterapeutas',nutricionista:'nutricionistas',estetica:'clínicas de estética',veterinario:'veterinárias',psicologo:'psicólogos',medico:'médicos',pousada:'pousadas',turismo:'agências de turismo',transfer:'transfers',restaurante:'restaurantes',oficina:'oficinas',servicos_casa:'prestadores de serviço',personal:'personal trainers',imobiliaria:'imobiliárias',construtora:'construtoras',fotografo:'fotógrafos',contabilidade:'contabilidades',kitesurf:'escolas de kite'};
 const fmt=n=>Number(n).toLocaleString('pt-BR',{maximumFractionDigits:1});
-const show=id=>{['#s-form','#s-escolha','#s-quiz','#s-res'].forEach(s=>$(s).classList.toggle('oculto',s!==id));scrollTo({top:0,behavior:'smooth'})};
+const show=id=>{['#s-form','#s-escolha','#s-ramo','#s-quiz','#s-gate','#s-res'].forEach(s=>$(s).classList.toggle('oculto',s!==id));scrollTo({top:0,behavior:'smooth'})};
 let D=null, NEG=null, R={}, NOTA=0, NIVEL='';
 
 let LEAD=null, CIDS=[];
 const norm=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
 rpc('raiox_cidades').then(c=>{CIDS=c;$('#cidades').innerHTML=c.map(x=>`<option value="${esc(x)}">`).join('')}).catch(()=>{});
-function erro(t){const e=$('#erro');e.textContent=t;e.classList.remove('oculto')}
-function manual(){ D=null; NEG={nome:$('#neg').value.trim(),cidade:$('#cid').value.trim(),segmento:$('#seg').value,manual:true}; iniciarQuiz(); }
+function manual(){ show('#s-ramo'); }
+$('#f-ramo').onsubmit=e=>{ e.preventDefault(); D=null; NEG={nome:$('#neg').value.trim(),cidade:$('#cid').value.trim(),segmento:$('#seg').value,manual:true}; iniciarQuiz(); };
 
 $('#f').onsubmit=async ev=>{
-  ev.preventDefault(); $('#erro').classList.add('oculto');
-  const zap=$('#zap').value.replace(/\D/g,'');
-  if(zap.length<10||zap.length>13) return erro('Confere o WhatsApp: precisa ter DDD, ex.: (98) 9 8888-7777.');
-  const ig=$('#ig').value.trim().replace(/^.*instagram\.com\//i,'').replace(/^@/,'').replace(/[\/?#].*$/,'');
+  ev.preventDefault();
   const b=$('#b'); b.disabled=true; b.innerHTML='<span class="load"></span> Procurando no Google…';
   const neg=$('#neg').value.trim(), cidTxt=$('#cid').value.trim();
-  try{
-    const r=await rpc('raiox_lead',{p_nome:$('#nome').value.trim(),p_whats:zap,p_place_id:null,p_negocio:neg,p_cidade:cidTxt,p_segmento:$('#seg').value,p_nota:null,p_nivel:null,p_respostas:{fluxo:'form_na_hora'},p_origem:ORIGEM,p_utm:utm,p_insta:/^[A-Za-z0-9._]{2,30}$/.test(ig)?ig:null});
-    if(!r||r.ok===false) throw new Error('dados');
-    LEAD=r;
-  }catch(e){ b.disabled=false; b.textContent='Ver meu Raio-X grátis'; return erro('Não consegui enviar agora. Confere os dados e tenta de novo em instantes.'); }
-  try{ if(window.fbq) fbq('track','Lead'); }catch(e){}
   let lista=[];
   try{
     const cid=CIDS.find(x=>norm(x)===norm(cidTxt))||'';
@@ -304,10 +314,24 @@ function resultado(){
     $('#r-insight').textContent='Negócios com site próprio, Google bem avaliado e WhatsApp rápido costumam aparecer primeiro e fechar mais.';
   }
   window.__P=P;
-  show('#s-res'); liberar();
-  const resp={}; Object.keys(R).forEach(k=>resp[k]=R[k].r);
-  if(LEAD) rpc('raiox_lead_resultado',{p_id:LEAD.id,p_tok:LEAD.tok,p_place_id:D?NEG.place_id:null,p_nota:NOTA,p_nivel:NIVEL,p_respostas:resp}).catch(()=>{});
+  $('#g-txt').innerHTML='O Raio-X de <b>'+esc(NEG.nome)+'</b> está pronto. Deixe seu nome e WhatsApp para ver sua nota, sua posição no Google e o plano de ação agora.';
+  show('#s-gate');
 }
+function erro(t){const e=$('#erro');e.textContent=t;e.classList.remove('oculto')}
+$('#f-gate').onsubmit=async ev=>{
+  ev.preventDefault(); $('#erro').classList.add('oculto');
+  const zap=$('#zap').value.replace(/\D/g,'');
+  if(zap.length<10||zap.length>13) return erro('Confere o WhatsApp: precisa ter DDD, ex.: (98) 9 8888-7777.');
+  const ig=$('#ig').value.trim().replace(/^.*instagram\.com\//i,'').replace(/^@/,'').replace(/[\/?#].*$/,'');
+  const b=$('#b-gate'); b.disabled=true; b.innerHTML='<span class="load"></span> Liberando…';
+  const resp={fluxo:'curto_gate'}; Object.keys(R).forEach(k=>resp[k]=R[k].r);
+  try{
+    const r=await rpc('raiox_lead',{p_nome:$('#nome').value.trim(),p_whats:zap,p_place_id:D?NEG.place_id:null,p_negocio:NEG.nome,p_cidade:NEG.cidade,p_segmento:NEG.segmento,p_nota:NOTA,p_nivel:NIVEL,p_respostas:resp,p_origem:ORIGEM,p_utm:utm,p_insta:/^[A-Za-z0-9._]{2,30}$/.test(ig)?ig:null});
+    if(!r||r.ok===false) throw new Error('dados');
+  }catch(e){ b.disabled=false; b.textContent='Ver minha nota agora'; return erro('Não consegui enviar agora. Confere os dados e tenta de novo em instantes.'); }
+  try{ if(window.fbq) fbq('track','Lead'); }catch(e){}
+  show('#s-res'); liberar();
+};
 
 function liberar(){
     if(D&&D.top.length){
