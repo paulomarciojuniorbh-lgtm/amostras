@@ -52,6 +52,10 @@ header{position:sticky;top:0;z-index:30;background:rgba(11,17,36,.72);backdrop-f
 nav.menu{display:flex;gap:26px;font-size:.95rem;color:var(--suave)}
 nav.menu a{text-decoration:none}
 nav.menu a:hover{color:var(--texto)}
+nav.menu a.m-rx{color:var(--ciano,#2fd6e8);font-weight:600}
+.faixa-rx{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:8px 16px;font-size:.9rem;line-height:1.35;text-decoration:none;color:#071026;background:linear-gradient(100deg,#5b8cff,#2fd6e8);text-align:center}
+.faixa-rx b{font-weight:700}
+.faixa-rx i{font-style:normal;font-weight:700;white-space:nowrap;text-decoration:underline;text-underline-offset:3px}
 @media (max-width:880px){nav.menu{display:none}.topo .btn{padding:.8em 1em;font-size:.92rem}}
 
 /* hero */
@@ -207,9 +211,10 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
 <header>
   <div class="topo">
     <a class="marca" href="#inicio"><span class="logo" aria-hidden="true"><svg viewBox="0 0 100 100" width="34" height="34">  <defs>    <linearGradient id="hpa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7aa3ff"/><stop offset="1" stop-color="#5b8cff"/></linearGradient>    <linearGradient id="hpb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ee8f3"/><stop offset="1" stop-color="#2fd6e8"/></linearGradient>  </defs>  <g transform="rotate(-18 50 50)">    <path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#hpa)"/>    <path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#hpb)" transform="rotate(180 50 50)"/>  </g>  <circle cx="50" cy="50" r="7" fill="#0b1124"/>  <circle cx="50" cy="50" r="3" fill="#e9edfb"/></svg></span><span><b>Hélice</b><small>Sites &amp; Sistemas</small></span></a>
-    <nav class="menu" aria-label="Seções"><a href="#como">Como funciona</a><a href="#projetos">Projetos</a><a href="#planos">Planos</a><a href="#sistemas">Sistemas</a><a href="#duvidas">Dúvidas</a></nav>
+    <nav class="menu" aria-label="Seções"><a href="/raio-x/?utm_source=site_menu" class="m-rx">Raio-X grátis</a><a href="#como">Como funciona</a><a href="#projetos">Projetos</a><a href="#planos">Planos</a><a href="#sistemas">Sistemas</a><a href="#duvidas">Dúvidas</a></nav>
     <a class="btn btn-pri zap" data-msg="amostra" href="#">Pedir amostra grátis</a>
   </div>
+  <a class="faixa-rx" href="/raio-x/?utm_source=site_faixa"><span>🔎 <b>Raio-X digital grátis:</b> veja a nota do seu negócio e sua posição no Google</span><i>Fazer agora →</i></a>
 </header>
 
 <main id="inicio">
