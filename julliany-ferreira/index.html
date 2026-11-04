@@ -169,6 +169,47 @@ summary::after{content:"+";font-family:var(--f-texto);font-weight:300;font-size:
 details[open] summary::after{content:"–"}
 details p{margin:0 0 24px;color:var(--cafe-2);max-width:760px}
 .faq{max-width:900px;margin:0 auto;border-top:1px solid var(--linha)}
+/* agenda */
+.agenda{margin-top:80px;display:grid;grid-template-columns:300px 1fr;background:var(--branco);border:1px solid var(--linha);scroll-margin-top:110px}
+.ag-lado{background:var(--cafe);color:var(--porcelana);padding:38px 32px;display:flex;flex-direction:column;gap:18px}
+.ag-lado .sobre{color:var(--ouro)}
+.ag-lado h3{font-size:38px;line-height:1.05}
+.ag-lado p{margin:0;color:#d9cbc2;font-size:14px}
+.ag-resumo{border-top:1px solid #4a3d36;padding-top:18px;font-size:14px;display:grid;gap:8px;margin-top:auto}
+.ag-resumo div{display:flex;justify-content:space-between;gap:10px}.ag-resumo span{color:#a8978d}.ag-resumo b{font-weight:500;text-align:right}
+.ag-corpo{padding:34px 36px}
+.ag-passo{font:500 11px var(--f-texto);letter-spacing:.24em;text-transform:uppercase;color:var(--rose-escuro);margin:0 0 14px}
+.ag-servs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.chip{font:500 13px var(--f-texto);padding:10px 16px;border:1px solid var(--linha);background:var(--porcelana);color:var(--cafe);cursor:pointer;transition:border-color .2s,background .2s}
+.chip:hover{border-color:var(--rose)}
+.chip[aria-pressed=true]{background:var(--cafe);color:var(--porcelana);border-color:var(--cafe)}
+.chip:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.ag-mes{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ag-mes b{font:400 26px var(--f-titulo)}
+.ag-mes button{background:none;border:1px solid var(--linha);width:38px;height:38px;cursor:pointer;font-size:16px;color:var(--cafe)}
+.ag-mes button:disabled{opacity:.3;cursor:default}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:28px}
+.cal .sem{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave);text-align:center;padding:6px 0}
+.cal button{aspect-ratio:1;max-height:52px;border:1px solid transparent;background:var(--porcelana);font:500 14px var(--f-texto);color:var(--cafe);cursor:pointer;font-variant-numeric:tabular-nums}
+.cal button:hover:not(:disabled){border-color:var(--rose)}
+.cal button:disabled{background:none;color:#cfc4bc;cursor:default}
+.cal button.sel{background:var(--rose-escuro);color:#fff}
+.cal button.hoje{box-shadow:inset 0 -2px 0 var(--rose)}
+.ag-horas{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.ag-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ag-form label{display:grid;gap:6px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--suave)}
+.ag-form .full{grid-column:1/-1}
+.ag-form input,.ag-form textarea{font:400 16px var(--f-texto);color:var(--cafe);border:1px solid var(--linha);background:var(--porcelana);padding:13px 14px;border-radius:0;width:100%}
+.ag-form input:focus,.ag-form textarea:focus{outline:none;border-color:var(--rose)}
+.ag-form .btn{grid-column:1/-1;justify-self:start;cursor:pointer}
+.ag-form .btn:disabled{opacity:.4;cursor:default}
+.ag-aviso{font-size:13px;color:var(--suave);margin:4px 0 0;grid-column:1/-1}
+.ag-erro{color:#a33;font-size:14px;grid-column:1/-1;margin:0}
+.ag-ok{text-align:center;padding:40px 10px}
+.ag-ok .sel{width:64px;height:64px;border-radius:50%;background:var(--nude);display:grid;place-items:center;margin:0 auto 20px;color:var(--rose-escuro);font-size:28px}
+.ag-ok h3{font-size:42px;margin-bottom:12px}
+.ag-ok p{color:var(--cafe-2);max-width:440px;margin:0 auto 10px}
+@media (max-width:900px){.agenda{grid-template-columns:1fr}.ag-lado{padding:30px 22px}.ag-corpo{padding:26px 18px}.ag-form{grid-template-columns:1fr}}
 /* final */
 .final{text-align:center;padding:130px 0;background:var(--nude)}
 .final h2{font-size:clamp(44px,6vw,84px);margin:20px auto 22px;max-width:900px}
@@ -194,11 +235,11 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
   <div class="w tb">
     <a class="marca" href="#inicio"><b>Julliany Ferreira</b><span>Beauty Makeup</span></a>
     <nav class="menu" aria-label="Seções"><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#servicos">Serviços</a><a href="#cursos">Cursos</a><a href="#sobre">Sobre</a></nav>
-    <a class="btn cheio" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Vim%20pelo%20site%20e%20quero%20agendar." target="_blank" rel="noopener">Agendar</a>
+    <a class="btn cheio" href="#agenda">Agendar</a>
     <button class="burger" id="abrir" aria-label="Abrir menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8h18M3 16h18"/></svg></button>
   </div>
 </header>
-<div class="gaveta" id="gaveta"><button id="fechar" aria-label="Fechar menu">✕</button><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#servicos">Serviços</a><a href="#cursos">Cursos</a><a href="#sobre">Sobre</a><a href="#agendar">Agendar</a></div>
+<div class="gaveta" id="gaveta"><button id="fechar" aria-label="Fechar menu">✕</button><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#servicos">Serviços</a><a href="#cursos">Cursos</a><a href="#sobre">Sobre</a><a href="#agenda">Agendar</a></div>
 
 <main id="inicio">
 <section class="hero" style="padding:0">
@@ -206,7 +247,7 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
     <span class="sobre">Há 10 anos realçando a beleza · São Luís</span>
     <h1>Sua beleza, <em>nossa</em> inspiração.</h1>
     <p>Maquiagem e penteado para noivas, debutantes, formandas e eventos. Uma pele que dura a festa inteira e um resultado que continua bonito nas fotos.</p>
-    <div class="btns"><a class="btn cheio" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Quero%20agendar%20uma%20maquiagem." target="_blank" rel="noopener">Agendar pelo WhatsApp</a><a class="link" href="#trabalhos">Ver trabalhos</a></div>
+    <div class="btns"><a class="btn cheio" href="#agenda">Agendar horário</a><a class="link" href="#trabalhos">Ver trabalhos</a></div>
   </div>
   <div class="hero-foto"><img src="img/hero.jpg" alt="Julliany Ferreira, maquiadora, com pincel na mão em estúdio branco"><div class="selo"><b>10 anos</b><span>de noivas, debutantes e festas</span></div></div>
 </section>
@@ -225,9 +266,9 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
   <div class="w">
     <div class="cab revela"><div><span class="sobre">Dia da noiva</span><h2>O sim mais <em>bonito</em> da sua vida.</h2></div><p>Pacotes completos de maquiagem e penteado, com teste antes do grande dia. Todos podem ser adaptados ao que você imagina para o seu casamento.</p></div>
     <div class="pacotes revela">
-      <div class="pac"><span class="tag">Essencial</span><span class="nome">Bronze</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li></ul><a class="btn" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Quero%20saber%20sobre%20o%20pacote%20Bronze%20para%20noivas." target="_blank" rel="noopener">Solicitar orçamento</a></div>
-      <div class="pac dest"><span class="tag">Com testes</span><span class="nome">Prata</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li><li>Teste de maquiagem</li><li>Teste de cabelo</li></ul><a class="btn" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Quero%20saber%20sobre%20o%20pacote%20Prata%20para%20noivas." target="_blank" rel="noopener">Solicitar orçamento</a></div>
-      <div class="pac"><span class="tag">Completo</span><span class="nome">Ouro</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li><li>Teste de maquiagem</li><li>Teste de penteado</li><li>Maquiagem pré-wedding</li><li>Penteado pré-wedding</li></ul><a class="btn" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Quero%20saber%20sobre%20o%20pacote%20Ouro%20para%20noivas." target="_blank" rel="noopener">Solicitar orçamento</a></div>
+      <div class="pac"><span class="tag">Essencial</span><span class="nome">Bronze</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li></ul><a class="btn" href="#agenda" data-serv="Noiva · pacote Bronze">Reservar conversa</a></div>
+      <div class="pac dest"><span class="tag">Com testes</span><span class="nome">Prata</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li><li>Teste de maquiagem</li><li>Teste de cabelo</li></ul><a class="btn" href="#agenda" data-serv="Noiva · pacote Prata">Reservar conversa</a></div>
+      <div class="pac"><span class="tag">Completo</span><span class="nome">Ouro</span><ul><li>Maquiagem da noiva</li><li>Penteado</li><li>Cílios postiços</li><li>Teste de maquiagem</li><li>Teste de penteado</li><li>Maquiagem pré-wedding</li><li>Penteado pré-wedding</li></ul><a class="btn" href="#agenda" data-serv="Noiva · pacote Ouro">Reservar conversa</a></div>
     </div>
     <div class="notas revela">
       <div><b>+10 anos</b>de equipe no mercado da beleza</div>
@@ -287,10 +328,28 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
   <div class="w">
     <div class="cab revela"><div><span class="sobre">Como agendar</span><h2>Simples, do <em>primeiro</em> contato ao dia.</h2></div><p>Datas de sábado e de alta temporada costumam fechar com antecedência. Garanta a sua com tempo.</p></div>
     <div class="passos">
-      <div class="passo revela"><h3>Conte o seu evento</h3><p>Data, horário, local e o tipo de produção que você quer.</p></div>
-      <div class="passo revela"><h3>Receba a proposta</h3><p>A Julliany indica o serviço ou o pacote ideal para você.</p></div>
+      <div class="passo revela"><h3>Escolha o horário</h3><p>Na agenda abaixo, veja os dias livres e reserve o seu em um minuto.</p></div>
+      <div class="passo revela"><h3>Receba a confirmação</h3><p>A Julliany confirma a reserva e alinha os detalhes do seu evento.</p></div>
       <div class="passo revela"><h3>Reserve a data</h3><p>O agendamento é confirmado com um sinal; para noivas, também com contrato.</p></div>
       <div class="passo revela"><h3>Chegue pronta</h3><p>Cabelo lavado e seco naturalmente, e o resto é com a gente.</p></div>
+    </div>
+    <div class="agenda revela" id="agenda">
+      <aside class="ag-lado"><span class="sobre">Agenda online</span><h3>Reserve o seu <em>horário</em></h3><p>Escolha o atendimento, o dia e a hora. A Julliany confirma a sua reserva em seguida.</p>
+        <div class="ag-resumo"><div><span>Atendimento</span><b id="r-serv">—</b></div><div><span>Data</span><b id="r-dia">—</b></div><div><span>Horário</span><b id="r-hora">—</b></div></div></aside>
+      <div class="ag-corpo" id="ag-corpo">
+        <p class="ag-passo">1 · Atendimento</p><div class="ag-servs" id="ag-servs"></div>
+        <p class="ag-passo">2 · Dia</p>
+        <div class="ag-mes"><button id="m-ant" aria-label="Mês anterior">‹</button><b id="m-nome"></b><button id="m-prox" aria-label="Próximo mês">›</button></div>
+        <div class="cal" id="cal"></div>
+        <div id="ag-h" hidden><p class="ag-passo">3 · Horário</p><div class="ag-horas" id="ag-horas"></div></div>
+        <form class="ag-form" id="ag-form" hidden novalidate><p class="ag-passo full">4 · Seus dados</p>
+          <label>Nome<input id="f-nome" autocomplete="name" required></label>
+          <label>WhatsApp<input id="f-zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(98) 9 0000-0000" required></label>
+          <label class="full">Evento, local ou observação (opcional)<textarea id="f-obs" rows="2" placeholder="Ex.: casamento às 19h na Igreja da Sé"></textarea></label>
+          <p class="ag-erro" id="f-erro" hidden></p>
+          <button class="btn cheio" id="f-env" type="submit">Confirmar reserva</button>
+          <p class="ag-aviso">A reserva é confirmada com o sinal. Atendimento no estúdio, no Turu, ou no local que você escolher.</p></form>
+      </div>
     </div>
     <div class="faq revela" style="margin-top:90px">
       <details><summary>Vocês atendem a domicílio?</summary><p>Sim. O atendimento pode ser no estúdio, no Turu, ou no local que você escolher. Para domicílio e eventos fora de São Luís, é cobrada uma taxa de deslocamento.</p></details>
@@ -303,7 +362,7 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
 </section>
 
 <section class="final">
-  <div class="w revela"><span class="sobre">Agenda 2026</span><h2>Vamos criar a sua <em>melhor</em> versão?</h2><p>Conte a data e o seu evento. A resposta chega pelo WhatsApp.</p><a class="btn cheio" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Vim%20pelo%20site%20e%20quero%20agendar." target="_blank" rel="noopener">Falar com a Julliany</a></div>
+  <div class="w revela"><span class="sobre">Agenda 2026</span><h2>Vamos criar a sua <em>melhor</em> versão?</h2><p>Escolha o dia e o horário na agenda. Leva menos de um minuto.</p><a class="btn cheio" href="#agenda">Ver horários livres</a></div>
 </section>
 </main>
 
@@ -313,12 +372,12 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
       <div><a class="marca" href="#inicio"><b>Julliany Ferreira</b><span>Beauty Makeup</span></a><p style="max-width:300px;margin-top:18px">Maquiagem e penteado para noivas, debutantes, formandas e eventos em São Luís.</p></div>
       <div><h5>Atendimento</h5><span>WhatsApp (98) 98801-4170</span><a href="https://instagram.com/jullianymakeup" target="_blank" rel="noopener">Instagram @jullianymakeup</a></div>
       <div><h5>Estúdio</h5><span>Rua do Retiro, Cond. Gran Village Eldorado<br>Turu · São Luís, MA</span></div>
-      <div><h5>Navegue</h5><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#cursos">Cursos</a><a href="#agendar">Agendar</a></div>
+      <div><h5>Navegue</h5><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#cursos">Cursos</a><a href="#agenda">Agendar</a></div>
     </div>
     <div class="base"><span>© 2026 Julliany Ferreira Beauty Makeup</span><span>Site por Hélice Sites &amp; Sistemas</span></div>
   </div>
 </footer>
-<a class="zap" href="https://wa.me/5598988014170?text=Ol%C3%A1%2C%20Julliany!%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="Agendar pelo WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.4-.7-2.9-1.1-4.7-4-4.9-4.2-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.3 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.4Z"/></svg><span>Agendar</span></a>
+<a class="zap" href="#agenda" aria-label="Agendar horário"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="fill:none"><rect x="3" y="5" width="18" height="16" rx="1"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Agendar</span></a>
 <div class="zoom" id="zoom" hidden><button id="zoom-x" aria-label="Fechar foto">✕</button><img id="zoom-img" alt=""></div>
 <script src="/v.js" defer></script>
 <script>
@@ -335,6 +394,52 @@ const topo=document.getElementById('topo');const solid=()=>topo.classList.toggle
 const gav=document.getElementById('gaveta');document.getElementById('abrir').onclick=()=>gav.classList.add('on');document.getElementById('fechar').onclick=()=>gav.classList.remove('on');gav.querySelectorAll('a').forEach(a=>a.onclick=()=>gav.classList.remove('on'));
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.revela').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('vis');else io.observe(el)});
+
+/* agenda online */
+(()=>{
+const SB='https://ryhyvzwqtktaaonznizn.supabase.co',K='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0';
+const rpc=(f,b)=>fetch(SB+'/rest/v1/rpc/'+f,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
+const SERV=['Maquiagem social','Maquiagem + penteado','Penteado','Debutante','Formanda','Noiva · conversa e orçamento','Aula de automaquiagem','Mentoria de imagem'];
+const HORAS=['07:00','09:00','11:00','14:00','16:00','18:00'], HSAB=['06:00','08:00','10:00','12:00','14:00','16:00'];
+const $=i=>document.getElementById(i), iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const hoje=new Date();hoje.setHours(0,0,0,0);
+let st={serv:null,dia:null,hora:null}, mes=new Date(hoje.getFullYear(),hoje.getMonth(),1), OC={};
+const servs=$('ag-servs');
+servs.innerHTML=SERV.map(x=>`<button type="button" class="chip" aria-pressed="false">${x}</button>`).join('');
+function escolheServ(n){const b=[...servs.children].find(c=>c.textContent===n)||[...servs.children].find(c=>n.startsWith('Noiva')&&c.textContent.startsWith('Noiva'));if(!b)return;[...servs.children].forEach(c=>c.setAttribute('aria-pressed',c===b));st.serv=n.startsWith('Noiva')?n:b.textContent;resumo()}
+servs.onclick=e=>{if(e.target.matches('.chip'))escolheServ(e.target.textContent)};
+document.querySelectorAll('[data-serv]').forEach(a=>a.addEventListener('click',()=>escolheServ(a.dataset.serv)));
+function resumo(){$('r-serv').textContent=st.serv||'—';$('r-dia').textContent=st.dia?new Date(st.dia+'T12:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'long'}):'—';$('r-hora').textContent=st.hora||'—';$('ag-form').hidden=!(st.serv&&st.dia&&st.hora)}
+async function carregaMes(){const ini=new Date(mes),fim=new Date(mes.getFullYear(),mes.getMonth()+1,0);try{const r=await rpc('agenda_ocupados',{p_negocio:'julliany',p_ini:iso(ini),p_fim:iso(fim)});OC={};(r||[]).forEach(x=>(OC[x.dia]=OC[x.dia]||[]).push(x.hora))}catch(e){OC={}}cal()}
+function horasDe(d){return new Date(d+'T12:00').getDay()===6?HSAB:HORAS}
+function livres(d){let h=horasDe(d).filter(x=>!(OC[d]||[]).includes(x));if(d===iso(hoje)){const agora=new Date().getHours()+2;h=h.filter(x=>+x.slice(0,2)>=agora)}return h}
+function cal(){
+  {const t=mes.toLocaleDateString("pt-BR",{month:"long"});$("m-nome").textContent=t[0].toUpperCase()+t.slice(1)+" "+mes.getFullYear()}
+  $('m-ant').disabled=mes<=new Date(hoje.getFullYear(),hoje.getMonth(),1);
+  $('m-prox').disabled=mes>=new Date(hoje.getFullYear(),hoje.getMonth()+5,1);
+  const pri=new Date(mes),dias=new Date(mes.getFullYear(),mes.getMonth()+1,0).getDate();
+  let h=['dom','seg','ter','qua','qui','sex','sáb'].map(x=>`<span class="sem">${x}</span>`).join('')+'<span></span>'.repeat(pri.getDay());
+  for(let i=1;i<=dias;i++){const d=new Date(mes.getFullYear(),mes.getMonth(),i),k=iso(d),off=d<hoje||d.getDay()===0||!livres(k).length;
+    h+=`<button type="button" data-d="${k}" ${off?'disabled':''} class="${k===st.dia?'sel':''} ${k===iso(hoje)?'hoje':''}" aria-label="${d.toLocaleDateString('pt-BR',{day:'numeric',month:'long'})}${off?', indisponível':''}">${i}</button>`}
+  $('cal').innerHTML=h;
+}
+$('cal').onclick=e=>{const b=e.target.closest('[data-d]');if(!b||b.disabled)return;st.dia=b.dataset.d;st.hora=null;cal();horas();resumo()};
+function horas(){const l=livres(st.dia);$('ag-h').hidden=false;$('ag-horas').innerHTML=horasDe(st.dia).map(x=>`<button type="button" class="chip" aria-pressed="${x===st.hora}" ${l.includes(x)?'':'disabled'}>${x}</button>`).join('')}
+$('ag-horas').onclick=e=>{if(!e.target.matches('.chip')||e.target.disabled)return;st.hora=e.target.textContent;horas();resumo();setTimeout(()=>$('ag-form').scrollIntoView({behavior:'smooth',block:'nearest'}),50)};
+$('m-ant').onclick=()=>{mes=new Date(mes.getFullYear(),mes.getMonth()-1,1);carregaMes()};
+$('m-prox').onclick=()=>{mes=new Date(mes.getFullYear(),mes.getMonth()+1,1);carregaMes()};
+$('f-zap').oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);e.target.value=v.length>6?`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`:v.length>2?`(${v.slice(0,2)}) ${v.slice(2)}`:v};
+$('ag-form').onsubmit=async e=>{e.preventDefault();const er=$('f-erro'),nome=$('f-nome').value.trim(),zap=$('f-zap').value.replace(/\D/g,'');er.hidden=true;
+  if(nome.length<2||zap.length<10){er.textContent='Preencha o seu nome e um WhatsApp com DDD.';er.hidden=false;return}
+  const b=$('f-env');b.disabled=true;b.textContent='Reservando…';
+  try{const r=await rpc('agenda_reservar',{p_negocio:'julliany',p_servico:st.serv,p_dia:st.dia,p_hora:st.hora,p_nome:nome,p_zap:zap,p_obs:$('f-obs').value.trim()||null});
+    if(r&&r.ok){$('ag-corpo').innerHTML=`<div class="ag-ok"><div class="sel">✓</div><span class="sobre">Reserva recebida</span><h3>Até ${new Date(st.dia+'T12:00').toLocaleDateString('pt-BR',{weekday:'long'})}, ${nome.split(' ')[0]}!</h3><p>${st.serv} · ${new Date(st.dia+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'long'})} às ${st.hora}.</p><p>A Julliany vai confirmar a sua reserva e combinar o sinal. Guarde este horário. 💄</p></div>`;return}
+    er.textContent=r&&r.erro==='ocupado'?'Esse horário acabou de ser reservado. Escolha outro, por favor.':r&&r.erro==='limite'?'Você já fez reservas hoje. A Julliany vai falar com você.':'Não consegui reservar agora. Tente de novo.';er.hidden=false;
+    if(r&&r.erro==='ocupado'){st.hora=null;await carregaMes();horas();resumo()}
+  }catch(x){er.textContent='Sem conexão. Tente de novo.';er.hidden=false}
+  b.disabled=false;b.textContent='Confirmar reserva'};
+carregaMes();
+})();
 </script>
 </body>
 </html>

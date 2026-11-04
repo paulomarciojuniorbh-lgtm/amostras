@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Painel do Cliente · Hélice</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#f4f6fb">
+<link rel="icon" href="../marca/helice-simbolo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* App de uma coluna, abas no rodapé no celular e no topo no computador; azul e ciano da Hélice sobre fundo claro */
+:root{
+  --fundo:#f4f6fb; --card:#ffffff; --texto:#0f1730; --suave:#5b6687; --fraco:#8b94b0; --linha:#e3e8f3;
+  --azul:#3366f0; --ciano:#16b9cc; --grad:linear-gradient(100deg,#3f74ff,#1fc7dc);
+  --ok:#1f9d63; --ok-bg:#e8f7ef; --atencao:#b86e00; --atencao-bg:#fff4e2; --ruim:#d14343;
+  --f:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--fundo);color:var(--texto);font:400 15px/1.55 var(--f);-webkit-font-smoothing:antialiased;padding-bottom:calc(80px + env(safe-area-inset-bottom))}
+.w{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}
+header{background:var(--card);border-bottom:1px solid var(--linha);padding-top:env(safe-area-inset-top)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:14px}
+.top .marca{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px}
+.top .marca img{width:24px;height:24px}
+.top .marca span{color:var(--fraco);font-weight:500}
+.top .quem{text-align:right;font-size:13px;color:var(--suave);line-height:1.3}
+.top .quem b{display:block;color:var(--texto);font-size:15px}
+nav.abas{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--linha);display:grid;grid-template-columns:repeat(5,1fr);padding-bottom:env(safe-area-inset-bottom)}
+nav.abas button{background:none;border:0;font:500 11px var(--f);color:var(--fraco);padding:10px 2px 9px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;position:relative}
+nav.abas button svg{width:22px;height:22px}
+nav.abas button[aria-current="page"]{color:var(--azul)}
+nav.abas .bolinha{position:absolute;top:6px;left:calc(50% + 6px);min-width:16px;height:16px;border-radius:8px;background:var(--ruim);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+@media (min-width:900px){
+  body{padding-bottom:40px}
+  nav.abas{position:sticky;top:0;bottom:auto;border-top:0;border-bottom:1px solid var(--linha);display:flex;justify-content:center;gap:6px;padding:0}
+  nav.abas button{flex-direction:row;font-size:14px;padding:14px 16px;gap:8px}
+  nav.abas button[aria-current="page"]::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;background:var(--azul)}
+  nav.abas .bolinha{position:static}
+}
+main{padding-block:22px}
+h1{font-size:24px;letter-spacing:-.02em;margin:0 0 4px;text-wrap:balance}
+h2{font-size:17px;margin:0 0 12px;letter-spacing:-.01em}
+.sub{color:var(--suave);margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--linha);border-radius:16px;padding:18px;margin-bottom:14px}
+.destaque{background:var(--grad);color:#fff;border:0}
+.destaque .sub{color:rgba(255,255,255,.85);margin:4px 0 0}
+.destaque h2{color:#fff;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.kpi{background:var(--card);border:1px solid var(--linha);border-radius:14px;padding:14px}
+.kpi b{display:block;font-size:24px;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--suave);line-height:1.3;display:block}
+@media (max-width:480px){.kpis{grid-template-columns:1fr 1fr 1fr}.kpi b{font-size:20px}}
+.tarefa{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--linha)}
+.tarefa:last-child{border-bottom:0}
+.tarefa .ic{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700}
+.st-feito .ic{background:var(--ok-bg);color:var(--ok)}
+.st-fazendo .ic{background:#e8efff;color:var(--azul)}
+.st-a_fazer .ic{background:#eef1f7;color:var(--fraco)}
+.st-com_voce .ic{background:var(--atencao-bg);color:var(--atencao)}
+.tarefa b{display:block;font-weight:600}
+.tarefa small{color:var(--suave);font-size:13px}
+.pill{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;margin-left:6px;vertical-align:1px}
+.pill.voce{background:var(--atencao-bg);color:var(--atencao)}
+.pill.ok{background:var(--ok-bg);color:var(--ok)}
+.pill.az{background:#e8efff;color:var(--azul)}
+/* mural */
+.envio textarea{width:100%;min-height:84px;font:15px/1.45 var(--f);border:1px solid var(--linha);border-radius:12px;padding:12px;resize:vertical;background:var(--fundo);color:var(--texto)}
+.envio .linha{display:flex;gap:10px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.btn{font:600 14px var(--f);border:0;border-radius:12px;padding:11px 16px;cursor:pointer;background:var(--azul);color:#fff;display:inline-flex;align-items:center;gap:8px;text-decoration:none}
+.btn.sec{background:#eef2ff;color:var(--azul)}
+.btn.verde{background:var(--ok)}
+.btn:disabled{opacity:.5;cursor:default}
+.prev{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.prev div{position:relative;width:74px;height:74px;border-radius:10px;overflow:hidden;background:#dfe5f1;font-size:11px;display:grid;place-items:center;color:var(--suave);text-align:center;padding:4px}
+.prev img,.prev video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.msg{display:flex;gap:10px;margin-bottom:14px}
+.msg .av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:#e8efff;color:var(--azul)}
+.msg.helice .av{background:var(--grad);color:#fff}
+.msg .bolha{background:var(--card);border:1px solid var(--linha);border-radius:4px 14px 14px 14px;padding:10px 12px;min-width:0;max-width:100%}
+.msg .bolha small{display:block;color:var(--fraco);font-size:12px;margin-bottom:2px}
+.msg .bolha p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg .bolha img,.msg .bolha video{max-width:min(320px,100%);border-radius:10px;margin-top:8px;display:block}
+/* criativos */
+.criativo{display:grid;grid-template-columns:180px 1fr;gap:16px}
+.criativo img{width:100%;border-radius:12px;aspect-ratio:4/5;object-fit:cover;background:#dfe5f1}
+.criativo .acoes{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+@media (max-width:560px){.criativo{grid-template-columns:1fr}}
+.vazio{text-align:center;color:var(--suave);padding:26px 10px}
+.vazio b{display:block;color:var(--texto);font-size:16px;margin-bottom:4px}
+/* ranking */
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th{text-align:left;font-size:12px;font-weight:500;color:var(--fraco);padding:8px 6px;border-bottom:1px solid var(--linha)}
+td{padding:11px 6px;border-bottom:1px solid var(--linha);font-size:14px;vertical-align:middle}
+tr.eu td{background:#eef4ff;font-weight:600}
+td.num,th.num{text-align:right;white-space:nowrap}
+.barra{height:6px;border-radius:4px;background:#e3e8f3;overflow:hidden;min-width:60px}
+.barra i{display:block;height:100%;background:var(--grad)}
+.tabela{overflow-x:auto}
+.nota{font-size:13px;color:var(--suave);margin:10px 0 0}
+.erro-pg{max-width:440px;margin:80px auto;text-align:center;padding:0 20px}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--texto);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:40}
+.toast.on{opacity:1}
+.ld{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:g .7s linear infinite}
+@keyframes g{to{transform:rotate(360deg)}}
+button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="w top"><div class="marca"><img src="../marca/helice-simbolo.svg" alt="">Hélice <span>· seu painel</span></div><div class="quem" id="quem"></div></div></header>
+<nav class="abas" id="abas" hidden>
+  <button data-aba="inicio" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Início</button>
+  <button data-aba="mural"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5h16v11H8l-4 4z"/></svg>Mural</button>
+  <button data-aba="aprovar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12l4 4L19 6"/></svg>Aprovar<span class="bolinha" id="b-aprovar" hidden></span></button>
+  <button data-aba="resultados"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>Resultados</button>
+  <button data-aba="google"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Google</button>
+</nav>
+<main class="w" id="app"><p class="sub" style="text-align:center;margin-top:60px">Carregando o seu painel…</p></main>
+<div class="toast" id="toast"></div>
+<script>
+const SB='https://ryhyvzwqtktaaonznizn.supabase.co', KEY='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0';
+const TOKEN=(location.hash||'').replace('#','').trim();
+const $=s=>document.querySelector(s);
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const rpc=(f,b)=>fetch(SB+'/rest/v1/rpc/'+f,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>{if(!r.ok)throw new Error(r.status);return r.json()});
+const pub=p=>SB+'/storage/v1/object/public/portal/'+p.split('/').map(encodeURIComponent).join('/');
+const dt=s=>{const d=new Date(s);return d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'})+' · '+d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})};
+const n=v=>v==null?'—':Number(v).toLocaleString('pt-BR');
+const brl=v=>v==null?'—':Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2400)}
+let D=null, aba='inicio';
+
+async function carregar(){
+  if(!TOKEN||TOKEN.length<20){erro();return}
+  try{D=await rpc('portal_dados',{p_token:TOKEN})}catch(e){$('#app').innerHTML='<div class="erro-pg"><h1>Sem conexão</h1><p class="sub">Não consegui abrir o painel agora. Confira a internet e tente de novo.</p><button class="btn" onclick="location.reload()">Tentar de novo</button></div>';return}
+  if(!D.ok){erro();return}
+  $('#quem').innerHTML=`<b>${esc(D.cliente.nome)}</b>${esc(D.cliente.plano||'')}`;
+  $('#abas').hidden=false;
+  const pend=D.criativos.filter(c=>c.status==='aguardando').length; const b=$('#b-aprovar'); b.hidden=!pend; b.textContent=pend;
+  render();
+}
+function erro(){$('#app').innerHTML='<div class="erro-pg"><h1>Link inválido</h1><p class="sub">Este endereço de painel não existe ou foi digitado errado. Peça o seu link de acesso para a Hélice.</p></div>'}
+document.querySelectorAll('[data-aba]').forEach(b=>b.onclick=()=>{aba=b.dataset.aba;document.querySelectorAll('[data-aba]').forEach(x=>x===b?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));render();scrollTo({top:0})});
+document.querySelectorAll('[data-aba]').forEach(b=>{if(b.getAttribute('aria-current'))b.setAttribute('aria-current','page')});
+function render(){ $('#app').innerHTML=({inicio,mural,aprovar,resultados,google})[aba](); if(aba==='mural')ligarMural(); if(aba==='aprovar')ligarAprovar(); }
+
+const ICON={feito:'✓',fazendo:'•',a_fazer:'',com_voce:'!'};
+function inicio(){
+  const t=D.tarefas, feitas=t.filter(x=>x.status==='feito').length, voce=t.filter(x=>x.status==='com_voce');
+  const eu=D.ranking.find(r=>r.eh_cliente), pos=D.ranking.findIndex(r=>r.eh_cliente)+1;
+  const ult=D.metricas.length?D.metricas[D.metricas.length-1]:null;
+  return `<h1>Olá, ${esc(D.cliente.responsavel||D.cliente.nome)}! 👋</h1><p class="sub">Aqui está tudo o que a Hélice está fazendo pela ${esc(D.cliente.nome)}.</p>
+  ${voce.length?`<div class="card destaque"><h2>${voce.length} ${voce.length>1?'coisas dependem':'coisa depende'} de você</h2><p class="sub">${esc(voce[0].titulo)}${voce.length>1?' e mais '+(voce.length-1):''}. Veja os passos abaixo.</p></div>`:''}
+  <div class="kpis"><div class="kpi"><b>${feitas}/${t.length}</b><span>etapas concluídas</span></div><div class="kpi"><b>${eu?'★ '+String(eu.rating).replace('.',','):'—'}</b><span>${eu?n(eu.avaliacoes)+' avaliações no Google':'nota no Google'}</span></div><div class="kpi"><b>${pos?pos+'º':'—'}</b><span>em avaliações entre ${D.ranking.length} clínicas da região</span></div></div>
+  <div class="card"><h2>Andamento do projeto</h2>${t.map(x=>`<div class="tarefa st-${x.status}"><span class="ic">${ICON[x.status]}</span><div><b>${esc(x.titulo)}${x.status==='com_voce'?'<span class="pill voce">com você</span>':x.status==='feito'?'<span class="pill ok">feito</span>':x.status==='fazendo'?'<span class="pill az">em andamento</span>':''}</b><small>${esc(x.detalhe||'')}</small></div></div>`).join('')}</div>
+  <div class="card"><h2>Última semana</h2>${ult?`<p class="sub" style="margin:0">Semana de ${new Date(ult.semana+'T12:00').toLocaleDateString('pt-BR')}: ${n(ult.alcance)} pessoas alcançadas e ${n(ult.conversas)} conversas no WhatsApp.</p>`:'<p class="sub" style="margin:0">Os números começam a aparecer aqui na primeira semana de anúncio.</p>'}</div>`;
+}
+function mural(){
+  return `<h1>Mural</h1><p class="sub">Mande fotos, vídeos e recados. A Hélice responde por aqui.</p>
+  <div class="card envio"><textarea id="m-txt" placeholder="Escreva um recado, ex.: essa semana quero divulgar a avaliação postural…" aria-label="Recado"></textarea>
+  <div class="prev" id="m-prev"></div>
+  <div class="linha"><label class="btn sec" style="cursor:pointer"><input type="file" id="m-arq" accept="image/*,video/*" multiple hidden>📷 Fotos e vídeos</label><button class="btn" id="m-env">Enviar</button></div></div>
+  <div id="m-lista">${D.mural.length?D.mural.map(m=>`<div class="msg ${m.autor}"><span class="av">${m.autor==='helice'?'H':esc((D.cliente.responsavel||D.cliente.nome)[0])}</span><div class="bolha"><small>${m.autor==='helice'?'Hélice':esc(D.cliente.responsavel||'Você')} · ${dt(m.criado_em)}</small>${m.texto?`<p>${esc(m.texto)}</p>`:''}${m.arquivo?(m.tipo==='video'?`<video src="${pub(m.arquivo)}" controls preload="metadata"></video>`:`<img src="${pub(m.arquivo)}" alt="Arquivo enviado" loading="lazy">`):''}</div></div>`).join(''):'<div class="vazio"><b>Nada por aqui ainda</b>Mande a primeira foto ou recado.</div>'}</div>`;
+}
+let ARQ=[];
+function ligarMural(){
+  ARQ=[];
+  $('#m-arq').onchange=e=>{ARQ=[...e.target.files].slice(0,10);$('#m-prev').innerHTML=ARQ.map(f=>{const u=URL.createObjectURL(f);return `<div>${f.type.startsWith('video')?`<video src="${u}" muted></video>`:`<img src="${u}" alt="">`}</div>`}).join('')};
+  $('#m-env').onclick=async()=>{
+    const txt=$('#m-txt').value.trim(); if(!txt&&!ARQ.length){toast('Escreva um recado ou escolha uma foto.');return}
+    const b=$('#m-env'); b.disabled=true; b.innerHTML='<span class="ld"></span> Enviando';
+    try{
+      if(!ARQ.length){ const r=await rpc('portal_postar',{p_token:TOKEN,p_texto:txt,p_arquivo:null,p_tipo:'recado'}); if(!r.ok)throw 0 }
+      for(let i=0;i<ARQ.length;i++){ const f=ARQ[i]; if(f.size>50*1024*1024){toast(f.name+' passa de 50 MB');continue}
+        const ext=(f.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,''); const path=TOKEN+'/'+Date.now()+'-'+i+'.'+ext;
+        const up=await fetch(SB+'/storage/v1/object/portal/'+path,{method:'POST',headers:{apikey:KEY,Authorization:'Bearer '+KEY,'Content-Type':f.type||'application/octet-stream'},body:f}); if(!up.ok)throw new Error('upload '+up.status);
+        const r=await rpc('portal_postar',{p_token:TOKEN,p_texto:i===0?txt:null,p_arquivo:path,p_tipo:f.type.startsWith('video')?'video':'foto'}); if(!r.ok)throw 0 }
+      toast('Enviado! A Hélice já recebeu.'); D=await rpc('portal_dados',{p_token:TOKEN}); render();
+    }catch(e){ toast('Não consegui enviar. Tente de novo.'); b.disabled=false; b.textContent='Enviar' }
+  };
+}
+function aprovar(){
+  const c=D.criativos;
+  return `<h1>Aprovar anúncios</h1><p class="sub">Nada vai ao ar sem o seu OK. Aprove ou peça ajuste em cada peça.</p>
+  ${c.length?c.map(k=>`<div class="card criativo">${k.imagem?`<img src="${esc(k.imagem.startsWith('http')?k.imagem:pub(k.imagem))}" alt="Prévia do anúncio">`:'<div></div>'}<div><h2>${esc(k.titulo||'Anúncio')} ${k.status==='aguardando'?'<span class="pill voce">aguardando você</span>':k.status==='aprovado'?'<span class="pill ok">aprovado</span>':k.status==='no_ar'?'<span class="pill az">no ar</span>':'<span class="pill voce">ajuste pedido</span>'}</h2><p style="white-space:pre-wrap;margin:0 0 6px">${esc(k.texto||'')}</p><small class="sub">${esc(k.canal||'')}</small>${k.comentario?`<p class="nota">Seu comentário: ${esc(k.comentario)}</p>`:''}${k.status==='aguardando'?`<div class="acoes"><button class="btn verde" data-ok="${k.id}">Aprovar</button><button class="btn sec" data-aj="${k.id}">Pedir ajuste</button></div><div data-box="${k.id}" hidden style="margin-top:10px"><textarea style="width:100%;min-height:70px;font:15px var(--f);border:1px solid var(--linha);border-radius:10px;padding:10px" placeholder="O que você quer mudar?" id="aj-${k.id}"></textarea><button class="btn" style="margin-top:8px" data-envaj="${k.id}">Enviar pedido de ajuste</button></div>`:''}</div></div>`).join(''):'<div class="card vazio"><b>Nenhum anúncio para aprovar agora</b>Quando o primeiro anúncio ficar pronto, ele aparece aqui para você ver antes de ir ao ar.</div>'}`;
+}
+function ligarAprovar(){
+  const resp=async(id,st,com)=>{try{const r=await rpc('portal_responder',{p_token:TOKEN,p_id:+id,p_status:st,p_comentario:com||null}); if(!r.ok)throw 0; toast(st==='aprovado'?'Aprovado! Vamos colocar no ar.':'Pedido de ajuste enviado.'); D=await rpc('portal_dados',{p_token:TOKEN}); const p=D.criativos.filter(c=>c.status==='aguardando').length; $('#b-aprovar').hidden=!p; $('#b-aprovar').textContent=p; render()}catch(e){toast('Não consegui registrar. Tente de novo.')}};
+  document.querySelectorAll('[data-ok]').forEach(b=>b.onclick=()=>resp(b.dataset.ok,'aprovado'));
+  document.querySelectorAll('[data-aj]').forEach(b=>b.onclick=()=>{document.querySelector(`[data-box="${b.dataset.aj}"]`).hidden=false});
+  document.querySelectorAll('[data-envaj]').forEach(b=>b.onclick=()=>{const t=$('#aj-'+b.dataset.envaj).value.trim(); if(!t){toast('Conte o que você quer mudar.');return} resp(b.dataset.envaj,'ajuste',t)});
+}
+function resultados(){
+  const m=D.metricas;
+  if(!m.length) return `<h1>Resultados</h1><p class="sub">Toda semana, os números da divulgação da ${esc(D.cliente.nome)} em linguagem simples.</p><div class="card vazio"><b>Os primeiros números chegam na semana 1</b>Assim que o primeiro anúncio for ao ar, você vê aqui quanto foi investido, quantas pessoas viram, quantas chamaram no WhatsApp e quanto custou cada contato.</div>`;
+  const tot=k=>m.reduce((s,x)=>s+(+x[k]||0),0); const inv=tot('investido'), conv=tot('conversas');
+  return `<h1>Resultados</h1><p class="sub">Desde o início do projeto.</p>
+  <div class="kpis"><div class="kpi"><b>${brl(inv)}</b><span>investido nos anúncios</span></div><div class="kpi"><b>${n(tot('alcance'))}</b><span>pessoas alcançadas</span></div><div class="kpi"><b>${n(conv)}</b><span>conversas no WhatsApp${conv?' · '+brl(inv/conv)+' cada':''}</span></div></div>
+  <div class="card tabela"><h2>Semana a semana</h2><table><thead><tr><th>Semana</th><th>Canal</th><th class="num">Investido</th><th class="num">Alcance</th><th class="num">Cliques</th><th class="num">Conversas</th><th class="num">Visitas no site</th></tr></thead><tbody>${m.slice().reverse().map(x=>`<tr><td>${new Date(x.semana+'T12:00').toLocaleDateString('pt-BR')}</td><td>${esc(x.canal)}</td><td class="num">${brl(x.investido)}</td><td class="num">${n(x.alcance)}</td><td class="num">${n(x.cliques)}</td><td class="num">${n(x.conversas)}</td><td class="num">${n(x.visitas_site)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function google(){
+  const r=D.ranking, max=Math.max(...r.map(x=>x.avaliacoes||0),1), pos=r.findIndex(x=>x.eh_cliente)+1, eu=r.find(x=>x.eh_cliente);
+  const lider=r[0], falta=eu&&lider&&!lider.eh_cliente?lider.avaliacoes-eu.avaliacoes:0;
+  return `<h1>${esc(D.cliente.nome)} no Google</h1><p class="sub">Como a clínica aparece para quem procura em ${esc(D.cliente.cidade)}, comparada às clínicas da região.</p>
+  <div class="kpis"><div class="kpi"><b>${pos}º</b><span>em número de avaliações</span></div><div class="kpi"><b>${eu?'★ '+String(eu.rating).replace('.',','):'—'}</b><span>sua nota média</span></div><div class="kpi"><b>${falta>0?falta:'—'}</b><span>${falta>0?'avaliações para alcançar o 1º':'você lidera'}</span></div></div>
+  <div class="card tabela"><h2>Ranking de avaliações</h2><table><thead><tr><th>#</th><th>Clínica</th><th class="num">Nota</th><th class="num">Avaliações</th><th></th></tr></thead><tbody>${r.map((x,i)=>`<tr class="${x.eh_cliente?'eu':''}"><td>${i+1}º</td><td>${esc(x.nome)}</td><td class="num">${x.rating?'★ '+String(x.rating).replace('.',','):'—'}</td><td class="num">${n(x.avaliacoes)}</td><td style="width:28%"><div class="barra"><i style="width:${Math.round((x.avaliacoes||0)/max*100)}%"></i></div></td></tr>`).join('')}</tbody></table><p class="nota">Leitura de ${D.ranking_data?new Date(D.ranking_data+'T12:00').toLocaleDateString('pt-BR'):'—'}. Atualizamos toda semana e guardamos o histórico para você ver a evolução.</p></div>
+  <div class="card"><h2>O que vai fazer a ${esc(D.cliente.nome)} subir</h2><div class="tarefa st-com_voce"><span class="ic">1</span><div><b>Pedir avaliação a cada atendimento</b><small>Uma mensagem com o link de avaliação logo depois da sessão. É o que mais pesa no ranking.</small></div></div><div class="tarefa st-com_voce"><span class="ic">2</span><div><b>Site no perfil do Google</b><small>Trocar o link do Instagram pelo site da clínica. A gente cuida disso com o seu acesso.</small></div></div><div class="tarefa st-com_voce"><span class="ic">3</span><div><b>Fotos e publicações toda semana</b><small>Perfis ativos aparecem mais. A gente publica com o material que você manda no mural.</small></div></div></div>`;
+}
+carregar();
+</script>
+</body>
+</html>
