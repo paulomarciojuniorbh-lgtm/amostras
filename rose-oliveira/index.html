@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rose Oliveira · Terapias Integrativas em Sete Lagoas e Online</title>
+<meta name="description" content="Terapia energética, mesa radiônica, radiestesia, reiki e florais com Rose Oliveira. Atendimento em Sete Lagoas e online.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f3ede3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;1,6..12,400&display=swap" rel="stylesheet">
+<style>
+/* Bege de linho, verde-oliva de folha e dourado de vela: o mesmo clima calmo dos destaques do Instagram da Rose */
+:root{
+  --linho:#f3ede3; --areia:#e8dfcf; --branco:#fbf8f3; --oliva:#5f6b3c; --mata:#2f3a24; --musgo:#46522f;
+  --ouro:#b8925a; --texto:#2b2a22; --suave:#6e6a5c; --linha:#ddd2bf;
+  --f-t:"Marcellus",Georgia,serif; --f:"Nunito Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--linho);color:var(--texto);font:400 17px/1.7 var(--f);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+.w{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+h1,h2,h3{font-family:var(--f-t);font-weight:400;margin:0;line-height:1.12;text-wrap:balance}
+h2{font-size:clamp(34px,4.6vw,56px)}
+.olho{display:inline-flex;align-items:center;gap:10px;font:600 12px var(--f);letter-spacing:.22em;text-transform:uppercase;color:var(--oliva)}
+.olho::before{content:"";width:26px;height:1px;background:var(--ouro)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;border-radius:999px;font:600 15px var(--f);text-decoration:none;border:1px solid var(--mata);color:var(--mata);background:none;cursor:pointer;transition:background .3s,color .3s}
+.btn:hover{background:var(--mata);color:var(--linho)}
+.btn.cheio{background:var(--mata);color:var(--linho)}
+.btn.cheio:hover{background:var(--oliva);border-color:var(--oliva)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+section{padding:110px 0}
+/* topo */
+header{position:fixed;inset:0 0 auto;z-index:40;transition:background .4s,box-shadow .4s}
+header.solido{background:rgba(243,237,227,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
+.tb{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}
+.marca{text-decoration:none;display:flex;align-items:center;gap:12px}
+.marca svg{width:34px;height:34px;color:var(--oliva)}
+.marca b{font:400 22px var(--f-t);display:block;line-height:1}
+.marca span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--suave)}
+nav.menu{display:flex;gap:30px;font-size:15px}
+nav.menu a{text-decoration:none;opacity:.85}nav.menu a:hover{opacity:1;color:var(--oliva)}
+.tb .btn{padding:12px 22px}
+@media (max-width:900px){nav.menu{display:none}}
+@media (max-width:480px){.tb .btn{padding:10px 16px;font-size:14px}.marca span{display:none}}
+/* hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:56px;padding:120px 0 70px}
+.hero h1{font-size:clamp(46px,6.4vw,84px);margin:22px 0 24px;color:var(--mata)}
+.hero h1 em{font-style:normal;color:var(--ouro)}
+.hero p{font-size:19px;color:var(--suave);max-width:500px;margin:0 0 34px}
+.hero .btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero .local{margin-top:34px;display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:var(--suave)}
+.hero .local span{display:flex;align-items:center;gap:8px}
+.hero .local svg{width:18px;height:18px;color:var(--oliva)}
+.arco{position:relative;justify-self:end;width:min(100%,470px)}
+.arco img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%;border-radius:999px 999px 24px 24px}
+.arco::before{content:"";position:absolute;inset:-16px -16px 30px 16px;border:1px solid var(--ouro);border-radius:999px 999px 24px 24px;z-index:-1}
+.arco .selo{position:absolute;left:-30px;bottom:44px;background:var(--branco);padding:16px 20px;border-radius:16px;box-shadow:0 18px 40px rgba(47,58,36,.14);font-size:14px;line-height:1.4;max-width:220px}
+.arco .selo b{font:400 19px var(--f-t);color:var(--mata);display:block}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:40px;min-height:0;padding-top:110px}.arco{justify-self:center;width:min(86%,400px)}.arco .selo{left:-12px}}
+/* faixa */
+.faixa{background:var(--mata);color:var(--areia);padding:22px 0;overflow:hidden}
+.faixa .trilho{display:flex;gap:46px;width:max-content;animation:corre 38s linear infinite;font:400 22px var(--f-t)}
+.faixa span::after{content:"✦";color:var(--ouro);margin-left:46px;font-size:14px;vertical-align:4px}
+@keyframes corre{to{transform:translateX(-50%)}}
+/* sobre */
+.sobre{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.fotos2{position:relative;height:560px}
+.fotos2 img{position:absolute;object-fit:cover;border-radius:20px}
+.fotos2 .a{width:68%;height:82%;left:0;top:0;object-position:50% 25%}
+.fotos2 .b{width:50%;height:56%;right:0;bottom:0;border:8px solid var(--linho)}
+.sobre p{color:var(--suave);margin:0 0 18px}
+.sobre h2{margin:18px 0 24px;color:var(--mata)}
+.citacao{font:400 24px/1.4 var(--f-t);color:var(--oliva);border-left:2px solid var(--ouro);padding-left:20px;margin:28px 0 0}
+@media (max-width:900px){.sobre{grid-template-columns:1fr;gap:44px}.fotos2{height:440px}}
+/* terapias */
+.cab{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:52px;flex-wrap:wrap}
+.cab p{max-width:420px;color:var(--suave);margin:0}
+.cab h2{margin-top:16px;color:var(--mata)}
+.terapias{background:var(--branco)}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.ter{background:var(--linho);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.ter img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.ter div{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.ter h3{font-size:26px;color:var(--mata);margin-bottom:8px}
+.ter p{color:var(--suave);font-size:15.5px;margin:0 0 18px;flex:1}
+.ter .modo{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--oliva);font-weight:600}
+.ter a{margin-top:14px;font-weight:600;font-size:15px;color:var(--mata);text-decoration:none;border-bottom:1px solid var(--ouro);align-self:flex-start;padding-bottom:2px}
+@media (max-width:980px){.grade{grid-template-columns:1fr 1fr}}
+@media (max-width:620px){.grade{grid-template-columns:1fr}}
+/* online */
+.online{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.online h2{color:var(--mata);margin:16px 0 22px}
+.online>div>p{color:var(--suave);margin:0 0 30px}
+.passos{display:grid;gap:22px;counter-reset:p}
+.passo{display:grid;grid-template-columns:52px 1fr;gap:18px;align-items:start}
+.passo::before{counter-increment:p;content:counter(p);width:52px;height:52px;border-radius:50%;border:1px solid var(--ouro);display:grid;place-items:center;font:400 22px var(--f-t);color:var(--oliva)}
+.passo b{display:block;font:400 21px var(--f-t);color:var(--mata);margin-bottom:2px}
+.passo span{color:var(--suave);font-size:15.5px}
+.online img{border-radius:24px;aspect-ratio:4/5;object-fit:cover;width:100%;max-width:460px;justify-self:end}
+@media (max-width:900px){.online{grid-template-columns:1fr;gap:40px}.online img{justify-self:center;max-width:380px}}
+/* produtos */
+.produtos{background:var(--areia)}
+.prods{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.prod{text-align:center}
+.prod img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;border:6px solid var(--branco);margin-bottom:18px}
+.prod h3{font-size:24px;color:var(--mata)}
+.prod p{color:var(--suave);font-size:15px;margin:6px auto 0;max-width:280px}
+@media (max-width:760px){.prods{grid-template-columns:1fr;max-width:330px;margin:0 auto}}
+/* agenda */
+.agenda{display:grid;grid-template-columns:320px 1fr;background:var(--branco);border-radius:26px;overflow:hidden;box-shadow:0 30px 60px rgba(47,58,36,.08);scroll-margin-top:100px}
+.ag-lado{background:var(--mata);color:var(--linho);padding:40px 32px;display:flex;flex-direction:column;gap:16px}
+.ag-lado .olho{color:var(--ouro)}.ag-lado .olho::before{background:var(--ouro)}
+.ag-lado h3{font-size:36px}
+.ag-lado p{margin:0;color:#cfd3c0;font-size:15px}
+.ag-resumo{border-top:1px solid #4b5839;padding-top:18px;font-size:14.5px;display:grid;gap:9px;margin-top:auto}
+.ag-resumo div{display:flex;justify-content:space-between;gap:10px}.ag-resumo span{color:#a6ae92}.ag-resumo b{font-weight:600;text-align:right}
+.ag-corpo{padding:36px 38px}
+.ag-passo{font:600 12px var(--f);letter-spacing:.2em;text-transform:uppercase;color:var(--oliva);margin:0 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{font:600 14px var(--f);padding:10px 16px;border-radius:999px;border:1px solid var(--linha);background:var(--linho);color:var(--texto);cursor:pointer}
+.chip:hover{border-color:var(--oliva)}
+.chip[aria-pressed=true]{background:var(--mata);color:var(--linho);border-color:var(--mata)}
+.chip:disabled{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.ag-mes{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.ag-mes b{font:400 25px var(--f-t);color:var(--mata)}
+.ag-mes button{background:none;border:1px solid var(--linha);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:17px;color:var(--mata)}
+.ag-mes button:disabled{opacity:.3;cursor:default}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:28px}
+.cal .sem{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--suave);text-align:center;padding:6px 0}
+.cal button{aspect-ratio:1;max-height:50px;border-radius:50%;border:1px solid transparent;background:var(--linho);font:600 14px var(--f);color:var(--texto);cursor:pointer;font-variant-numeric:tabular-nums}
+.cal button:hover:not(:disabled){border-color:var(--oliva)}
+.cal button:disabled{background:none;color:#cbc3b3;cursor:default}
+.cal button.sel{background:var(--oliva);color:#fff}
+.cal button.hoje{box-shadow:inset 0 0 0 1px var(--ouro)}
+.ag-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ag-form label{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--suave)}
+.ag-form .full{grid-column:1/-1}
+.ag-form input,.ag-form textarea{font:400 16px var(--f);color:var(--texto);border:1px solid var(--linha);background:var(--linho);padding:13px 14px;border-radius:12px;width:100%}
+.ag-form input:focus,.ag-form textarea:focus{outline:none;border-color:var(--oliva)}
+.ag-form .btn{grid-column:1/-1;justify-self:start}
+.ag-form .btn:disabled{opacity:.45;cursor:default}
+.ag-aviso{font-size:13.5px;color:var(--suave);margin:2px 0 0;grid-column:1/-1}
+.ag-erro{color:#a33a2a;font-size:14.5px;grid-column:1/-1;margin:0}
+.ag-ok{text-align:center;padding:40px 10px}
+.ag-ok .ic{width:66px;height:66px;border-radius:50%;background:var(--linho);display:grid;place-items:center;margin:0 auto 20px;color:var(--oliva);font-size:28px}
+.ag-ok h3{font-size:38px;color:var(--mata);margin:10px 0 12px}
+.ag-ok p{color:var(--suave);max-width:440px;margin:0 auto 8px}
+@media (max-width:900px){.agenda{grid-template-columns:1fr}.ag-lado{padding:30px 22px}.ag-corpo{padding:26px 18px}.ag-form{grid-template-columns:1fr}}
+/* cursos */
+.cursos{background:var(--mata);color:var(--linho);text-align:center}
+.cursos .olho{color:var(--ouro)}.cursos .olho::before{background:var(--ouro)}
+.cursos h2{margin:18px auto 18px;max-width:760px}
+.cursos p{color:#cfd3c0;max-width:540px;margin:0 auto 32px}
+.cursos .btn{border-color:var(--linho);color:var(--linho)}
+.cursos .btn:hover{background:var(--linho);color:var(--mata)}
+/* faq */
+.faq{max-width:860px;margin:0 auto;border-top:1px solid var(--linha)}
+details{border-bottom:1px solid var(--linha)}
+summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;justify-content:space-between;gap:20px;font:400 22px var(--f-t);color:var(--mata)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--ouro);font-size:26px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:0 0 22px;color:var(--suave);max-width:740px}
+.aviso{max-width:860px;margin:40px auto 0;font-size:14px;color:var(--suave);background:var(--branco);border-radius:16px;padding:18px 22px}
+footer{background:#252d1c;color:#b9bfa8;padding:64px 0 30px;font-size:15px}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+footer h5{color:var(--linho);font:600 12px var(--f);letter-spacing:.2em;text-transform:uppercase;margin:0 0 14px}
+footer a{text-decoration:none;display:block;padding:3px 0}footer a:hover{color:var(--ouro)}
+footer .marca b{color:var(--linho)}
+footer .base{border-top:1px solid #3a4429;margin-top:40px;padding-top:20px;font-size:13px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (max-width:760px){footer .cols{grid-template-columns:1fr}}
+.flut{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:10px;background:var(--mata);color:var(--linho);text-decoration:none;padding:14px 22px 14px 18px;border-radius:999px;font-weight:600;font-size:15px;box-shadow:0 12px 30px rgba(37,45,28,.3)}
+.flut svg{width:20px;height:20px}
+@media (max-width:560px){.flut span{display:none}.flut{padding:16px}}
+.revela{opacity:0;transform:translateY(22px);transition:opacity .9s,transform .9s}
+.revela.vis{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.revela{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header id="topo">
+  <div class="w tb">
+    <a class="marca" href="#inicio" aria-label="Rose Oliveira Terapias"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M20 35c0-9 0-15 0-22"/><path d="M20 22c-6 0-10-4-11-10 6 0 10 4 11 10Z"/><path d="M20 17c5 0 9-3 10-9-5 0-9 3-10 9Z"/><circle cx="20" cy="20" r="18" opacity=".35"/></svg><div><b>Rose Oliveira</b><span>Terapias para elevar a alma</span></div></a>
+    <nav class="menu" aria-label="Seções"><a href="#sobre">Sobre</a><a href="#terapias">Terapias</a><a href="#online">Sessão online</a><a href="#produtos">Produtos</a><a href="#duvidas">Dúvidas</a></nav>
+    <a class="btn cheio" href="#agenda">Agendar</a>
+  </div>
+</header>
+
+<main id="inicio">
+<div class="w hero">
+  <div>
+    <span class="olho">Terapeuta energética</span>
+    <h1>Equilíbrio para corpo, mente e <em>espírito</em></h1>
+    <p>Sessões de terapia energética, mesa radiônica, radiestesia, reiki e florais. Um momento de pausa, cuidado e reconexão com você mesma.</p>
+    <div class="btns"><a class="btn cheio" href="#agenda">Agendar minha sessão</a><a class="btn" href="#terapias">Conhecer as terapias</a></div>
+    <div class="local"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12Z"/><circle cx="12" cy="9" r="2.4"/></svg>Sete Lagoas, MG</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Online para todo o Brasil</span></div>
+  </div>
+  <div class="arco"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/rose-natureza.jpg" alt="Rose Oliveira em meio à natureza" fetchpriority="high"><div class="selo"><b>Sessão online</b>Do conforto da sua casa, com a mesma atenção.</div></div>
+</div>
+
+<div class="faixa" aria-hidden="true"><div class="trilho" id="trilho"></div></div>
+
+<section id="sobre">
+  <div class="w sobre">
+    <div class="fotos2 revela"><img class="a" src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/rose-retrato.jpg" alt="Retrato da terapeuta Rose Oliveira" loading="lazy"><img class="b" src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/rose-mesa.jpg" alt="Rose preparando uma sessão" loading="lazy"></div>
+    <div class="revela">
+      <span class="olho">Prazer, sou a Rose</span>
+      <h2>Cuidar da energia é cuidar da vida inteira</h2>
+      <p>Sou terapeuta energética e trabalho com terapias integrativas que ajudam a desacelerar, organizar as emoções e trazer mais harmonia para o dia a dia, para você, para os seus relacionamentos e para a sua casa.</p>
+      <p>Cada sessão é preparada com atenção e intenção. Atendo no meu espaço em Sete Lagoas e online, para qualquer lugar do Brasil.</p>
+      <p class="citacao">“Quem olha para fora sonha. Quem olha para dentro desperta.”</p>
+    </div>
+  </div>
+</section>
+
+<section class="terapias" id="terapias">
+  <div class="w">
+    <div class="cab revela"><div><span class="olho">Terapias</span><h2>Escolha o seu cuidado</h2></div><p>Não sabe por onde começar? Agende uma conversa inicial e a Rose indica a terapia que combina com o seu momento.</p></div>
+    <div class="grade">
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/mesa-radionica.jpg" alt="Mesa radiônica com cristais" loading="lazy"><div><span class="modo">Online e presencial</span><h3>Mesa Radiônica</h3><p>Harmonização energética com foco no que você quer equilibrar: relacionamentos, prosperidade, proteção ou a energia da casa.</p><a href="#agenda" data-serv="Mesa Radiônica">Agendar</a></div></article>
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/pendulo.jpg" alt="Pêndulo de radiestesia sobre gráfico" loading="lazy"><div><span class="modo">Online e presencial</span><h3>Radiestesia</h3><p>Leitura e alinhamento do campo energético com pêndulo e gráficos, para entender o que pede atenção agora.</p><a href="#agenda" data-serv="Radiestesia">Agendar</a></div></article>
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/rose-mandala.jpg" alt="Rose Oliveira em sessão de reiki" loading="lazy"><div><span class="modo">Online e presencial</span><h3>Reiki</h3><p>Técnica de imposição de mãos para relaxamento profundo e reequilíbrio da energia vital.</p><a href="#agenda" data-serv="Reiki">Agendar</a></div></article>
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/cristais-mapa.jpg" alt="Cristais sobre o mapa dos chakras" loading="lazy"><div><span class="modo">Presencial</span><h3>Cristais e chakras</h3><p>Alinhamento dos chakras com cristais escolhidos para a sua sessão, num momento de pausa e acolhimento.</p><a href="#agenda" data-serv="Cristais e chakras">Agendar</a></div></article>
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/oraculo.jpg" alt="Cartas de oráculo e ervas" loading="lazy"><div><span class="modo">Online e presencial</span><h3>Florais e oráculo</h3><p>Uma conversa guiada pelas cartas e a indicação de florais para acompanhar a sua fase.</p><a href="#agenda" data-serv="Florais e oráculo">Agendar</a></div></article>
+      <article class="ter revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/mesa-cristais.jpg" alt="Mesa com cristais para harmonização" loading="lazy"><div><span class="modo">Online</span><h3>Harmonização do lar</h3><p>Limpeza e harmonização da energia da sua casa, feita a distância, com orientações para manter o ambiente leve.</p><a href="#agenda" data-serv="Harmonização do lar">Agendar</a></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="online">
+  <div class="w online">
+    <div class="revela">
+      <span class="olho">Sessão online</span>
+      <h2>A distância não muda o cuidado</h2>
+      <p>Muitas terapias energéticas funcionam a distância. Você recebe a sessão em casa, num horário tranquilo, e a Rose acompanha cada etapa com você.</p>
+      <div class="passos">
+        <div class="passo"><div><b>Escolha o horário</b><span>Na agenda abaixo, em menos de um minuto.</span></div></div>
+        <div class="passo"><div><b>Conversa inicial</b><span>A Rose entende o que você quer cuidar e prepara a sessão.</span></div></div>
+        <div class="passo"><div><b>Sua sessão</b><span>Por chamada de vídeo ou a distância, com você em um lugar calmo.</span></div></div>
+        <div class="passo"><div><b>Orientações depois</b><span>Você recebe o retorno da sessão e dicas para os próximos dias.</span></div></div>
+      </div>
+    </div>
+    <img class="revela" src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/cristais-verdes.jpg" alt="Cristais verdes sobre trama natural" loading="lazy">
+  </div>
+</section>
+
+<section class="produtos" id="produtos">
+  <div class="w">
+    <div class="cab revela"><div><span class="olho">Feitos à mão</span><h2>Para levar o cuidado para casa</h2></div><p>Produtos preparados pela Rose, sob encomenda. Peça junto com a sua sessão.</p></div>
+    <div class="prods">
+      <div class="prod revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/sal-banho.jpg" alt="Sais de banho com ervas" loading="lazy"><h3>Sais de banho</h3><p>Sal grosso com ervas para um banho de renovação.</p></div>
+      <div class="prod revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/frasco.jpg" alt="Frasco artesanal com ervas" loading="lazy"><h3>Kits energéticos</h3><p>Ervas e cristais selecionados para o seu momento.</p></div>
+      <div class="prod revela"><img src="https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/rose/cristais-verdes.jpg" alt="Cristais" loading="lazy"><h3>Cristais</h3><p>Escolhidos e energizados um a um.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="agendar">
+  <div class="w">
+    <div class="agenda revela" id="agenda">
+      <aside class="ag-lado"><span class="olho">Agenda online</span><h3>Reserve o seu momento</h3><p>Escolha a terapia, o formato, o dia e a hora. A Rose confirma a sua reserva em seguida.</p>
+        <div class="ag-resumo"><div><span>Terapia</span><b id="r-serv">—</b></div><div><span>Formato</span><b id="r-modo">—</b></div><div><span>Data</span><b id="r-dia">—</b></div><div><span>Horário</span><b id="r-hora">—</b></div></div></aside>
+      <div class="ag-corpo" id="ag-corpo">
+        <p class="ag-passo">1 · Terapia</p><div class="chips" id="ag-servs"></div>
+        <p class="ag-passo">2 · Formato</p><div class="chips" id="ag-modo"><button type="button" class="chip" aria-pressed="false">Online</button><button type="button" class="chip" aria-pressed="false">Presencial em Sete Lagoas</button></div>
+        <p class="ag-passo">3 · Dia</p>
+        <div class="ag-mes"><button id="m-ant" aria-label="Mês anterior">‹</button><b id="m-nome"></b><button id="m-prox" aria-label="Próximo mês">›</button></div>
+        <div class="cal" id="cal"></div>
+        <div id="ag-h" hidden><p class="ag-passo">4 · Horário</p><div class="chips" id="ag-horas"></div></div>
+        <form class="ag-form" id="ag-form" hidden novalidate><p class="ag-passo full">5 · Seus dados</p>
+          <label>Nome<input id="f-nome" autocomplete="name" required></label>
+          <label>WhatsApp<input id="f-zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(31) 9 0000-0000" required></label>
+          <label class="full">Quer contar algo antes da sessão? (opcional)<textarea id="f-obs" rows="2" placeholder="Ex.: é a minha primeira sessão"></textarea></label>
+          <p class="ag-erro" id="f-erro" hidden></p>
+          <button class="btn cheio" id="f-env" type="submit">Confirmar reserva</button>
+          <p class="ag-aviso">A Rose confirma a sua reserva pelo WhatsApp e envia as orientações da sessão.</p></form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cursos" id="cursos">
+  <div class="w revela"><span class="olho">Em breve</span><h2>Cursos para você aprender a cuidar da sua energia</h2><p>A Rose está preparando os primeiros cursos online. Agende uma sessão e seja das primeiras a saber quando abrirem as turmas.</p><a class="btn" href="https://instagram.com/roseoliveira_terapias" target="_blank" rel="noopener">Acompanhar no Instagram</a></div>
+</section>
+
+<section id="duvidas">
+  <div class="w">
+    <div class="cab revela" style="justify-content:center;text-align:center"><div><span class="olho">Dúvidas</span><h2>Antes de agendar</h2></div></div>
+    <div class="faq revela">
+      <details><summary>A sessão online funciona mesmo a distância?</summary><p>Sim. As terapias energéticas como mesa radiônica, radiestesia e reiki podem ser feitas a distância. Você só precisa estar em um lugar tranquilo no horário combinado.</p></details>
+      <details><summary>Nunca fiz terapia energética. Por onde começo?</summary><p>Na agenda, escolha a terapia que mais chamou a sua atenção, ou conte nas observações que é a sua primeira vez. Na conversa inicial a Rose indica o melhor caminho.</p></details>
+      <details><summary>Quanto tempo dura uma sessão?</summary><p>Em média uma hora, contando a conversa inicial e as orientações no final.</p></details>
+      <details><summary>Onde é o atendimento presencial?</summary><p>No espaço da Rose, em Sete Lagoas, MG. O endereço é enviado na confirmação da reserva.</p></details>
+      <details><summary>Posso remarcar?</summary><p>Pode. Avise com antecedência e a Rose encontra um novo horário para você.</p></details>
+    </div>
+    <p class="aviso revela">As terapias integrativas são um complemento de cuidado e bem-estar. Elas não substituem diagnóstico, tratamento ou acompanhamento médico e psicológico.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="w">
+    <div class="cols">
+      <div><a class="marca" href="#inicio"><div><b>Rose Oliveira</b></div></a><p style="max-width:300px;margin-top:14px">Terapias integrativas para corpo, mente e espírito. Sete Lagoas e online.</p></div>
+      <div><h5>Atendimento</h5><span>Sete Lagoas, MG</span><span style="display:block">Online para todo o Brasil</span><a href="https://instagram.com/roseoliveira_terapias" target="_blank" rel="noopener">Instagram @roseoliveira_terapias</a></div>
+      <div><h5>Navegue</h5><a href="#terapias">Terapias</a><a href="#online">Sessão online</a><a href="#produtos">Produtos</a><a href="#agenda">Agendar</a></div>
+    </div>
+    <div class="base"><span>© 2026 Rose Oliveira Terapias</span><span>Site por Hélice Sites &amp; Sistemas</span></div>
+  </div>
+</footer>
+<a class="flut" href="#agenda" aria-label="Agendar sessão"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span>Agendar</span></a>
+<script src="/v.js" defer></script>
+<script>
+const itens=['Mesa Radiônica','Radiestesia','Reiki','Florais','Cristais','Harmonização do lar','Oráculo','Sessão online'];
+document.getElementById('trilho').innerHTML=[...itens,...itens].map(t=>`<span>${t}</span>`).join('');
+const topo=document.getElementById('topo');const solid=()=>topo.classList.toggle('solido',scrollY>40);addEventListener('scroll',solid,{passive:true});solid();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll('.revela').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight)el.classList.add('vis');else io.observe(el)});
+/* agenda online */
+(()=>{
+const SB='https://ryhyvzwqtktaaonznizn.supabase.co',K='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0';
+const rpc=(f,b)=>fetch(SB+'/rest/v1/rpc/'+f,{method:'POST',headers:{apikey:K,Authorization:'Bearer '+K,'Content-Type':'application/json'},body:JSON.stringify(b)}).then(r=>r.json());
+const SERV=['Conversa inicial','Mesa Radiônica','Radiestesia','Reiki','Cristais e chakras','Florais e oráculo','Harmonização do lar'];
+const HORAS=['09:00','10:30','14:00','15:30','17:00','19:00'], HSAB=['09:00','10:30'];
+const $=i=>document.getElementById(i), iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const hoje=new Date();hoje.setHours(0,0,0,0);
+let st={serv:null,modo:null,dia:null,hora:null}, mes=new Date(hoje.getFullYear(),hoje.getMonth(),1), OC={};
+const servs=$('ag-servs'), modos=$('ag-modo');
+servs.innerHTML=SERV.map(x=>`<button type="button" class="chip" aria-pressed="false">${x}</button>`).join('');
+const marca=(box,t)=>[...box.children].forEach(c=>c.setAttribute('aria-pressed',c.textContent===t));
+function escolheServ(n){st.serv=n;marca(servs,n);resumo()}
+servs.onclick=e=>{if(e.target.matches('.chip'))escolheServ(e.target.textContent)};
+modos.onclick=e=>{if(e.target.matches('.chip')){st.modo=e.target.textContent;marca(modos,st.modo);resumo()}};
+document.querySelectorAll('[data-serv]').forEach(a=>a.addEventListener('click',()=>escolheServ(a.dataset.serv)));
+function resumo(){$('r-serv').textContent=st.serv||'—';$('r-modo').textContent=st.modo?(st.modo.startsWith('Online')?'Online':'Presencial'):'—';$('r-dia').textContent=st.dia?new Date(st.dia+'T12:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'long'}):'—';$('r-hora').textContent=st.hora||'—';$('ag-form').hidden=!(st.serv&&st.modo&&st.dia&&st.hora)}
+async function carregaMes(){const ini=new Date(mes),fim=new Date(mes.getFullYear(),mes.getMonth()+1,0);try{const r=await rpc('agenda_ocupados',{p_negocio:'rose',p_ini:iso(ini),p_fim:iso(fim)});OC={};(Array.isArray(r)?r:[]).forEach(x=>(OC[x.dia]=OC[x.dia]||[]).push(x.hora))}catch(e){OC={}}cal()}
+const horasDe=d=>new Date(d+'T12:00').getDay()===6?HSAB:HORAS;
+function livres(d){let h=horasDe(d).filter(x=>!(OC[d]||[]).includes(x));if(d===iso(hoje)){const agora=new Date().getHours()+2;h=h.filter(x=>+x.slice(0,2)>=agora)}return h}
+function cal(){
+  const t=mes.toLocaleDateString('pt-BR',{month:'long'});$('m-nome').textContent=t[0].toUpperCase()+t.slice(1)+' '+mes.getFullYear();
+  $('m-ant').disabled=mes<=new Date(hoje.getFullYear(),hoje.getMonth(),1);
+  $('m-prox').disabled=mes>=new Date(hoje.getFullYear(),hoje.getMonth()+3,1);
+  const dias=new Date(mes.getFullYear(),mes.getMonth()+1,0).getDate();
+  let h=['dom','seg','ter','qua','qui','sex','sáb'].map(x=>`<span class="sem">${x}</span>`).join('')+'<span></span>'.repeat(mes.getDay());
+  for(let i=1;i<=dias;i++){const d=new Date(mes.getFullYear(),mes.getMonth(),i),k=iso(d),off=d<hoje||d.getDay()===0||!livres(k).length;
+    h+=`<button type="button" data-d="${k}" ${off?'disabled':''} class="${k===st.dia?'sel':''} ${k===iso(hoje)?'hoje':''}" aria-label="${d.toLocaleDateString('pt-BR',{day:'numeric',month:'long'})}${off?', indisponível':''}">${i}</button>`}
+  $('cal').innerHTML=h;
+}
+$('cal').onclick=e=>{const b=e.target.closest('[data-d]');if(!b||b.disabled)return;st.dia=b.dataset.d;st.hora=null;cal();horas();resumo()};
+function horas(){const l=livres(st.dia);$('ag-h').hidden=false;$('ag-horas').innerHTML=horasDe(st.dia).map(x=>`<button type="button" class="chip" aria-pressed="${x===st.hora}" ${l.includes(x)?'':'disabled'}>${x}</button>`).join('')}
+$('ag-horas').onclick=e=>{if(!e.target.matches('.chip')||e.target.disabled)return;st.hora=e.target.textContent;horas();resumo();setTimeout(()=>$('ag-form').scrollIntoView({behavior:'smooth',block:'nearest'}),50)};
+$('m-ant').onclick=()=>{mes=new Date(mes.getFullYear(),mes.getMonth()-1,1);carregaMes()};
+$('m-prox').onclick=()=>{mes=new Date(mes.getFullYear(),mes.getMonth()+1,1);carregaMes()};
+$('f-zap').oninput=e=>{let v=e.target.value.replace(/\D/g,'').slice(0,11);e.target.value=v.length>6?`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`:v.length>2?`(${v.slice(0,2)}) ${v.slice(2)}`:v};
+$('ag-form').onsubmit=async e=>{e.preventDefault();const er=$('f-erro'),nome=$('f-nome').value.trim(),zap=$('f-zap').value.replace(/\D/g,'');er.hidden=true;
+  if(nome.length<2||zap.length<10){er.textContent='Preencha o seu nome e um WhatsApp com DDD.';er.hidden=false;return}
+  const b=$('f-env');b.disabled=true;b.textContent='Reservando…';
+  const obs=[st.modo,$('f-obs').value.trim()].filter(Boolean).join(' · ');
+  try{const r=await rpc('agenda_reservar',{p_negocio:'rose',p_servico:st.serv,p_dia:st.dia,p_hora:st.hora,p_nome:nome,p_zap:zap,p_obs:obs});
+    if(r&&r.ok){const d=new Date(st.dia+'T12:00');$('ag-corpo').innerHTML=`<div class="ag-ok"><div class="ic">✓</div><span class="olho">Reserva recebida</span><h3>Até ${d.toLocaleDateString('pt-BR',{weekday:'long'})}, ${nome.split(' ')[0]}!</h3><p>${st.serv} · ${st.modo.startsWith('Online')?'online':'presencial'} · ${d.toLocaleDateString('pt-BR',{day:'2-digit',month:'long'})} às ${st.hora}.</p><p>A Rose vai confirmar pelo WhatsApp e enviar as orientações. Até lá, cuide de você. 🌿</p></div>`;return}
+    er.textContent=r&&r.erro==='ocupado'?'Esse horário acabou de ser reservado. Escolha outro, por favor.':r&&r.erro==='limite'?'Você já fez reservas hoje. A Rose vai falar com você.':'Não consegui reservar agora. Tente de novo.';er.hidden=false;
+    if(r&&r.erro==='ocupado'){st.hora=null;await carregaMes();horas();resumo()}
+  }catch(x){er.textContent='Sem conexão. Tente de novo.';er.hidden=false}
+  b.disabled=false;b.textContent='Confirmar reserva'};
+carregaMes();
+})();
+</script>
+</body>
+</html>
