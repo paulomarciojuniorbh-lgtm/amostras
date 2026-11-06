@@ -6,16 +6,17 @@
 <title>Julliany Ferreira · Beauty Makeup em São Luís</title>
 <meta name="description" content="Maquiagem e penteado para noivas, debutantes, formandas e eventos em São Luís. Cursos de automaquiagem, formação profissional e mentoria de imagem.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#f7f4f1">
+<meta name="theme-color" content="#8d6364">
+<link rel="icon" href="img/favicon.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* Porcelana fria das fotos de estúdio, tinta café-escuro e um rosé dourado de pincel; galeria editorial como de revista de noivas */
+/* Identidade da marca: malva #8d6364, branco e dourado em gradiente; Italiana no lugar da Lastri (mesma linha fina e alta) e Montserrat no texto */
 :root{
-  --porcelana:#f7f4f1; --branco:#ffffff; --cafe:#241b17; --cafe-2:#4a3d36; --nude:#e9dfd8; --linha:#e3d9d1; --suave:#857670;
-  --rose:#b98472; --rose-escuro:#9a6a5a; --ouro:#c2a27a;
-  --f-titulo:"Italiana","Cormorant Garamond",Didot,serif; --f-serif:"Cormorant Garamond",Georgia,serif; --f-texto:"Manrope","Helvetica Neue",Arial,sans-serif;
+  --porcelana:#fbf8f7; --branco:#ffffff; --cafe:#2b1f20; --cafe-2:#4d3a3b; --nude:#efe5e3; --linha:#e8dddb; --suave:#8a7576; --malva:#8d6364;
+  --rose:#8d6364; --rose-escuro:#74504f; --ouro:#d8bc74; --ouro-grad:linear-gradient(100deg,#c4a052 0%,#ecd68c 30%,#fff6ce 50%,#e6cc84 70%,#be984a 100%);
+  --f-titulo:"Italiana","Cormorant Garamond",Didot,serif; --f-serif:"Cormorant Garamond",Georgia,serif; --f-texto:"Montserrat","Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -30,15 +31,18 @@ h2{font-size:clamp(38px,5vw,64px);line-height:1.05}
 h2 em,h1 em{font-family:var(--f-serif);font-style:italic;color:var(--rose)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:17px 32px;font:500 12px var(--f-texto);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:1px solid var(--cafe);color:var(--cafe);background:none;transition:background .3s,color .3s}
 .btn:hover{background:var(--cafe);color:var(--porcelana)}
-.btn.cheio{background:var(--cafe);color:var(--porcelana)}
+.btn.cheio{background:var(--malva);border-color:var(--malva);color:#fff}
 .btn.cheio:hover{background:var(--rose-escuro);border-color:var(--rose-escuro)}
 .link{font:500 12px var(--f-texto);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--rose);padding-bottom:4px}
 a:focus-visible,button:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
 /* topo */
 header{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .4s,box-shadow .4s}
-header.solido{background:rgba(247,244,241,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
+header.solido{background:rgba(251,248,247,.94);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--linha)}
 .tb{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
-.marca{text-decoration:none;line-height:1}
+.marca{text-decoration:none;line-height:1;display:flex;align-items:center;gap:12px}
+.marca .mono{height:46px;width:auto}
+.marca .word{height:30px;width:auto}
+@media (max-width:480px){.marca .word{height:24px}.marca .mono{height:38px}}
 .marca b{display:block;font:400 30px var(--f-titulo);letter-spacing:.06em}
 .marca span{display:block;font:500 9px var(--f-texto);letter-spacing:.5em;text-transform:uppercase;color:var(--suave);margin-top:6px}
 nav.menu{display:flex;gap:34px;font-size:12px;letter-spacing:.2em;text-transform:uppercase}
@@ -83,29 +87,31 @@ section{padding:120px 0}
 .galeria figure{margin:0 0 14px;break-inside:avoid;position:relative;overflow:hidden;cursor:zoom-in;background:var(--nude)}
 .galeria img{width:100%;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
 .galeria figure:hover img{transform:scale(1.05)}
-.galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(36,27,23,.65));color:#fff;font:italic 400 20px var(--f-serif);opacity:0;transition:opacity .4s}
+.galeria figcaption{position:absolute;left:0;right:0;bottom:0;padding:40px 16px 14px;background:linear-gradient(transparent,rgba(43,31,32,.65));color:#fff;font:italic 400 20px var(--f-serif);opacity:0;transition:opacity .4s}
 .galeria figure:hover figcaption{opacity:1}
-.zoom{position:fixed;inset:0;z-index:80;background:rgba(36,27,23,.94);display:grid;place-items:center;padding:30px}
+.zoom{position:fixed;inset:0;z-index:80;background:rgba(43,31,32,.94);display:grid;place-items:center;padding:30px}
 .zoom img{max-height:90vh;width:auto}
 .zoom button{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
 /* noivas */
-.noivas{background:var(--cafe);color:var(--porcelana)}
+.noivas{position:relative;background:var(--malva);color:var(--porcelana);overflow:hidden}
+.noivas::before{content:"";position:absolute;inset:0;background-image:url(img/jf-ouro.png),url(img/jf-ouro.png);background-size:86px auto,86px auto;background-position:0 0,86px 90px;background-repeat:repeat;background-blend-mode:normal;opacity:.09;pointer-events:none}
+.noivas>.w{position:relative}
 .noivas .sobre{color:var(--ouro)}
-.noivas h2 em{color:var(--ouro)}
-.noivas .cab p{color:#cdbfb6}
-.pacotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(194,162,122,.35)}
-.pac{background:var(--cafe);padding:44px 34px;display:flex;flex-direction:column;gap:22px}
-.pac.dest{background:#2f241f}
+.noivas h2 em{background:var(--ouro-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.noivas .cab p{color:#f1e6e4}
+.pacotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(216,188,116,.45)}
+.pac{background:#7c5657;padding:44px 34px;display:flex;flex-direction:column;gap:22px}
+.pac.dest{background:#6d4a4b}
 .pac .nome{font:400 46px var(--f-titulo);color:var(--porcelana)}
 .pac .tag{font:500 10px var(--f-texto);letter-spacing:.3em;text-transform:uppercase;color:var(--ouro)}
-.pac ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;color:#ddd1c8;font-size:15px}
+.pac ul{list-style:none;margin:0;padding:0;display:grid;gap:12px;color:#f3e9e7;font-size:15px}
 .pac li{display:flex;gap:12px;align-items:baseline}
 .pac li::before{content:"";width:16px;height:1px;background:var(--ouro);flex:none;transform:translateY(-4px)}
 .pac .btn{border-color:rgba(247,244,241,.5);color:var(--porcelana);margin-top:auto}
-.pac .btn:hover{background:var(--porcelana);color:var(--cafe)}
+.pac .btn:hover{background:var(--porcelana);color:var(--malva)}
 @media (max-width:900px){.pacotes{grid-template-columns:1fr}}
-.notas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:56px;border-top:1px solid rgba(194,162,122,.35);padding-top:40px}
-.notas div{font-size:14px;color:#cdbfb6}
+.notas{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:56px;border-top:1px solid rgba(216,188,116,.45);padding-top:40px}
+.notas div{font-size:14px;color:#f1e6e4}
 .notas b{display:block;font:400 26px var(--f-titulo);color:var(--porcelana);margin-bottom:6px}
 @media (max-width:860px){.notas{grid-template-columns:1fr 1fr}}
 /* serviços */
@@ -146,7 +152,7 @@ section{padding:120px 0}
 /* estúdio */
 .estudio{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;color:var(--porcelana)}
 .estudio img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.estudio::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(36,27,23,.88),rgba(36,27,23,.55) 55%,rgba(36,27,23,.2))}
+.estudio::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,31,32,.88),rgba(43,31,32,.55) 55%,rgba(43,31,32,.2))}
 .estudio .w{position:relative;width:100%}
 .estudio .caixa{max-width:540px}
 .estudio .sobre{color:var(--ouro)}
@@ -171,12 +177,12 @@ details p{margin:0 0 24px;color:var(--cafe-2);max-width:760px}
 .faq{max-width:900px;margin:0 auto;border-top:1px solid var(--linha)}
 /* agenda */
 .agenda{margin-top:80px;display:grid;grid-template-columns:300px 1fr;background:var(--branco);border:1px solid var(--linha);scroll-margin-top:110px}
-.ag-lado{background:var(--cafe);color:var(--porcelana);padding:38px 32px;display:flex;flex-direction:column;gap:18px}
+.ag-lado{background:var(--malva);color:var(--porcelana);padding:38px 32px;display:flex;flex-direction:column;gap:18px}
 .ag-lado .sobre{color:var(--ouro)}
 .ag-lado h3{font-size:38px;line-height:1.05}
-.ag-lado p{margin:0;color:#d9cbc2;font-size:14px}
-.ag-resumo{border-top:1px solid #4a3d36;padding-top:18px;font-size:14px;display:grid;gap:8px;margin-top:auto}
-.ag-resumo div{display:flex;justify-content:space-between;gap:10px}.ag-resumo span{color:#a8978d}.ag-resumo b{font-weight:500;text-align:right}
+.ag-lado p{margin:0;color:#f3e7e5;font-size:14px}
+.ag-resumo{border-top:1px solid rgba(255,255,255,.25);padding-top:18px;font-size:14px;display:grid;gap:8px;margin-top:auto}
+.ag-resumo div{display:flex;justify-content:space-between;gap:10px}.ag-resumo span{color:#e3cfcd}.ag-resumo b{font-weight:500;text-align:right}
 .ag-corpo{padding:34px 36px}
 .ag-passo{font:500 11px var(--f-texto);letter-spacing:.24em;text-transform:uppercase;color:var(--rose-escuro);margin:0 0 14px}
 .ag-servs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
@@ -214,15 +220,15 @@ details p{margin:0 0 24px;color:var(--cafe-2);max-width:760px}
 .final{text-align:center;padding:130px 0;background:var(--nude)}
 .final h2{font-size:clamp(44px,6vw,84px);margin:20px auto 22px;max-width:900px}
 .final p{color:var(--cafe-2);margin:0 auto 34px;max-width:520px}
-footer{background:var(--cafe);color:#cdbfb6;padding:70px 0 34px;font-size:14px}
+footer{background:var(--cafe);color:#d6c8c7;padding:70px 0 34px;font-size:14px}
 footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
 footer h5{color:var(--porcelana);font:500 11px var(--f-texto);letter-spacing:.24em;text-transform:uppercase;margin:0 0 16px}
 footer a{text-decoration:none;display:block;padding:3px 0}
 footer a:hover{color:var(--ouro)}
 footer .marca b{color:var(--porcelana)}
-footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+footer .base{border-top:1px solid #453334;margin-top:44px;padding-top:22px;font-size:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 @media (max-width:860px){footer .cols{grid-template-columns:1fr 1fr}}
-.zap{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:10px;background:var(--cafe);color:var(--porcelana);text-decoration:none;padding:14px 20px 14px 16px;font:500 11px var(--f-texto);letter-spacing:.2em;text-transform:uppercase;box-shadow:0 10px 30px rgba(36,27,23,.25)}
+.zap{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:50;display:flex;align-items:center;gap:10px;background:var(--malva);color:var(--porcelana);text-decoration:none;padding:14px 20px 14px 16px;font:500 11px var(--f-texto);letter-spacing:.2em;text-transform:uppercase;box-shadow:0 10px 30px rgba(43,31,32,.25)}
 .zap svg{width:22px;height:22px;fill:currentColor}
 @media (max-width:560px){.zap span{display:none}.zap{padding:15px;border-radius:50%}}
 .revela{opacity:0;transform:translateY(24px);transition:opacity 1s,transform 1s}
@@ -233,7 +239,7 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
 <body>
 <header id="topo">
   <div class="w tb">
-    <a class="marca" href="#inicio"><b>Julliany Ferreira</b><span>Beauty Makeup</span></a>
+    <a class="marca" href="#inicio" aria-label="Julliany Ferreira Beauty Makeup"><img class="mono" src="img/jf-mauve.png" alt=""><img class="word" src="img/wordmark-mauve.png" alt="Julliany Ferreira Beauty Makeup"></a>
     <nav class="menu" aria-label="Seções"><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#servicos">Serviços</a><a href="#cursos">Cursos</a><a href="#sobre">Sobre</a></nav>
     <a class="btn cheio" href="#agenda">Agendar</a>
     <button class="burger" id="abrir" aria-label="Abrir menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M3 8h18M3 16h18"/></svg></button>
@@ -369,7 +375,7 @@ footer .base{border-top:1px solid #3a2e28;margin-top:44px;padding-top:22px;font-
 <footer>
   <div class="w">
     <div class="cols">
-      <div><a class="marca" href="#inicio"><b>Julliany Ferreira</b><span>Beauty Makeup</span></a><p style="max-width:300px;margin-top:18px">Maquiagem e penteado para noivas, debutantes, formandas e eventos em São Luís.</p></div>
+      <div><a href="#inicio" aria-label="Julliany Ferreira Beauty Makeup"><img src="img/logo-ouro.png" alt="Julliany Ferreira Beauty Makeup" style="width:220px;height:auto" loading="lazy"></a><p style="max-width:300px;margin-top:18px">Maquiagem e penteado para noivas, debutantes, formandas e eventos em São Luís.</p></div>
       <div><h5>Atendimento</h5><span>WhatsApp (98) 98801-4170</span><a href="https://instagram.com/jullianymakeup" target="_blank" rel="noopener">Instagram @jullianymakeup</a></div>
       <div><h5>Estúdio</h5><span>Rua do Retiro, Cond. Gran Village Eldorado<br>Turu · São Luís, MA</span></div>
       <div><h5>Navegue</h5><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#cursos">Cursos</a><a href="#agenda">Agendar</a></div>
