@@ -152,12 +152,15 @@ section{padding:120px 0}
 /* estúdio */
 .estudio{position:relative;min-height:560px;display:flex;align-items:center;overflow:hidden;color:var(--porcelana)}
 .estudio img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.estudio::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,31,32,.88),rgba(43,31,32,.55) 55%,rgba(43,31,32,.2))}
+.estudio::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,31,32,.92),rgba(43,31,32,.72) 55%,rgba(43,31,32,.35))}
+@media (max-width:760px){.estudio::before{background:rgba(43,31,32,.8)}}
+.estudio h2 em{background:var(--ouro-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.estudio h2,.estudio p{text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .estudio .w{position:relative;width:100%}
 .estudio .caixa{max-width:540px}
 .estudio .sobre{color:var(--ouro)}
 .estudio h2{margin:18px 0}
-.estudio p{color:#e6dbd3}
+.estudio p{color:#f6eeec}
 .estudio .btns{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
 .estudio .btn{border-color:rgba(247,244,241,.6);color:var(--porcelana)}
 .estudio .btn:hover,.estudio .btn.cheio{background:var(--porcelana);color:var(--cafe);border-color:var(--porcelana)}
@@ -170,7 +173,8 @@ section{padding:120px 0}
 @media (max-width:900px){.passos{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.passos{grid-template-columns:1fr}}
 details{border-bottom:1px solid var(--linha)}
-summary{list-style:none;cursor:pointer;padding:24px 0;display:flex;justify-content:space-between;gap:20px;font:400 26px var(--f-titulo)}
+summary{list-style:none;cursor:pointer;padding:22px 0;display:flex;justify-content:space-between;align-items:center;gap:20px;font:500 18px/1.45 var(--f-texto);color:var(--cafe)}
+@media (max-width:560px){summary{font-size:16.5px}}
 summary::after{content:"+";font-family:var(--f-texto);font-weight:300;font-size:24px;color:var(--rose)}
 details[open] summary::after{content:"–"}
 details p{margin:0 0 24px;color:var(--cafe-2);max-width:760px}
