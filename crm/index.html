@@ -79,9 +79,9 @@ tbody tr.clic{cursor:pointer}tbody tr.clic:hover{background:var(--hover)}
 .painel .cab .fechar{margin-left:auto;background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--suave);padding:4px 8px}
 .painel .corpo{padding:16px 18px}
 .campos{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.campos label{display:grid;gap:4px;font-size:12.5px;color:var(--suave)}
+.campos label{display:grid;gap:4px;font-size:12.5px;color:var(--suave);min-width:0}
 .campos .full{grid-column:1/-1}
-.campos input,.campos select,.campos textarea{border:1px solid var(--linha);border-radius:10px;padding:9px 11px;background:var(--card);font-size:14.5px;color:var(--texto)}
+.campos input,.campos select,.campos textarea{width:100%;min-width:0;border:1px solid var(--linha);border-radius:10px;padding:9px 11px;background:var(--card);font-size:14.5px;color:var(--texto)}
 @media (max-width:560px){.campos{grid-template-columns:1fr}}
 /* checklist */
 .grupo{margin:18px 0 8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--suave)}
@@ -267,7 +267,7 @@ function checklist(l,metas){
     <div class="foto"><img hidden alt=""><label>📷 Foto<input type="file" accept="image/*" capture="environment" hidden></label></div></div></div>`).join('')}`).join('')}
   <label class="campos" style="display:grid;margin-top:16px"><span class="muted">Observação (opcional)</span><textarea id="c-obs" rows="2" placeholder="Ex.: gerente pediu mais produto para a ilha" style="border:1px solid var(--linha);border-radius:10px;padding:10px"></textarea></label></div>
   <div class="barra-fixa"><div><div class="pctg" id="c-pct">–</div><div class="muted" id="c-falta"></div></div><button class="btn" id="c-env" style="margin-left:auto;padding:13px 22px">Enviar checagem</button></div>`);
-  const atual=()=>{const r=metas.map(m=>ratio(V[m.ponto_id],m.meta)).filter(x=>x!=null);const falta=metas.filter(m=>V[m.ponto_id]==null).length;$('#c-pct').textContent=r.length?Math.round(r.reduce((a,b)=>a+b,0)/r.length*1000)/10+'%':'–';$('#c-pct').style.color=!r.length?'':r.reduce((a,b)=>a+b,0)/r.length>=.9?'var(--ok)':r.reduce((a,b)=>a+b,0)/r.length>=.7?'var(--med)':'var(--ruim)';$('#c-falta').textContent=falta?falta+' item(ns) sem resposta':'tudo respondido'};
+  const atual=()=>{const r=metas.map(m=>ratio(V[m.ponto_id],m.meta)).filter(x=>x!=null);const falta=metas.filter(m=>V[m.ponto_id]==null).length;$('#c-pct').textContent=r.length?String(Math.round(r.reduce((a,b)=>a+b,0)/r.length*1000)/10).replace('.',',')+'%':'–';$('#c-pct').style.color=!r.length?'':r.reduce((a,b)=>a+b,0)/r.length>=.9?'var(--ok)':r.reduce((a,b)=>a+b,0)/r.length>=.7?'var(--med)':'var(--ruim)';$('#c-falta').textContent=falta?falta+' item(ns) sem resposta':'tudo respondido'};
   document.querySelectorAll('.item').forEach(el=>{const id=+el.dataset.i;
     el.querySelectorAll('[data-d]').forEach(b=>b.onclick=()=>{V[id]=Math.max(0,(V[id]??0)+(+b.dataset.d));el.querySelector('output').textContent=V[id];atual()});
     el.querySelectorAll('.sn button').forEach(b=>b.onclick=()=>{V[id]=b.classList.contains('sim')?1:0;el.querySelectorAll('.sn button').forEach(x=>x.setAttribute('aria-pressed',x===b));atual()});
