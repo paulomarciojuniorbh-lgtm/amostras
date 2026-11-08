@@ -158,7 +158,7 @@ async function carregar(){
   D.P=Object.fromEntries(D.pessoas.map(p=>[p.id,p]));D.PT=Object.fromEntries(D.pontos.map(p=>[p.id,p]));
   $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b>${PERF[D.eu.perfil]} · <a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
   $('#sair').onclick=e=>{e.preventDefault();if(confirm('Sair deste aparelho? Para entrar de novo você vai precisar do seu link.')){try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
-  const abas=D.eu.perfil==='promotor'?[]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Lojas'],['equipe','Equipe'],['pend','Pendências']]:[['painel','Painel'],['lojas','Lojas'],['pend','Pendências']];
+  const abas=D.eu.perfil==='promotor'?[]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Lojas'],['equipe','Equipe'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar vendas']]:[['painel','Painel'],['lojas','Lojas'],['band','Bandeiras'],['pend','Pendências']];
   const n=$('#nav');n.hidden=!abas.length;n.innerHTML=abas.map(([k,t])=>`<button data-a="${k}" ${k===aba?'aria-current="page"':''}>${t}</button>`).join('');
   n.querySelectorAll('button').forEach(b=>b.onclick=()=>{aba=b.dataset.a;n.querySelectorAll('button').forEach(x=>x.toggleAttribute('aria-current',x===b));if(b.hasAttribute('aria-current'))b.setAttribute('aria-current','page');render();scrollTo(0,0)});
   render();
@@ -166,8 +166,8 @@ async function carregar(){
 function gate(msg){$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||'Acesse pelo seu link pessoal. Se você ainda não tem, peça ao seu executivo de contas.'}</p></div>`}
 function render(){
   if(D.eu.perfil==='promotor'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
-  $('#app').innerHTML=({painel:vPainel,lojas:vLojas,equipe:vEquipe,pend:vPend})[aba]();
-  ({lojas:ligarLojas,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel})[aba]?.();
+  $('#app').innerHTML=({painel:vPainel,lojas:vLojas,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
+  ({lojas:ligarLojas,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
 }
 const comProm=()=>D.lojas.filter(l=>l.promotor_id);
 const media=a=>a.length?Math.round(a.reduce((s,x)=>s+x,0)/a.length*10)/10:null;
@@ -189,6 +189,7 @@ function vPainel(){
     <div class="card"><h2>Execução semana a semana</h2>${H.length?`<div class="barras">${H.map(h=>`<div><em>${Math.round(h.pct)}%</em><i style="height:${Math.max(4,h.pct/max*100)}%;background:${h.pct>=90?'var(--ok)':h.pct>=70?'var(--med)':'var(--ruim)'}"></i><small>${dataBR(h.semana)}</small></div>`).join('')}</div>`:'<div class="vazio"><b>Ainda sem checagens</b>As barras aparecem quando os promotores começarem a enviar.</div>'}</div>
     <div class="card"><h2>Lojas abaixo de 80%</h2>${baixo.length?`<table><tbody>${baixo.map(l=>`<tr class="clic" data-loja="${l.id}"><td>${esc(l.nome)}<div class="muted">${esc(l.cidade||'')} ${esc(l.uf||'')}</div></td><td class="num">${pctPill(l.ult_pct)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio"><b>Nenhuma loja abaixo de 80%</b>Ou ainda não há checagens.</div>'}</div>
   </div>
+  ${cardVendas()}${cardAniv()}
   <div class="card"><h2>Por promotor</h2>${proms.length?`<div class="tab-scroll"><table><thead><tr><th>Promotor</th><th class="num">Lojas</th><th class="num">Checadas</th><th class="num">Execução</th></tr></thead><tbody>${proms.map(linhaP).join('')}</tbody></table></div>`:'<div class="vazio"><b>Nenhum promotor cadastrado</b>Cadastre a equipe na aba Equipe.</div>'}</div>
   ${D.eu.perfil==='exec'&&coords.length?`<div class="card"><h2>Por coordenador</h2><table><thead><tr><th>Coordenador</th><th class="num">Promotores</th><th class="num">Lojas</th><th class="num">Execução</th></tr></thead><tbody>${coords.map(c=>{const ls=L.filter(l=>l.coord_id===c.id);return `<tr><td>${esc(c.nome)}${c.teste?' <span class="pill p-nd">teste</span>':''}</td><td class="num">${proms.filter(p=>p.coord_id===c.id).length}</td><td class="num">${ls.length}</td><td class="num">${pctPill(media(ls.filter(l=>l.sem_pct!=null).map(l=>l.sem_pct)))}</td></tr>`}).join('')}</tbody></table></div>`:''}`;
 }
@@ -201,14 +202,14 @@ function vLojas(){
   <div class="filtros"><input id="f-q" placeholder="Buscar loja, cidade ou número" value="${esc(FL.q)}" aria-label="Buscar">
   <select id="f-b" aria-label="Bandeira"><option value="">Todas as bandeiras</option>${bands.map(b=>`<option ${FL.b===b?'selected':''}>${esc(b)}</option>`).join('')}</select>
   <select id="f-uf" aria-label="Estado"><option value="">UF</option>${ufs.map(u=>`<option ${FL.uf===u?'selected':''}>${u}</option>`).join('')}</select>
-  <select id="f-p" aria-label="Promotor"><option value="">Com e sem promotor</option><option value="com" ${FL.p==='com'?'selected':''}>Com promotor</option><option value="sem" ${FL.p==='sem'?'selected':''}>Sem promotor</option></select>
+  <select id="f-p" aria-label="Promotor"><option value="">Com e sem promotor</option><option value="com" ${FL.p==='com'?'selected':''}>Com promotor</option><option value="sem" ${FL.p==='sem'?'selected':''}>Sem promotor</option><option value="marca" ${FL.p==='marca'?'selected':''}>Com promotor de marca</option></select>
   <select id="f-s" aria-label="Situação"><option value="">Qualquer situação</option><option value="pend" ${FL.s==='pend'?'selected':''}>Não checada na semana</option><option value="baixo" ${FL.s==='baixo'?'selected':''}>Abaixo de 80%</option></select></div>
   <div class="card" style="padding:0"><div class="tab-scroll" id="t-lojas"></div></div>`;
 }
 function filtrarLojas(){
   const q=FL.q.toLowerCase();
-  const L=D.lojas.filter(l=>(!q||(l.nome+' '+l.id+' '+(l.cidade||'')).toLowerCase().includes(q))&&(!FL.b||l.bandeira===FL.b)&&(!FL.uf||l.uf===FL.uf)&&(!FL.p||(FL.p==='com')===!!l.promotor_id)&&(!FL.s||(FL.s==='pend'?l.sem_pct==null:(l.ult_pct!=null&&l.ult_pct<80))));
-  $('#t-lojas').innerHTML=L.length?`<table><thead><tr><th>Loja</th><th>Formato</th><th>Cidade</th><th>Promotor</th><th class="num">Semana</th><th class="num">Última</th></tr></thead><tbody>${L.slice(0,400).map(l=>`<tr class="clic" data-loja="${l.id}"><td><b>${esc(l.nome)}</b><div class="muted">#${l.id} · ${esc(l.bandeira)}</div></td><td>${FORM[l.formato]||'—'}${l.tamanho&&l.formato==='atacarejo'?' '+l.tamanho:''}</td><td>${esc(l.cidade||'—')}${l.uf?' · '+l.uf:''}</td><td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem promotor</span>'}</td><td class="num">${pctPill(l.sem_pct)}</td><td class="num muted">${dataBR(l.ult_sem)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio"><b>Nenhuma loja com esses filtros</b></div>';
+  const L=D.lojas.filter(l=>(!q||(l.nome+' '+l.id+' '+(l.cidade||'')).toLowerCase().includes(q))&&(!FL.b||l.bandeira===FL.b)&&(!FL.uf||l.uf===FL.uf)&&(!FL.p||(FL.p==='marca'?l.pmarca:(FL.p==='com')===!!l.promotor_id))&&(!FL.s||(FL.s==='pend'?l.sem_pct==null:(l.ult_pct!=null&&l.ult_pct<80))));
+  $('#t-lojas').innerHTML=L.length?`<table><thead><tr><th>Loja</th><th>Formato</th><th>Cidade</th><th>Promotor</th><th class="num">Semana</th><th class="num">Última</th></tr></thead><tbody>${L.slice(0,400).map(l=>`<tr class="clic" data-loja="${l.id}"><td><b>${esc(l.nome)}</b><div class="muted">#${l.id} · ${esc(l.bandeira)}</div></td><td>${FORM[l.formato]||'—'}${l.tamanho&&l.formato==='atacarejo'?' '+l.tamanho:''}</td><td>${esc(l.cidade||'—')}${l.uf?' · '+l.uf:''}</td><td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem promotor</span>'}${l.pmarca?' <span class="pill p-az" title="Promotor de marca">marca</span>':''}</td><td class="num">${pctPill(l.sem_pct)}</td><td class="num muted">${dataBR(l.ult_sem)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio"><b>Nenhuma loja com esses filtros</b></div>';
   document.querySelectorAll('#t-lojas [data-loja]').forEach(r=>r.onclick=()=>abrirLoja(+r.dataset.loja));
 }
 function ligarLojas(){
@@ -234,22 +235,28 @@ async function abrirLoja(id){
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px"><button class="btn" id="b-check" ${metas.length?'':'disabled'}>✓ Fazer checagem da semana</button>${l.gerente_tel?`<a class="btn zap" href="https://wa.me/${telZap(l.gerente_tel)}" target="_blank" rel="noopener">WhatsApp do gerente</a>`:''}</div>
     <div class="card"><h2>Equipe e dados da loja</h2>
       <div class="campos">
-        <label>Gerente<input id="l-gn" value="${esc(l.gerente_nome||'')}" ${ex?'':'disabled'}></label>
+        <label>Cidade<input id="l-ci" value="${esc(l.cidade||'')}" ${ex?'':'disabled'}></label>
+        <label>UF<input id="l-uf" value="${esc(l.uf||'')}" maxlength="2" style="text-transform:uppercase" ${ex?'':'disabled'}></label>
+        <label>Gerente da loja<input id="l-gn" value="${esc(l.gerente_nome||'')}" ${ex?'':'disabled'}></label>
         <label>Telefone do gerente<input id="l-gt" value="${esc(l.gerente_tel||'')}" inputmode="tel" ${ex?'':'disabled'}></label>
         <label>Promotor<select id="l-pr" ${ex?'':'disabled'}><option value="">Sem promotor</option>${proms.map(p=>`<option value="${p.id}" ${l.promotor_id===p.id?'selected':''}>${esc(p.nome)}</option>`).join('')}</select></label>
         <label>Coordenador<select id="l-co" ${ex?'':'disabled'}><option value="">—</option>${coords.map(p=>`<option value="${p.id}" ${l.coord_id===p.id?'selected':''}>${esc(p.nome)}</option>`).join('')}</select></label>
         <label>Tamanho${l.tamanho_proposta&&l.tamanho_proposta!==l.tamanho?` <span class="muted">(proposta trade: ${esc(l.tamanho_proposta)})</span>`:''}<select id="l-tm" ${ex?'':'disabled'}>${['','P','M','G'].map(t=>`<option ${l.tamanho===t||(!l.tamanho&&!t)?'selected':''} value="${t}">${t||'—'}</option>`).join('')}</select></label>
         <label>Check-outs / checkstands<div style="display:flex;gap:6px"><input id="l-co2" type="number" min="0" value="${l.checkouts??''}" placeholder="check-outs" ${ex?'':'disabled'} style="flex:1;min-width:0"><input id="l-cs" type="number" min="0" value="${l.checkstands??''}" placeholder="checkstands" ${ex?'':'disabled'} style="flex:1;min-width:0"></div></label>
+        <label>Aniversário do gerente<input id="l-gd" type="date" value="${l.gerente_nasc||''}" ${ex?'':'disabled'}></label>
+        <label style="align-content:end"><span style="display:flex;align-items:center;gap:8px;padding:10px 0;color:var(--texto);font-size:14.5px"><input type="checkbox" id="l-pm" ${l.promotor_marca?'checked':''} ${ex?'':'disabled'} style="width:18px;height:18px">Tem promotor de marca</span></label>
+        <label class="full">Promotor de marca: quem / de qual marca<input id="l-pmo" value="${esc(l.promotor_marca_obs||'')}" placeholder="Ex.: Nestlé, Bauducco, Arcor" ${ex?'':'disabled'}></label>
         <label class="full">Observações<textarea id="l-ob" rows="2" ${ex?'':'disabled'}>${esc(l.obs||'')}</textarea></label>
       </div>${ex?'<button class="btn sec" id="b-sl" style="margin-top:12px">Salvar dados da loja</button>':''}
     </div>
     <div class="card"><h2>Pontos do contrato (meta mensal)</h2>${metas.length?`<table><thead><tr><th>Ponto</th><th class="num">Meta</th><th class="num">Nesta semana</th></tr></thead><tbody>${metas.map(m=>`<tr><td>${esc(m.p.nome)}${m.p.periodicidade==='mensal'?' <span class="meta-tag">mensal</span>':''}${m.meta!=m.padrao&&m.padrao!=null?'<div class="muted">padrão do contrato: '+m.padrao+'</div>':''}</td><td class="num">${ex&&m.p.tipo!=='simnao'?`<input class="meta-in" type="number" min="0" value="${m.meta}" data-meta="${m.ponto_id}" aria-label="Meta">`:fmtMeta(m)}</td><td class="num">${m.atual==null?'<span class="muted">—</span>':m.p.tipo==='simnao'?(m.atual>=1?'Sim':'Não'):m.atual+(m.p.tipo==='pct'?'%':'')}</td></tr>`).join('')}</tbody></table>${ex?'<p class="muted" style="margin:10px 0 0">Mude a meta só nas lojas com exigência específica. Apague o número para voltar ao padrão do contrato.</p>':''}`:'<div class="vazio"><b>Sem pontos de contrato para este formato</b>Lojas Farma não têm ponto fixo no contrato.</div>'}</div>
+    ${vendasLoja(R)}
     <div class="card"><h2>Histórico de checagens</h2>${R.checagens.length?R.checagens.map(c=>`<div class="hist"><div style="display:flex;justify-content:space-between;gap:10px"><div><b>Semana de ${dataBR(c.semana)}</b><div class="muted">${esc(c.quem||'')} · ${new Date(c.quando).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</div></div>${pctPill(c.pct)}</div>${c.obs?`<p style="margin:6px 0 0">${esc(c.obs)}</p>`:''}<div class="fotos">${(c.itens||[]).filter(i=>i.foto).map(i=>`<a href="${pub(i.foto)}" target="_blank" rel="noopener" title="${esc(D.PT[i.ponto_id]?.nome)}"><img src="${pub(i.foto)}" alt="${esc(D.PT[i.ponto_id]?.nome)}" loading="lazy"></a>`).join('')}</div></div>`).join(''):'<div class="vazio"><b>Nenhuma checagem ainda</b></div>'}</div>
   </div>`);
   $('#b-check').onclick=()=>checklist(l,metas);
   if(ex){
     $('#l-pr').onchange=e=>{const p=D.P[e.target.value];if(p?.coord_id)$('#l-co').value=p.coord_id};
-    $('#b-sl').onclick=async()=>{const r=await rpc('crm_salvar_loja',{p_token:TOK,p:{id:l.id,gerente_nome:$('#l-gn').value.trim(),gerente_tel:$('#l-gt').value.trim(),promotor_id:$('#l-pr').value,coord_id:$('#l-co').value,tamanho:$('#l-tm').value,checkouts:$('#l-co2').value,checkstands:$('#l-cs').value,obs:$('#l-ob').value}}).catch(()=>({}));
+    $('#b-sl').onclick=async()=>{const r=await rpc('crm_salvar_loja',{p_token:TOK,p:{id:l.id,cidade:$('#l-ci').value,uf:$('#l-uf').value,gerente_nasc:$('#l-gd').value,promotor_marca:$('#l-pm').checked,promotor_marca_obs:$('#l-pmo').value.trim(),gerente_nome:$('#l-gn').value.trim(),gerente_tel:$('#l-gt').value.trim(),promotor_id:$('#l-pr').value,coord_id:$('#l-co').value,tamanho:$('#l-tm').value,checkouts:$('#l-co2').value,checkstands:$('#l-cs').value,obs:$('#l-ob').value}}).catch(()=>({}));
       if(r.ok){toast('Loja salva.');await recarregar();abrirLoja(l.id)}else toast('Não consegui salvar.')};
     document.querySelectorAll('[data-meta]').forEach(i=>i.onchange=async()=>{const v=i.value===''?null:+i.value;const r=await rpc('crm_salvar_meta',{p_token:TOK,p_loja:l.id,p_ponto:+i.dataset.meta,p_meta:v}).catch(()=>({}));toast(r.ok?'Meta atualizada.':'Não consegui salvar.');if(r.ok&&v===null)abrirLoja(l.id)});
   }
@@ -303,10 +310,11 @@ function ligarPromotor(){document.querySelectorAll('[data-loja]').forEach(b=>b.o
 /* ---------- equipe ---------- */
 const linkDe=t=>location.origin+location.pathname+'#t='+t;
 function vEquipe(){
-  const cs=D.pessoas.filter(p=>p.perfil==='coord'),ps=D.pessoas.filter(p=>p.perfil==='promotor');
-  const linha=p=>{const n=D.lojas.filter(l=>p.perfil==='promotor'?l.promotor_id===p.id:l.coord_id===p.id).length;return `<tr><td><b>${esc(p.nome)}</b>${p.teste?' <span class="pill p-nd">teste</span>':''}<div class="muted">${esc(p.telefone||'sem telefone')}${p.perfil==='promotor'?' · '+esc(D.P[p.coord_id]?.nome||'sem coordenador'):''}</div></td><td class="num">${n} lojas</td><td style="text-align:right;white-space:nowrap"><button class="btn sec peq" data-ed="${p.id}">Editar</button> ${p.perfil==='promotor'?`<button class="btn sec peq" data-at="${p.id}">Lojas</button> `:''}<button class="btn sec peq" data-cp="${p.id}">Copiar link</button> ${telZap(p.telefone)?`<a class="btn zap peq" target="_blank" rel="noopener" href="https://wa.me/${telZap(p.telefone)}?text=${encodeURIComponent(`Olá, ${p.nome.split(' ')[0]}! Este é o seu acesso ao Hélice CRM, onde você faz a checagem semanal das lojas. Salve este link: ${linkDe(p.token)}`)}">Enviar link</a>`:''}</td></tr>`};
+  const cs=D.pessoas.filter(p=>p.perfil==='coord'),ps=D.pessoas.filter(p=>p.perfil==='promotor'),es=D.pessoas.filter(p=>p.perfil==='exec');
+  const linha=p=>{const n=D.lojas.filter(l=>p.perfil==='promotor'?l.promotor_id===p.id:l.coord_id===p.id).length;return `<tr><td><b>${esc(p.nome)}</b>${p.teste?' <span class="pill p-nd">teste</span>':''}<div class="muted">${esc(p.telefone||'sem telefone')}${p.nascimento?' · 🎂 '+dataBR(p.nascimento):''}${p.perfil==='promotor'?' · '+esc(D.P[p.coord_id]?.nome||'sem coordenador'):''}</div></td><td class="num">${p.perfil==='exec'?'':n+' lojas'}</td><td style="text-align:right;white-space:nowrap"><button class="btn sec peq" data-ed="${p.id}">Editar</button> ${p.perfil==='promotor'?`<button class="btn sec peq" data-at="${p.id}">Lojas</button> `:''}<button class="btn sec peq" data-cp="${p.id}">Copiar link</button> ${telZap(p.telefone)?`<a class="btn zap peq" target="_blank" rel="noopener" href="https://wa.me/${telZap(p.telefone)}?text=${encodeURIComponent(`Olá, ${p.nome.split(' ')[0]}! Este é o seu acesso ao Hélice CRM, onde você faz a checagem semanal das lojas. Salve este link: ${linkDe(p.token)}`)}">Enviar link</a>`:''}</td></tr>`};
   return `<h1>Equipe</h1><p class="sub">Cada pessoa tem um link pessoal. Ela abre uma vez no celular e o acesso fica salvo.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn" data-novo="promotor">+ Promotor</button><button class="btn sec" data-novo="coord">+ Coordenador</button></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn" data-novo="promotor">+ Promotor</button><button class="btn sec" data-novo="coord">+ Coordenador</button><button class="btn sec" data-novo="exec">+ Executivo</button></div>
+  <div class="card"><h2>Executivos (${es.length})</h2><p class="muted" style="margin:-6px 0 8px">Veem e editam tudo, como você.</p><div class="tab-scroll"><table><tbody>${es.map(linha).join('')}</tbody></table></div></div>
   <div class="card"><h2>Coordenadores (${cs.length})</h2>${cs.length?`<div class="tab-scroll"><table><tbody>${cs.map(linha).join('')}</tbody></table></div>`:'<div class="vazio">Nenhum coordenador ainda.</div>'}</div>
   <div class="card"><h2>Promotores (${ps.length})</h2>${ps.length?`<div class="tab-scroll"><table><tbody>${ps.map(linha).join('')}</tbody></table></div>`:'<div class="vazio">Nenhum promotor ainda.</div>'}</div>`;
 }
@@ -318,15 +326,18 @@ function ligarEquipe(){
 }
 function formPessoa(p){
   const cs=D.pessoas.filter(x=>x.perfil==='coord');
-  abrir(`<div class="cab"><h1>${p.id?'Editar':'Novo'} ${p.perfil==='coord'?'coordenador':'promotor'}</h1><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  abrir(`<div class="cab"><h1>${p.id?'Editar':'Novo'} ${({coord:'coordenador',promotor:'promotor',exec:'executivo'})[p.perfil]}</h1><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
   <label class="full">Nome<input id="p-n" value="${esc(p.nome||'')}" autocomplete="off"></label>
   <label>WhatsApp<input id="p-t" value="${esc(p.telefone||'')}" inputmode="tel" placeholder="(98) 9 0000-0000"></label>
+  <label>Data de nascimento<input id="p-d" type="date" value="${p.nascimento||''}"></label>
   ${p.perfil==='promotor'?`<label>Coordenador<select id="p-c"><option value="">—</option>${cs.map(c=>`<option value="${c.id}" ${p.coord_id===c.id?'selected':''}>${esc(c.nome)}</option>`).join('')}</select></label>`:''}
   </div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="p-s">Salvar</button>${p.id?'<button class="btn sec" id="p-l">Gerar novo link</button><button class="btn sec" id="p-x" style="color:var(--ruim);background:var(--ruim-bg)">Desativar</button>':''}</div>
   ${p.id?'<p class="muted" style="margin:12px 0 0">Gerar novo link invalida o anterior. Use se o celular da pessoa for perdido ou ela sair da equipe.</p>':''}</div></div>`);
-  const salvar=async extra=>{const n=$('#p-n').value.trim();if(n.length<2){toast('Preencha o nome.');return}
-    const r=await rpc('crm_salvar_pessoa',{p_token:TOK,p:{id:p.id||null,nome:n,perfil:p.perfil,telefone:$('#p-t').value.trim(),coord_id:$('#p-c')?.value||'',...extra}}).catch(()=>({}));
-    if(!r.ok){toast('Não consegui salvar.');return}toast('Salvo.');await recarregar();fechar();render()};
+  let salvando=false;
+  const salvar=async extra=>{const n=$('#p-n').value.trim();if(n.length<2){toast('Preencha o nome.');return}if(salvando)return;salvando=true;$('#p-s').disabled=true;
+    const r=await rpc('crm_salvar_pessoa',{p_token:TOK,p:{id:p.id||null,nome:n,perfil:p.perfil,telefone:$('#p-t').value.trim(),nascimento:$('#p-d').value,coord_id:$('#p-c')?.value||'',...extra}}).catch(()=>({}));
+    salvando=false;$('#p-s').disabled=false;
+    if(!r.ok){toast('Não consegui salvar.');return}toast(r.duplicado?'Essa pessoa já estava cadastrada.':'Salvo.');await recarregar();fechar();render()};
   $('#p-s').onclick=()=>salvar({});
   if(p.id){$('#p-l').onclick=()=>confirm('Gerar um novo link? O link antigo para de funcionar.')&&salvar({novo_link:'true'});$('#p-x').onclick=()=>confirm('Desativar '+p.nome+'? O link para de funcionar.')&&salvar({ativo:false})}
 }
@@ -345,6 +356,105 @@ function atribuir(p){
 }
 
 /* ---------- pendências ---------- */
+/* ---------- vendas ---------- */
+const brl=v=>v==null?'—':Number(v).toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const ton=kg=>kg==null?'—':(kg/1000).toLocaleString('pt-BR',{maximumFractionDigits:1})+' t';
+const mesBR=m=>new Date(m+'T12:00').toLocaleDateString('pt-BR',{month:'short',year:'2-digit'}).replace('.','');
+const cresc=(a,b)=>!a||!b?null:Math.round((a/b-1)*1000)/10;
+const crescPill=c=>c==null?'<span class="pill p-nd">—</span>':`<span class="pill ${c>=0?'p-ok':'p-ruim'}">${c>0?'+':''}${String(c).replace('.',',')}%</span>`;
+function graficoVendas(V){
+  if(!V.length)return '';const ult=V[V.length-1].mes,doze=V.slice(-12),mx=Math.max(...V.map(v=>+v.valor||0),1);
+  const ant=m=>{const d=new Date(m+'T12:00');d.setFullYear(d.getFullYear()-1);const k=d.toISOString().slice(0,7)+'-01';return V.find(v=>v.mes===k)};
+  return `<div class="barras" style="height:170px">${doze.map(v=>{const a=ant(v.mes);return `<div title="${mesBR(v.mes)}: ${brl(v.valor)}${a?' · ano anterior '+brl(a.valor):''}"><em>${Math.round(v.valor/1000)}k</em><span style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%">${a?`<i style="height:${Math.max(3,a.valor/mx*100)}%;background:#c9d4f5;max-width:16px"></i>`:''}<i style="height:${Math.max(3,v.valor/mx*100)}%;max-width:16px"></i></span><small>${mesBR(v.mes)}</small></div>`}).join('')}</div><p class="muted" style="margin:8px 0 0"><span style="display:inline-block;width:10px;height:10px;background:var(--azul);border-radius:2px"></span> mês &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#c9d4f5;border-radius:2px"></span> mesmo mês do ano anterior</p>`;
+}
+function cardVendas(){
+  const V=D.vendas_mes||[];if(!V.length)return D.eu.perfil==='exec'?`<div class="card"><h2>Vendas</h2><div class="vazio"><b>Nenhuma venda carregada ainda</b>Use a aba "Importar vendas" para subir o arquivo do sistema.</div></div>`:'';
+  const s=(a,k)=>a.reduce((t,x)=>t+(+x[k]||0),0),u12=V.slice(-12),a12=V.slice(-24,-12);
+  const top=D.lojas.filter(l=>l.v12).map(l=>({l,c:cresc(l.v12,l.v12a)})).filter(x=>x.c!=null).sort((a,b)=>a.c-b.c);
+  return `<div class="kpis"><div class="kpi"><b>${brl(s(u12,'valor'))}</b><span>faturado em 12 meses</span></div><div class="kpi"><b>${ton(s(u12,'kg'))}</b><span>volume em 12 meses</span></div><div class="kpi"><b>${crescPill(cresc(s(u12,'valor'),s(a12,'valor')))}</b><span>crescimento × 12 meses anteriores</span></div><div class="kpi"><b>${mesBR(D.ult_mes_venda)}</b><span>último mês carregado</span></div></div>
+  <div class="grid2"><div class="card"><h2>Faturamento mês a mês</h2>${graficoVendas(V)}</div>
+  <div class="card"><h2>Lojas que mais caíram (12m × 12m)</h2>${top.length?`<table><tbody>${top.slice(0,8).map(x=>`<tr class="clic" data-loja="${x.l.id}"><td>${esc(x.l.nome)}<div class="muted">${brl(x.l.v12)}</div></td><td class="num">${crescPill(x.c)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio">Precisa de 2 anos de histórico para comparar.</div>'}</div></div>`;
+}
+function vendasLoja(R){
+  if(!R.vendas||!R.vendas.length)return '';const V=R.vendas,s=(a,k)=>a.reduce((t,x)=>t+(+x[k]||0),0),u12=V.slice(-12),a12=V.slice(-24,-12);
+  return `<div class="card"><h2>Vendas da loja</h2><div class="kpis" style="grid-template-columns:repeat(3,1fr)"><div class="kpi"><b style="font-size:20px">${brl(s(u12,'valor'))}</b><span>12 meses</span></div><div class="kpi"><b style="font-size:20px">${ton(s(u12,'kg'))}</b><span>volume 12 meses</span></div><div class="kpi"><b style="font-size:20px">${crescPill(cresc(s(u12,'valor'),s(a12,'valor')))}</b><span>× 12 meses anteriores</span></div></div>${graficoVendas(V)}
+  ${R.categorias&&R.categorias.length?`<h2 style="margin-top:18px">Por categoria (12 meses)</h2><table><tbody>${R.categorias.map(c=>`<tr><td>${esc(c.categoria)}</td><td class="num">${ton(c.kg)}</td><td class="num">${brl(c.valor)}</td></tr>`).join('')}</tbody></table>`:''}</div>`;
+}
+/* ---------- aniversários ---------- */
+function proxAniv(d){if(!d)return null;const h=new Date(D.hoje+'T12:00'),n=new Date(d+'T12:00');let p=new Date(h.getFullYear(),n.getMonth(),n.getDate(),12);if(p<new Date(h.getFullYear(),h.getMonth(),h.getDate(),0))p.setFullYear(p.getFullYear()+1);return Math.round((p-new Date(h.getFullYear(),h.getMonth(),h.getDate(),12))/864e5)}
+function cardAniv(){
+  const L=[];D.pessoas.forEach(p=>p.nascimento&&L.push({nome:p.nome,quem:PERF[p.perfil],d:p.nascimento,tel:p.telefone}));
+  D.lojas.forEach(l=>l.gerente_nasc&&L.push({nome:l.gerente||'Gerente',quem:'Gerente · '+l.nome,d:l.gerente_nasc,tel:l.gerente_tel}));
+  (D.contatos||[]).forEach(c=>c.nascimento&&L.push({nome:c.nome,quem:(c.cargo||'Contato')+' · '+c.bandeira,d:c.nascimento,tel:c.telefone}));
+  const P=L.map(x=>({...x,f:proxAniv(x.d)})).filter(x=>x.f!=null&&x.f<=30).sort((a,b)=>a.f-b.f);
+  return `<div class="card"><h2>🎂 Próximos aniversários (30 dias)</h2>${P.length?`<table><tbody>${P.map(x=>`<tr><td><b>${esc(x.nome)}</b><div class="muted">${esc(x.quem)}</div></td><td class="num">${new Date(x.d+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'})}</td><td class="num">${x.f===0?'<span class="pill p-ok">hoje!</span>':x.f===1?'<span class="pill p-med">amanhã</span>':'em '+x.f+' dias'}</td><td style="text-align:right">${telZap(x.tel)?`<a class="btn zap peq" target="_blank" rel="noopener" href="https://wa.me/${telZap(x.tel)}?text=${encodeURIComponent('Feliz aniversário, '+x.nome.split(' ')[0]+'! 🎉 Muita saúde e sucesso!')}">Parabéns</a>`:''}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio">Ninguém faz aniversário nos próximos 30 dias. Cadastre as datas na Equipe, nas lojas e nas Bandeiras.</div>'}</div>`;
+}
+/* ---------- bandeiras ---------- */
+function vBand(){
+  const B=[...new Set(D.lojas.map(l=>l.bandeira))].sort(),ex=D.eu.perfil==='exec';
+  return `<h1>Bandeiras</h1><p class="sub">Responsáveis de cada bandeira no Grupo Mateus: gerente, comprador, gerente regional…</p>
+  ${B.map(b=>{const C=(D.contatos||[]).filter(c=>c.bandeira===b),n=D.lojas.filter(l=>l.bandeira===b).length;return `<div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><h2 style="margin:0">${esc(b)}</h2><span class="muted">${n} lojas</span>${ex?`<button class="btn sec peq" data-nc="${esc(b)}" style="margin-left:auto">+ Responsável</button>`:''}</div>
+  ${C.length?`<table><tbody>${C.map(c=>`<tr><td><b>${esc(c.nome)}</b><div class="muted">${esc(c.cargo||'')}${c.email?' · '+esc(c.email):''}${c.nascimento?' · 🎂 '+dataBR(c.nascimento):''}</div></td><td style="text-align:right;white-space:nowrap">${telZap(c.telefone)?`<a class="btn zap peq" target="_blank" rel="noopener" href="https://wa.me/${telZap(c.telefone)}">WhatsApp</a> `:''}${ex?`<button class="btn sec peq" data-ec="${c.id}">Editar</button>`:''}</td></tr>`).join('')}</tbody></table>`:'<p class="muted" style="margin:6px 0 0">Nenhum responsável cadastrado.</p>'}</div>`}).join('')}`;
+}
+function ligarBand(){
+  document.querySelectorAll('[data-nc]').forEach(b=>b.onclick=()=>formContato({bandeira:b.dataset.nc}));
+  document.querySelectorAll('[data-ec]').forEach(b=>b.onclick=()=>formContato(D.contatos.find(c=>c.id==b.dataset.ec)));
+}
+function formContato(c){
+  abrir(`<div class="cab"><div><h1>${c.id?'Editar':'Novo'} responsável</h1><div class="muted">${esc(c.bandeira)}</div></div><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  <label class="full">Nome<input id="k-n" value="${esc(c.nome||'')}"></label><label>Cargo<input id="k-c" value="${esc(c.cargo||'')}" placeholder="Ex.: Gerente da bandeira, Comprador"></label>
+  <label>WhatsApp<input id="k-t" value="${esc(c.telefone||'')}" inputmode="tel"></label><label>E-mail<input id="k-e" type="email" value="${esc(c.email||'')}"></label><label>Data de nascimento<input id="k-d" type="date" value="${c.nascimento||''}"></label></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="k-s">Salvar</button>${c.id?'<button class="btn sec" id="k-x" style="color:var(--ruim);background:var(--ruim-bg)">Remover</button>':''}</div></div></div>`);
+  const go=async extra=>{const n=$('#k-n').value.trim();if(n.length<2&&!extra){toast('Preencha o nome.');return}$('#k-s').disabled=true;
+    const r=await rpc('crm_salvar_contato',{p_token:TOK,p:{id:c.id||null,bandeira:c.bandeira,nome:n,cargo:$('#k-c').value.trim(),telefone:$('#k-t').value.trim(),email:$('#k-e').value.trim(),nascimento:$('#k-d').value,...extra}}).catch(()=>({}));
+    $('#k-s').disabled=false;if(!r.ok){toast('Não consegui salvar.');return}toast('Salvo.');await recarregar();fechar();render()};
+  $('#k-s').onclick=()=>go();if(c.id)$('#k-x').onclick=()=>confirm('Remover '+c.nome+'?')&&go({excluir:'true'});
+}
+/* ---------- importar vendas ---------- */
+let IMP=null;
+function vImp(){
+  return `<h1>Importar vendas</h1><p class="sub">Suba a planilha (Excel ou CSV) que você extrai do sistema. A chave é a loja: a coluna da loja pode ter só o número ou "17 - MATEUS…".</p>
+  <div class="card"><h2>1 · Arquivo</h2><input type="file" id="i-f" accept=".xlsx,.xls,.csv"><p class="muted" style="margin:10px 0 0">Colunas que eu reconheço: <b>loja/filial</b>, <b>mês/data/período</b>, <b>volume</b> (kg ou t), <b>valor/faturamento</b> e, se tiver, <b>categoria</b> e <b>SKU</b>. Se a mesma loja e mês já existirem, os números são substituídos (não duplica).</p></div>
+  <div id="i-map"></div>`;
+}
+function ligarImp(){
+  $('#i-f').onchange=async e=>{const f=e.target.files[0];if(!f)return;$('#i-map').innerHTML='<div class="card"><p class="muted">Lendo arquivo…</p></div>';
+    try{await xlsxLib();const wb=XLSX.read(await f.arrayBuffer(),{cellDates:true});const ws=wb.Sheets[wb.SheetNames[0]];const rows=XLSX.utils.sheet_to_json(ws,{defval:null,raw:true});
+      if(!rows.length)throw new Error('vazio');IMP={rows,cols:Object.keys(rows[0])};mapa()}catch(x){$('#i-map').innerHTML='<div class="card"><p style="color:var(--ruim)">Não consegui ler esse arquivo. Confira se é .xlsx ou .csv.</p></div>'}};
+}
+function xlsxLib(){return window.XLSX?Promise.resolve():new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+const norm=t=>String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function adivinha(re){return IMP.cols.find(c=>re.test(norm(c)))||''}
+function mapa(){
+  const C=IMP.cols,op=(id,g,lbl,obrig)=>`<label>${lbl}${obrig?'':' <span class="muted">(opcional)</span>'}<select id="${id}"><option value="">${obrig?'— escolha —':'— não tem —'}</option>${C.map(c=>`<option ${c===g?'selected':''}>${esc(c)}</option>`).join('')}</select></label>`;
+  $('#i-map').innerHTML=`<div class="card"><h2>2 · Colunas (${IMP.rows.length.toLocaleString('pt-BR')} linhas)</h2><div class="campos">
+  ${op('m-loja',adivinha(/loja|filial|cod.*loj/),'Loja',1)}${op('m-mes',adivinha(/mes|data|periodo|compet|ano.?mes/),'Mês',0)}
+  ${op('m-vol',adivinha(/volume|peso|kg|ton/),'Volume',0)}<label>Unidade do volume<select id="m-un"><option value="kg">kg</option><option value="t" ${/ton/.test(norm(adivinha(/volume|peso|kg|ton/)))?'selected':''}>toneladas</option><option value="un">unidades/caixas (guardo como está)</option></select></label>
+  ${op('m-val',adivinha(/valor|fatur|receita|venda|r\$/),'Valor faturado (R$)',0)}${op('m-cat',adivinha(/categ/),'Categoria',0)}${op('m-sku',adivinha(/sku|produto|material|item|cod.*prod/),'SKU / produto',0)}
+  <label>Mês para todas as linhas <span class="muted">(se o arquivo não tiver coluna de mês)</span><input id="m-mesfixo" type="month"></label></div>
+  <h2 style="margin-top:18px">3 · Prévia</h2><div class="tab-scroll" style="max-height:260px" id="m-prev"></div>
+  <button class="btn" id="m-go" style="margin-top:14px">Importar</button> <span class="muted" id="m-st"></span></div>`;
+  document.querySelectorAll('#i-map select,#i-map input').forEach(x=>x.onchange=prev);prev();
+  $('#m-go').onclick=importar;
+}
+function numBR(v){if(v==null||v==='')return null;if(typeof v==='number')return v;let s=String(v).replace(/[R$\s]/g,'');if(/,\d{1,3}$/.test(s)||(s.includes(',')&&s.includes('.')&&s.lastIndexOf(',')>s.lastIndexOf('.')))s=s.replace(/\./g,'').replace(',','.');else s=s.replace(/,/g,'');const n=parseFloat(s);return isNaN(n)?null:n}
+function mesDe(v){if(v==null||v==='')return null;if(v instanceof Date)return v.getFullYear()+'-'+String(v.getMonth()+1).padStart(2,'0')+'-01';if(typeof v==='number'&&v>20000&&v<80000){const d=new Date(Math.round((v-25569)*864e5));return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-01'}
+  const s=String(v).trim();let m;if(m=s.match(/^(\d{4})[-\/]?(\d{1,2})/))return m[1]+'-'+m[2].padStart(2,'0')+'-01';if(m=s.match(/^(\d{1,2})[-\/](\d{4})$/))return m[2]+'-'+m[1].padStart(2,'0')+'-01';if(m=s.match(/^\d{1,2}[-\/](\d{1,2})[-\/](\d{4})/))return m[2]+'-'+m[1].padStart(2,'0')+'-01';
+  const ms={jan:1,fev:2,mar:3,abr:4,mai:5,jun:6,jul:7,ago:8,set:9,out:10,nov:11,dez:12};if(m=norm(s).match(/(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez)[a-z]*[\s\/\-.]*(\d{2,4})/)){let y=+m[2];if(y<100)y+=2000;return y+'-'+String(ms[m[1]]).padStart(2,'0')+'-01'}return null}
+function linhas(){const g=id=>$('#'+id).value,un=g('m-un'),fx=g('m-mesfixo');
+  return IMP.rows.map(r=>{const lj=String(r[g('m-loja')]??'').match(/^\s*(\d+)/);let vol=g('m-vol')?numBR(r[g('m-vol')]):null;if(vol!=null&&un==='t')vol=vol*1000;
+    return {loja:lj?lj[1]:null,mes:g('m-mes')?mesDe(r[g('m-mes')]):(fx?fx+'-01':null),volume_kg:vol,valor:g('m-val')?numBR(r[g('m-val')]):null,categoria:g('m-cat')?String(r[g('m-cat')]??'').trim():'',sku:g('m-sku')?String(r[g('m-sku')]??'').trim():''}})}
+function prev(){if(!$('#m-loja').value){$('#m-prev').innerHTML='<p class="muted">Escolha a coluna da loja.</p>';return}
+  const L=linhas(),ok=L.filter(x=>x.loja&&x.mes),ruim=L.length-ok.length;
+  $('#m-prev').innerHTML=`<table><thead><tr><th>Loja</th><th>Mês</th><th>Categoria</th><th>SKU</th><th class="num">Volume (kg)</th><th class="num">Valor</th></tr></thead><tbody>${L.slice(0,12).map(x=>`<tr><td>${x.loja||'<span style="color:var(--ruim)">?</span>'}</td><td>${x.mes?mesBR(x.mes):'<span style="color:var(--ruim)">?</span>'}</td><td>${esc(x.categoria)}</td><td>${esc(x.sku)}</td><td class="num">${x.volume_kg??'—'}</td><td class="num">${brl(x.valor)}</td></tr>`).join('')}</tbody></table>`;
+  $('#m-st').textContent=`${ok.length.toLocaleString('pt-BR')} linhas válidas${ruim?' · '+ruim+' sem loja ou mês (serão ignoradas)':''}`}
+async function importar(){const L=linhas().filter(x=>x.loja&&x.mes);if(!L.length){toast('Nenhuma linha válida: confira as colunas de loja e mês.');return}
+  const b=$('#m-go');b.disabled=true;let tot=0,falt=new Set();
+  try{for(let i=0;i<L.length;i+=1500){$('#m-st').textContent=`Enviando ${Math.min(i+1500,L.length).toLocaleString('pt-BR')} de ${L.length.toLocaleString('pt-BR')}…`;
+      const r=await rpc('crm_importar_vendas',{p_token:TOK,p_linhas:L.slice(i,i+1500)});if(!r.ok)throw 0;tot+=r.gravadas;(r.lojas_nao_encontradas||[]).forEach(x=>falt.add(x))}
+    $('#m-st').innerHTML=`<b style="color:var(--ok)">Pronto: ${tot.toLocaleString('pt-BR')} registros gravados.</b>${falt.size?' Lojas não encontradas no CRM: '+[...falt].slice(0,30).join(', '):''}`;toast('Vendas importadas.');await recarregar();
+  }catch(e){$('#m-st').textContent='Parou no meio por falha de conexão. Pode importar o mesmo arquivo de novo: não duplica.';}b.disabled=false}
+
 function vPend(){
   const ps=D.pessoas.filter(p=>p.perfil==='promotor').map(p=>({p,f:D.lojas.filter(l=>l.promotor_id===p.id&&l.sem_pct==null)})).filter(x=>x.f.length);
   return `<h1>Pendências da semana</h1><p class="sub">Promotores com lojas ainda sem checagem na semana de ${dataBR(D.semana)}.</p>
