@@ -96,6 +96,7 @@ tbody tr.clic{cursor:pointer}tbody tr.clic:hover{background:var(--hover)}
 .step output{min-width:54px;text-align:center;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums}
 .sn{display:flex;border:1px solid var(--linha);border-radius:12px;overflow:hidden}
 .sn button{padding:12px 20px;border:0;background:var(--card);font-weight:600;cursor:pointer;min-width:72px}
+.sn button[aria-pressed=true][data-met]{background:var(--escuro);color:#fff}
 .sn button[aria-pressed=true].sim{background:var(--ok);color:#fff}
 .sn button[aria-pressed=true].nao{background:var(--ruim);color:#fff}
 .pctin{display:flex;align-items:center;gap:6px}
@@ -286,11 +287,16 @@ const ton=kg=>kg==null?'—':(kg/1000).toLocaleString('pt-BR',{maximumFractionDi
 const mesBR=m=>new Date(m+'T12:00').toLocaleDateString('pt-BR',{month:'short',year:'2-digit'}).replace('.','');
 const cresc=(a,b)=>!a||!b?null:Math.round((a/b-1)*1000)/10;
 const crescPill=c=>c==null?'<span class="pill p-nd">—</span>':`<span class="pill ${c>=0?'p-ok':'p-ruim'}">${c>0?'+':''}${String(c).replace('.',',')}%</span>`;
-function graficoVendas(V){
-  if(!V.length)return '';const ult=V[V.length-1].mes,doze=V.slice(-12),mx=Math.max(...V.map(v=>+v.valor||0),1);
-  const ant=m=>{const d=new Date(m+'T12:00');d.setFullYear(d.getFullYear()-1);const k=d.toISOString().slice(0,7)+'-01';return V.find(v=>v.mes===k)};
-  return `<div class="barras" style="height:170px">${doze.map(v=>{const a=ant(v.mes);return `<div title="${mesBR(v.mes)}: ${brl(v.valor)}${a?' · ano anterior '+brl(a.valor):''}"><em>${Math.round(v.valor/1000)}k</em><span style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%">${a?`<i style="height:${Math.max(3,a.valor/mx*100)}%;background:#c9d4f5;max-width:16px"></i>`:''}<i style="height:${Math.max(3,v.valor/mx*100)}%;max-width:16px"></i></span><small>${mesBR(v.mes)}</small></div>`}).join('')}</div><p class="muted" style="margin:8px 0 0"><span style="display:inline-block;width:10px;height:10px;background:var(--azul);border-radius:2px"></span> mês &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#c9d4f5;border-radius:2px"></span> mesmo mês do ano anterior</p>`;
+let MET='valor';const GV={};let gvN=0;
+function graficoVendas(V,id){
+  if(!V.length)return '';id=id||('gv'+(++gvN));GV[id]=V;const k=MET,doze=V.slice(-12),mx=Math.max(...doze.map(v=>+v[k]||0),...doze.map(v=>{const a=ant(v.mes);return a?+a[k]||0:0}),1);
+  function ant(m){const d=new Date(m+'T12:00');d.setFullYear(d.getFullYear()-1);const kk=d.toISOString().slice(0,7)+'-01';return V.find(v=>v.mes===kk)}
+  const fmt=v=>k==='valor'?brl(v):ton(v),curto=v=>k==='valor'?Math.round((+v||0)/1000)+'k':((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:(+v||0)<10000?1:0})+'t';
+  return `<div class="gv" id="${id}"><div class="sn" style="display:inline-flex;margin-bottom:6px"><button type="button" data-met="valor" aria-pressed="${k==='valor'}" style="padding:6px 12px;min-width:0">R$ vendas</button><button type="button" data-met="kg" aria-pressed="${k==='kg'}" style="padding:6px 12px;min-width:0">Toneladas</button></div>
+  <div class="barras" style="height:170px">${doze.map(v=>{const a=ant(v.mes);return `<div title="${mesBR(v.mes)}: ${fmt(v[k])}${a?' · ano anterior '+fmt(a[k]):''}"><em>${curto(v[k])}</em><span style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%">${a?`<i style="height:${Math.max(3,(+a[k]||0)/mx*100)}%;background:#c9d4f5;max-width:16px"></i>`:''}<i style="height:${Math.max(3,(+v[k]||0)/mx*100)}%;max-width:16px"></i></span><small>${mesBR(v.mes)}</small></div>`}).join('')}</div><p class="muted" style="margin:8px 0 0"><span style="display:inline-block;width:10px;height:10px;background:var(--azul);border-radius:2px"></span> mês &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#c9d4f5;border-radius:2px"></span> mesmo mês do ano anterior</p></div>`;
 }
+document.addEventListener('click',e=>{const b=e.target.closest('[data-met]');if(!b)return;MET=b.dataset.met;document.querySelectorAll('.gv').forEach(g=>{g.outerHTML=graficoVendas(GV[g.id],g.id)})});
+
 /* ---------- aniversários ---------- */
 function proxAniv(d){if(!d)return null;const h=new Date(D.hoje+'T12:00'),n=new Date(d+'T12:00');let p=new Date(h.getFullYear(),n.getMonth(),n.getDate(),12);if(p<new Date(h.getFullYear(),h.getMonth(),h.getDate(),0))p.setFullYear(p.getFullYear()+1);return Math.round((p-new Date(h.getFullYear(),h.getMonth(),h.getDate(),12))/864e5)}
 function cardAniv(){
