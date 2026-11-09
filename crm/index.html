@@ -289,11 +289,32 @@ const cresc=(a,b)=>!a||!b?null:Math.round((a/b-1)*1000)/10;
 const crescPill=c=>c==null?'<span class="pill p-nd">—</span>':`<span class="pill ${c>=0?'p-ok':'p-ruim'}">${c>0?'+':''}${String(c).replace('.',',')}%</span>`;
 let MET='valor';const GV={};let gvN=0;
 function graficoVendas(V,id){
-  if(!V.length)return '';id=id||('gv'+(++gvN));GV[id]=V;const k=MET,doze=V.slice(-12),mx=Math.max(...doze.map(v=>+v[k]||0),...doze.map(v=>{const a=ant(v.mes);return a?+a[k]||0:0}),1);
-  function ant(m){const d=new Date(m+'T12:00');d.setFullYear(d.getFullYear()-1);const kk=d.toISOString().slice(0,7)+'-01';return V.find(v=>v.mes===kk)}
-  const fmt=v=>k==='valor'?brl(v):ton(v),curto=v=>k==='valor'?Math.round((+v||0)/1000)+'k':((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:(+v||0)<10000?1:0})+'t';
-  return `<div class="gv" id="${id}"><div class="sn" style="display:inline-flex;margin-bottom:6px"><button type="button" data-met="valor" aria-pressed="${k==='valor'}" style="padding:6px 12px;min-width:0">R$ vendas</button><button type="button" data-met="kg" aria-pressed="${k==='kg'}" style="padding:6px 12px;min-width:0">Toneladas</button></div>
-  <div class="barras" style="height:170px">${doze.map(v=>{const a=ant(v.mes);return `<div title="${mesBR(v.mes)}: ${fmt(v[k])}${a?' · ano anterior '+fmt(a[k]):''}"><em>${curto(v[k])}</em><span style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%">${a?`<i style="height:${Math.max(3,(+a[k]||0)/mx*100)}%;background:#c9d4f5;max-width:16px"></i>`:''}<i style="height:${Math.max(3,(+v[k]||0)/mx*100)}%;max-width:16px"></i></span><small>${mesBR(v.mes)}</small></div>`}).join('')}</div><p class="muted" style="margin:8px 0 0"><span style="display:inline-block;width:10px;height:10px;background:var(--azul);border-radius:2px"></span> mês &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#c9d4f5;border-radius:2px"></span> mesmo mês do ano anterior</p></div>`;
+  if(!V.length)return '';id=id||('gv'+(++gvN));GV[id]=V;const k=MET;
+  const val=m=>{const v=V.find(x=>x.mes===m);return v?+v[k]||0:null},mk=(y,m)=>y+'-'+String(m).padStart(2,'0')+'-01';
+  const ult=V.map(v=>v.mes).sort().pop(),Y=+ult.slice(0,4),UM=+ult.slice(5,7);
+  // fator de tendência: acumulado do ano x mesmo período do ano anterior (só meses com base nos dois anos)
+  let sa=0,sb=0;for(let m=1;m<=UM;m++){const a=val(mk(Y,m)),b=val(mk(Y-1,m));if(a!=null&&b){sa+=a;sb+=b}}
+  const fator=sb>0?sa/sb:null;
+  const ult3=[UM,UM-1,UM-2].filter(m=>m>=1).map(m=>val(mk(Y,m))).filter(v=>v!=null),med3=ult3.length?ult3.reduce((a,b)=>a+b,0)/ult3.length:0;
+  const M=[];for(let m=1;m<=12;m++){const r=val(mk(Y,m)),a=val(mk(Y-1,m));let v=r,proj=false;
+    if(m>UM){proj=true;v=(fator!=null&&a)?a*fator:med3}
+    M.push({mes:mk(Y,m),v,a,proj})}
+  const mx=Math.max(...M.map(x=>Math.max(x.v||0,x.a||0)),1);
+  const fmt=v=>k==='valor'?brl(v):ton(v),curto=v=>k==='valor'?((+v||0)>=1e6?((+v)/1e6).toLocaleString('pt-BR',{maximumFractionDigits:1})+' mi':Math.round((+v||0)/1000)+'k'):((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:(+v||0)<10000?1:0})+'t';
+  const pct=x=>(x>0?'+':'')+(x*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'%',seta=(x,y)=>{if(x==null||!y)return '';const d=x/y-1;return `<b style="color:${d>=0?'var(--ok)':'var(--ruim)'};font-size:10px;display:block">${d>=0?'▲':'▼'}${Math.abs(Math.round(d*100))}%</b>`};
+  const tot=M.reduce((s,x)=>s+(x.v||0),0),totA=M.reduce((s,x)=>s+(x.a||0),0);
+  let r3=0,a3=0;[UM,UM-1,UM-2].filter(m=>m>=1).forEach(m=>{const r=val(mk(Y,m)),a=val(mk(Y-1,m));if(r!=null&&a){r3+=r;a3+=a}});
+  const chip=(t,x,sub)=>`<div style="flex:1;min-width:140px;background:var(--fundo);border-radius:10px;padding:8px 10px"><div class="muted" style="font-size:12px">${t}</div><div style="font-weight:700;color:${x==null?'inherit':x>=0?'var(--ok)':'var(--ruim)'}">${x==null?'sem base':(x>=0?'▲ ':'▼ ')+pct(x)}</div><div class="muted" style="font-size:11px">${sub}</div></div>`;
+  const nomeMes=m=>new Date(2000,m-1,15).toLocaleDateString('pt-BR',{month:'short'}).replace('.','');
+  return `<div class="gv" id="${id}"><div class="sn" style="display:inline-flex;margin-bottom:8px"><button type="button" data-met="valor" aria-pressed="${k==='valor'}" style="padding:6px 12px;min-width:0">R$ vendas</button><button type="button" data-met="kg" aria-pressed="${k==='kg'}" style="padding:6px 12px;min-width:0">Toneladas</button></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+   ${chip('Acumulado '+Y+' (jan–'+nomeMes(UM)+')',fator!=null?fator-1:null,fmt(sa)+' × '+fmt(sb))}
+   ${chip('Últimos 3 meses',a3?r3/a3-1:null,'vs mesmos meses de '+(Y-1))}
+   ${chip('Projeção '+Y+' fechado',totA?tot/totA-1:null,fmt(tot)+(totA?' × '+fmt(totA)+' em '+(Y-1):''))}
+  </div>
+  <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px"><div class="barras" style="height:190px;min-width:600px">${M.map(x=>`<div title="${mesBR(x.mes)}: ${x.v==null?'sem venda':fmt(x.v)}${x.proj?' (projeção)':''}${x.a!=null?' · '+(Y-1)+': '+fmt(x.a):''}"><em style="${x.proj?'color:var(--fraco);font-style:italic':''}">${x.v==null?'—':curto(x.v)}${x.proj?'':seta(x.v,x.a)}</em><span style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%">${x.a!=null?`<i style="height:${Math.max(3,x.a/mx*100)}%;background:#c9d4f5;max-width:16px"></i>`:''}<i style="height:${x.v==null?0:Math.max(3,x.v/mx*100)}%;max-width:16px;${x.proj?'background:repeating-linear-gradient(45deg,#8fb0f5 0 4px,#dfe8fd 4px 8px);outline:1.5px dashed #5b8def;outline-offset:-1.5px':''}"></i></span><small>${mesBR(x.mes)}</small></div>`).join('')}</div></div>
+  <p class="muted" style="margin:8px 0 0"><span style="display:inline-block;width:10px;height:10px;background:var(--azul);border-radius:2px"></span> ${Y} &nbsp; <span style="display:inline-block;width:10px;height:10px;background:#c9d4f5;border-radius:2px"></span> ${Y-1} &nbsp; <span style="display:inline-block;width:10px;height:10px;background:repeating-linear-gradient(45deg,#8fb0f5 0 3px,#dfe8fd 3px 6px);border-radius:2px"></span> projeção</p>
+  <p class="muted" style="margin:4px 0 0;font-size:12px">${UM<12?'Projeção de '+M.filter(x=>x.proj).map(x=>mesBR(x.mes)).join(', ')+': '+(fator!=null?'mesmo mês de '+(Y-1)+' × ritmo do acumulado do ano ('+pct(fator-1)+').':'média dos últimos 3 meses (sem base do ano anterior).'):''} ▲▼ = mês contra o mesmo mês de ${Y-1}.</p></div>`;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-met]');if(!b)return;MET=b.dataset.met;document.querySelectorAll('.gv').forEach(g=>{g.outerHTML=graficoVendas(GV[g.id],g.id)})});
 
