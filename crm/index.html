@@ -369,7 +369,7 @@ const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],[
 let FL={q:'',b:'',uf:'',seg:'todas',ord:'vendas'},PB='';
 
 function vPainel(){
-  const L=D.lojas,cont=media(L.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)),ytd=L.reduce((s,l)=>s+(+l.ytd||0),0),ant=L.reduce((s,l)=>s+(+l.ytd_ant||0),0);
+  const L=D.lojas,LF=PB?L.filter(l=>l.bandeira===PB):L,cont=media(LF.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)),ytd=LF.reduce((s,l)=>s+(+l.ytd||0),0),ant=LF.reduce((s,l)=>s+(+l.ytd_ant||0),0);
   const proms=D.pessoas.filter(p=>p.perfil==='promotor'),coords=D.pessoas.filter(p=>p.perfil==='coord'),H=D.historico.slice(-12);
   const LB=PB?L.filter(l=>l.bandeira===PB):L,conta=k=>LB.filter(SEG.find(s=>s[0]===k)[2]).length;
   const bands=[...new Set(L.map(l=>l.bandeira).filter(Boolean))].sort((a,b)=>L.filter(l=>l.bandeira===b).length-L.filter(l=>l.bandeira===a).length);
@@ -378,10 +378,10 @@ function vPainel(){
   const ac=(D.acoes||[]).slice(0,10);
   return `<h1>Painel da carteira</h1><p class="sub">${L.length} lojas${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
   <div class="kpis">
-    <div class="kpi"><b>${ytd?brl(ytd):'—'}</b><span>vendas no ano ${ant?varPill(var_(ytd,ant)):''}</span></div>
+    <div class="kpi"><b>${ytd?brl(ytd):'—'}</b><span>vendas no ano${PB?' · '+esc(PB.replace(/^\d+\s*-\s*/,'')):''} ${ant?varPill(var_(ytd,ant)):''}</span></div>
     <div class="kpi"><b>${conta('queda')}</b><span>lojas caindo × ano passado</span></div>
-    <div class="kpi"><b>${cont==null?'—':String(cont).replace('.',',')+'%'}</b><span>contrato médio (última checagem)</span></div>
-    <div class="kpi"><b>${L.filter(pendente).filter(l=>l.promotor_id).length}</b><span>checagens pendentes (${FREQ[D.freq]||D.freq})</span></div>
+    <div class="kpi"><b>${cont==null?'—':String(cont).replace('.',',')+'%'}</b><span>contrato médio (última checagem)${PB?' · '+esc(PB.replace(/^\d+\s*-\s*/,'')):''}</span></div>
+    <div class="kpi"><b>${LF.filter(pendente).filter(l=>l.promotor_id).length}</b><span>checagens pendentes (${FREQ[D.freq]||D.freq})</span></div>
   </div>
   <div class="card"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px"><h2 style="margin:0">Mapa rápido da carteira</h2><span class="muted">${LB.length} lojas · toque num grupo para ver a lista</span></div>
     <div class="chips-seg" id="pb">${[['','Todas as bandeiras',L.length],...bands.map(b=>[b,b.replace(/^\d+\s*-\s*/,''),L.filter(l=>l.bandeira===b).length])].map(([v,t,n])=>`<button data-pb="${esc(v)}" aria-pressed="${PB===v}">${esc(t)} <b>${n}</b></button>`).join('')}</div>
@@ -401,10 +401,12 @@ function ligarPainel(){document.querySelectorAll('[data-loja]').forEach(r=>r.onc
   document.querySelectorAll('[data-pb]').forEach(b=>b.onclick=()=>{PB=b.dataset.pb;const y=scrollY;render();scrollTo(0,y)})}
 function irPara(a){aba=a;document.querySelectorAll('#nav button').forEach(x=>{x.removeAttribute('aria-current');if(x.dataset.a===a)x.setAttribute('aria-current','page')});render();scrollTo(0,0)}
 function cardVendas(){
-  const V=D.vendas_mes||[];if(!V.length)return D.eu.perfil==='exec'?`<div class="card"><h2>Vendas</h2><div class="vazio"><b>Nenhuma venda carregada ainda</b>Use a aba "Importar dados".</div></div>`:'';
-  const caindo=D.lojas.filter(l=>l.ytd_ant>0).map(l=>({l,c:var_(l.ytd,l.ytd_ant),d:(l.ytd||0)-l.ytd_ant})).sort((a,b)=>a.d-b.d).slice(0,8);
-  return `<div class="grid2"><div class="card"><h2>Vendas mês a mês</h2>${graficoVendas(V)}</div>
-  <div class="card"><h2>Lojas que mais perderam no ano (R$)</h2><table><tbody>${caindo.map(x=>`<tr class="clic" data-loja="${x.l.id}"><td>${esc(x.l.nome)}<div class="muted">${brl(x.d)} · ${diagPill(x.l.diag)}</div></td><td class="num">${varPill(x.c)}</td></tr>`).join('')}</tbody></table></div></div>`;
+  const M={};(D.vendas_mes||[]).forEach(v=>{if(PB&&v.b!==PB)return;const m=M[v.mes]||(M[v.mes]={mes:v.mes,valor:0,kg:0});m.valor+=+v.valor||0;m.kg+=+v.kg||0});
+  const V=Object.values(M).sort((a,b)=>a.mes<b.mes?-1:1),nb=PB?' · '+esc(PB.replace(/^\d+\s*-\s*/,'')):'';
+  if(PB&&!V.length)return `<div class="card"><h2>Vendas mês a mês${nb}</h2><div class="vazio">Sem vendas carregadas para essa bandeira.</div></div>`;if(!V.length)return D.eu.perfil==='exec'?`<div class="card"><h2>Vendas</h2><div class="vazio"><b>Nenhuma venda carregada ainda</b>Use a aba "Importar dados".</div></div>`:'';
+  const caindo=D.lojas.filter(l=>l.ytd_ant>0&&(!PB||l.bandeira===PB)).map(l=>({l,c:var_(l.ytd,l.ytd_ant),d:(l.ytd||0)-l.ytd_ant})).sort((a,b)=>a.d-b.d).slice(0,8);
+  return `<div class="grid2"><div class="card"><h2>Vendas mês a mês${nb}</h2>${graficoVendas(V)}</div>
+  <div class="card"><h2>Lojas que mais perderam no ano (R$)${nb}</h2><table><tbody>${caindo.map(x=>`<tr class="clic" data-loja="${x.l.id}"><td>${esc(x.l.nome)}<div class="muted">${brl(x.d)} · ${diagPill(x.l.diag)}</div></td><td class="num">${varPill(x.c)}</td></tr>`).join('')}</tbody></table></div></div>`;
 }
 
 /* ---------- mapa da carteira ---------- */
