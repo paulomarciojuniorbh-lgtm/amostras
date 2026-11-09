@@ -339,12 +339,13 @@ const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],[
   ['c100','Contrato 100%',l=>l.ult_pct>=100],['c80','Contrato < 80%',l=>l.ult_pct!=null&&l.ult_pct<80],['nunca','Nunca checada',l=>l.ult_pct==null],
   ['cresc','Crescendo',l=>l.diag==='crescendo'],['queda','Caindo',l=>(l.diag||'').startsWith('queda')],['q_est','Queda · estoque',l=>l.diag==='queda_estoque'],
   ['q_grade','Queda · grade',l=>l.diag==='queda_grade'],['q_giro','Queda · giro',l=>l.diag==='queda_giro'],['rupt','Estoque zerado/negativo',l=>(l.neg||0)+(l.zero||0)>0]];
-let FL={q:'',b:'',uf:'',seg:'todas',ord:'vendas'};
+let FL={q:'',b:'',uf:'',seg:'todas',ord:'vendas'},PB='';
 
 function vPainel(){
   const L=D.lojas,cont=media(L.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)),ytd=L.reduce((s,l)=>s+(+l.ytd||0),0),ant=L.reduce((s,l)=>s+(+l.ytd_ant||0),0);
   const proms=D.pessoas.filter(p=>p.perfil==='promotor'),coords=D.pessoas.filter(p=>p.perfil==='coord'),H=D.historico.slice(-12);
-  const conta=k=>L.filter(SEG.find(s=>s[0]===k)[2]).length;
+  const LB=PB?L.filter(l=>l.bandeira===PB):L,conta=k=>LB.filter(SEG.find(s=>s[0]===k)[2]).length;
+  const bands=[...new Set(L.map(l=>l.bandeira).filter(Boolean))].sort((a,b)=>L.filter(l=>l.bandeira===b).length-L.filter(l=>l.bandeira===a).length);
   const segBtn=(k,cls)=>{const s=SEG.find(x=>x[0]===k);return `<button class="segb ${cls||''}" data-seg="${k}"><b>${conta(k)}</b><span>${s[1]}</span></button>`};
   const linhaP=p=>{const ls=L.filter(l=>l.promotor_id===p.id);return `<tr><td>${esc(p.nome)}<div class="muted">${esc(D.P[p.coord_id]?.nome||'sem coordenador')}</div></td><td class="num">${ls.length}</td><td class="num">${ls.filter(l=>!pendente(l)).length}/${ls.length}</td><td class="num">${pctPill(media(ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)))}</td></tr>`};
   const ac=(D.acoes||[]).slice(0,10);
@@ -355,7 +356,8 @@ function vPainel(){
     <div class="kpi"><b>${cont==null?'—':String(cont).replace('.',',')+'%'}</b><span>contrato médio (última checagem)</span></div>
     <div class="kpi"><b>${L.filter(pendente).filter(l=>l.promotor_id).length}</b><span>checagens pendentes (${FREQ[D.freq]||D.freq})</span></div>
   </div>
-  <div class="card"><h2>Mapa rápido da carteira</h2><p class="muted" style="margin:-6px 0 12px">Toque num grupo para ver as lojas.</p>
+  <div class="card"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px"><h2 style="margin:0">Mapa rápido da carteira</h2><span class="muted">${LB.length} lojas · toque num grupo para ver a lista</span></div>
+    <div class="chips-seg" id="pb">${[['','Todas as bandeiras',L.length],...bands.map(b=>[b,b.replace(/^\d+\s*-\s*/,''),L.filter(l=>l.bandeira===b).length])].map(([v,t,n])=>`<button data-pb="${esc(v)}" aria-pressed="${PB===v}">${esc(t)} <b>${n}</b></button>`).join('')}</div>
     <div class="segs">${segBtn('com')}${segBtn('sem')}${segBtn('marca')}${segBtn('c100','ok')}${segBtn('c80','ruim')}${segBtn('cresc','ok')}${segBtn('q_est','ruim')}${segBtn('q_grade','med')}${segBtn('q_giro','med')}${segBtn('rupt','ruim')}</div></div>
   <div class="grid2">
     <div class="card"><h2>📌 Próximas ações</h2>${ac.length?`<table><tbody>${ac.map(a=>`<tr class="clic" data-loja="${a.loja_id}"><td><b>${esc(a.proxima_acao)}</b><div class="muted">${esc(a.loja)}${a.quem?' · '+esc(a.quem):''}</div></td><td class="num">${a.prazo?`<span class="pill ${a.prazo<D.hoje?'p-ruim':a.prazo===D.hoje?'p-med':'p-nd'}">${dataBR(a.prazo)}</span>`:''}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio">Nenhuma ação em aberto. Registre visitas e próximos passos na ficha de cada loja.</div>'}</div>
@@ -368,7 +370,8 @@ function vPainel(){
   </div>`;
 }
 function ligarPainel(){document.querySelectorAll('[data-loja]').forEach(r=>r.onclick=()=>abrirLoja(+r.dataset.loja));
-  document.querySelectorAll('[data-seg]').forEach(b=>b.onclick=()=>{FL.seg=b.dataset.seg;irPara('lojas')})}
+  document.querySelectorAll('[data-seg]').forEach(b=>b.onclick=()=>{FL.seg=b.dataset.seg;FL.b=PB;irPara('lojas')});
+  document.querySelectorAll('[data-pb]').forEach(b=>b.onclick=()=>{PB=b.dataset.pb;const y=scrollY;render();scrollTo(0,y)})}
 function irPara(a){aba=a;document.querySelectorAll('#nav button').forEach(x=>{x.removeAttribute('aria-current');if(x.dataset.a===a)x.setAttribute('aria-current','page')});render();scrollTo(0,0)}
 function cardVendas(){
   const V=D.vendas_mes||[];if(!V.length)return D.eu.perfil==='exec'?`<div class="card"><h2>Vendas</h2><div class="vazio"><b>Nenhuma venda carregada ainda</b>Use a aba "Importar dados".</div></div>`:'';
