@@ -401,7 +401,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       const st = SITE[x.site_tipo] || [x.site_tipo, ""];
       return `<button type="button" class="row" data-id="${esc(x.place_id)}"><span class="score ${nivel(x._s)}" title="Índice de oportunidade">${x._s}</span>
         <span class="rinfo"><span class="rtitle">${esc(x.nome)}</span>
-        <span class="rmeta"><span class="estrela">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"}</span><span>${n(x.avaliacoes)} avaliações</span><span>${esc(x.bairro || "")}</span>${x.pos_cidade ? `<span>${x.pos_cidade}º no Google</span>` : ""}</span>
+        <span class="rmeta"><span class="estrela">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"}</span><span>${n(x.avaliacoes)} avaliações</span><span>${esc(x.bairro || "")}${!$("fCidade").value ? " · " + esc(x.cidade) : ""}</span>${x.pos_cidade ? `<span>${x.pos_cidade}º no Google</span>` : ""}</span>
         <span class="chips">${x._of[0] ? `<span class="chip acc">Oferecer: ${esc(x._of[0].curto)}</span>` : ""}${x.site_check === "link_quebrado" ? '<span class="chip mid">Link do Google quebrado</span>' : ""}${PILOTO[x.place_id] ? `<span class="chip pil">Piloto · Lote ${PILOTO[x.place_id][1]}</span>` : ""}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span>${x.instagram ? '<span class="chip">Tem Instagram</span>' : ""}<span class="chip">${esc((SEG[x.segmento] || [x.segmento])[0])}</span></span></span></button>`;
     }).join("") : `<div class="empty">Nenhuma empresa com esses filtros.</div>`;
     $("more").hidden = r.length <= shown;
@@ -508,7 +508,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   $("tFiltros").onclick = () => { const a = $("filtros").classList.toggle("aberto"); $("tFiltros").setAttribute("aria-expanded", a); $("tFiltros").textContent = a ? "Fechar filtros" : "Filtros"; };
   $("fCidade").addEventListener("input", () => { porCidade(); shown = 40; tudo(); });
   function porCidade() {
-    const c = $("fCidade").value; ALL = RAW.filter(x => x.cidade === c);
+    const c = $("fCidade").value; ALL = c ? RAW.filter(x => x.cidade === c) : RAW.slice();
     MED = {}; Object.keys(SEG).forEach(k => { const v = ALL.filter(x => x.segmento === k).map(x => +x.avaliacoes || 0).sort((a, b) => a - b); MED[k] = v.length ? v[Math.floor(v.length / 2)] : 0; });
     ALL.forEach(x => { x._of = ofertas(x); x._s = (x._of[0] || {}).fit || 0; });
     const bairros = [...new Set(ALL.map(x => x.bairro).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
@@ -575,7 +575,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
         try { await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: x.ab_status, p_nota: nota, p_valor: x.ab_valor ?? null, p_servico: x.ab_servico || null }); Object.assign(x, { ab_nota: nota, ab_em: new Date().toISOString() }); setTimeout(drawContatos, 600); } catch (_) {} });
       el.querySelector("[data-nota]").onclick = async () => { const t = prompt("Anotação (o que aconteceu, próximo passo):"); if (!t) return; const hoje = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }); const nota = ((x.ab_nota || "") + `\n${hoje}: ${t}`).trim();
         try { await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: x.ab_status, p_nota: nota, p_valor: x.ab_valor ?? null, p_servico: x.ab_servico || null }); Object.assign(x, { ab_nota: nota, ab_em: new Date().toISOString() }); toast("Anotado"); drawContatos(); } catch (e) { toast("Não salvou: " + e.message); } };
-      el.querySelector("[data-ficha]").onclick = () => { fecharContatos(); if ($("fCidade").value !== x.cidade) { $("fCidade").value = x.cidade; porCidade(); tudo(); } abrir(ALL.find(z => z.place_id === x.place_id)); };
+      el.querySelector("[data-ficha]").onclick = () => { fecharContatos(); if ($("fCidade").value && $("fCidade").value !== x.cidade) { $("fCidade").value = x.cidade; porCidade(); tudo(); } abrir(ALL.find(z => z.place_id === x.place_id)); };
     });
   }
   $("bContatos").onclick = () => { if (!RAW.length) { toast("Carregando dados…"); return; } abrirContatos(); };
@@ -593,7 +593,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     rpc("neg_dados", { p_token: TOKEN }).then(rows => {
       RAW = rows || [];
       const cidades = [...new Set(RAW.map(x => x.cidade))].sort((a, b) => a.localeCompare(b, "pt-BR"));
-      $("fCidade").innerHTML = cidades.map(c => `<option>${esc(c)}</option>`).join("");
+      $("fCidade").innerHTML = `<option value="">Todas as cidades (${n(RAW.length)})</option>` + cidades.map(c => `<option value="${esc(c)}">${esc(c)} (${n(RAW.filter(x => x.cidade === c).length)})</option>`).join("");
       porCidade(); tudo();
     }).catch(e => { if (/token/i.test(e.message)) { try { localStorage.removeItem("negocios_k"); } catch (_) {} pedirChave("Chave inválida."); } else $("msg").innerHTML = `<div class="notice">Não foi possível carregar: ${esc(e.message)}</div>`; });
   }
