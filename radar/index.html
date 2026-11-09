@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Radar Negócios Locais</title>
+<meta name="description" content="Empresas de São Luís no Google: nota, avaliações, posição, site e Instagram, com os melhores leads para oferecer um site.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,500..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: mesmo padrão dos radares — topo, resumo em números, abas de segmento, filtros à esquerda e lista à direita; ficha da empresa em painel lateral (tela cheia no celular) */
+:root{
+  --bg:#F3F4F2; --surface:#FFFFFF; --sunk:#E9EBE7; --ink:#191B1A; --muted:#5F6461; --line:#D9DCD7;
+  --accent:#0F6E64; --accent-ink:#FFFFFF; --accent-soft:#DCEFEC;
+  --hot:#B4410F; --hot-soft:#F9E3D8; --good:#16794F; --good-soft:#DDF1E7; --mid:#A86B00; --mid-soft:#FBEFD6; --low:#6B7672; --low-soft:#E6EAE8;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:10px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121514; --surface:#1A1E1D; --sunk:#222826; --ink:#E9ECEA; --muted:#A1A8A4; --line:#313835;
+  --accent:#4FC2B3; --accent-ink:#0B1A18; --accent-soft:#14302C;
+  --hot:#F29A6B; --hot-soft:#3A2116; --good:#5DD39E; --good-soft:#143428; --mid:#F2B84B; --mid-soft:#3A2D12; --low:#94A49F; --low-soft:#232E2B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121514; --surface:#1A1E1D; --sunk:#222826; --ink:#E9ECEA; --muted:#A1A8A4; --line:#313835;
+  --accent:#4FC2B3; --accent-ink:#0B1A18; --accent-soft:#14302C;
+  --hot:#F29A6B; --hot-soft:#3A2116; --good:#5DD39E; --good-soft:#143428; --mid:#F2B84B; --mid-soft:#3A2D12; --low:#94A49F; --low-soft:#232E2B; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body)}
+button,select,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.eyebrow{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:18px}
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px}
+.brand{display:grid;gap:4px;max-width:760px}
+.brand h1{font-size:clamp(30px,6vw,44px);line-height:1}
+.brand p{margin:0;color:var(--muted)}
+.cidade{display:flex;gap:8px;align-items:center;font-weight:600}
+.cidade select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 10px}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+.kpi{padding:14px 16px;display:grid;gap:2px;border-left:1px solid var(--line)}
+.kpi:first-child{border-left:0}
+.kpi .v{font:800 30px var(--display);font-stretch:85%;font-variant-numeric:tabular-nums;line-height:1.05}
+.kpi .l{font-size:13px;color:var(--muted)}
+.kpi.hot .v{color:var(--hot)}
+@media (max-width:760px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.kpi:nth-child(3){border-left:0}.kpi:nth-child(n+3){border-top:1px solid var(--line)}}
+.segs{display:flex;gap:6px;flex-wrap:wrap}
+.segs button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font-weight:500;font-size:14px;cursor:pointer}
+.segs button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.segs button span{font-family:var(--mono);font-size:12px;opacity:.75;margin-left:4px}
+.painel{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:860px){.painel{grid-template-columns:minmax(0,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:grid;gap:10px;align-content:start}
+.card h2{font-size:20px}
+.card .sub{font-size:13px;color:var(--muted);margin:0}
+.barras{display:grid;gap:8px}
+.barra{display:grid;grid-template-columns:150px minmax(0,1fr) 54px;gap:10px;align-items:center;font-size:14px}
+@media (max-width:520px){.barra{grid-template-columns:110px minmax(0,1fr) 46px}}
+.trilho{height:12px;background:var(--sunk);border-radius:6px;overflow:hidden;display:flex}
+.trilho i{display:block;height:100%}
+.barra .v{font-family:var(--mono);font-size:13px;text-align:right;font-variant-numeric:tabular-nums}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12px;color:var(--muted)}
+.legenda i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.main{display:grid;grid-template-columns:260px minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:860px){.main{grid-template-columns:minmax(0,1fr)}}
+.filters{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px;display:grid;gap:12px;position:sticky;top:12px}
+@media (max-width:860px){.filters{position:static}}
+.f{display:grid;gap:4px}
+.f label{font-size:12px;font-weight:600;color:var(--muted)}
+.f select,.f input{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px;min-height:40px;width:100%}
+.check{display:flex;gap:8px;align-items:center;font-size:14px}
+.check input{width:18px;height:18px;accent-color:var(--accent)}
+.reset{background:none;border:0;color:var(--accent);text-decoration:underline;cursor:pointer;justify-self:start;padding:0}
+.listhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.listhead h2{font-size:22px;display:inline}
+.count{color:var(--muted);font-size:14px;margin-left:6px}
+.sort{font-size:13px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.sort select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 8px}
+.rows{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;cursor:pointer}
+.row:hover{border-color:color-mix(in srgb,var(--ink) 30%,var(--line))}
+.score{width:54px;height:54px;border-radius:12px;display:grid;place-items:center;background:var(--sunk);font:800 22px var(--display);font-stretch:85%;font-variant-numeric:tabular-nums}
+.score.q{background:var(--hot-soft);color:var(--hot)}
+.score.b{background:var(--mid-soft);color:var(--mid)}
+.rinfo{display:grid;gap:3px;min-width:0}
+.rtitle{font-weight:600;font-size:16px;overflow-wrap:anywhere}
+.rmeta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 10px}
+.estrela{color:var(--mid);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.chip{font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--sunk);color:var(--muted);white-space:nowrap}
+.chip.hot{background:var(--hot-soft);color:var(--hot)}
+.chip.ok{background:var(--good-soft);color:var(--good)}
+.chip.mid{background:var(--mid-soft);color:var(--mid)}
+.chip.acc{background:var(--accent-soft);color:var(--accent)}
+.more{justify-self:center;margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:0 14px;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-weight:600;cursor:pointer;text-decoration:none;color:var(--ink);font-size:14px}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.zap{background:#1F8A4C;border-color:#1F8A4C;color:#fff}
+.empty,.notice{background:var(--surface);border:1px dashed var(--line);border-radius:var(--r);padding:16px;color:var(--muted);text-align:center}
+#detail{position:fixed;inset:0;z-index:20}
+.scrim{position:absolute;inset:0;background:rgba(10,14,13,.45)}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(520px,100%);background:var(--bg);overflow:auto;padding-block:18px 28px;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));display:grid;gap:14px;align-content:start}
+.ptop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ptop h2{font-size:26px}
+.close{width:38px;height:38px;flex:none;border-radius:9px;border:1px solid var(--line);background:var(--surface);font-size:22px;cursor:pointer}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:10px 12px;display:grid;gap:2px;min-width:0}
+.fact .k{font-size:12px;color:var(--muted)}
+.fact .v{font-weight:600;overflow-wrap:anywhere}
+.porque{background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:12px 14px}
+.porque h3{font-size:17px;margin-bottom:6px}
+.porque ul{margin:0;padding-left:18px;display:grid;gap:3px;font-size:14px}
+.preco .pval{display:grid;gap:2px;margin-bottom:10px}
+.preco .big{font:800 34px var(--display);font-stretch:85%;color:var(--good);font-variant-numeric:tabular-nums;line-height:1}
+.preco .sub2{font-size:13px;color:var(--muted)}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.pgrid div{background:var(--sunk);border-radius:8px;padding:8px 10px;display:grid;gap:1px}
+.pgrid .k{font-size:12px;color:var(--muted)}
+.preco .arg,.preco .dica{margin:10px 0 0;font-size:14px}
+.preco .dica{color:var(--muted);font-size:13px}
+.msg{white-space:pre-wrap;background:var(--sunk);border-radius:9px;padding:12px;font-size:14px}
+.pactions{display:flex;flex-wrap:wrap;gap:8px}
+.foot{display:grid;gap:6px;font-size:12.5px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.funil{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted);align-items:center}
+.funil b{color:var(--ink);font-variant-numeric:tabular-nums}
+.chip.st-chamei{background:var(--accent-soft);color:var(--accent)}
+.chip.st-respondeu,.chip.st-negociando{background:var(--mid-soft);color:var(--mid)}
+.chip.st-fechou{background:var(--good-soft);color:var(--good)}
+.chip.st-sem_interesse{background:var(--low-soft);color:var(--low)}
+.stbtns{display:flex;flex-wrap:wrap;gap:6px}
+.stbtns button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font-weight:600;font-size:13px;cursor:pointer;min-height:36px}
+.stbtns button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.abord textarea,.abord input{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px;margin-top:8px}
+.abord textarea{min-height:64px;resize:vertical}
+.abord .quando{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+.tfiltros{display:none}
+@media (max-width:860px){.main{order:1}.painel{order:2}.foot{order:3}.tfiltros{display:inline-flex;justify-self:start}.filters{display:none}.filters.aberto{display:grid}}
+.login{max-width:420px;margin:40px auto;display:grid;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+.login input{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:10px;min-height:44px}
+.oferta{display:grid;gap:10px}
+.oferta .dica{margin:0}
+.of{border:1px solid var(--line);border-radius:9px;padding:12px;display:grid;gap:6px;background:var(--bg)}
+.of.sel{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.ofh{display:flex;justify-content:space-between;gap:8px;align-items:center}
+.ofh h4{margin:0;font:700 16px var(--body)}
+.score.sm{width:38px;height:38px;font-size:16px;border-radius:9px;flex:none}
+.ofp{margin:0;font-size:14px}
+.ofpreco{display:grid;gap:1px}
+.ofpreco b{font:800 24px var(--display);font-stretch:85%;color:var(--good);font-variant-numeric:tabular-nums}
+.ofpreco span{font-size:13px;color:var(--muted)}
+.of details summary,.mais summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--accent)}
+.of ul,.of ol{margin:6px 0 0;padding-left:18px;font-size:14px;display:grid;gap:3px}
+.ofk{margin:8px 0 0;font-weight:600;font-size:13px}
+.usar{justify-self:start;min-height:36px}
+.mais .of{margin-top:8px}
+.abord select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px;margin-top:8px;min-height:40px}
+.lotes{display:flex;gap:8px;flex-wrap:wrap;align-self:end}
+.lotes .btn{text-decoration:none}
+.chip.pil{background:var(--accent-soft);color:var(--accent)}
+.ctt{position:fixed;inset:0;z-index:20;background:var(--bg);overflow:auto}
+.ctt .in{max-width:1100px;margin:0 auto;padding:22px max(16px,env(safe-area-inset-left)) 60px}
+.ctt .topo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}.ctt .topo h1{font-size:26px;margin:0}
+.ctt .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.ctt .tabs button{border:1px solid var(--line,#ddd);background:var(--card,#fff);border-radius:999px;padding:7px 13px;cursor:pointer;font:inherit;font-size:13.5px}
+.ctt .tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.ct{border:1px solid var(--line,#ddd);background:var(--card,#fff);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+.ct .h{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.ct .h b{font-size:15.5px}.ct .meta{font-size:12.5px;color:var(--muted)}
+.ct .nota{font-size:13.5px;margin:8px 0 0;color:var(--muted)}
+.ct .sug{margin:10px 0 0;background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:13.5px;white-space:pre-wrap}
+.ct .ac{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.ct .ac .btn{font-size:13px;padding:7px 11px}
+.ct .sts{display:flex;gap:4px;flex-wrap:wrap}.ct .sts button{font:inherit;font-size:12px;border:1px solid var(--line,#ddd);background:none;border-radius:8px;padding:5px 9px;cursor:pointer}
+.ct .sts button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-weight:600;z-index:30}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="eyebrow">Negócios locais no Google · prospecção de sites</span>
+      <h1>Radar Negócios Locais</h1>
+      <p>Empresas que aparecem no Google Maps, com nota, avaliações, posição na busca, site e Instagram. O radar aponta quem tem clientes e boa reputação, mas ainda não tem um site próprio.</p>
+    </div>
+    <nav class="lotes" aria-label="Lotes de pilotos"><button class="btn pri" type="button" id="bContatos">Meus contatos</button><a class="btn" href="lote1.html">Lote 1 · pilotos</a><a class="btn" href="lote2.html">Lote 2 · pilotos</a></nav>
+    <label class="cidade" for="fCidade">Cidade <select id="fCidade"></select></label>
+  </header>
+
+  <div id="msg"></div>
+  <section class="kpis" id="kpis" aria-label="Resumo"></section>
+  <div class="funil" id="funil"></div>
+  <nav class="segs" id="segs" aria-label="Segmentos"></nav>
+
+  <section class="painel">
+    <div class="card"><h2>Quem tem site próprio</h2><p class="sub">Para onde aponta o link do site no perfil do Google, por segmento.</p><div class="barras" id="barSite"></div>
+      <div class="legenda"><span><i style="background:var(--good)"></i>Site próprio</span><span><i style="background:var(--mid)"></i>Só Instagram, WhatsApp ou Facebook</span><span><i style="background:var(--hot)"></i>Nenhum link</span><span><i style="background:var(--low)"></i>Rede, plataforma ou fora do ar</span></div></div>
+    <div class="card"><h2>Bairros com mais leads quentes</h2><p class="sub">Empresas com 60 pontos ou mais no índice de oportunidade.</p><div class="barras" id="barBairro"></div></div>
+  </section>
+
+  <div class="main">
+    <button class="btn tfiltros" id="tFiltros" type="button" aria-expanded="false" aria-controls="filtros">Filtros</button>
+    <aside class="filters" id="filtros" aria-label="Filtros">
+      <div class="f"><label for="fAbord">Abordagem</label><select id="fAbord"><option value="nao" selected>Ainda não abordadas</option><option value="andamento">Em andamento</option><option value="fechou">Fechadas</option><option value="sem_interesse">Sem interesse</option><option value="">Todas</option></select></div>
+      <div class="f"><label for="fOf">O que oferecer</label><select id="fOf"><option value="">Qualquer serviço</option><option value="site">Site</option><option value="pagina">Página de serviços</option><option value="perfil">Perfil no Google</option><option value="avaliacoes">Kit de avaliações</option><option value="whatsapp">WhatsApp Business</option><option value="planilha">Planilha de controle</option><option value="orcamento">Modelo de orçamento</option></select></div>
+      <div class="f"><label for="fBusca">Buscar</label><input id="fBusca" type="search" placeholder="Nome ou bairro"></div>
+      <div class="f"><label for="fSite">Site</label><select id="fSite">
+        <option value="" selected>Qualquer situação</option><option value="semproprio">Sem site próprio</option><option value="nenhum">Nenhum link</option>
+        <option value="social">Só Instagram, WhatsApp ou Facebook</option><option value="fora">Site fora do ar</option><option value="quebrado">Link do Google quebrado</option><option value="proprio">Com site próprio</option></select></div>
+      <div class="f"><label for="fNota">Nota mínima</label><select id="fNota"><option value="0">Qualquer</option><option value="4">4,0 ou mais</option><option value="4.5">4,5 ou mais</option><option value="4.8">4,8 ou mais</option></select></div>
+      <div class="f"><label for="fAval">Avaliações mínimas</label><select id="fAval"><option value="0">Qualquer</option><option value="10" selected>10 ou mais</option><option value="50">50 ou mais</option><option value="150">150 ou mais</option></select></div>
+      <div class="f"><label for="fBairro">Bairro</label><select id="fBairro"></select></div>
+      <label class="check"><input type="checkbox" id="fCel" checked> Só com celular (dá para chamar no WhatsApp)</label>
+      <button class="reset" id="reset" type="button">Limpar filtros</button>
+    </aside>
+    <section aria-label="Empresas">
+      <div class="listhead"><div><h2>Empresas</h2><span class="count" id="count"></span></div>
+        <label class="sort" for="sort">Ordenar por <select id="sort"><option value="score">Oportunidade</option><option value="aval">Mais avaliações</option><option value="nota">Melhor nota</option><option value="pos">Posição no Google</option><option value="recente">Abordagem mais recente</option></select></label></div>
+      <div class="rows" id="rows"></div>
+      <button class="btn more" id="more" type="button" hidden>Mostrar mais</button>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <span><b>Fonte:</b> Google Maps (Places API), lido pelo radar. Posição = ordem em que o Google mostra a empresa na busca "segmento em São Luís MA"; o que cada pessoa vê pode variar com a localização dela.</span>
+    <span><b>Índice de oportunidade (0 a 100):</b> soma pontos para quem não tem site próprio (ou tem site fora do ar), tem boa nota, muitas avaliações, atua em segmento de ticket alto e tem celular para contato. Redes e franquias (mesmo site em 3 ou mais unidades) ficam com zero. "Fora do ar" só é marcado quando o domínio não existe ou o site dá erro claro; site que só bloqueia robô continua como site próprio.</span>
+    <span><b>O que oferecer:</b> além do site, o radar sugere serviços simples (perfil no Google, kit de avaliações, página de serviços, WhatsApp Business, planilha de controle e modelo de orçamento), em ordem de encaixe com os dados de cada empresa. O índice da empresa é o do serviço que mais se encaixa.</span>
+    <span><b>Quanto cobrar:</b> faixa de preço por segmento, pensada para São Luís, ajustada pelo tamanho da empresa (avaliações) e pela nota. Os valores são uma referência para negociar, não uma tabela fixa.</span>
+    <span>Os dados do Google são atualizados todo mês; empresas que o Google deixa de mostrar por mais de 45 dias saem do radar. Suas abordagens ficam guardadas e só aparecem para quem tem o link com a chave.</span>
+    <span>Dados públicos das empresas no Google. Use para prospecção com bom senso: uma mensagem por empresa, sem insistência.</span>
+  </footer>
+</div>
+<div id="contatos" hidden></div>
+<div id="detail" hidden></div>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function () {
+  const RPC = "https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/";
+  const KEY = "sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const n = v => (+v || 0).toLocaleString("pt-BR");
+  const SEG = { dentista: ["Dentistas", "clínica odontológica", 10], estetica: ["Estética", "clínica de estética", 10], pousada: ["Pousadas e hotéis", "pousada", 10], servicos_casa: ["Serviços para casa", "empresa", 9], oficina: ["Oficinas", "oficina", 6], veterinario: ["Veterinários", "clínica veterinária", 9] };
+  const SITE = { proprio: ["Site próprio", "ok"], instagram: ["Só Instagram", "hot"], whatsapp: ["Só WhatsApp", "hot"], facebook: ["Só Facebook", "hot"], link_bio: ["Link de bio", "hot"], nenhum: ["Sem site", "hot"], plataforma: ["Plataforma de terceiros", "mid"], delivery: ["App de delivery", "mid"], fora_do_ar: ["Site fora do ar", "hot"], governo: ["Órgão público", ""], rede: ["Rede ou franquia", ""] };
+  const ST = { chamei: "Chamei", respondeu: "Respondeu", negociando: "Negociando", fechou: "Fechou", sem_interesse: "Sem interesse" };
+  const fora = x => x.site_tipo === "governo" || x.site_tipo === "rede";
+  const SOCIAL = ["instagram", "whatsapp", "facebook", "link_bio"];
+  const semProprio = x => x.site_tipo !== "proprio" && !fora(x);
+  const celular = t => { const d = String(t || "").replace(/\D/g, ""); return d.length === 11 && d[2] === "9"; };
+  let RAW = [], ALL = [], seg = "", shown = 40, TOKEN = "";
+
+  function score(x) {
+    if (fora(x)) return 0;
+    let s = 0;
+    s += { nenhum: 35, instagram: 40, whatsapp: 40, facebook: 38, link_bio: 38, fora_do_ar: 38, plataforma: 22, delivery: 18, proprio: 0 }[x.site_tipo] ?? 20;
+    const r = +x.rating || 0; s += r >= 4.7 ? 15 : r >= 4.3 ? 10 : r >= 4 ? 5 : 0;
+    const a = +x.avaliacoes || 0; s += a >= 200 ? 20 : a >= 80 ? 15 : a >= 30 ? 10 : a >= 10 ? 5 : 0;
+    s += (SEG[x.segmento] || [, , 5])[2];
+    if (celular(x.telefone)) s += 10;
+    return Math.min(100, s);
+  }
+  const nivel = s => s >= 70 ? "q" : s >= 55 ? "b" : "";
+  const R$ = v => "R$ " + Math.round(v).toLocaleString("pt-BR");
+  // Preço sugerido: faixa do segmento (ticket do cliente final), ajustada pelo porte (avaliações) e pelo que a empresa já tem.
+  const TAB = {
+    dentista: { min: 1800, max: 2500, men: 99, plano: "Site de clínica", inclui: ["Página por tratamento (implante, ortodontia, clareamento…)", "Equipe e estrutura com fotos", "Botão de WhatsApp para agendar", "Mapa, horário e avaliações do Google", "Configuração para aparecer na busca local"], ancora: "Um único implante ou tratamento ortodôntico já paga o site inteiro." },
+    estetica: { min: 1500, max: 2200, men: 89, plano: "Site de clínica de estética", inclui: ["Página por procedimento com antes e depois", "Botão de WhatsApp para agendar avaliação", "Profissionais e certificações", "Mapa, horário e avaliações do Google", "Configuração para aparecer na busca local"], ancora: "Dois ou três procedimentos de harmonização pagam o site." },
+    pousada: { min: 1800, max: 3000, men: 119, plano: "Site com reservas diretas", inclui: ["Galeria de quartos e da estrutura", "Pedido de reserva direto pelo WhatsApp ou formulário", "Como chegar e passeios da região", "Versão em inglês (opcional)", "Avaliações do Google na página"], ancora: "Cada reserva direta economiza de 15 a 20% de comissão que iria para o Booking ou o Airbnb." },
+    solar: { min: 1800, max: 2800, men: 99, plano: "Site de captação de orçamentos", inclui: ["Simulador simples de economia na conta de luz", "Projetos entregues com fotos", "Formulário de orçamento direto no WhatsApp", "Página de financiamento", "Configuração para aparecer na busca local"], ancora: "Um único projeto fechado paga o site muitas vezes." },
+    casa: { min: 1000, max: 1600, men: 69, plano: "Site de serviços", inclui: ["Página por serviço com fotos de trabalhos", "Botão de orçamento pelo WhatsApp", "Bairros atendidos", "Avaliações do Google na página", "Configuração para aparecer na busca local"], ancora: "Dois ou três orçamentos fechados pagam o site." },
+    veterinario: { min: 1200, max: 2000, men: 89, plano: "Site com agendamento", inclui: ["Agendamento de consulta, vacina, banho e tosa pelo WhatsApp", "Lembrete de vacina e vermífugo para o tutor", "Serviços, equipe e estrutura com fotos", "Plantão e emergência em destaque", "Avaliações do Google na página"], ancora: "Dois ou três pets fidelizados pagam o site." },
+    oficina: { min: 700, max: 1200, men: 59, plano: "Site de oficina", inclui: ["Serviços e marcas atendidas", "Botão de orçamento pelo WhatsApp", "Fotos da oficina e da equipe", "Mapa, horário e avaliações do Google"], ancora: "Uma revisão completa ou dois serviços pagam o site." }
+  };
+  function preco(x) {
+    if (fora(x)) return null;
+    const t = x.segmento === "servicos_casa" ? (/solar/i.test(x.termo || "") ? TAB.solar : TAB.casa) : TAB[x.segmento] || TAB.casa;
+    const a = +x.avaliacoes || 0, r = +x.rating || 0;
+    let f = 1, porte = "médio";
+    if (a >= 300) { f = 1.25; porte = "grande"; } else if (a >= 100) { f = 1.1; porte = "médio-grande"; } else if (a < 30) { f = 0.75; porte = "pequeno"; }
+    if (r >= 4.7 && a >= 50) f += 0.05;
+    const arred = v => Math.round(v / 50) * 50;
+    const min = arred(t.min * f), max = arred(t.max * f), alvo = arred((min + max) / 2);
+    const men = Math.round(t.men * (f >= 1.2 ? 1.2 : 1) / 10) * 10 - 1;
+    const semEntrada = Math.round(((alvo / 12) + men) * 1.1 / 10) * 10 - 1;
+    const plano = a < 30 ? "Página única (essencial)" : a >= 300 ? t.plano + " (completo)" : t.plano;
+    const inclui = a < 30 ? t.inclui.slice(0, 3) : t.inclui;
+    const reforma = x.site_tipo === "proprio";
+    return { min, max, alvo, men, semEntrada, plano, inclui, ancora: t.ancora, porte, reforma };
+  }
+
+  // ---- Cardápio de serviços simples (além do site). Para crescer depois: novos itens entram aqui.
+  const SERV = { site: "Site", pagina: "Página de serviços", perfil: "Perfil no Google", avaliacoes: "Kit de avaliações", whatsapp: "WhatsApp Business", planilha: "Planilha de controle", orcamento: "Modelo de orçamento" };
+  const PLAN = {
+    oficina: ["Planilha de ordens de serviço e caixa", "ordem de serviço por placa, caixa do dia e lista de quem está na hora da revisão", "saber quanto entrou, quanto saiu e quem chamar de volta para revisão", "as ordens de serviço e o caixa", "oficinas"],
+    estetica: ["Planilha de pacotes e retornos", "sessões contratadas e feitas por cliente, retornos e caixa", "não perder sessão de pacote e chamar de volta quem sumiu", "os pacotes de sessões das clientes", "clínicas de estética"],
+    dentista: ["Planilha de orçamentos e retornos", "orçamentos em aberto, pacientes com retorno de 6 meses e recebimentos parcelados", "recuperar orçamento parado e lembrar o retorno de limpeza", "os orçamentos em aberto e os retornos", "consultórios"],
+    pousada: ["Planilha de reservas e ocupação", "mapa de ocupação por quarto, sinal recebido e origem da reserva (direta, Booking, Airbnb)", "não vender o mesmo quarto duas vezes e saber quanto vem de reserva direta", "as reservas e a ocupação", "pousadas"],
+    servicos_casa: ["Planilha de visitas e manutenção preventiva", "agenda de visitas, clientes com manutenção vencendo e caixa", "transformar cliente de uma vez em cliente de manutenção", "as visitas e as manutenções", "empresas de serviço"]
+  };
+  const notaPts = r => r >= 4.7 ? 15 : r >= 4.3 ? 10 : r >= 4 ? 5 : 0;
+  const volPts = a => a >= 200 ? 20 : a >= 80 ? 15 : a >= 30 ? 10 : a >= 10 ? 5 : 0;
+  const nomeCurto = x => x.nome.split(/[|\-–]/)[0].trim();
+  let MED = {};
+  function ofertas(x) {
+    if (fora(x)) return [];
+    const a = +x.avaliacoes || 0, r = +x.rating || 0, cel = celular(x.telefone) ? 10 : 0, sw = (SEG[x.segmento] || [, , 6])[2];
+    const nm = nomeCurto(x), cid = x.cidade || "São Luís", segTxt = (SEG[x.segmento] || [, "empresa"])[1], nota = r ? r.toLocaleString("pt-BR") : "";
+    const abre = `Olá! Tudo bem?\n\nVi a ${nm} no Google${r ? ` — nota ${nota} com ${n(a)} avaliações` : ""}.`;
+    const fecha = "\n\nPosso te mostrar como fica, sem compromisso?";
+    const L = [];
+    const ps = preco(x), sf = score(x);
+    const ref = x.site_tipo === "proprio";
+    if (ps && sf > 0) L.push({ id: "site", nome: ref ? "Reforma do site" : ps.plano, fit: ref ? sf * 0.5 : sf, porque: ref ? (x.site_check === "link_quebrado" ? "Já tem site, mas o link do Google está quebrado: dá para oferecer uma reforma junto com o conserto." : "Já tem site próprio: só vale oferecer reforma se o atual estiver ultrapassado (abra o site antes).") : motivos(x)[0] || "Sem site próprio no Google.", faixa: [ps.min, ps.max], alvo: ps.alvo, mensal: `${R$(ps.men)}/mês de manutenção`, prazo: "5 a 10 dias", entrega: ps.inclui, extra: ps, msg: mensagem(x),
+      passos: ["Pedir pelo WhatsApp: logo, fotos, serviços, horário e endereço", "Montar a partir de um modelo do segmento (eu te ajudo a montar)", "Registrar o domínio .com.br no nome do cliente (Registro.br, cerca de R$ 40 por ano)", "Publicar e trocar o link no perfil do Google", "Mostrar ao cliente e combinar como pedir alterações"] });
+    { let sg = 10, p = "Dá para melhorar fotos, descrição, serviços e respostas às avaliações.", gancho = "dá para deixar o perfil de vocês no Google bem mais completo";
+      if (x.site_check === "link_quebrado") { sg = 40; p = "O link do site no perfil do Google leva a uma página com erro 404."; gancho = "o link do site no perfil de vocês no Google está levando para uma página com erro"; }
+      else if (x.site_tipo === "fora_do_ar") { sg = 35; p = "O site cadastrado no perfil do Google não abre."; gancho = "o site que aparece no perfil de vocês no Google não está abrindo"; }
+      else if (x.site_tipo === "nenhum") { sg = 30; p = "O perfil do Google não tem link de site: só o telefone leva ao cliente."; gancho = "o perfil de vocês no Google não tem link para site nem para o WhatsApp"; }
+      else if (r && r < 4.3) { sg = 25; p = `Nota ${nota}: responder bem às avaliações e pedir novas ajuda a subir a nota.`; }
+      L.push({ id: "perfil", nome: "Arrumar o perfil no Google", fit: sg + volPts(a) + cel + sw / 2, porque: p, faixa: [250, 450], mensal: "opcional: R$ 99/mês para postar e responder avaliações", prazo: "1 a 2 dias",
+        entrega: ["Categoria, horários, serviços e descrição revisados", "Fotos novas da fachada, equipe e trabalhos", "Link certo para o site ou o WhatsApp", "Respostas às avaliações sem resposta", "Modelo de resposta para as próximas avaliações"],
+        passos: ["Pedir para ser adicionado como gerente do perfil (o dono faz em 1 minuto no próprio Google)", "Revisar categoria, horários, serviços e descrição", "Subir de 10 a 20 fotos boas (pode pedir pelo WhatsApp)", "Responder as avaliações que estão sem resposta", "Mandar ao cliente um antes e depois do perfil"],
+        msg: `${abre}\n\nReparei que ${gancho}. Quem procura ${segTxt} em ${cid} decide muito pelo perfil do Google.\n\nEu arrumo isso para vocês: fotos, descrição, serviços, link certo e resposta às avaliações. É rápido e vocês não precisam mexer em nada.${fecha}` }); }
+    { const med = MED[x.segmento] || 0; let sg = 5, p = `Já tem ${n(a)} avaliações: o kit ajuda a manter o ritmo.`;
+      if (a < 3) { sg = 15; p = "Quase sem avaliações no Google: pode ser negócio novo."; }
+      else if (med && a < med * 0.4) { sg = 35; p = `Tem ${n(a)} avaliações; metade dos concorrentes do segmento na cidade tem ${n(med)} ou mais.`; }
+      else if (med && a < med) { sg = 25; p = `Tem ${n(a)} avaliações, abaixo da mediana do segmento na cidade (${n(med)}).`; }
+      if (r >= 4.5 && sg >= 25) { sg += 10; p += ` Com nota ${nota}, atende bem: só falta pedir a avaliação.`; }
+      L.push({ id: "avaliacoes", nome: "Kit de avaliações", fit: sg + 15 + cel + sw / 2, porque: p, faixa: [150, 300], mensal: null, prazo: "1 dia",
+        entrega: ["Link curto que abre direto a tela de avaliar no Google", "Placa com QR code para o balcão (arquivo pronto para imprimir)", "Mensagem pronta de WhatsApp para mandar depois do atendimento", "Modelo de resposta para as avaliações"],
+        passos: ["Pegar o link de \"Pedir avaliações\" no perfil do Google (o dono acha em 1 minuto)", "Gerar o link curto e o QR code e montar a placa (eu monto o arquivo)", "Escrever a mensagem pós-atendimento no tom da empresa", "Combinar com o dono de mandar para os clientes atendidos na semana", "Depois de 30 dias, mostrar quantas avaliações entraram"],
+        msg: `${abre}\n\n${r >= 4.5 ? "A nota de vocês é ótima, mas o número de avaliações ainda é pequeno" : "Dá para aumentar bastante o número de avaliações de vocês"} — e muita gente escolhe ${segTxt} pela quantidade de avaliações.\n\nMonto um kit simples: QR code para o balcão e mensagem pronta para o cliente avaliar depois do atendimento. Em poucas semanas o número sobe.${fecha}` }); }
+    if (["estetica", "servicos_casa", "dentista"].includes(x.segmento)) { const soc = SOCIAL.includes(x.site_tipo), sg = soc ? 40 : x.site_tipo === "nenhum" ? 25 : 0;
+      const onde = { instagram: "o Instagram", whatsapp: "um link de WhatsApp", facebook: "o Facebook", link_bio: "um link de bio" }[x.site_tipo];
+      if (sg) L.push({ id: "pagina", nome: "Página de serviços com botão de WhatsApp", fit: sg + notaPts(r) + volPts(a) / 2 + cel + sw / 2, porque: soc ? `Hoje o link do Google leva para ${onde}. Uma página própria mostra serviços, fotos e localização num lugar só e leva direto ao WhatsApp.` : "Sem nenhum link no Google: uma página simples já resolve e custa pouco.", faixa: [350, 600], mensal: "R$ 29/mês de hospedagem e domínio", prazo: "2 a 3 dias",
+        entrega: ["Uma página só, feita para o celular, com serviços e fotos (preços se quiser)", "Botão de WhatsApp com mensagem pronta para cada serviço", "Endereço com mapa e horário", "Serve também como link da bio do Instagram"],
+        passos: ["Pedir serviços, fotos, horário e (se quiser mostrar) preços", "Montar a página a partir do modelo (eu te ajudo)", "Publicar com domínio próprio", "Trocar o link do perfil do Google e da bio do Instagram", "Mostrar ao cliente"],
+        msg: `${abre}\n\nReparei que ${soc ? `o link do Google de vocês leva para ${onde}` : "o perfil de vocês no Google não tem link nenhum"}. Faço uma página simples, só de vocês, com os serviços, fotos e um botão que já abre o WhatsApp com a mensagem pronta — serve para o Google e para a bio do Instagram.${fecha}` }); }
+    { const pl = PLAN[x.segmento]; let sg = a >= 200 ? 40 : a >= 80 ? 30 : a >= 30 ? 15 : 0; if (sg && x.site_tipo === "proprio") sg += 5;
+      if (pl && sg) L.push({ id: "planilha", nome: pl[0], fit: sg + notaPts(r) / 2 + cel + sw, porque: `${n(a)} avaliações indicam bastante movimento. A planilha ajuda a ${pl[2]}.`, faixa: [250, 500], mensal: "opcional: R$ 49/mês de suporte e ajustes", prazo: "2 a 3 dias",
+        entrega: [`Planilha no Google Planilhas com ${pl[1]}`, "Painel com os números do mês", "Funciona no celular", "30 minutos de treinamento por chamada de vídeo"],
+        passos: ["Conversar 20 minutos: como controlam hoje (caderno, papel ou nada)", "Adaptar o modelo do segmento (eu te ajudo a montar)", "Copiar para o Google Drive do cliente", "Treinar por chamada de vídeo", "Voltar em 15 dias para ajustar"],
+        msg: `${abre}\n\nUma pergunta rápida: como vocês controlam hoje ${pl[3]}? Montei uma planilha simples, que funciona no celular, feita para ${pl[4]}: ${pl[1]}. Dá para começar a usar no mesmo dia.\n\nQuer que eu te mostre?` }); }
+    if (cel) { const sg = (x.site_tipo === "nenhum" || x.site_tipo === "whatsapp") ? 25 : 15;
+      L.push({ id: "whatsapp", nome: "WhatsApp Business configurado", fit: sg + volPts(a) + 10 + sw / 2, porque: "Atende por celular: com o WhatsApp Business bem configurado, responde mais rápido e não perde cliente fora do horário.", faixa: [200, 350], mensal: null, prazo: "1 dia",
+        entrega: ["Perfil comercial com endereço, horário e catálogo de serviços", "Mensagem de boas-vindas e de ausência", "Respostas rápidas para as perguntas mais comuns", "Etiquetas para organizar os clientes (novo, orçamento, fechado)"],
+        passos: ["Confirmar se já usa o WhatsApp Business (se não, migrar sem perder as conversas)", "Levantar as 10 perguntas que mais chegam", "Configurar catálogo, mensagens automáticas e respostas rápidas", "Criar as etiquetas e mostrar como usar"],
+        msg: `${abre}\n\nVocês atendem pelo WhatsApp, né? Configuro o WhatsApp Business de vocês com catálogo de serviços, resposta automática fora do horário e respostas prontas para as perguntas que mais chegam. O cliente é atendido na hora, mesmo quando vocês estão ocupados.${fecha}` }); }
+    if (x.segmento === "servicos_casa" || x.segmento === "oficina") { const solar = /solar/i.test(x.termo || "") || /solar|energia/i.test(x.nome), sg = x.segmento === "servicos_casa" ? (solar ? 40 : 35) : 20;
+      L.push({ id: "orcamento", nome: solar ? "Modelo de proposta com simulação de economia" : "Modelo de orçamento profissional", fit: sg + notaPts(r) + volPts(a) / 2 + cel, porque: solar ? "Energia solar se vende por proposta: uma proposta caprichada, com a economia estimada, fecha mais." : x.segmento === "oficina" ? "Orçamento organizado, com peças e mão de obra separadas, passa confiança e é aprovado mais rápido." : "Orçamento com a marca da empresa passa confiança e substitui o orçamento no papel ou no áudio.", faixa: [300, 500], mensal: null, prazo: "2 dias",
+        entrega: [solar ? "Modelo de proposta com simulação de economia na conta de luz" : "Modelo de orçamento com logo, itens, prazo e garantia", "Gera PDF pelo celular para mandar no WhatsApp", "Numeração e controle dos orçamentos enviados", "Texto de garantia e condições de pagamento"],
+        passos: ["Pegar um orçamento que eles já mandaram e o logo", "Montar o modelo (planilha que vira PDF; eu te ajudo)", "Testar com um orçamento real junto com o dono", "Mostrar como gerar o PDF no celular e mandar no WhatsApp"],
+        msg: `${abre}\n\nComo vocês mandam ${solar ? "as propostas" : "os orçamentos"} hoje? Monto um modelo ${solar ? "de proposta com a simulação de economia na conta de luz" : "de orçamento com a marca de vocês"}, que vocês preenchem no celular e mandam em PDF pelo WhatsApp. Passa mais confiança e ajuda a fechar.${fecha}` }); }
+    return L.map(o => ({ ...o, curto: SERV[o.id], fit: Math.min(100, Math.round(o.fit)) })).sort((p, q) => q.fit - p.fit);
+  }
+  const alvoDe = o => o.alvo || Math.round((o.faixa[0] + o.faixa[1]) / 2 / 10) * 10;
+
+  function filtrados() {
+    const of = $("fOf").value, fitOf = x => of ? ((x._of.find(o => o.id === of) || {}).fit || 0) : x._s, ab = $("fAbord").value, b = $("fBusca").value.trim().toLowerCase(), fs = $("fSite").value, nota = +$("fNota").value, av = +$("fAval").value, ba = $("fBairro").value, cel = $("fCel").checked;
+    const r = ALL.filter(x => (!seg || x.segmento === seg) && (!of || x._of.slice(0, 3).some(o => o.id === of)) &&
+      (!ab || (ab === "nao" ? !x.ab_status : ab === "andamento" ? ["chamei", "respondeu", "negociando"].includes(x.ab_status) : x.ab_status === ab)) && (!b || (x.nome + " " + (x.bairro || "")).toLowerCase().includes(b)) &&
+      (!fs || (fs === "semproprio" ? semProprio(x) : fs === "social" ? SOCIAL.includes(x.site_tipo) : fs === "nenhum" ? x.site_tipo === "nenhum" : fs === "fora" ? x.site_tipo === "fora_do_ar" : fs === "quebrado" ? x.site_check === "link_quebrado" : x.site_tipo === "proprio")) &&
+      (+x.rating || 0) >= nota && (+x.avaliacoes || 0) >= av && (!ba || x.bairro === ba) && (!cel || celular(x.telefone)));
+    const by = { score: (a, c) => fitOf(c) - fitOf(a) || c.avaliacoes - a.avaliacoes, aval: (a, c) => c.avaliacoes - a.avaliacoes, nota: (a, c) => (c.rating || 0) - (a.rating || 0) || c.avaliacoes - a.avaliacoes, pos: (a, c) => (a.pos_cidade || 999) - (c.pos_cidade || 999), recente: (a, c) => String(c.ab_em || "").localeCompare(String(a.ab_em || "")) }[$("sort").value];
+    return r.sort(by);
+  }
+  function kpis() {
+    const base = ALL.filter(x => !seg || x.segmento === seg);
+    const sem = base.filter(semProprio).length, quentes = base.filter(x => x._s >= 70).length;
+    const quentesLivres = base.filter(x => x._s >= 70 && !x.ab_status).length;
+    const fech = base.filter(x => x.ab_status === "fechou"), fechV = fech.reduce((s, x) => s + (+x.ab_valor || 0), 0);
+    $("kpis").innerHTML = [[n(base.length), "empresas no radar", ""], [base.length ? Math.round(sem / base.length * 100) + "%" : "–", "sem site próprio", ""], [n(quentes), `leads quentes (índice 70+) · ${n(quentesLivres)} ainda não abordados`, "hot"], [R$(fechV), `fechado em ${n(fech.length)} venda${fech.length === 1 ? "" : "s"}`, ""]]
+      .map(([v, l, c]) => `<div class="kpi ${c}"><span class="v">${v}</span><span class="l">${l}</span></div>`).join("");
+    const c = k => base.filter(x => x.ab_status === k).length, tot = base.filter(x => x.ab_status).length;
+    $("funil").innerHTML = tot ? `<span>Suas abordagens:</span>` + Object.entries(ST).map(([k, l]) => `<span><b>${n(c(k))}</b> ${l.toLowerCase()}</span>`).join("") : `<span>Suas abordagens: nenhuma ainda. Ao abrir o WhatsApp de uma empresa, ela é marcada como "Chamei".</span>`;
+  }
+  function segs() {
+    const c = k => ALL.filter(x => x.segmento === k).length;
+    $("segs").innerHTML = `<button type="button" data-seg="" aria-pressed="${!seg}">Todos<span>${n(ALL.length)}</span></button>` + Object.entries(SEG).filter(([k]) => c(k)).map(([k, [l]]) => `<button type="button" data-seg="${k}" aria-pressed="${seg === k}">${l}<span>${n(c(k))}</span></button>`).join("");
+  }
+  function graficos() {
+    const linhas = Object.entries(SEG).map(([k, [l]]) => {
+      const b = ALL.filter(x => x.segmento === k); if (!b.length) return "";
+      const p = f => b.filter(f).length / b.length * 100;
+      const pr = p(x => x.site_tipo === "proprio"), so = p(x => SOCIAL.includes(x.site_tipo)), ne = p(x => x.site_tipo === "nenhum"), ou = 100 - pr - so - ne;
+      return `<div class="barra"><span>${l}</span><div class="trilho" title="Site próprio ${Math.round(pr)}% · redes ${Math.round(so)}% · nenhum ${Math.round(ne)}%"><i style="width:${pr}%;background:var(--good)"></i><i style="width:${so}%;background:var(--mid)"></i><i style="width:${ne}%;background:var(--hot)"></i><i style="width:${ou}%;background:var(--low)"></i></div><span class="v">${Math.round(pr)}%</span></div>`;
+    }).join("");
+    $("barSite").innerHTML = linhas || `<p class="sub">Sem dados.</p>`;
+    const cont = {}; ALL.filter(x => (!seg || x.segmento === seg) && x._s >= 60 && x.bairro).forEach(x => cont[x.bairro] = (cont[x.bairro] || 0) + 1);
+    const top = Object.entries(cont).sort((a, b) => b[1] - a[1]).slice(0, 8), max = Math.max(1, ...top.map(t => t[1]));
+    $("barBairro").innerHTML = top.length ? top.map(([b, v]) => `<div class="barra"><span>${esc(b)}</span><div class="trilho"><i style="width:${v / max * 100}%;background:var(--hot)"></i></div><span class="v">${v}</span></div>`).join("") : `<p class="sub">Sem dados.</p>`;
+  }
+  function render() {
+    const r = filtrados();
+    $("count").textContent = `${n(r.length)} empresas`;
+    $("rows").innerHTML = r.length ? r.slice(0, shown).map(x => {
+      const st = SITE[x.site_tipo] || [x.site_tipo, ""];
+      return `<button type="button" class="row" data-id="${esc(x.place_id)}"><span class="score ${nivel(x._s)}" title="Índice de oportunidade">${x._s}</span>
+        <span class="rinfo"><span class="rtitle">${esc(x.nome)}</span>
+        <span class="rmeta"><span class="estrela">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"}</span><span>${n(x.avaliacoes)} avaliações</span><span>${esc(x.bairro || "")}</span>${x.pos_cidade ? `<span>${x.pos_cidade}º no Google</span>` : ""}</span>
+        <span class="chips">${x._of[0] ? `<span class="chip acc">Oferecer: ${esc(x._of[0].curto)}</span>` : ""}${x.site_check === "link_quebrado" ? '<span class="chip mid">Link do Google quebrado</span>' : ""}${PILOTO[x.place_id] ? `<span class="chip pil">Piloto · Lote ${PILOTO[x.place_id][1]}</span>` : ""}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span>${x.instagram ? '<span class="chip">Tem Instagram</span>' : ""}<span class="chip">${esc((SEG[x.segmento] || [x.segmento])[0])}</span></span></span></button>`;
+    }).join("") : `<div class="empty">Nenhuma empresa com esses filtros.</div>`;
+    $("more").hidden = r.length <= shown;
+  }
+  function tudo() { kpis(); segs(); graficos(); render(); }
+
+  function motivos(x) {
+    const m = [];
+    if (x.site_tipo === "nenhum") m.push("Não tem nenhum link de site no Google: quem acha a empresa não tem para onde ir além do telefone.");
+    if (SOCIAL.includes(x.site_tipo)) m.push(`O "site" no Google é ${({ instagram: "o Instagram", whatsapp: "um link de WhatsApp", facebook: "o Facebook", link_bio: "um link de bio" })[x.site_tipo]}: já quer presença online, mas sem página própria.`);
+    if (x.site_tipo === "fora_do_ar") m.push("O site cadastrado no Google está fora do ar.");
+    if ((+x.rating || 0) >= 4.5) m.push(`Reputação forte: nota ${x.rating.toLocaleString("pt-BR")}. Um site ajuda a converter quem já confia.`);
+    if ((+x.avaliacoes || 0) >= 80) m.push(`Tem movimento: ${n(x.avaliacoes)} avaliações no Google.`);
+    if (x.pos_cidade > 10) m.push(`Aparece em ${x.pos_cidade}º na busca geral da cidade: há espaço para subir.`);
+    if (x.site_tipo === "rede") m.push("Faz parte de uma rede ou franquia (o mesmo site serve várias unidades): quem decide sobre site é a rede, não a unidade.");
+    if (x.site_tipo === "proprio" && x.site_check === "link_quebrado") m.push("O site funciona, mas o link cadastrado no Google leva a uma página que não existe (erro 404). Quem clica no Google cai num erro: é um conserto rápido para oferecer e abrir a conversa.");
+    else if (x.site_tipo === "proprio") m.push("Já tem site próprio: oportunidade menor (dá para oferecer melhoria ou anúncio).");
+    return m;
+  }
+  function mensagem(x) {
+    const nome = x.nome.split(/[|\-–]/)[0].trim();
+    const ondeVai = { instagram: "o link do Google leva para o Instagram", whatsapp: "o link do Google leva direto para o WhatsApp", facebook: "o link do Google leva para o Facebook", link_bio: "o link do Google leva para um link de bio", nenhum: "não aparece um site no perfil do Google", fora_do_ar: "o site que está no Google não está abrindo" }[x.site_tipo] || "dá para melhorar a presença de vocês no Google";
+    const seg = (SEG[x.segmento] || [, "empresa"])[1];
+    return `Olá! Tudo bem?\n\nVi a ${nome} no Google${x.rating ? ` — nota ${x.rating.toLocaleString("pt-BR")} com ${n(x.avaliacoes)} avaliações, parabéns!` : "."}\n\nReparei que ${ondeVai}. Eu crio sites para ${seg} aqui em ${x.cidade || "São Luís"}, pensados para aparecer no Google e levar o cliente direto para o WhatsApp de vocês.\n\nPosso te mostrar um modelo rapidinho, sem compromisso?`;
+  }
+  const PILOTO = {"ChIJb2e-FFiP9gcREUyK8edmQ6s": ["https://helicesites.com.br/lote1/joao-guilherme-fernandes/", "1"], "ChIJVevFZM2P9gcRFqHp-mjG_p4": ["https://helicesites.com.br/lote1/renan-carneiro-advogado/", "1"], "ChIJBaWVZA2N9gcRVD0MJFWRq5Y": ["https://helicesites.com.br/lote1/nayara-couto-advocacia/", "1"], "ChIJb82D56KT9gcR_GMlYXyfyPY": ["https://helicesites.com.br/lote1/ricardo-aragao-advogado/", "1"], "ChIJSY6dtKeN9gcRWfsb8LCgCu4": ["https://helicesites.com.br/lote1/kenny-braga-fisioterapeuta/", "1"], "ChIJ16JpRraT9gcRD4wa5ZkfkXM": ["https://helicesites.com.br/lote1/wal-pinheiro-fisioterapia/", "1"], "ChIJHfAKTACN9gcR3k_0Be0EdU0": ["https://helicesites.com.br/lote1/filipe-fontoura-osteopatia/", "1"], "ChIJaRoOLK2N9gcRMCnLeYPJtTg": ["https://helicesites.com.br/lote1/juliana-torres-fisioterapia-pelvica/", "1"], "ChIJ78_I6VaN9gcRGbAaKX0GrRE": ["https://helicesites.com.br/lote1/daniel-amaral-nutricionista/", "1"], "ChIJ__3aTFeR9gcR_hB-M4PhJcE": ["https://helicesites.com.br/lote1/danielle-lima-nutricionista/", "1"], "ChIJhdfP5euN9gcRzjnR2GYT-p0": ["https://helicesites.com.br/lote1/saul-campos-nutricionista/", "1"], "ChIJIahsYy-N9gcRig5MrrLbZvs": ["https://helicesites.com.br/lote1/wilson-serrao-nutricionista/", "1"], "ChIJC26unNaN9gcRr_Mhv0eHB68": ["https://helicesites.com.br/lote1/daiana-rabelo-personal/", "1"], "ChIJT13d0b6N9gcRBX9W0HjbeNw": ["https://helicesites.com.br/lote1/airton-gondim-personal/", "1"], "ChIJU2C7G66R9gcRNnc_UQoKT34": ["https://helicesites.com.br/lote1/pedro-salgado-personal/", "1"], "ChIJ-2VURIKN9gcRi120yhrlsko": ["https://helicesites.com.br/lote1/felipe-mendes-personal/", "1"], "ChIJ630uAGab9gcR-3BwcGHonz4": ["https://helicesites.com.br/lote1/consuelo-schliebe-psicologa/", "1"], "ChIJAesXXyuP9gcRzFEHYbA32sw": ["https://helicesites.com.br/lote1/jaime-silva-psicologo/", "1"], "ChIJ19YFpK2N9gcR4mSv43Yt2rg": ["https://helicesites.com.br/lote1/sofia-ravinny-psicologa/", "1"], "ChIJSWctoSSR9gcRe6yU75N5gI4": ["https://helicesites.com.br/lote1/anderson-bastos-psicologo/", "1"], "ChIJR0pwKwqP9gcRZRif-Jp8uIc": ["https://helicesites.com.br/lote2/luana-paiva-advogada/", "2"], "ChIJDzGQVgqN9gcRVjV8iglFmx4": ["https://helicesites.com.br/lote2/eduardo-mercon-advogado/", "2"], "ChIJl88qOcmN9gcR_fPzLGm9nOU": ["https://helicesites.com.br/lote2/felipe-assuncao-advogado/", "2"], "ChIJXXkO8riP9gcRDEEydzbZbaQ": ["https://helicesites.com.br/lote2/mauro-campos-advogado/", "2"], "ChIJM9bglm6R9gcRTuMGRvhEzoA": ["https://helicesites.com.br/lote2/caio-mattos-advogado/", "2"], "ChIJda8vv0qR9gcRvEdgxDagIFg": ["https://helicesites.com.br/lote2/juliana-moraes-fisioterapia/", "2"], "ChIJt-27-JqT9gcRp0jYF_o8Wx4": ["https://helicesites.com.br/lote2/angelo-thiago-fisioterapeuta/", "2"], "ChIJQ4NJRVKR9gcR9OfktXdazWA": ["https://helicesites.com.br/lote2/juliana-ferreira-fisioterapia/", "2"], "ChIJsQEDOWmb9gcRs0hWMqk0Hmg": ["https://helicesites.com.br/lote2/anderson-castro-fisioterapia/", "2"], "ChIJj2U8YDCb9gcR99lPInAxwac": ["https://helicesites.com.br/lote2/patricia-nunes-fisioterapeuta/", "2"], "ChIJEZiXtwCN9gcRqN6Efj9M_OQ": ["https://helicesites.com.br/lote2/michelle-balltaglini-nutricionista/", "2"], "ChIJE6sIT6ON9gcR0XMpE_2ZsLs": ["https://helicesites.com.br/lote2/karine-baldez-nutricionista/", "2"], "ChIJ5X8BXHmN9gcRuaJ8OuRNGMg": ["https://helicesites.com.br/lote2/luna-araujo-nutricionista/", "2"], "ChIJQ49kOkuN9gcRGTHqjGRuE3M": ["https://helicesites.com.br/lote2/roberta-carvalho-nutricionista/", "2"], "ChIJVzzChr2N9gcRGEkgpXVfU8Y": ["https://helicesites.com.br/lote2/nayra-pinheiro-nutricionista/", "2"], "ChIJaxEcwPGN9gcRZhsWjzfopvM": ["https://helicesites.com.br/lote2/lorena-bessani-nutricionista/", "2"], "ChIJUVF_Iq2P9gcRy4MOFkBfOgY": ["https://helicesites.com.br/lote2/nathalia-pinto-psicologa/", "2"], "ChIJ_9_p2-GN9gcRM0YYvDzpPvI": ["https://helicesites.com.br/lote2/simone-santos-psicologa/", "2"], "ChIJAQ93SX6P9gcR6udMmf0lICc": ["https://helicesites.com.br/lote2/ivan-almeida-psicologo/", "2"], "ChIJWfL6Kr-R9gcR8Zos0-hCV0w": ["https://helicesites.com.br/lote2/karen-viegas-psicologa/", "2"]};
+  function abrir(x) {
+    const st = SITE[x.site_tipo] || [x.site_tipo, ""];
+    let tel = String(x.telefone || "").replace(/\D/g, ""); if (tel.length <= 11) tel = "55" + tel;
+    const fOfV = $("fOf").value;
+    let ofSel = (x.ab_servico && x._of.find(o => o.id === x.ab_servico) ? x.ab_servico : fOfV && x._of.find(o => o.id === fOfV) ? fOfV : (x._of[0] || {}).id) || null;
+    const msgDe = id => (x._of.find(o => o.id === id) || {}).msg || mensagem(x);
+    let msg = msgDe(ofSel);
+    $("detail").innerHTML = `<div class="scrim" data-close="1"></div><aside class="panel" role="dialog" aria-modal="true" aria-labelledby="dT">
+      <div class="ptop"><div><span class="eyebrow">${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.tipo_nome || "")}</span><h2 id="dT">${esc(x.nome)}</h2></div><button class="close" data-close="1" type="button" aria-label="Fechar">×</button></div>
+      <div class="facts">
+        <div class="fact"><span class="k">Índice de oportunidade</span><span class="v">${x._s} de 100</span></div>
+        <div class="fact"><span class="k">Nota no Google</span><span class="v">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} · ${n(x.avaliacoes)} avaliações</span></div>
+        <div class="fact"><span class="k">Posição na busca da cidade</span><span class="v">${x.pos_cidade ? x.pos_cidade + "º" : "não aparece na busca geral"}</span></div>
+        <div class="fact"><span class="k">Site</span><span class="v">${st[0]}</span></div>
+        <div class="fact"><span class="k">Telefone</span><span class="v">${esc(x.telefone || "–")}</span></div>
+        <div class="fact"><span class="k">Bairro</span><span class="v">${esc(x.bairro || "–")}</span></div>
+      </div>
+      <div class="porque"><h3>O que o radar viu</h3><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
+      <div class="porque oferta"><h3>O que oferecer</h3>
+        ${x._of.length ? `<p class="dica">Em ordem de encaixe com essa empresa. Serviço barato abre a porta; depois de entregar bem, ofereça o próximo.</p>${x._of.slice(0, 3).map(o => cardOf(o, ofSel)).join("")}${x._of.length > 3 ? `<details class="mais"><summary>Outros serviços (${x._of.length - 3})</summary>${x._of.slice(3).map(o => cardOf(o, ofSel)).join("")}</details>` : ""}` : `<p class="dica">Rede, franquia ou órgão público: fora do foco do radar.</p>`}</div>
+      <div class="pactions">${PILOTO[x.place_id] ? `<a class="btn" href="${esc(PILOTO[x.place_id][0])}" target="_blank" rel="noopener">Ver piloto (Lote ${PILOTO[x.place_id][1]})</a>` : ""}${x.maps_url ? `<a class="btn" href="${esc(x.maps_url)}" target="_blank" rel="noopener">Ver no Google Maps</a>` : ""}${x.site ? `<a class="btn" href="${esc(x.site)}" target="_blank" rel="noopener">Abrir o link do site</a>` : ""}${x.instagram && x.site_tipo !== "instagram" ? `<a class="btn" href="${esc(x.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}</div>
+      <div class="porque abord"><h3>Sua abordagem</h3>
+        <div class="stbtns" id="stb">${Object.entries(ST).map(([k, l]) => `<button type="button" data-st="${k}" aria-pressed="${x.ab_status === k}">${l}</button>`).join("")}</div>
+        <select id="abServ" aria-label="Serviço oferecido"><option value="">Serviço oferecido: não informado</option>${Object.entries(SERV).map(([k, l]) => `<option value="${k}" ${k === (x.ab_servico || ofSel) ? "selected" : ""}>Serviço oferecido: ${l}</option>`).join("")}</select>
+        <textarea id="abNota" aria-label="Anotação" placeholder="Anotação: com quem falou, o que pediu, próximo passo…">${esc(x.ab_nota || "")}</textarea>
+        <input id="abValor" aria-label="Valor fechado em reais" type="number" inputmode="decimal" min="0" step="50" placeholder="Valor fechado (R$)" value="${x.ab_valor ?? ""}" ${x.ab_status === "fechou" ? "" : "hidden"}>
+        <div class="pactions" style="margin-top:8px"><button class="btn pri" type="button" id="abSalvar">Salvar</button>${x.ab_status ? `<button class="btn" type="button" id="abLimpar">Desmarcar</button>` : ""}</div>
+        ${x.ab_em ? `<p class="quando">Atualizado em ${new Date(x.ab_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })}</p>` : ""}</div>
+      <div class="porque"><h3 id="msgH">Mensagem · ${esc(SERV[ofSel] || "Site")}</h3><div class="msg" id="msgTxt">${esc(msg)}</div></div>
+      <div class="pactions">${x.telefone ? `<a class="btn zap" id="zap" href="https://wa.me/${tel}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Abrir no WhatsApp</a>` : ""}<button class="btn" type="button" id="cp">Copiar mensagem</button></div>
+      <p class="sub" style="font-size:12.5px;color:var(--muted);margin:0">${esc(x.endereco || "")}</p></aside>`;
+    $("detail").hidden = false; $("detail").querySelector(".close").focus();
+    $("detail").onclick = e => { if (e.target.dataset.close) fechar(); };
+    let stSel = x.ab_status || null;
+    $("stb").onclick = e => { const b = e.target.closest("[data-st]"); if (!b) return; stSel = stSel === b.dataset.st ? null : b.dataset.st; $("stb").querySelectorAll("button").forEach(z => z.setAttribute("aria-pressed", z.dataset.st === stSel)); $("abValor").hidden = stSel !== "fechou"; if (stSel === "fechou" && !$("abValor").value) { const o = x._of.find(o => o.id === $("abServ").value); if (o) $("abValor").value = alvoDe(o); } };
+    $("abSalvar").onclick = () => marcar(x, stSel, $("abNota").value, $("abValor").value, true, $("abServ").value);
+    if ($("abLimpar")) $("abLimpar").onclick = () => marcar(x, null, "", "", true, null);
+    if ($("zap")) $("zap").addEventListener("click", () => { if (!x.ab_status) marcar(x, "chamei", x.ab_nota || "", "", false, ofSel); });
+    $("detail").querySelectorAll("[data-usar]").forEach(b => b.onclick = () => {
+      ofSel = b.dataset.usar; msg = msgDe(ofSel); $("msgTxt").textContent = msg; $("msgH").textContent = "Mensagem · " + SERV[ofSel];
+      if ($("zap")) $("zap").href = `https://wa.me/${tel}?text=${encodeURIComponent(msg)}`;
+      $("detail").querySelectorAll(".of").forEach(c => c.classList.toggle("sel", c.dataset.of === ofSel));
+      if (!x.ab_status) $("abServ").value = ofSel;
+      $("msgTxt").scrollIntoView({ behavior: "smooth", block: "center" }); toast("Mensagem trocada para " + SERV[ofSel]);
+    });
+    $("cp").onclick = () => { try { navigator.clipboard.writeText(msg).then(() => toast("Mensagem copiada"), () => sel()); } catch (_) { sel(); } };
+  }
+  function cardOf(o, sel) {
+    return `<div class="of${o.id === sel ? " sel" : ""}" data-of="${o.id}">
+      <div class="ofh"><h4>${esc(o.nome)}</h4><span class="score sm ${nivel(o.fit)}" title="Encaixe com a empresa">${o.fit}</span></div>
+      <p class="ofp">${esc(o.porque)}</p>
+      <div class="ofpreco"><b>${R$(alvoDe(o))}</b><span>faixa ${R$(o.faixa[0])} a ${R$(o.faixa[1])} · entrega em ${o.prazo}${o.mensal ? " · " + esc(o.mensal) : ""}</span></div>
+      ${o.extra ? `<p class="ofp">Ou sem entrada: <b>${R$(o.extra.semEntrada)}/mês</b> por 12 meses. ${esc(o.extra.ancora)}${o.extra.reforma ? " Como já tem site, ofereça uma reforma, perto do mínimo da faixa." : ""}</p>` : ""}
+      <details><summary>O que entrega e como fazer</summary><ul>${o.entrega.map(t => `<li>${esc(t)}</li>`).join("")}</ul><p class="ofk">Como entregar</p><ol>${o.passos.map(t => `<li>${esc(t)}</li>`).join("")}</ol></details>
+      <button type="button" class="btn usar" data-usar="${o.id}">Usar esta mensagem</button></div>`;
+  }
+  async function rpc(fn, body) {
+    const r = await fetch(RPC + fn, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const j = await r.json().catch(() => null);
+    if (!r.ok) throw new Error((j && j.message) || "HTTP " + r.status);
+    return j;
+  }
+  async function marcar(x, st, nota, valor, reabrir, serv) {
+    const v = st === "fechou" && valor !== "" ? +valor : null;
+    try {
+      await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: st, p_nota: nota || null, p_valor: v, p_servico: st ? (serv || null) : null });
+      Object.assign(x, { ab_status: st, ab_nota: nota || null, ab_valor: v, ab_servico: st ? (serv || null) : null, ab_em: new Date().toISOString() });
+      toast(st ? `Marcada como "${ST[st]}"` : "Abordagem desmarcada");
+      kpis(); render(); if (reabrir) abrir(x);
+    } catch (e) { toast("Não salvou: " + e.message); }
+  }
+  function sel() { const r = document.createRange(); r.selectNodeContents($("msgTxt")); getSelection().removeAllRanges(); getSelection().addRange(r); toast("Texto selecionado"); }
+  function fechar() { $("detail").hidden = true; $("detail").innerHTML = ""; }
+  function toast(m) { const t = $("toast"); t.textContent = m; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => t.hidden = true, 2200); }
+
+  ["fAbord", "fOf", "fBusca", "fSite", "fNota", "fAval", "fBairro", "fCel", "sort"].forEach(id => $(id).addEventListener("input", () => { shown = 40; render(); }));
+  $("reset").onclick = () => { $("fAbord").value = ""; $("fOf").value = ""; $("fBusca").value = ""; $("fSite").value = ""; $("fNota").value = "0"; $("fAval").value = "0"; $("fBairro").value = ""; $("fCel").checked = false; render(); };
+  $("tFiltros").onclick = () => { const a = $("filtros").classList.toggle("aberto"); $("tFiltros").setAttribute("aria-expanded", a); $("tFiltros").textContent = a ? "Fechar filtros" : "Filtros"; };
+  $("fCidade").addEventListener("input", () => { porCidade(); shown = 40; tudo(); });
+  function porCidade() {
+    const c = $("fCidade").value; ALL = RAW.filter(x => x.cidade === c);
+    MED = {}; Object.keys(SEG).forEach(k => { const v = ALL.filter(x => x.segmento === k).map(x => +x.avaliacoes || 0).sort((a, b) => a - b); MED[k] = v.length ? v[Math.floor(v.length / 2)] : 0; });
+    ALL.forEach(x => { x._of = ofertas(x); x._s = (x._of[0] || {}).fit || 0; });
+    const bairros = [...new Set(ALL.map(x => x.bairro).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+    $("fBairro").innerHTML = `<option value="">Todos os bairros</option>` + bairros.map(b => `<option>${esc(b)}</option>`).join("");
+    const ult = ALL.reduce((m, x) => x.visto_em > m ? x.visto_em : m, "");
+    $("msg").innerHTML = ult ? `<p class="sub" style="margin:0;color:var(--muted);font-size:13px">Dados do Google Maps lidos em ${new Date(ult).toLocaleDateString("pt-BR")}.</p>` : "";
+  }
+  $("segs").onclick = e => { const b = e.target.closest("[data-seg]"); if (!b) return; seg = b.dataset.seg; shown = 40; tudo(); };
+  $("more").onclick = () => { shown += 40; render(); };
+  $("rows").onclick = e => { const b = e.target.closest(".row"); if (b) abrir(ALL.find(x => x.place_id === b.dataset.id)); };
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("detail").hidden) fechar(); });
+
+  /* ---------- Meus contatos: todos os abordados, de todas as cidades, com a próxima mensagem sugerida ---------- */
+  let CT_ABA = "acao";
+  const diasDe = d => d ? Math.floor((Date.now() - new Date(d)) / 864e5) : null;
+
+  function proximaMsg(x) {
+    const nm = nomeCurto(x), d = diasDe(x.ab_em), nota = (x.ab_nota || "").toLowerCase();
+    if (x.ab_status === "fechou") return { quando: "Acompanhar", texto: nota.includes("aguardando") ?
+      `Oi, Andréa! Tudo bem? Aqui é o Paulo, da Hélice.\n\nPassando pra saber se conseguiu ver os passos do piloto de gestão: o acesso de gerente no Google Meu Negócio (paulomarciojuniorbh@gmail.com) e o convite do Meta. Assim que liberar, já começo e te mostro tudo pelo painel.\n\nSe preferir, faço uma ligação rápida e a gente libera juntos em 5 minutos.` :
+      `Oi! Tudo bem? Aqui é o Paulo, da Hélice. Passando pra saber se está tudo certo com o site e se precisa de algum ajuste este mês.` };
+    if (x.ab_status === "negociando") return { quando: d >= 2 ? "Retomar hoje" : "Aguardar " + (2 - d) + " dia(s)", texto:
+      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nPassando pra retomar nossa conversa sobre o site da ${nm}. Lembrando: não tem taxa de entrada e você só começa a pagar depois de ver o site no ar e aprovar.\n\nPosso seguir com a versão final pra você aprovar? Se preferir, te explico em uma ligação de 5 minutos.` };
+    if (x.ab_status === "respondeu") return { quando: d >= 2 ? "Retomar hoje" : "Aguardar " + (2 - d) + " dia(s)", texto:
+      (nota.includes("amostra") || nota.includes("piloto")) ?
+      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nConseguiu dar uma olhada na amostra que preparei para a ${nm}? Se quiser, ajusto cores, fotos e textos do jeito de vocês, sem compromisso.\n\nPosso te mostrar em uma ligação rápida de 5 minutos?` :
+      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nObrigado pelo retorno! Quer que eu prepare uma amostra do site da ${nm}, com a identidade de vocês? É sem compromisso: você só decide depois de ver.` };
+    if (x.ab_status === "chamei") {
+      const pos = x.pos_cidade ? `aparece em ${x.pos_cidade}º na busca do Google` : "não aparece na busca geral do Google na cidade";
+      const site = { nenhum: "o perfil de vocês não tem link de site", instagram: "o link do perfil leva só para o Instagram", whatsapp: "o link do perfil leva só para o WhatsApp", facebook: "o link do perfil leva só para o Facebook", link_bio: "o link do perfil leva para um link de bio", fora_do_ar: "o site cadastrado no Google está fora do ar" }[x.site_tipo] || "dá para melhorar a presença de vocês no Google";
+      return { quando: d >= 3 ? "Follow-up hoje" : "Aguardar " + (3 - d) + " dia(s)", texto:
+        `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nTomei a liberdade de fazer um Raio-X rápido da ${nm} no Google: nota ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} com ${n(x.avaliacoes)} avaliações, ${pos}, e ${site}.\n\nPosso te mandar a análise completa com os concorrentes da região? É grátis. E se fizer sentido, a gente conversa sobre melhorias pro negócio.` };
+    }
+    return { quando: "Não insistir", texto: d != null && d >= 90 ? `Oi! Tudo bem? Aqui é o Paulo, da Hélice. Faz um tempo que conversamos: posso te mandar um Raio-X atualizado da ${nm} no Google? É grátis.` : "" };
+  }
+  function abrirContatos() { $("contatos").hidden = false; document.body.style.overflow = "hidden"; drawContatos(); }
+  function fecharContatos() { $("contatos").hidden = true; document.body.style.overflow = ""; }
+  function drawContatos() {
+    const C = RAW.filter(x => x.ab_status);
+    const pr = x => { const q = proximaMsg(x).quando; return /hoje/.test(q) ? 0 : x.ab_status === "fechou" ? 1 : /Aguardar/.test(q) ? 2 : 3; };
+    const abas = [["acao", "Para fazer hoje", x => /hoje/.test(proximaMsg(x).quando)], ["fechou", "Clientes", x => x.ab_status === "fechou"], ["negociando", "Negociando", x => x.ab_status === "negociando"], ["respondeu", "Responderam", x => x.ab_status === "respondeu"], ["chamei", "Sem resposta", x => x.ab_status === "chamei"], ["sem_interesse", "Sem interesse", x => x.ab_status === "sem_interesse"], ["todos", "Todos", x => true]];
+    const f = abas.find(a => a[0] === CT_ABA)[2];
+    const L = C.filter(f).sort((a, b) => pr(a) - pr(b) || new Date(a.ab_em) - new Date(b.ab_em));
+    $("contatos").innerHTML = `<div class="ctt"><div class="in"><div class="topo"><h1>Meus contatos</h1><span class="meta">${C.length} empresas abordadas em ${new Set(C.map(x => x.cidade)).size} cidades</span><button class="btn" type="button" id="ctFechar" style="margin-left:auto">Voltar ao radar</button></div>
+      <p class="sub" style="margin:0;color:var(--muted)">Cada contato tem a próxima mensagem sugerida. Envie pelo WhatsApp e atualize o status aqui mesmo. Para não ser bloqueado: no máximo 10 a 15 envios por dia, com uns 6 minutos entre eles. Comece pelos que responderam e pelos que estão negociando.</p>
+      <div class="tabs">${abas.map(([k, t, fn]) => `<button type="button" data-ca="${k}" aria-pressed="${k === CT_ABA}">${t} · ${C.filter(fn).length}</button>`).join("")}</div>
+      ${L.length ? L.map(x => { const m = proximaMsg(x), d = diasDe(x.ab_em); let tel = String(x.telefone || "").replace(/\D/g, ""); if (tel && tel.length <= 11) tel = "55" + tel;
+        return `<div class="ct" data-id="${x.place_id}"><div class="h"><div><b>${esc(nomeCurto(x))}</b><div class="meta">${esc(x.cidade)} · ${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.telefone || "sem telefone")} · ${d == null ? "" : d === 0 ? "atualizado hoje" : "há " + d + " dia(s)"}</div></div>
+          <div class="sts">${Object.entries(ST).map(([k, l]) => `<button type="button" data-st="${k}" aria-pressed="${x.ab_status === k}">${l}</button>`).join("")}</div></div>
+          ${x.ab_nota ? `<p class="nota">📝 ${esc(x.ab_nota)}</p>` : ""}
+          <p class="meta" style="margin:10px 0 0"><b>${esc(m.quando)}</b></p>${m.texto ? `<div class="sug">${esc(m.texto)}</div>` : ""}
+          <div class="ac">${m.texto && tel ? `<a class="btn zap" target="_blank" rel="noopener" href="https://wa.me/${tel}?text=${encodeURIComponent(m.texto)}" data-env="1">Enviar no WhatsApp</a>` : ""}${m.texto ? `<button class="btn" type="button" data-cp="1">Copiar</button>` : ""}<button class="btn" type="button" data-nota="1">Anotar</button><button class="btn" type="button" data-ficha="1">Ficha completa</button></div></div>`; }).join("") : `<div class="ct" style="text-align:center;color:var(--muted)">Nada por aqui.</div>`}
+    </div></div>`;
+    $("ctFechar").onclick = fecharContatos;
+    $("contatos").querySelectorAll("[data-ca]").forEach(b => b.onclick = () => { CT_ABA = b.dataset.ca; drawContatos(); $("contatos").querySelector(".ctt").scrollTop = 0; });
+    $("contatos").querySelectorAll(".ct[data-id]").forEach(el => {
+      const x = RAW.find(z => z.place_id === el.dataset.id), m = proximaMsg(x);
+      el.querySelectorAll("[data-st]").forEach(b => b.onclick = async () => { const st = b.dataset.st; let v = x.ab_valor;
+        if (st === "fechou") { const r = prompt("Valor mensal fechado (R$):", x.ab_valor || ""); if (r === null) return; v = r === "" ? null : +String(r).replace(",", "."); }
+        try { await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: st, p_nota: x.ab_nota || null, p_valor: st === "fechou" ? v : null, p_servico: x.ab_servico || null });
+          Object.assign(x, { ab_status: st, ab_valor: st === "fechou" ? v : null, ab_em: new Date().toISOString() }); toast(`Marcada como "${ST[st]}"`); drawContatos(); } catch (e) { toast("Não salvou: " + e.message); } });
+      const cp = el.querySelector("[data-cp]"); if (cp) cp.onclick = () => navigator.clipboard.writeText(m.texto).then(() => toast("Mensagem copiada"), () => toast("Não consegui copiar"));
+      const env = el.querySelector("[data-env]"); if (env) env.addEventListener("click", async () => { const hoje = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }); const nota = ((x.ab_nota || "") + `\n${hoje}: follow-up enviado (${m.quando.toLowerCase()})`).trim();
+        try { await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: x.ab_status, p_nota: nota, p_valor: x.ab_valor ?? null, p_servico: x.ab_servico || null }); Object.assign(x, { ab_nota: nota, ab_em: new Date().toISOString() }); setTimeout(drawContatos, 600); } catch (_) {} });
+      el.querySelector("[data-nota]").onclick = async () => { const t = prompt("Anotação (o que aconteceu, próximo passo):"); if (!t) return; const hoje = new Date().toLocaleDateString("pt-BR", { day: "2-digit", month: "2-digit" }); const nota = ((x.ab_nota || "") + `\n${hoje}: ${t}`).trim();
+        try { await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: x.ab_status, p_nota: nota, p_valor: x.ab_valor ?? null, p_servico: x.ab_servico || null }); Object.assign(x, { ab_nota: nota, ab_em: new Date().toISOString() }); toast("Anotado"); drawContatos(); } catch (e) { toast("Não salvou: " + e.message); } };
+      el.querySelector("[data-ficha]").onclick = () => { fecharContatos(); if ($("fCidade").value !== x.cidade) { $("fCidade").value = x.cidade; porCidade(); tudo(); } abrir(ALL.find(z => z.place_id === x.place_id)); };
+    });
+  }
+  $("bContatos").onclick = () => { if (!RAW.length) { toast("Carregando dados…"); return; } abrirContatos(); };
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("contatos").hidden && $("detail").hidden) fecharContatos(); });
+
+  function pedirChave(erro) {
+    document.querySelector(".wrap").innerHTML = `<form class="login" id="fLogin"><h1 style="font-size:28px">Radar Negócios Locais</h1><p class="sub" style="margin:0;color:var(--muted)">Acesso restrito. Abra pelo link com a chave ou cole a chave abaixo.</p>${erro ? `<p style="margin:0;color:var(--hot);font-weight:600">${esc(erro)}</p>` : ""}<label for="kIn" style="font-weight:600;font-size:13px">Chave de acesso</label><input id="kIn" autocomplete="off" required><button class="btn pri" type="submit">Entrar</button></form>`;
+    $("fLogin").onsubmit = e => { e.preventDefault(); const k = $("kIn").value.trim(); try { localStorage.setItem("negocios_k", k); } catch (_) {} location.search = "?k=" + encodeURIComponent(k); };
+  }
+  const qk = new URLSearchParams(location.search).get("k");
+  try { TOKEN = qk || localStorage.getItem("negocios_k") || ""; if (qk) localStorage.setItem("negocios_k", qk); } catch (_) { TOKEN = qk || ""; }
+  if (!TOKEN) pedirChave();
+  else {
+    $("msg").innerHTML = `<div class="notice">Carregando empresas…</div>`;
+    rpc("neg_dados", { p_token: TOKEN }).then(rows => {
+      RAW = rows || [];
+      const cidades = [...new Set(RAW.map(x => x.cidade))].sort((a, b) => a.localeCompare(b, "pt-BR"));
+      $("fCidade").innerHTML = cidades.map(c => `<option>${esc(c)}</option>`).join("");
+      porCidade(); tudo();
+    }).catch(e => { if (/token/i.test(e.message)) { try { localStorage.removeItem("negocios_k"); } catch (_) {} pedirChave("Chave inválida."); } else $("msg").innerHTML = `<div class="notice">Não foi possível carregar: ${esc(e.message)}</div>`; });
+  }
+})();
+</script>
+</body>
+</html>
