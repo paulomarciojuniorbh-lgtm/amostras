@@ -169,9 +169,10 @@ async function carregar(){
   try{D=await rpc('crm_painel',{p_token:TOK})}catch(e){$('#app').innerHTML='<div class="gate"><h1>Sem conexão</h1><p class="sub">Confira a internet e tente de novo.</p><button class="btn" onclick="location.reload()">Tentar de novo</button></div>';return}
   if(!D.ok){try{localStorage.removeItem('helice_crm_tok')}catch(e){}TOK=null;gate('Este link não é mais válido. Peça um novo ao seu executivo de contas.');return}
   D.P=Object.fromEntries(D.pessoas.map(p=>[p.id,p]));D.PT=Object.fromEntries(D.pontos.map(p=>[p.id,p]));
+  if(D.eu.perfil!=='promotor')await carregarVis();
   $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b>${PERF[D.eu.perfil]} · <a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
   $('#sair').onclick=e=>{e.preventDefault();if(confirm('Sair deste aparelho? Para entrar de novo você vai precisar do seu link.')){try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
-  const abas=D.eu.perfil==='promotor'?[]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa da carteira'],['equipe','Equipe'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa da carteira'],['band','Bandeiras'],['pend','Pendências']];
+  const abas=D.eu.perfil==='promotor'?[]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa da carteira'],['vis','Visitas JVC'],['equipe','Equipe'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa da carteira'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
   const n=$('#nav');n.hidden=!abas.length;n.innerHTML=abas.map(([k,t])=>`<button data-a="${k}" ${k===aba?'aria-current="page"':''}>${t}</button>`).join('');
   n.querySelectorAll('button').forEach(b=>b.onclick=()=>{aba=b.dataset.a;n.querySelectorAll('button').forEach(x=>x.toggleAttribute('aria-current',x===b));if(b.hasAttribute('aria-current'))b.setAttribute('aria-current','page');render();scrollTo(0,0)});
   render();
@@ -179,8 +180,8 @@ async function carregar(){
 function gate(msg){$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||'Acesse pelo seu link pessoal. Se você ainda não tem, peça ao seu executivo de contas.'}</p></div>`}
 function render(){
   if(D.eu.perfil==='promotor'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
-  $('#app').innerHTML=({painel:vPainel,lojas:vLojas,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
-  ({lojas:ligarLojas,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
+  $('#app').innerHTML=({painel:vPainel,lojas:vLojas,vis:vVis,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
+  ({lojas:ligarLojas,vis:ligarVis,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
 }
 const comProm=()=>D.lojas.filter(l=>l.promotor_id);
 const media=a=>a.length?Math.round(a.reduce((s,x)=>s+x,0)/a.length*10)/10:null;
@@ -409,6 +410,90 @@ function cardVendas(){
   <div class="card"><h2>Lojas que mais perderam no ano (R$)${nb}</h2><table><tbody>${caindo.map(x=>`<tr class="clic" data-loja="${x.l.id}"><td>${esc(x.l.nome)}<div class="muted">${brl(x.d)} · ${diagPill(x.l.diag)}</div></td><td class="num">${varPill(x.c)}</td></tr>`).join('')}</tbody></table></div></div>`;
 }
 
+/* ---------- visitas JVC ---------- */
+let VIS=[];
+async function carregarVis(){try{const r=await rpc('crm_visitas',{p_token:TOK});VIS=r.ok?r.visitas:[]}catch(e){VIS=[]}}
+const hojeISO=()=>{const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
+const diasAte=d=>Math.round((new Date(d+'T12:00')-new Date(hojeISO()+'T12:00'))/864e5);
+const dataLonga=d=>new Date(d+'T12:00').toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short',year:'numeric'}).replace('.','');
+const quandoVis=v=>{if(v.status==='realizada')return '<span class="pill p-ok">realizada</span>';const n=diasAte(v.data);return n<0?'<span class="pill p-nd">já passou</span>':n===0?'<span class="pill p-ruim">hoje</span>':n===1?'<span class="pill p-med">amanhã</span>':`<span class="pill ${n<=7?'p-med':'p-az'}">em ${n} dias</span>`};
+function visPill(id){const v=VIS.filter(v=>v.status==='planejada'&&diasAte(v.data)>=0&&v.lojas.includes(id)).sort((a,b)=>a.data<b.data?-1:1)[0];return v?` <span class="pill p-az" title="${esc(v.titulo)}">📍 JVC ${dataBR(v.data)}</span>`:''}
+const ST_AC={aberta:['A destravar','p-ruim'],andamento:['Em andamento','p-med'],destravada:['Destravada','p-ok']};
+function vVis(){
+  const ex=D.eu.perfil==='exec',h=hojeISO(),prox=VIS.filter(v=>v.status==='planejada'&&v.data>=h).sort((a,b)=>a.data<b.data?-1:1),ant=VIS.filter(v=>!(v.status==='planejada'&&v.data>=h));
+  const card=v=>{const A=v.acoes,ok=A.filter(a=>a.status==='destravada').length,pct=A.length?Math.round(ok/A.length*100):0,venc=A.filter(a=>a.status!=='destravada'&&a.prazo&&a.prazo<h).length;
+    return `<button class="item" data-vis="${v.id}" style="width:100%;text-align:left;cursor:pointer;display:block"><div class="l1"><div><b style="font-size:16px">${esc(v.titulo)}</b><small>${dataLonga(v.data)} · ${v.lojas.length} loja${v.lojas.length===1?'':'s'}</small></div>${quandoVis(v)}</div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:10px"><div style="flex:1;height:8px;background:#eef1f7;border-radius:99px;overflow:hidden"><div style="width:${pct}%;height:100%;background:var(--ok)"></div></div><span class="muted" style="white-space:nowrap">${A.length?`${ok}/${A.length} destravadas`:'nenhuma ação ainda'}</span>${venc?`<span class="pill p-ruim">${venc} vencida${venc>1?'s':''}</span>`:''}</div>
+    <div class="muted" style="margin-top:6px">${v.lojas.slice(0,6).map(id=>esc((D.lojas.find(l=>l.id===id)||{}).nome||'#'+id)).join(' · ')}${v.lojas.length>6?` · +${v.lojas.length-6}`:''}</div></button>`};
+  return `<div style="display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap"><div style="flex:1"><h1>Visitas JVC</h1><p class="sub">Marque as lojas que vão receber visita e organize o que precisa destravar antes do dia.</p></div>${ex?'<button class="btn" id="v-nova">+ Nova visita</button>':''}</div>
+  <div class="grupo">Próximas</div>${prox.length?prox.map(card).join(''):`<div class="card vazio"><b>Nenhuma visita marcada</b>${ex?'Toque em "+ Nova visita", escolha a data e as lojas.':''}</div>`}
+  ${ant.length?`<div class="grupo">Anteriores</div>${ant.sort((a,b)=>a.data<b.data?1:-1).map(card).join('')}`:''}`;
+}
+function ligarVis(){$('#v-nova')&&($('#v-nova').onclick=()=>formVisita({}));document.querySelectorAll('[data-vis]').forEach(b=>b.onclick=()=>abrirVisita(+b.dataset.vis))}
+function formVisita(v){
+  const SEL=new Set(v.lojas||[]),bands=[...new Set(D.lojas.map(l=>l.bandeira).filter(Boolean))].sort();
+  abrir(`<div class="cab"><div><h1>${v.id?'Editar visita':'Nova visita JVC'}</h1><div class="muted">Data e lojas que vão receber a visita</div></div><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo">
+  <div class="card"><div class="campos"><label>Nome da visita<input id="vf-t" value="${esc(v.titulo||'Visita JVC')}"></label><label>Data da visita<input id="vf-d" type="date" value="${v.data||''}"></label>
+  <label class="full">Objetivo / observações<textarea id="vf-o" rows="2" placeholder="Ex.: visita com o comprador da bandeira MIX, foco em ponto extra e grade de chocolate">${esc(v.obs||'')}</textarea></label></div></div>
+  <div class="card"><h2>Lojas da visita <span class="pill p-az" id="vf-n">${SEL.size}</span></h2>
+  <div class="filtros"><input id="vf-q" placeholder="Buscar loja, número ou cidade"><select id="vf-b"><option value="">Todas as bandeiras</option>${bands.map(b=>`<option>${esc(b)}</option>`).join('')}</select><button class="btn sec peq" id="vf-so" type="button" aria-pressed="false">Só marcadas</button></div>
+  <div class="lista-sel" id="vf-l"></div></div>
+  <div class="barra-fixa"><button class="btn" id="vf-s">Salvar visita</button>${v.id?'<button class="btn sec" id="vf-x" style="color:var(--ruim);background:var(--ruim-bg)">Cancelar visita</button>':''}<span class="muted" style="margin-left:auto">Toque nas lojas para marcar</span></div></div>`);
+  let so=false;
+  const lista=()=>{const q=$('#vf-q').value.trim().toLowerCase(),b=$('#vf-b').value;
+    const L=D.lojas.filter(l=>(!b||l.bandeira===b)&&(!so||SEL.has(l.id))&&(!q||(l.nome+' '+l.id+' '+(l.cidade||'')).toLowerCase().includes(q))).sort((a,c)=>(SEL.has(c.id)-SEL.has(a.id))||((+c.ytd||0)-(+a.ytd||0)));
+    $('#vf-l').innerHTML=L.slice(0,300).map(l=>`<label><input type="checkbox" data-sl="${l.id}" ${SEL.has(l.id)?'checked':''}><span style="flex:1"><b style="font-weight:600">${esc(l.nome)}</b><span class="muted" style="display:block">#${l.id} · ${esc(l.bandeira||'sem bandeira')} · ${esc(l.cidade||'')}${l.promotor_id?' · com promotor':''}</span></span>${diagPill(l.diag)}</label>`).join('')||'<div class="vazio">Nenhuma loja encontrada.</div>';
+    document.querySelectorAll('[data-sl]').forEach(c=>c.onchange=()=>{c.checked?SEL.add(+c.dataset.sl):SEL.delete(+c.dataset.sl);$('#vf-n').textContent=SEL.size})};
+  $('#vf-q').oninput=lista;$('#vf-b').onchange=lista;$('#vf-so').onclick=e=>{so=!so;e.target.setAttribute('aria-pressed',so);e.target.textContent=so?'Ver todas':'Só marcadas';lista()};lista();
+  $('#vf-s').onclick=async()=>{const d=$('#vf-d').value;if(!d){toast('Escolha a data da visita.');return}if(!SEL.size){toast('Marque pelo menos uma loja.');return}
+    const r=await rpc('crm_salvar_visita',{p_token:TOK,p:{id:v.id||null,titulo:$('#vf-t').value,data:d,obs:$('#vf-o').value,lojas:[...SEL]}}).catch(()=>({}));
+    if(!r.ok){toast('Não consegui salvar. Tente de novo.');return}await carregarVis();toast('Visita salva.');if(aba==='vis')render();abrirVisita(r.id)};
+  $('#vf-x')&&($('#vf-x').onclick=async()=>{if(!confirm('Cancelar esta visita? Ela sai da lista.'))return;const r=await rpc('crm_salvar_visita',{p_token:TOK,p:{id:v.id,status:'cancelada'}}).catch(()=>({}));if(r.ok){await carregarVis();fechar();toast('Visita cancelada.');render()}});
+}
+function abrirVisita(id){
+  const v=VIS.find(x=>x.id===id);if(!v){fechar();return}
+  const ex=D.eu.perfil==='exec',h=hojeISO(),LJ=v.lojas.map(i=>D.lojas.find(l=>l.id===i)||{id:i,nome:'#'+i}),nomeL=i=>i?esc((D.lojas.find(l=>l.id===i)||{}).nome||'#'+i):'Geral (todas as lojas)';
+  const A=v.acoes,ok=A.filter(a=>a.status==='destravada').length;
+  const item=a=>{const venc=a.status!=='destravada'&&a.prazo&&a.prazo<h;return `<div class="item" style="padding:12px"><div class="l1"><div><b>${esc(a.texto)}</b><small>${nomeL(a.loja_id)}${a.responsavel?' · 👤 '+esc(a.responsavel):''}${a.prazo?` · <span style="${venc?'color:var(--ruim);font-weight:600':''}">prazo ${dataBR(a.prazo)}${venc?' (vencido)':''}</span>`:''}</small>${a.obs?`<div class="muted" style="margin-top:4px">${esc(a.obs)}</div>`:''}</div><button class="btn sec peq" data-ae="${a.id}" title="Editar">✎</button></div>
+    <div class="sn" style="margin-top:10px;display:inline-flex">${Object.entries(ST_AC).map(([k,[t]])=>`<button type="button" data-as="${a.id}" data-v="${k}" aria-pressed="${a.status===k}" style="padding:7px 12px;min-width:0;font-size:13px;${a.status===k?`background:var(--${k==='aberta'?'ruim':k==='andamento'?'med':'ok'});color:#fff`:''}">${t}</button>`).join('')}</div></div>`};
+  const resumo=()=>`*${v.titulo} · ${dataBR(v.data)}*\n${v.lojas.length} lojas: ${LJ.map(l=>l.nome).join(', ')}\n\n`+['aberta','andamento','destravada'].map(k=>{const X=A.filter(a=>a.status===k);return X.length?`*${ST_AC[k][0]}*\n`+X.map(a=>`• ${a.texto}${a.loja_id?' ('+((D.lojas.find(l=>l.id===a.loja_id)||{}).nome||'')+')':''}${a.responsavel?' · '+a.responsavel:''}${a.prazo?' · até '+dataBR(a.prazo):''}`).join('\n'):''}).filter(Boolean).join('\n\n');
+  abrir(`<div class="cab"><div><h1>${esc(v.titulo)}</h1><div class="muted">${dataLonga(v.data)} · ${v.lojas.length} loja${v.lojas.length===1?'':'s'}</div></div>${quandoVis(v)}<button class="fechar" aria-label="Fechar">×</button></div><div class="corpo">
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px">${ex?`<button class="btn sec peq" id="vv-e">Editar data e lojas</button>${v.status==='planejada'?'<button class="btn sec peq" id="vv-r">Marcar como realizada</button>':'<button class="btn sec peq" id="vv-p">Voltar para planejada</button>'}`:''}<button class="btn sec peq" id="vv-c">Copiar resumo p/ WhatsApp</button></div>
+  ${v.obs?`<div class="card" style="background:var(--azul-bg);border-color:#cfdcff"><b>Objetivo:</b> ${esc(v.obs)}</div>`:''}
+  <div class="card"><h2>Lojas da visita</h2><div class="tab-scroll" style="max-height:none"><table><thead><tr><th>Loja</th><th class="num">Vendas no ano</th><th class="num">× ano ant.</th><th class="num">Contrato</th><th>Diagnóstico</th><th class="num">Ações</th></tr></thead><tbody>
+  ${LJ.map(l=>{const ab=A.filter(a=>a.loja_id===l.id&&a.status!=='destravada').length;return `<tr class="clic" data-vl="${l.id}"><td><b>${esc(l.nome)}</b><div class="muted">#${l.id} · ${esc(l.bandeira||'')}${l.promotor_id?' · '+esc(D.P[l.promotor_id]?.nome||''):' · sem promotor'}</div></td><td class="num">${l.ytd?brl(l.ytd):'—'}</td><td class="num">${varPill(var_(l.ytd,l.ytd_ant))}</td><td class="num">${l.ult_pct==null?'<span class="muted">—</span>':pctPill(l.ult_pct)}</td><td>${diagPill(l.diag)}${(l.neg||0)+(l.zero||0)?` <span class="pill p-ruim">${(l.neg||0)+(l.zero||0)}⚠</span>`:''}</td><td class="num">${ab?`<span class="pill p-ruim">${ab} aberta${ab>1?'s':''}</span>`:'<span class="muted">—</span>'}</td></tr>`}).join('')}</tbody></table></div></div>
+  <div class="card"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><h2 style="margin:0">Ações para destravar</h2><span class="muted">${A.length?ok+'/'+A.length+' destravadas':''}</span></div>
+  <div class="campos" style="margin-bottom:14px"><label class="full">O que precisa destravar<input id="va-t" placeholder="Ex.: liberar ponto extra na entrada, corrigir preço do Lacta 80g, repor grade de biscoito"></label>
+  <label>Loja<select id="va-l"><option value="">Geral (todas as lojas)</option>${LJ.map(l=>`<option value="${l.id}">${esc(l.nome)}</option>`).join('')}</select></label>
+  <label>Responsável<input id="va-r" list="va-pess" placeholder="Quem resolve"><datalist id="va-pess">${D.pessoas.map(p=>`<option value="${esc(p.nome)}">`).join('')}</datalist></label>
+  <label>Prazo<input id="va-p" type="date" value="${v.data>h?v.data:''}"></label><label style="align-self:end"><button class="btn" id="va-s" type="button">+ Adicionar ação</button></label></div>
+  ${A.length?['aberta','andamento','destravada'].map(k=>{const X=A.filter(a=>a.status===k).sort((a,b)=>(a.prazo||'9')<(b.prazo||'9')?-1:1);return X.length?`<div class="grupo">${ST_AC[k][0]} · ${X.length}</div>${X.map(item).join('')}`:''}).join(''):'<div class="vazio"><b>Nenhuma ação ainda</b>Liste aqui o que precisa resolver antes da visita: ponto extra, preço, ruptura, grade, negociação com o gerente…</div>'}
+  </div></div>`);
+  const salvarA=async p=>{const r=await rpc('crm_salvar_acao_visita',{p_token:TOK,p}).catch(()=>({}));if(!r.ok){toast('Não consegui salvar.');return false}await carregarVis();if(aba==='vis')render();const y=$('#painel').scrollTop;abrirVisita(id);$('#painel').scrollTop=y;return true};
+  $('#va-s').onclick=async()=>{const t=$('#va-t').value.trim();if(!t){toast('Escreva a ação.');$('#va-t').focus();return}if(await salvarA({visita:id,texto:t,loja:$('#va-l').value,responsavel:$('#va-r').value,prazo:$('#va-p').value}))toast('Ação adicionada.')};
+  $('#va-t').onkeydown=e=>{if(e.key==='Enter')$('#va-s').click()};
+  document.querySelectorAll('[data-as]').forEach(b=>b.onclick=()=>salvarA({id:+b.dataset.as,status:b.dataset.v}));
+  document.querySelectorAll('[data-ae]').forEach(b=>b.onclick=()=>editarAcao(v,A.find(a=>a.id==b.dataset.ae),salvarA));
+  document.querySelectorAll('[data-vl]').forEach(r=>r.onclick=()=>abrirLoja(+r.dataset.vl));
+  $('#vv-e')&&($('#vv-e').onclick=()=>formVisita(v));
+  $('#vv-r')&&($('#vv-r').onclick=async()=>{const r=await rpc('crm_salvar_visita',{p_token:TOK,p:{id,status:'realizada'}}).catch(()=>({}));if(r.ok){await carregarVis();if(aba==='vis')render();abrirVisita(id);toast('Visita marcada como realizada.')}});
+  $('#vv-p')&&($('#vv-p').onclick=async()=>{const r=await rpc('crm_salvar_visita',{p_token:TOK,p:{id,status:'planejada'}}).catch(()=>({}));if(r.ok){await carregarVis();if(aba==='vis')render();abrirVisita(id)}});
+  $('#vv-c').onclick=async()=>{try{await navigator.clipboard.writeText(resumo());toast('Resumo copiado. Cole no WhatsApp.')}catch(e){prompt('Copie o resumo:',resumo())}};
+}
+function editarAcao(v,a,salvarA){
+  const LJ=v.lojas.map(i=>D.lojas.find(l=>l.id===i)||{id:i,nome:'#'+i});
+  abrir(`<div class="cab"><div><h1>Editar ação</h1><div class="muted">${esc(v.titulo)} · ${dataBR(v.data)}</div></div><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  <label class="full">O que precisa destravar<input id="ea-t" value="${esc(a.texto)}"></label>
+  <label>Loja<select id="ea-l"><option value="">Geral (todas as lojas)</option>${LJ.map(l=>`<option value="${l.id}" ${a.loja_id===l.id?'selected':''}>${esc(l.nome)}</option>`).join('')}</select></label>
+  <label>Responsável<input id="ea-r" value="${esc(a.responsavel||'')}"></label><label>Prazo<input id="ea-p" type="date" value="${a.prazo||''}"></label>
+  <label>Situação<select id="ea-s">${Object.entries(ST_AC).map(([k,[t]])=>`<option value="${k}" ${a.status===k?'selected':''}>${t}</option>`).join('')}</select></label>
+  <label class="full">Andamento / observações<textarea id="ea-o" rows="3" placeholder="O que já foi feito, com quem falou, o que falta">${esc(a.obs||'')}</textarea></label></div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="ea-ok">Salvar</button><button class="btn sec" id="ea-v">Voltar</button><button class="btn sec" id="ea-x" style="color:var(--ruim);background:var(--ruim-bg);margin-left:auto">Remover ação</button></div></div></div>`);
+  $('#ea-v').onclick=()=>abrirVisita(v.id);
+  $('#ea-ok').onclick=()=>salvarA({id:a.id,texto:$('#ea-t').value,loja:$('#ea-l').value,responsavel:$('#ea-r').value,prazo:$('#ea-p').value,status:$('#ea-s').value,obs:$('#ea-o').value});
+  $('#ea-x').onclick=()=>{if(confirm('Remover esta ação?'))salvarA({id:a.id,remover:true})};
+}
+
 /* ---------- mapa da carteira ---------- */
 function vLojas(){
   const bands=[...new Set(D.lojas.map(l=>l.bandeira).filter(Boolean))].sort(),ufs=[...new Set(D.lojas.map(l=>l.uf).filter(Boolean))].sort();
@@ -428,7 +513,7 @@ function filtrarLojas(){
   const o={vendas:(a,b)=>(b.ytd||0)-(a.ytd||0),queda:(a,b)=>((a.ytd||0)-(a.ytd_ant||0))-((b.ytd||0)-(b.ytd_ant||0)),cresc:(a,b)=>(var_(b.ytd,b.ytd_ant)??-999)-(var_(a.ytd,a.ytd_ant)??-999),contrato:(a,b)=>(a.ult_pct??999)-(b.ult_pct??999),nome:(a,b)=>a.nome.localeCompare(b.nome)}[FL.ord];
   FILT.sort(o);
   $('#t-lojas').innerHTML=FILT.length?`<table><thead><tr><th>Loja</th><th>Promotor</th><th class="num">Contrato</th><th class="num">Vendas no ano</th><th class="num">× ano ant.</th><th class="num">Estoque 4 sem</th><th class="num">Grade</th><th>Diagnóstico</th></tr></thead><tbody>${FILT.slice(0,500).map(l=>`<tr class="clic" data-loja="${l.id}">
-    <td><b>${esc(l.nome)}</b><div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${esc(l.cidade||'')}${l.uf?' '+l.uf:''}</div></td>
+    <td><b>${esc(l.nome)}</b>${visPill(l.id)}<div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${esc(l.cidade||'')}${l.uf?' '+l.uf:''}</div></td>
     <td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem</span>'}${l.pmarca?' <span class="pill p-az">marca</span>':''}</td>
     <td class="num">${l.ult_pct==null?'<span class="muted">—</span>':pctPill(l.ult_pct)}</td><td class="num">${l.ytd?brl(l.ytd):'—'}</td><td class="num">${varPill(var_(l.ytd,l.ytd_ant))}</td>
     <td class="num">${varPill(var_(l.est,l.est_ant))}${(l.neg||0)+(l.zero||0)?` <span class="pill p-ruim" title="categorias com estoque zerado ou negativo">${(l.neg||0)+(l.zero||0)}⚠</span>`:''}</td>
@@ -456,7 +541,7 @@ async function abrirLoja(id,abaL){
   const ultC=R.checagens[0];
   const tabs=[['geral','Visão geral'],['vendas','Vendas'],['estoque','Estoque'],['contrato','Contrato'],['notas','Anotações'+(R.notas.filter(n=>!n.feito&&n.proxima_acao).length?' •':'')],['dados','Dados e equipe']];
   let at=abaL||'geral';
-  const chips=`${l.promotor_id?`<span class="pill p-az">Promotor: ${esc(D.P[l.promotor_id]?.nome||'')}</span>`:'<span class="pill p-nd">Sem promotor</span>'}${l.promotor_marca?` <span class="pill p-az">Promotor de marca${l.promotor_marca_obs?': '+esc(l.promotor_marca_obs):''}</span>`:''} ${diagPill(r.diag)} ${ultC?pctPill(ultC.pct):'<span class="pill p-nd">sem checagem</span>'}`;
+  const chips=`${l.promotor_id?`<span class="pill p-az">Promotor: ${esc(D.P[l.promotor_id]?.nome||'')}</span>`:'<span class="pill p-nd">Sem promotor</span>'}${l.promotor_marca?` <span class="pill p-az">Promotor de marca${l.promotor_marca_obs?': '+esc(l.promotor_marca_obs):''}</span>`:''} ${diagPill(r.diag)} ${ultC?pctPill(ultC.pct):'<span class="pill p-nd">sem checagem</span>'}${visPill(l.id)}`;
   const corpo={
    geral:()=>`<div style="margin-bottom:12px">${chips}</div>
      ${r.diag?`<div class="card" style="border-left:4px solid ${r.diag==='crescendo'?'var(--ok)':r.diag==='queda_estoque'?'var(--ruim)':r.diag?.startsWith('queda')?'var(--med)':'var(--linha)'}"><b>Diagnóstico:</b> ${esc(DIAG[r.diag]?.[2]||'')}</div>`:''}
