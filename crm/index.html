@@ -134,6 +134,7 @@ tbody tr.clic{cursor:pointer}tbody tr.clic:hover{background:var(--hover)}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--escuro);color:#fff;padding:11px 18px;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:90;font-weight:500}
 .toast.on{opacity:1}
 .gate{max-width:420px;margin:90px auto;text-align:center;padding:0 20px}
+.login label{display:grid;gap:6px;font-size:13px;font-weight:600;color:var(--suave)}.login input{border:1px solid var(--linha);border-radius:6px;padding:11px 12px;font-size:16px;font-weight:400;color:var(--texto)}
 .ld{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:g .7s linear infinite}
 @keyframes g{to{transform:rotate(360deg)}}
 button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--azul);outline-offset:2px}
@@ -206,7 +207,8 @@ function rotular(){document.querySelectorAll('.rolafim:not([data-r])').forEach(e
 new MutationObserver(()=>{cancelAnimationFrame(rotular._r);rotular._r=requestAnimationFrame(rotular)}).observe(document.body,{childList:true,subtree:true});
 function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),2600)}
 const FORM={atacarejo:'Atacarejo',varejo:'Varejo',conveniencia:'Conveniência',mais_fraldas:'Mais Fraldas',farma:'Farma',atacado:'Atacado'};
-const PERF={exec:'Executivo de contas',coord:'Coordenador',promotor:'Promotor'};
+const PERF={exec:'Executivo de contas',coord:'Coordenador',promotor:'Promotor',ga:'Gerente de Área (GA)',gr:'Gerente Regional Nordeste'};
+const GERENTE=p=>p==='ga'||p==='gr';
 const pctPill=p=>p==null?'<span class="pill p-nd">sem checagem</span>':`<span class="pill ${p>=90?'p-ok':p>=70?'p-med':'p-ruim'}">${String(p).replace('.',',')}%</span>`;
 const dataBR=s=>s?new Date(s+'T12:00').toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'}):'—';
 const telZap=t=>{let d=String(t||'').replace(/\D/g,'');if(!d)return null;if(d.length<=11)d='55'+d;return d};
@@ -220,17 +222,27 @@ async function hashTok(){const b=await crypto.subtle.digest('SHA-256',new TextEn
 async function carregar(){
   if(!TOK){gate();return}
   try{D=await rpc('crm_painel',{p_token:TOK})}catch(e){$('#app').innerHTML='<div class="gate"><h1>Sem conexão</h1><p class="sub">Confira a internet e tente de novo.</p><button class="btn" onclick="location.reload()">Tentar de novo</button></div>';return}
-  if(!D.ok){try{localStorage.removeItem('helice_crm_tok')}catch(e){}TOK=null;gate('Este link não é mais válido. Peça um novo ao seu executivo de contas.');return}
+  if(!D.ok){try{localStorage.removeItem('helice_crm_tok')}catch(e){}TOK=null;gate('Entre com seu usuário e senha. Se ainda não tem, peça ao seu executivo de contas.');return}
+  rpc('crm_registrar_acesso',{p_token:TOK,p_ua:navigator.userAgent.slice(0,200)}).catch(()=>{});
   D.P=Object.fromEntries(D.pessoas.map(p=>[p.id,p]));D.PT=Object.fromEntries(D.pontos.map(p=>[p.id,p]));
   if(D.eu.perfil!=='promotor')await carregarVis();
-  $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b><span class="perf">${PERF[D.eu.perfil]} · </span><a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
-  $('#sair').onclick=e=>{e.preventDefault();if(confirm('Sair deste aparelho? Para entrar de novo você vai precisar do seu link.')){try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
-  const abas=D.eu.perfil==='promotor'?[]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa da carteira'],['vis','Visitas JVC'],['equipe','Equipe'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa da carteira'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
+  $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b><span class="perf">${PERF[D.eu.perfil]} · </span><a href="#" id="minha-senha" style="color:#b8c3e6">senha</a> · <a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
+  $('#sair').onclick=async e=>{e.preventDefault();if(confirm('Sair deste aparelho?')){await rpc('crm_sair',{p_token:TOK}).catch(()=>{});try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
+  $('#minha-senha').onclick=e=>{e.preventDefault();trocarSenha()};
+  const abas=D.eu.perfil==='promotor'?[]:GERENTE(D.eu.perfil)?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências']]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
   const n=$('#nav');n.hidden=!abas.length;n.innerHTML=abas.map(([k,t])=>`<button data-a="${k}" ${k===aba?'aria-current="page"':''}>${t}</button>`).join('');
   n.querySelectorAll('button').forEach(b=>b.onclick=()=>{aba=b.dataset.a;n.querySelectorAll('button').forEach(x=>x.toggleAttribute('aria-current',x===b));if(b.hasAttribute('aria-current'))b.setAttribute('aria-current','page');render();scrollTo(0,0)});
   render();
 }
-function gate(msg){$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||'Acesse pelo seu link pessoal. Se você ainda não tem, peça ao seu executivo de contas.'}</p></div>`}
+function gate(msg){$('#app').innerHTML=`<div class="gate login"><div class="eyebrow">Mondelez × Grupo Mateus</div><h1>Hélice CRM</h1><p class="sub">${msg||'Entre com seu usuário e senha.'}</p>
+  <form id="lg" class="card" style="text-align:left;display:grid;gap:12px"><label>Usuário<input id="lg-u" autocomplete="username" autocapitalize="none" required></label><label>Senha<input id="lg-s" type="password" autocomplete="current-password" required></label>
+  <button class="btn" type="submit" id="lg-b">Entrar</button><span class="muted" id="lg-e" style="color:var(--ruim)"></span></form>
+  <p class="muted">Esqueceu a senha? Peça ao seu executivo de contas para criar uma nova.</p></div>`;
+  $('#lg').onsubmit=async e=>{e.preventDefault();$('#lg-b').disabled=true;$('#lg-e').textContent='';
+    const r=await rpc('crm_login',{p_login:$('#lg-u').value,p_senha:$('#lg-s').value,p_ua:navigator.userAgent.slice(0,200)}).catch(()=>({erro:'Sem conexão. Tente de novo.'}));
+    $('#lg-b').disabled=false;if(!r.ok){$('#lg-e').textContent=r.erro||'Não foi possível entrar.';return}
+    TOK=r.token;try{localStorage.setItem('helice_crm_tok',TOK)}catch(x){}carregar()};
+  return;$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||''}</p></div>`}
 function render(){
   if(D.eu.perfil==='promotor'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
   $('#app').innerHTML=({painel:vPainel,lojas:vLojas,vis:vVis,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
@@ -288,30 +300,78 @@ function ligarPromotor(){document.querySelectorAll('[data-loja]').forEach(b=>b.o
 
 /* ---------- equipe ---------- */
 const linkDe=t=>location.origin+location.pathname+'#t='+t;
+const quando=t=>{if(!t)return 'nunca entrou';const d=new Date(t),m=Math.round((Date.now()-d)/6e4);if(m<60)return m<=1?'agora há pouco':'há '+m+' min';if(m<1440)return 'há '+Math.round(m/60)+' h';const n=Math.round(m/1440);return n===1?'ontem':n<30?'há '+n+' dias':d.toLocaleDateString('pt-BR')};
 function vEquipe(){
-  const cs=D.pessoas.filter(p=>p.perfil==='coord'),ps=D.pessoas.filter(p=>p.perfil==='promotor'),es=D.pessoas.filter(p=>p.perfil==='exec');
-  const linha=p=>{const n=D.lojas.filter(l=>p.perfil==='promotor'?l.promotor_id===p.id:l.coord_id===p.id).length;return `<tr><td><b>${esc(p.nome)}</b>${p.teste?' <span class="pill p-nd">teste</span>':''}<div class="muted">${esc(p.telefone||'sem telefone')}${p.nascimento?' · 🎂 '+dataBR(p.nascimento):''}${p.perfil==='promotor'?' · '+esc(D.P[p.coord_id]?.nome||'sem coordenador'):''}</div></td><td class="num">${p.perfil==='exec'?'':n+' lojas'}</td><td style="text-align:right;white-space:nowrap"><button class="btn sec peq" data-ed="${p.id}">Editar</button> ${p.perfil==='promotor'?`<button class="btn sec peq" data-at="${p.id}">Lojas</button> `:''}<button class="btn sec peq" data-cp="${p.id}">Copiar link</button> ${telZap(p.telefone)?`<a class="btn zap peq" target="_blank" rel="noopener" href="https://wa.me/${telZap(p.telefone)}?text=${encodeURIComponent(`Olá, ${p.nome.split(' ')[0]}! Este é o seu acesso ao Hélice CRM, onde você faz a checagem semanal das lojas. Salve este link: ${linkDe(p.token)}`)}">Enviar link</a>`:''}</td></tr>`};
-  return `<h1>Equipe</h1><p class="sub">Cada pessoa tem um link pessoal. Ela abre uma vez no celular e o acesso fica salvo.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn" data-novo="promotor">+ Promotor</button><button class="btn sec" data-novo="coord">+ Coordenador</button><button class="btn sec" data-novo="exec">+ Executivo</button></div>
-  <div class="card"><h2>Executivos (${es.length})</h2><p class="muted" style="margin:-6px 0 8px">Veem e editam tudo, como você.</p><div class="tab-scroll"><table class="tc"><tbody>${es.map(linha).join('')}</tbody></table></div></div>
-  <div class="card"><h2>Coordenadores (${cs.length})</h2>${cs.length?`<div class="tab-scroll"><table class="tc"><tbody>${cs.map(linha).join('')}</tbody></table></div>`:'<div class="vazio">Nenhum coordenador ainda.</div>'}</div>
-  <div class="card"><h2>Promotores (${ps.length})</h2>${ps.length?`<div class="tab-scroll"><table class="tc"><tbody>${ps.map(linha).join('')}</tbody></table></div>`:'<div class="vazio">Nenhum promotor ainda.</div>'}</div>`;
+  const ex=D.eu.perfil==='exec',P=D.pessoas,por=k=>P.filter(p=>p.perfil===k);
+  const linha=p=>{const n=D.lojas.filter(l=>p.perfil==='promotor'?l.promotor_id===p.id:l.coord_id===p.id).length;
+    const ac=p.ultimo_acesso?`<span class="pill ${(Date.now()-new Date(p.ultimo_acesso))<7*864e5?'p-ok':'p-med'}">${quando(p.ultimo_acesso)}</span>`:'<span class="pill p-nd">nunca entrou</span>';
+    return `<tr><td><b>${esc(p.nome)}</b>${p.teste?' <span class="pill p-nd">teste</span>':''}<div class="muted">${p.login?'👤 '+esc(p.login):'sem usuário'}${p.tem_senha?' · 🔒 senha criada':' · <span style="color:var(--med)">sem senha</span>'}${p.perfil==='promotor'?' · '+esc(D.P[p.coord_id]?.nome||'sem coordenador'):''}${(p.perfil==='promotor'||p.perfil==='coord')?' · '+n+' lojas':''}</div></td>
+    <td>${ac}<div class="muted">${p.acessos_30||0} acesso${p.acessos_30==1?'':'s'} em 30 dias</div></td>
+    <td style="text-align:right;white-space:nowrap"><button class="btn sec peq" data-hist="${p.id}">Histórico</button> ${ex?`<button class="btn peq" data-senha="${p.id}">${p.tem_senha?'Nova senha':'Criar senha'}</button> <button class="btn sec peq" data-ed="${p.id}">Editar</button> ${p.perfil==='promotor'?`<button class="btn sec peq" data-at="${p.id}">Lojas</button>`:''}`:''}</td></tr>`};
+  const sec=(t,k,desc)=>{const L=por(k);return L.length||ex?`<div class="card"><h2>${t} (${L.length})</h2>${desc?`<p class="muted" style="margin:-6px 0 8px">${desc}</p>`:''}${L.length?`<div class="tab-scroll"><table class="tc"><thead><tr><th>Pessoa</th><th>Último acesso</th><th></th></tr></thead><tbody>${L.map(linha).join('')}</tbody></table></div>`:'<div class="vazio">Ninguém cadastrado ainda.</div>'}</div>`:''};
+  const ativos7=P.filter(p=>p.ultimo_acesso&&(Date.now()-new Date(p.ultimo_acesso))<7*864e5).length,semSenha=P.filter(p=>!p.tem_senha).length,nunca=P.filter(p=>!p.ultimo_acesso).length,tot30=P.reduce((a,p)=>a+(p.acessos_30||0),0);
+  return `<h1>Equipe e acessos</h1><p class="sub">Cada pessoa entra com usuário e senha. Os acessos ficam registrados para acompanhamento.</p>
+  <div class="kpis" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+    <div class="kpi k-ok"><small>Ativos nos últimos 7 dias</small><b>${ativos7}</b><span>de ${P.length} pessoas</span></div>
+    <div class="kpi"><small>Acessos em 30 dias</small><b>${tot30}</b><span>entradas registradas</span></div>
+    <div class="kpi ${nunca?'k-med':'k-ok'}"><small>Nunca entraram</small><b>${nunca}</b><span>desde que o registro começou</span></div>
+    <div class="kpi ${semSenha?'k-ruim':'k-ok'}"><small>Sem senha</small><b>${semSenha}</b><span>${semSenha?'ainda entram pelo link antigo':'todos com senha'}</span></div>
+  </div>
+  ${ex?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px"><button class="btn" data-novo="promotor">+ Promotor</button><button class="btn sec" data-novo="coord">+ Coordenador</button><button class="btn sec" data-novo="exec">+ Executivo</button><button class="btn sec" data-novo="ga">+ Gerente de Área (GA)</button><button class="btn sec" data-novo="gr">+ Gerente Regional</button></div>`:''}
+  ${sec('Gerente Regional Nordeste','gr','Vê todo o negócio. Não altera dados.')}${sec('Gerentes de Área (GA)','ga','Veem todo o negócio. Não alteram dados.')}
+  ${sec('Executivos','exec','Veem e editam tudo.')}${sec('Coordenadores','coord','')}${sec('Promotores','promotor','')}`;
 }
 function ligarEquipe(){
   document.querySelectorAll('[data-novo]').forEach(b=>b.onclick=()=>formPessoa({perfil:b.dataset.novo}));
   document.querySelectorAll('[data-ed]').forEach(b=>b.onclick=()=>formPessoa(D.P[b.dataset.ed]));
-  document.querySelectorAll('[data-cp]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(linkDe(D.P[b.dataset.cp].token));toast('Link copiado.')}catch(e){prompt('Copie o link:',linkDe(D.P[b.dataset.cp].token))}});
   document.querySelectorAll('[data-at]').forEach(b=>b.onclick=()=>atribuir(D.P[b.dataset.at]));
+  document.querySelectorAll('[data-senha]').forEach(b=>b.onclick=()=>criarSenha(D.P[b.dataset.senha]));
+  document.querySelectorAll('[data-hist]').forEach(b=>b.onclick=()=>historico(D.P[b.dataset.hist]));
+}
+const semAcento=t=>String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+function sugLogin(p){const w=semAcento(p.nome).replace(/[^a-z ]/g,'').split(/\s+/).filter(Boolean);return w.length>1?w[0]+'.'+w[w.length-1]:(w[0]||'usuario')}
+function sugSenha(){const c='abcdefghjkmnpqrstuvwxyz23456789';const a=crypto.getRandomValues(new Uint8Array(8));return [...a].map(x=>c[x%c.length]).join('')}
+function criarSenha(p){
+  abrir(`<div class="cab"><div><h1>${p.tem_senha?'Nova senha':'Criar acesso'}</h1><div class="muted">${esc(p.nome)} · ${PERF[p.perfil]}</div></div><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  <label>Usuário<input id="cs-u" value="${esc(p.login||sugLogin(p))}" autocapitalize="none" autocomplete="off"></label>
+  <label>Senha<span style="display:flex;gap:6px"><input id="cs-s" value="${sugSenha()}" autocomplete="off" style="flex:1"><button class="btn sec peq" id="cs-g" type="button" title="Gerar outra">↻</button></span></label></div>
+  <p class="muted" style="margin:12px 0">${p.tem_senha?'A senha antiga deixa de valer e a pessoa sai dos aparelhos onde estava conectada.':'Depois de criar a senha, o link antigo da pessoa deixa de funcionar.'} Ela pode trocar a senha depois, em "senha" no topo.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cs-ok">Salvar acesso</button></div><div id="cs-msg"></div></div></div>`);
+  $('#cs-g').onclick=()=>$('#cs-s').value=sugSenha();
+  $('#cs-ok').onclick=async()=>{const u=$('#cs-u').value.trim().toLowerCase(),se=$('#cs-s').value;
+    const r=await rpc('crm_definir_senha',{p_token:TOK,p_usuario:p.id,p_login:u,p_senha:se}).catch(()=>({erro:'Sem conexão.'}));
+    if(!r.ok){toast(r.erro||'Não consegui salvar.');return}
+    if(r.token){TOK=r.token;try{localStorage.setItem('helice_crm_tok',TOK)}catch(x){}}
+    const txt=`Olá, ${p.nome.split(' ')[0]}! Seu acesso ao Hélice CRM:\n\n🔗 ${location.origin+location.pathname}\n👤 Usuário: ${u}\n🔑 Senha: ${se}\n\nGuarde com você e não compartilhe. Você pode trocar a senha em "senha", no topo da tela.`;
+    $('#cs-msg').innerHTML=`<div class="insight" style="white-space:pre-wrap">${esc(txt)}</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sec" id="cs-c">Copiar mensagem</button>${telZap(p.telefone)?`<a class="btn zap" target="_blank" rel="noopener" href="https://wa.me/${telZap(p.telefone)}?text=${encodeURIComponent(txt)}">Enviar no WhatsApp</a>`:''}</div>`;
+    $('#cs-c').onclick=async()=>{try{await navigator.clipboard.writeText(txt);toast('Mensagem copiada.')}catch(e){prompt('Copie:',txt)}};
+    $('#cs-ok').disabled=true;toast('Acesso salvo.');await recarregar()};
+}
+async function historico(p){
+  const r=await rpc('crm_acessos_de',{p_token:TOK,p_usuario:p.id}).catch(()=>null);if(!r?.ok){toast('Sem conexão.');return}
+  const dias=[];for(let i=29;i>=0;i--){const d=new Date(Date.now()-i*864e5);const k=new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);dias.push([k,(r.por_dia.find(x=>x.dia===k)||{}).n||0])}
+  const mx=Math.max(1,...dias.map(d=>d[1])),disp=ua=>!ua?'':/iPhone|Android|Mobile/i.test(ua)?'📱 celular':'💻 computador';
+  abrir(`<div class="cab"><div><h1>Acessos · ${esc(p.nome)}</h1><div class="muted">${PERF[p.perfil]}${p.login?' · '+esc(p.login):''}</div></div><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo">
+  <div class="card"><h2>Últimos 30 dias</h2><div class="barras" style="height:110px;gap:3px">${dias.map(([d,n])=>`<div title="${dataBR(d)}: ${n}"><i style="height:${n?Math.max(6,n/mx*100):2}%;${n?'':'background:var(--linha)'}"></i></div>`).join('')}</div><p class="muted" style="margin:6px 0 0">${dias.filter(d=>d[1]).length} dias com acesso no período.</p></div>
+  <div class="card"><h2>Registro</h2>${r.acessos.length?`<table><tbody>${r.acessos.map(a=>`<tr><td>${new Date(a.quando).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})}</td><td>${a.tipo==='login'?'<span class="pill p-az">entrou com senha</span>':'<span class="pill p-nd">abriu o CRM</span>'}</td><td class="muted">${disp(a.ua)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio">Nenhum acesso registrado ainda.</div>'}</div></div>`);
+}
+function trocarSenha(){
+  abrir(`<div class="cab"><h1>Trocar minha senha</h1><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  <label class="full">Senha atual<input id="ts-a" type="password" autocomplete="current-password"></label><label>Nova senha<input id="ts-n" type="password" autocomplete="new-password"></label><label>Repita a nova senha<input id="ts-r" type="password" autocomplete="new-password"></label></div>
+  <button class="btn" id="ts-ok" style="margin-top:14px">Salvar nova senha</button></div></div>`);
+  $('#ts-ok').onclick=async()=>{if($('#ts-n').value!==$('#ts-r').value){toast('As senhas novas não são iguais.');return}
+    const r=await rpc('crm_trocar_senha',{p_token:TOK,p_atual:$('#ts-a').value,p_nova:$('#ts-n').value}).catch(()=>({erro:'Sem conexão.'}));
+    if(!r.ok){toast(r.erro||'Não consegui trocar.');return}fechar();toast('Senha trocada.')};
 }
 function formPessoa(p){
   const cs=D.pessoas.filter(x=>x.perfil==='coord');
-  abrir(`<div class="cab"><h1>${p.id?'Editar':'Novo'} ${({coord:'coordenador',promotor:'promotor',exec:'executivo'})[p.perfil]}</h1><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
+  abrir(`<div class="cab"><h1>${p.id?'Editar':'Novo'} ${({coord:'coordenador',promotor:'promotor',exec:'executivo',ga:'Gerente de Área (GA)',gr:'Gerente Regional Nordeste'})[p.perfil]}</h1><button class="fechar" aria-label="Fechar">×</button></div><div class="corpo"><div class="card"><div class="campos">
   <label class="full">Nome<input id="p-n" value="${esc(p.nome||'')}" autocomplete="off"></label>
   <label>WhatsApp<input id="p-t" value="${esc(p.telefone||'')}" inputmode="tel" placeholder="(98) 9 0000-0000"></label>
   <label>Data de nascimento<input id="p-d" type="date" value="${p.nascimento||''}"></label>
   ${p.perfil==='promotor'?`<label>Coordenador<select id="p-c"><option value="">—</option>${cs.map(c=>`<option value="${c.id}" ${p.coord_id===c.id?'selected':''}>${esc(c.nome)}</option>`).join('')}</select></label>`:''}
-  </div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="p-s">Salvar</button>${p.id?'<button class="btn sec" id="p-l">Gerar novo link</button><button class="btn sec" id="p-x" style="color:var(--ruim);background:var(--ruim-bg)">Desativar</button>':''}</div>
-  ${p.id?'<p class="muted" style="margin:12px 0 0">Gerar novo link invalida o anterior. Use se o celular da pessoa for perdido ou ela sair da equipe.</p>':''}</div></div>`);
+  </div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="p-s">Salvar</button>${p.id?'<button class="btn sec" id="p-l" hidden>Gerar novo link</button><button class="btn sec" id="p-x" style="color:var(--ruim);background:var(--ruim-bg)">Desativar</button>':''}</div>
+  ${p.id?'<p class="muted" style="margin:12px 0 0">Para trocar o acesso da pessoa, use "Nova senha" na lista da equipe.</p>':'<p class="muted" style="margin:12px 0 0">Depois de salvar, clique em "Criar senha" na lista para gerar o usuário e a senha.</p>'}</div></div>`);
   let salvando=false;
   const salvar=async extra=>{const n=$('#p-n').value.trim();if(n.length<2){toast('Preencha o nome.');return}if(salvando)return;salvando=true;$('#p-s').disabled=true;
     const r=await rpc('crm_salvar_pessoa',{p_token:TOK,p:{id:p.id||null,nome:n,perfil:p.perfil,telefone:$('#p-t').value.trim(),nascimento:$('#p-d').value,coord_id:$('#p-c')?.value||'',...extra}}).catch(()=>({}));
@@ -442,7 +502,7 @@ function vPainel(){
   const linhaP=p=>{const ls=L.filter(l=>l.promotor_id===p.id);return `<tr><td>${esc(p.nome)}<div class="muted">${esc(D.P[p.coord_id]?.nome||'sem coordenador')}</div></td><td class="num">${ls.length}</td><td class="num">${ls.filter(l=>!pendente(l)).length}/${ls.length}</td><td class="num">${pctPill(media(ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)))}</td></tr>`};
   const pctF=x=>x==null?"—":Math.round(x*100)+"%",vp=x=>x==null?"":varPill(Math.round(x*1000)/10);
   const kgT=v=>((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:0})+' t';
-  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão da carteira</h1><p class="sub">${L0.length} lojas na carteira${new Set(L0.map(l=>l.uf).filter(Boolean)).size>1?' em '+new Set(L0.map(l=>l.uf).filter(Boolean)).size+' estados':''}${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
+  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão do negócio</h1><p class="sub">${L0.length} lojas${new Set(L0.map(l=>l.uf).filter(Boolean)).size>1?' em '+new Set(L0.map(l=>l.uf).filter(Boolean)).size+' estados':''}${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
   <div class="card"><h2>Filtrar a visão</h2>
     ${grs.length>1?`<div class="sn" style="display:inline-flex;margin-bottom:10px">${[['','Todo o grupo',L0.length],...grs.map(g=>[g,g,L0.filter(l=>grupoDe(l)===g).length])].map(([v,t,n])=>`<button type="button" data-pg="${v}" aria-pressed="${PG===v}" style="padding:8px 14px;min-width:0;${PG===v?'background:var(--escuro);color:#fff':''}">${t} <span style="opacity:.6">${n}</span></button>`).join('')}</div>`:''}
     ${ufs.length>1?`<div class="chips-seg">${[['','Todos os estados',L.length],...ufs.map(u=>[u,u,L.filter(l=>l.uf===u).length])].map(([v,t,n])=>`<button data-pu="${v}" aria-pressed="${PU===v}">${t} <b>${n}</b></button>`).join('')}</div>`:''}
@@ -590,7 +650,7 @@ function editarAcao(v,a,salvarA){
 /* ---------- mapa da carteira ---------- */
 function vLojas(){
   const bands=[...new Set(D.lojas.map(l=>l.bandeira).filter(Boolean))].sort(),ufs=[...new Set(D.lojas.map(l=>l.uf).filter(Boolean))].sort();
-  return `<h1>Mapa da carteira</h1><p class="sub">Todas as lojas com contrato, vendas, estoque e diagnóstico. Toque numa loja para abrir a ficha completa.</p>
+  return `<h1>Mapa do negócio</h1><p class="sub">Todas as lojas com contrato, vendas, estoque e diagnóstico. Toque numa loja para abrir a ficha completa.</p>
   <div class="chips-seg" id="segs">${SEG.map(s=>`<button data-s="${s[0]}" aria-pressed="${FL.seg===s[0]}">${s[1]} <b>${D.lojas.filter(s[2]).length}</b></button>`).join('')}</div>
   <div class="filtros"><input id="f-q" placeholder="Buscar loja, cidade ou número" value="${esc(FL.q)}" aria-label="Buscar">
   <select id="f-b" aria-label="Bandeira"><option value="">Todas as bandeiras</option>${bands.map(b=>`<option ${FL.b===b?'selected':''}>${esc(b)}</option>`).join('')}</select>
@@ -621,7 +681,7 @@ function ligarLojas(){
   document.querySelectorAll('#segs button').forEach(b=>b.onclick=()=>{FL.seg=b.dataset.s;filtrarLojas()});
   $('#f-csv').onclick=()=>{const c=v=>`"${String(v??'').replace(/"/g,'""')}"`;const linhas=[['Loja','Nome','Bandeira','Cidade','UF','Divisão','Promotor','Promotor de marca','Contrato %','Vendas ano','Vendas ano anterior','Var %','Estoque','Estoque 4 sem antes','Grade','Grade antes','Diagnostico'].join(';'),
     ...FILT.map(l=>[l.id,l.nome,l.bandeira,l.cidade,l.uf,grupoDe(l),D.P[l.promotor_id]?.nome||'',l.pmarca?'sim':'',l.ult_pct??'',l.ytd??'',l.ytd_ant??'',var_(l.ytd,l.ytd_ant)??'',l.est??'',l.est_ant??'',l.grade??'',l.grade_ant??'',DIAG[l.diag]?.[0]||''].map(c).join(';'))];
-    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+linhas.join('\n')],{type:'text/csv'}));a.download='carteira.csv';a.click()};
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+linhas.join('\n')],{type:'text/csv'}));a.download='negocio.csv';a.click()};
   filtrarLojas();
 }
 
@@ -757,7 +817,7 @@ function mapaImp(k){const I=IMPS[k],T=TIPOS_IMP[k],box=$('#imp-'+k);
     try{for(let i=0;i<L.length;i+=N){st.textContent=`Enviando ${Math.min(i+N,L.length).toLocaleString('pt-BR')} de ${L.length.toLocaleString('pt-BR')}…`;
         const lote=L.slice(i,i+N).map(({nome,...o})=>({...o,nome:nome.slice(0,90)}));let r=null;for(let t=0;t<3&&!r?.ok;t++){r=await rpc(T.rpc,{p_token:TOK,p_linhas:lote}).catch(()=>null);if(!r?.ok)await new Promise(z=>setTimeout(z,1500))}if(!r?.ok)throw new Error('lote '+(i/N+1));tot+=r.gravadas;novas+=r.lojas_novas||0}
       st.textContent='Atualizando diagnósticos…';await rpc('crm_recalcular',{p_token:TOK});
-      st.innerHTML=`<b style="color:var(--ok)">Pronto: ${tot.toLocaleString('pt-BR')} registros gravados.</b>${novas?` ${novas} loja(s) nova(s) criada(s): confira em Mapa da carteira.`:''}`;toast('Importação concluída.');await recarregar();
+      st.innerHTML=`<b style="color:var(--ok)">Pronto: ${tot.toLocaleString('pt-BR')} registros gravados.</b>${novas?` ${novas} loja(s) nova(s) criada(s): confira em Mapa do negócio.`:''}`;toast('Importação concluída.');await recarregar();
     }catch(e){st.textContent=`Parou no ${e.message||'envio'} (${tot.toLocaleString('pt-BR')} registros já gravados). Pode importar o mesmo arquivo de novo: não duplica.`}b.disabled=false};
 }
 function numBR(v){if(v==null||v==='')return null;if(typeof v==='number')return v;let s=String(v).replace(/[R$\s]/g,'');if(/,\d{1,3}$/.test(s)||(s.includes(',')&&s.includes('.')&&s.lastIndexOf(',')>s.lastIndexOf('.')))s=s.replace(/\./g,'').replace(',','.');else s=s.replace(/,/g,'');const n=parseFloat(s);return isNaN(n)?null:n}
