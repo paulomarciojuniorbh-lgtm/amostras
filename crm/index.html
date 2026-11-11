@@ -422,25 +422,27 @@ const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],[
   ['q_grade','Queda · grade',l=>l.diag==='queda_grade'],['q_giro','Queda · giro',l=>l.diag==='queda_giro'],['rupt','Estoque zerado/negativo',l=>(l.neg||0)+(l.zero||0)>0]];
 let FL={q:'',b:'',uf:'',seg:'todas',ord:'vendas'},PB='';
 
-let PS='';
+let PS='',PU='';
 const nomeB=b=>(b||'').replace(/^\d+\s*-\s*/,'');
 function vendasDe(Ls){const M={},ids=Ls.map(l=>l.id),VL=D.vendas_loja||{};ids.forEach(id=>(VL[id]||[]).forEach(([m,v,k])=>{const o=M[m]||(M[m]={mes:m+'-01',valor:0,kg:0});o.valor+=+v||0;o.kg+=+k||0}));return Object.values(M).sort((a,b)=>a.mes<b.mes?-1:1)}
 function anoDe(V){if(!V.length)return {ytd:0,ant:0,kg:0,kgant:0};const ult=V[V.length-1].mes,Y=+ult.slice(0,4),UM=+ult.slice(5,7);let r={ytd:0,ant:0,kg:0,kgant:0,Y,UM};V.forEach(v=>{const y=+v.mes.slice(0,4),m=+v.mes.slice(5,7);if(m>UM)return;if(y===Y){r.ytd+=v.valor;r.kg+=v.kg}else if(y===Y-1){r.ant+=v.valor;r.kgant+=v.kg}});return r}
 function statsDe(Ls){const V=vendasDe(Ls),A=anoDe(V),n=Ls.length,base=Ls.filter(l=>l.ytd_ant>0);
   return {n,V,A,var:A.ant?A.ytd/A.ant-1:null,medio:n?A.ytd/n:0,kgMedio:n?A.kg/n:0,cresc:base.length?base.filter(l=>l.ytd>l.ytd_ant).length/base.length:null,cont:media(Ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)),rupt:n?Ls.filter(l=>(l.neg||0)+(l.zero||0)>0).length/n:null}}
 function vPainel(){
-  const L=D.lojas,LB=PB?L.filter(l=>l.bandeira===PB):L,fS=PS?SEG.find(s=>s[0]===PS)[2]:()=>true,LS=LB.filter(fS);
+  const L=D.lojas,LU=PU?L.filter(l=>l.uf===PU):L,LB=PB?LU.filter(l=>l.bandeira===PB):LU,fS=PS?SEG.find(s=>s[0]===PS)[2]:()=>true,LS=LB.filter(fS);
   const conta=k=>LB.filter(SEG.find(s=>s[0]===k)[2]).length;
-  const bands=[...new Set(L.map(l=>l.bandeira).filter(Boolean))].sort((a,b)=>L.filter(l=>l.bandeira===b).length-L.filter(l=>l.bandeira===a).length);
+  const bands=[...new Set(LU.map(l=>l.bandeira).filter(Boolean))].sort((a,b)=>LU.filter(l=>l.bandeira===b).length-LU.filter(l=>l.bandeira===a).length);
+  const ufs=[...new Set(L.map(l=>l.uf).filter(Boolean))].sort((a,b)=>L.filter(l=>l.uf===b).length-L.filter(l=>l.uf===a).length);
   const segBtn=(k,cls)=>{const s=SEG.find(x=>x[0]===k);return `<button class="segb ${cls||''}" data-seg="${k}" aria-pressed="${PS===k}"><b>${conta(k)}</b><span>${s[1]}</span></button>`};
-  const S=statsDe(LS),rot=[PS?SEG.find(s=>s[0]===PS)[1]:'',PB?nomeB(PB):''].filter(Boolean).join(' · ');
+  const S=statsDe(LS),rot=[PS?SEG.find(s=>s[0]===PS)[1]:'',PB?nomeB(PB):'',PU].filter(Boolean).join(' · ');
   const proms=D.pessoas.filter(p=>p.perfil==='promotor'),H=D.historico.slice(-12),ac=(D.acoes||[]).slice(0,8);
   const linhaP=p=>{const ls=L.filter(l=>l.promotor_id===p.id);return `<tr><td>${esc(p.nome)}<div class="muted">${esc(D.P[p.coord_id]?.nome||'sem coordenador')}</div></td><td class="num">${ls.length}</td><td class="num">${ls.filter(l=>!pendente(l)).length}/${ls.length}</td><td class="num">${pctPill(media(ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)))}</td></tr>`};
   const pctF=x=>x==null?"—":Math.round(x*100)+"%",vp=x=>x==null?"":varPill(Math.round(x*1000)/10);
   const kgT=v=>((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:0})+' t';
-  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão da carteira</h1><p class="sub">${L.length} lojas na carteira${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
+  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão da carteira</h1><p class="sub">${L.length} lojas na carteira${ufs.length>1?' em '+ufs.length+' estados':''}${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
   <div class="card"><h2>Filtrar a visão</h2>
-    <div class="chips-seg" id="pb">${[['','Todas as bandeiras',L.length],...bands.map(b=>[b,nomeB(b),L.filter(l=>l.bandeira===b).length])].map(([v,t,n])=>`<button data-pb="${esc(v)}" aria-pressed="${PB===v}">${esc(t)} <b>${n}</b></button>`).join('')}</div>
+    ${ufs.length>1?`<div class="chips-seg">${[['','Todos os estados',L.length],...ufs.map(u=>[u,u,L.filter(l=>l.uf===u).length])].map(([v,t,n])=>`<button data-pu="${v}" aria-pressed="${PU===v}">${t} <b>${n}</b></button>`).join('')}</div>`:''}
+    <div class="chips-seg" id="pb">${[['','Todas as bandeiras',LU.length],...bands.map(b=>[b,nomeB(b),LU.filter(l=>l.bandeira===b).length])].map(([v,t,n])=>`<button data-pb="${esc(v)}" aria-pressed="${PB===v}">${esc(t)} <b>${n}</b></button>`).join('')}</div>
     <div class="segs">${segBtn('com')}${segBtn('sem')}${segBtn('marca')}${segBtn('c100','ok')}${segBtn('c80','ruim')}${segBtn('cresc','ok')}${segBtn('q_est','ruim')}${segBtn('q_grade','med')}${segBtn('q_giro','med')}${segBtn('rupt','ruim')}</div>
     <p class="muted" style="margin:10px 0 0">Toque num grupo para filtrar todo o painel. Toque de novo para tirar o filtro.</p></div>
   ${rot?`<div class="recorte"><span class="muted">Visão filtrada:</span><b>${esc(rot)}</b><span class="muted">· ${LS.length} lojas</span><span style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap">${PS?'<button class="prim" id="r-lista">Ver lista de lojas →</button>':''}<button id="r-limpa">Limpar filtro</button></span></div>`:''}
@@ -466,9 +468,10 @@ function ligarPainel(){document.querySelectorAll('[data-loja]').forEach(r=>r.onc
   const re=()=>{const y=scrollY;render();scrollTo(0,y)};
   document.querySelectorAll('[data-seg]').forEach(b=>b.onclick=()=>{PS=PS===b.dataset.seg?'':b.dataset.seg;re()});
   document.querySelectorAll('[data-pb]').forEach(b=>b.onclick=()=>{PB=b.dataset.pb;re()});
+  document.querySelectorAll('[data-pu]').forEach(b=>b.onclick=()=>{PU=b.dataset.pu;PB='';re()});
   document.querySelectorAll('[data-cmp]').forEach(b=>b.onclick=()=>{PS=b.dataset.cmp;re()});
-  $('#r-limpa')&&($('#r-limpa').onclick=()=>{PS='';PB='';re()});
-  $('#r-lista')&&($('#r-lista').onclick=()=>{FL.seg=PS;FL.b=PB;irPara('lojas')})}
+  $('#r-limpa')&&($('#r-limpa').onclick=()=>{PS='';PB='';PU='';re()});
+  $('#r-lista')&&($('#r-lista').onclick=()=>{FL.seg=PS;FL.b=PB;if(PU)FL.uf=PU;irPara('lojas')})}
 function irPara(a){aba=a;document.querySelectorAll('#nav button').forEach(x=>{x.removeAttribute('aria-current');if(x.dataset.a===a)x.setAttribute('aria-current','page')});render();scrollTo(0,0)}
 function cardVendas(S,rot,LS){
   const V=S.V,nb=rot?' · '+esc(rot):'';
@@ -718,8 +721,8 @@ function ligarPend(){$('#fq')&&($('#fq').onchange=async e=>{const r=await rpc('c
 /* ---------- importar dados ---------- */
 const IMPS={};
 const TIPOS_IMP={
-  vendas:{titulo:'Vendas (sell-out)',rpc:'crm_importar_vendas',cols:[['loja','Loja',/loja|filial/,1],['mes','Mês',/mes|data|periodo|compet/,0],['valor','Valor (R$)',/valor|fatur|receita|vendas?$|r\$/,0],['vol','Volume',/volume|peso|kg|ton/,0],['categoria','Categoria',/categ/,0],['sku','SKU / produto',/sku|produto|material|cod.*prod/,0]]},
-  estoque:{titulo:'Estoque',rpc:'crm_importar_estoque',cols:[['loja','Loja',/loja|filial/,1],['data','Data da leitura',/data|semana|atualiza/,1],['categoria','Categoria',/categ/,0],['unidades','Estoque (unidades)',/estoque|qtd|quant|unid|saldo/,1],['grade','Grade (nº de SKUs)',/grade|mix|sku/,0]]}};
+  vendas:{titulo:'Vendas (sell-out)',rpc:'crm_importar_vendas',cols:[['uf','Estado (UF)',/estado|^uf$/,0],['loja','Loja',/^(loja|filial|cod.*loja)/,1],['mes','Mês',/mes|data|periodo|compet/,0],['valor','Valor (R$)',/valor|fatur|receita|vendas?$|r\$/,0],['vol','Volume',/volume|peso|kg|ton/,0],['categoria','Categoria',/categ/,0],['sku','SKU / produto',/sku|produto|material|cod.*prod/,0]]},
+  estoque:{titulo:'Estoque',rpc:'crm_importar_estoque',cols:[['loja','Loja',/^(loja|filial|cod.*loja)/,1],['data','Data da leitura',/data|semana|atualiza/,1],['categoria','Categoria',/categ/,0],['unidades','Estoque (unidades)',/estoque|qtd|quant|unid|saldo/,1],['grade','Grade (nº de SKUs)',/grade|mix|sku/,0]]}};
 function vImp(){return `<h1>Importar dados</h1><p class="sub">Suba as planilhas do sistema. A chave é a loja (número ou "17 - MATEUS…"). Carregar o mesmo período de novo substitui os números, não duplica. Lojas que ainda não existem no CRM são criadas automaticamente.</p>
   ${Object.entries(TIPOS_IMP).map(([k,t])=>`<div class="card"><h2>${t.titulo}</h2><input type="file" accept=".xlsx,.xls,.csv" data-imp="${k}"><div id="imp-${k}"></div></div>`).join('')}
   <div class="card"><h2>Recalcular diagnósticos</h2><p class="muted" style="margin:0 0 10px">Feito automaticamente depois de cada importação. Use se algo parecer desatualizado.</p><button class="btn sec" id="b-rec">Recalcular agora</button> <span class="muted" id="rec-st"></span></div>`}
@@ -732,13 +735,13 @@ function xlsxLib(){return window.XLSX?Promise.resolve():new Promise((res,rej)=>{
 const norm=t=>String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
 function mapaImp(k){const I=IMPS[k],T=TIPOS_IMP[k],box=$('#imp-'+k);
   const usado=new Set();const guess=re=>{const c=I.cols.find(c=>re.test(norm(c))&&!usado.has(c));if(c)usado.add(c);return c||''};
-  const G={};T.cols.forEach(([id,,re])=>G[id]=guess(re));
+  const G={};T.cols.forEach(([id,,re])=>G[id]=guess(re));if(!G.loja)G.loja=guess(/loja|filial/);
   box.innerHTML=`<p class="muted" style="margin:12px 0">${I.rows.length.toLocaleString('pt-BR')} linhas. Confira as colunas:</p><div class="campos">${T.cols.map(([id,lbl,,ob])=>`<label>${lbl}${ob?'':' <span class="muted">(opcional)</span>'}<select data-c="${id}"><option value="">${ob?'— escolha —':'— não tem —'}</option>${I.cols.map(c=>`<option ${c===G[id]?'selected':''}>${esc(c)}</option>`).join('')}</select></label>`).join('')}
     ${k==='vendas'?`<label>Unidade do volume<select data-c="un"><option value="kg">kg</option><option value="t" ${/ton/.test(norm(G.vol))?'selected':''}>toneladas</option></select></label><label>Mês para todas as linhas <span class="muted">(se não houver coluna)</span><input type="month" data-c="mesfixo"></label>`:''}</div>
     <div class="tab-scroll" style="max-height:220px;margin-top:12px" data-prev></div><button class="btn" data-go style="margin-top:12px">Importar</button> <span class="muted" data-st></span>`;
   const sel=id=>{const v=box.querySelector(`[data-c="${id}"]`)?.value||'';return v&&I.cols.find(c=>String(c).trim()===v.trim())||v};
   const conv=()=>I.rows.map(r=>{const lr=String(r[sel('loja')]??''),lj=lr.match(/^\s*(\d+)/);const o={loja:lj?lj[1]:null,nome:lr};
-    if(k==='vendas'){let v=sel('vol')?numBR(r[sel('vol')]):null;if(v!=null&&sel('un')==='t')v=v*1000;Object.assign(o,{mes:sel('mes')?mesDe(r[sel('mes')]):(sel('mesfixo')?sel('mesfixo')+'-01':null),valor:sel('valor')?numBR(r[sel('valor')]):null,volume_kg:v,categoria:sel('categoria')?String(r[sel('categoria')]??'').trim():'',sku:sel('sku')?String(r[sel('sku')]??'').trim():''})}
+    if(k==='vendas'){let v=sel('vol')?numBR(r[sel('vol')]):null;if(v!=null&&sel('un')==='t')v=v*1000;const um=sel('uf')?String(r[sel('uf')]??'').toUpperCase().match(/(?:^|[\s-])([A-Z]{2})(?:[\s-]|$)/):null;Object.assign(o,{uf:um?um[1]:null,mes:sel('mes')?mesDe(r[sel('mes')]):(sel('mesfixo')?sel('mesfixo')+'-01':null),valor:sel('valor')?numBR(r[sel('valor')]):null,volume_kg:v,categoria:sel('categoria')?String(r[sel('categoria')]??'').trim():'',sku:sel('sku')?String(r[sel('sku')]??'').trim():''})}
     else Object.assign(o,{data:diaDe(r[sel('data')]),categoria:sel('categoria')?String(r[sel('categoria')]??'').trim():'',unidades:numBR(r[sel('unidades')]),grade:sel('grade')?numBR(r[sel('grade')]):null});return o});
   const ok=o=>o.loja&&(k==='vendas'?o.mes:o.data&&o.unidades!=null);
   const prev=()=>{const L=conv(),v=L.filter(ok);box.querySelector('[data-prev]').innerHTML=`<table><thead><tr><th>Loja</th>${k==='vendas'?'<th>Mês</th><th>Categoria</th><th class="num">Valor</th><th class="num">Volume (kg)</th>':'<th>Data</th><th>Categoria</th><th class="num">Unidades</th><th class="num">Grade</th>'}</tr></thead><tbody>${L.slice(0,8).map(o=>`<tr><td>${o.loja||'<span style="color:var(--ruim)">?</span>'}</td>${k==='vendas'?`<td>${o.mes?mesBR(o.mes):'?'}</td><td>${esc(catNome(o.categoria))}</td><td class="num">${brl(o.valor)}</td><td class="num">${nf(o.volume_kg)}</td>`:`<td>${o.data?dataBR(o.data):'?'}</td><td>${esc(catNome(o.categoria))}</td><td class="num">${nf(o.unidades)}</td><td class="num">${o.grade??'—'}</td>`}</tr>`).join('')}</tbody></table>`;box.querySelector('[data-st]').textContent=`${v.length.toLocaleString('pt-BR')} linhas válidas${L.length-v.length?' · '+(L.length-v.length)+' ignoradas':''}`};
