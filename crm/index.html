@@ -420,27 +420,31 @@ const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],[
   ['c100','Contrato 100%',l=>l.ult_pct>=100],['c80','Contrato < 80%',l=>l.ult_pct!=null&&l.ult_pct<80],['nunca','Nunca checada',l=>l.ult_pct==null],
   ['cresc','Crescendo',l=>l.diag==='crescendo'],['queda','Caindo',l=>(l.diag||'').startsWith('queda')],['q_est','Queda · estoque',l=>l.diag==='queda_estoque'],
   ['q_grade','Queda · grade',l=>l.diag==='queda_grade'],['q_giro','Queda · giro',l=>l.diag==='queda_giro'],['rupt','Estoque zerado/negativo',l=>(l.neg||0)+(l.zero||0)>0]];
-let FL={q:'',b:'',uf:'',seg:'todas',ord:'vendas'},PB='';
+let FL={q:'',b:'',uf:'',gr:'',seg:'todas',ord:'vendas'},PB='';
+/* divisão da empresa: PE, PB e AL são Grupo Novo Mateus; as demais UFs, Mateus */
+const UF_NOVO=['PE','PB','AL'],grupoDe=l=>UF_NOVO.includes(l.uf)?'Grupo Novo Mateus':'Mateus';
 
-let PS='',PU='';
+let PS='',PU='',PG='';
 const nomeB=b=>(b||'').replace(/^\d+\s*-\s*/,'');
 function vendasDe(Ls){const M={},ids=Ls.map(l=>l.id),VL=D.vendas_loja||{};ids.forEach(id=>(VL[id]||[]).forEach(([m,v,k])=>{const o=M[m]||(M[m]={mes:m+'-01',valor:0,kg:0});o.valor+=+v||0;o.kg+=+k||0}));return Object.values(M).sort((a,b)=>a.mes<b.mes?-1:1)}
 function anoDe(V){if(!V.length)return {ytd:0,ant:0,kg:0,kgant:0};const ult=V[V.length-1].mes,Y=+ult.slice(0,4),UM=+ult.slice(5,7);let r={ytd:0,ant:0,kg:0,kgant:0,Y,UM};V.forEach(v=>{const y=+v.mes.slice(0,4),m=+v.mes.slice(5,7);if(m>UM)return;if(y===Y){r.ytd+=v.valor;r.kg+=v.kg}else if(y===Y-1){r.ant+=v.valor;r.kgant+=v.kg}});return r}
 function statsDe(Ls){const V=vendasDe(Ls),A=anoDe(V),n=Ls.length,base=Ls.filter(l=>l.ytd_ant>0);
   return {n,V,A,var:A.ant?A.ytd/A.ant-1:null,medio:n?A.ytd/n:0,kgMedio:n?A.kg/n:0,cresc:base.length?base.filter(l=>l.ytd>l.ytd_ant).length/base.length:null,cont:media(Ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)),rupt:n?Ls.filter(l=>(l.neg||0)+(l.zero||0)>0).length/n:null}}
 function vPainel(){
-  const L=D.lojas,LU=PU?L.filter(l=>l.uf===PU):L,LB=PB?LU.filter(l=>l.bandeira===PB):LU,fS=PS?SEG.find(s=>s[0]===PS)[2]:()=>true,LS=LB.filter(fS);
+  const L0=D.lojas,L=PG?L0.filter(l=>grupoDe(l)===PG):L0,LU=PU?L.filter(l=>l.uf===PU):L,LB=PB?LU.filter(l=>l.bandeira===PB):LU,fS=PS?SEG.find(s=>s[0]===PS)[2]:()=>true,LS=LB.filter(fS);
   const conta=k=>LB.filter(SEG.find(s=>s[0]===k)[2]).length;
   const bands=[...new Set(LU.map(l=>l.bandeira).filter(Boolean))].sort((a,b)=>LU.filter(l=>l.bandeira===b).length-LU.filter(l=>l.bandeira===a).length);
   const ufs=[...new Set(L.map(l=>l.uf).filter(Boolean))].sort((a,b)=>L.filter(l=>l.uf===b).length-L.filter(l=>l.uf===a).length);
   const segBtn=(k,cls)=>{const s=SEG.find(x=>x[0]===k);return `<button class="segb ${cls||''}" data-seg="${k}" aria-pressed="${PS===k}"><b>${conta(k)}</b><span>${s[1]}</span></button>`};
-  const S=statsDe(LS),rot=[PS?SEG.find(s=>s[0]===PS)[1]:'',PB?nomeB(PB):'',PU].filter(Boolean).join(' · ');
+  const S=statsDe(LS),rot=[PS?SEG.find(s=>s[0]===PS)[1]:'',PB?nomeB(PB):'',PU,PG].filter(Boolean).join(' · ');
+  const grs=['Mateus','Grupo Novo Mateus'].filter(g=>L0.some(l=>grupoDe(l)===g));
   const proms=D.pessoas.filter(p=>p.perfil==='promotor'),H=D.historico.slice(-12),ac=(D.acoes||[]).slice(0,8);
   const linhaP=p=>{const ls=L.filter(l=>l.promotor_id===p.id);return `<tr><td>${esc(p.nome)}<div class="muted">${esc(D.P[p.coord_id]?.nome||'sem coordenador')}</div></td><td class="num">${ls.length}</td><td class="num">${ls.filter(l=>!pendente(l)).length}/${ls.length}</td><td class="num">${pctPill(media(ls.filter(l=>l.ult_pct!=null).map(l=>l.ult_pct)))}</td></tr>`};
   const pctF=x=>x==null?"—":Math.round(x*100)+"%",vp=x=>x==null?"":varPill(Math.round(x*1000)/10);
   const kgT=v=>((+v||0)/1000).toLocaleString('pt-BR',{maximumFractionDigits:0})+' t';
-  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão da carteira</h1><p class="sub">${L.length} lojas na carteira${ufs.length>1?' em '+ufs.length+' estados':''}${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
+  return `<div class="eyebrow">Painel executivo · Mondelez × Grupo Mateus</div><h1>Visão da carteira</h1><p class="sub">${L0.length} lojas na carteira${new Set(L0.map(l=>l.uf).filter(Boolean)).size>1?' em '+new Set(L0.map(l=>l.uf).filter(Boolean)).size+' estados':''}${D.ult_mes_venda?' · vendas até '+mesBR(D.ult_mes_venda):''}${D.est_data?' · estoque de '+dataBR(D.est_data):''}</p>
   <div class="card"><h2>Filtrar a visão</h2>
+    ${grs.length>1?`<div class="sn" style="display:inline-flex;margin-bottom:10px">${[['','Todo o grupo',L0.length],...grs.map(g=>[g,g,L0.filter(l=>grupoDe(l)===g).length])].map(([v,t,n])=>`<button type="button" data-pg="${v}" aria-pressed="${PG===v}" style="padding:8px 14px;min-width:0;${PG===v?'background:var(--escuro);color:#fff':''}">${t} <span style="opacity:.6">${n}</span></button>`).join('')}</div>`:''}
     ${ufs.length>1?`<div class="chips-seg">${[['','Todos os estados',L.length],...ufs.map(u=>[u,u,L.filter(l=>l.uf===u).length])].map(([v,t,n])=>`<button data-pu="${v}" aria-pressed="${PU===v}">${t} <b>${n}</b></button>`).join('')}</div>`:''}
     <div class="chips-seg" id="pb">${[['','Todas as bandeiras',LU.length],...bands.map(b=>[b,nomeB(b),LU.filter(l=>l.bandeira===b).length])].map(([v,t,n])=>`<button data-pb="${esc(v)}" aria-pressed="${PB===v}">${esc(t)} <b>${n}</b></button>`).join('')}</div>
     <div class="segs">${segBtn('com')}${segBtn('sem')}${segBtn('marca')}${segBtn('c100','ok')}${segBtn('c80','ruim')}${segBtn('cresc','ok')}${segBtn('q_est','ruim')}${segBtn('q_grade','med')}${segBtn('q_giro','med')}${segBtn('rupt','ruim')}</div>
@@ -469,9 +473,10 @@ function ligarPainel(){document.querySelectorAll('[data-loja]').forEach(r=>r.onc
   document.querySelectorAll('[data-seg]').forEach(b=>b.onclick=()=>{PS=PS===b.dataset.seg?'':b.dataset.seg;re()});
   document.querySelectorAll('[data-pb]').forEach(b=>b.onclick=()=>{PB=b.dataset.pb;re()});
   document.querySelectorAll('[data-pu]').forEach(b=>b.onclick=()=>{PU=b.dataset.pu;PB='';re()});
+  document.querySelectorAll('[data-pg]').forEach(b=>b.onclick=()=>{PG=b.dataset.pg;PU='';PB='';re()});
   document.querySelectorAll('[data-cmp]').forEach(b=>b.onclick=()=>{PS=b.dataset.cmp;re()});
-  $('#r-limpa')&&($('#r-limpa').onclick=()=>{PS='';PB='';PU='';re()});
-  $('#r-lista')&&($('#r-lista').onclick=()=>{FL.seg=PS;FL.b=PB;if(PU)FL.uf=PU;irPara('lojas')})}
+  $('#r-limpa')&&($('#r-limpa').onclick=()=>{PS='';PB='';PU='';PG='';re()});
+  $('#r-lista')&&($('#r-lista').onclick=()=>{FL.seg=PS;FL.b=PB;FL.uf=PU;FL.gr=PG;irPara('lojas')})}
 function irPara(a){aba=a;document.querySelectorAll('#nav button').forEach(x=>{x.removeAttribute('aria-current');if(x.dataset.a===a)x.setAttribute('aria-current','page')});render();scrollTo(0,0)}
 function cardVendas(S,rot,LS){
   const V=S.V,nb=rot?' · '+esc(rot):'';
@@ -589,6 +594,7 @@ function vLojas(){
   <div class="chips-seg" id="segs">${SEG.map(s=>`<button data-s="${s[0]}" aria-pressed="${FL.seg===s[0]}">${s[1]} <b>${D.lojas.filter(s[2]).length}</b></button>`).join('')}</div>
   <div class="filtros"><input id="f-q" placeholder="Buscar loja, cidade ou número" value="${esc(FL.q)}" aria-label="Buscar">
   <select id="f-b" aria-label="Bandeira"><option value="">Todas as bandeiras</option>${bands.map(b=>`<option ${FL.b===b?'selected':''}>${esc(b)}</option>`).join('')}</select>
+  <select id="f-gr" aria-label="Divisão"><option value="">Todo o grupo</option>${['Mateus','Grupo Novo Mateus'].map(g=>`<option ${FL.gr===g?'selected':''}>${g}</option>`).join('')}</select>
   <select id="f-uf" aria-label="Estado"><option value="">UF</option>${ufs.map(u=>`<option ${FL.uf===u?'selected':''}>${u}</option>`).join('')}</select>
   <select id="f-o" aria-label="Ordenar"><option value="vendas" ${FL.ord==='vendas'?'selected':''}>Maiores vendas</option><option value="queda" ${FL.ord==='queda'?'selected':''}>Maior queda (R$)</option><option value="cresc" ${FL.ord==='cresc'?'selected':''}>Maior crescimento (%)</option><option value="contrato" ${FL.ord==='contrato'?'selected':''}>Pior contrato</option><option value="nome" ${FL.ord==='nome'?'selected':''}>Nome</option></select>
   <button class="btn sec" id="f-csv">Baixar lista</button></div>
@@ -597,11 +603,11 @@ function vLojas(){
 let FILT=[];
 function filtrarLojas(){
   const q=FL.q.toLowerCase(),sg=SEG.find(s=>s[0]===FL.seg)[2];
-  FILT=D.lojas.filter(l=>sg(l)&&(!q||(l.nome+' '+l.id+' '+(l.cidade||'')).toLowerCase().includes(q))&&(!FL.b||l.bandeira===FL.b)&&(!FL.uf||l.uf===FL.uf));
+  FILT=D.lojas.filter(l=>sg(l)&&(!q||(l.nome+' '+l.id+' '+(l.cidade||'')).toLowerCase().includes(q))&&(!FL.b||l.bandeira===FL.b)&&(!FL.uf||l.uf===FL.uf)&&(!FL.gr||grupoDe(l)===FL.gr));
   const o={vendas:(a,b)=>(b.ytd||0)-(a.ytd||0),queda:(a,b)=>((a.ytd||0)-(a.ytd_ant||0))-((b.ytd||0)-(b.ytd_ant||0)),cresc:(a,b)=>(var_(b.ytd,b.ytd_ant)??-999)-(var_(a.ytd,a.ytd_ant)??-999),contrato:(a,b)=>(a.ult_pct??999)-(b.ult_pct??999),nome:(a,b)=>a.nome.localeCompare(b.nome)}[FL.ord];
   FILT.sort(o);
   $('#t-lojas').innerHTML=FILT.length?`<table class="tc"><thead><tr><th>Loja</th><th>Promotor</th><th class="num">Contrato</th><th class="num">Vendas no ano</th><th class="num">× ano ant.</th><th class="num">Estoque 4 sem</th><th class="num">Grade</th><th>Diagnóstico</th></tr></thead><tbody>${FILT.slice(0,500).map(l=>`<tr class="clic" data-loja="${l.id}">
-    <td><b>${esc(l.nome)}</b>${visPill(l.id)}<div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${esc(l.cidade||'')}${l.uf?' '+l.uf:''}</div></td>
+    <td><b>${esc(l.nome)}</b>${visPill(l.id)}<div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${esc(l.cidade||'')}${l.uf?' '+l.uf:''}${grupoDe(l)!=='Mateus'?' · <b style="color:var(--azul)">Novo Mateus</b>':''}</div></td>
     <td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem</span>'}${l.pmarca?' <span class="pill p-az">marca</span>':''}</td>
     <td class="num">${l.ult_pct==null?'<span class="muted">—</span>':pctPill(l.ult_pct)}</td><td class="num">${l.ytd?brl(l.ytd):'—'}</td><td class="num">${varPill(var_(l.ytd,l.ytd_ant))}</td>
     <td class="num">${varPill(var_(l.est,l.est_ant))}${(l.neg||0)+(l.zero||0)?` <span class="pill p-ruim" title="categorias com estoque zerado ou negativo">${(l.neg||0)+(l.zero||0)}⚠</span>`:''}</td>
@@ -611,10 +617,10 @@ function filtrarLojas(){
 }
 function ligarLojas(){
   const s=(k,id,ev='change')=>{$(id).addEventListener(ev,e=>{FL[k]=e.target.value;filtrarLojas()})};
-  s('q','#f-q','input');s('b','#f-b');s('uf','#f-uf');s('ord','#f-o');
+  s('q','#f-q','input');s('b','#f-b');s('uf','#f-uf');s('gr','#f-gr');s('ord','#f-o');
   document.querySelectorAll('#segs button').forEach(b=>b.onclick=()=>{FL.seg=b.dataset.s;filtrarLojas()});
-  $('#f-csv').onclick=()=>{const c=v=>`"${String(v??'').replace(/"/g,'""')}"`;const linhas=[['Loja','Nome','Bandeira','Cidade','UF','Promotor','Promotor de marca','Contrato %','Vendas ano','Vendas ano anterior','Var %','Estoque','Estoque 4 sem antes','Grade','Grade antes','Diagnostico'].join(';'),
-    ...FILT.map(l=>[l.id,l.nome,l.bandeira,l.cidade,l.uf,D.P[l.promotor_id]?.nome||'',l.pmarca?'sim':'',l.ult_pct??'',l.ytd??'',l.ytd_ant??'',var_(l.ytd,l.ytd_ant)??'',l.est??'',l.est_ant??'',l.grade??'',l.grade_ant??'',DIAG[l.diag]?.[0]||''].map(c).join(';'))];
+  $('#f-csv').onclick=()=>{const c=v=>`"${String(v??'').replace(/"/g,'""')}"`;const linhas=[['Loja','Nome','Bandeira','Cidade','UF','Divisão','Promotor','Promotor de marca','Contrato %','Vendas ano','Vendas ano anterior','Var %','Estoque','Estoque 4 sem antes','Grade','Grade antes','Diagnostico'].join(';'),
+    ...FILT.map(l=>[l.id,l.nome,l.bandeira,l.cidade,l.uf,grupoDe(l),D.P[l.promotor_id]?.nome||'',l.pmarca?'sim':'',l.ult_pct??'',l.ytd??'',l.ytd_ant??'',var_(l.ytd,l.ytd_ant)??'',l.est??'',l.est_ant??'',l.grade??'',l.grade_ant??'',DIAG[l.diag]?.[0]||''].map(c).join(';'))];
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+linhas.join('\n')],{type:'text/csv'}));a.download='carteira.csv';a.click()};
   filtrarLojas();
 }
@@ -659,7 +665,7 @@ async function abrirLoja(id,abaL){
      <div class="card"><h2>Histórico</h2>${R.notas.length?R.notas.map(nota).join(''):'<div class="vazio">Nenhuma anotação ainda.</div>'}</div>`,
    dados:()=>dadosLoja(l,ex)
   };
-  const draw=()=>{abrir(`<div class="cab"><div><h1>${esc(l.nome)}</h1><div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${FORM[l.formato]||''}${l.tamanho&&l.formato==='atacarejo'?' '+l.tamanho:''} · ${esc(l.cidade||'')} ${esc(l.uf||'')}</div></div><button class="fechar" aria-label="Fechar">×</button></div>
+  const draw=()=>{abrir(`<div class="cab"><div><h1>${esc(l.nome)}</h1><div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${FORM[l.formato]||''}${l.tamanho&&l.formato==='atacarejo'?' '+l.tamanho:''} · ${esc(l.cidade||'')} ${esc(l.uf||'')} · ${grupoDe(l)}</div></div><button class="fechar" aria-label="Fechar">×</button></div>
     <div class="ltabs">${tabs.map(([k,t])=>`<button data-t="${k}" aria-pressed="${k===at}">${t}</button>`).join('')}</div><div class="corpo">${corpo[at]()}</div>`);
     document.querySelectorAll('.ltabs button').forEach(b=>b.onclick=()=>{at=b.dataset.t;draw()});
     $('#b-check')&&($('#b-check').onclick=()=>checklist(l,metas));
