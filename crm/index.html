@@ -476,7 +476,7 @@ const catNome=c=>String(c||'').replace(/^\d+\s*-\s*/,'');
 const FREQ={semanal:'toda semana',quinzenal:'a cada 15 dias',mensal:'uma vez por mês'};
 function iniPeriodo(){const s=new Date(D.semana+'T12:00');if(D.freq==='quinzenal')s.setDate(s.getDate()-7);else if(D.freq==='mensal'){const h=new Date(D.hoje+'T12:00'),p=new Date(h.getFullYear(),h.getMonth(),1,12);p.setDate(p.getDate()-((p.getDay()+6)%7));return p.toISOString().slice(0,10)}return s.toISOString().slice(0,10)}
 const pendente=l=>!l.ult_sem||l.ult_sem<iniPeriodo();
-const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],['sem','Sem promotor',l=>!l.promotor_id],['marca','Promotor de marca',l=>l.pmarca],
+const SEG=[['todas','Todas',l=>true],['com','Com promotor',l=>!!l.promotor_id],['sem','Sem promotor',l=>!l.promotor_id],['marca','Ação Trade',l=>l.pmarca],
   ['c100','Contrato 100%',l=>l.ult_pct>=100],['c80','Contrato < 80%',l=>l.ult_pct!=null&&l.ult_pct<80],['nunca','Nunca checada',l=>l.ult_pct==null],
   ['cresc','Crescendo',l=>l.diag==='crescendo'],['queda','Caindo',l=>(l.diag||'').startsWith('queda')],['q_est','Queda · estoque',l=>l.diag==='queda_estoque'],
   ['q_grade','Queda · grade',l=>l.diag==='queda_grade'],['q_giro','Queda · giro',l=>l.diag==='queda_giro'],['rupt','Estoque zerado/negativo',l=>(l.neg||0)+(l.zero||0)>0],['rmix','Ruptura de mix',l=>(+l.rup||0)>0],['parado','Produtos parados',l=>(+l.par||0)>0]];
@@ -691,7 +691,7 @@ function filtrarLojas(){
   FILT.sort(o);
   $('#t-lojas').innerHTML=FILT.length?`<table class="tc"><thead><tr><th>Loja</th><th>Promotor</th><th class="num">Contrato</th><th class="num">Vendas no ano</th><th class="num">× ano ant.</th><th class="num">Estoque 4 sem</th><th class="num">Grade</th><th>Diagnóstico</th></tr></thead><tbody>${FILT.slice(0,500).map(l=>`<tr class="clic" data-loja="${l.id}">
     <td><b>${esc(l.nome)}</b>${visPill(l.id)}<div class="muted">#${l.id} · ${esc(l.bandeira||'')} · ${esc(l.cidade||'')}${l.uf?' '+l.uf:''}${grupoDe(l)!=='Mateus'?' · <b style="color:var(--azul)">Novo Mateus</b>':''}</div></td>
-    <td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem</span>'}${l.pmarca?' <span class="pill p-az">marca</span>':''}</td>
+    <td>${l.promotor_id?esc(D.P[l.promotor_id]?.nome||'—'):'<span class="muted">sem</span>'}${l.pmarca?' <span class="pill p-az">Ação Trade</span>':''}</td>
     <td class="num">${l.ult_pct==null?'<span class="muted">—</span>':pctPill(l.ult_pct)}</td><td class="num">${l.ytd?brl(l.ytd):'—'}</td><td class="num">${varPill(var_(l.ytd,l.ytd_ant))}</td>
     <td class="num">${varPill(var_(l.est,l.est_ant))}${(l.neg||0)+(l.zero||0)?` <span class="pill p-ruim" title="categorias com estoque zerado ou negativo">${(l.neg||0)+(l.zero||0)}⚠</span>`:''}</td>
     <td class="num">${l.grade==null?'—':l.grade+(l.grade_ant!=null&&l.grade!==l.grade_ant?` <span class="muted">(${l.grade>l.grade_ant?'+':''}${l.grade-l.grade_ant})</span>`:'')}</td><td>${diagPill(l.diag)}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio"><b>Nenhuma loja nesse filtro</b></div>';
@@ -702,7 +702,7 @@ function ligarLojas(){
   const s=(k,id,ev='change')=>{$(id).addEventListener(ev,e=>{FL[k]=e.target.value;filtrarLojas()})};
   s('q','#f-q','input');s('b','#f-b');s('uf','#f-uf');s('gr','#f-gr');s('ord','#f-o');
   document.querySelectorAll('#segs button').forEach(b=>b.onclick=()=>{FL.seg=b.dataset.s;filtrarLojas()});
-  $('#f-csv').onclick=()=>{const c=v=>`"${String(v??'').replace(/"/g,'""')}"`;const linhas=[['Loja','Nome','Bandeira','Cidade','UF','Divisão','Promotor','Promotor de marca','Contrato %','Vendas ano','Vendas ano anterior','Var %','Estoque','Estoque 4 sem antes','Grade','Grade antes','Diagnostico'].join(';'),
+  $('#f-csv').onclick=()=>{const c=v=>`"${String(v??'').replace(/"/g,'""')}"`;const linhas=[['Loja','Nome','Bandeira','Cidade','UF','Divisão','Promotor','Ação Trade','Contrato %','Vendas ano','Vendas ano anterior','Var %','Estoque','Estoque 4 sem antes','Grade','Grade antes','Diagnostico'].join(';'),
     ...FILT.map(l=>[l.id,l.nome,l.bandeira,l.cidade,l.uf,grupoDe(l),D.P[l.promotor_id]?.nome||'',l.pmarca?'sim':'',l.ult_pct??'',l.ytd??'',l.ytd_ant??'',var_(l.ytd,l.ytd_ant)??'',l.est??'',l.est_ant??'',l.grade??'',l.grade_ant??'',DIAG[l.diag]?.[0]||''].map(c).join(';'))];
     const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+linhas.join('\n')],{type:'text/csv'}));a.download='negocio.csv';a.click()};
   filtrarLojas();
@@ -718,7 +718,7 @@ async function abrirLoja(id,abaL){
   const ultC=R.checagens[0];
   const tabs=[['geral','Visão geral'],['vendas','Vendas'],['estoque','Estoque'],['contrato','Contrato'],['notas','Anotações'+(R.notas.filter(n=>!n.feito&&n.proxima_acao).length?' •':'')],['dados','Dados e equipe']];
   let at=abaL||'geral';
-  const chips=`${l.promotor_id?`<span class="pill p-az">Promotor: ${esc(D.P[l.promotor_id]?.nome||'')}</span>`:'<span class="pill p-nd">Sem promotor</span>'}${l.promotor_marca?` <span class="pill p-az">Promotor de marca${l.promotor_marca_obs?': '+esc(l.promotor_marca_obs):''}</span>`:''} ${diagPill(r.diag)} ${ultC?pctPill(ultC.pct):'<span class="pill p-nd">sem checagem</span>'}${visPill(l.id)}`;
+  const chips=`${l.promotor_id?`<span class="pill p-az">Promotor: ${esc(D.P[l.promotor_id]?.nome||'')}</span>`:'<span class="pill p-nd">Sem promotor</span>'}${l.promotor_marca?` <span class="pill p-az">Ação Trade${l.promotor_marca_obs?': '+esc(l.promotor_marca_obs):''}</span>`:''} ${diagPill(r.diag)} ${ultC?pctPill(ultC.pct):'<span class="pill p-nd">sem checagem</span>'}${visPill(l.id)}`;
   const corpo={
    geral:()=>`<div style="margin-bottom:12px">${chips}</div>
      ${r.diag?`<div class="card" style="border-left:4px solid ${r.diag==='crescendo'?'var(--ok)':r.diag==='queda_estoque'?'var(--ruim)':r.diag?.startsWith('queda')?'var(--med)':'var(--linha)'}"><b>Diagnóstico:</b> ${esc(DIAG[r.diag]?.[2]||'')}</div>`:''}
@@ -780,8 +780,8 @@ function dadosLoja(l,ex){const proms=D.pessoas.filter(p=>p.perfil==='promotor'),
     <label>Aniversário do gerente<input id="l-gd" type="date" value="${l.gerente_nasc||''}" ${d}></label><label>&nbsp;</label>
     <label>Promotor<select id="l-pr" ${d}><option value="">Sem promotor</option>${proms.map(p=>`<option value="${p.id}" ${l.promotor_id===p.id?'selected':''}>${esc(p.nome)}</option>`).join('')}</select></label>
     <label>Coordenador<select id="l-co" ${d}><option value="">—</option>${coords.map(p=>`<option value="${p.id}" ${l.coord_id===p.id?'selected':''}>${esc(p.nome)}</option>`).join('')}</select></label>
-    <label style="align-content:end"><span style="display:flex;align-items:center;gap:8px;padding:10px 0;color:var(--texto);font-size:14.5px"><input type="checkbox" id="l-pm" ${l.promotor_marca?'checked':''} ${d} style="width:18px;height:18px">Tem promotor de marca</span></label>
-    <label>Promotor de marca: quem / qual marca<input id="l-pmo" value="${esc(l.promotor_marca_obs||'')}" ${d}></label>
+    <label style="align-content:end"><span style="display:flex;align-items:center;gap:8px;padding:10px 0;color:var(--texto);font-size:14.5px"><input type="checkbox" id="l-pm" ${l.promotor_marca?'checked':''} ${d} style="width:18px;height:18px">Tem Ação Trade</span></label>
+    <label>Ação Trade: qual ação / marca<input id="l-pmo" value="${esc(l.promotor_marca_obs||'')}" ${d}></label>
     <label>Tamanho${l.tamanho_proposta&&l.tamanho_proposta!==l.tamanho?` <span class="muted">(proposta trade: ${esc(l.tamanho_proposta)})</span>`:''}<select id="l-tm" ${d}>${['','P','M','G'].map(t=>`<option ${l.tamanho===t||(!l.tamanho&&!t)?'selected':''} value="${t}">${t||'—'}</option>`).join('')}</select></label>
     <label>Check-outs / checkstands<div style="display:flex;gap:6px"><input id="l-co2" type="number" min="0" value="${l.checkouts??''}" ${d} style="flex:1;min-width:0"><input id="l-cs" type="number" min="0" value="${l.checkstands??''}" ${d} style="flex:1;min-width:0"></div></label>
     <label class="full">Observações<textarea id="l-ob" rows="2" ${d}>${esc(l.obs||'')}</textarea></label></div>${ex?'<button class="btn" id="b-sl" style="margin-top:12px">Salvar dados da loja</button>':''}</div>`}
