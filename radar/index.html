@@ -240,6 +240,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
 <script>
 (function () {
   const RPC = "https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/";
+  let QUEM = "o Paulo", EU = null;
   const KEY = "sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -309,8 +310,8 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     if (fora(x)) return [];
     const a = +x.avaliacoes || 0, r = +x.rating || 0, cel = celular(x.telefone) ? 10 : 0, sw = (SEG[x.segmento] || [, , 6])[2];
     const nm = nomeCurto(x), cid = x.cidade || "São Luís", segTxt = (SEG[x.segmento] || [, "empresa"])[1], nota = r ? r.toLocaleString("pt-BR") : "";
-    const abre = `Olá! Tudo bem? Aqui é o Paulo, da Hélice.\n\nVi a ${nm} no Google${r ? ` — nota ${nota} com ${n(a)} avaliações` : ""}.${x.pos_cidade && x.pos_cidade > 1 ? ` Hoje ela aparece em ${x.pos_cidade}º quando alguém procura ${segTxt} em ${cid}.` : ""}\n\nEu crio sites e sistemas, e cada solução é feita sob medida para o cliente, nada de modelo pronto. Meu objetivo é ajudar vocês a ser o primeiro lugar em ${cid}.`;
-    const fecha = "\n\nPosso te mostrar como fica, sem compromisso?";
+    const abre = `Olá! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nVi ${x.site_tipo === "proprio" ? "o site" : "o perfil"} da ${nm} no Google e fiz uma análise rápida, um raio-x.${r ? ` Vocês têm nota ${nota} com ${n(a)} avaliações` : ""}${x.pos_cidade && x.pos_cidade > 1 ? `${r ? " e" : " Vocês"} hoje aparecem em ${x.pos_cidade}º quando alguém procura ${segTxt} em ${cid}` : ""}${r || (x.pos_cidade && x.pos_cidade > 1) ? "." : ""}\n\nVocês têm tudo para ser o primeiro de ${cid}, mas para isso precisam ajustar algumas coisas.`;
+    const fecha = "\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.";
     const L = [];
     const ps = preco(x), sf = score(x);
     const ref = x.site_tipo === "proprio";
@@ -369,8 +370,8 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   const INCLUSO = { perfil: "A gestão do perfil no Google faz parte do plano Gestão (ou vai de cortesia por 3 meses no Profissional).", avaliacoes: "O kit de avaliações entra no plano Profissional, junto com as avaliações do Google no site.", planilha: "A ferramenta sob medida faz parte do plano Profissional.", orcamento: "O modelo de orçamento entra como ferramenta sob medida do plano Profissional.", whatsapp: "A configuração do WhatsApp Business vai de bônus em qualquer plano." };
   function helice(o, x) {
     const k = planoDe(o, x), P = PLANOS[k];
-    const corpo = String(o.msg || "").replace(/\n\n(Posso te mostrar[^\n]*|Quer que eu te mostre\?)\s*$/, "");
-    const msg = `${corpo}\n\nNa Hélice funciona por assinatura: plano ${P[0]}, R$ ${P[1]}/mês (${P[2]}). Sem taxa de entrada, e você só começa a pagar depois de ver tudo no ar e aprovar.\n\nPosso te mostrar como fica, sem compromisso?\nhelicesites.com.br/planos`;
+    const corpo = String(o.msg || "").replace(/\n\n(Posso te (mostrar|mandar)[^\n]*|Quer que eu te mostre\?)\s*$/, "");
+    const msg = `${corpo}\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.`;
     return { ...o, plano: k, msg };
   }
 
@@ -438,10 +439,10 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   }
   function mensagem(x) {
     const nome = x.nome.split(/[|\-–]/)[0].trim(), cid = x.cidade || "São Luís";
-    const ondeVai = { instagram: "o link do Google leva para o Instagram", whatsapp: "o link do Google leva direto para o WhatsApp", facebook: "o link do Google leva para o Facebook", link_bio: "o link do Google leva para um link de bio", nenhum: "não aparece um site no perfil do Google", fora_do_ar: "o site que está no Google não está abrindo" }[x.site_tipo] || "dá para melhorar a presença de vocês no Google";
+    const ondeVai = { instagram: "hoje o link do Google leva só para o Instagram", whatsapp: "hoje o link do Google leva direto para o WhatsApp, sem um site para apresentar o negócio", facebook: "hoje o link do Google leva só para o Facebook", link_bio: "hoje o link do Google leva para um link de bio", nenhum: "não aparece nenhum site no perfil do Google", fora_do_ar: "o site que está no Google não está abrindo" }[x.site_tipo] || "dá para melhorar bastante a presença de vocês no Google";
     const seg = (SEG[x.segmento] || [, "empresa"])[1];
-    const pos = x.pos_cidade && x.pos_cidade > 1 ? ` Hoje ela aparece em ${x.pos_cidade}º quando alguém procura ${seg} em ${cid}.` : "";
-    return `Olá! Tudo bem? Aqui é o Paulo, da Hélice.\n\nVi a ${nome} no Google${x.rating ? ` — nota ${x.rating.toLocaleString("pt-BR")} com ${n(x.avaliacoes)} avaliações, parabéns!` : "."}${pos}\n\nReparei que ${ondeVai}.\n\nEu crio sites e sistemas, e cada solução é feita sob medida para o cliente, nada de modelo pronto igual ao do concorrente. Meu objetivo é ajudar vocês a ser o primeiro lugar em ${cid}.\n\nPosso te mostrar um modelo rapidinho, sem compromisso?`;
+    const pos = x.pos_cidade && x.pos_cidade > 1 ? ` e hoje aparecem em ${x.pos_cidade}º quando alguém procura ${seg} em ${cid}` : "";
+    return `Olá! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nVi ${x.site_tipo === "proprio" ? "o site" : "o perfil"} da ${nome} no Google e fiz uma análise rápida, um raio-x.${x.rating ? ` Vocês têm nota ${x.rating.toLocaleString("pt-BR")} com ${n(x.avaliacoes)} avaliações${pos}.` : ""}\n\nVocês têm tudo para ser o primeiro de ${cid}, mas para isso precisam ajustar algumas coisas. A principal: ${ondeVai}.\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.`;
   }
   const PILOTO = {"ChIJb2e-FFiP9gcREUyK8edmQ6s": ["https://helicesites.com.br/lote1/joao-guilherme-fernandes/", "1"], "ChIJVevFZM2P9gcRFqHp-mjG_p4": ["https://helicesites.com.br/lote1/renan-carneiro-advogado/", "1"], "ChIJBaWVZA2N9gcRVD0MJFWRq5Y": ["https://helicesites.com.br/lote1/nayara-couto-advocacia/", "1"], "ChIJb82D56KT9gcR_GMlYXyfyPY": ["https://helicesites.com.br/lote1/ricardo-aragao-advogado/", "1"], "ChIJSY6dtKeN9gcRWfsb8LCgCu4": ["https://helicesites.com.br/lote1/kenny-braga-fisioterapeuta/", "1"], "ChIJ16JpRraT9gcRD4wa5ZkfkXM": ["https://helicesites.com.br/lote1/wal-pinheiro-fisioterapia/", "1"], "ChIJHfAKTACN9gcR3k_0Be0EdU0": ["https://helicesites.com.br/lote1/filipe-fontoura-osteopatia/", "1"], "ChIJaRoOLK2N9gcRMCnLeYPJtTg": ["https://helicesites.com.br/lote1/juliana-torres-fisioterapia-pelvica/", "1"], "ChIJ78_I6VaN9gcRGbAaKX0GrRE": ["https://helicesites.com.br/lote1/daniel-amaral-nutricionista/", "1"], "ChIJ__3aTFeR9gcR_hB-M4PhJcE": ["https://helicesites.com.br/lote1/danielle-lima-nutricionista/", "1"], "ChIJhdfP5euN9gcRzjnR2GYT-p0": ["https://helicesites.com.br/lote1/saul-campos-nutricionista/", "1"], "ChIJIahsYy-N9gcRig5MrrLbZvs": ["https://helicesites.com.br/lote1/wilson-serrao-nutricionista/", "1"], "ChIJC26unNaN9gcRr_Mhv0eHB68": ["https://helicesites.com.br/lote1/daiana-rabelo-personal/", "1"], "ChIJT13d0b6N9gcRBX9W0HjbeNw": ["https://helicesites.com.br/lote1/airton-gondim-personal/", "1"], "ChIJU2C7G66R9gcRNnc_UQoKT34": ["https://helicesites.com.br/lote1/pedro-salgado-personal/", "1"], "ChIJ-2VURIKN9gcRi120yhrlsko": ["https://helicesites.com.br/lote1/felipe-mendes-personal/", "1"], "ChIJ630uAGab9gcR-3BwcGHonz4": ["https://helicesites.com.br/lote1/consuelo-schliebe-psicologa/", "1"], "ChIJAesXXyuP9gcRzFEHYbA32sw": ["https://helicesites.com.br/lote1/jaime-silva-psicologo/", "1"], "ChIJ19YFpK2N9gcR4mSv43Yt2rg": ["https://helicesites.com.br/lote1/sofia-ravinny-psicologa/", "1"], "ChIJSWctoSSR9gcRe6yU75N5gI4": ["https://helicesites.com.br/lote1/anderson-bastos-psicologo/", "1"], "ChIJR0pwKwqP9gcRZRif-Jp8uIc": ["https://helicesites.com.br/lote2/luana-paiva-advogada/", "2"], "ChIJDzGQVgqN9gcRVjV8iglFmx4": ["https://helicesites.com.br/lote2/eduardo-mercon-advogado/", "2"], "ChIJl88qOcmN9gcR_fPzLGm9nOU": ["https://helicesites.com.br/lote2/felipe-assuncao-advogado/", "2"], "ChIJXXkO8riP9gcRDEEydzbZbaQ": ["https://helicesites.com.br/lote2/mauro-campos-advogado/", "2"], "ChIJM9bglm6R9gcRTuMGRvhEzoA": ["https://helicesites.com.br/lote2/caio-mattos-advogado/", "2"], "ChIJda8vv0qR9gcRvEdgxDagIFg": ["https://helicesites.com.br/lote2/juliana-moraes-fisioterapia/", "2"], "ChIJt-27-JqT9gcRp0jYF_o8Wx4": ["https://helicesites.com.br/lote2/angelo-thiago-fisioterapeuta/", "2"], "ChIJQ4NJRVKR9gcR9OfktXdazWA": ["https://helicesites.com.br/lote2/juliana-ferreira-fisioterapia/", "2"], "ChIJsQEDOWmb9gcRs0hWMqk0Hmg": ["https://helicesites.com.br/lote2/anderson-castro-fisioterapia/", "2"], "ChIJj2U8YDCb9gcR99lPInAxwac": ["https://helicesites.com.br/lote2/patricia-nunes-fisioterapeuta/", "2"], "ChIJEZiXtwCN9gcRqN6Efj9M_OQ": ["https://helicesites.com.br/lote2/michelle-balltaglini-nutricionista/", "2"], "ChIJE6sIT6ON9gcR0XMpE_2ZsLs": ["https://helicesites.com.br/lote2/karine-baldez-nutricionista/", "2"], "ChIJ5X8BXHmN9gcRuaJ8OuRNGMg": ["https://helicesites.com.br/lote2/luna-araujo-nutricionista/", "2"], "ChIJQ49kOkuN9gcRGTHqjGRuE3M": ["https://helicesites.com.br/lote2/roberta-carvalho-nutricionista/", "2"], "ChIJVzzChr2N9gcRGEkgpXVfU8Y": ["https://helicesites.com.br/lote2/nayra-pinheiro-nutricionista/", "2"], "ChIJaxEcwPGN9gcRZhsWjzfopvM": ["https://helicesites.com.br/lote2/lorena-bessani-nutricionista/", "2"], "ChIJUVF_Iq2P9gcRy4MOFkBfOgY": ["https://helicesites.com.br/lote2/nathalia-pinto-psicologa/", "2"], "ChIJ_9_p2-GN9gcRM0YYvDzpPvI": ["https://helicesites.com.br/lote2/simone-santos-psicologa/", "2"], "ChIJAQ93SX6P9gcR6udMmf0lICc": ["https://helicesites.com.br/lote2/ivan-almeida-psicologo/", "2"], "ChIJWfL6Kr-R9gcR8Zos0-hCV0w": ["https://helicesites.com.br/lote2/karen-viegas-psicologa/", "2"]};
   function abrir(x) {
@@ -510,7 +511,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     const v = st === "fechou" && valor !== "" ? +valor : null;
     try {
       await rpc("neg_registrar", { p_token: TOKEN, p_place: x.place_id, p_status: st, p_nota: nota || null, p_valor: v, p_servico: st ? (serv || null) : null });
-      Object.assign(x, { ab_status: st, ab_nota: nota || null, ab_valor: v, ab_servico: st ? (serv || null) : null, ab_em: new Date().toISOString() });
+      Object.assign(x, { ab_status: st, ab_nota: nota || null, ab_valor: v, ab_servico: st ? (serv || null) : null, ab_em: new Date().toISOString(), ab_por: EU && EU.nome });
       toast(st ? `Marcada como "${ST[st]}"` : "Abordagem desmarcada");
       kpis(); render(); if (reabrir) abrir(x);
     } catch (e) { toast("Não salvou: " + e.message); }
@@ -544,21 +545,21 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   function proximaMsg(x) {
     const nm = nomeCurto(x), d = diasDe(x.ab_em), nota = (x.ab_nota || "").toLowerCase();
     if (x.ab_status === "fechou") return { quando: "Acompanhar", texto: nota.includes("aguardando") ?
-      `Oi, Andréa! Tudo bem? Aqui é o Paulo, da Hélice.\n\nPassando pra saber se conseguiu ver os passos do piloto de gestão: o acesso de gerente no Google Meu Negócio (paulomarciojuniorbh@gmail.com) e o convite do Meta. Assim que liberar, já começo e te mostro tudo pelo painel.\n\nSe preferir, faço uma ligação rápida e a gente libera juntos em 5 minutos.` :
-      `Oi! Tudo bem? Aqui é o Paulo, da Hélice. Passando pra saber se está tudo certo com o site e se precisa de algum ajuste este mês.` };
+      `Oi, Andréa! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nPassando pra saber se conseguiu ver os passos do piloto de gestão: o acesso de gerente no Google Meu Negócio (paulomarciojuniorbh@gmail.com) e o convite do Meta. Assim que liberar, já começo e te mostro tudo pelo painel.\n\nSe preferir, faço uma ligação rápida e a gente libera juntos em 5 minutos.` :
+      `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice. Passando pra saber se está tudo certo com o site e se precisa de algum ajuste este mês.` };
     if (x.ab_status === "negociando") return { quando: d >= 2 ? "Retomar hoje" : "Aguardar " + (2 - d) + " dia(s)", texto:
-      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nPassando pra retomar nossa conversa sobre o site da ${nm}. Lembrando: não tem taxa de entrada e você só começa a pagar depois de ver o site no ar e aprovar.\n\nPosso seguir com a versão final pra você aprovar? Se preferir, te explico em uma ligação de 5 minutos.` };
+      `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nPassando pra retomar nossa conversa sobre o site da ${nm}. Lembrando: não tem taxa de entrada e você só começa a pagar depois de ver o site no ar e aprovar.\n\nPosso seguir com a versão final pra você aprovar? Se preferir, te explico em uma ligação de 5 minutos.` };
     if (x.ab_status === "respondeu") return { quando: d >= 2 ? "Retomar hoje" : "Aguardar " + (2 - d) + " dia(s)", texto:
       (nota.includes("amostra") || nota.includes("piloto")) ?
-      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nConseguiu dar uma olhada na amostra que preparei para a ${nm}? Se quiser, ajusto cores, fotos e textos do jeito de vocês, sem compromisso.\n\nPosso te mostrar em uma ligação rápida de 5 minutos?` :
-      `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nObrigado pelo retorno! Quer que eu prepare uma amostra do site da ${nm}, com a identidade de vocês? É sem compromisso: você só decide depois de ver.` };
+      `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nConseguiu dar uma olhada na amostra que preparei para a ${nm}? Se quiser, ajusto cores, fotos e textos do jeito de vocês, sem compromisso.\n\nPosso te mostrar em uma ligação rápida de 5 minutos?` :
+      `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nObrigado pelo retorno! Quer que eu prepare uma amostra do site da ${nm}, com a identidade de vocês? É sem compromisso: você só decide depois de ver.` };
     if (x.ab_status === "chamei") {
       const pos = x.pos_cidade ? `aparece em ${x.pos_cidade}º na busca do Google` : "não aparece na busca geral do Google na cidade";
       const site = { nenhum: "o perfil de vocês não tem link de site", instagram: "o link do perfil leva só para o Instagram", whatsapp: "o link do perfil leva só para o WhatsApp", facebook: "o link do perfil leva só para o Facebook", link_bio: "o link do perfil leva para um link de bio", fora_do_ar: "o site cadastrado no Google está fora do ar" }[x.site_tipo] || "dá para melhorar a presença de vocês no Google";
       return { quando: d >= 3 ? "Follow-up hoje" : "Aguardar " + (3 - d) + " dia(s)", texto:
-        `Oi! Tudo bem? Aqui é o Paulo, da Hélice.\n\nTomei a liberdade de fazer um Raio-X rápido da ${nm} no Google: nota ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} com ${n(x.avaliacoes)} avaliações, ${pos}, e ${site}.\n\nPosso te mandar a análise completa com os concorrentes da região? É grátis. E se fizer sentido, a gente conversa sobre melhorias pro negócio.` };
+        `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nTomei a liberdade de fazer um Raio-X rápido da ${nm} no Google: nota ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} com ${n(x.avaliacoes)} avaliações, ${pos}, e ${site}.\n\nPosso te mandar a análise completa com os concorrentes da região? É grátis. E se fizer sentido, a gente conversa sobre melhorias pro negócio.` };
     }
-    return { quando: "Não insistir", texto: d != null && d >= 90 ? `Oi! Tudo bem? Aqui é o Paulo, da Hélice. Faz um tempo que conversamos: posso te mandar um Raio-X atualizado da ${nm} no Google? É grátis.` : "" };
+    return { quando: "Não insistir", texto: d != null && d >= 90 ? `Oi! Tudo bem? Aqui é ${QUEM}, da Hélice. Faz um tempo que conversamos: posso te mandar um Raio-X atualizado da ${nm} no Google? É grátis.` : "" };
   }
   function abrirContatos() { $("contatos").hidden = false; document.body.style.overflow = "hidden"; drawContatos(); }
   function fecharContatos() { $("contatos").hidden = true; document.body.style.overflow = ""; }
@@ -572,7 +573,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       <p class="sub" style="margin:0;color:var(--muted)">Cada contato tem a próxima mensagem sugerida. Envie pelo WhatsApp e atualize o status aqui mesmo. Para não ser bloqueado: no máximo 10 a 15 envios por dia, com uns 6 minutos entre eles. Comece pelos que responderam e pelos que estão negociando.</p>
       <div class="tabs">${abas.map(([k, t, fn]) => `<button type="button" data-ca="${k}" aria-pressed="${k === CT_ABA}">${t} · ${C.filter(fn).length}</button>`).join("")}</div>
       ${L.length ? L.map(x => { const m = proximaMsg(x), d = diasDe(x.ab_em); let tel = String(x.telefone || "").replace(/\D/g, ""); if (tel && tel.length <= 11) tel = "55" + tel;
-        return `<div class="ct" data-id="${x.place_id}"><div class="h"><div><b>${esc(nomeCurto(x))}</b><div class="meta">${esc(x.cidade)} · ${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.telefone || "sem telefone")} · ${d == null ? "" : d === 0 ? "atualizado hoje" : "há " + d + " dia(s)"}</div></div>
+        return `<div class="ct" data-id="${x.place_id}"><div class="h"><div><b>${esc(nomeCurto(x))}</b><div class="meta">${esc(x.cidade)} · ${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.telefone || "sem telefone")} · ${d == null ? "" : d === 0 ? "atualizado hoje" : "há " + d + " dia(s)"}${x.ab_por ? " · por " + esc(x.ab_por) : ""}</div></div>
           <div class="sts">${Object.entries(ST).map(([k, l]) => `<button type="button" data-st="${k}" aria-pressed="${x.ab_status === k}">${l}</button>`).join("")}</div></div>
           ${x.ab_nota ? `<p class="nota">📝 ${esc(x.ab_nota)}</p>` : ""}
           <p class="meta" style="margin:10px 0 0"><b>${esc(m.quando)}</b></p>${m.texto ? `<div class="sug">${esc(m.texto)}</div>` : ""}
@@ -598,15 +599,27 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("contatos").hidden && $("detail").hidden) fecharContatos(); });
 
   function pedirChave(erro) {
-    document.querySelector(".wrap").innerHTML = `<form class="login" id="fLogin"><h1 style="font-size:28px">Radar Negócios Locais</h1><p class="sub" style="margin:0;color:var(--muted)">Acesso restrito. Abra pelo link com a chave ou cole a chave abaixo.</p>${erro ? `<p style="margin:0;color:var(--hot);font-weight:600">${esc(erro)}</p>` : ""}<label for="kIn" style="font-weight:600;font-size:13px">Chave de acesso</label><input id="kIn" autocomplete="off" required><button class="btn pri" type="submit">Entrar</button></form>`;
-    $("fLogin").onsubmit = e => { e.preventDefault(); const k = $("kIn").value.trim(); try { localStorage.setItem("negocios_k", k); } catch (_) {} location.search = "?k=" + encodeURIComponent(k); };
+    document.querySelector(".wrap").innerHTML = `<form class="login" id="fLogin"><h1 style="font-size:28px">Radar Negócios Locais</h1><p class="sub" style="margin:0;color:var(--muted)">Acesso restrito. Entre com seu usuário e senha.</p>${erro ? `<p style="margin:0;color:var(--hot);font-weight:600">${esc(erro)}</p>` : ""}
+      <label for="uIn" style="font-weight:600;font-size:13px">Usuário</label><input id="uIn" autocomplete="username" autocapitalize="none" required>
+      <label for="sIn" style="font-weight:600;font-size:13px">Senha</label><input id="sIn" type="password" autocomplete="current-password" required>
+      <button class="btn" type="submit" id="bLogin">Entrar</button>
+      <details style="margin-top:6px"><summary style="cursor:pointer;color:var(--muted);font-size:13px">Entrar com chave de acesso</summary><div style="display:flex;gap:8px;margin-top:8px"><input id="kIn" placeholder="Chave" style="flex:1"><button class="btn" type="button" id="bChave">Usar chave</button></div></details></form>`;
+    $("bChave").onclick = () => { const k = $("kIn").value.trim(); if (!k) return; try { localStorage.setItem("negocios_k", k); } catch (_) {} location.search = "?k=" + encodeURIComponent(k); };
+    $("fLogin").onsubmit = async e => { e.preventDefault(); $("bLogin").disabled = true;
+      const r = await rpc("neg_login", { p_login: $("uIn").value, p_senha: $("sIn").value }).catch(() => ({ erro: "Sem conexão. Tente de novo." }));
+      if (!r || !r.ok) { $("bLogin").disabled = false; pedirChave((r && r.erro) || "Não foi possível entrar."); return; }
+      try { localStorage.setItem("negocios_k", r.token); } catch (_) {} location.href = location.pathname; };
   }
   const qk = new URLSearchParams(location.search).get("k");
   try { TOKEN = qk || localStorage.getItem("negocios_k") || ""; if (qk) localStorage.setItem("negocios_k", qk); } catch (_) { TOKEN = qk || ""; }
   if (!TOKEN) pedirChave();
   else {
     $("msg").innerHTML = `<div class="notice">Carregando empresas…</div>`;
-    rpc("neg_dados", { p_token: TOKEN }).then(rows => {
+    rpc("neg_eu", { p_token: TOKEN }).then(eu => { if (!eu) throw new Error("token inválido"); EU = eu; QUEM = eu.apresentacao || "o Paulo";
+      const tb = document.createElement("div"); tb.style.cssText = "position:fixed;top:10px;right:12px;z-index:50;background:#fff;border:1px solid #ddd;border-radius:999px;padding:6px 12px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.08)";
+      tb.innerHTML = `👤 <b>${esc(eu.nome)}</b> · <a href="#" id="sairR">sair</a>`; document.body.appendChild(tb);
+      $("sairR").onclick = async ev => { ev.preventDefault(); await rpc("neg_sair", { p_token: TOKEN }).catch(() => {}); try { localStorage.removeItem("negocios_k"); } catch (_) {} location.href = location.pathname; };
+      return rpc("neg_dados", { p_token: TOKEN }); }).then(rows => {
       RAW = rows || [];
       const cidades = [...new Set(RAW.map(x => x.cidade))].sort((a, b) => a.localeCompare(b, "pt-BR"));
       $("fCidade").innerHTML = `<option value="">Todas as cidades (${n(RAW.length)})</option>` + cidades.map(c => `<option value="${esc(c)}">${esc(c)} (${n(RAW.filter(x => x.cidade === c).length)})</option>`).join("");
