@@ -856,6 +856,7 @@ function mapaImp(k){const I=IMPS[k],T=TIPOS_IMP[k],box=$('#imp-'+k);const dNome=
   box.querySelectorAll('[data-c]').forEach(x=>x.onchange=prev);prev();
   box.querySelector('[data-go]').onclick=async()=>{const L=conv().filter(ok),b=box.querySelector('[data-go]'),st=box.querySelector('[data-st]');if(!L.length){toast('Nenhuma linha válida.');return}
     const dsku=k==='sku'?sel('datasku'):null;if(k==='sku'&&!/^\d{4}-\d{2}-\d{2}$/.test(dsku||'')){toast('Informe a data da leitura.');return}
+    if(k==='sku'){const dd=Math.round((Date.now()-new Date(dsku+'T12:00'))/864e5);if((dd<-3||dd>45)&&!confirm(`A data da leitura está como ${dsku.split('-').reverse().join('/')}, que fica a ${Math.abs(dd)} dias de hoje. Está certo? (Confira se não inverteu dia e mês.)`))return}
     b.disabled=true;let tot=0,novas=0;const N=k==='estoque'?400:k==='sku'?900:800;
     if(k==='sku'){const r0=await rpc('crm_estoque_sku_inicio',{p_token:TOK,p_data:dsku}).catch(()=>null);if(!r0?.ok){toast('Sem conexão.');b.disabled=false;return}}
     try{for(let i=0;i<L.length;i+=N){st.textContent=`Enviando ${Math.min(i+N,L.length).toLocaleString('pt-BR')} de ${L.length.toLocaleString('pt-BR')}…`;
