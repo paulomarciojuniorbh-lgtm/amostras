@@ -336,7 +336,7 @@ function criarSenha(p){
   <label>Usuário<input id="cs-u" value="${esc(p.login||sugLogin(p))}" autocapitalize="none" autocomplete="off"></label>
   <label>Senha<span style="display:flex;gap:6px"><input id="cs-s" value="${sugSenha()}" autocomplete="off" style="flex:1"><button class="btn sec peq" id="cs-g" type="button" title="Gerar outra">↻</button></span></label></div>
   <p class="muted" style="margin:12px 0">${p.tem_senha?'A senha antiga deixa de valer e a pessoa sai dos aparelhos onde estava conectada.':'Depois de criar a senha, o link antigo da pessoa deixa de funcionar.'} Ela pode trocar a senha depois, em "senha" no topo.</p>
-  <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cs-ok">Salvar acesso</button></div><div id="cs-msg"></div></div></div>`);
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button class="btn" id="cs-ok">Salvar acesso</button><span class="muted" style="font-size:12px">⚠️ O acesso só passa a valer depois de clicar em <b>Salvar acesso</b>.</span></div><div id="cs-msg"></div></div></div>`);
   $('#cs-g').onclick=()=>$('#cs-s').value=sugSenha();
   $('#cs-ok').onclick=async()=>{const u=$('#cs-u').value.trim().toLowerCase(),se=$('#cs-s').value;
     const r=await rpc('crm_definir_senha',{p_token:TOK,p_usuario:p.id,p_login:u,p_senha:se}).catch(()=>({erro:'Sem conexão.'}));
@@ -369,14 +369,27 @@ function formPessoa(p){
   <label class="full">Nome<input id="p-n" value="${esc(p.nome||'')}" autocomplete="off"></label>
   <label>WhatsApp<input id="p-t" value="${esc(p.telefone||'')}" inputmode="tel" placeholder="(98) 9 0000-0000"></label>
   <label>Data de nascimento<input id="p-d" type="date" value="${p.nascimento||''}"></label>
+  ${p.id?'':`<div class="full" style="border-top:1px solid var(--linha);padding-top:12px;margin-top:4px"><b style="font-size:13px">Acesso ao CRM</b><span class="muted" style="display:block;font-size:12px">O usuário e a senha são criados junto com o cadastro.</span></div>
+  <label>Usuário<input id="p-u" autocapitalize="none" autocomplete="off" placeholder="nome.sobrenome"></label>
+  <label>Senha<span style="display:flex;gap:6px"><input id="p-pw" value="${sugSenha()}" autocomplete="off" style="flex:1"><button class="btn sec peq" id="p-g" type="button" title="Gerar outra">↻</button></span></label>`}
   ${p.perfil==='promotor'?`<label>Coordenador<select id="p-c"><option value="">—</option>${cs.map(c=>`<option value="${c.id}" ${p.coord_id===c.id?'selected':''}>${esc(c.nome)}</option>`).join('')}</select></label>`:''}
   </div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="p-s">Salvar</button>${p.id?'<button class="btn sec" id="p-l" hidden>Gerar novo link</button><button class="btn sec" id="p-x" style="color:var(--ruim);background:var(--ruim-bg)">Desativar</button>':''}</div>
-  ${p.id?'<p class="muted" style="margin:12px 0 0">Para trocar o acesso da pessoa, use "Nova senha" na lista da equipe.</p>':'<p class="muted" style="margin:12px 0 0">Depois de salvar, clique em "Criar senha" na lista para gerar o usuário e a senha.</p>'}</div></div>`);
+  ${p.id?'<p class="muted" style="margin:12px 0 0">Para trocar o acesso da pessoa, use "Nova senha" na lista da equipe.</p>':''}<div id="p-msg"></div></div></div>`);
+  if(!p.id){let mexeu=false;$('#p-u').oninput=()=>mexeu=true;$('#p-n').addEventListener('input',()=>{if(!mexeu)$('#p-u').value=sugLogin({nome:$('#p-n').value})});$('#p-g').onclick=()=>$('#p-pw').value=sugSenha()}
   let salvando=false;
   const salvar=async extra=>{const n=$('#p-n').value.trim();if(n.length<2){toast('Preencha o nome.');return}if(salvando)return;salvando=true;$('#p-s').disabled=true;
     const r=await rpc('crm_salvar_pessoa',{p_token:TOK,p:{id:p.id||null,nome:n,perfil:p.perfil,telefone:$('#p-t').value.trim(),nascimento:$('#p-d').value,coord_id:$('#p-c')?.value||'',...extra}}).catch(()=>({}));
     salvando=false;$('#p-s').disabled=false;
-    if(!r.ok){toast('Não consegui salvar.');return}toast(r.duplicado?'Essa pessoa já estava cadastrada.':'Salvo.');await recarregar();fechar();render()};
+    if(!r.ok){toast('Não consegui salvar.');return}
+    if(!p.id&&$('#p-u')){const u=$('#p-u').value.trim().toLowerCase(),se=$('#p-pw').value;
+      const a=await rpc('crm_definir_senha',{p_token:TOK,p_usuario:r.id,p_login:u,p_senha:se}).catch(()=>({erro:'Sem conexão.'}));
+      await recarregar();render();
+      if(!a.ok){toast('Pessoa salva, mas o acesso não foi criado: '+(a.erro||'erro'));fechar();return}
+      const txt=`Olá, ${n.split(' ')[0]}! Seu acesso ao Hélice CRM:\n\n🔗 ${location.origin+location.pathname}\n👤 Usuário: ${u}\n🔑 Senha: ${se}\n\nGuarde com você e não compartilhe. Você pode trocar a senha em "senha", no topo da tela.`;
+      const tel=telZap($('#p-t').value);
+      $('#p-s').hidden=true;$('#p-msg').innerHTML=`<p style="margin:14px 0 6px;color:var(--ok);font-weight:600">✓ Cadastro e acesso criados.</p><div class="insight" style="white-space:pre-wrap;margin-top:0">${esc(txt)}</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="btn sec" id="p-cp">Copiar mensagem</button>${tel?`<a class="btn zap" target="_blank" rel="noopener" href="https://wa.me/${tel}?text=${encodeURIComponent(txt)}">Enviar no WhatsApp</a>`:''}</div>`;
+      $('#p-cp').onclick=async()=>{try{await navigator.clipboard.writeText(txt);toast('Mensagem copiada.')}catch(e){prompt('Copie:',txt)}};return}
+    toast(r.duplicado?'Essa pessoa já estava cadastrada.':'Salvo.');await recarregar();fechar();render()};
   $('#p-s').onclick=()=>salvar({});
   if(p.id){$('#p-l').onclick=()=>confirm('Gerar um novo link? O link antigo para de funcionar.')&&salvar({novo_link:'true'});$('#p-x').onclick=()=>confirm('Desativar '+p.nome+'? O link para de funcionar.')&&salvar({ativo:false})}
 }
