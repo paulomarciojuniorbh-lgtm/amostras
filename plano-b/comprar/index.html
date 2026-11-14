@@ -58,7 +58,7 @@ input:focus{outline:none;border-color:var(--ama)}
   <button class="btn" id="ir" type="submit">Ir para o pagamento · R$ 29,90 →</button>
   <div class="erro" id="erro" role="alert"></div>
   <div class="formas"><span>Pix</span><span>Cartão de crédito</span><span>Mercado Pago</span></div>
-  <p class="priv">Seus dados são usados só para entregar o produto e dar suporte.</p>
+  <p class="erro" id="erroPg" style="color:#ff8a76"></p><p class="priv">Seus dados são usados só para entregar o produto e dar suporte.</p>
  </form>
  <aside class="card resumo">
   <div class="prod"><i>B</i><div><b>Plano B · Kit offline de emergência</b><small>Produto digital · download imediato</small></div></div>
@@ -73,14 +73,18 @@ input:focus{outline:none;border-color:var(--ama)}
 const PAGAMENTO="https://mpago.la/1ctRfHX";
 const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
 const $=id=>document.getElementById(id);
+if(new URLSearchParams(location.search).get("erro")==="pagamento")setTimeout(()=>{const e=document.getElementById("erroPg");if(e)e.textContent="O pagamento não foi concluído. Pode tentar de novo."},0);
 const origem=(()=>{try{const q=new URLSearchParams(location.search),o=["utm_source","utm_campaign","utm_content"].map(k=>q.get(k)).filter(Boolean).join("|");return o||document.referrer.slice(0,120)||"direto"}catch(e){return"direto"}})();
 $("f").onsubmit=async e=>{e.preventDefault();$("erro").textContent="";
  const nome=$("nome").value.trim(),email=$("email").value.trim(),whats=$("whats").value.trim();
  if(nome.split(/\s+/).length<2){$("erro").textContent="Digite seu nome completo.";$("nome").focus();return}
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){$("erro").textContent="Confira o seu e-mail.";$("email").focus();return}
  $("ir").disabled=true;$("ir").textContent="Abrindo o pagamento…";
- try{const r=await fetch(`${SB}/rest/v1/rpc/planob_pedido`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_nome:nome,p_email:email,p_whats:whats,p_origem:origem})});const j=await r.json();if(j&&j.ok===false){$("erro").textContent=j.erro;$("ir").disabled=false;$("ir").textContent="Ir para o pagamento · R$ 29,90 →";return}}catch(e){}
+ let id=null;
+ try{const r=await fetch(`${SB}/rest/v1/rpc/planob_pedido`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_nome:nome,p_email:email,p_whats:whats,p_origem:origem})});const j=await r.json();if(j&&j.ok===false){$("erro").textContent=j.erro;$("ir").disabled=false;$("ir").textContent="Ir para o pagamento · R$ 29,90 →";return}id=j&&j.id}catch(e){}
  try{if(window.fbq)fbq("track","InitiateCheckout",{value:29.90,currency:"BRL"})}catch(e){}
+ // checkout com liberação automática; se falhar, usa o link fixo do Mercado Pago
+ if(id){try{const r=await fetch(`${SB}/functions/v1/planob-pagamento?acao=checkout`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id})});const j=await r.json();if(j&&j.ok&&j.url){location.href=j.url;return}}catch(e){}}
  location.href=PAGAMENTO||("https://wa.me/5598984149331?text="+encodeURIComponent(`Olá! Quero finalizar a compra do Plano B (R$ 29,90).\nNome: ${nome}\nE-mail: ${email}`));
 };
 </script>

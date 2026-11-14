@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Seu Plano B · Download</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0f120f">
+<style>
+:root{--bg:#0f120f;--bg2:#161a16;--ama:#f4c430;--txt:#efeee7;--sua:#a8ad9f;--linha:#2c332c;--verde:#7fb069}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55;font-size:17px}
+.w{max-width:680px;margin:0 auto;padding:40px 18px 70px}
+.pb{display:inline-flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.04em}
+.pb i{width:34px;height:34px;border-radius:9px;background:var(--ama);color:#14170f;display:grid;place-items:center;font-style:normal;font-size:19px}
+h1{font-size:clamp(30px,6vw,42px);line-height:1.1;letter-spacing:-.02em;margin:26px 0 10px}
+.sub{color:var(--sua);font-size:18px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--ama);color:#14170f;font-weight:800;font-size:19px;border-radius:14px;padding:19px;text-decoration:none;margin:26px 0 8px;border:0;width:100%;cursor:pointer;font-family:inherit}
+.btn.sec{background:var(--bg2);color:var(--txt);border:1px solid var(--linha)}
+.card{background:var(--bg2);border:1px solid var(--linha);border-radius:18px;padding:22px;margin-top:16px}
+.card h3{margin-bottom:10px}
+ol{padding-left:20px;display:grid;gap:8px;color:#d6d6cd}
+.mini{color:var(--sua);font-size:14px}
+a{color:var(--ama)}
+.spin{width:44px;height:44px;border:4px solid var(--linha);border-top-color:var(--ama);border-radius:50%;animation:g 1s linear infinite;margin:30px auto}
+@keyframes g{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body><div class="w">
+ <span class="pb"><i>B</i>PLANO B</span>
+ <div id="st"><h1>Confirmando seu pagamento…</h1><div class="spin"></div><p class="sub" style="text-align:center">Isso leva só alguns segundos.</p></div>
+ <div id="ok" hidden>
+  <h1>Pagamento confirmado. Seu Plano B chegou! 🎉</h1>
+  <p class="sub">Baixe agora e guarde em mais de um lugar. Depois de baixado, ele funciona sem internet.</p>
+  <a class="btn" id="dl" href="#" download>⬇ Baixar o Plano B (menos de 1 MB)</a>
+  <p class="mini" style="text-align:center">O link vale por 24 horas. Guarde esta página: se precisar, é só abrir de novo para gerar outro link.</p>
+  <div class="card"><h3>💻 No computador</h3><ol><li>Abra a pasta Downloads e clique com o botão direito em <b>plano-b-offline.zip</b> → <b>Extrair tudo</b>.</li><li>Entre na pasta <b>PlanoB</b> e dê dois cliques em <b>ABRIR - Plano B</b>.</li><li>Pronto: abre no navegador e funciona até sem internet.</li></ol></div>
+  <div class="card"><h3>📱 No celular</h3><ol><li>Toque no arquivo baixado e escolha <b>Extrair</b> (no iPhone, ele abre no app Arquivos).</li><li>Toque em <b>ABRIR - Plano B</b> e escolha abrir com o Chrome ou o Safari.</li><li>Dica: depois de aberto, use "Adicionar à tela inicial" para achar rápido.</li></ol></div>
+  <div class="card"><h3>✅ Os 3 primeiros passos</h3><ol><li>Copie a pasta para um pendrive e para o celular de quem você ama.</li><li>Preencha o <b>Plano da família</b>.</li><li>Clique em <b>Imprimir tudo</b> e guarde o papel junto do seu kit.</li></ol></div>
+ </div>
+ <div id="esp" hidden>
+  <h1>Pagamento em processamento ⏳</h1>
+  <p class="sub">Assim que o Mercado Pago aprovar, seu download é liberado aqui mesmo. Pix costuma aprovar em segundos.</p>
+  <button class="btn" id="denovo">Verificar de novo</button>
+ </div>
+ <div id="erro" hidden>
+  <h1>Não encontramos o pagamento</h1>
+  <p class="sub" id="erroTxt">Se você já pagou, fale com a gente que liberamos o seu acesso na hora.</p>
+  <a class="btn sec" href="../comprar/">Voltar para a compra</a>
+ </div>
+ <p class="mini" style="margin-top:22px">Algum problema? Fale com a gente no <a href="https://wa.me/5598984149331?text=Ol%C3%A1!%20Comprei%20o%20Plano%20B%20e%20preciso%20de%20ajuda%20com%20o%20download.">WhatsApp</a>. Plano B é uma solução Hélice.</p>
+</div>
+<script>
+const FN="https://ryhyvzwqtktaaonznizn.supabase.co/functions/v1/planob-pagamento";
+const q=new URLSearchParams(location.search),pid=q.get("payment_id")||q.get("collection_id")||"";
+const mostra=id=>["st","ok","esp","erro"].forEach(k=>document.getElementById(k).hidden=k!==id);
+let tent=0;
+async function verifica(){
+ if(!/^\d{4,20}$/.test(pid)){mostra("erro");return}
+ mostra("st");
+ try{const r=await fetch(`${FN}?acao=entrega&payment_id=${pid}`);const j=await r.json();
+  if(j.ok){document.getElementById("dl").href=j.url;mostra("ok");try{if(window.fbq)fbq("track","Purchase",{value:29.90,currency:"BRL"})}catch(e){}return}
+  if(["pending","in_process","authorized"].includes(j.status)){mostra("esp");if(++tent<20)setTimeout(verifica,6000);return}
+  if(j.status==="limite")document.getElementById("erroTxt").textContent="O limite de downloads deste pedido foi atingido. Fale com a gente que ajudamos.";
+  mostra("erro")}catch(e){mostra("erro")}
+}
+document.getElementById("denovo").onclick=()=>{tent=0;verifica()};
+verifica();
+</script>
+</body>
+</html>
