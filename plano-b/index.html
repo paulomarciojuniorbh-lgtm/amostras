@@ -185,7 +185,7 @@ footer{padding:28px 0 100px;font-size:13px;color:#7c8276;text-align:center;backg
   <div style="color:var(--sua);font-weight:600;margin-bottom:8px">Pagamento único · acesso para sempre</div>
   <div class="preco"><small>R$</small>29,90</div>
   <ul><li>Plano B completo, funcionando sem internet</li><li>Mapa offline do Brasil com rumo, distância e cidades no caminho</li><li>Calculadora de estoque e checklists</li><li>Plano da família e versão para imprimir</li><li>Use no computador, no celular e no pendrive</li><li>Atualizações gratuitas</li></ul>
-  <a class="btn" id="cta" href="#">Quero o meu Plano B →</a>
+  <a class="btn" id="cta" href="comprar/">Quero o meu Plano B →</a>
   <div class="garantia"><i>🛡️</i><span><b style="color:var(--txt)">Garantia de 7 dias.</b> Não gostou? Devolvemos 100% do valor, sem perguntas.</span></div>
  </div>
 </div></section>
@@ -207,13 +207,7 @@ footer{padding:28px 0 100px;font-size:13px;color:#7c8276;text-align:center;backg
 </div></div>
 <footer>© 2026 Plano B · uma solução Hélice Sites & Sistemas. Conteúdo informativo, não substitui orientação médica nem das autoridades de Defesa Civil.</footer>
 <div class="fixo"><a class="btn" href="#comprar">Quero o Plano B · R$ 29,90</a></div>
-<script>
-// Link do checkout (Hotmart, Kiwify…). Enquanto estiver vazio, o botão abre o WhatsApp da Hélice.
-const CHECKOUT="";
-const cta=document.getElementById("cta");
-cta.href=CHECKOUT||"https://wa.me/5598984149331?text="+encodeURIComponent("Olá! Quero comprar o Plano B, o kit de emergência offline.");
-if(!CHECKOUT){cta.target="_blank";cta.rel="noopener"}
-</script>
+<script>document.getElementById("cta").href="comprar/"+location.search;</script>
 <script src="/v.js" defer></script>
 </body>
 </html>
