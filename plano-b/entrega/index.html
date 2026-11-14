@@ -25,6 +25,10 @@ a{color:var(--ama)}
 .spin{width:44px;height:44px;border:4px solid var(--linha);border-top-color:var(--ama);border-radius:50%;animation:g 1s linear infinite;margin:30px auto}
 @keyframes g{to{transform:rotate(360deg)}}
 </style>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1662817915353239');fbq('track','PageView');</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1662817915353239&ev=PageView&noscript=1"/></noscript>
+<!-- /Meta Pixel -->
 </head>
 <body><div class="w">
  <span class="pb"><i>B</i>PLANO B</span>
@@ -61,7 +65,7 @@ async function verifica(){
  if(!/^\d{4,20}$/.test(pid)){mostra("erro");return}
  mostra("st");
  try{const r=await fetch(`${FN}?acao=entrega&payment_id=${pid}`);const j=await r.json();
-  if(j.ok){document.getElementById("dl").href=j.url;mostra("ok");try{if(window.fbq)fbq("track","Purchase",{value:29.90,currency:"BRL"})}catch(e){}return}
+  if(j.ok){document.getElementById("dl").href=j.url;mostra("ok");try{if(window.fbq)fbq("track","Purchase",{value:29.90,currency:"BRL",content_name:"Plano B"},{eventID:"mp-"+pid})}catch(e){}return}
   if(["pending","in_process","authorized"].includes(j.status)){mostra("esp");if(++tent<20)setTimeout(verifica,6000);return}
   if(j.status==="limite")document.getElementById("erroTxt").textContent="O limite de downloads deste pedido foi atingido. Fale com a gente que ajudamos.";
   mostra("erro")}catch(e){mostra("erro")}
