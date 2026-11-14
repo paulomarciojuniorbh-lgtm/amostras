@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><title>Criativos Plano B</title>
+<style>
+:root{--bg:#0f120f;--bg2:#171c17;--ama:#f4c430;--txt:#efeee7;--sua:#a8ad9f;--linha:#2c332c;--verde:#7fb069;--verm:#e5533d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#333;font-family:Inter,"Inter Display",system-ui,sans-serif;color:var(--txt);display:flex;flex-wrap:wrap;gap:30px;padding:30px}
+.s{width:1080px;height:1350px;background:var(--bg);position:relative;overflow:hidden;padding:96px 90px;display:flex;flex-direction:column}
+.st{height:1920px;padding:170px 90px}
+.og{width:1200px;height:630px;padding:60px 70px}
+.s:before{content:"";position:absolute;right:-260px;top:-260px;width:820px;height:820px;background:radial-gradient(circle,rgba(244,196,48,.14),transparent 62%)}
+.topo{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}
+.pb{display:flex;align-items:center;gap:16px;font-weight:900;font-size:34px;letter-spacing:.05em}
+.pb i{width:58px;height:58px;border-radius:14px;background:var(--ama);color:#14170f;display:grid;place-items:center;font-style:normal;font-size:34px}
+.pag{font-size:26px;color:var(--sua);font-weight:700;letter-spacing:.1em}
+.ey{font-size:28px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ama)}
+h1{font-family:"Inter Display",Inter,sans-serif;font-size:104px;line-height:1.0;letter-spacing:-.035em;font-weight:900;margin:26px 0 30px}
+h1 em{font-style:normal;color:var(--ama)}
+h2{font-family:"Inter Display",Inter,sans-serif;font-size:82px;line-height:1.02;letter-spacing:-.03em;font-weight:900;margin:22px 0 26px}
+h2 em{font-style:normal;color:var(--ama)}
+p{font-size:38px;line-height:1.38;color:#cfd1c6}
+p b{color:var(--txt)}
+.meio{margin-top:auto;margin-bottom:auto;position:relative;z-index:2}
+.rod{display:flex;justify-content:space-between;align-items:center;font-size:25px;color:var(--sua);position:relative;z-index:2}
+.hel{display:flex;align-items:center;gap:12px;font-weight:700;color:#cdd6f4}
+.hel svg{width:46px;height:46px}
+.arr{color:var(--ama);font-weight:800}
+.lista{list-style:none;display:grid;gap:22px;margin-top:10px}
+.lista li{font-size:38px;display:flex;gap:22px;align-items:center;background:var(--bg2);border:2px solid var(--linha);border-radius:22px;padding:22px 26px}
+.lista li span{font-size:46px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.cards div{background:var(--bg2);border:2px solid var(--linha);border-radius:24px;padding:26px}
+.cards b{display:block;font-size:34px;margin-top:8px}
+.cards small{font-size:26px;color:var(--sua);line-height:1.3;display:block;margin-top:6px}
+.cards .e{font-size:48px}
+.passo{display:flex;gap:30px;align-items:flex-start;margin-bottom:34px}
+.passo .n{flex:none;width:96px;height:96px;border-radius:24px;background:var(--ama);color:#14170f;font-size:56px;font-weight:900;display:grid;place-items:center}
+.passo b{display:block;font-size:44px;margin-bottom:4px}
+.passo span{font-size:32px;color:var(--sua);line-height:1.35}
+.tela{border-radius:26px;border:2px solid var(--linha);box-shadow:0 40px 80px -30px #000}
+.cel{border-radius:46px;border:10px solid #000;box-shadow:0 40px 80px -20px #000}
+.btn{display:inline-block;background:var(--ama);color:#14170f;font-weight:900;font-size:40px;border-radius:22px;padding:30px 44px}
+.preco{font-size:150px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.preco small{font-size:50px;vertical-align:super}
+.off{display:inline-flex;gap:14px;align-items:center;background:var(--bg2);border:2px solid var(--linha);border-radius:999px;padding:14px 24px;font-size:28px;font-weight:700}
+.off i{width:16px;height:16px;border-radius:50%;background:var(--verde);box-shadow:0 0 14px var(--verde)}
+.rasgo{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.03) 0 2px,transparent 2px 6px);z-index:1;pointer-events:none}
+.sinal{font-size:220px;line-height:1;margin-bottom:10px}
+.quote{font-family:"Inter Display",Inter,sans-serif;font-size:96px;font-weight:900;line-height:1.05;letter-spacing:-.03em}
+.quote span{color:var(--ama)}
+</style></head><body>
+<template id="hel"><span class="hel"><svg viewBox="0 0 100 100"><defs><linearGradient id="pa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7aa3ff"/><stop offset="1" stop-color="#5b8cff"/></linearGradient><linearGradient id="pb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ee8f3"/><stop offset="1" stop-color="#2fd6e8"/></linearGradient></defs><g transform="rotate(-18 50 50)"><path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#pa)"/><path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#pb)" transform="rotate(180 50 50)"/></g><circle cx="50" cy="50" r="7" fill="#0b1124"/><circle cx="50" cy="50" r="3" fill="#e9edfb"/></svg>Uma solução Hélice</span></template>
+
+<!-- CARROSSEL A: desejo -->
+<div class="s" id="a1"><div class="rasgo"></div><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">1/8</span></div>
+<div class="meio"><div class="sinal">📵</div><h1>E se a internet <em>cair amanhã?</em></h1><p>Sem mapa, sem Google, sem sinal. Você saberia o que fazer nas primeiras 72 horas?</p></div>
+<div class="rod"><span data-h></span><span class="arr">Arrasta →</span></div></div>
+
+<div class="s" id="a2"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">2/8</span></div>
+<div class="meio"><span class="ey">Pensa comigo</span><h2>Tudo o que você sabe <em>está na nuvem.</em></h2><ul class="lista"><li><span>🗺️</span>O mapa precisa de internet</li><li><span>🔍</span>As dicas estão no Google</li><li><span>🔋</span>E o celular depende da tomada</li></ul></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a3"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">3/8</span></div>
+<div class="meio"><span class="ey">Não é filme</span><h2>Apagão. Enchente. Pane na rede.</h2><p>Acontece todo ano em algum lugar do Brasil. Quem já passou sabe: <b>a primeira coisa que some é a informação.</b> Como tratar a água? Quanto estocar? Para que lado ir?</p></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a4"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">4/8</span></div>
+<div class="meio" style="text-align:center"><div class="quote">“Melhor ter e <span>não precisar</span> do que precisar e <span>não ter</span>.”</div><p style="margin-top:34px">Foi com essa ideia que a Hélice criou o <b>Plano B</b>.</p></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a5"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">5/8</span></div>
+<div style="position:relative;z-index:2;margin-top:50px"><span class="off"><i></i>Funcionando sem internet</span><h2 style="font-size:72px">O kit de emergência que <em>funciona offline.</em></h2></div>
+<img class="tela" src="img/pc-mapa.png" style="width:100%;margin-top:auto;margin-bottom:40px;position:relative;z-index:2">
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a6"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">6/8</span></div>
+<div class="meio"><span class="ey">O que tem dentro</span><h2 style="font-size:70px;margin-bottom:30px">Tudo que importa, num arquivo só.</h2>
+<div class="cards"><div><span class="e">🗺️</span><b>Mapa do Brasil</b><small>Rumo, distância e cidades no caminho, sem GPS</small></div><div><span class="e">💧</span><b>Água segura</b><small>Ferver, clorar e purificar com o sol</small></div><div><span class="e">🥫</span><b>Calculadora</b><small>Quanto estocar para sua família</small></div><div><span class="e">🩹</span><b>Primeiros socorros</b><small>O básico que salva</small></div><div><span class="e">👪</span><b>Plano da família</b><small>Pontos de encontro e contatos</small></div><div><span class="e">🖨️</span><b>Versão impressa</b><small>Funciona até sem energia</small></div></div></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a7"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">7/8</span></div>
+<div class="meio"><span class="ey">Como funciona</span><h2 style="margin-bottom:50px">Pronto em 5 minutos.</h2>
+<div class="passo"><span class="n">1</span><div><b>Compre</b><span>Pix ou cartão. O acesso chega no seu e-mail.</span></div></div>
+<div class="passo"><span class="n">2</span><div><b>Baixe</b><span>Um arquivo leve, com menos de 1 MB.</span></div></div>
+<div class="passo"><span class="n">3</span><div><b>Abra</b><span>Dois cliques. Abre no navegador, até no modo avião.</span></div></div>
+<div class="passo"><span class="n">4</span><div><b>Guarde</b><span>No PC, no celular, no pendrive e impresso.</span></div></div></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="a8"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">8/8</span></div>
+<div class="meio" style="text-align:center"><span class="ey">Garanta o seu</span><h2>Seu Plano B, <em>pronto hoje.</em></h2><div class="preco"><small>R$</small>29,90</div><p style="margin:16px 0 40px">Pagamento único · acesso para sempre · garantia de 7 dias</p><span class="btn">Link na bio →</span></div>
+<div class="rod" style="justify-content:center"><span data-h></span></div></div>
+
+<!-- CARROSSEL B: como baixar e instalar -->
+<div class="s" id="b1"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">1/5</span></div>
+<div class="meio"><span class="ey">Passo a passo</span><h1 style="font-size:96px">Como baixar e usar o <em>Plano B</em></h1><p>Sem aplicativo, sem cadastro, sem internet depois de baixar.</p></div>
+<div class="rod"><span data-h></span><span class="arr">Arrasta →</span></div></div>
+
+<div class="s" id="b2"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">2/5</span></div>
+<div class="meio"><div class="passo"><span class="n">1</span><div><b style="font-size:60px">Baixe o arquivo</b><span style="font-size:36px">Depois da compra, você recebe o link no e-mail. Baixe o <strong style="color:var(--txt)">plano-b-offline.zip</strong> no computador ou no celular.</span></div></div>
+<div class="passo"><span class="n">2</span><div><b style="font-size:60px">Descompacte</b><span style="font-size:36px">No computador: botão direito → "Extrair tudo". No celular: toque no arquivo e escolha "Extrair".</span></div></div></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="b3"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">3/5</span></div>
+<div style="position:relative;z-index:2;margin-top:40px"><div class="passo"><span class="n">3</span><div><b style="font-size:60px">Abra com dois cliques</b><span style="font-size:36px">Arquivo "ABRIR - Plano B". Ele abre no navegador e funciona até no modo avião.</span></div></div></div>
+<img class="tela" src="img/pc-inicio.png" style="width:100%;margin-top:auto;margin-bottom:40px;position:relative;z-index:2">
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="b4"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">4/5</span></div>
+<div style="display:grid;grid-template-columns:1fr 380px;gap:40px;align-items:center;margin:auto 0;position:relative;z-index:2"><div><div class="passo" style="display:block"><span class="n" style="margin-bottom:24px">4</span><b style="font-size:60px">Espalhe cópias</b><span style="font-size:34px;display:block;margin-top:10px">Computador, celular, pendrive e o celular de quem você ama. Se um falhar, o outro está lá.</span></div></div><img class="cel" src="img/cel-inicio.png" style="width:100%"></div>
+<div class="rod"><span data-h></span><span class="arr">→</span></div></div>
+
+<div class="s" id="b5"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span class="pag">5/5</span></div>
+<div class="meio"><div class="passo"><span class="n">5</span><div><b style="font-size:60px">Imprima o essencial</b><span style="font-size:36px">Sem energia, o papel continua funcionando. Um clique em "Imprimir tudo" e guarde junto do seu kit.</span></div></div>
+<div style="text-align:center;margin-top:70px"><div class="quote" style="font-size:66px">Melhor ter e <span>não precisar.</span></div><span class="btn" style="margin-top:40px">Garanta o seu · link na bio</span></div></div>
+<div class="rod" style="justify-content:center"><span data-h></span></div></div>
+
+<!-- STORIES -->
+<div class="s st" id="s1"><div class="rasgo"></div><div class="topo"><span class="pb"><i>B</i>PLANO B</span></div>
+<div class="meio"><div class="sinal">📵</div><h1 style="font-size:120px">A internet caiu.<br><em>E agora?</em></h1><p style="font-size:44px">Água, comida, mapa e rumo sem GPS.<br>Tudo num arquivo que funciona <b>offline</b>.</p></div>
+<div style="text-align:center;position:relative;z-index:2;margin-bottom:60px"><span class="btn" style="font-size:46px">Conhecer o Plano B ↑</span></div>
+<div class="rod" style="justify-content:center"><span data-h></span></div></div>
+
+<div class="s st" id="s2"><div class="topo"><span class="pb"><i>B</i>PLANO B</span></div>
+<div style="position:relative;z-index:2;margin-top:70px"><span class="off"><i></i>Sem internet · funcionando</span><h1 style="font-size:96px">Seu mapa continua aqui, <em>mesmo sem sinal.</em></h1></div>
+<div class="cel" style="width:66%;height:860px;overflow:hidden;margin:40px auto 0;position:relative;z-index:2"><img src="img/cel-rumo.png" style="width:100%"></div>
+<div style="text-align:center;position:relative;z-index:2;margin:auto 0 40px"><div class="quote" style="font-size:58px">Melhor ter e <span>não precisar.</span></div><span class="btn" style="margin-top:34px;font-size:44px">R$ 29,90 · Garanta o seu ↑</span></div>
+<div class="rod" style="justify-content:center"><span data-h></span></div></div>
+
+<!-- OG -->
+<div class="s og" id="og"><div class="topo"><span class="pb"><i>B</i>PLANO B</span><span data-h></span></div>
+<div style="display:grid;grid-template-columns:1fr 470px;gap:40px;align-items:center;margin-top:auto;margin-bottom:auto;position:relative;z-index:2"><div><h2 style="font-size:64px;margin:0 0 16px">O kit de emergência que <em>funciona sem internet.</em></h2><p style="font-size:28px">Melhor ter e não precisar do que precisar e não ter.</p></div><img class="tela" src="img/pc-mapa.png" style="width:100%"></div></div>
+
+<script>document.querySelectorAll("[data-h]").forEach(e=>e.replaceWith(document.getElementById("hel").content.cloneNode(true)))</script>
+</body></html>
