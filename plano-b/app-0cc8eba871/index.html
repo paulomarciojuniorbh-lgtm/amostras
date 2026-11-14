@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plano B · Kit Offline de Emergência</title>
 <meta name="theme-color" content="#121512">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Plano B">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <style>
 :root{--bg:#121512;--bg2:#1a1e1a;--bg3:#242a24;--ama:#f4c430;--ama2:#ffd95a;--txt:#ecebe4;--sua:#a7ab9f;--linha:#323a32;--verm:#e5533d;--verde:#7fb069;--azul:#6aa9d8}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -371,6 +376,7 @@ function interacao(){let arr=null,mov=0;const pts=new Map();let pinch=0;
    if(MODO==="o"){ORI=c;MODO="d";$("#main").querySelectorAll(".tabs button").forEach(x=>x.classList.toggle("on",x.dataset.m==="d"))}else DES=c;fim(false,!(ORI&&DES))}arr=null};}
 
 menu();st();ir(ATUAL);
+if(location.protocol.startsWith("http")&&"serviceWorker" in navigator){navigator.serviceWorker.register("sw.js").catch(()=>{})}
 </script>
 </body>
 </html>
