@@ -70,7 +70,7 @@ input:focus{outline:none;border-color:var(--ama)}
 </div></div>
 <script>
 // Link de pagamento do Mercado Pago. Enquanto estiver vazio, o pedido segue pelo WhatsApp da Hélice.
-const PAGAMENTO="";
+const PAGAMENTO="https://mpago.la/1ctRfHX";
 const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
 const $=id=>document.getElementById(id);
 const origem=(()=>{try{const q=new URLSearchParams(location.search),o=["utm_source","utm_campaign","utm_content"].map(k=>q.get(k)).filter(Boolean).join("|");return o||document.referrer.slice(0,120)||"direto"}catch(e){return"direto"}})();
