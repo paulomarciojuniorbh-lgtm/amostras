@@ -4,118 +4,122 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Plano B · O kit de emergência que funciona sem internet</title>
-<meta name="description" content="Água, comida, mapa offline do Brasil, rumo sem GPS, primeiros socorros e plano da família. Tudo num arquivo que funciona sem internet. Melhor ter e não precisar do que precisar e não ter.">
-<meta property="og:title" content="Plano B · Melhor ter e não precisar do que precisar e não ter">
+<meta name="description" content="Água, comida, mapa offline do Brasil, rumo sem GPS, primeiros socorros, parto de emergência e Bíblia. Tudo num arquivo que funciona sem internet. Melhor ter e não precisar do que precisar e não ter.">
+<meta property="og:title" content="Plano B · A internet caiu. E agora?">
 <meta property="og:description" content="O kit de emergência que funciona sem internet, sem sinal e até impresso.">
 <meta property="og:image" content="https://helicesites.com.br/plano-b/img/og.png">
-<meta name="theme-color" content="#0f120f">
+<meta name="theme-color" content="#0b0b0a">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
 <style>
-:root{--bg:#0f120f;--bg2:#161a16;--bg3:#1f251f;--ama:#f4c430;--ama2:#ffd95a;--txt:#efeee7;--sua:#a8ad9f;--linha:#2c332c;--verm:#e5533d;--verde:#7fb069;--hel:#5b8cff;--hel2:#2fd6e8}
+:root{--preto:#0b0b0a;--preto2:#141412;--preto3:#1d1d1a;--ama:#ffcc00;--ama2:#ffe066;--verm:#ff2d2d;--verm2:#c40000;--txt:#f4f2ea;--sua:#a9a79c;--linha:#2d2c27;--verde:#3ddc84}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--txt);font-size:17.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:Inter,"Inter Display",system-ui,sans-serif;background:var(--preto);color:var(--txt);font-size:17.5px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.mono{font-family:ui-monospace,"DejaVu Sans Mono",Menlo,monospace}
 img{display:block;max-width:100%}
-a{color:inherit}
-.w{max-width:1100px;margin:0 auto;padding:0 20px}
-.eyebrow{font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ama)}
-h1,h2,h3{line-height:1.08;letter-spacing:-.025em}
-h2{font-size:clamp(30px,4.4vw,48px);font-weight:800;margin:12px 0 16px}
-.lead{font-size:19.5px;color:var(--sua);max-width:640px}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ama);color:#14170f;font-weight:800;font-size:18px;border-radius:14px;padding:18px 28px;text-decoration:none;box-shadow:0 14px 34px -14px rgba(244,196,48,.7);transition:transform .15s,background .15s}
-.btn:hover{background:var(--ama2);transform:translateY(-2px)}
-.btn.sec{background:transparent;color:var(--txt);border:1.5px solid var(--linha);box-shadow:none}
-.mini{font-size:14px;color:var(--sua);margin-top:12px}
-/* topo */
-.topo{position:sticky;top:0;z-index:30;background:rgba(15,18,15,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
-.topo .w{display:flex;align-items:center;height:64px;gap:14px}
-.pb{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.04em;text-decoration:none}
-.pb i{width:34px;height:34px;border-radius:9px;background:var(--ama);color:#14170f;display:grid;place-items:center;font-style:normal;font-size:19px}
-.topo .btn{margin-left:auto;padding:10px 18px;font-size:15px;box-shadow:none}
+.w{max-width:1120px;margin:0 auto;padding:0 20px}
+.faixa-zebra{height:16px;background:repeating-linear-gradient(-45deg,var(--ama) 0 22px,var(--preto) 22px 44px)}
+/* ticker de alerta */
+.ticker{background:var(--verm);color:#fff;font-weight:900;letter-spacing:.08em;text-transform:uppercase;font-size:14px;overflow:hidden;white-space:nowrap;border-bottom:2px solid var(--verm2)}
+.ticker div{display:inline-block;padding:9px 0;animation:corre 26s linear infinite}
+.ticker span{margin:0 26px}
+.ticker i{font-style:normal;display:inline-block;width:9px;height:9px;border-radius:50%;background:#fff;margin-right:10px;animation:pisca 1s infinite}
+@keyframes corre{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes pisca{50%{opacity:.15}}
+.topo{position:sticky;top:0;z-index:30;background:rgba(11,11,10,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.topo .w{display:flex;align-items:center;height:62px;gap:14px}
+.pb{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.05em}
+.pb b{width:34px;height:34px;background:var(--ama);color:#000;display:grid;place-items:center;font-size:19px;clip-path:polygon(50% 0,100% 100%,0 100%);padding-top:9px;width:38px;height:34px}
+.status{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--sua);border:1px solid var(--linha);border-radius:6px;padding:6px 10px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--verm);animation:pisca 1.2s infinite}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ama);color:#000;font-weight:900;font-size:18px;text-transform:uppercase;letter-spacing:.04em;border-radius:6px;padding:19px 28px;text-decoration:none;border:3px solid #000;box-shadow:6px 6px 0 var(--verm);transition:transform .12s,box-shadow .12s}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--verm)}
+.btn.sec{background:transparent;color:var(--txt);border:2px solid var(--linha);box-shadow:none;text-transform:none;font-weight:700;letter-spacing:0}
 /* hero */
-.hero{padding:70px 0 40px;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:-20% -10% auto auto;width:700px;height:700px;background:radial-gradient(circle,rgba(244,196,48,.16),transparent 62%);z-index:-1}
-.hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(40px,6.2vw,72px);font-weight:900;margin:16px 0 18px}
-.hero h1 em{font-style:normal;color:var(--ama)}
-.acoes{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.selos{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;font-size:14.5px;color:var(--sua)}
-.selos span{display:flex;align-items:center;gap:7px}
-.selos b{color:var(--verde)}
-.devices{position:relative;min-height:460px}
-.devices .pc{border-radius:14px;border:1px solid var(--linha);box-shadow:0 40px 80px -30px rgba(0,0,0,.8);width:100%}
-.devices .cel{position:absolute;width:34%;right:-4%;bottom:-24px;border-radius:26px;border:6px solid #000;box-shadow:0 30px 60px -20px rgba(0,0,0,.9)}
-.offline{position:absolute;left:-14px;top:-18px;background:var(--bg2);border:1px solid var(--linha);border-radius:999px;padding:8px 14px;font-size:13.5px;font-weight:700;display:flex;gap:8px;align-items:center}
-.offline i{width:9px;height:9px;border-radius:50%;background:var(--verde);box-shadow:0 0 10px var(--verde)}
+.hero{position:relative;padding:56px 0 64px;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(255,45,45,.22),transparent 45%),radial-gradient(circle at 10% 90%,rgba(255,204,0,.12),transparent 40%);z-index:-1}
+.hero .w{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.placa{display:inline-flex;align-items:center;gap:12px;background:var(--ama);color:#000;font-weight:900;text-transform:uppercase;letter-spacing:.1em;font-size:14px;padding:8px 14px;border:3px solid #000;outline:3px solid var(--ama)}
+.placa svg{width:22px;height:22px}
+h1{font-family:"Inter Display",Inter,sans-serif;font-size:clamp(44px,6.6vw,82px);line-height:.95;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;margin:22px 0 20px}
+h1 .v{color:var(--verm);text-shadow:0 0 30px rgba(255,45,45,.45)}
+h1 .a{background:var(--ama);color:#000;padding:0 10px}
+.lead{font-size:19.5px;color:#cfcdc2;max-width:600px}
+.lead b{color:var(--txt)}
+.acoes{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px;align-items:center}
+.mini{font-size:13.5px;color:var(--sua)}
+.monitor{position:relative;border:2px solid var(--linha);background:var(--preto2);border-radius:10px;padding:12px}
+.monitor .bar{display:flex;justify-content:space-between;font-size:12px;color:var(--sua);padding:2px 4px 10px;text-transform:uppercase;letter-spacing:.1em}
+.monitor .bar b{color:var(--verde)}
+.monitor img{border-radius:6px;border:1px solid var(--linha)}
+.monitor .cel{position:absolute;width:33%;right:-18px;bottom:-30px;border-radius:24px;border:6px solid #000;box-shadow:0 30px 60px -20px #000}
+.carimbo{position:absolute;left:-20px;top:-22px;transform:rotate(-8deg);border:4px solid var(--verm);color:var(--verm);font-weight:900;font-size:15px;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;background:rgba(11,11,10,.9)}
+/* contador de cenário */
+.cenarios{background:var(--preto2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.cenarios .w{display:grid;grid-template-columns:repeat(4,1fr)}
+.cenarios div{padding:24px 18px;border-right:1px solid var(--linha)}
+.cenarios div:last-child{border-right:0}
+.cenarios small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--verm);font-weight:800}
+.cenarios b{display:block;font-size:22px;margin:4px 0 2px;font-weight:900}
+.cenarios span{color:var(--sua);font-size:14.5px}
+section{padding:86px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;color:var(--ama)}
+.eyebrow:before{content:"";width:22px;height:4px;background:var(--verm)}
+h2{font-family:"Inter Display",Inter,sans-serif;font-size:clamp(32px,4.6vw,54px);font-weight:900;line-height:1;letter-spacing:-.03em;text-transform:uppercase;margin:14px 0 18px}
+h2 em{font-style:normal;color:var(--ama)}
+/* checklist do medo */
+.teste{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+.teste label{display:flex;gap:14px;align-items:flex-start;background:var(--preto2);border:2px solid var(--linha);border-radius:8px;padding:18px;cursor:pointer;font-weight:600;transition:border-color .12s}
+.teste input{width:22px;height:22px;accent-color:var(--verm);flex:none;margin-top:2px}
+.teste label:hover{border-color:var(--ama)}
+.resultado{margin-top:22px;border:3px solid var(--verm);background:linear-gradient(90deg,rgba(255,45,45,.18),transparent);padding:20px 22px;border-radius:8px;display:flex;gap:18px;align-items:center}
+.resultado .n{font-size:54px;font-weight:900;color:var(--verm);line-height:1;font-variant-numeric:tabular-nums}
+.resultado p{color:#e5e3d8}
+/* protocolo */
+.proto{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:34px}
+.proto div{position:relative;background:var(--preto2);border:2px solid var(--linha);border-radius:8px;padding:24px 22px 22px;overflow:hidden}
+.proto div:before{content:"";position:absolute;left:0;top:0;right:0;height:6px;background:repeating-linear-gradient(-45deg,var(--ama) 0 10px,#000 10px 20px)}
+.proto .cod{font-size:12px;color:var(--sua);letter-spacing:.12em}
+.proto .ic{font-size:30px;margin:8px 0 6px;display:block}
+.proto b{font-size:19px;display:block;margin-bottom:4px}
+.proto span{color:var(--sua);font-size:15px}
+.proto .big{grid-column:span 2;border-color:var(--ama);background:linear-gradient(135deg,rgba(255,204,0,.12),var(--preto2))}
 /* frase */
-.frase{padding:70px 0;text-align:center;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);background:linear-gradient(180deg,var(--bg2),var(--bg))}
-.frase q{display:block;font-size:clamp(28px,4.4vw,50px);font-weight:900;letter-spacing:-.03em;line-height:1.12;quotes:none;max-width:900px;margin:0 auto}
-.frase q span{color:var(--ama)}
-.frase p{color:var(--sua);margin-top:16px}
-section{padding:90px 0}
-/* dor */
-.dor{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-.dor div{background:var(--bg2);border:1px solid var(--linha);border-radius:20px;padding:26px}
-.dor .ic{font-size:32px}
-.dor h3{font-size:20px;margin:12px 0 8px}
-.dor p{color:var(--sua);font-size:16px}
-/* dentro */
-.dentro{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
-.dentro div{background:var(--bg2);border:1px solid var(--linha);border-radius:18px;padding:22px}
-.dentro b{display:block;font-size:17px;margin:8px 0 4px}
-.dentro span{color:var(--sua);font-size:15px}
-.dentro .ic{font-size:28px}
-.destaque{grid-column:span 2;background:linear-gradient(135deg,rgba(244,196,48,.14),var(--bg2))!important;border-color:rgba(244,196,48,.45)!important}
-/* telas */
-.telas{display:grid;grid-template-columns:1.3fr 1fr;gap:18px;align-items:center;margin-top:20px}
-.telas img{border-radius:16px;border:1px solid var(--linha)}
-.lista{list-style:none;display:grid;gap:14px}
-.lista li{display:flex;gap:14px}
-.lista li:before{content:"✓";flex:none;width:28px;height:28px;border-radius:50%;background:var(--ama);color:#14170f;font-weight:900;display:grid;place-items:center;font-size:15px}
-.lista b{display:block}
-.lista span{color:var(--sua);font-size:15.5px}
-/* passos */
-.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;counter-reset:p}
-.passos div{position:relative;background:var(--bg2);border:1px solid var(--linha);border-radius:20px;padding:26px 22px;counter-increment:p}
-.passos div:before{content:counter(p);font-size:48px;font-weight:900;color:var(--ama);line-height:1;display:block;margin-bottom:10px}
-.passos b{font-size:18px;display:block;margin-bottom:6px}
-.passos span{color:var(--sua);font-size:15.5px}
+.frase{background:var(--ama);color:#000;padding:56px 0;text-align:center;position:relative}
+.frase q{display:block;font-family:"Inter Display",Inter,sans-serif;font-size:clamp(30px,5vw,60px);font-weight:900;text-transform:uppercase;letter-spacing:-.03em;line-height:1;quotes:none;max-width:980px;margin:0 auto}
+.frase q span{color:var(--verm2)}
+.frase p{margin-top:14px;font-weight:700}
+/* como funciona */
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:34px;border:2px solid var(--linha);border-radius:8px;overflow:hidden}
+.passos div{padding:26px 22px;border-right:2px solid var(--linha);background:var(--preto2)}
+.passos div:last-child{border-right:0}
+.passos .n{font-size:13px;color:var(--ama);font-weight:900;letter-spacing:.14em}
+.passos b{display:block;font-size:20px;margin:6px 0 4px;text-transform:uppercase}
+.passos span{color:var(--sua);font-size:15px}
 /* oferta */
-.oferta{background:radial-gradient(circle at 50% 0,rgba(244,196,48,.12),transparent 60%)}
-.caixa{max-width:620px;margin:36px auto 0;background:var(--bg2);border:2px solid var(--ama);border-radius:28px;padding:36px 30px;text-align:center}
-.caixa .preco{font-size:72px;font-weight:900;letter-spacing:-.04em;line-height:1}
-.caixa .preco small{font-size:24px;vertical-align:super;margin-right:4px}
-.caixa ul{list-style:none;text-align:left;display:grid;gap:10px;margin:24px 0 28px}
-.caixa li:before{content:"✓  ";color:var(--ama);font-weight:900}
-.caixa .btn{width:100%;font-size:20px}
-.garantia{display:flex;gap:14px;align-items:center;justify-content:center;margin-top:20px;color:var(--sua);font-size:15px;text-align:left}
-.garantia i{font-style:normal;font-size:34px}
-/* faq */
-details{background:var(--bg2);border:1px solid var(--linha);border-radius:16px;padding:18px 22px;margin-top:12px}
-summary{cursor:pointer;font-weight:700;font-size:17.5px;list-style:none;display:flex;justify-content:space-between;gap:12px}
-summary:after{content:"+";color:var(--ama);font-size:24px;line-height:1}
-details[open] summary:after{content:"−"}
-details p{color:var(--sua);margin-top:10px}
-/* hélice */
-.helice{border-top:1px solid var(--linha);padding:56px 0;background:#0b1124}
-.helice .w{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:center}
-.helice svg{width:64px;height:64px}
-.helice h3{font-size:22px;color:#e9edfb}
-.helice p{color:#9aa6c8;font-size:16px;max-width:620px}
-.helice a.h{color:#2fd6e8;font-weight:700;text-decoration:none;white-space:nowrap}
-footer{padding:28px 0 100px;font-size:13px;color:#7c8276;text-align:center;background:#0b1124}
-.fixo{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:rgba(15,18,15,.94);backdrop-filter:blur(8px);border-top:1px solid var(--linha);display:none}
-.fixo .btn{width:100%;padding:15px;font-size:17px;box-shadow:none}
+.oferta{background:radial-gradient(circle at 50% 0,rgba(255,45,45,.18),transparent 60%)}
+.kit{max-width:640px;margin:34px auto 0;background:var(--preto2);border:3px solid var(--ama);border-radius:10px;overflow:hidden}
+.kit .cab{background:repeating-linear-gradient(-45deg,var(--ama) 0 18px,#000 18px 36px);padding:10px;text-align:center}
+.kit .cab span{background:#000;color:var(--ama);font-weight:900;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;font-size:14px}
+.kit .corpo{padding:30px 30px 34px;text-align:center}
+.preco{font-size:84px;font-weight:900;letter-spacing:-.05em;line-height:1}
+.preco small{font-size:28px;vertical-align:super;margin-right:4px}
+.kit ul{list-style:none;text-align:left;display:grid;gap:10px;margin:22px 0 28px}
+.kit li{display:flex;gap:10px}
+.kit li:before{content:"■";color:var(--ama)}
+.kit .btn{width:100%;font-size:20px}
+.gar{display:flex;gap:12px;align-items:center;justify-content:center;margin-top:20px;color:var(--sua);font-size:14.5px}
+footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;color:#7f7d73;text-align:center}
+.fixo{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,10,.95);border-top:3px solid var(--ama);display:none}
+.fixo .btn{width:100%;padding:15px;font-size:16px;box-shadow:4px 4px 0 var(--verm)}
 @media (max-width:900px){
- .hero{padding-top:36px}.hero .w,.telas{grid-template-columns:1fr}
- .devices{min-height:0;margin:10px 0 30px}
- .dor,.passos{grid-template-columns:1fr}
- .dentro{grid-template-columns:1fr 1fr}.destaque{grid-column:span 2}
- section{padding:64px 0}
- .helice .w{grid-template-columns:1fr;text-align:left}
- .fixo{display:block}
- .topo .btn{display:none}
+ .hero .w{grid-template-columns:1fr}.monitor{margin:16px 6px 34px}.carimbo{left:-6px}
+ .cenarios .w{grid-template-columns:1fr 1fr}.cenarios div:nth-child(2){border-right:0}.cenarios div:nth-child(-n+2){border-bottom:1px solid var(--linha)}
+ .teste,.proto{grid-template-columns:1fr}.proto .big{grid-column:auto}
+ .passos{grid-template-columns:1fr 1fr}.passos div:nth-child(2){border-right:0}.passos div:nth-child(-n+2){border-bottom:2px solid var(--linha)}
+ section{padding:62px 0}.fixo{display:block}.status{display:none}
 }
 </style>
 <!-- Meta Pixel -->
@@ -124,101 +128,86 @@ footer{padding:28px 0 100px;font-size:13px;color:#7c8276;text-align:center;backg
 <!-- /Meta Pixel -->
 </head>
 <body>
-<header class="topo"><div class="w"><a class="pb" href="#"><i>B</i>PLANO B</a><a class="btn" href="#comprar">Quero o meu</a></div></header>
+<div class="ticker"><div><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Você tem um plano?</span><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Você tem um plano?</span></div></div>
+<header class="topo"><div class="w"><span class="pb"><b>B</b>PLANO B</span><span class="status mono"><i></i>Modo emergência · funciona offline</span></div></header>
+<div class="faixa-zebra"></div>
 
-<section class="hero" style="padding-bottom:50px"><div class="w">
+<section class="hero" style="padding-top:50px"><div class="w">
  <div>
-  <span class="eyebrow">Kit de emergência digital · funciona sem internet</span>
-  <h1>Se tudo cair, você <em>não fica no escuro.</em></h1>
-  <p class="lead">O Plano B reúne o que você precisa saber numa emergência: como tratar água, o que estocar, mapa offline do Brasil, rumo sem GPS, primeiros socorros e o plano da sua família. Num arquivo que abre sem internet, sem sinal e até impresso.</p>
-  <div class="acoes"><a class="btn" href="#comprar">Quero o Plano B →</a><a class="btn sec" href="#dentro">Ver o que tem dentro</a></div>
-  <div class="selos"><span><b>✓</b> Funciona 100% offline</span><span><b>✓</b> Computador, celular e pendrive</span><span><b>✓</b> Versão para imprimir</span></div>
+  <span class="placa"><svg viewBox="0 0 24 24" fill="#000"><path d="M12 2 1 21h22L12 2zm0 5 7.5 13h-15L12 7zm-1 4v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>Atenção</span>
+  <h1>A internet <span class="v">caiu.</span><br>E <span class="a">agora?</span></h1>
+  <p class="lead">Sem Google, sem mapa, sem sinal. <b>O Plano B é o kit de emergência que funciona 100% offline</b>: água segura, comida, mapa do Brasil com rumo sem GPS, primeiros socorros, parto de emergência e até a Bíblia. No computador, no celular e no papel.</p>
+  <div class="acoes"><a class="btn" href="#comprar">Quero meu Plano B →</a><span class="mini mono">R$ 29,90 · pagamento único</span></div>
  </div>
- <div class="devices"><span class="offline"><i></i>Sem internet · funcionando</span><img class="pc" src="img/pc-mapa.png" alt="Mapa offline do Plano B mostrando rota de São Luís a Teresina"><img class="cel" src="img/cel-rumo.png" alt="Rumo e distância no celular"></div>
+ <div class="monitor"><span class="carimbo">Sem sinal · funcionando</span><div class="bar mono"><span>Plano B · v2</span><span><b>●</b> offline OK</span></div><img src="img/pc-mapa.png" alt="Mapa offline do Plano B"><img class="cel" src="img/cel-rumo.png" alt="Rumo no celular"></div>
 </div></section>
 
-<div class="frase"><div class="w"><q>“Melhor ter e <span>não precisar</span> do que precisar e <span>não ter</span>.”</q><p>É por isso que existe um Plano B.</p></div></div>
+<div class="cenarios"><div class="w">
+ <div><small>Cenário 01</small><b>Apagão</b><span>Celular com 20% e nenhuma informação.</span></div>
+ <div><small>Cenário 02</small><b>Enchente</b><span>Água contaminada e estradas fechadas.</span></div>
+ <div><small>Cenário 03</small><b>Rede fora do ar</b><span>Sem mapa, sem GPS no computador, sem busca.</span></div>
+ <div><small>Cenário 04</small><b>Emergência em casa</b><span>Um parto, um corte, alguém passando mal.</span></div>
+</div></div>
 
 <section><div class="w">
- <span class="eyebrow">O problema</span><h2>Hoje, tudo o que você sabe está na nuvem.</h2>
- <p class="lead">Mapa, contatos, dicas, notícias: tudo depende de internet e de bateria. Basta um apagão, uma enchente ou uma pane na rede para o celular virar só uma lanterna.</p>
- <div class="dor">
-  <div><span class="ic">📵</span><h3>A internet cai</h3><p>O Google não abre, o mapa não carrega e você não consegue pesquisar como tratar a água da caixa.</p></div>
-  <div><span class="ic">🔌</span><h3>A luz acaba</h3><p>Geladeira desligada, celular a 20% e nenhuma ideia de quanta água e comida a família precisa para os próximos dias.</p></div>
-  <div><span class="ic">🧭</span><h3>Você precisa sair</h3><p>Sem mapa na tela, para que lado fica a cidade mais próxima? Quantos quilômetros? Dá pra ir a pé?</p></div>
+ <span class="eyebrow">Teste rápido</span><h2>Você saberia o que fazer <em>sem internet?</em></h2>
+ <p class="lead">Marque o que você consegue fazer hoje, sem pesquisar nada:</p>
+ <div class="teste" id="teste">
+  <label><input type="checkbox">Tratar a água da caixa para beber, na quantidade certa</label>
+  <label><input type="checkbox">Saber quanta água e comida sua família precisa para 7 dias</label>
+  <label><input type="checkbox">Achar a direção da cidade mais próxima sem GPS</label>
+  <label><input type="checkbox">Ajudar num parto até o socorro chegar</label>
+  <label><input type="checkbox">Reconhecer os sinais de um deslizamento</label>
+  <label><input type="checkbox">Ter um ponto de encontro combinado com a família</label>
  </div>
+ <div class="resultado"><span class="n" id="nota">0/6</span><p id="msg"><b>Você não está sozinho.</b> A maioria das pessoas não sabe a maior parte disso. O Plano B coloca todas essas respostas no seu bolso, sem depender de internet.</p></div>
 </div></section>
 
-<section id="dentro" style="background:var(--bg2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)"><div class="w">
- <span class="eyebrow">O que tem dentro</span><h2>Mais de 15 guias e a Bíblia, num lugar só.</h2>
- <div class="dentro">
-  <div class="destaque"><span class="ic">🗺️</span><b>Mapa offline do Brasil + rumo sem GPS</b><span>5.570 cidades, rodovias e rios. Escolha origem e destino e veja a direção, a distância, o tempo a pé e as cidades pelo caminho. Usa o GPS do celular quando ele existe, sem precisar de internet.</span></div>
-  <div><span class="ic">💧</span><b>Água segura</b><span>Fervura, hipoclorito, sol e filtro caseiro, com as quantidades certas.</span></div>
-  <div><span class="ic">🥫</span><b>Estoque + calculadora</b><span>Diga quantas pessoas e dias: ela calcula água, arroz, feijão, latas e pilhas.</span></div>
-  <div><span class="ic">🧭</span><b>Orientação sem GPS</b><span>Ache o norte pelo sol, pela sombra e pelo Cruzeiro do Sul.</span></div>
-  <div><span class="ic">🩹</span><b>Primeiros socorros</b><span>Sangramento, queimadura, desidratação, engasgo e o kit que você deve ter.</span></div>
-  <div><span class="ic">🔦</span><b>Energia e luz</b><span>Como poupar bateria e os perigos que matam num apagão.</span></div>
-  <div><span class="ic">📻</span><b>Comunicação sem internet</b><span>SMS, rádio e o combinado da família.</span></div>
-  <div><span class="ic">✅</span><b>Checklists</b><span>Kit de 72 horas, mochila de fuga e casa, com seu nível de preparo.</span></div>
-  <div><span class="ic">👪</span><b>Plano da família</b><span>Pontos de encontro e contatos, para imprimir e dar a cada um.</span></div>
-  <div><span class="ic">🤰</span><b>Parto de emergência</b><span>O que fazer até o socorro chegar, com os sinais de perigo.</span></div>
-  <div><span class="ic">🌪️</span><b>Desastres naturais</b><span>Enchente, deslizamento, raios, fogo, calor e seca.</span></div>
-  <div><span class="ic">🌧️</span><b>Água da chuva</b><span>Como captar, filtrar e tornar segura para beber.</span></div>
-  <div><span class="ic">🍲</span><b>Comida sem geladeira</b><span>Conservar, pesca básica e horta de emergência.</span></div>
-  <div><span class="ic">🧼</span><b>Higiene e saneamento</b><span>Banheiro sem água e mãos limpas com pouca água.</span></div>
-  <div><span class="ic">👶</span><b>Bebês, idosos e pets</b><span>Cuidados extras para quem mais precisa.</span></div>
-  <div class="destaque"><span class="ic">📖</span><b>Bíblia completa, offline</b><span>Os 66 livros com busca por palavra e uma seleção para momentos difíceis. Versão Bíblia Livre, de licença aberta.</span></div>
-  <div><span class="ic">🖨️</span><b>Versão em papel</b><span>Sem energia, o papel continua funcionando. Imprima tudo com um clique.</span></div>
- </div>
-</div></section>
+<div class="frase"><div class="w"><q>Melhor ter e <span>não precisar</span> do que precisar e <span>não ter</span>.</q><p>Por isso existe um Plano B.</p></div></div>
 
 <section><div class="w">
- <div class="telas">
-  <img src="img/pc-alim.png" alt="Calculadora de estoque do Plano B" loading="lazy">
-  <div><span class="eyebrow">Na prática</span><h2 style="font-size:clamp(28px,3.4vw,40px)">Não é um e-book que você lê uma vez.</h2>
-  <ul class="lista"><li><span><b>É uma ferramenta</b><span>Calcula, marca, salva e imprime. Você usa de verdade.</span></span></li><li><span><b>Abre em segundos</b><span>Dois cliques no arquivo e pronto. Sem cadastro, sem login, sem aplicativo.</span></span></li><li><span><b>Fica com você</b><span>Copie para o computador, o celular, um pendrive e a família toda.</span></span></li><li><span><b>Informação de fonte oficial</b><span>Orientações baseadas em Secretarias de Saúde, CDC e OMS.</span></span></li></ul></div>
+ <span class="eyebrow">Protocolos incluídos</span><h2>Mais de 15 guias <em>e a Bíblia</em>.</h2>
+ <div class="proto">
+  <div class="big"><span class="cod mono">PROTOCOLO 01</span><span class="ic">🗺️</span><b>Mapa offline do Brasil + rumo sem GPS</b><span>5.570 cidades, rodovias e rios. Origem e destino: direção, distância, tempo a pé e cidades pelo caminho.</span></div>
+  <div><span class="cod mono">PROTOCOLO 02</span><span class="ic">💧</span><b>Água segura</b><span>Ferver, clorar, purificar com o sol e captar água da chuva.</span></div>
+  <div><span class="cod mono">PROTOCOLO 03</span><span class="ic">🤰</span><b>Parto de emergência</b><span>O que fazer até o socorro chegar.</span></div>
+  <div><span class="cod mono">PROTOCOLO 04</span><span class="ic">🌪️</span><b>Desastres naturais</b><span>Enchente, deslizamento, raios, fogo e calor.</span></div>
+  <div><span class="cod mono">PROTOCOLO 05</span><span class="ic">🩹</span><b>Primeiros socorros</b><span>Sangramento, queimadura, engasgo, desidratação.</span></div>
+  <div><span class="cod mono">PROTOCOLO 06</span><span class="ic">🥫</span><b>Comida e estoque</b><span>Calculadora para sua família e comida sem geladeira.</span></div>
+  <div><span class="cod mono">PROTOCOLO 07</span><span class="ic">👪</span><b>Plano da família</b><span>Pontos de encontro e contatos, para imprimir.</span></div>
+  <div><span class="cod mono">PROTOCOLO 08</span><span class="ic">📖</span><b>Bíblia completa</b><span>Os 66 livros, com busca, sem internet.</span></div>
  </div>
 </div></section>
 
 <section style="padding-top:0"><div class="w">
- <span class="eyebrow">Como funciona</span><h2>Do pagamento ao kit pronto em 5 minutos.</h2>
+ <span class="eyebrow">Ativação</span><h2>Pronto em <em>5 minutos</em>.</h2>
  <div class="passos">
-  <div><b>Compre</b><span>Pagamento seguro por Pix ou cartão. O acesso chega na hora, no seu e-mail.</span></div>
-  <div><b>Baixe</b><span>Baixe o arquivo do Plano B. É leve: cerca de 2 MB.</span></div>
-  <div><b>Abra</b><span>Dois cliques em "ABRIR - Plano B". Abre no navegador e funciona até no modo avião.</span></div>
-  <div><b>Guarde</b><span>Copie para o celular e o pendrive, preencha o plano da família e imprima.</span></div>
+  <div><span class="n mono">ETAPA 1</span><b>Compre</b><span>Pix ou cartão. Acesso na hora.</span></div>
+  <div><span class="n mono">ETAPA 2</span><b>Baixe</b><span>Um arquivo leve, cerca de 2 MB.</span></div>
+  <div><span class="n mono">ETAPA 3</span><b>Abra</b><span>Funciona até no modo avião.</span></div>
+  <div><span class="n mono">ETAPA 4</span><b>Guarde</b><span>PC, celular, pendrive e papel.</span></div>
  </div>
 </div></section>
 
 <section class="oferta" id="comprar"><div class="w" style="text-align:center">
- <span class="eyebrow">Garanta o seu</span><h2>Seu Plano B, pronto hoje.</h2><p class="lead" style="margin:0 auto">Menos do que uma pizza, para a tranquilidade de saber o que fazer quando tudo para.</p>
- <div class="caixa">
-  <div style="color:var(--sua);font-weight:600;margin-bottom:8px">Pagamento único · acesso para sempre</div>
-  <div class="preco"><small>R$</small>29,90</div>
-  <ul><li>Plano B completo, funcionando sem internet</li><li>Mapa offline do Brasil com rumo, distância e cidades no caminho</li><li>Parto de emergência, desastres naturais e água da chuva</li><li>Bíblia completa offline</li><li>Calculadora de estoque e checklists</li><li>Plano da família e versão para imprimir</li><li>Use no computador, no celular e no pendrive</li><li>Atualizações gratuitas</li></ul>
-  <a class="btn" id="cta" href="comprar/">Quero o meu Plano B →</a>
-  <div class="garantia"><i>🛡️</i><span><b style="color:var(--txt)">Garantia de 7 dias.</b> Não gostou? Devolvemos 100% do valor, sem perguntas.</span></div>
- </div>
+ <span class="eyebrow">Garanta o seu</span><h2>Prepare sua família <em>hoje</em>.</h2>
+ <div class="kit"><div class="cab"><span>Kit Plano B · completo</span></div><div class="corpo">
+  <div class="preco"><small>R$</small>29,90</div><div class="mini mono" style="margin-top:6px">pagamento único · acesso para sempre</div>
+  <ul><li>Funciona 100% sem internet</li><li>Mapa do Brasil com rumo, distância e cidades no caminho</li><li>Água, comida, primeiros socorros e parto de emergência</li><li>Desastres naturais e plano da família</li><li>Bíblia completa offline</li><li>Computador, celular, pendrive e versão para imprimir</li></ul>
+  <a class="btn" id="cta" href="comprar/">Quero meu Plano B →</a>
+  <div class="gar">🛡️ <span><b style="color:var(--txt)">Garantia de 7 dias.</b> Não gostou, devolvemos 100%.</span></div>
+ </div></div>
 </div></section>
-
-<section style="padding-top:20px"><div class="w" style="max-width:820px">
- <span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2>
- <details><summary>Precisa de internet para usar?</summary><p>Só para baixar, uma vez. Depois, tudo funciona sem internet: guias, mapa, calculadora, checklists e impressão.</p></details>
- <details><summary>Funciona no celular?</summary><p>Sim. Abra o arquivo no navegador do celular (Chrome ou Safari). Para o GPS mostrar onde você está, o celular precisa ter GPS ligado, mas não precisa de internet.</p></details>
- <details><summary>O mapa mostra as ruas da minha cidade?</summary><p>O mapa mostra todas as cidades do Brasil, rodovias, rios e divisas, e calcula rumo e distância entre quaisquer pontos. Ele foi feito para orientação entre cidades, não para navegar rua por rua.</p></details>
- <details><summary>É um aplicativo? Preciso instalar algo?</summary><p>Não precisa instalar nada. É um arquivo que abre no navegador que você já tem, como um documento.</p></details>
- <details><summary>E se acabar a energia?</summary><p>É por isso que o Plano B tem a versão para imprimir. Imprima o guia, o plano da família e o mapa da sua região e guarde junto do seu kit.</p></details>
- <details><summary>Isso substitui a Defesa Civil?</summary><p>Não. O Plano B ajuda você a se preparar e a agir com calma. Em qualquer emergência, siga sempre as orientações das autoridades (Defesa Civil 199, Bombeiros 193, SAMU 192).</p></details>
-</div></section>
-
-<div class="helice"><div class="w">
- <svg viewBox="0 0 100 100" aria-label="Hélice"><defs><linearGradient id="pa" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7aa3ff"/><stop offset="1" stop-color="#5b8cff"/></linearGradient><linearGradient id="pb2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6ee8f3"/><stop offset="1" stop-color="#2fd6e8"/></linearGradient></defs><g transform="rotate(-18 50 50)"><path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#pa)"/><path d="M45 52 C42 39 29 32 18 24 C8 17 12 4 25 6 C41 9 56 25 56 42 C56 47 54 50 51 53Z" fill="url(#pb2)" transform="rotate(180 50 50)"/></g><circle cx="50" cy="50" r="7" fill="#0b1124"/><circle cx="50" cy="50" r="3" fill="#e9edfb"/></svg>
- <div><h3>Uma solução Hélice</h3><p>A Hélice vive de olhar para um problema e construir a solução. O Plano B nasceu de uma pergunta simples: e se um dia a internet não estiver lá? A resposta é esta.</p></div>
- <a class="h" href="https://helicesites.com.br" target="_blank" rel="noopener">helicesites.com.br →</a>
-</div></div>
-<footer>© 2026 Plano B · uma solução Hélice Sites & Sistemas. Conteúdo informativo, não substitui orientação médica nem das autoridades de Defesa Civil.</footer>
-<div class="fixo"><a class="btn" href="#comprar">Quero o Plano B · R$ 29,90</a></div>
-<script>document.getElementById("cta").href="comprar/"+location.search;</script>
+<div class="faixa-zebra"></div>
+<footer>© 2026 Plano B · uma solução Hélice Sites & Sistemas. Conteúdo informativo; em emergências siga a Defesa Civil (199), Bombeiros (193) e SAMU (192).</footer>
+<div class="fixo"><a class="btn" href="#comprar">Quero meu Plano B · R$ 29,90</a></div>
+<script>
+const cb=[...document.querySelectorAll('#teste input')];
+const at=()=>{const n=cb.filter(c=>c.checked).length;document.getElementById('nota').textContent=n+'/6';
+ document.getElementById('msg').innerHTML=n===6?'<b>Mandou bem!</b> Agora tenha tudo isso por escrito, offline, para quando a cabeça não ajudar.':n>=3?'<b>Você está no caminho.</b> Mas numa emergência a memória falha. O Plano B deixa tudo à mão, sem internet.':'<b>Você não está sozinho.</b> A maioria das pessoas não sabe a maior parte disso. O Plano B coloca todas essas respostas no seu bolso, sem depender de internet.'};
+cb.forEach(c=>c.onchange=at);
+document.getElementById("cta").href="comprar/"+location.search;
+</script>
 <script src="/v.js" defer></script>
 </body>
 </html>
