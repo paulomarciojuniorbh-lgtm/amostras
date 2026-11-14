@@ -160,6 +160,9 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
 .abord select{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:8px 10px;margin-top:8px;min-height:40px}
 .lotes{display:flex;gap:8px;flex-wrap:wrap;align-self:end}
 .lotes .btn{text-decoration:none}
+.eu[hidden]{display:none}
+.eu{display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);padding:0 4px}
+.eu button{font:inherit;font-size:13px;background:none;border:0;color:var(--muted);text-decoration:underline;cursor:pointer;padding:6px 2px}
 .chip.pil{background:var(--accent-soft);color:var(--accent)}
 .ctt{position:fixed;inset:0;z-index:20;background:var(--bg);overflow:auto}
 .ctt .in{max-width:1100px;margin:0 auto;padding:22px max(16px,env(safe-area-inset-left)) 60px}
@@ -187,7 +190,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       <h1>Radar Negócios Locais</h1>
       <p>Empresas que aparecem no Google Maps, com nota, avaliações, posição na busca, site e Instagram. O radar aponta quem tem clientes e boa reputação, mas ainda não tem um site próprio.</p>
     </div>
-    <nav class="lotes" aria-label="Lotes de pilotos"><button class="btn pri" type="button" id="bContatos">Meus contatos</button><a class="btn" href="lote1.html">Lote 1 · pilotos</a><a class="btn" href="lote2.html">Lote 2 · pilotos</a></nav>
+    <nav class="lotes" aria-label="Atalhos"><button class="btn pri" type="button" id="bContatos">Meus contatos</button><span class="eu" id="eu" hidden></span></nav>
     <label class="cidade" for="fCidade">Cidade <select id="fCidade"></select></label>
   </header>
 
@@ -616,9 +619,9 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   else {
     $("msg").innerHTML = `<div class="notice">Carregando empresas…</div>`;
     rpc("neg_eu", { p_token: TOKEN }).then(eu => { if (!eu) throw new Error("token inválido"); EU = eu; QUEM = eu.apresentacao || "o Paulo";
-      const tb = document.createElement("div"); tb.style.cssText = "position:fixed;top:10px;right:12px;z-index:50;background:#fff;border:1px solid #ddd;border-radius:999px;padding:6px 12px;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.08)";
-      tb.innerHTML = `👤 <b>${esc(eu.nome)}</b> · <a href="#" id="sairR">sair</a>`; document.body.appendChild(tb);
-      $("sairR").onclick = async ev => { ev.preventDefault(); await rpc("neg_sair", { p_token: TOKEN }).catch(() => {}); try { localStorage.removeItem("negocios_k"); } catch (_) {} location.href = location.pathname; };
+      const tb = $("eu"); tb.hidden = false;
+      tb.innerHTML = `<span>👤 <b>${esc(eu.nome)}</b></span><button type="button" id="sairR">Sair</button>`;
+      $("sairR").onclick = async ev => { ev.preventDefault(); if (!confirm("Sair do Radar?")) return; await rpc("neg_sair", { p_token: TOKEN }).catch(() => {}); try { localStorage.removeItem("negocios_k"); } catch (_) {} location.href = location.pathname; };
       return rpc("neg_dados", { p_token: TOKEN }); }).then(rows => {
       RAW = rows || [];
       const cidades = [...new Set(RAW.map(x => x.cidade))].sort((a, b) => a.localeCompare(b, "pt-BR"));
