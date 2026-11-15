@@ -115,7 +115,7 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 .fixo{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,10,.95);border-top:3px solid var(--ama);display:none}
 .fixo .btn{width:100%;padding:15px;font-size:16px;box-shadow:4px 4px 0 var(--verm)}
 .oficial{background:var(--preto2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
-.avisos{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:30px}
+.avisos{display:grid;grid-template-columns:1fr;max-width:760px;gap:16px;margin-top:30px}
 .aviso{position:relative;background:var(--preto);border:2px solid var(--linha);border-left:6px solid var(--ama);border-radius:8px;padding:22px 22px 18px}
 .aviso.br{border-left-color:var(--verm)}
 .aviso .data{font-size:12px;letter-spacing:.12em;color:var(--sua);text-transform:uppercase}
@@ -136,6 +136,11 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 .manchete b{font-family:Georgia,"Times New Roman",serif;font-size:19px;line-height:1.22}
 .manchete .ler{margin-top:auto;font-size:12.5px;color:#9a2a1a;font-weight:700}
 .nota-imp{font-size:12.5px;color:var(--sua);margin-top:12px}
+.selos{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:14px;font-size:14px;color:var(--sua)}
+.meio{margin-top:26px;display:flex;justify-content:center}.meio .btn{width:100%;max-width:460px;justify-content:center}
+.fixo span{display:block;text-align:center;font-size:12px;color:var(--sua);margin-top:6px}.fixo .btn{width:100%;justify-content:center}
+.fixo{transform:translateY(110%);transition:transform .25s}.fixo.on{transform:none}
+@media (max-width:900px){.manchetes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:6px 4px 12px}.manchete{flex:0 0 80%;scroll-snap-align:start;transform:none!important}.acoes .btn{width:100%;justify-content:center;white-space:nowrap;font-size:16px;padding-left:12px;padding-right:12px}}
 .ponte{margin-top:18px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,rgba(255,204,0,.12),transparent);border:2px solid rgba(255,204,0,.45);border-radius:8px;padding:18px 20px}
 .ponte span{font-size:30px}
 @media (max-width:900px){.avisos{grid-template-columns:1fr}}
@@ -162,7 +167,8 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
   <span class="placa"><svg viewBox="0 0 24 24" fill="#000"><path d="M12 2 1 21h22L12 2zm0 5 7.5 13h-15L12 7zm-1 4v4h2v-4h-2zm0 5v2h2v-2h-2z"/></svg>Atenção</span>
   <h1>A internet <span class="v">caiu.</span><br>E <span class="a">agora?</span></h1>
   <p class="lead">Sem Google, sem mapa, sem sinal. <b>O Plano B é o kit de emergência que funciona 100% offline</b>: água segura, comida, mapa do Brasil com rumo sem GPS, primeiros socorros, parto de emergência e até a Bíblia. No computador, no celular e no papel.</p>
-  <div class="acoes"><a class="btn" href="#comprar">Quero meu Plano B →</a><span class="mini mono">R$ 29,90 · pagamento único</span></div>
+  <div class="acoes"><a class="btn ck" href="comprar/">Quero meu Plano B · R$ 29,90 →</a></div>
+  <div class="selos"><span>⚡ Pix ou cartão · acesso na hora</span><span>🛡️ Garantia de 7 dias</span><span>💾 Pagamento único</span></div>
  </div>
  <div class="monitor"><span class="carimbo">Sem sinal · funcionando</span><div class="bar mono"><span>Plano B · v2</span><span><b>●</b> offline OK</span></div><img src="img/pc-mapa.png" alt="Mapa offline do Plano B"><img class="cel" src="img/cel-rumo.png" alt="Rumo no celular"></div>
 </div></section>
@@ -176,18 +182,16 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 
 <section class="oficial"><div class="w">
  <span class="eyebrow">O que as autoridades orientam</span><h2>A Defesa Civil pediu: <em>tenha um kit para 72 horas.</em></h2>
- <p class="lead">Não é alarmismo, é prevenção. Em novembro de 2026, a Defesa Civil Nacional orientou as famílias brasileiras a se prepararem para passar até 3 dias sem serviços básicos. A Europa fez a mesma recomendação aos seus cidadãos.</p>
+ <p class="lead">Não é alarmismo, é prevenção. Em novembro de 2026, a Defesa Civil Nacional orientou as famílias brasileiras a se prepararem para passar até 3 dias sem serviços básicos. A União Europeia faz a mesma recomendação desde 2025.</p>
  <div class="avisos">
   <div class="aviso br"><span class="data mono">🇧🇷 Brasil · novembro de 2026</span><b>Defesa Civil Nacional orienta montar um kit de emergência para 72 horas</b>
    <p>A orientação: uma mochila com água (2 litros por pessoa por dia), comida que não estraga, remédios, primeiros socorros, lanterna, rádio, carregador e documentos protegidos.</p>
    <blockquote>“Caráter estritamente preventivo e não está relacionada a qualquer alerta nacional.”<br><span style="font-style:normal;font-size:13px;color:var(--sua)">Ministério da Integração e do Desenvolvimento Regional, 07/11/2026</span></blockquote>
    <a href="https://www.gov.br/mdr/pt-br/noticias/midr-esclarece-que-kit-de-emergencia-e-medida-preventiva-e-nao-tem-relacao-com-alerta-nacional" target="_blank" rel="noopener">Ler a nota oficial no gov.br →</a></div>
-  <div class="aviso"><span class="data mono">🇪🇺 União Europeia · desde 2025</span><b>Comissão Europeia recomenda autossuficiência por no mínimo 72 horas</b>
-   <p>A estratégia de preparação da União Europeia orienta que cada cidadão tenha um kit para ficar pelo menos 72 horas sem acesso a suprimentos essenciais.</p>
-   <a href="https://www.euronews.com/my-europe/2025/03/26/brussels-ask-eu-citizens-to-put-together-a-72-hour-emergency-kit-to-face-crises" target="_blank" rel="noopener">Ver a notícia (Euronews) →</a></div>
  </div>
  <div class="imprensa"><h3>O assunto está nos jornais</h3><div class="manchetes"><a class="manchete" href="https://diariodonordeste.verdesmares.com.br/ultima-hora/mundo/defesa-civil-orienta-que-cidadaos-preparem-kits-de-emergencia-para-ate-3-dias-no-brasil-entenda-1.3804126" target="_blank" rel="noopener"><span class="veic">Diário do Nordeste<span>novembro 2026</span></span><b>Defesa Civil orienta que cidadãos preparem kits de emergência para até 3 dias no Brasil</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://exame.com/ciencia/apagao-mundial-em-novembro-entenda-a-orientacao-da-defesa-civil-para-montar-um-kit-de-emergencia/" target="_blank" rel="noopener"><span class="veic">Exame<span>novembro 2026</span></span><b>Apagão mundial em novembro? Entenda a orientação da Defesa Civil para montar um kit de emergência</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://www.terra.com.br/noticias/brasil/por-que-a-defesa-civil-esta-recomendando-armazenar-alimentos-e-kit-de-emergencia-entenda,15c60769169ce623793c9e40e61b6eb5pfwtzvpb.html" target="_blank" rel="noopener"><span class="veic">Terra<span>novembro 2026</span></span><b>Por que a Defesa Civil está recomendando armazenar alimentos e kit de emergência? Entenda</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://www.brasildefato.com.br/2026/11/11/defesa-civil-esclarece-que-kit-de-emergencia-e-preventivo-e-nao-indica-desastre-iminente/" target="_blank" rel="noopener"><span class="veic">Brasil de Fato<span>11/11/2026</span></span><b>Defesa Civil esclarece que kit de emergência é preventivo e não indica desastre iminente</b><span class="ler">Ler a matéria no site do veículo →</span></a></div><p class="nota-imp">Manchetes reproduzidas com link para as matérias originais. Os veículos citados não têm relação com o Plano B.</p></div>
  <div class="ponte"><span>🎒</span><p><b>O kit físico guarda os itens. O Plano B guarda o que fazer com eles.</b> Ele traz o checklist completo do kit de 72 horas, calcula a quantidade certa para a sua família e ensina a usar tudo, mesmo sem internet.</p></div>
+ <div class="meio"><a class="btn ck" href="comprar/">Montar meu Plano B agora · R$ 29,90 →</a></div>
 </div></section>
 
 <section><div class="w">
@@ -218,6 +222,7 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
   <div><span class="cod mono">PROTOCOLO 07</span><span class="ic">👪</span><b>Plano da família</b><span>Pontos de encontro e contatos, para imprimir.</span></div>
   <div><span class="cod mono">PROTOCOLO 08</span><span class="ic">📖</span><b>Bíblia completa</b><span>Os 66 livros, com busca, sem internet.</span></div>
  </div>
+ <div class="meio"><a class="btn ck" href="comprar/">Quero tudo isso por R$ 29,90 →</a></div>
 </div></section>
 
 <section style="padding-top:0"><div class="w">
@@ -241,13 +246,16 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 </div></section>
 <div class="faixa-zebra"></div>
 <footer>© 2026 Plano B · uma solução Hélice Sites & Sistemas. Conteúdo informativo; em emergências siga a Defesa Civil (199), Bombeiros (193) e SAMU (192).</footer>
-<div class="fixo"><a class="btn" href="#comprar">Quero meu Plano B · R$ 29,90</a></div>
+<div class="fixo" id="fixo"><a class="btn ck" href="comprar/">Quero meu Plano B · R$ 29,90 →</a><span>Garantia de 7 dias · acesso na hora</span></div>
 <script>
 const cb=[...document.querySelectorAll('#teste input')];
 const at=()=>{const n=cb.filter(c=>c.checked).length;document.getElementById('nota').textContent=n+'/6';
  document.getElementById('msg').innerHTML=n===6?'<b>Mandou bem!</b> Agora tenha tudo isso por escrito, offline, para quando a cabeça não ajudar.':n>=3?'<b>Você está no caminho.</b> Mas numa emergência a memória falha. O Plano B deixa tudo à mão, sem internet.':'<b>Você não está sozinho.</b> A maioria das pessoas não sabe a maior parte disso. O Plano B coloca todas essas respostas no seu bolso, sem depender de internet.'};
 cb.forEach(c=>c.onchange=at);
-document.getElementById("cta").href="comprar/"+location.search;
+document.querySelectorAll("#cta,.ck").forEach(a=>a.href="comprar/"+location.search);
+const fx=document.getElementById("fixo"),hero=document.querySelector(".hero .acoes"),of=document.getElementById("comprar");
+const vis=el=>{const b=el.getBoundingClientRect();return b.bottom>0&&b.top<innerHeight};
+const upd=()=>fx.classList.toggle("on",!vis(hero)&&!vis(of));addEventListener("scroll",upd,{passive:true});upd();
 </script>
 <script src="/v.js" defer></script>
 </body>
