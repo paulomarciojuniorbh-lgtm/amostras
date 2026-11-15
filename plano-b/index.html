@@ -114,6 +114,19 @@ h2 em{font-style:normal;color:var(--ama)}
 footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;color:#7f7d73;text-align:center}
 .fixo{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(11,11,10,.95);border-top:3px solid var(--ama);display:none}
 .fixo .btn{width:100%;padding:15px;font-size:16px;box-shadow:4px 4px 0 var(--verm)}
+.oficial{background:var(--preto2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.avisos{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-top:30px}
+.aviso{position:relative;background:var(--preto);border:2px solid var(--linha);border-left:6px solid var(--ama);border-radius:8px;padding:22px 22px 18px}
+.aviso.br{border-left-color:var(--verm)}
+.aviso .data{font-size:12px;letter-spacing:.12em;color:var(--sua);text-transform:uppercase}
+.aviso b{display:block;font-size:20px;margin:6px 0 8px;line-height:1.2}
+.aviso p{color:#d6d4c9;font-size:15.5px}
+.aviso blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--ama);background:rgba(255,204,0,.06);font-style:italic;color:#ece9dc;font-size:15px}
+.aviso a{color:var(--ama);font-size:13.5px;font-weight:700;text-decoration:none}
+.aviso a:hover{text-decoration:underline}
+.ponte{margin-top:18px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,rgba(255,204,0,.12),transparent);border:2px solid rgba(255,204,0,.45);border-radius:8px;padding:18px 20px}
+.ponte span{font-size:30px}
+@media (max-width:900px){.avisos{grid-template-columns:1fr}}
 @media (max-width:900px){
  .hero .w{grid-template-columns:1fr}.monitor{margin:16px 6px 34px}.carimbo{left:-6px}
  .cenarios .w{grid-template-columns:1fr 1fr}.cenarios div:nth-child(2){border-right:0}.cenarios div:nth-child(-n+2){border-bottom:1px solid var(--linha)}
@@ -128,7 +141,7 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 <!-- /Meta Pixel -->
 </head>
 <body>
-<div class="ticker"><div><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Você tem um plano?</span><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Você tem um plano?</span></div></div>
+<div class="ticker"><div><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Defesa Civil Nacional orienta: tenha um kit de emergência para 72 horas</span><span>Você tem um plano?</span><span><i></i>Alerta: apagões, enchentes e falhas de internet acontecem todos os anos no Brasil</span><span>Sem internet, o Google não abre e o mapa não carrega</span><span>Defesa Civil Nacional orienta: tenha um kit de emergência para 72 horas</span><span>Você tem um plano?</span></div></div>
 <header class="topo"><div class="w"><span class="pb"><b>B</b>PLANO B</span><span class="status mono"><i></i>Modo emergência · funciona offline</span></div></header>
 <div class="faixa-zebra"></div>
 
@@ -148,6 +161,21 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
  <div><small>Cenário 03</small><b>Rede fora do ar</b><span>Sem mapa, sem GPS no computador, sem busca.</span></div>
  <div><small>Cenário 04</small><b>Emergência em casa</b><span>Um parto, um corte, alguém passando mal.</span></div>
 </div></div>
+
+<section class="oficial"><div class="w">
+ <span class="eyebrow">O que as autoridades orientam</span><h2>A Defesa Civil pediu: <em>tenha um kit para 72 horas.</em></h2>
+ <p class="lead">Não é alarmismo, é prevenção. Em novembro de 2026, a Defesa Civil Nacional orientou as famílias brasileiras a se prepararem para passar até 3 dias sem serviços básicos. A Europa fez a mesma recomendação aos seus cidadãos.</p>
+ <div class="avisos">
+  <div class="aviso br"><span class="data mono">🇧🇷 Brasil · novembro de 2026</span><b>Defesa Civil Nacional orienta montar um kit de emergência para 72 horas</b>
+   <p>A orientação: uma mochila com água (2 litros por pessoa por dia), comida que não estraga, remédios, primeiros socorros, lanterna, rádio, carregador e documentos protegidos.</p>
+   <blockquote>“Caráter estritamente preventivo e não está relacionada a qualquer alerta nacional.”<br><span style="font-style:normal;font-size:13px;color:var(--sua)">Ministério da Integração e do Desenvolvimento Regional, 07/11/2026</span></blockquote>
+   <a href="https://www.gov.br/mdr/pt-br/noticias/midr-esclarece-que-kit-de-emergencia-e-medida-preventiva-e-nao-tem-relacao-com-alerta-nacional" target="_blank" rel="noopener">Ler a nota oficial no gov.br →</a></div>
+  <div class="aviso"><span class="data mono">🇪🇺 União Europeia · desde 2025</span><b>Comissão Europeia recomenda autossuficiência por no mínimo 72 horas</b>
+   <p>A estratégia de preparação da União Europeia orienta que cada cidadão tenha um kit para ficar pelo menos 72 horas sem acesso a suprimentos essenciais.</p>
+   <a href="https://www.euronews.com/my-europe/2025/03/26/brussels-ask-eu-citizens-to-put-together-a-72-hour-emergency-kit-to-face-crises" target="_blank" rel="noopener">Ver a notícia (Euronews) →</a></div>
+ </div>
+ <div class="ponte"><span>🎒</span><p><b>O kit físico guarda os itens. O Plano B guarda o que fazer com eles.</b> Ele traz o checklist completo do kit de 72 horas, calcula a quantidade certa para a sua família e ensina a usar tudo, mesmo sem internet.</p></div>
+</div></section>
 
 <section><div class="w">
  <span class="eyebrow">Teste rápido</span><h2>Você saberia o que fazer <em>sem internet?</em></h2>
