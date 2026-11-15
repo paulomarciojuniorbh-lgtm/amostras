@@ -124,6 +124,18 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 .aviso blockquote{margin:12px 0;padding:10px 14px;border-left:3px solid var(--ama);background:rgba(255,204,0,.06);font-style:italic;color:#ece9dc;font-size:15px}
 .aviso a{color:var(--ama);font-size:13.5px;font-weight:700;text-decoration:none}
 .aviso a:hover{text-decoration:underline}
+.imprensa{margin-top:34px}
+.imprensa h3{font-size:14px;letter-spacing:.16em;text-transform:uppercase;color:var(--sua);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.imprensa h3:after{content:"";flex:1;height:1px;background:var(--linha)}
+.manchetes{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.manchete{display:flex;flex-direction:column;gap:10px;background:#f4f1e6;color:#141410;border-radius:4px;padding:18px 18px 14px;text-decoration:none;box-shadow:0 10px 24px -14px rgba(0,0,0,.8);transition:transform .12s;position:relative}
+.manchete:nth-child(odd){transform:rotate(-.6deg)}.manchete:nth-child(even){transform:rotate(.5deg)}
+.manchete:hover{transform:rotate(0) translateY(-3px)}
+.manchete .veic{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid #141410;padding-bottom:6px;display:flex;justify-content:space-between;gap:8px}
+.manchete .veic span{font-weight:400;color:#6b685c;letter-spacing:0;text-transform:none;font-family:Inter,sans-serif;font-size:12px}
+.manchete b{font-family:Georgia,"Times New Roman",serif;font-size:19px;line-height:1.22}
+.manchete .ler{margin-top:auto;font-size:12.5px;color:#9a2a1a;font-weight:700}
+.nota-imp{font-size:12.5px;color:var(--sua);margin-top:12px}
 .ponte{margin-top:18px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,rgba(255,204,0,.12),transparent);border:2px solid rgba(255,204,0,.45);border-radius:8px;padding:18px 20px}
 .ponte span{font-size:30px}
 @media (max-width:900px){.avisos{grid-template-columns:1fr}}
@@ -174,6 +186,7 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
    <p>A estratégia de preparação da União Europeia orienta que cada cidadão tenha um kit para ficar pelo menos 72 horas sem acesso a suprimentos essenciais.</p>
    <a href="https://www.euronews.com/my-europe/2025/03/26/brussels-ask-eu-citizens-to-put-together-a-72-hour-emergency-kit-to-face-crises" target="_blank" rel="noopener">Ver a notícia (Euronews) →</a></div>
  </div>
+ <div class="imprensa"><h3>O assunto está nos jornais</h3><div class="manchetes"><a class="manchete" href="https://diariodonordeste.verdesmares.com.br/ultima-hora/mundo/defesa-civil-orienta-que-cidadaos-preparem-kits-de-emergencia-para-ate-3-dias-no-brasil-entenda-1.3804126" target="_blank" rel="noopener"><span class="veic">Diário do Nordeste<span>novembro 2026</span></span><b>Defesa Civil orienta que cidadãos preparem kits de emergência para até 3 dias no Brasil</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://exame.com/ciencia/apagao-mundial-em-novembro-entenda-a-orientacao-da-defesa-civil-para-montar-um-kit-de-emergencia/" target="_blank" rel="noopener"><span class="veic">Exame<span>novembro 2026</span></span><b>Apagão mundial em novembro? Entenda a orientação da Defesa Civil para montar um kit de emergência</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://www.terra.com.br/noticias/brasil/por-que-a-defesa-civil-esta-recomendando-armazenar-alimentos-e-kit-de-emergencia-entenda,15c60769169ce623793c9e40e61b6eb5pfwtzvpb.html" target="_blank" rel="noopener"><span class="veic">Terra<span>novembro 2026</span></span><b>Por que a Defesa Civil está recomendando armazenar alimentos e kit de emergência? Entenda</b><span class="ler">Ler a matéria no site do veículo →</span></a><a class="manchete" href="https://www.brasildefato.com.br/2026/11/11/defesa-civil-esclarece-que-kit-de-emergencia-e-preventivo-e-nao-indica-desastre-iminente/" target="_blank" rel="noopener"><span class="veic">Brasil de Fato<span>11/11/2026</span></span><b>Defesa Civil esclarece que kit de emergência é preventivo e não indica desastre iminente</b><span class="ler">Ler a matéria no site do veículo →</span></a></div><p class="nota-imp">Manchetes reproduzidas com link para as matérias originais. Os veículos citados não têm relação com o Plano B.</p></div>
  <div class="ponte"><span>🎒</span><p><b>O kit físico guarda os itens. O Plano B guarda o que fazer com eles.</b> Ele traz o checklist completo do kit de 72 horas, calcula a quantidade certa para a sua família e ensina a usar tudo, mesmo sem internet.</p></div>
 </div></section>
 
