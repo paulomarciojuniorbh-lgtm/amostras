@@ -20,6 +20,7 @@ h1{font-size:clamp(30px,6vw,42px);line-height:1.1;letter-spacing:-.02em;margin:2
 .card{background:var(--bg2);border:1px solid var(--linha);border-radius:18px;padding:22px;margin-top:16px}
 .card h3{margin-bottom:10px}
 ol{padding-left:20px;display:grid;gap:8px;color:#d6d6cd}
+input{width:100%;background:#0b0d0b;border:1.5px solid var(--linha);border-radius:12px;padding:15px;font:inherit;color:var(--txt);margin-top:18px}input:focus{outline:none;border-color:var(--ama)}
 .mini{color:var(--sua);font-size:14px}
 a{color:var(--ama)}
 .spin{width:44px;height:44px;border:4px solid var(--linha);border-top-color:var(--ama);border-radius:50%;animation:g 1s linear infinite;margin:30px auto}
@@ -37,7 +38,7 @@ a{color:var(--ama)}
   <h1>Pagamento confirmado. Seu Plano B chegou! 🎉</h1>
   <p class="sub">Baixe agora e guarde em mais de um lugar. Depois de baixado, ele funciona sem internet.</p>
   <a class="btn" id="dl" href="#" download>⬇ Baixar o Plano B (cerca de 2 MB)</a>
-  <p class="mini" style="text-align:center">O link vale por 24 horas. Guarde esta página: se precisar, é só abrir de novo para gerar outro link.</p>
+  <p class="mini" style="text-align:center">Para baixar de novo depois, acesse <b>helicesites.com.br/plano-b/entrega</b> e digite o e-mail da compra.</p>
   <div class="card"><h3>💻 No computador</h3><ol><li>Abra a pasta Downloads e clique com o botão direito em <b>plano-b-offline.zip</b> → <b>Extrair tudo</b>.</li><li>Entre na pasta <b>PlanoB</b> e dê dois cliques em <b>ABRIR - Plano B</b>.</li><li>Pronto: abre no navegador e funciona até sem internet.</li></ol></div>
   <div class="card"><h3>🤖 No Android</h3><ol><li>Abra o app <b>Meus Arquivos</b> (ou Arquivos) → Downloads e toque em <b>plano-b-offline.zip</b> → <b>Extrair</b>.</li><li>Toque em <b>ABRIR - Plano B.html</b> e escolha abrir com o <b>Chrome</b>.</li></ol></div>
   <div class="card"><h3>🍎 Tem iPhone?</h3><p style="color:#d6d6cd;margin-bottom:10px">No iPhone, use esta versão: abra no <b>Safari</b>, toque em Compartilhar ⬆︎ → <b>Adicionar à Tela de Início</b>. Depois de aberta uma vez, funciona offline.</p><a class="btn sec" style="margin:0" href="../app-0cc8eba871/" target="_blank" rel="noopener">Abrir a versão para iPhone</a></div>
@@ -50,9 +51,12 @@ a{color:var(--ama)}
   <button class="btn" id="denovo">Verificar de novo</button>
  </div>
  <div id="erro" hidden>
-  <h1>Não encontramos o pagamento</h1>
-  <p class="sub" id="erroTxt">Se você já pagou, fale com a gente que liberamos o seu acesso na hora.</p>
-  <a class="btn sec" href="../comprar/">Voltar para a compra</a>
+  <h1 id="erroTit">Já comprou? Acesse seu Plano B</h1>
+  <p class="sub" id="erroTxt">Digite o e-mail que você usou na compra. Se o pagamento estiver aprovado, o download aparece na hora.</p>
+  <form id="fja" novalidate><input id="ema" type="email" autocomplete="email" placeholder="seu@email.com" maxlength="160" required>
+  <button class="btn" type="submit" id="bja">Liberar meu download</button></form>
+  <p class="mini" id="msg" role="alert" style="color:#ff8a76;min-height:20px"></p>
+  <a class="btn sec" href="../comprar/">Ainda não comprei</a>
  </div>
  <p class="mini" style="margin-top:22px">Algum problema? Fale com a gente no <a href="https://wa.me/5598984149331?text=Ol%C3%A1!%20Comprei%20o%20Plano%20B%20e%20preciso%20de%20ajuda%20com%20o%20download.">WhatsApp</a>. Plano B é uma solução Hélice.</p>
 </div>
@@ -60,17 +64,34 @@ a{color:var(--ama)}
 const FN="https://ryhyvzwqtktaaonznizn.supabase.co/functions/v1/planob-pagamento";
 const q=new URLSearchParams(location.search),pid=q.get("payment_id")||q.get("collection_id")||"";
 const mostra=id=>["st","ok","esp","erro"].forEach(k=>document.getElementById(k).hidden=k!==id);
-let tent=0;
+let tent=0,email="";
+try{const c=JSON.parse(localStorage.getItem("planob_compra")||"null");if(c&&c.e)email=c.e}catch(e){}
+const $=id=>document.getElementById(id);
+function pronto(j,ref){$("dl").href=j.url;mostra("ok");try{const k="planob_px_"+ref;if(window.fbq&&!localStorage.getItem(k)){fbq("track","Purchase",{value:29.90,currency:"BRL",content_name:"Plano B"},{eventID:"mp-"+ref});localStorage.setItem(k,"1")}}catch(e){}}
+function form(msg){mostra("erro");$("ema").value=email;$("msg").textContent=msg||"";$("bja").disabled=false;$("bja").textContent="Liberar meu download"}
+// caminho 1: voltou do Mercado Pago com o número do pagamento
 async function verifica(){
- if(!/^\d{4,20}$/.test(pid)){mostra("erro");return}
+ if(!/^\d{4,20}$/.test(pid)){porEmail(true);return}
  mostra("st");
  try{const r=await fetch(`${FN}?acao=entrega&payment_id=${pid}`);const j=await r.json();
-  if(j.ok){document.getElementById("dl").href=j.url;mostra("ok");try{if(window.fbq)fbq("track","Purchase",{value:29.90,currency:"BRL",content_name:"Plano B"},{eventID:"mp-"+pid})}catch(e){}return}
+  if(j.ok){pronto(j,pid);return}
   if(["pending","in_process","authorized"].includes(j.status)){mostra("esp");if(++tent<20)setTimeout(verifica,6000);return}
-  if(j.status==="limite")document.getElementById("erroTxt").textContent="O limite de downloads deste pedido foi atingido. Fale com a gente que ajudamos.";
-  mostra("erro")}catch(e){mostra("erro")}
+  if(j.status==="limite"){form("O limite de downloads deste pedido foi atingido. Fale com a gente no WhatsApp que ajudamos.");return}
+  porEmail(true)}catch(e){porEmail(true)}
 }
-document.getElementById("denovo").onclick=()=>{tent=0;verifica()};
+// caminho 2: "Já comprei", pelo e-mail usado na compra
+async function porEmail(auto){
+ if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){form(auto?"":"Confira o e-mail digitado.");return}
+ if(auto)mostra("st");else{$("bja").disabled=true;$("bja").textContent="Procurando seu pagamento…"}
+ try{const r=await fetch(`${FN}?acao=acesso`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email})});const j=await r.json();
+  if(j.ok){try{localStorage.setItem("planob_compra",JSON.stringify({e:email,t:Date.now()}))}catch(e){}pronto(j,email);return}
+  if(j.status==="pending"){mostra("esp");if(++tent<20)setTimeout(()=>porEmail(true),6000);return}
+  if(j.status==="limite"){form("O limite de downloads deste pedido foi atingido. Fale com a gente no WhatsApp que ajudamos.");return}
+  if(j.status==="nao_pago"){form("Encontramos seu pedido, mas o pagamento ainda não foi aprovado. Se você pagou agora por Pix, aguarde um minuto e tente de novo.");return}
+  form(auto?"":"Não encontramos compra com este e-mail. Confira se é o mesmo usado no pagamento.")}catch(e){form("Não conseguimos verificar agora. Tente de novo em instantes.")}
+}
+$("fja").onsubmit=e=>{e.preventDefault();email=$("ema").value.trim().toLowerCase();tent=0;porEmail(false)};
+$("denovo").onclick=()=>{tent=0;/^\d{4,20}$/.test(pid)?verifica():porEmail(true)};
 verifica();
 </script>
 </body>

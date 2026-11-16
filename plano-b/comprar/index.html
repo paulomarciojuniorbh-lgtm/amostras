@@ -43,6 +43,8 @@ input:focus{outline:none;border-color:var(--ama)}
 .inclui li:before{content:"✓  ";color:var(--ama);font-weight:900}
 .garantia{display:flex;gap:12px;align-items:center;margin-top:18px;background:var(--bg3);border-radius:14px;padding:14px;font-size:14.5px;color:var(--sua)}
 .garantia i{font-style:normal;font-size:28px}
+.pix{background:var(--bg3);border-radius:12px;padding:12px 14px;font-size:14px;color:var(--sua);margin-top:14px;line-height:1.5}.pix b{color:var(--txt)}
+#japaguei[hidden]{display:none!important}
 .priv{font-size:12.5px;color:#7c8276;margin-top:14px;text-align:center}
 @media (max-width:820px){.grid{grid-template-columns:1fr}}
 </style>
@@ -55,14 +57,16 @@ input:focus{outline:none;border-color:var(--ama)}
 <header class="topo"><div class="w"><a class="pb" href="../"><i>B</i>PLANO B</a><span class="seg">🔒 Compra segura</span></div></header>
 <div class="w"><div class="grid">
  <form class="card" id="f" novalidate>
-  <h1>Finalizar compra</h1><p class="sub">Preencha seus dados. É para onde enviamos o seu Plano B.</p>
+  <h1>Finalizar compra</h1><p class="sub">Preencha seus dados. O download é liberado nesta tela, logo após o pagamento.</p>
+  <a id="japaguei" href="../entrega/" hidden style="display:block;background:var(--bg3);border:1px solid var(--ama);border-radius:12px;padding:12px 14px;color:var(--txt);text-decoration:none;font-size:15px;margin-bottom:6px">✅ <b>Já pagou?</b> Toque aqui para liberar seu download →</a>
   <label for="nome">Nome completo</label><input id="nome" autocomplete="name" required maxlength="120">
-  <label for="email">E-mail <small>(o acesso chega aqui)</small></label><input id="email" type="email" autocomplete="email" required maxlength="160">
+  <label for="email">E-mail <small>(é a chave do seu acesso, digite com atenção)</small></label><input id="email" type="email" autocomplete="email" required maxlength="160">
   <label for="whats">WhatsApp <small>(opcional, para suporte)</small></label><input id="whats" type="tel" autocomplete="tel" maxlength="20" placeholder="(00) 00000-0000">
   <button class="btn" id="ir" type="submit">Ir para o pagamento · R$ 29,90 →</button>
   <div class="erro" id="erro" role="alert"></div>
   <div class="formas"><span>Pix</span><span>Cartão de crédito</span><span>Mercado Pago</span></div>
-  <p class="erro" id="erroPg" style="color:#ff8a76"></p><p class="priv">Seus dados são usados só para entregar o produto e dar suporte.</p>
+  <p class="erro" id="erroPg" style="color:#ff8a76"></p><div class="pix"><b>Vai pagar com Pix?</b> Depois de pagar no app do banco, volte para a tela do Mercado Pago e toque em <b>Voltar ao site</b>. Se fechar, acesse <b>helicesites.com.br/plano-b/entrega</b> e digite seu e-mail: o download aparece na hora.</div>
+  <p class="priv">Seus dados são usados só para entregar o produto e dar suporte.</p>
  </form>
  <aside class="card resumo">
   <div class="prod"><i>B</i><div><b>Plano B · Kit offline de emergência</b><small>Produto digital · download imediato</small></div></div>
@@ -78,11 +82,13 @@ const PAGAMENTO="https://mpago.la/1ctRfHX";
 const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
 const $=id=>document.getElementById(id);
 if(new URLSearchParams(location.search).get("erro")==="pagamento")setTimeout(()=>{const e=document.getElementById("erroPg");if(e)e.textContent="O pagamento não foi concluído. Pode tentar de novo."},0);
+try{const c=JSON.parse(localStorage.getItem("planob_compra")||"null");if(c&&Date.now()-c.t<48*3600e3){$("japaguei").hidden=false;$("email").value=c.e}}catch(e){}
 const origem=(()=>{try{const q=new URLSearchParams(location.search),o=["utm_source","utm_campaign","utm_content"].map(k=>q.get(k)).filter(Boolean).join("|");return o||document.referrer.slice(0,120)||"direto"}catch(e){return"direto"}})();
 $("f").onsubmit=async e=>{e.preventDefault();$("erro").textContent="";
  const nome=$("nome").value.trim(),email=$("email").value.trim(),whats=$("whats").value.trim();
  if(nome.split(/\s+/).length<2){$("erro").textContent="Digite seu nome completo.";$("nome").focus();return}
  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){$("erro").textContent="Confira o seu e-mail.";$("email").focus();return}
+ try{localStorage.setItem("planob_compra",JSON.stringify({e:email,t:Date.now()}))}catch(e){}
  $("ir").disabled=true;$("ir").textContent="Abrindo o pagamento…";
  let id=null;
  try{const r=await fetch(`${SB}/rest/v1/rpc/planob_pedido`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_nome:nome,p_email:email,p_whats:whats,p_origem:origem})});const j=await r.json();if(j&&j.ok===false){$("erro").textContent=j.erro;$("ir").disabled=false;$("ir").textContent="Ir para o pagamento · R$ 29,90 →";return}id=j&&j.id}catch(e){}
