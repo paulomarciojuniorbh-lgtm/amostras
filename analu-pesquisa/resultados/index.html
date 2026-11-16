@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resultados da pesquisa · Ana Lu</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,700&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+:root{--pink:#e2468f;--vinho:#7b2145;--vinho2:#5c1632;--creme:#fff8f4;--linha:#f3dbe2;--sua:#8a6474}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--creme);color:var(--vinho2);font-size:16px;line-height:1.5}
+.topo{background:linear-gradient(165deg,#b9a3f2,#f39ac0 48%,#ffb38a);padding:26px 0 30px}
+.w{max-width:980px;margin:0 auto;padding:0 18px}
+.topo b{font:400 44px/1 Sacramento,cursive}
+.topo h1{font:italic 700 30px/1.1 "Playfair Display",serif;margin-top:4px}
+.topo p{font-size:14.5px;margin-top:6px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-18px 0 8px}
+.kpi{background:#fff;border:1.5px solid var(--linha);border-radius:18px;padding:16px}
+.kpi small{display:block;color:var(--sua);font-size:13px}
+.kpi b{font:italic 700 32px/1.1 "Playfair Display",serif;color:var(--pink)}
+.kpi span{font-size:12.5px;color:var(--sua)}
+h2{font:italic 700 22px/1.2 "Playfair Display",serif;color:var(--vinho);margin:30px 0 12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.card{background:#fff;border:1.5px solid var(--linha);border-radius:18px;padding:18px}
+.card h3{font-size:15.5px;margin-bottom:10px;line-height:1.3}
+.lin{margin-bottom:9px;font-size:14px}
+.lin div:first-child{display:flex;justify-content:space-between;gap:10px}
+.lin span{color:var(--sua);white-space:nowrap}
+.bar{height:7px;border-radius:9px;background:var(--linha);margin-top:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,#b9a3f2,#f39ac0,#ffb38a);border-radius:9px}
+.media{font:italic 700 28px/1 "Playfair Display",serif;color:var(--pink)}
+.media em{font:400 13px Outfit;color:var(--sua);margin-left:6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--sua)}
+.btn{background:var(--vinho);color:#fff;border:0;border-radius:999px;padding:11px 20px;font:600 14.5px Outfit;cursor:pointer}
+.vazio{color:var(--sua);padding:30px 0;text-align:center}
+.rolo{overflow-x:auto}
+@media (max-width:760px){.kpis{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
+@media print{.btn{display:none}}
+</style>
+</head>
+<body>
+<div class="topo"><div class="w"><b>Ana Lu</b><h1>Resultados da pesquisa</h1><p id="sub">Carregando…</p></div></div>
+<div class="w" id="app" style="padding-bottom:60px"></div>
+<script src="../perguntas.js"></script>
+<script>
+const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const app=document.getElementById("app"),sub=document.getElementById("sub");
+const tk=new URLSearchParams(location.search).get("k")||"";
+const dh=s=>new Date(s).toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",year:"2-digit",hour:"2-digit",minute:"2-digit"});
+let L=[];
+function media(id){const v=L.map(x=>+x.r[id]).filter(n=>n>0);return v.length?v.reduce((a,b)=>a+b,0)/v.length:0}
+function conta(q){const c={};q.op.forEach(o=>c[o[1]]=0);L.forEach(x=>{const v=x.r[q.id];(Array.isArray(v)?v:v?[v]:[]).forEach(t=>c[t]=(c[t]||0)+1)});return Object.entries(c).sort((a,b)=>b[1]-a[1])}
+function csv(){const cols=["Data","Nome","WhatsApp",...Q.map(q=>q.t)];const lin=L.map(x=>[dh(x.em),x.nome||"",x.whatsapp||"",...Q.map(q=>{const v=x.r[q.id];return Array.isArray(v)?v.join(" | "):(v??"")})]);
+ const t=[cols,...lin].map(l=>l.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(";")).join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["﻿"+t],{type:"text/csv"}));a.download="pesquisa-ana-lu.csv";document.body.appendChild(a);a.click();a.remove()}
+function desenha(){
+ const n=L.length;sub.textContent=n?`${n} ${n===1?"resposta":"respostas"} · última em ${dh(L[0].em)}`:"Nenhuma resposta ainda.";
+ if(!n){app.innerHTML=`<p class="vazio">Assim que as primeiras clientes responderem, os números aparecem aqui.</p>`;return}
+ const np=L.map(x=>x.nps).filter(v=>v!==null&&v!==undefined),pro=np.filter(v=>v>=9).length,det=np.filter(v=>v<=6).length,nps=np.length?Math.round((pro-det)/np.length*100):null;
+ const rec=L.filter(x=>["Já comprei mais de uma vez","Com certeza"].includes(x.r.recompra)).length,cont=L.filter(x=>x.whatsapp).length;
+ let h=`<div class="kpis"><div class="kpi"><small>Respostas</small><b>${n}</b></div><div class="kpi"><small>NPS</small><b>${nps===null?"–":nps}</b><br><span>${pro} promotoras · ${det} detratoras</span></div><div class="kpi"><small>Comprariam de novo</small><b>${Math.round(rec/n*100)}%</b></div><div class="kpi"><small>Deixaram WhatsApp</small><b>${cont}</b></div></div>
+ <div style="margin-top:14px"><button class="btn" id="csv">Baixar planilha (CSV)</button> <button class="btn" style="background:#fff;color:var(--vinho);border:1.5px solid var(--linha)" onclick="print()">Imprimir</button></div>
+ <h2>Notas (de 1 a 5)</h2><div class="grid">${Q.filter(q=>q.tipo==="estrelas").map(q=>{const m=media(q.id);return`<div class="card"><h3>${esc(q.t)}</h3><span class="media">${m?m.toFixed(1).replace(".",","):"–"}<em>de 5</em></span><div class="bar"><i style="width:${m/5*100}%"></i></div></div>`}).join("")}</div>
+ <h2>Respostas por pergunta</h2><div class="grid">${Q.filter(q=>q.op).map(q=>{const c=conta(q),mx=Math.max(...c.map(x=>x[1]),1);return`<div class="card"><h3>${esc(q.t)}</h3>${c.map(([t,v])=>`<div class="lin"><div><b style="font-weight:500">${esc(t)}</b><span>${v} · ${Math.round(v/n*100)}%</span></div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div>`).join("")}</div>`}).join("")}</div>`;
+ const recs=L.filter(x=>x.r.recado);
+ h+=`<h2>Recados (${recs.length})</h2><div class="card">${recs.length?recs.map(x=>`<p style="padding:10px 0;border-bottom:1px solid var(--linha)">“${esc(x.r.recado)}”<br><span style="font-size:13px;color:var(--sua)">${esc(x.nome||"Anônima")} · nota ${x.nps??"–"} · ${dh(x.em)}</span></p>`).join(""):`<p class="vazio">Nenhum recado ainda.</p>`}</div>
+ <h2>Todas as respostas</h2><div class="card rolo"><table><tr><th>Data</th><th>Nome</th><th>WhatsApp</th><th>Peça</th><th>Qualidade</th><th>De novo?</th><th>NPS</th></tr>${L.map(x=>`<tr><td>${dh(x.em)}</td><td>${esc(x.nome||"–")}</td><td>${x.whatsapp?`<a href="https://wa.me/55${esc(x.whatsapp.replace(/^55/,""))}" target="_blank" rel="noopener">${esc(x.whatsapp)}</a>`:"–"}</td><td>${esc((x.r.peca||[]).join(", "))}</td><td>${x.r.qualidade||"–"}</td><td>${esc(x.r.recompra||"–")}</td><td>${x.nps??"–"}</td></tr>`).join("")}</table></div>`;
+ app.innerHTML=h;document.getElementById("csv").onclick=csv}
+(async()=>{try{const r=await fetch(`${SB}/rest/v1/rpc/analu_resultados`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_token:tk})});const j=await r.json();
+ if(!j||!j.ok){sub.textContent="Link inválido.";app.innerHTML=`<p class="vazio">Confira se você abriu o link completo do painel.</p>`;return}L=j.linhas||[];desenha()}catch(e){sub.textContent="Não foi possível carregar agora.";}})();
+</script>
+</body>
+</html>

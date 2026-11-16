@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Conta pra gente · Ana Lu Biquínis & Fitness</title>
+<meta name="description" content="Como foi vestir Ana Lu? Responda 16 perguntas rápidas sobre a sua peça e ganhe um presente no final.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Como foi vestir Ana Lu?">
+<meta property="og:description" content="16 perguntas rápidas sobre a sua peça. No final, um presente pra você.">
+<meta name="theme-color" content="#f39ac0">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@1,600;1,700&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+:root{--lilas:#b9a3f2;--rosa:#f39ac0;--pink:#e2468f;--pess:#ffb38a;--vinho:#7b2145;--vinho2:#5c1632;--creme:#fff8f4;--linha:#f3dbe2;--sua:#8a6474;--ceu:linear-gradient(165deg,#b9a3f2 0%,#f39ac0 48%,#ffb38a 100%)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Outfit,system-ui,sans-serif;background:var(--creme);color:var(--vinho2);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+.w{max-width:620px;margin:0 auto;padding:0 18px 60px}
+.marca{text-align:center;line-height:1}
+.marca b{font:400 46px/1 Sacramento,cursive;display:block}
+.marca span{font-size:11px;letter-spacing:.42em;font-weight:600;text-transform:uppercase;display:block;margin-top:-2px}
+/* capa */
+.capa{background:var(--ceu);color:var(--vinho2);border-radius:0 0 34px 34px;margin:0 -18px;padding:26px 24px 0;position:relative;overflow:hidden;text-align:center}
+.capa .marca b{font-size:58px}
+.sol{width:210px;margin:14px auto -6px;display:block}
+.capa h1{font:italic 700 clamp(32px,8.6vw,46px)/1.08 "Playfair Display",Georgia,serif;margin:6px 0 12px;letter-spacing:-.01em}
+.capa p{font-size:17.5px;max-width:440px;margin:0 auto 22px}
+.onda{display:block;width:calc(100% + 48px);margin:26px -24px 0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--vinho);color:#fff;border:0;border-radius:999px;padding:17px 30px;font-weight:700;font-size:17.5px;text-decoration:none;transition:transform .12s,background .12s}
+.btn:hover{background:var(--vinho2)}.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.35;cursor:default}
+.btn.cl{background:#fff;color:var(--vinho);border:2px solid var(--linha)}
+.chips{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0 14px}
+.chips div{background:#fff;border:1.5px solid var(--linha);border-radius:20px;padding:14px 8px;text-align:center}
+.chips b{display:block;font:italic 700 30px/1 "Playfair Display",serif;color:var(--pink)}
+.chips span{font-size:13px;color:var(--sua)}
+.mimo{display:flex;gap:14px;align-items:center;background:#fff;border:1.5px dashed var(--rosa);border-radius:20px;padding:16px 18px}
+.mimo i{font-style:normal;font-size:34px}
+.mimo b{display:block}.mimo span{font-size:14.5px;color:var(--sua)}
+.frase{text-align:center;font:italic 600 19px/1.35 "Playfair Display",serif;color:var(--vinho);margin:26px 10px 0}
+/* progresso: o sol atravessa o horizonte */
+.prog{padding:20px 0 6px}
+.prog .l{display:flex;justify-content:space-between;font-size:13.5px;color:var(--sua);font-weight:600;margin-bottom:16px}
+.prog .l b{color:var(--pink)}
+.hor{position:relative;height:6px;border-radius:9px;background:var(--linha)}
+.hor i{position:absolute;left:0;top:0;bottom:0;border-radius:9px;background:linear-gradient(90deg,var(--lilas),var(--rosa),var(--pess));transition:width .35s}
+.hor em{position:absolute;top:50%;width:26px;height:26px;margin:-13px 0 0 -13px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#ffe9a8,#ffb347);box-shadow:0 0 0 5px rgba(255,179,71,.25);transition:left .35s}
+.cartao{background:#fff;border:1.5px solid var(--linha);border-radius:28px;padding:26px 22px 22px;margin-top:20px;box-shadow:0 18px 40px -28px rgba(123,33,69,.5)}
+.sec{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--pink)}
+h2{font:italic 700 clamp(24px,6.4vw,30px)/1.15 "Playfair Display",Georgia,serif;margin:8px 0 6px;color:var(--vinho)}
+.ajuda{color:var(--sua);font-size:15.5px;margin-bottom:6px}
+.ops{display:grid;gap:10px;margin-top:18px}
+.ops.g2{grid-template-columns:1fr 1fr}
+.op{display:flex;align-items:center;gap:12px;text-align:left;background:var(--creme);border:2px solid var(--linha);border-radius:18px;padding:15px 16px;font-weight:500;font-size:16.5px;line-height:1.25;transition:border-color .12s,background .12s}
+.op .ic{font-size:24px;flex:none}
+.op.on{background:#ffe6f0;border-color:var(--pink);font-weight:600}
+.ops.g2 .op{flex-direction:column;text-align:center;gap:6px;padding:16px 8px}
+.estrelas{display:flex;justify-content:center;gap:6px;margin-top:24px}
+.estrelas button{background:none;border:0;font-size:46px;line-height:1;color:#f1d3dc;transition:transform .12s,color .12s}
+.estrelas button.on{color:#ffb347;transform:scale(1.08)}
+.rot{text-align:center;min-height:26px;margin-top:8px;font-weight:600;color:var(--pink)}
+.nps{display:grid;grid-template-columns:repeat(11,1fr);gap:5px;margin-top:22px}
+.nps button{aspect-ratio:1;border-radius:12px;border:2px solid var(--linha);background:var(--creme);font-weight:700;font-size:15px;padding:0}
+.nps button.on{background:var(--pink);border-color:var(--pink);color:#fff}
+.leg{display:flex;justify-content:space-between;font-size:13px;color:var(--sua);margin-top:8px}
+textarea,input[type=text],input[type=tel]{width:100%;background:var(--creme);border:2px solid var(--linha);border-radius:18px;padding:15px 16px;margin-top:14px;resize:vertical}
+textarea:focus,input:focus{outline:none;border-color:var(--pink)}
+.aceite{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--sua);margin-top:12px}
+.aceite input{width:20px;height:20px;margin-top:2px;accent-color:var(--pink);flex:none}
+.nav{display:flex;gap:10px;margin-top:24px}
+.nav .btn{flex:1}.nav .voltar{flex:none;width:58px;padding:0}
+.erro{color:var(--pink);font-size:14.5px;min-height:20px;margin-top:8px;font-weight:500}
+/* final */
+.fim{text-align:center}
+.concha{font-size:104px;line-height:1;margin:18px auto 6px;display:inline-block;animation:bal 1.6s ease-in-out infinite;background:none;border:0}
+.concha.abre{animation:abre .6s forwards}
+@keyframes bal{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg) scale(1.06)}}
+@keyframes abre{to{transform:scale(1.7) rotate(18deg);opacity:0}}
+.cupom{background:var(--ceu);border-radius:26px;padding:26px 20px;margin-top:8px;color:var(--vinho2)}
+.cupom .pct{font:italic 700 56px/1 "Playfair Display",serif}
+.cupom .cod{display:inline-block;background:#fff;border:2px dashed var(--vinho);border-radius:14px;padding:12px 22px;font-weight:700;font-size:26px;letter-spacing:.14em;margin:16px 0 14px}
+.cupom .btn{width:100%}
+.cupom small{display:block;margin-top:12px;font-size:13.5px}
+.confete{position:fixed;top:-12px;width:10px;height:14px;border-radius:3px;z-index:60;animation:cai linear forwards;pointer-events:none}
+@keyframes cai{to{transform:translateY(105vh) rotate(540deg)}}
+.rod{text-align:center;font-size:12.5px;color:var(--sua);margin-top:30px}
+@media (max-width:400px){.nps{gap:3px}.nps button{font-size:13px;border-radius:9px}.estrelas button{font-size:40px}.ops.g2 .op{font-size:15.5px}}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script src="perguntas.js"></script>
+<script>
+const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+const app=document.getElementById("app");
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const MARCA=`<div class="marca"><b>Ana Lu</b><span>Biquínis &amp; Fitness</span></div>`;
+const SOL=`<svg class="sol" viewBox="0 0 210 96" fill="none" stroke="#7b2145" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M61 92a44 44 0 0 1 88 0"/><path d="M105 34V10M72 44L58 24M138 44l14-20M49 66L27 55M161 66l22-11"/><path d="M4 92c22-14 40 8 62 0s34-14 52-2 40 4 54-4 22-2 34 4" stroke-width="2.8"/></svg>`;
+const ONDA=`<svg class="onda" viewBox="0 0 600 46" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22c60-26 110 22 170 6s100-32 170-8 120 22 180 0 60-10 80-4v30H0z" fill="#fff8f4"/></svg>`;
+let R={},i=-1,enviado=null;
+const origem=(()=>{try{const q=new URLSearchParams(location.search);return q.get("o")||q.get("utm_source")||""}catch(e){return""}})();
+
+function capa(){
+ app.innerHTML=`<section class="capa">${MARCA}${SOL}
+  <h1>Como foi vestir Ana Lu?</h1>
+  <p>Sua opinião ajuda a gente a criar peças cada vez melhores para corpos reais. É rapidinho e tem presente no final.</p>
+  <button class="btn" id="ir">Começar →</button>${ONDA}</section>
+  <div class="chips"><div><b>${Q.length}</b><span>perguntas</span></div><div><b>3</b><span>minutos</span></div><div><b>1</b><span>presente</span></div></div>
+  <div class="mimo"><i>🐚</i><div><b>Tem um mimo escondido no final</b><span>Respondeu tudo, é só abrir a concha.</span></div></div>
+  <p class="frase">“Pensada para vestir mulheres com corpos reais.”</p>
+  <p class="rod">Pesquisa oficial da Ana Lu Biquínis &amp; Fitness · suas respostas são usadas só para melhorar nossos produtos e atendimento.</p>`;
+ document.getElementById("ir").onclick=()=>{i=0;draw();scrollTo(0,0)};
+}
+function pronto(q){const v=R[q.id];if(q.tipo==="texto")return true;if(q.tipo==="multi")return v&&v.length;return v!==undefined&&v!==null}
+function topo(sec,n){const p=Math.min(1,n/Q.length);return`<div class="prog">${MARCA}<div class="l" style="margin-top:16px"><span>${esc(sec)}</span><span><b>${Math.min(n+1,Q.length)}</b> / ${Q.length}</span></div><div class="hor"><i style="width:${p*100}%"></i><em style="left:${p*100}%"></em></div></div>`}
+function draw(){
+ if(i<0)return capa(); if(i>=Q.length)return contato();
+ const q=Q[i],v=R[q.id];let corpo="";
+ if(q.tipo==="um"||q.tipo==="multi")corpo=`<div class="ops ${q.g2?"g2":""}">${q.op.map(([ic,t])=>`<button class="op ${(q.tipo==="multi"?(v||[]).includes(t):v===t)?"on":""}" data-v="${esc(t)}">${ic?`<span class="ic">${ic}</span>`:""}<span>${esc(t)}</span></button>`).join("")}</div>`;
+ if(q.tipo==="estrelas")corpo=`<div class="estrelas">${[1,2,3,4,5].map(n=>`<button data-v="${n}" class="${v>=n?"on":""}" aria-label="${n} de 5">★</button>`).join("")}</div><div class="rot">${v?ROT5[v]:""}</div>`;
+ if(q.tipo==="nps")corpo=`<div class="nps">${[...Array(11).keys()].map(n=>`<button data-v="${n}" class="${v===n?"on":""}">${n}</button>`).join("")}</div><div class="leg"><span>Não indicaria</span><span>Indico de olhos fechados</span></div>`;
+ if(q.tipo==="texto")corpo=`<textarea id="txt" rows="5" maxlength="800" placeholder="Escreva aqui…">${esc(v||"")}</textarea>`;
+ const auto=q.tipo==="um"||q.tipo==="estrelas"||q.tipo==="nps";
+ app.innerHTML=topo(q.sec,i)+`<div class="cartao"><span class="sec">Pergunta ${i+1}</span><h2>${esc(q.t)}</h2>${q.a?`<p class="ajuda">${esc(q.a)}</p>`:""}${corpo}
+  <div class="nav"><button class="btn cl voltar" id="vt" aria-label="Voltar">←</button><button class="btn" id="av" ${pronto(q)?"":"disabled"}>${q.tipo==="texto"&&!v?"Pular":"Próxima"} →</button></div></div>`;
+ app.querySelectorAll("[data-v]").forEach(b=>b.onclick=()=>{
+  if(q.tipo==="multi"){const a=new Set(R[q.id]||[]);a.has(b.dataset.v)?a.delete(b.dataset.v):a.add(b.dataset.v);R[q.id]=[...a];draw();return}
+  const val=q.tipo==="um"?b.dataset.v:+b.dataset.v;R[q.id]=val;draw();
+  if(auto)setTimeout(()=>{if(R[q.id]===val&&Q[i]===q){i++;draw();scrollTo(0,0)}},q.tipo==="estrelas"?560:320)});
+ const tx=document.getElementById("txt");if(tx)tx.oninput=()=>{document.getElementById("av").textContent=(tx.value.trim()?"Próxima":"Pular")+" →"};
+ document.getElementById("vt").onclick=()=>{if(tx)R[q.id]=tx.value.trim();i--;draw();scrollTo(0,0)};
+ document.getElementById("av").onclick=()=>{if(tx)R[q.id]=tx.value.trim();i++;draw();scrollTo(0,0)};
+}
+function contato(){
+ app.innerHTML=topo("Quase lá",Q.length)+`<div class="cartao"><span class="sec">Antes do presente</span><h2>Quer saber dos lançamentos primeiro?</h2><p class="ajuda">Deixe seu nome e WhatsApp. É opcional: se preferir, é só abrir o presente.</p>
+  <input type="text" id="nome" maxlength="60" autocomplete="name" placeholder="Seu nome" value="${esc(R.nome||"")}">
+  <input type="tel" id="zap" maxlength="20" autocomplete="tel" placeholder="WhatsApp com DDD" value="${esc(R.whatsapp||"")}">
+  <label class="aceite"><input type="checkbox" id="ok" ${R.aceite?"checked":""}><span>Aceito receber novidades e ofertas da Ana Lu pelo WhatsApp. Posso pedir para sair quando quiser.</span></label>
+  <div class="erro" id="erro" role="alert"></div>
+  <div class="nav"><button class="btn cl voltar" id="vt" aria-label="Voltar">←</button><button class="btn" id="av">Abrir meu presente 🐚</button></div></div>`;
+ document.getElementById("vt").onclick=()=>{i=Q.length-1;draw();scrollTo(0,0)};
+ document.getElementById("av").onclick=()=>{const nome=document.getElementById("nome").value.trim(),zap=document.getElementById("zap").value.trim(),ok=document.getElementById("ok").checked,dig=zap.replace(/\D/g,"");
+  if(zap&&(dig.length<10||dig.length>13)){document.getElementById("erro").textContent="Confira o WhatsApp: precisa do DDD e do número.";return}
+  if(zap&&!ok){document.getElementById("erro").textContent="Para a gente te chamar no WhatsApp, marque a caixinha de aceite. Ou apague o número.";return}
+  R.nome=nome;R.whatsapp=zap&&ok?dig:"";R.aceite=!!(zap&&ok);fim();scrollTo(0,0)};
+}
+function confete(){const c=["#b9a3f2","#f39ac0","#ffb38a","#e2468f","#ffd98a"];for(let k=0;k<80;k++){const d=document.createElement("i");d.className="confete";d.style.left=Math.random()*100+"vw";d.style.background=c[k%c.length];d.style.animationDuration=(1.8+Math.random()*1.8)+"s";d.style.animationDelay=Math.random()*.4+"s";document.body.appendChild(d);setTimeout(()=>d.remove(),4300)}}
+async function salvar(){if(enviado)return enviado;enviado=(async()=>{for(let t=0;t<2;t++){try{const r=await fetch(`${SB}/rest/v1/rpc/analu_responder`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_respostas:R,p_origem:origem})});const j=await r.json();if(j&&j.ok)return true}catch(e){}await new Promise(r=>setTimeout(r,900))}return false})();return enviado}
+function fim(){
+ salvar();
+ app.innerHTML=topo("Pesquisa concluída",Q.length)+`<div class="cartao fim"><span class="sec">Obrigada${R.nome?", "+esc(R.nome.split(" ")[0]):""}! 💖</span><h2>Seu presente chegou com a maré</h2><p class="ajuda" id="dica">Toque na concha para abrir.</p><button class="concha" id="concha" aria-label="Abrir presente">🐚</button><div id="premio"></div></div>
+  <p class="rod">Ana Lu Biquínis &amp; Fitness · Showroom em Belo Horizonte</p>`;
+ const g=document.getElementById("concha");
+ g.onclick=()=>{if(g.classList.contains("abre"))return;g.classList.add("abre");setTimeout(()=>{g.remove();document.getElementById("dica").remove();confete();
+  document.getElementById("premio").innerHTML=`<div class="cupom"><div class="pct">${esc(CUPOM.titulo)}</div><b>${esc(CUPOM.regra)}</b><br><div class="cod" id="cod">${esc(CUPOM.codigo)}</div>
+   <button class="btn" id="cp">Copiar cupom</button><a class="btn cl" style="width:100%;margin-top:10px" href="${CUPOM.loja}" target="_blank" rel="noopener">Ir para a loja →</a><small>${esc(CUPOM.validade)}</small></div>`;
+  document.getElementById("cp").onclick=async e=>{try{await navigator.clipboard.writeText(CUPOM.codigo);e.target.textContent="Copiado ✔"}catch(_){e.target.textContent=CUPOM.codigo}}},620)};
+}
+draw();
+</script>
+</body>
+</html>
