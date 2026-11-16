@@ -141,6 +141,9 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
 .fixo span{display:block;text-align:center;font-size:12px;color:var(--sua);margin-top:6px}.fixo .btn{width:100%;justify-content:center}
 .fixo{transform:translateY(110%);transition:transform .25s}.fixo.on{transform:none}
 @media (max-width:900px){.manchetes{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;padding:6px 4px 12px}.manchete{flex:0 0 80%;scroll-snap-align:start;transform:none!important}.acoes .btn{width:100%;justify-content:center;white-space:nowrap;font-size:16px;padding-left:12px;padding-right:12px}}
+.dentro{padding-bottom:20px}.telas{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 14px;margin-top:26px}
+.telas figure{flex:0 0 220px;scroll-snap-align:start;margin:0}.telas img{width:100%;aspect-ratio:390/720;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #2a2a26;display:block;background:#111}
+.telas figcaption{font-size:13px;color:var(--sua);margin-top:8px;line-height:1.35}.telas figcaption b{display:block;color:var(--txt);font-size:14.5px}
 .ponte{margin-top:18px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,rgba(255,204,0,.12),transparent);border:2px solid rgba(255,204,0,.45);border-radius:8px;padding:18px 20px}
 .ponte span{font-size:30px}
 @media (max-width:900px){.avisos{grid-template-columns:1fr}}
@@ -179,6 +182,13 @@ footer{border-top:1px solid var(--linha);padding:28px 0 110px;font-size:13px;col
  <div><small>Cenário 03</small><b>Rede fora do ar</b><span>Sem mapa, sem GPS no computador, sem busca.</span></div>
  <div><small>Cenário 04</small><b>Emergência em casa</b><span>Um parto, um corte, alguém passando mal.</span></div>
 </div></div>
+
+<section class="dentro" id="dentro"><div class="w">
+ <span class="eyebrow">Veja por dentro</span><h2>É isso que você <em>recebe</em>.</h2>
+ <p class="lead">Telas reais do Plano B funcionando no celular, sem internet. Arraste para o lado.</p>
+ <div class="telas"><figure><img loading="lazy" src="img/cel-rumo.png" alt="Rumo sem GPS"><figcaption><b>Rumo sem GPS</b>Direção, distância e cidades no caminho</figcaption></figure><figure><img loading="lazy" src="img/demo-agua.jpg" alt="Água segura"><figcaption><b>Água segura</b>Passo a passo para tratar a água</figcaption></figure><figure><img loading="lazy" src="img/demo-parto.jpg" alt="Parto de emergência"><figcaption><b>Parto de emergência</b>O que fazer até o socorro chegar</figcaption></figure><figure><img loading="lazy" src="img/demo-desastres.jpg" alt="Desastres naturais"><figcaption><b>Desastres naturais</b>Antes, durante e depois</figcaption></figure><figure><img loading="lazy" src="img/demo-checks.jpg" alt="Kit de 72 horas"><figcaption><b>Kit de 72 horas</b>Checklist para marcar e imprimir</figcaption></figure><figure><img loading="lazy" src="img/demo-biblia.jpg" alt="Bíblia completa"><figcaption><b>Bíblia completa</b>Os 66 livros, com busca</figcaption></figure></div>
+ <div class="meio"><a class="btn ck" data-pos="dentro" href="comprar/">Quero o meu por R$ 29,90 →</a></div>
+</div></section>
 
 <section class="oficial"><div class="w">
  <span class="eyebrow">O que as autoridades orientam</span><h2>A Defesa Civil pediu: <em>tenha um kit para 72 horas.</em></h2>
@@ -256,6 +266,19 @@ document.querySelectorAll("#cta,.ck").forEach(a=>a.href="comprar/"+location.sear
 const fx=document.getElementById("fixo"),hero=document.querySelector(".hero .acoes"),of=document.getElementById("comprar");
 const vis=el=>{const b=el.getBoundingClientRect();return b.bottom>0&&b.top<innerHeight};
 const upd=()=>fx.classList.toggle("on",!vis(hero)&&!vis(of));addEventListener("scroll",upd,{passive:true});upd();
+
+/* medição anônima de uso da página */
+(function(){try{if(navigator.webdriver)return;var ls=localStorage;if(ls.getItem('helice_eu')==='1')return;
+var vis=ls.getItem('helice_vid')||'',ses='';try{ses=sessionStorage.getItem('helice_sid')||''}catch(e){}
+var q=new URLSearchParams(location.search),og=[q.get('utm_source'),q.get('utm_content')].filter(Boolean).join('|')||null,K='sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0',feito={};
+function ev(e,v){var k=e+(v||'');if(feito[k])return;feito[k]=1;if(!vis){vis=ls.getItem('helice_vid')||'';try{ses=sessionStorage.getItem('helice_sid')||''}catch(x){}}
+fetch('https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/planob_evento',{method:'POST',keepalive:true,headers:{'Content-Type':'application/json',apikey:K},body:JSON.stringify({p_vis:vis,p_ses:ses,p_ev:e,p_val:v||null,p_origem:og})}).catch(function(){})}
+addEventListener('scroll',function(){var h=document.documentElement,p=(h.scrollTop+innerHeight)/h.scrollHeight*100;[25,50,75,100].forEach(function(m){if(p>=m-1)ev('scroll',''+m)})},{passive:true});
+[10,30,90].forEach(function(t){setTimeout(function(){if(!document.hidden)ev('tempo',''+t)},t*1000)});
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;if(a.matches('.ck,#cta'))ev('cta',a.dataset.pos||(a.id==='cta'?'oferta':a.closest('.fixo')?'fixo':a.closest('.hero')?'topo':'meio'));else if(a.matches('.manchete'))ev('jornal');else if(a.target==='_blank')ev('link_ext')},true);
+var t=document.querySelector('.telas');if(t)t.addEventListener('scroll',function(){if(t.scrollLeft>120)ev('telas')},{passive:true});
+['dentro','comprar'].forEach(function(id){var el=document.getElementById(id);if(el&&window.IntersectionObserver)new IntersectionObserver(function(x){if(x[0].isIntersecting)ev('viu',id)},{threshold:.3}).observe(el)});
+}catch(e){}})();
 </script>
 <script src="/v.js" defer></script>
 </body>
