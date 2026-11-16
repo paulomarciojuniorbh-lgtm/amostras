@@ -47,7 +47,7 @@ input:focus{outline:none;border-color:var(--ama)}
 @media (max-width:820px){.grid{grid-template-columns:1fr}}
 </style>
 <!-- Meta Pixel -->
-<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','965482966327894');fbq('track','PageView');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','965482966327894');fbq('track','PageView');fbq('track','InitiateCheckout',{value:29.90,currency:'BRL',content_name:'Plano B'});</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=965482966327894&ev=PageView&noscript=1"/></noscript>
 <!-- /Meta Pixel -->
 </head>
@@ -86,7 +86,7 @@ $("f").onsubmit=async e=>{e.preventDefault();$("erro").textContent="";
  $("ir").disabled=true;$("ir").textContent="Abrindo o pagamento…";
  let id=null;
  try{const r=await fetch(`${SB}/rest/v1/rpc/planob_pedido`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_nome:nome,p_email:email,p_whats:whats,p_origem:origem})});const j=await r.json();if(j&&j.ok===false){$("erro").textContent=j.erro;$("ir").disabled=false;$("ir").textContent="Ir para o pagamento · R$ 29,90 →";return}id=j&&j.id}catch(e){}
- try{if(window.fbq)fbq("track","InitiateCheckout",{value:29.90,currency:"BRL"})}catch(e){}
+ try{if(window.fbq)fbq("track","AddPaymentInfo",{value:29.90,currency:"BRL"})}catch(e){}
  // checkout com liberação automática; se falhar, usa o link fixo do Mercado Pago
  if(id){try{const r=await fetch(`${SB}/functions/v1/planob-pagamento?acao=checkout`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id})});const j=await r.json();if(j&&j.ok&&j.url){location.href=j.url;return}}catch(e){}}
  location.href=PAGAMENTO||("https://wa.me/5598984149331?text="+encodeURIComponent(`Olá! Quero finalizar a compra do Plano B (R$ 29,90).\nNome: ${nome}\nE-mail: ${email}`));
