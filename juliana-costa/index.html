@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Juliana Costa · Gestão para clínicas de estética">
 <meta property="og:description" content="Sua clínica cuida da beleza. Eu cuido da gestão por trás dela.">
-<meta property="og:image" content="https://helicesites.com.br/juliana-costa/img/juliana-1.jpg">
+<meta property="og:image" content="https://helicesites.com.br/juliana-costa/img/ju-vestido.jpg">
 <meta name="theme-color" content="#fbf4ef">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
@@ -156,6 +156,22 @@ section{padding:104px 0;position:relative}
 .tres{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .tres span{background:var(--blush2);border-radius:999px;padding:8px 16px;font-size:14.5px}
 @media (max-width:860px){.sobre .w{grid-template-columns:1fr;gap:40px}.sobre figure{margin:0 auto;max-width:300px}}
+.mural{position:relative;aspect-ratio:1/1.08;max-width:440px;width:100%}
+.mural img{position:absolute;object-fit:cover;border-radius:28px;box-shadow:0 22px 40px -26px rgba(58,37,48,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.mural img:hover{transform:scale(1.03) rotate(-1deg);z-index:3}
+.mural .m1{left:0;top:0;width:62%;height:72%;border-radius:160px 160px 28px 28px;object-position:center 15%}
+.mural .m2{right:0;top:14%;width:44%;height:46%;object-position:40% 20%}
+.mural .m3{right:6%;bottom:0;width:50%;height:36%;object-position:center 30%}
+.mural .dez{position:absolute;left:4%;bottom:5%;background:var(--salvia);border-radius:22px;padding:14px 18px;font-size:13.5px;line-height:1.2;color:var(--salvia2)}
+.mural .dez b{display:block;font:400 34px/1 var(--t);color:var(--uva)}
+.sobre .cap{grid-template-columns:1fr 1fr;gap:44px;margin-top:70px;align-items:start}
+.form{list-style:none;margin-top:20px;border-left:2px solid var(--fio);display:grid;gap:22px}
+.form li{padding-left:24px;position:relative}
+.form li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--rosa);box-shadow:0 0 0 4px var(--creme)}
+.form b{display:block;font:400 20px/1.25 var(--t)}
+.form span{font-size:14.5px;color:var(--uva2)}
+.sobre .toque{margin:14px 0 14px;font-size:15px}
+@media (max-width:860px){.sobre .cap{grid-template-columns:1fr;gap:40px;margin-top:54px}.mural{margin:0 auto;max-width:340px}}
 /* final */
 .final{text-align:center;padding-bottom:120px}
 .final .cx{background:var(--uva);color:var(--blush2);border-radius:48px;padding:70px 26px;position:relative;overflow:hidden}
@@ -252,15 +268,29 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;ali
 </div></section>
 
 <section class="sobre" id="sobre" style="padding-top:20px"><div class="w">
-  <figure class="rv"><img src="img/juliana-1.jpg" alt="Juliana Costa" loading="lazy"></figure>
+  <div class="mural rv"><img class="m1" src="img/ju-vestido.jpg" alt="Juliana Costa" loading="lazy"><img class="m2" src="img/ju-evento.jpg" alt="Juliana Costa em evento de saúde" loading="lazy"><img class="m3" src="img/ju-selfie.jpg" alt="Juliana Costa sorrindo" loading="lazy"><span class="dez"><b>+10</b>anos na saúde</span></div>
   <div class="rv">
     <span class="rot">Quem está por trás</span>
     <h2 style="margin-top:16px">Juliana <em>Costa</em></h2>
-    <p>Acredito que boa gestão também é uma forma de cuidado. Quando os processos são claros, a equipe trabalha com mais segurança, a cliente é melhor atendida e a clínica cresce sem sustos.</p>
-    <blockquote>Sua autoridade não precisa ser gritada. Precisa ser construída.</blockquote>
-    <div class="tres"><span>Presença que inspira</span><span>Comunicação que direciona</span><span>Liderança que gera resultados</span></div>
+    <p>Enfermeira, com mais de 10 anos na área da saúde e forte atuação em gestão da qualidade hospitalar. Levo para a clínica de estética o mesmo rigor que um hospital acreditado exige: processo claro, equipe treinada e segurança em cada atendimento.</p>
+    <blockquote>Boa gestão também é uma forma de cuidado.</blockquote>
   </div>
-</div></section>
+</div>
+<div class="w cap">
+  <div class="rv"><span class="rot">Formação</span>
+    <ol class="form">
+      <li><b>Pós-graduação em Gestão de Serviços de Enfermagem</b><span>Faculdade Unyleya · 2023</span></li>
+      <li><b>MBA Executivo em Gestão da Qualidade em Saúde e Acreditação Hospitalar</b><span>Faculdade Unyleya · 2022</span></li>
+      <li><b>Graduação em Enfermagem</b><span>PUC Minas · 2012</span></li>
+    </ol>
+  </div>
+  <div class="rv"><span class="rot">Experiência</span>
+    <p class="toque">Toque em um tema para ver como ele chega à sua clínica.</p>
+    <div class="chips" id="exp"></div>
+    <div id="expd"></div>
+  </div>
+</div>
+</section>
 
 <section class="final"><div class="w"><div class="cx rv">
   <span class="rot">Próximo passo</span>
@@ -333,6 +363,12 @@ const MET=[["Diagnóstico","Conheço a clínica, a equipe e os documentos, e map
 $("linha").innerHTML=MET.map((m,i)=>`<button role="tab" aria-selected="false" data-i="${i}"><span>${i+1}</span>${m[0]}</button>`).join("");
 function passo(i){[...$("linha").children].forEach((b,j)=>b.setAttribute("aria-selected",j===i));$("det").innerHTML=`<div class="det"><h3>${MET[i][0]}</h3><p>${MET[i][1]}</p></div>`}
 $("linha").onclick=e=>{const b=e.target.closest("button");if(b)passo(+b.dataset.i)};passo(0);
+
+/* experiência */
+const EXP=[["Acreditação ONA e JCI","Vivência nos padrões mais exigentes de qualidade hospitalar, traduzidos para o tamanho e a rotina de uma clínica."],["Auditorias","Auditorias internas e externas: sei o que um avaliador procura e como se preparar antes."],["Segurança do paciente","Liderança em Núcleo de Segurança do Paciente, com protocolos e registro de incidentes."],["Indicadores","Gestão de indicadores assistenciais e operacionais para decidir com dados."],["Educação continuada","Capacitação de equipes para que o padrão não dependa de uma só pessoa."],["Liderança de equipes","Coordenação de equipes em unidades de internação clínica e cirúrgica."],["Melhoria contínua","Planos de ação com prioridade, responsável e prazo, acompanhados até virar rotina."]];
+$("exp").innerHTML=EXP.map((x,i)=>`<button class="chip" aria-pressed="false" data-i="${i}">${x[0]}</button>`).join("");
+function exp(i){[...$("exp").children].forEach((c,j)=>c.setAttribute("aria-pressed",j===i));$("expd").innerHTML=`<div class="resp">${EXP[i][1]}</div>`}
+$("exp").onclick=e=>{const b=e.target.closest(".chip");if(b)exp(+b.dataset.i)};exp(0);
 
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll(".rv").forEach(el=>io.observe(el));
