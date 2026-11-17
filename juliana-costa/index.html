@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex">
 <meta property="og:title" content="Juliana Costa · Gestão para clínicas de estética">
 <meta property="og:description" content="Sua clínica cuida da beleza. Eu cuido da gestão por trás dela.">
-<meta property="og:image" content="https://helicesites.com.br/juliana-costa/img/ju-vestido.jpg">
+<meta property="og:image" content="https://helicesites.com.br/juliana-costa/img/juliana-1.jpg">
 <meta name="theme-color" content="#fbf4ef">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
@@ -61,7 +61,7 @@ section{padding:104px 0;position:relative}
 .b2{width:38%;aspect-ratio:1;right:-4%;top:2%;background:var(--salvia)}
 .b3{width:22%;aspect-ratio:1;left:0;bottom:6%;background:#f0c9bd}
 @keyframes morf{to{border-radius:44% 56% 42% 58%/56% 44% 56% 44%}}
-.retrato img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.retrato img{position:absolute;inset:7% 6% 7% 9%;width:85%;height:86%;object-fit:cover;object-position:center 20%;border-radius:52% 48% 50% 50%/46% 46% 54% 54%;box-shadow:0 30px 50px -34px rgba(58,37,48,.6)}
 .tagf{position:absolute;background:var(--nuvem);border-radius:999px;padding:10px 16px;font:500 13.5px var(--b);box-shadow:0 14px 30px -16px rgba(58,37,48,.45);display:flex;align-items:center;gap:8px;animation:flut 6s ease-in-out infinite}
 .tagf i{width:8px;height:8px;border-radius:50%;background:var(--salvia2)}
 .tagf.t1{left:-4%;top:16%}.tagf.t2{right:-4%;bottom:20%;animation-delay:-3s}.tagf.t2 i{background:var(--rosa)}
@@ -150,20 +150,14 @@ section{padding:104px 0;position:relative}
 .sobre .w{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
 .sobre figure{position:relative;max-width:380px}
 .sobre figure:before{content:"";position:absolute;inset:-14px 14px 14px -14px;background:var(--salvia);border-radius:200px 200px 34px 34px}
-.sobre img{position:relative;border-radius:200px 200px 34px 34px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.sobre img{position:relative;border-radius:200px 200px 34px 34px;aspect-ratio:4/5;object-fit:cover;object-position:center 12%;width:100%}
+.sobre figure .dez{position:absolute;right:-18px;bottom:26px;background:var(--nuvem);border-radius:22px;padding:14px 18px;font-size:13.5px;line-height:1.2;color:var(--salvia2);box-shadow:0 16px 30px -18px rgba(58,37,48,.5)}
+.sobre figure .dez b{display:block;font:400 34px/1 var(--t);color:var(--uva)}
 .sobre p{color:var(--uva2);margin-top:16px;max-width:560px}
 .sobre blockquote{font:italic 300 26px/1.3 var(--t);color:var(--rosa2);margin-top:26px;max-width:520px}
 .tres{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
 .tres span{background:var(--blush2);border-radius:999px;padding:8px 16px;font-size:14.5px}
 @media (max-width:860px){.sobre .w{grid-template-columns:1fr;gap:40px}.sobre figure{margin:0 auto;max-width:300px}}
-.mural{position:relative;aspect-ratio:1/1.08;max-width:440px;width:100%}
-.mural img{position:absolute;object-fit:cover;border-radius:28px;box-shadow:0 22px 40px -26px rgba(58,37,48,.55);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.mural img:hover{transform:scale(1.03) rotate(-1deg);z-index:3}
-.mural .m1{left:0;top:0;width:62%;height:72%;border-radius:160px 160px 28px 28px;object-position:center 15%}
-.mural .m2{right:0;top:14%;width:44%;height:46%;object-position:40% 20%}
-.mural .m3{right:6%;bottom:0;width:50%;height:36%;object-position:center 30%}
-.mural .dez{position:absolute;left:4%;bottom:5%;background:var(--salvia);border-radius:22px;padding:14px 18px;font-size:13.5px;line-height:1.2;color:var(--salvia2)}
-.mural .dez b{display:block;font:400 34px/1 var(--t);color:var(--uva)}
 .sobre .cap{grid-template-columns:1fr 1fr;gap:44px;margin-top:70px;align-items:start}
 .form{list-style:none;margin-top:20px;border-left:2px solid var(--fio);display:grid;gap:22px}
 .form li{padding-left:24px;position:relative}
@@ -171,8 +165,7 @@ section{padding:104px 0;position:relative}
 .form b{display:block;font:400 20px/1.25 var(--t)}
 .form span{font-size:14.5px;color:var(--uva2)}
 .sobre .toque{margin:14px 0 14px;font-size:15px}
-@media (max-width:860px){.sobre .cap{grid-template-columns:1fr;gap:40px;margin-top:54px}.mural{margin:0 auto;max-width:340px}}
-/* final */
+@media (max-width:860px){.sobre .cap{grid-template-columns:1fr;gap:40px;margin-top:54px}/* final */
 .final{text-align:center;padding-bottom:120px}
 .final .cx{background:var(--uva);color:var(--blush2);border-radius:48px;padding:70px 26px;position:relative;overflow:hidden}
 .final .cx:before,.final .cx:after{content:"";position:absolute;border-radius:50%;background:var(--rosa);opacity:.28;width:300px;height:300px;left:-90px;top:-120px}
@@ -220,7 +213,7 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;ali
   </div>
   <div class="retrato" id="retrato">
     <span class="bolha b1" data-p="10"></span><span class="bolha b2" data-p="26"></span><span class="bolha b3" data-p="-18"></span>
-    <img src="img/juliana-3.webp" alt="Retrato de Juliana Costa" width="800" height="1000">
+    <img class="rosto" src="img/juliana-1.jpg" alt="Retrato de Juliana Costa">
     <span class="tagf t1"><i></i>Clínica regularizada</span>
     <span class="tagf t2"><i></i>Equipe segura</span>
   </div>
@@ -268,7 +261,7 @@ footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;ali
 </div></section>
 
 <section class="sobre" id="sobre" style="padding-top:20px"><div class="w">
-  <div class="mural rv"><img class="m1" src="img/ju-vestido.jpg" alt="Juliana Costa" loading="lazy"><img class="m2" src="img/ju-evento.jpg" alt="Juliana Costa em evento de saúde" loading="lazy"><img class="m3" src="img/ju-selfie.jpg" alt="Juliana Costa sorrindo" loading="lazy"><span class="dez"><b>+10</b>anos na saúde</span></div>
+  <figure class="rv"><img src="img/ju-bege.jpg" alt="Juliana Costa" loading="lazy"><span class="dez"><b>+10</b>anos na saúde</span></figure>
   <div class="rv">
     <span class="rot">Quem está por trás</span>
     <h2 style="margin-top:16px">Juliana <em>Costa</em></h2>
