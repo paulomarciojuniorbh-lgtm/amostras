@@ -3,337 +3,339 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Juliana Costa · Consultoria e gestão em saúde</title>
-<meta name="description" content="Consultoria para clínicas e serviços de saúde: regularização, processos, indicadores, segurança do paciente e liderança de equipes.">
+<title>Juliana Costa · Gestão para clínicas de estética</title>
+<meta name="description" content="Consultoria e serviços de gestão para clínicas de estética: regularização, protocolos, equipe e segurança nos procedimentos.">
 <meta name="robots" content="noindex">
-<meta property="og:title" content="Juliana Costa · Consultoria e gestão em saúde">
-<meta property="og:description" content="Sua clínica cuida de pessoas. Quem cuida da gestão da sua clínica?">
+<meta property="og:title" content="Juliana Costa · Gestão para clínicas de estética">
+<meta property="og:description" content="Sua clínica cuida da beleza. Eu cuido da gestão por trás dela.">
 <meta property="og:image" content="https://helicesites.com.br/juliana-costa/img/juliana-1.jpg">
-<meta name="theme-color" content="#0a2620">
+<meta name="theme-color" content="#fbf4ef">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--noite:#0a2620;--noite2:#0f332b;--marfim:#f4f1e9;--papel:#fbfaf6;--tinta:#14241f;--sua:#5c6b64;--sua2:#9fb0a6;--ouro:#b89657;--ouro2:#d9c08a;--fio:#d8d3c4;--fio2:rgba(217,192,138,.28);--alerta:#8f2a20}
+:root{--creme:#fbf4ef;--nuvem:#fffaf7;--blush:#f4dcd3;--blush2:#f9e9e2;--rosa:#b9665a;--rosa2:#9c5046;--salvia:#dfe9df;--salvia2:#56705f;--uva:#3a2530;--uva2:#6b5560;--fio:#ecd9d0;
+--t:"Fraunces",Georgia,serif;--b:"Figtree",system-ui,sans-serif}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
-body{font-family:Manrope,system-ui,sans-serif;background:var(--marfim);color:var(--tinta);font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
-img{display:block;max-width:100%}
-a{color:inherit;text-decoration:none}
-button,input,select{font:inherit;color:inherit}
-h1,h2,h3,.serif{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;line-height:1.04;letter-spacing:-.012em}
-em{font-style:italic}
-.w{max-width:1240px;margin:0 auto;padding:0 32px}
-.rot{font-size:11.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:600;color:var(--ouro);display:flex;align-items:center;gap:14px}
-.rot:before{content:"";width:34px;height:1px;background:var(--ouro)}
-.amostra{background:#061a16;color:#8fa298;text-align:center;font-size:12px;letter-spacing:.06em;padding:7px 12px}
-/* navegação */
-.topo{position:sticky;top:0;z-index:40;background:rgba(244,241,233,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--fio)}
-.topo .w{display:flex;align-items:center;gap:28px;height:78px}
-.logo{display:flex;align-items:center;gap:14px}
-.logo img{width:46px;height:46px;mix-blend-mode:multiply}
-.logo b{font:500 23px/1 "Cormorant Garamond",serif;letter-spacing:.01em;display:block}
-.logo small{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--sua);font-weight:600;display:block;margin-top:5px}
-.menu{margin-left:auto;display:flex;gap:34px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
-.menu a{color:var(--sua);padding:6px 0;border-bottom:1px solid transparent;transition:color .2s,border-color .2s}
-.menu a:hover{color:var(--tinta);border-color:var(--ouro)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:var(--noite);color:#f4f1e9;border:1px solid var(--noite);padding:17px 30px;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.btn:after{content:"→";font-size:15px;letter-spacing:0;transition:transform .2s}
-.btn:hover:after{transform:translateX(4px)}
-.btn:hover{background:var(--noite2)}
-.btn.o{background:var(--ouro);border-color:var(--ouro);color:#12201b}.btn.o:hover{background:var(--ouro2);border-color:var(--ouro2)}
-.btn.f{background:transparent;color:#f4f1e9;border-color:rgba(244,241,233,.35)}.btn.f:hover{border-color:var(--ouro2);color:var(--ouro2)}
-.btn.pq{padding:13px 22px;font-size:11.5px}
-/* abertura */
-.hero{background:var(--noite);color:#f4f1e9;position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(900px 600px at 78% 30%,rgba(184,150,87,.13),transparent 65%)}
-.hero .w{position:relative;display:grid;grid-template-columns:1.18fr .82fr;gap:72px;align-items:center;padding-top:96px;padding-bottom:0}
-.hero h1{font-size:clamp(44px,6.6vw,92px);font-weight:400;margin:30px 0 30px;color:#fbfaf6}
-.hero h1 em{color:var(--ouro2)}
-.hero p.lead{font-size:19px;line-height:1.75;color:#b9c7bd;max-width:560px}
-.hero .ac{display:flex;gap:14px;flex-wrap:wrap;margin-top:42px}
-.retrato{position:relative;align-self:end;margin-bottom:-1px}
-.retrato:before{content:"";position:absolute;left:-18px;top:-18px;right:18px;bottom:60px;border:1px solid var(--fio2)}
-.retrato img{position:relative;width:100%;aspect-ratio:5/6.6;object-fit:cover;object-position:center 4%;filter:grayscale(.3) contrast(1.05)}
-.retrato figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 26px 24px;background:linear-gradient(transparent,rgba(6,26,22,.92));font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:#cfd8cf;font-weight:600}
-.retrato figcaption b{display:block;font:500 28px/1.1 "Cormorant Garamond",serif;letter-spacing:.01em;text-transform:none;color:#fff;margin-bottom:6px}
-.pilares{position:relative;border-top:1px solid var(--fio2);margin-top:84px}
-.pilares .w{display:grid;grid-template-columns:repeat(3,1fr);padding-top:0;padding-bottom:0;gap:0;align-items:stretch}
-.pilares .w>div{padding:30px 34px 34px 0;border-right:1px solid var(--fio2);font-size:15px;color:var(--sua2);line-height:1.6}
-.pilares .w>div+div{padding-left:34px}.pilares .w>div:last-child{border-right:0}
-.pilares b{display:block;font:500 25px/1.1 "Cormorant Garamond",serif;color:#fbfaf6;margin-bottom:8px}
-section{padding:128px 0}
-h2{font-size:clamp(36px,4.8vw,64px);margin:26px 0 22px}
-h2 em{color:var(--ouro)}
-.sub{color:var(--sua);font-size:18.5px;line-height:1.75;max-width:620px}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{font:400 17px/1.65 var(--b);color:var(--uva);background:var(--creme);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+.w{max-width:1140px;margin:0 auto;padding:0 max(22px,env(safe-area-inset-left))}
+h1,h2,h3{font-family:var(--t);font-weight:400;font-variation-settings:"SOFT" 100;letter-spacing:-.015em;text-wrap:balance}
+h1{font-size:clamp(40px,6vw,74px);line-height:1.04}
+h2{font-size:clamp(32px,4.2vw,52px);line-height:1.08}
+h1 em,h2 em{font-style:italic;font-weight:300;color:var(--rosa)}
+.rot{display:inline-flex;align-items:center;gap:10px;font:600 12px var(--b);letter-spacing:.16em;text-transform:uppercase;color:var(--salvia2)}
+.rot:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rosa)}
+.sub{color:var(--uva2);max-width:560px;margin-top:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:16px 28px;background:var(--uva);color:var(--nuvem);font:600 15px var(--b);text-decoration:none;transition:transform .25s,background .25s,box-shadow .25s}
+.btn:hover{background:var(--rosa2);transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(156,80,70,.7)}
+.btn.claro{background:var(--nuvem);color:var(--uva);box-shadow:inset 0 0 0 1.5px var(--fio)}
+.btn.claro:hover{background:var(--blush2);box-shadow:inset 0 0 0 1.5px var(--rosa)}
+:focus-visible{outline:2.5px solid var(--rosa);outline-offset:3px}
+section{padding:104px 0;position:relative}
+.amostra{background:var(--uva);color:var(--blush);text-align:center;font-size:12.5px;padding:7px 12px;letter-spacing:.04em}
+/* topo */
+.topo{position:sticky;top:0;z-index:30;background:rgba(251,244,239,.86);backdrop-filter:blur(12px)}
+.topo .w{display:flex;align-items:center;justify-content:space-between;height:78px;gap:18px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo svg{width:46px;height:46px;flex:none}
+.logo b{display:block;font:400 23px/1 var(--t);font-variation-settings:"SOFT" 100;letter-spacing:-.01em}
+.logo small{display:block;font:600 9.5px var(--b);letter-spacing:.22em;text-transform:uppercase;color:var(--salvia2);margin-top:5px}
+.topo nav{display:flex;gap:28px;font-size:15px}
+.topo nav a{text-decoration:none;color:var(--uva2)}
+.topo nav a:hover{color:var(--rosa2)}
+.topo .btn{padding:12px 20px;font-size:14px}
+@media (max-width:900px){.topo nav{display:none}}
+/* hero */
+.hero{padding:64px 0 90px}
+.hero .w{display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}
+.hero h1{margin:20px 0 0}
+.hero .ac{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+.retrato{position:relative;aspect-ratio:4/5;max-width:440px;margin:0 auto;width:100%}
+.bolha{position:absolute;border-radius:50%;filter:blur(2px);transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.b1{inset:4% 2% 6% 6%;background:var(--blush);border-radius:58% 42% 55% 45%/50% 56% 44% 50%;animation:morf 14s ease-in-out infinite alternate}
+.b2{width:38%;aspect-ratio:1;right:-4%;top:2%;background:var(--salvia)}
+.b3{width:22%;aspect-ratio:1;left:0;bottom:6%;background:#f0c9bd}
+@keyframes morf{to{border-radius:44% 56% 42% 58%/56% 44% 56% 44%}}
+.retrato img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.tagf{position:absolute;background:var(--nuvem);border-radius:999px;padding:10px 16px;font:500 13.5px var(--b);box-shadow:0 14px 30px -16px rgba(58,37,48,.45);display:flex;align-items:center;gap:8px;animation:flut 6s ease-in-out infinite}
+.tagf i{width:8px;height:8px;border-radius:50%;background:var(--salvia2)}
+.tagf.t1{left:-4%;top:16%}.tagf.t2{right:-4%;bottom:20%;animation-delay:-3s}.tagf.t2 i{background:var(--rosa)}
+@keyframes flut{50%{transform:translateY(-9px)}}
+@media (max-width:860px){.hero{padding:36px 0 70px}.hero .w{grid-template-columns:1fr;gap:34px}.retrato{max-width:330px;order:-1}.tagf.t1{left:-2%}.tagf.t2{right:-2%}}
+/* seletor */
+.sel{margin-top:40px;background:var(--nuvem);border-radius:26px;padding:22px 22px 24px;box-shadow:0 20px 44px -30px rgba(58,37,48,.4)}
+.sel p.q{font:500 15px var(--b);color:var(--uva2);margin-bottom:12px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--fio);background:none;border-radius:999px;padding:9px 16px;font-size:14.5px;transition:all .2s}
+.chip:hover{border-color:var(--rosa)}
+.chip[aria-pressed=true]{background:var(--rosa);border-color:var(--rosa);color:#fff}
+.resp{margin-top:16px;padding-top:16px;border-top:1px dashed var(--fio);font-size:15.5px;animation:sobe .45s both}
+.resp b{font:500 19px var(--t);display:block;margin-bottom:4px}
+.resp a{color:var(--rosa2);font-weight:600}
+@keyframes sobe{from{opacity:0;transform:translateY(8px)}}
 /* risco */
-.risco .cab{display:grid;grid-template-columns:1.15fr .85fr;gap:72px;align-items:end}
-.risco h2{font-size:clamp(46px,7.4vw,112px);font-weight:400;margin-bottom:0;line-height:.98}
-.risco h2 em{color:var(--alerta)}
-.nums{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--tinta);margin-top:76px}
-.nums div{padding:38px 40px 40px 0;border-bottom:1px solid var(--fio)}
-.nums div+div{padding-left:40px;border-left:1px solid var(--fio)}
-.nums b{font:400 clamp(60px,9vw,128px)/.95 "Cormorant Garamond",serif;display:block;letter-spacing:-.03em}
-.nums p{font-size:17px;color:var(--sua);max-width:380px;margin-top:14px}
-.fonte{font-size:12.5px;color:var(--sua);letter-spacing:.04em;margin-top:16px}
-.jogo{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:84px}
-.jogo h3{font-size:30px;margin-bottom:8px}
-.jogo ul{list-style:none}
-.jogo li{padding:17px 0;border-bottom:1px solid var(--fio);font-size:16.5px;display:flex;gap:18px}
-.jogo li:before{content:counter(l,decimal-leading-zero);counter-increment:l;font:500 14px "Manrope";color:var(--ouro);letter-spacing:.1em;padding-top:3px}
-.jogo ul{counter-reset:l}
-.fecho{font:italic 400 clamp(26px,3.4vw,42px)/1.25 "Cormorant Garamond",serif;max-width:900px;margin-top:84px;padding-left:34px;border-left:1px solid var(--ouro)}
-/* habilitação */
-.hab{background:var(--papel);border-top:1px solid var(--fio);border-bottom:1px solid var(--fio)}
-.hab .cab{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:end}
-.req{display:grid;grid-template-columns:1fr 1fr;gap:0 72px;margin-top:70px;border-top:1px solid var(--tinta)}
-.req article{display:grid;grid-template-columns:64px 1fr;gap:0 10px;padding:30px 0;border-bottom:1px solid var(--fio)}
-.req i{font:400 30px/1 "Cormorant Garamond",serif;font-style:normal;color:var(--ouro)}
-.req h3{font-size:28px;margin-bottom:8px}
-.req p{font-size:15.5px;color:var(--sua);grid-column:2;line-height:1.65}
-.nota{margin-top:34px;font-size:14.5px;color:var(--sua);max-width:720px}
+.risco{background:var(--nuvem);border-radius:48px 48px 0 0}
+.risco .cab{max-width:700px}
+.cartas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
+.carta{position:relative;min-height:250px;border:0;background:none;text-align:left;perspective:1200px}
+.carta .f{position:absolute;inset:0;border-radius:28px;padding:28px 26px;backface-visibility:hidden;transition:transform .7s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column}
+.carta .fr{background:var(--blush2)}
+.carta:nth-child(2) .fr{background:var(--salvia)}
+.carta:nth-child(3) .fr{background:#f6e3c9}
+.carta .fr small{font:600 11.5px var(--b);letter-spacing:.16em;text-transform:uppercase;color:var(--uva2)}
+.carta .fr q{font:italic 300 25px/1.2 var(--t);margin-top:14px;quotes:"“" "”"}
+.carta .fr span{margin-top:auto;font:600 13px var(--b);color:var(--rosa2);display:flex;align-items:center;gap:8px}
+.carta .vs{background:var(--uva);color:var(--blush2);transform:rotateY(180deg);font-size:15.5px;justify-content:center}
+.carta .vs b{font:400 22px/1.2 var(--t);color:#fff;margin-bottom:10px}
+.carta.vira .fr{transform:rotateY(-180deg)}.carta.vira .vs{transform:none}
+.fatal{margin-top:54px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.fatal>div{border-radius:28px;padding:30px 28px;background:var(--creme)}
+.fatal h3{font-size:24px;margin-bottom:12px}
+.fatal ul{list-style:none;display:grid;gap:9px;color:var(--uva2);font-size:16px}
+.fatal li{padding-left:22px;position:relative}
+.fatal li:before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--rosa);opacity:.75}
+.fonte{margin-top:22px;font-size:13.5px;color:var(--uva2)}
+.fonte b{font:400 22px var(--t);color:var(--rosa2);margin-right:4px}
+@media (max-width:860px){.cartas,.fatal{grid-template-columns:1fr}.carta{min-height:210px}}
+/* checklist */
+.hab .w{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:start}
+.painel{position:sticky;top:104px}
+.anel{position:relative;width:190px;height:190px;margin:34px 0 20px}
+.anel svg{width:100%;height:100%;transform:rotate(-90deg)}
+.anel circle{fill:none;stroke-width:12;stroke-linecap:round}
+.anel .tr{stroke:var(--blush)}.anel .pg{stroke:var(--salvia2);stroke-dasharray:502.65;stroke-dashoffset:502.65;transition:stroke-dashoffset .6s cubic-bezier(.2,.7,.2,1),stroke .4s}
+.anel div{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.anel b{font:400 50px/1 var(--t)}.anel span{font-size:13px;color:var(--uva2)}
+.leit{font:400 21px/1.3 var(--t);min-height:56px;max-width:330px}
+.painel .btn{margin-top:20px}
+.itens{display:grid;gap:10px}
+.item{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;text-align:left;width:100%;border:1.5px solid var(--fio);background:var(--nuvem);border-radius:20px;padding:18px 20px;transition:all .25s}
+.item:hover{border-color:var(--rosa);transform:translateX(4px)}
+.item .cx{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--rosa);display:grid;place-items:center;color:transparent;font-size:15px;transition:all .25s;margin-top:1px}
+.item b{display:block;font:500 17px var(--b)}
+.item small{display:block;font-size:14.5px;color:var(--uva2);margin-top:2px}
+.item[aria-pressed=true]{background:var(--salvia);border-color:var(--salvia)}
+.item[aria-pressed=true] .cx{background:var(--salvia2);border-color:var(--salvia2);color:#fff}
+.nota{font-size:13.5px;color:var(--uva2);margin-top:16px}
+@media (max-width:900px){.hab .w{grid-template-columns:1fr;gap:30px}.painel{position:static}.anel{width:150px;height:150px;margin:24px 0 14px}.leit{min-height:0}}
 /* serviços */
-.serv{background:var(--noite);color:#f4f1e9}
-.serv .sub{color:#b9c7bd}.serv h2{color:#fbfaf6}.serv h2 em{color:var(--ouro2)}
-.serv .cab{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:end}
-.lista{margin-top:70px;border-top:1px solid var(--fio2)}
-.lista div{display:grid;grid-template-columns:90px 1fr 1.1fr;gap:24px;align-items:baseline;padding:30px 0;border-bottom:1px solid var(--fio2);transition:padding .25s,background .25s}
-.lista div:hover{padding-left:16px;background:rgba(255,255,255,.025)}
-.lista i{font:400 15px "Manrope";font-style:normal;color:var(--ouro2);letter-spacing:.16em}
-.lista b{font:500 clamp(24px,2.6vw,34px)/1.1 "Cormorant Garamond",serif;color:#fbfaf6}
-.lista span{font-size:15.5px;color:var(--sua2);line-height:1.65}
+.serv{background:var(--blush2);border-radius:48px}
+.abas{display:inline-flex;background:var(--nuvem);border-radius:999px;padding:5px;margin:30px 0 30px;position:relative}
+.abas button{border:0;background:none;border-radius:999px;padding:11px 22px;font:600 14.5px var(--b);color:var(--uva2);transition:all .25s}
+.abas button[aria-selected=true]{background:var(--uva);color:#fff}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.cs{background:var(--nuvem);border-radius:24px;padding:26px 24px;transition:transform .3s,box-shadow .3s;animation:sobe .5s both}
+.cs:hover{transform:translateY(-5px);box-shadow:0 22px 40px -28px rgba(58,37,48,.5)}
+.cs i{display:grid;place-items:center;width:42px;height:42px;border-radius:14px;background:var(--salvia);font:italic 400 19px var(--t);color:var(--salvia2);margin-bottom:16px}
+.cs h3{font-size:22px;line-height:1.15;margin-bottom:8px}
+.cs p{font-size:15.5px;color:var(--uva2)}
+.serv .fim{margin-top:30px}
+@media (max-width:900px){.grade{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.grade{grid-template-columns:1fr}.abas button{padding:10px 15px;font-size:13.5px}.serv,.risco{border-radius:32px}.risco{border-radius:32px 32px 0 0}}
 /* método */
-.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:70px;border-top:1px solid var(--tinta)}
-.passos div{padding:34px 30px 0 0;border-right:1px solid var(--fio)}
-.passos div+div{padding-left:30px}.passos div:last-child{border-right:0}
-.passos i{font:400 54px/1 "Cormorant Garamond",serif;font-style:normal;color:var(--ouro);display:block;margin-bottom:22px}
-.passos b{font:500 27px/1.1 "Cormorant Garamond",serif;display:block;margin-bottom:10px}
-.passos span{font-size:15.5px;color:var(--sua);line-height:1.65;display:block}
+.met .linha{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:40px}
+.met .linha button{border:0;background:none;text-align:left;padding:16px 4px 0;border-top:3px solid var(--fio);transition:border-color .3s;font:500 16px var(--b);color:var(--uva2)}
+.met .linha button span{display:block;font:italic 300 30px/1 var(--t);color:var(--rosa);margin-bottom:6px}
+.met .linha button[aria-selected=true]{border-color:var(--rosa);color:var(--uva)}
+.met .det{margin-top:26px;background:var(--nuvem);border-radius:28px;padding:30px 30px;max-width:760px;animation:sobe .45s both}
+.met .det h3{font-size:27px;margin-bottom:8px}
+.met .det p{color:var(--uva2)}
+@media (max-width:600px){.met .linha button{font-size:13.5px}.met .linha button span{font-size:24px}}
 /* sobre */
-.sobre{background:var(--papel);border-top:1px solid var(--fio)}
-.sobre .w{display:grid;grid-template-columns:.78fr 1.22fr;gap:96px;align-items:center}
-.sobre figure{position:relative}
-.sobre figure:before{content:"";position:absolute;left:18px;top:18px;right:-18px;bottom:-18px;border:1px solid var(--ouro)}
-.sobre img{position:relative;width:100%;aspect-ratio:5/6.4;object-fit:cover;object-position:center 4%;filter:grayscale(.3) contrast(1.05)}
-.sobre p{font-size:18.5px;line-height:1.8;color:#33443d;margin-bottom:18px;max-width:600px}
-.sobre p.cita{font:italic 400 clamp(27px,3vw,38px)/1.25 "Cormorant Garamond",serif;margin:40px 0 0;max-width:600px;color:var(--tinta)}
-.sobre p.rot,.fim p.rot{font-size:11.5px;line-height:1.7;color:var(--ouro);margin:0;max-width:none}
-.fim p.rot{margin:0 auto}
-.sobre p.cita:before{content:"";display:block;width:60px;height:1px;background:var(--ouro);margin-bottom:24px}
-.pil{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;border-top:1px solid var(--fio)}
-.pil div{padding:20px 20px 0 0;font-size:14.5px;color:var(--sua)}
-.pil b{display:block;font:500 23px "Cormorant Garamond",serif;color:var(--tinta)}
-.marca{width:120px;mix-blend-mode:multiply;margin-bottom:14px}
-/* avaliação */
-.diag .w{display:grid;grid-template-columns:.85fr 1.15fr;gap:96px;align-items:start}
-.cx{background:var(--papel);border:1px solid var(--fio);padding:44px;box-shadow:0 40px 80px -60px rgba(10,38,32,.55)}
-.prog{display:flex;justify-content:space-between;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sua);font-weight:600;margin-bottom:14px}
-.barra{height:1px;background:var(--fio);margin-bottom:38px;position:relative}
-.barra i{position:absolute;left:0;top:-1px;height:3px;background:var(--ouro);transition:width .35s}
-.perg{font:500 clamp(27px,3.1vw,36px)/1.14 "Cormorant Garamond",serif;min-height:124px}
-.dica{font-size:15.5px;color:var(--sua);margin-top:6px;min-height:54px}
-.resp{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:26px;border:1px solid var(--tinta)}
-.resp button{background:transparent;border:0;border-right:1px solid var(--tinta);padding:19px 6px;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .18s,color .18s}
-.resp button:last-child{border-right:0}
-.resp button:hover{background:var(--noite);color:#f4f1e9}
-.volta{background:none;border:0;color:var(--sua);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;margin-top:22px;cursor:pointer;border-bottom:1px solid var(--fio);padding-bottom:3px}
-.placar{display:flex;align-items:flex-end;gap:26px;padding-bottom:26px;border-bottom:1px solid var(--tinta);margin-bottom:22px}
-.placar b{font:400 96px/.82 "Cormorant Garamond",serif;letter-spacing:-.03em}
-.placar b small{font-size:34px;color:var(--sua)}
-.nivel{font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;font-weight:700}
-.nivel.a{color:var(--alerta)}.nivel.m{color:#8a6410}.nivel.b{color:#2c6a50}
-.abertos{list-style:none;margin:10px 0 12px}
-.abertos li{padding:11px 0;border-bottom:1px solid var(--fio);font-size:15.5px;display:flex;justify-content:space-between;gap:14px}
-.abertos li span{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--alerta);white-space:nowrap;padding-top:4px}
-.abertos li.d span{color:#8a6410}
-.cx label{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sua);margin:20px 0 6px}
-.cx input,.cx select{width:100%;background:transparent;border:0;border-bottom:1px solid var(--tinta);border-radius:0;padding:10px 0;min-height:44px;font-size:17px}
-.cx input:focus,.cx select:focus{outline:none;border-color:var(--ouro)}
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:26px}.duo>div{min-width:0}
-.erro{color:var(--alerta);font-size:14.5px;min-height:22px;margin-top:12px}
-.mini{font-size:13px;color:var(--sua);margin-top:16px;line-height:1.6}
-.fim{background:var(--noite);color:#f4f1e9;text-align:center;position:relative;overflow:hidden}
-.fim:before{content:"";position:absolute;inset:0;background:radial-gradient(700px 400px at 50% 110%,rgba(184,150,87,.18),transparent 70%)}
-.fim .w{position:relative}
-.fim .rot{justify-content:center}.fim .rot:after{content:"";width:34px;height:1px;background:var(--ouro)}
-.fim h2{color:#fbfaf6;font-size:clamp(40px,6vw,84px);font-weight:400;max-width:980px;margin:30px auto 24px}.fim h2 em{color:var(--ouro2)}
-.fim p{color:#b9c7bd;max-width:520px;margin:0 auto 42px;font-size:18.5px}
-footer{background:#061a16;color:#8fa298;padding:44px 0;font-size:13px;letter-spacing:.04em}
-footer .w{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
-footer b{color:#fbfaf6;font:500 24px "Cormorant Garamond",serif;letter-spacing:.01em}
-.sobe{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease}
-.sobe.ok{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.sobe{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
-@media (max-width:1020px){.w{padding:0 24px}.menu{display:none}.topo .btn{margin-left:auto}.hero .w,.risco .cab,.hab .cab,.serv .cab,.sobre .w,.diag .w{grid-template-columns:1fr;gap:40px}.hero .w{padding-top:60px}.retrato{max-width:420px}.pilares{margin-top:0}.req{grid-template-columns:1fr}.lista div{grid-template-columns:54px 1fr;gap:6px 14px}.lista span{grid-column:2}.passos{grid-template-columns:1fr 1fr}.passos div{padding:30px 22px 30px 0;border-bottom:1px solid var(--fio)}.passos div:nth-child(2){border-right:0}.passos div:nth-child(3){padding-left:0}.jogo{gap:44px}section{padding:84px 0}.sobre figure{max-width:400px}.nums,.req,.lista,.passos{margin-top:48px}.jogo,.fecho{margin-top:56px}}
-@media (max-width:640px){body{font-size:16px}.w{padding:0 20px}.logo small{display:none}.logo b{font-size:20px}.topo .w{height:68px;gap:12px}.topo .btn{padding:11px 14px;font-size:10.5px;letter-spacing:.14em}.topo .btn:after{display:none}.hero .ac .btn{width:100%}.pilares .w{grid-template-columns:1fr}.pilares .w>div,.pilares .w>div+div{padding:22px 0;border-right:0;border-bottom:1px solid var(--fio2)}.pilares .w>div:last-child{border-bottom:0}.nums{grid-template-columns:1fr}.nums div,.nums div+div{padding:28px 0;border-left:0}.jogo{grid-template-columns:1fr}.fecho{padding-left:22px}.req article{grid-template-columns:48px 1fr}.passos{grid-template-columns:1fr}.passos div,.passos div+div{padding:26px 0;border-right:0}.pil{grid-template-columns:1fr}.cx{padding:26px 22px}.perg{min-height:0}.dica{min-height:0}.resp button{letter-spacing:.1em;font-size:12px}.duo{grid-template-columns:1fr;gap:0}.placar b{font-size:76px}.sobre figure:before{right:-10px;bottom:-10px;left:10px;top:10px}section{padding:68px 0}}
+.sobre .w{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:center}
+.sobre figure{position:relative;max-width:380px}
+.sobre figure:before{content:"";position:absolute;inset:-14px 14px 14px -14px;background:var(--salvia);border-radius:200px 200px 34px 34px}
+.sobre img{position:relative;border-radius:200px 200px 34px 34px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.sobre p{color:var(--uva2);margin-top:16px;max-width:560px}
+.sobre blockquote{font:italic 300 26px/1.3 var(--t);color:var(--rosa2);margin-top:26px;max-width:520px}
+.tres{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.tres span{background:var(--blush2);border-radius:999px;padding:8px 16px;font-size:14.5px}
+@media (max-width:860px){.sobre .w{grid-template-columns:1fr;gap:40px}.sobre figure{margin:0 auto;max-width:300px}}
+/* final */
+.final{text-align:center;padding-bottom:120px}
+.final .cx{background:var(--uva);color:var(--blush2);border-radius:48px;padding:70px 26px;position:relative;overflow:hidden}
+.final .cx:before,.final .cx:after{content:"";position:absolute;border-radius:50%;background:var(--rosa);opacity:.28;width:300px;height:300px;left:-90px;top:-120px}
+.final .cx:after{background:var(--salvia2);left:auto;top:auto;right:-80px;bottom:-140px;opacity:.5}
+.final h2{color:#fff;max-width:720px;margin:14px auto 0;position:relative}
+.final h2 em{color:#f0bfb3}
+.final .rot{color:var(--blush);position:relative}
+.final p{max-width:480px;margin:16px auto 28px;position:relative}
+.final .btn{background:var(--nuvem);color:var(--uva);position:relative}
+.final .btn:hover{background:var(--blush)}
+footer{padding:0 0 40px;font-size:14px;color:var(--uva2)}
+footer .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.zapf{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));z-index:40;width:56px;height:56px;border-radius:50%;background:var(--salvia2);display:grid;place-items:center;box-shadow:0 14px 28px -12px rgba(58,37,48,.6);transition:transform .25s}
+.zapf:hover{transform:scale(1.08)}
+.zapf svg{width:26px;height:26px;fill:#fff}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .9s,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+@media (max-width:640px){section{padding:72px 0}.logo small{display:none}.topo .w{height:66px}.topo .btn{padding:10px 16px;font-size:13px}.final .cx{border-radius:32px;padding:54px 22px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
 <div class="amostra">Amostra criada pela Hélice para Juliana Costa</div>
 <header class="topo"><div class="w">
- <a class="logo" href="#"><img src="img/logo.jpg" alt="Logo JC" width="46" height="46"><span><b>Juliana Costa</b><small>Gestão em saúde</small></span></a>
- <nav class="menu"><a href="#risco">O risco</a><a href="#habilitacao">Habilitação</a><a href="#servicos">Atuação</a><a href="#sobre">Sobre</a></nav>
- <a class="btn pq" href="#diagnostico">Avaliação preliminar</a>
+  <a class="logo" href="#inicio" aria-label="Juliana Costa, gestão para clínicas de estética">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 2.5c12.5 0 21.5 8.3 21.5 20.8 0 13-9.4 22.2-22 22.2C11.2 45.5 2.5 36.8 2.5 24.5 2.5 12 11.5 2.5 24 2.5z" fill="#f4dcd3"/><circle cx="35.5" cy="12.5" r="3.2" fill="#56705f"/><text x="22.5" y="32.5" text-anchor="middle" font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="400" font-size="22" fill="#3a2530" letter-spacing="-1">jc</text></svg>
+    <span><b>Juliana Costa</b><small>Gestão para clínicas de estética</small></span>
+  </a>
+  <nav aria-label="Seções"><a href="#risco">O risco</a><a href="#habilitacao">Habilitação</a><a href="#servicos">Serviços</a><a href="#metodo">Método</a><a href="#sobre">Sobre</a></nav>
+  <a class="btn" data-zap="Olá, Juliana! Vi o seu site e quero conversar sobre a minha clínica de estética.">Conversar</a>
 </div></header>
 
-<section class="hero" style="padding:0">
- <div class="w">
+<main id="inicio">
+<section class="hero"><div class="w">
   <div>
-   <p class="rot">Consultoria em gestão de saúde</p>
-   <h1>Sua clínica cuida de pessoas. Quem cuida da <em>gestão</em> da sua clínica?</h1>
-   <p class="lead">Ajudo clínicas, serviços e lideranças da saúde a se regularizar, organizar processos e trabalhar com segurança, para que o cuidado cresça sem colocar o paciente nem o negócio em risco.</p>
-   <div class="ac"><a class="btn o" href="#diagnostico">Avaliar a minha clínica</a><a class="btn f" href="#servicos">Áreas de atuação</a></div>
+    <span class="rot">Consultoria e gestão para clínicas de estética</span>
+    <h1>Sua clínica cuida da beleza. Eu cuido da <em>gestão</em> por trás dela.</h1>
+    <p class="sub">Regularização, protocolos e equipe organizados, para a sua clínica atender com segurança e crescer com tranquilidade.</p>
+    <div class="ac"><a class="btn" href="#habilitacao">Avaliar a minha clínica</a><a class="btn claro" href="#servicos">Ver serviços</a></div>
+    <div class="sel">
+      <p class="q">Para começar: o que a sua clínica mais faz?</p>
+      <div class="chips" id="chips"></div>
+      <div id="resp"></div>
+    </div>
   </div>
-  <figure class="retrato"><img src="img/juliana-1.jpg" alt="Juliana Costa, consultora em gestão de saúde" width="535" height="915"><figcaption><b>Juliana Costa</b>Gestão com propósito</figcaption></figure>
- </div>
- <div class="pilares"><div class="w">
-  <div><b>Regularização</b>Licenças, cadastros e exigências sanitárias em dia.</div>
-  <div><b>Processos</b>Rotina assistencial padronizada, segura e mensurável.</div>
-  <div><b>Liderança</b>Equipes multiprofissionais alinhadas e engajadas.</div>
- </div></div>
-</section>
+  <div class="retrato" id="retrato">
+    <span class="bolha b1" data-p="10"></span><span class="bolha b2" data-p="26"></span><span class="bolha b3" data-p="-18"></span>
+    <img src="img/juliana-3.webp" alt="Retrato de Juliana Costa" width="800" height="1000">
+    <span class="tagf t1"><i></i>Clínica regularizada</span>
+    <span class="tagf t2"><i></i>Equipe segura</span>
+  </div>
+</div></section>
 
 <section class="risco" id="risco"><div class="w">
- <div class="cab sobe">
-  <div><p class="rot">Por que isso não pode esperar</p><h2 style="margin-top:30px">Na saúde, um erro pode ser <em>fatal.</em></h2></div>
-  <p class="sub">Fatal para o paciente, quando uma falha de processo vira dano de verdade. E fatal para a clínica, quando uma interdição, um processo ou uma crise de imagem encerram anos de trabalho.</p>
- </div>
- <div class="nums sobe">
-  <div><b>1 em 10</b><p>pacientes sofre algum tipo de dano durante a atenção à saúde, no mundo.</p></div>
-  <div><b>Metade</b><p>desses danos, aproximadamente, poderia ser evitada com processos mais seguros.</p></div>
- </div>
- <p class="fonte">Fonte: Organização Pan-Americana da Saúde (OPAS/OMS), Dia Mundial da Segurança do Paciente.</p>
- <div class="jogo sobe">
-  <div><h3>O que está em jogo para o paciente</h3><ul><li>Medicação errada, na dose ou no paciente errado</li><li>Falha na identificação e troca de exames ou laudos</li><li>Infecção por quebra de protocolo de higiene e esterilização</li><li>Quedas e intercorrências sem resposta preparada</li><li>Informação perdida na passagem entre profissionais</li></ul></div>
-  <div><h3>O que está em jogo para a clínica</h3><ul><li>Autuação e multa da Vigilância Sanitária</li><li>Interdição parcial ou total do serviço</li><li>Processos e pedidos de indenização</li><li>Descredenciamento de convênios</li><li>Uma reputação que levou anos para ser construída</li></ul></div>
- </div>
- <p class="fecho sobe">Quase sempre o erro começa antes do atendimento: em um processo que ninguém escreveu, treinou ou conferiu.</p>
+  <div class="cab rv"><span class="rot">Por que isso não pode esperar</span><h2 style="margin-top:16px">Na estética, um erro pode ser <em>fatal.</em></h2><p class="sub">Para a cliente, quando uma falha vira dano de verdade. E para a clínica, quando uma interdição ou um processo encerram anos de trabalho. Toque nos cartões.</p></div>
+  <div class="cartas rv" id="cartas">
+    <button class="carta" aria-pressed="false"><span class="f fr"><small>O que se pensa</small><q>Aqui nunca aconteceu nada.</q><span>Toque para virar ↻</span></span><span class="f vs"><b>Até o dia em que acontece.</b>Sem protocolo de intercorrência escrito e treinado, a equipe improvisa justamente na hora em que cada minuto conta.</span></button>
+    <button class="carta" aria-pressed="false"><span class="f fr"><small>O que se pensa</small><q>Tenho alvará, então estou regular.</q><span>Toque para virar ↻</span></span><span class="f vs"><b>Abrir as portas não é estar habilitada.</b>Licença sanitária, responsável técnico, resíduos e registros precisam existir e estar em dia.</span></button>
+    <button class="carta" aria-pressed="false"><span class="f fr"><small>O que se pensa</small><q>Minha equipe já sabe fazer.</q><span>Toque para virar ↻</span></span><span class="f vs"><b>Saber não é o mesmo que padronizar.</b>Quando cada profissional faz de um jeito, o resultado e o risco mudam a cada atendimento.</span></button>
+  </div>
+  <div class="fatal rv">
+    <div><h3>O que está em jogo para a cliente</h3><ul><li>Queimadura por equipamento mal ajustado</li><li>Infecção por falha de higiene ou esterilização</li><li>Reação a produto sem procedência ou vencido</li><li>Intercorrência sem resposta preparada</li></ul></div>
+    <div><h3>O que está em jogo para a clínica</h3><ul><li>Autuação e multa da Vigilância Sanitária</li><li>Interdição parcial ou total</li><li>Processos e pedidos de indenização</li><li>Uma reputação que levou anos para ser construída</li></ul></div>
+  </div>
+  <p class="fonte rv"><b>1 em 10</b> pacientes sofre algum dano durante a atenção à saúde no mundo, e cerca de metade poderia ser evitada. Fonte: OPAS/OMS, Dia Mundial da Segurança do Paciente.</p>
 </div></section>
 
 <section class="hab" id="habilitacao"><div class="w">
- <div class="cab sobe">
-  <div><p class="rot">Habilitação</p><h2>Sua clínica está <em>habilitada</em> para funcionar?</h2></div>
-  <p class="sub">Abrir as portas não é o mesmo que estar regular. Um serviço de saúde precisa cumprir uma série de exigências, e manter cada uma delas em dia.</p>
- </div>
- <div class="req sobe">
-  <article><i>01</i><h3>Licença sanitária</h3><p>Emitida pela Vigilância Sanitária e renovada no prazo. Sem ela, o serviço fica sujeito a autuação e interdição.</p></article>
-  <article><i>02</i><h3>Cadastro no CNES</h3><p>O Cadastro Nacional de Estabelecimentos de Saúde é obrigatório, e costuma ser exigido por convênios e operadoras.</p></article>
-  <article><i>03</i><h3>Responsável técnico</h3><p>Profissional habilitado que responde pelo serviço, com os registros no conselho de classe em ordem.</p></article>
-  <article><i>04</i><h3>Estrutura e alvarás</h3><p>Projeto físico adequado à atividade, alvará de funcionamento e vistoria do Corpo de Bombeiros.</p></article>
-  <article><i>05</i><h3>Resíduos de saúde</h3><p>Plano de gerenciamento de resíduos (PGRSS) escrito, com descarte correto de perfurocortantes e contaminados.</p></article>
-  <article><i>06</i><h3>Boas práticas</h3><p>Regras de funcionamento, higiene e esterilização definidas pela Anvisa para os serviços de saúde.</p></article>
-  <article><i>07</i><h3>Segurança do paciente</h3><p>Protocolos, identificação correta e registro de incidentes, para aprender com cada falha antes que ela se repita.</p></article>
-  <article><i>08</i><h3>Prontuário e dados</h3><p>Prontuário completo, guardado com segurança, e dados de saúde tratados conforme a LGPD.</p></article>
- </div>
- <p class="nota">As exigências mudam conforme o município e o tipo de serviço. A avaliação mostra o que vale para a sua clínica e o que precisa ser resolvido primeiro.</p>
+  <div class="painel rv">
+    <span class="rot">Habilitação</span>
+    <h2 style="margin-top:16px">Sua clínica está <em>habilitada?</em></h2>
+    <div class="anel"><svg viewBox="0 0 190 190"><circle class="tr" cx="95" cy="95" r="80"/><circle class="pg" id="pg" cx="95" cy="95" r="80"/></svg><div><b id="num">0</b><span>de 8 em dia</span></div></div>
+    <p class="leit" id="leit">Marque ao lado o que já está em dia na sua clínica.</p>
+    <a class="btn" id="envia">Enviar para a Juliana</a>
+  </div>
+  <div class="rv">
+    <div class="itens" id="itens"></div>
+    <p class="nota">É uma triagem inicial, não substitui a avaliação técnica nem a inspeção dos órgãos competentes. As exigências mudam conforme o município e os procedimentos realizados.</p>
+  </div>
 </div></section>
 
 <section class="serv" id="servicos"><div class="w">
- <div class="cab sobe">
-  <div><p class="rot">Áreas de atuação</p><h2>Consultoria para clínicas, serviços e <em>lideranças</em> em saúde</h2></div>
-  <p class="sub">Transformo os problemas da rotina assistencial em processos mais organizados, seguros e eficientes.</p>
- </div>
- <div class="lista sobe">
-  <div><i>01</i><b>Regularização e habilitação</b><span>Levantamento do que falta, organização dos documentos e apoio para atender as exigências sanitárias.</span></div>
-  <div><i>02</i><b>Organização e padronização de processos</b><span>Rotinas e procedimentos escritos, claros e iguais para toda a equipe.</span></div>
-  <div><i>03</i><b>Indicadores assistenciais</b><span>Definição do que medir e leitura dos resultados para decidir com dados.</span></div>
-  <div><i>04</i><b>Fluxos e jornada do paciente</b><span>Do agendamento ao pós-atendimento, sem gargalos nem etapas perdidas.</span></div>
-  <div><i>05</i><b>Qualidade e experiência do paciente</b><span>Atendimento que acolhe, informa e passa confiança em cada contato.</span></div>
-  <div><i>06</i><b>Liderança de equipes multiprofissionais</b><span>Apoio a gestoras e gestores para comunicar, delegar e manter a equipe engajada.</span></div>
-  <div><i>07</i><b>Auditoria de processos e riscos</b><span>Um olhar de fora para encontrar falhas antes que elas virem incidente.</span></div>
-  <div><i>08</i><b>Planos de melhoria e acompanhamento</b><span>Prioridades, responsáveis e prazos, com acompanhamento até virar rotina.</span></div>
- </div>
+  <div class="rv"><span class="rot">Como posso ajudar</span><h2 style="margin-top:16px">Consultoria completa ou um <em>serviço</em> de cada vez.</h2></div>
+  <div class="abas rv" role="tablist"><button role="tab" aria-selected="true" data-a="0">Consultoria</button><button role="tab" aria-selected="false" data-a="1">Serviços avulsos</button><button role="tab" aria-selected="false" data-a="2">Para a equipe</button></div>
+  <div class="grade" id="grade"></div>
+  <p class="fim rv"><a class="btn" data-zap="Olá, Juliana! Quero entender qual serviço faz sentido para a minha clínica.">Qual faz sentido para mim?</a></p>
 </div></section>
 
-<section><div class="w">
- <div class="sobe"><p class="rot">Método</p><h2>Do diagnóstico à rotina <em>funcionando</em></h2></div>
- <div class="passos sobe">
-  <div><i>I</i><b>Diagnóstico</b><span>Conheço a clínica, a equipe e os documentos, e mapeio os riscos.</span></div>
-  <div><i>II</i><b>Plano de ação</b><span>Você recebe as prioridades em ordem, com o que é urgente primeiro.</span></div>
-  <div><i>III</i><b>Implantação</b><span>Processos escritos e equipe treinada, com a mão na massa junto com você.</span></div>
-  <div><i>IV</i><b>Acompanhamento</b><span>Indicadores e revisões periódicas para a melhoria não se perder.</span></div>
- </div>
+<section class="met" id="metodo"><div class="w">
+  <div class="rv"><span class="rot">Método</span><h2 style="margin-top:16px">Do diagnóstico à rotina <em>funcionando.</em></h2></div>
+  <div class="linha rv" role="tablist" id="linha"></div>
+  <div id="det"></div>
 </div></section>
 
-<section class="sobre" id="sobre"><div class="w">
- <figure class="sobe"><img src="img/juliana-2.jpg" alt="Juliana Costa" width="540" height="915"></figure>
- <div class="sobe">
-  <p class="rot">Quem está por trás</p>
-  <h2>Juliana Costa</h2>
-  <p>Acredito que boa gestão também é uma forma de cuidado. Quando os processos são claros, a equipe trabalha com mais segurança, o paciente é melhor atendido e a clínica cresce sem sustos.</p>
-  <p>Meu trabalho é estar ao lado de quem lidera serviços de saúde, com estratégia, organização e melhoria contínua.</p>
-  <p class="cita">Sua autoridade não precisa ser gritada. Precisa ser construída.</p>
-  <div class="pil"><div><b>Presença</b>que inspira</div><div><b>Comunicação</b>que direciona</div><div><b>Liderança</b>que gera resultados</div></div>
- </div>
+<section class="sobre" id="sobre" style="padding-top:20px"><div class="w">
+  <figure class="rv"><img src="img/juliana-1.jpg" alt="Juliana Costa" loading="lazy"></figure>
+  <div class="rv">
+    <span class="rot">Quem está por trás</span>
+    <h2 style="margin-top:16px">Juliana <em>Costa</em></h2>
+    <p>Acredito que boa gestão também é uma forma de cuidado. Quando os processos são claros, a equipe trabalha com mais segurança, a cliente é melhor atendida e a clínica cresce sem sustos.</p>
+    <blockquote>Sua autoridade não precisa ser gritada. Precisa ser construída.</blockquote>
+    <div class="tres"><span>Presença que inspira</span><span>Comunicação que direciona</span><span>Liderança que gera resultados</span></div>
+  </div>
 </div></section>
 
-<section class="diag" id="diagnostico"><div class="w">
- <div class="sobe">
-  <p class="rot">Avaliação preliminar</p>
-  <h2>Em dois minutos, veja como está a <em>sua</em> clínica</h2>
-  <p class="sub">São dez perguntas objetivas. No final você vê os pontos em aberto e pode enviar o resultado para a Juliana analisar com você.</p>
-  <p class="mini" style="font-size:14px;margin-top:22px;max-width:520px">É uma triagem inicial. Não substitui a avaliação técnica nem a inspeção dos órgãos competentes.</p>
- </div>
- <div class="cx" id="cx"></div>
-</div></section>
+<section class="final"><div class="w"><div class="cx rv">
+  <span class="rot">Próximo passo</span>
+  <h2>Melhor descobrir agora do que em uma <em>fiscalização.</em></h2>
+  <p>Uma conversa inicial já mostra onde estão os riscos e por onde começar.</p>
+  <a class="btn" data-zap="Olá, Juliana! Quero agendar uma conversa inicial sobre a minha clínica de estética.">Falar com a Juliana</a>
+</div></div></section>
+</main>
 
-<section class="fim"><div class="w">
- <p class="rot">Próximo passo</p>
- <h2>Melhor descobrir agora do que em uma <em>fiscalização.</em></h2>
- <p>Uma conversa inicial já mostra onde estão os riscos e por onde começar.</p>
- <a class="btn o" id="falar" href="#">Falar com a Juliana</a>
-</div></section>
-
-<footer><div class="w"><div><b>Juliana Costa</b><br>Consultoria e gestão em saúde</div><div>Mulheres lideram novos amanhãs.</div><div>Site criado pela Hélice Sites &amp; Sistemas</div></div></footer>
-
+<footer><div class="w"><span>Juliana Costa · Consultoria e gestão para clínicas de estética</span><span>Site criado pela Hélice Sites &amp; Sistemas</span></div></footer>
+<a class="zapf" data-zap="Olá, Juliana! Vi o seu site e quero conversar sobre a minha clínica de estética." aria-label="Conversar no WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.4A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.3 15.2l-.4-.2-2.7.8.8-2.6-.3-.4A8.2 8.2 0 0 1 12 3.8zM8.8 7.7c-.2 0-.5.1-.7.4-.3.3-1 1-1 2.3s1 2.7 1.1 2.9c.2.2 2 3.1 4.9 4.2 2.4.9 2.9.7 3.4.7.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.2.1-1.3l-1.9-1c-.2-.1-.5-.1-.7.2l-.8 1c-.1.2-.3.2-.6.1-1.5-.7-2.6-1.7-3.4-3.1-.2-.3.1-.4.4-.9.2-.3.2-.5.1-.7l-.9-2.1c-.2-.4-.4-.4-.6-.4z"/></svg></a>
+<script src="/v.js" defer></script>
 <script>
 const ZAP=""; // WhatsApp da Juliana, só números com 55 e DDD
 const zap=t=>"https://wa.me/"+ZAP+"?text="+encodeURIComponent(t);
-document.getElementById("falar").href=zap("Olá, Juliana! Vi o seu site e gostaria de conversar sobre a gestão da minha clínica.");
-document.getElementById("falar").target="_blank";
-const P=[
- ["A licença sanitária está válida e dentro do prazo?","É o documento da Vigilância Sanitária que autoriza o funcionamento.","Licença sanitária"],
- ["O cadastro no CNES está feito e atualizado?","Profissionais, serviços e equipamentos precisam bater com a realidade.","Cadastro no CNES"],
- ["Existe responsável técnico formalizado, com registros no conselho em dia?","Vale para o profissional e, quando exigido, para a empresa.","Responsável técnico e conselho"],
- ["Alvará de funcionamento e vistoria do Corpo de Bombeiros estão em dia?","Documentos vencidos são motivo comum de autuação.","Alvará e Corpo de Bombeiros"],
- ["A clínica tem um plano de resíduos (PGRSS) escrito e seguido na prática?","Inclui perfurocortantes, material contaminado e coleta especializada.","Plano de resíduos (PGRSS)"],
- ["Os procedimentos da rotina estão escritos em protocolos?","Se cada pessoa faz de um jeito, o processo não existe.","Protocolos e procedimentos escritos"],
- ["A equipe é treinada com frequência, e os treinamentos ficam registrados?","Sem registro, não há como comprovar que o treinamento aconteceu.","Treinamento registrado da equipe"],
- ["Incidentes e quase erros são registrados e analisados?","É assim que a clínica aprende antes que a falha se repita.","Registro de incidentes"],
- ["Os prontuários são completos e guardados com acesso controlado?","Dados de saúde são sensíveis e têm proteção especial na LGPD.","Prontuário e proteção de dados"],
- ["Vocês acompanham indicadores todo mês?","Sem número, a gestão decide no escuro.","Indicadores mensais"]
+const $=i=>document.getElementById(i);
+document.querySelectorAll("[data-zap]").forEach(a=>{a.href=zap(a.dataset.zap);a.target="_blank";a.rel="noopener"});
+
+/* seletor do início */
+const TIPOS=[
+ ["Facial e limpeza de pele","Higiene e reprocessamento de materiais","É onde mais aparecem falhas simples: materiais, esterilização e registro de cada atendimento."],
+ ["Injetáveis","Protocolo de intercorrência e rastreio de produtos","Lote, validade e procedência registrados, termo de consentimento e equipe treinada para agir rápido."],
+ ["Laser e depilação","Equipamentos e parâmetros padronizados","Equipamento regular, manutenção em dia e parâmetros por tipo de pele escritos, para ninguém decidir no improviso."],
+ ["Corporal","Rotina padronizada entre profissionais","Avaliação inicial, contraindicações e passo a passo iguais para toda a equipe."],
+ ["Um pouco de tudo","Mapa de riscos por procedimento","Com vários serviços, o primeiro passo é saber quais exigem mais cuidado e começar por eles."]
 ];
-const cx=document.getElementById("cx"),z2=n=>String(n).padStart(2,"0");
-let R=[],k=0;
-function passo(){
- if(k>=P.length)return fim();
- cx.innerHTML=`<div class="prog"><span>Pergunta ${z2(k+1)} de ${P.length}</span><span>${Math.round(k/P.length*100)}%</span></div><div class="barra"><i style="width:${k/P.length*100}%"></i></div>
-  <p class="perg">${P[k][0]}</p><p class="dica">${P[k][1]}</p>
-  <div class="resp"><button data-r="s">Sim</button><button data-r="n">Não</button><button data-r="d">Não sei</button></div>
-  ${k?`<button class="volta" id="vt">Voltar</button>`:""}`;
- cx.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{R[k]=b.dataset.r;k++;passo()});
- const v=document.getElementById("vt");if(v)v.onclick=()=>{k--;passo()};
-}
-function fim(){
- const sim=R.filter(r=>r==="s").length,ab=P.map((p,i)=>[p[2],R[i]]).filter(x=>x[1]!=="s");
- const nv=sim>=9?["b","Base sólida"]:sim>=6?["m","Pede atenção"]:["a","Risco alto"];
- const txt=sim>=9?"Os pontos principais estão cobertos. Vale revisar os detalhes e manter tudo em dia.":sim>=6?"Há pontos em aberto que expõem a clínica. O ideal é resolver antes de uma fiscalização ou de um incidente.":"Vários itens essenciais estão em aberto. A clínica e os pacientes estão expostos, e isso merece prioridade.";
- cx.innerHTML=`<div class="placar"><b>${sim}<small>/${P.length}</small></b><div><span class="nivel ${nv[0]}">${nv[1]}</span><p style="font-size:15.5px;color:var(--sua);margin-top:8px;line-height:1.6">${txt}</p></div></div>
-  ${ab.length?`<p class="prog" style="margin:0">Pontos em aberto</p><ul class="abertos">${ab.map(([t,r])=>`<li class="${r==="d"?"d":""}">${t}<span>${r==="d"?"Verificar":"Pendente"}</span></li>`).join("")}</ul>`:""}
-  <div class="duo"><div><label for="nm">Seu nome</label><input id="nm" autocomplete="name" maxlength="60"></div><div><label for="cl">Nome da clínica</label><input id="cl" maxlength="80"></div></div>
-  <div class="duo"><div><label for="tp">Tipo de serviço</label><select id="tp"><option>Clínica médica</option><option>Odontologia</option><option>Estética</option><option>Fisioterapia ou reabilitação</option><option>Laboratório ou diagnóstico</option><option>Outro serviço de saúde</option></select></div><div><label for="cd">Cidade</label><input id="cd" maxlength="60"></div></div>
-  <div class="erro" id="er" role="alert"></div>
-  <button class="btn" style="width:100%" id="env">Enviar resultado para a Juliana</button>
-  <button class="volta" id="re">Refazer a avaliação</button>
-  <p class="mini">Triagem inicial, sem valor de laudo. O resultado é enviado pelo WhatsApp.</p>`;
- document.getElementById("re").onclick=()=>{R=[];k=0;passo()};
- document.getElementById("env").onclick=()=>{const nm=document.getElementById("nm").value.trim(),cl=document.getElementById("cl").value.trim(),cd=document.getElementById("cd").value.trim();
-  if(nm.length<2){document.getElementById("er").textContent="Digite seu nome para a Juliana saber quem é.";return}
-  const t="Olá, Juliana! Fiz a avaliação preliminar no seu site.\n\nNome: "+nm+(cl?"\nClínica: "+cl:"")+"\nTipo: "+document.getElementById("tp").value+(cd?"\nCidade: "+cd:"")+"\n\nResultado: "+sim+" de "+P.length+" ("+nv[1]+")"+(ab.length?"\nPontos em aberto:\n"+ab.map(([x,r])=>"- "+x+(r==="d"?" (não sei)":"")).join("\n"):"")+"\n\nGostaria de conversar sobre a regularização e a gestão da clínica.";
-  window.open(zap(t),"_blank")};
-}
-passo();
-if("IntersectionObserver" in window){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("ok");io.unobserve(e.target)}}),{threshold:.12});document.querySelectorAll(".sobe").forEach(e=>io.observe(e))}else document.querySelectorAll(".sobe").forEach(e=>e.classList.add("ok"));
+$("chips").innerHTML=TIPOS.map((t,i)=>`<button class="chip" aria-pressed="false" data-i="${i}">${t[0]}</button>`).join("");
+$("chips").onclick=e=>{const b=e.target.closest(".chip");if(!b)return;[...$("chips").children].forEach(c=>c.setAttribute("aria-pressed",c===b));const t=TIPOS[b.dataset.i];
+ $("resp").innerHTML=`<div class="resp"><b>Por onde eu começaria: ${t[1].toLowerCase()}</b>${t[2]} <a href="${zap("Olá, Juliana! Minha clínica trabalha com "+t[0].toLowerCase()+" e quero conversar sobre gestão.")}" target="_blank" rel="noopener">Conversar sobre isso</a></div>`};
+
+/* bolhas acompanham o cursor */
+const ret=$("retrato");
+if(matchMedia("(hover:hover)").matches&&!matchMedia("(prefers-reduced-motion:reduce)").matches)addEventListener("pointermove",e=>{const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;ret.querySelectorAll(".bolha").forEach(b=>{const p=+b.dataset.p;b.style.transform=`translate(${x*p}px,${y*p}px)`})},{passive:true});
+
+/* cartões que viram */
+$("cartas").onclick=e=>{const c=e.target.closest(".carta");if(!c)return;const v=c.classList.toggle("vira");c.setAttribute("aria-pressed",v)};
+
+/* checklist */
+const ITENS=[
+ ["Licença sanitária","Emitida pela Vigilância Sanitária e dentro da validade."],
+ ["Responsável técnico","Profissional habilitado, com registro em ordem no conselho."],
+ ["Alvará e vistoria dos Bombeiros","Estrutura adequada à atividade e documentos atualizados."],
+ ["Protocolos escritos","Cada procedimento com passo a passo, igual para toda a equipe."],
+ ["Limpeza e esterilização","Rotina definida, com registro do que foi feito e quando."],
+ ["Produtos e equipamentos regulares","Com registro na Anvisa, procedência, lote e validade controlados."],
+ ["Resíduos","Plano de gerenciamento e descarte correto de perfurocortantes."],
+ ["Ficha, termo e dados da cliente","Avaliação, consentimento assinado e dados guardados conforme a LGPD."]
+];
+const itens=$("itens");
+itens.innerHTML=ITENS.map((t,i)=>`<button class="item" aria-pressed="false" data-i="${i}"><span class="cx">✓</span><span><b>${t[0]}</b><small>${t[1]}</small></span></button>`).join("");
+function pinta(){const ok=[...itens.children].filter(b=>b.getAttribute("aria-pressed")==="true").map(b=>+b.dataset.i),n=ok.length;
+ $("num").textContent=n;$("pg").style.strokeDashoffset=502.65*(1-n/8);
+ $("leit").textContent=n===0?"Marque ao lado o que já está em dia na sua clínica.":n<4?"Há pontos importantes em aberto. Vale olhar com calma.":n<8?"Bom caminho. O que falta costuma ser o que mais pesa numa fiscalização.":"Tudo marcado. Uma revisão de fora confirma se está mesmo em dia.";
+ const falta=ITENS.filter((_,i)=>!ok.includes(i)).map(t=>"- "+t[0]).join("\n");
+ const a=$("envia");a.href=zap(`Olá, Juliana! Fiz a avaliação no site: ${n} de 8 itens em dia.`+(falta?`\nEm aberto:\n${falta}`:"")+`\nQuero conversar sobre a minha clínica.`);a.target="_blank";a.rel="noopener"}
+itens.onclick=e=>{const b=e.target.closest(".item");if(!b)return;b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true");pinta()};pinta();
+
+/* serviços */
+const SERV=[
+ [["Diagnóstico da clínica","Visita, conversa com a equipe e leitura dos documentos para mapear riscos e prioridades."],["Plano de ação","O que resolver primeiro, quem faz e em que prazo, em linguagem simples."],["Implantação acompanhada","Processos escritos e colocados em prática junto com você."],["Acompanhamento mensal","Indicadores e revisões para a melhoria não se perder na rotina."],["Jornada da cliente","Do agendamento ao pós-atendimento, sem etapas perdidas."],["Apoio à gestora","Uma parceira para decidir com dados e liderar com segurança."]],
+ [["Regularização e habilitação","Levantamento do que falta e organização dos documentos para as exigências sanitárias."],["Protocolos e POPs","Procedimentos escritos para cada serviço que a clínica oferece."],["Auditoria de processos","Um olhar de fora para encontrar falhas antes que virem incidente."],["Preparação para fiscalização","Revisão do que costuma ser cobrado, antes da visita."],["Indicadores","Definição do que medir e leitura simples dos resultados."],["Fichas e termos","Organização dos registros de avaliação, consentimento e atendimento."]],
+ [["Treinamento em protocolos","Toda a equipe executando do mesmo jeito, com segurança."],["Conduta em intercorrências","O que fazer, quem aciona quem e como registrar."],["Biossegurança na rotina","Higiene, materiais e descarte no dia a dia da cabine."],["Atendimento e acolhimento","Comunicação que informa, acolhe e passa confiança."],["Liderança","Para quem coordena: delegar, alinhar e manter a equipe engajada."],["Integração de novas profissionais","Um roteiro para quem chega aprender o padrão da casa."]]
+];
+function aba(k){document.querySelectorAll(".abas button").forEach(b=>b.setAttribute("aria-selected",+b.dataset.a===k));
+ $("grade").innerHTML=SERV[k].map((s,i)=>`<article class="cs" style="animation-delay:${i*60}ms"><i>${i+1}</i><h3>${s[0]}</h3><p>${s[1]}</p></article>`).join("")}
+document.querySelector(".abas").onclick=e=>{const b=e.target.closest("button");if(b)aba(+b.dataset.a)};aba(0);
+
+/* método */
+const MET=[["Diagnóstico","Conheço a clínica, a equipe e os documentos, e mapeio os riscos."],["Plano de ação","Você recebe as prioridades em ordem, com o que é urgente primeiro."],["Implantação","Processos escritos e equipe treinada, com a mão na massa junto com você."],["Acompanhamento","Indicadores e revisões periódicas para a melhoria virar rotina."]];
+$("linha").innerHTML=MET.map((m,i)=>`<button role="tab" aria-selected="false" data-i="${i}"><span>${i+1}</span>${m[0]}</button>`).join("");
+function passo(i){[...$("linha").children].forEach((b,j)=>b.setAttribute("aria-selected",j===i));$("det").innerHTML=`<div class="det"><h3>${MET[i][0]}</h3><p>${MET[i][1]}</p></div>`}
+$("linha").onclick=e=>{const b=e.target.closest("button");if(b)passo(+b.dataset.i)};passo(0);
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("on");io.unobserve(e.target)}}),{threshold:.1});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
 </script>
-<script src="/v.js" defer></script>
 </body>
 </html>
