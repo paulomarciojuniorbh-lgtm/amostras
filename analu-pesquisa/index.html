@@ -91,7 +91,7 @@ textarea:focus,input:focus{outline:none;border-color:var(--pink)}
 </head>
 <body>
 <div class="w" id="app"></div>
-<script src="perguntas.js"></script>
+<script src="perguntas.js?v=2"></script>
 <script>
 const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
 const app=document.getElementById("app");
@@ -121,7 +121,7 @@ function draw(){
  if(q.tipo==="um"||q.tipo==="multi")corpo=`<div class="ops ${q.g2?"g2":""}">${q.op.map(([ic,t])=>`<button class="op ${(q.tipo==="multi"?(v||[]).includes(t):v===t)?"on":""}" data-v="${esc(t)}">${ic?`<span class="ic">${ic}</span>`:""}<span>${esc(t)}</span></button>`).join("")}</div>`;
  if(q.tipo==="estrelas")corpo=`<div class="estrelas">${[1,2,3,4,5].map(n=>`<button data-v="${n}" class="${v>=n?"on":""}" aria-label="${n} de 5">★</button>`).join("")}</div><div class="rot">${v?ROT5[v]:""}</div>`;
  if(q.tipo==="nps")corpo=`<div class="nps">${[...Array(11).keys()].map(n=>`<button data-v="${n}" class="${v===n?"on":""}">${n}</button>`).join("")}</div><div class="leg"><span>Não indicaria</span><span>Indico de olhos fechados</span></div>`;
- if(q.tipo==="texto")corpo=`<textarea id="txt" rows="5" maxlength="800" placeholder="Escreva aqui…">${esc(v||"")}</textarea>`;
+ if(q.tipo==="texto")corpo=`<textarea id="txt" rows="5" maxlength="800" placeholder="${esc(q.ph||"Escreva aqui…")}">${esc(v||"")}</textarea>`;
  const auto=q.tipo==="um"||q.tipo==="estrelas"||q.tipo==="nps";
  app.innerHTML=topo(q.sec,i)+`<div class="cartao"><span class="sec">Pergunta ${i+1}</span><h2>${esc(q.t)}</h2>${q.a?`<p class="ajuda">${esc(q.a)}</p>`:""}${corpo}
   <div class="nav"><button class="btn cl voltar" id="vt" aria-label="Voltar">←</button><button class="btn" id="av" ${pronto(q)?"":"disabled"}>${q.tipo==="texto"&&!v?"Pular":"Próxima"} →</button></div></div>`;

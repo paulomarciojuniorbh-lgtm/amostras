@@ -45,7 +45,7 @@ th{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--su
 <body>
 <div class="topo"><div class="w"><b>Ana Lu</b><h1>Resultados da pesquisa</h1><p id="sub">Carregando…</p></div></div>
 <div class="w" id="app" style="padding-bottom:60px"></div>
-<script src="../perguntas.js"></script>
+<script src="../perguntas.js?v=2"></script>
 <script>
 const SB="https://ryhyvzwqtktaaonznizn.supabase.co",KEY="sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -67,7 +67,7 @@ function desenha(){
  <h2>Notas (de 1 a 5)</h2><div class="grid">${Q.filter(q=>q.tipo==="estrelas").map(q=>{const m=media(q.id);return`<div class="card"><h3>${esc(q.t)}</h3><span class="media">${m?m.toFixed(1).replace(".",","):"–"}<em>de 5</em></span><div class="bar"><i style="width:${m/5*100}%"></i></div></div>`}).join("")}</div>
  <h2>Respostas por pergunta</h2><div class="grid">${Q.filter(q=>q.op).map(q=>{const c=conta(q),mx=Math.max(...c.map(x=>x[1]),1);return`<div class="card"><h3>${esc(q.t)}</h3>${c.map(([t,v])=>`<div class="lin"><div><b style="font-weight:500">${esc(t)}</b><span>${v} · ${Math.round(v/n*100)}%</span></div><div class="bar"><i style="width:${v/mx*100}%"></i></div></div>`).join("")}</div>`}).join("")}</div>`;
  const recs=L.filter(x=>x.r.recado);
- h+=`<h2>Recados (${recs.length})</h2><div class="card">${recs.length?recs.map(x=>`<p style="padding:10px 0;border-bottom:1px solid var(--linha)">“${esc(x.r.recado)}”<br><span style="font-size:13px;color:var(--sua)">${esc(x.nome||"Anônima")} · nota ${x.nps??"–"} · ${dh(x.em)}</span></p>`).join(""):`<p class="vazio">Nenhum recado ainda.</p>`}</div>
+ h+=`<h2>Pontos de melhoria (${recs.length})</h2><div class="card">${recs.length?recs.map(x=>`<p style="padding:10px 0;border-bottom:1px solid var(--linha)">“${esc(x.r.recado)}”<br><span style="font-size:13px;color:var(--sua)">${esc(x.nome||"Anônima")} · nota ${x.nps??"–"} · ${dh(x.em)}</span></p>`).join(""):`<p class="vazio">Nenhum ponto de melhoria ainda.</p>`}</div>
  <h2>Todas as respostas</h2><div class="card rolo"><table><tr><th>Data</th><th>Nome</th><th>WhatsApp</th><th>Peça</th><th>Qualidade</th><th>De novo?</th><th>NPS</th></tr>${L.map(x=>`<tr><td>${dh(x.em)}</td><td>${esc(x.nome||"–")}</td><td>${x.whatsapp?`<a href="https://wa.me/55${esc(x.whatsapp.replace(/^55/,""))}" target="_blank" rel="noopener">${esc(x.whatsapp)}</a>`:"–"}</td><td>${esc((x.r.peca||[]).join(", "))}</td><td>${x.r.qualidade||"–"}</td><td>${esc(x.r.recompra||"–")}</td><td>${x.nps??"–"}</td></tr>`).join("")}</table></div>`;
  app.innerHTML=h;document.getElementById("csv").onclick=csv}
 (async()=>{try{const r=await fetch(`${SB}/rest/v1/rpc/analu_resultados`,{method:"POST",headers:{"Content-Type":"application/json",apikey:KEY,Authorization:`Bearer ${KEY}`},body:JSON.stringify({p_token:tk})});const j=await r.json();

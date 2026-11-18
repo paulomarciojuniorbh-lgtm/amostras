@@ -17,5 +17,5 @@ const Q=[
  {id:"motivo",sec:"De novo?",t:"O que faria você comprar mais vezes?",a:"Pode marcar mais de um.",tipo:"multi",op:[["🎨","Estampas e cores novas com frequência"],["📏","Mais opções no meu tamanho"],["🧩","Escolher tamanhos diferentes em cima e embaixo"],["💸","Cashback ou desconto pra quem já é cliente"],["🚚","Frete mais em conta"],["🔔","Ser avisada dos lançamentos antes de todo mundo"]]},
  {id:"proximo",sec:"De novo?",t:"O que você quer ver na próxima coleção?",a:"Pode marcar mais de um.",tipo:"multi",g2:1,op:[["🌺","Mais estampas"],["🤎","Cores lisas da moda"],["👙","Novas modelagens de biquíni"],["🩱","Maiôs e bodies"],["🏋️‍♀️","Mais fitness"],["👗","Saídas e looks de praia"]]},
  {id:"nps",sec:"Recomendação",t:"De 0 a 10, quanto você indicaria a Ana Lu para uma amiga?",tipo:"nps"},
- {id:"recado",sec:"Último passo",t:"Quer deixar um recado pra Ana Lu?",a:"Elogio, crítica ou sugestão. É opcional, mas a gente lê todos.",tipo:"texto"}
+ {id:"recado",sec:"Último passo",t:"Se você pudesse melhorar uma coisa na Ana Lu, o que seria?",a:"Pode ser no produto, no tamanho, na entrega, no atendimento ou no site. Toda loja tem algo a melhorar, e a sua opinião sincera ajuda muito.",tipo:"texto",ph:"Ex.: queria mais opções de tamanho, a entrega podia ser mais rápida…"}
 ];
