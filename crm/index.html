@@ -226,11 +226,13 @@ async function carregar(){
   if(!D.ok){try{localStorage.removeItem('helice_crm_tok')}catch(e){}TOK=null;gate('Entre com seu usuário e senha. Se ainda não tem, peça ao seu executivo de contas.');return}
   rpc('crm_registrar_acesso',{p_token:TOK,p_ua:navigator.userAgent.slice(0,200)}).catch(()=>{});
   D.P=Object.fromEntries(D.pessoas.map(p=>[p.id,p]));D.PT=Object.fromEntries(D.pontos.map(p=>[p.id,p]));
-  if(D.eu.perfil!=='promotor')await carregarVis();
+  await carregarVis();
   $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b><span class="perf">${PERF[D.eu.perfil]} · </span><a href="#" id="minha-senha" style="color:#b8c3e6">senha</a> · <a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
   $('#sair').onclick=async e=>{e.preventDefault();if(confirm('Sair deste aparelho?')){await rpc('crm_sair',{p_token:TOK}).catch(()=>{});try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
   $('#minha-senha').onclick=e=>{e.preventDefault();trocarSenha()};
-  const abas=D.eu.perfil==='promotor'?[]:GERENTE(D.eu.perfil)?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências']]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
+  const base=[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências']];
+  const abas=D.eu.perfil==='exec'?[...base,['imp','Importar dados']]:D.eu.perfil==='promotor'?[['minhas','Minhas lojas'],...base]:base;
+  if(!abas.some(a=>a[0]===aba))aba=abas[0][0];
   const n=$('#nav');n.hidden=!abas.length;n.innerHTML=abas.map(([k,t])=>`<button data-a="${k}" ${k===aba?'aria-current="page"':''}>${t}</button>`).join('');
   n.querySelectorAll('button').forEach(b=>b.onclick=()=>{aba=b.dataset.a;n.querySelectorAll('button').forEach(x=>x.toggleAttribute('aria-current',x===b));if(b.hasAttribute('aria-current'))b.setAttribute('aria-current','page');render();scrollTo(0,0)});
   render();
@@ -245,7 +247,7 @@ function gate(msg){$('#app').innerHTML=`<div class="gate login"><div class="eyeb
     TOK=r.token;try{localStorage.setItem('helice_crm_tok',TOK)}catch(x){}carregar()};
   return;$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||''}</p></div>`}
 function render(){
-  if(D.eu.perfil==='promotor'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
+  if(aba==='minhas'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
   $('#app').innerHTML=({painel:vPainel,lojas:vLojas,vis:vVis,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
   ({lojas:ligarLojas,vis:ligarVis,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
 }
