@@ -296,7 +296,7 @@ function checklist(l,metas,skus){
 function reduzir(f){return new Promise(res=>{const img=new Image();img.onload=()=>{const s=Math.min(1,1280/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=img.width*s;c.height=img.height*s;c.getContext('2d').drawImage(img,0,0,c.width,c.height);c.toBlob(b=>res(b||f),'image/jpeg',.8)};img.onerror=()=>res(f);img.src=URL.createObjectURL(f)})}
 
 /* ---------- promotor ---------- */
-function ligarPromotor(){document.querySelectorAll('[data-loja]').forEach(b=>b.onclick=async()=>{const R=await rpc('crm_loja',{p_token:TOK,p_loja:+b.dataset.loja}).catch(()=>null);if(!R?.ok){toast('Sem conexão.');return}
+function ligarPromotor(){const bt=$('#busca-todas');if(bt)bt.oninput=()=>{const q=bt.value.trim().toLowerCase();const R=q.length<2?[]:D.lojas.filter(l=>(l.nome+' '+l.id+' '+(l.cidade||'')+' '+(l.uf||'')).toLowerCase().includes(q)).slice(0,30);$('#res-todas').innerHTML=R.map(l=>`<button class="loja" data-ver="${l.id}"><div><b>${esc(l.nome)}</b><span class="muted">${esc(l.cidade||'')} ${esc(l.uf||'')}</span></div><span class="pill p-nd">ver</span></button>`).join('')||(q.length>=2?'<p class="muted">Nenhuma loja encontrada.</p>':'');document.querySelectorAll('[data-ver]').forEach(b=>b.onclick=()=>abrirLoja(+b.dataset.ver))};document.querySelectorAll('[data-loja]').forEach(b=>b.onclick=async()=>{const R=await rpc('crm_loja',{p_token:TOK,p_loja:+b.dataset.loja}).catch(()=>null);if(!R?.ok){toast('Sem conexão.');return}
   const metas=R.metas.map(m=>({...m,p:D.PT[m.ponto_id]})).sort((a,b)=>a.p.ordem-b.p.ordem);if(!metas.length){toast('Esta loja não tem pontos de contrato.');return}checklist(R.loja,metas,R.skus)})}
 
 /* ---------- equipe ---------- */
@@ -822,9 +822,10 @@ function ligarDados(l){
 
 /* ---------- promotor ---------- */
 function vPromotor(){
-  const L=D.lojas,feitas=L.filter(l=>!pendente(l)).length;
+  const L=D.lojas.filter(l=>l.promotor_id===D.eu.id),feitas=L.filter(l=>!pendente(l)).length;
   return `<div class="minhas"><h1>Olá, ${esc(D.eu.nome.split(' ')[0])}!</h1><p class="sub">Checagem ${FREQ[D.freq]||''} · ${feitas} de ${L.length} lojas em dia.</p>
-  ${L.length?L.map(l=>`<button class="loja" data-loja="${l.id}"><div><b>${esc(l.nome)}</b><span class="muted">${esc(l.cidade||'')} ${esc(l.uf||'')} · ${l.ult_sem?'última em '+dataBR(l.ult_sem):'nunca checada'}</span></div>${!pendente(l)?pctPill(l.ult_pct):'<span class="pill p-az">fazer checagem</span>'}</button>`).join(''):'<div class="card vazio"><b>Nenhuma loja atribuída a você</b>Fale com o seu coordenador.</div>'}</div>`;
+  ${L.length?L.map(l=>`<button class="loja" data-loja="${l.id}"><div><b>${esc(l.nome)}</b><span class="muted">${esc(l.cidade||'')} ${esc(l.uf||'')} · ${l.ult_sem?'última em '+dataBR(l.ult_sem):'nunca checada'}</span></div>${!pendente(l)?pctPill(l.ult_pct):'<span class="pill p-az">fazer checagem</span>'}</button>`).join(''):'<div class="card vazio"><b>Nenhuma loja atribuída a você</b>Fale com o seu coordenador.</div>'}
+  <h2 style="margin:26px 0 8px">Todas as lojas</h2><input id="busca-todas" placeholder="Buscar loja por nome, número ou cidade (${D.lojas.length} lojas)" style="width:100%;border:1px solid var(--linha);border-radius:10px;padding:11px 12px;font:inherit"><div id="res-todas"></div></div>`;
 }
 
 /* ---------- pendências ---------- */
