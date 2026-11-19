@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Criar senha · Painel da Julliany</title>
+<style>
+:root{--porcelana:#f7f4f1;--cafe:#2b1f20;--suave:#7a6b6c;--malva:#8e6468;--linha:#e8dcd8;--bad:#a5332f;--ok:#2f7a4f}
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 "Montserrat",Arial,sans-serif;background:var(--porcelana);color:var(--cafe);display:grid;place-items:center;min-height:100vh;padding:16px}
+.card{background:#fff;border:1px solid var(--linha);padding:28px 24px;width:100%;max-width:380px}
+h1{font:500 28px Georgia,serif;margin:0 0 6px}p{color:var(--suave);margin:0 0 16px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 6px}
+input{width:100%;font:inherit;padding:11px 12px;border:1px solid var(--linha)}
+button{margin-top:18px;width:100%;font:600 13px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:13px;border:0;background:var(--malva);color:#fff;cursor:pointer}
+.msg{margin-top:12px;font-size:14px}.msg.bad{color:var(--bad)}a{color:var(--malva)}
+</style>
+</head>
+<body>
+<div class="card" id="c"><h1>Criar senha</h1><p>Carregando…</p></div>
+<script>
+(function () {
+  const RPC = "https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/", KEY = "sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+  const rpc = (fn, body) => fetch(RPC + fn, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(body) }).then(r => r.json());
+  const t = new URLSearchParams(location.search).get("t") || "", c = document.getElementById("c");
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch]));
+  rpc("jully_reset_info", { p_token: t }).then(i => {
+    if (!i || !i.ok) { c.innerHTML = `<h1>Link inválido</h1><p>Este link expirou ou já foi usado. Peça um novo ao Paulo.</p>`; return; }
+    c.innerHTML = `<h1>Criar senha</h1><p>Olá, ${esc(i.nome)}! Seu usuário é <b>${esc(i.login)}</b>. Escolha uma senha com pelo menos 8 caracteres.</p>
+      <form id="f"><label for="s1">Senha</label><input id="s1" type="password" autocomplete="new-password" minlength="8" required>
+      <label for="s2">Repita a senha</label><input id="s2" type="password" autocomplete="new-password" minlength="8" required>
+      <button id="b" type="submit">Salvar senha</button><div class="msg" id="m"></div></form>`;
+    document.getElementById("f").onsubmit = async e => {
+      e.preventDefault(); const m = document.getElementById("m"), b = document.getElementById("b"), s1 = document.getElementById("s1").value, s2 = document.getElementById("s2").value;
+      if (s1 !== s2) { m.className = "msg bad"; m.textContent = "As senhas não são iguais."; return; }
+      b.disabled = true; const r = await rpc("jully_reset_senha", { p_token: t, p_senha: s1 }).catch(() => null); b.disabled = false;
+      if (!r || !r.ok) { m.className = "msg bad"; m.textContent = (r && r.erro) || "Não foi possível salvar. Tente de novo."; return; }
+      c.innerHTML = `<h1>Senha criada</h1><p>Agora é só entrar no painel com o usuário <b>${esc(i.login)}</b> e a sua senha.</p><a href="./">Ir para o painel de fotos</a>`;
+    };
+  }).catch(() => { c.innerHTML = `<h1>Sem conexão</h1><p>Tente de novo em instantes.</p>`; });
+})();
+</script>
+</body>
+</html>

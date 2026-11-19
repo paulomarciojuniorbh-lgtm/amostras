@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Painel de fotos · Julliany Ferreira</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--porcelana:#f7f4f1;--cafe:#2b1f20;--suave:#7a6b6c;--rose:#b48a8f;--rose-escuro:#8a5a60;--malva:#8e6468;--linha:#e8dcd8;--bad:#a5332f;--ok:#2f7a4f}
+*{box-sizing:border-box}
+body{margin:0;background:var(--porcelana);color:var(--cafe);font:400 15px/1.6 "Montserrat",Arial,sans-serif}
+.w{max-width:1100px;margin:0 auto;padding:0 18px}
+header{background:#fff;border-bottom:1px solid var(--linha)}
+header .w{display:flex;justify-content:space-between;align-items:center;height:64px;gap:12px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0}
+h1{font-size:26px}h2{font-size:28px;margin:30px 0 12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--cafe);background:none;color:var(--cafe);padding:11px 18px;font:600 12px "Montserrat",sans-serif;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.btn.cheio{background:var(--malva);border-color:var(--malva);color:#fff}
+.btn.peq{padding:7px 10px;font-size:10.5px}
+.btn.mau{border-color:var(--bad);color:var(--bad)}
+.btn:disabled{opacity:.5;cursor:default}
+.card{background:#fff;border:1px solid var(--linha);padding:22px}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 6px}
+input,select{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--linha);background:#fff}
+.login{max-width:380px;margin:60px auto}
+.msg{margin-top:10px;font-size:14px}.bad{color:var(--bad)}.ok{color:var(--ok)}
+.envio{display:grid;grid-template-columns:2fr 1fr 1fr auto;gap:12px;align-items:end;margin-top:20px}
+@media (max-width:760px){.envio{grid-template-columns:1fr}}
+.abas{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}
+.abas button{border:1px solid var(--linha);background:#fff;padding:9px 14px;font:500 13px "Montserrat",sans-serif;cursor:pointer}
+.abas button[aria-pressed=true]{background:var(--cafe);color:#fff;border-color:var(--cafe)}
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin:16px 0 50px}
+.foto{background:#fff;border:1px solid var(--linha);display:flex;flex-direction:column}
+.foto img{width:100%;aspect-ratio:3/4;object-fit:cover;background:var(--linha)}
+.foto .ac{padding:10px;display:grid;gap:6px}
+.foto small{color:var(--suave);font-size:12px;min-height:18px}
+.foto select{padding:6px 8px;font-size:12.5px}
+.vazio{color:var(--suave);padding:20px 0}
+.dica{color:var(--suave);font-size:13.5px;margin:6px 0 0}
+.conf{position:fixed;inset:0;background:rgba(43,31,32,.55);display:grid;place-items:center;padding:16px;z-index:9}
+.conf .card{max-width:360px;width:100%}
+.conf .bt{display:flex;gap:10px;margin-top:16px}
+.prog{font-size:13.5px;color:var(--suave);margin-top:8px}
+</style>
+</head>
+<body>
+<header><div class="w"><h1>Painel de fotos · Julliany</h1><span id="topo"></span></div></header>
+<main class="w" id="app"></main>
+<div id="conf"></div>
+<script>
+(function () {
+  const SB = "https://ryhyvzwqtktaaonznizn.supabase.co", KEY = "sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0";
+  const CATS = [["noiva", "Make noiva"], ["quinze", "15 anos"], ["madura", "Pele madura"], ["negra", "Pele negra"], ["crianca", "Criança"], ["artistica", "Artística"], ["ensaio", "Ensaio fotográfico"], ["trabalhos", "Mais trabalhos"]];
+  const nomeCat = k => (CATS.find(c => c[0] === k) || [k, k])[1];
+  const $ = id => document.getElementById(id), app = $("app");
+  const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const rpc = (fn, body) => fetch(`${SB}/rest/v1/rpc/${fn}`, { method: "POST", headers: { apikey: KEY, "Content-Type": "application/json" }, body: JSON.stringify(body || {}) }).then(r => r.json());
+  const urlDe = u => /^https?:/.test(u) ? u : "../" + u;
+  let TOK = ""; try { TOK = localStorage.getItem("jully_tok") || ""; } catch (_) {}
+  let L = [], aba = "quinze";
+
+  function login(msg) {
+    $("topo").innerHTML = "";
+    app.innerHTML = `<div class="card login"><h2 style="margin-top:0">Entrar</h2><p class="dica">Acesso para cuidar das fotos do site.</p>
+      <label for="u">Usuário</label><input id="u" autocomplete="username" value="julliany">
+      <label for="s">Senha</label><input id="s" type="password" autocomplete="current-password">
+      <button class="btn cheio" id="ent" style="margin-top:16px;width:100%">Entrar</button><div class="msg bad" id="m">${esc(msg || "")}</div></div>`;
+    const ir = async () => { $("m").textContent = ""; $("ent").disabled = true;
+      const r = await rpc("jully_login", { p_login: $("u").value, p_senha: $("s").value }).catch(() => null); $("ent").disabled = false;
+      if (!r || !r.ok) { $("m").textContent = (r && r.erro) || "Sem conexão. Tente de novo."; return; }
+      TOK = r.token; try { localStorage.setItem("jully_tok", TOK); } catch (_) {} carregar(); };
+    $("ent").onclick = ir; $("s").onkeydown = e => { if (e.key === "Enter") ir(); };
+  }
+  async function carregar() {
+    $("topo").innerHTML = `<a class="btn peq" href="../" target="_blank" rel="noopener">Ver site</a> <button class="btn peq" id="sair">Sair</button>`;
+    $("sair").onclick = async () => { await rpc("jully_sair", { p_token: TOK }).catch(() => {}); TOK = ""; try { localStorage.removeItem("jully_tok"); } catch (_) {} login(); };
+    L = await rpc("jully_fotos_publicas").catch(() => []) || [];
+    desenha();
+  }
+  function desenha() {
+    const da = L.filter(f => f.cat === aba);
+    app.innerHTML = `<div class="card" style="margin-top:24px"><h2 style="margin-top:0">Adicionar fotos</h2>
+      <p class="dica">Escolha uma ou várias fotos do celular. Elas entram no site na hora, na categoria escolhida.</p>
+      <div class="envio"><div><label for="arq">Fotos</label><input id="arq" type="file" accept="image/*" multiple></div>
+      <div><label for="cat">Categoria</label><select id="cat">${CATS.map(c => `<option value="${c[0]}" ${c[0] === aba ? "selected" : ""}>${c[1]}</option>`).join("")}</select></div>
+      <div><label for="leg">Legenda (opcional)</label><input id="leg" maxlength="80" placeholder="Ex.: Noiva no Calhau"></div>
+      <button class="btn cheio" id="env">Enviar</button></div><div class="prog" id="prog"></div></div>
+      <div class="abas">${CATS.map(c => `<button data-a="${c[0]}" aria-pressed="${c[0] === aba}">${c[1]} (${L.filter(f => f.cat === c[0]).length})</button>`).join("")}</div>
+      <div class="grade">${da.length ? da.map(f => `<div class="foto"><img src="${esc(urlDe(f.url))}" alt="" loading="lazy"><div class="ac"><small>${esc(f.leg || "")}</small>
+        <select data-mv="${f.id}" aria-label="Mover para outra categoria">${CATS.map(c => `<option value="${c[0]}" ${c[0] === f.cat ? "selected" : ""}>${c[0] === f.cat ? "Está em: " : "Mover para: "}${c[1]}</option>`).join("")}</select>
+        <button class="btn peq mau" data-ex="${f.id}">Tirar do site</button></div></div>`).join("") : `<p class="vazio">Nenhuma foto em ${esc(nomeCat(aba))} ainda. No site, essa categoria aparece como "em breve".</p>`}</div>`;
+    app.querySelectorAll("[data-a]").forEach(b => b.onclick = () => { aba = b.dataset.a; desenha(); });
+    app.querySelectorAll("[data-ex]").forEach(b => b.onclick = () => confirmar("Tirar esta foto do site? Não dá para desfazer.", () => excluir(+b.dataset.ex)));
+    app.querySelectorAll("[data-mv]").forEach(s => s.onchange = async () => {
+      const r = await rpc("jully_foto_editar", { p_token: TOK, p_id: +s.dataset.mv, p_categoria: s.value }).catch(() => null);
+      if (!r || !r.ok) return erro(r); const f = L.find(x => x.id === +s.dataset.mv); if (f) f.cat = s.value; desenha(); });
+    $("env").onclick = enviar;
+  }
+  function erro(r) { if (r && /Sessão/.test(r.erro || "")) return login(r.erro); alert((r && r.erro) || "Não deu certo. Tente de novo."); }
+  function confirmar(txt, sim) {
+    $("conf").innerHTML = `<div class="conf"><div class="card"><p style="margin:0">${esc(txt)}</p><div class="bt"><button class="btn mau" id="cs">Sim, tirar</button><button class="btn" id="cn">Cancelar</button></div></div></div>`;
+    $("cn").onclick = () => $("conf").innerHTML = ""; $("cs").onclick = () => { $("conf").innerHTML = ""; sim(); };
+  }
+  async function excluir(id) {
+    const r = await fetch(`${SB}/functions/v1/jully-fotos`, { method: "POST", headers: { "Content-Type": "application/json", "x-token": TOK }, body: JSON.stringify({ acao: "excluir", id }) }).then(x => x.json()).catch(() => null);
+    if (!r || !r.ok) return erro(r); L = L.filter(f => f.id !== id); desenha();
+  }
+  // reduz a foto no próprio celular (lado maior 1600 px) para subir rápido
+  function reduzir(file) {
+    return new Promise((res) => {
+      const img = new Image(), u = URL.createObjectURL(file);
+      img.onload = () => { const m = 1600, k = Math.min(1, m / Math.max(img.width, img.height)); const c = document.createElement("canvas"); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u); c.toBlob(b => res(b || file), "image/jpeg", 0.85); };
+      img.onerror = () => { URL.revokeObjectURL(u); res(file); }; img.src = u;
+    });
+  }
+  async function enviar() {
+    const fs = [...($("arq").files || [])], cat = $("cat").value, leg = $("leg").value.trim();
+    if (!fs.length) { $("prog").textContent = "Escolha pelo menos uma foto."; return; }
+    $("env").disabled = true; let ok = 0;
+    for (let i = 0; i < fs.length; i++) {
+      $("prog").textContent = `Enviando ${i + 1} de ${fs.length}…`;
+      const b = await reduzir(fs[i]), fd = new FormData(); fd.append("arquivo", b, "foto.jpg"); fd.append("categoria", cat); fd.append("legenda", leg);
+      const r = await fetch(`${SB}/functions/v1/jully-fotos`, { method: "POST", headers: { "x-token": TOK }, body: fd }).then(x => x.json()).catch(() => null);
+      if (!r || !r.ok) { $("env").disabled = false; $("prog").textContent = ""; return erro(r); }
+      L.unshift({ id: r.foto.id, cat: r.foto.categoria, url: r.foto.url, leg: r.foto.legenda }); ok++;
+    }
+    aba = cat; desenha(); $("prog").textContent = `${ok} foto${ok > 1 ? "s" : ""} no site.`;
+  }
+  if (TOK) carregar(); else login();
+})();
+</script>
+</body>
+</html>

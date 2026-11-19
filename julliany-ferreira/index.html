@@ -93,7 +93,7 @@ section{padding:120px 0}
 .zoom img{max-height:90vh;width:auto}
 .zoom button{position:absolute;top:18px;right:22px;background:none;border:0;color:#fff;font-size:30px;cursor:pointer}
 /* categorias e galeria */
-.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.cats{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
 .cat{position:relative;aspect-ratio:3/4;border:0;padding:0;overflow:hidden;cursor:pointer;background:var(--malva);color:#fff;font-family:var(--f-texto);text-align:left}
 .cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;transition:transform 1.2s}
 .cat:hover img{transform:scale(1.05)}
@@ -102,7 +102,7 @@ section{padding:120px 0}
 .cat.vazia span{background:none}
 .cat b{display:block;font:400 25px/1.05 var(--f-titulo)}
 .cat small{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.9}
-@media (max-width:1000px){.cats{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:1000px){.cats{grid-template-columns:repeat(4,1fr)}}
 @media (max-width:520px){.cats{grid-template-columns:repeat(2,1fr)}.cat b{font-size:22px}}
 .mais{font-size:30px;margin:64px 0 22px}
 .chama{text-align:center;margin:34px 0 0}
@@ -177,7 +177,7 @@ section{padding:120px 0}
 .quem blockquote{font:italic 400 30px/1.35 var(--f-serif);margin:28px 0;color:var(--cafe)}
 .quem p{color:var(--cafe-2)}
 .numeros{display:flex;gap:46px;margin-top:34px;flex-wrap:wrap}
-.numeros b{display:block;font:400 52px/1 var(--f-titulo);color:var(--rose-escuro)}
+.numeros b{display:block;font:500 48px/1 var(--f-serif);font-variant-numeric:lining-nums;color:var(--rose-escuro)}
 .numeros span{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--suave)}
 @media (max-width:900px){.quem{grid-template-columns:1fr;gap:44px}}
 /* estúdio */
@@ -188,7 +188,8 @@ section{padding:120px 0}
 .estudio h2 em{background:var(--ouro-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .estudio h2,.estudio p{text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .estudio .w{position:relative;width:100%}
-.estudio .caixa{max-width:540px}
+.estudio .caixa{max-width:560px;background:rgba(43,31,32,.62);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);padding:42px 40px;box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+@media (max-width:760px){.estudio .caixa{padding:30px 22px}}
 .estudio .sobre{color:var(--ouro)}
 .estudio h2{margin:18px 0}
 .estudio p{color:#f6eeec}
@@ -237,12 +238,12 @@ a[data-zap]{cursor:pointer}
 <main id="inicio">
 <section class="hero" style="padding:0">
   <div class="hero-txt">
-    <span class="sobre">Há 10 anos realçando a beleza · São Luís</span>
+    <span class="sobre">Há mais de 10 anos realçando a beleza · São Luís</span>
     <h1>Sua beleza, <em>nossa</em> inspiração.</h1>
     <p>Maquiagem e penteado para noivas, debutantes, formandas e eventos. Estúdio no Jardim Eldorado e atendimento a domicílio.</p>
     <div class="btns"><a class="btn cheio" data-zap="Olá, Julliany! Quero agendar um horário.">Chamar no WhatsApp</a><a class="link" href="#trabalhos">Ver trabalhos</a></div>
   </div>
-  <div class="hero-foto"><img src="img/hero.jpg?v=2" alt="Julliany Ferreira, maquiadora, em retrato de estúdio"><div class="selo"><b>10 anos</b><span>de noivas, debutantes e festas</span></div></div>
+  <div class="hero-foto"><img src="img/hero.jpg?v=2" alt="Julliany Ferreira, maquiadora, em retrato de estúdio"></div>
 </section>
 
 <div class="faixa" aria-hidden="true"><div class="trilho" id="trilho"></div></div>
@@ -278,7 +279,8 @@ a[data-zap]{cursor:pointer}
         <div class="item-s revela"><span class="n">ii.</span><div><h3>Kids</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make kids.">Sob consulta</a></span><p>Make delicada para crianças de até 8 anos.</p></div></div>
         <div class="item-s revela"><span class="n">iii.</span><div><h3>Debutantes</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make para debutante.">Sob consulta</a></span><p>Festa e ensaio de 15 anos.</p></div></div>
         <div class="item-s revela"><span class="n">iv.</span><div><h3>Formandas</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make para formatura.">Sob consulta</a></span><p>Da colação à festa, sem perder o brilho nas fotos.</p></div></div>
-        <div class="item-s revela"><span class="n">v.</span><div><h3>Make artística</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make artística.">Sob consulta</a></span><p>Ensaios, campanhas e eventos temáticos.</p></div></div>
+        <div class="item-s revela"><span class="n">v.</span><div><h3>Make para ensaio fotográfico</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make para ensaio fotográfico.">Sob consulta</a></span><p>Pele e acabamento pensados para a câmera e a luz do estúdio.</p></div></div>
+        <div class="item-s revela"><span class="n">vi.</span><div><h3>Make artística</h3><span class="val"><a data-zap="Olá, Julliany! Quero um orçamento de make artística.">Sob consulta</a></span><p>Ensaios, campanhas e eventos temáticos.</p></div></div>
       </div>
       <p class="chama esq revela"><a data-zap="Olá, Julliany! Quero agendar uma make.">Agendar pelo WhatsApp</a></p>
     </div>
@@ -296,7 +298,7 @@ a[data-zap]{cursor:pointer}
     <div class="cursos">
       <article class="curso revela"><div class="img"><img src="img/pincel.jpg?v=2" alt="Julliany Ferreira com pincel de maquiagem na mão" loading="lazy"></div><div class="txt"><span class="para">Para você</span><h3>Curso de automaquiagem</h3><p>Pele, olhos e boca para o dia a dia e para ocasiões especiais.</p><a class="link" data-zap="Olá, Julliany! Quero saber sobre o curso de automaquiagem.">Quero saber</a></div></article>
       <article class="curso revela"><div class="img"><img src="img/dior.jpg?v=2" alt="Julliany Ferreira com paleta e pincel de maquiagem profissional" loading="lazy"></div><div class="txt"><span class="para">Para profissionais</span><h3>Curso de maquiagem profissional</h3><p>Técnicas de pele, olhos e durabilidade para atender noivas e eventos.</p><a class="link" data-zap="Olá, Julliany! Quero saber sobre o curso para profissionais.">Quero saber</a></div></article>
-      <article class="curso revela"><div class="img"><img src="img/celular.jpg?v=2" alt="Julliany Ferreira planejando com um tablet" loading="lazy"></div><div class="txt"><span class="para">Para a sua carreira</span><h3>Mentoria de imagem</h3><p>Posicionamento, portfólio e presença nas redes.</p><a class="link" data-zap="Olá, Julliany! Quero saber sobre a mentoria de imagem.">Quero saber</a></div></article>
+      <article class="curso revela"><div class="img"><img src="img/celular.jpg?v=2" alt="Julliany Ferreira planejando com um tablet" loading="lazy"></div><div class="txt"><span class="para">Para a sua carreira</span><h3>Mentoria de imagem</h3><p>Sua imagem comunica: aprenda a usá-la de forma estratégica.</p><a class="link" data-zap="Olá, Julliany! Quero saber sobre a mentoria de imagem.">Quero saber</a></div></article>
     </div>
   </div>
 </section>
@@ -307,8 +309,8 @@ a[data-zap]{cursor:pointer}
     <div class="revela">
       <span class="sobre">Quem é Julliany Ferreira</span>
       <blockquote>“Uso o meu talento para realçar a beleza de cada mulher que senta na minha cadeira.”</blockquote>
-      <p>Maquiadora em São Luís há 10 anos, atende noivas, debutantes e formandas, e forma novas profissionais.</p>
-      <div class="numeros"><div><b>10</b><span>anos de carreira</span></div><div><b>+5 mil</b><span>seguidores no Instagram</span></div></div>
+      <p>Maquiadora em São Luís há mais de 10 anos, atende noivas, debutantes e formandas, e forma novas profissionais.</p>
+      <div class="numeros"><div><b>+10</b><span>anos de carreira</span></div><div><b>+5 mil</b><span>seguidores no Instagram</span></div></div>
     </div>
   </div>
 </section>
@@ -333,7 +335,7 @@ a[data-zap]{cursor:pointer}
 <footer>
   <div class="w">
     <div class="cols">
-      <div><a href="#inicio" aria-label="Julliany Ferreira Beauty Makeup"><img src="img/logo-ouro.png" alt="Julliany Ferreira Beauty Makeup" style="width:220px;height:auto" loading="lazy"></a><p style="max-width:300px;margin-top:18px">Maquiagem e penteado para noivas, debutantes, formandas e eventos em São Luís.</p></div>
+      <div><a href="#inicio" aria-label="Julliany Ferreira Beauty Makeup"><img src="img/logo-ouro.png" alt="Julliany Ferreira Beauty Makeup" style="width:220px;height:auto" loading="lazy"></a><p style="max-width:300px;margin-top:18px">Maquiagem e penteado para noivas, debutantes, formandas e eventos em geral.</p></div>
       <div><h5>Atendimento</h5><a data-zap="Olá, Julliany! Quero agendar um horário.">WhatsApp (98) 98801-4170</a><a href="https://instagram.com/jullianymakeup" target="_blank" rel="noopener">Instagram @jullianymakeup</a></div>
       <div><h5>Estúdio</h5><span>Jardim Eldorado · São Luís, MA<br>Atendimento também a domicílio</span></div>
       <div><h5>Navegue</h5><a href="#trabalhos">Trabalhos</a><a href="#noivas">Noivas</a><a href="#servicos">Serviços</a><a href="#cursos">Cursos</a></div>
@@ -357,16 +359,12 @@ a[data-zap]{cursor:pointer}
 const ZAP='5598988014170';
 document.querySelectorAll('[data-zap]').forEach(a=>{a.href='https://wa.me/'+ZAP+'?text='+encodeURIComponent(a.dataset.zap);a.target='_blank';a.rel='noopener'});
 const IG='https://ryhyvzwqtktaaonznizn.supabase.co/storage/v1/object/public/amostras/jully/';
-const CATS=[
- ['noiva','Make noiva',[]],
- ['quinze','15 anos',['img/quinze-1.jpg','img/quinze-2.jpg','img/quinze-3.jpg','img/quinze-4.jpg','img/quinze-5.jpg','img/quinze-6.jpg',IG+'deb-1.jpg',IG+'deb-2.jpg',IG+'deb-3.jpg',IG+'deb-4.jpg']],
- ['madura','Pele madura',[IG+'madura.jpg']],
- ['negra','Pele negra',[]],
- ['crianca','Criança',[]],
- ['artistica','Artística',[]]
-];
+const CATS=[['noiva','Make noiva',[]],['quinze','15 anos',[]],['madura','Pele madura',[]],['negra','Pele negra',[]],['crianca','Criança',[]],['artistica','Artística',[]],['ensaio','Ensaio fotográfico',[]]];
+let FOTOS=[];
+const BASE=[['quinze',['img/quinze-1.jpg','img/quinze-2.jpg','img/quinze-3.jpg','img/quinze-4.jpg','img/quinze-5.jpg','img/quinze-6.jpg',IG+'deb-1.jpg',IG+'deb-2.jpg',IG+'deb-3.jpg',IG+'deb-4.jpg']],['madura',[IG+'madura.jpg']]];
+const BASE_T=[['close-1','Olhos esfumados em rosé'],['social-2','Make corporativa'],['close-3','Pele luminosa'],['penteado','Penteado com tranças'],['close-5','Delineado gráfico'],['social-1','Glow para a festa'],['close-2','Esfumado dourado'],['social-3','Make para formatura'],['close-4','Olhar marcante'],['social-4','Make corporativa'],['close-6','Pele de festa'],['social-5','Make para evento']];
 const cats=document.getElementById('cats');
-cats.innerHTML=CATS.map((c,i)=>`<button type="button" class="cat${c[2].length?'':' vazia'}" data-i="${i}">${c[2].length?`<img src="${c[2][0]}" alt="" loading="lazy">`:''}<span><b>${c[1]}</b><small>${c[2].length?c[2].length+(c[2].length>1?' fotos':' foto'):'Em breve'}</small></span></button>`).join('');
+function desenhaCats(){cats.innerHTML=CATS.map((c,i)=>`<button type="button" class="cat${c[2].length?'':' vazia'}" data-i="${i}">${c[2].length?`<img src="${c[2][0]}" alt="" loading="lazy">`:''}<span><b>${c[1]}</b><small>${c[2].length?c[2].length+(c[2].length>1?' fotos':' foto'):'Em breve'}</small></span></button>`).join('')}
 const modal=document.getElementById('modal'),zoom=document.getElementById('zoom');
 function abre(i){const c=CATS[i],z=document.getElementById('modal-z');
   document.getElementById('modal-t').textContent=c[1];
@@ -379,13 +377,15 @@ cats.onclick=e=>{const b=e.target.closest('.cat');if(b)abre(+b.dataset.i)};
 document.getElementById('modal-x').onclick=fecha;
 modal.onclick=e=>{if(e.target===modal)fecha()};
 addEventListener('keydown',e=>{if(e.key==='Escape'){if(!zoom.hidden)zoom.hidden=true;else if(!modal.hidden)fecha()}});
-const FOTOS=[['close-1','Olhos esfumados em rosé'],['social-2','Make corporativa'],['close-3','Pele luminosa'],['penteado','Penteado com tranças'],['close-5','Delineado gráfico'],['social-1','Glow para a festa'],['close-2','Esfumado dourado'],['social-3','Make para formatura'],['close-4','Olhar marcante'],['social-4','Make corporativa'],['close-6','Pele de festa'],['social-5','Make para evento']];
 const g=document.getElementById('galeria');
-g.innerHTML=FOTOS.map(f=>`<figure><img src="${IG+f[0]}.jpg" alt="${f[1]}" loading="lazy"><figcaption>${f[1]}</figcaption></figure>`).join('');
+function desenhaTrab(){g.innerHTML=FOTOS.map(f=>`<figure><img src="${f[0]}" alt="${f[1]}" loading="lazy">${f[1]?`<figcaption>${f[1]}</figcaption>`:''}</figure>`).join('')}
+function aplica(L){CATS.forEach(c=>c[2]=L.filter(f=>f.cat===c[0]).map(f=>f.url));FOTOS=L.filter(f=>f.cat==='trabalhos').map(f=>[f.url,f.leg||'']);desenhaCats();desenhaTrab()}
+aplica([...BASE.flatMap(([c,us])=>us.map(url=>({cat:c,url}))),...BASE_T.map(([f,l])=>({cat:'trabalhos',url:IG+f+'.jpg',leg:l}))]);
+fetch('https://ryhyvzwqtktaaonznizn.supabase.co/rest/v1/rpc/jully_fotos_publicas',{method:'POST',headers:{apikey:'sb_publishable_Ji31DC1ihqZTR7gmLeYTLw_GHgBjWN0','Content-Type':'application/json'},body:'{}'}).then(r=>r.ok?r.json():null).then(L=>{if(Array.isArray(L)&&L.length)aplica(L)}).catch(()=>{});
 function amplia(e){const fi=e.target.closest('figure');if(!fi)return;const im=fi.querySelector('img');document.getElementById('zoom-img').src=im.src;document.getElementById('zoom-img').alt=im.alt;zoom.hidden=false}
 g.addEventListener('click',amplia);document.getElementById('modal-g').addEventListener('click',amplia);
 zoom.onclick=e=>{if(e.target.tagName!=='IMG')zoom.hidden=true};
-const itens=['Noivas','Debutantes','Formandas','Make corporativa','Penteados','Kids','Make artística','Automaquiagem','Formação profissional','Mentoria de imagem'];
+const itens=['Noivas','Debutantes','Formandas','Make corporativa','Ensaio fotográfico','Penteados','Kids','Make artística','Automaquiagem','Formação profissional','Mentoria de imagem'];
 document.getElementById('trilho').innerHTML=[...itens,...itens].map(t=>`<span>${t}</span>`).join('');
 const topo=document.getElementById('topo');const solid=()=>topo.classList.toggle('solido',scrollY>40);addEventListener('scroll',solid,{passive:true});solid();
 const gav=document.getElementById('gaveta');document.getElementById('abrir').onclick=()=>gav.classList.add('on');document.getElementById('fechar').onclick=()=>gav.classList.remove('on');gav.querySelectorAll('a').forEach(a=>a.onclick=()=>gav.classList.remove('on'));
