@@ -230,7 +230,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
 
   <footer class="foot">
     <span><b>Fonte:</b> Google Maps (Places API), lido pelo radar. Posição = ordem em que o Google mostra a empresa na busca "segmento + cidade"; o que cada pessoa vê pode variar com a localização dela.</span>
-    <span><b>Índice de oportunidade (0 a 100):</b> soma pontos para quem não tem site próprio (ou tem site fora do ar), tem boa nota, muitas avaliações, atua em segmento de ticket alto e tem celular para contato. Redes e franquias (mesmo site em 3 ou mais unidades) ficam com zero. "Fora do ar" só é marcado quando o domínio não existe ou o site dá erro claro; site que só bloqueia robô continua como site próprio.</span>
+    <span><b>Índice de oportunidade (0 a 100):</b> situação digital até 35 (só Instagram/WhatsApp/link de bio 35, site fora do ar ou link quebrado 32, sem site 28, site próprio sem HTTPS ou lento 10, site próprio funcionando 0) · avaliações até 25 (15 a 80 = 25, mais de 80 = 20, 5 a 14 = 12, menos de 5 = 5) · nota até 15 (4,7+ = 15, 4,3 a 4,6 = 12, 4,0 a 4,2 = 8, abaixo = 3) · ticket do segmento até 15 (alto 15, médio 10, menor 6) · contato até 10 (celular 10, fixo 4). Redes e franquias (mesmo site ou mesmo nome em 3 ou mais unidades) ficam com zero. "Fora do ar" só é marcado quando o erro se repete em duas tentativas; site que só bloqueia robô conta como site próprio.</span>
     <span><b>O que oferecer:</b> além do site, o radar sugere serviços simples (perfil no Google, kit de avaliações, página de serviços, WhatsApp Business, planilha de controle e modelo de orçamento), em ordem de encaixe com os dados de cada empresa. O índice da empresa é o do serviço que mais se encaixa.</span>
     <span><b>Quanto cobrar:</b> faixa de preço por segmento, pensada para São Luís, ajustada pelo tamanho da empresa (avaliações) e pela nota. Os valores são uma referência para negociar, não uma tabela fixa.</span>
     <span>Os dados do Google são atualizados todo mês; empresas que o Google deixa de mostrar por mais de 45 dias saem do radar. Suas abordagens ficam guardadas e só aparecem para quem tem o link com a chave.</span>
@@ -248,24 +248,43 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   const $ = id => document.getElementById(id);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const n = v => (+v || 0).toLocaleString("pt-BR");
-  const SEG = { dentista: ["Dentistas", "clínica odontológica", 10], estetica: ["Estética", "clínica de estética", 10], advogado: ["Advogados", "advogado", 9], fisioterapeuta: ["Fisioterapia", "fisioterapia", 9], nutricionista: ["Nutricionistas", "nutricionista", 9], personal: ["Personal trainers", "personal trainer", 8], psicologo: ["Psicólogos", "psicólogo", 9], medico: ["Médicos", "médico", 9], pousada: ["Pousadas e hotéis", "pousada", 10], turismo: ["Turismo", "agência de turismo", 8], transfer: ["Transfer", "transfer", 7], restaurante: ["Restaurantes", "restaurante", 6], servicos_casa: ["Serviços para casa", "empresa", 9], oficina: ["Oficinas", "oficina", 6], veterinario: ["Veterinários", "clínica veterinária", 9], imobiliaria: ["Imobiliárias", "imobiliária", 7], construtora: ["Construtoras", "construtora", 6], fotografo: ["Fotógrafos", "fotógrafo", 7], kitesurf: ["Kitesurf", "escola de kitesurf", 6], contabilidade: ["Contabilidade", "contabilidade", 6] };
+  const SEG = { dentista: ["Dentistas", "clínica odontológica", 15], estetica: ["Estética", "clínica de estética", 15], advogado: ["Advogados", "advogado", 15], fisioterapeuta: ["Fisioterapia", "clínica de fisioterapia", 15], nutricionista: ["Nutricionistas", "nutricionista", 10], personal: ["Personal trainers", "personal trainer", 10], psicologo: ["Psicologia", "clínica de psicologia", 15], medico: ["Médicos", "médico", 15], pousada: ["Pousadas e hotéis", "pousada", 10], turismo: ["Turismo", "agência de turismo", 10], transfer: ["Transfer", "transfer", 10], restaurante: ["Restaurantes", "restaurante", 6], servicos_casa: ["Serviços para casa", "empresa", 10], oficina: ["Oficinas", "oficina", 10], veterinario: ["Veterinários", "clínica veterinária", 10], imobiliaria: ["Imobiliárias", "imobiliária", 15], construtora: ["Construtoras", "construtora", 15], fotografo: ["Fotógrafos", "fotógrafo", 10], kitesurf: ["Kitesurf", "escola de kitesurf", 10], contabilidade: ["Contabilidade", "escritório de contabilidade", 15],
+    climatizacao: ["Climatização", "climatização e ar-condicionado", 10], desentupidora: ["Desentupidoras", "desentupidora", 10], dedetizadora: ["Dedetizadoras", "dedetizadora", 10], vazamentos: ["Caça-vazamentos", "caça-vazamentos", 10], serralheria: ["Serralherias", "serralheria", 15], vidracaria: ["Vidraçarias e esquadrias", "vidraçaria", 15], solar: ["Energia solar", "energia solar", 15], cftv: ["Segurança e CFTV", "segurança eletrônica", 15],
+    pilates: ["Pilates", "studio de pilates", 10], quiropraxia: ["Quiropraxia", "quiropraxia", 15], multidisciplinar: ["Clínicas multidisciplinares", "clínica multidisciplinar", 15], fono: ["Fonoaudiologia", "fonoaudiologia", 15], petshop: ["Pet shops", "pet shop", 6], hotelpet: ["Hotel para pets", "hotel para pets", 10],
+    estetica_auto: ["Estética automotiva", "estética automotiva", 15], martelinho: ["Martelinho de ouro", "martelinho de ouro", 10], autoeletrica: ["Autoelétricas", "autoelétrica", 10], arcond_auto: ["Ar-condicionado automotivo", "ar-condicionado automotivo", 10], alinhamento: ["Alinhamento e balanceamento", "alinhamento e balanceamento", 6], guincho: ["Guincho 24h", "guincho", 10], locadora: ["Locadoras de veículos", "locadora de veículos", 15],
+    seguros: ["Corretoras de seguros", "corretora de seguros", 10], locacao_equip: ["Locação de equipamentos", "locação de equipamentos", 15], despachante: ["Despachantes", "despachante", 10], autoescola: ["Autoescolas", "autoescola", 15],
+    idiomas: ["Escolas de idiomas", "escola de idiomas", 10], cursos: ["Cursos profissionalizantes", "curso profissionalizante", 10], luta_crossfit: ["Lutas e crossfit", "academia de luta e crossfit", 6], beach_tennis: ["Beach tennis", "arena de beach tennis", 6], buffet: ["Buffets e casas de festas", "buffet e casa de festas", 15] };
+  const CASA = ["servicos_casa", "climatizacao", "desentupidora", "dedetizadora", "vazamentos", "serralheria", "vidracaria", "solar", "cftv"];
+  const SISTEMA = ["dentista", "estetica", "fisioterapeuta", "psicologo", "medico", "quiropraxia", "multidisciplinar", "fono", "pilates", "veterinario", "oficina", "estetica_auto", "martelinho", "autoeletrica", "arcond_auto", "alinhamento"];
   const SITE = { proprio: ["Site próprio", "ok"], instagram: ["Só Instagram", "hot"], whatsapp: ["Só WhatsApp", "hot"], facebook: ["Só Facebook", "hot"], link_bio: ["Link de bio", "hot"], nenhum: ["Sem site", "hot"], plataforma: ["Plataforma de terceiros", "mid"], delivery: ["App de delivery", "mid"], fora_do_ar: ["Site fora do ar", "hot"], governo: ["Órgão público", ""], rede: ["Rede ou franquia", ""] };
   const ST = { chamei: "Chamei", respondeu: "Respondeu", negociando: "Negociando", fechou: "Fechou", sem_interesse: "Sem interesse" };
   const fora = x => x.site_tipo === "governo" || x.site_tipo === "rede";
   const SOCIAL = ["instagram", "whatsapp", "facebook", "link_bio"];
   const semProprio = x => x.site_tipo !== "proprio" && !fora(x);
-  const celular = t => { const d = String(t || "").replace(/\D/g, ""); return d.length === 11 && d[2] === "9"; };
+  const celular = t => { const d = String(t || "").replace(/\D/g, "").replace(/^0/, ""); return d.length === 11 && d[2] === "9"; };
+  const fixo = t => { const d = String(t || "").replace(/\D/g, "").replace(/^0/, ""); return d.length === 10 && "2345".includes(d[2]); };
   let RAW = [], ALL = [], seg = "", shown = 40, TOKEN = "";
 
+  // Índice de oportunidade (0 a 100): digital 35 + avaliações 25 + nota 15 + ticket do segmento 15 + contato 10. Rede, franquia e órgão público = 0.
+  const quebrado = x => x.site_tipo === "fora_do_ar" || x.site_check === "link_quebrado";
+  const digitalPts = x => SOCIAL.includes(x.site_tipo) || x.site_tipo === "plataforma" || x.site_tipo === "delivery" ? 35 : quebrado(x) ? 32 : x.site_tipo === "nenhum" ? 28 : x.site_tipo === "proprio" && ["sem_https", "lento"].includes(x.site_check) ? 10 : 0;
+  const avalPts = a => a > 80 ? 20 : a >= 15 ? 25 : a >= 5 ? 12 : 5;
+  const repPts = r => r >= 4.7 ? 15 : r >= 4.3 ? 12 : r >= 4 ? 8 : 3;
+  const ticketPts = x => (SEG[x.segmento] || [, , 6])[2];
+  const contatoPts = x => celular(x.telefone) ? 10 : fixo(x.telefone) ? 4 : 0;
   function score(x) {
     if (fora(x)) return 0;
-    let s = 0;
-    s += { nenhum: 35, instagram: 40, whatsapp: 40, facebook: 38, link_bio: 38, fora_do_ar: 38, plataforma: 22, delivery: 18, proprio: 0 }[x.site_tipo] ?? 20;
-    const r = +x.rating || 0; s += r >= 4.7 ? 15 : r >= 4.3 ? 10 : r >= 4 ? 5 : 0;
-    const a = +x.avaliacoes || 0; s += a >= 200 ? 20 : a >= 80 ? 15 : a >= 30 ? 10 : a >= 10 ? 5 : 0;
-    s += (SEG[x.segmento] || [, , 5])[2];
-    if (celular(x.telefone)) s += 10;
-    return Math.min(100, s);
+    return Math.min(100, digitalPts(x) + avalPts(+x.avaliacoes || 0) + repPts(+x.rating || 0) + ticketPts(x) + contatoPts(x));
+  }
+  // Recomendação principal (planos da Hélice)
+  function recomendacao(x) {
+    const a = +x.avaliacoes || 0, r = +x.rating || 0, semSite = x.site_tipo === "nenhum" || SOCIAL.includes(x.site_tipo) || x.site_tipo === "plataforma" || x.site_tipo === "delivery";
+    if (fora(x)) return { plano: null, txt: "Não prospectar: rede, franquia ou órgão público" };
+    if (quebrado(x)) return { plano: "essencial", txt: "Resgate do site: plano Essencial" };
+    if (x.site_tipo === "proprio") return ["sem_https", "lento"].includes(x.site_check) ? { plano: "essencial", txt: "Reforma do site (sem HTTPS ou lento): plano Essencial" } : { plano: null, txt: "Não prospectar: já tem site próprio funcionando" };
+    if (semSite && a < 15) return { plano: "vitrine", txt: "Plano Vitrine + Kit de avaliações e perfil no Google de bônus" };
+    if (a >= 15 && r >= 4.4) return SISTEMA.includes(x.segmento) ? { plano: "gestao", txt: "Site + sistema: plano Gestão" } : { plano: "profissional", txt: "Site profissional: plano Profissional" };
+    return { plano: "essencial", txt: "Plano Essencial + Kit de avaliações de bônus (nota abaixo de 4,4)" };
   }
   const nivel = s => s >= 70 ? "q" : s >= 55 ? "b" : "";
   const R$ = v => "R$ " + Math.round(v).toLocaleString("pt-BR");
@@ -281,7 +300,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   };
   function preco(x) {
     if (fora(x)) return null;
-    const t = x.segmento === "servicos_casa" ? (/solar/i.test(x.termo || "") ? TAB.solar : TAB.casa) : TAB[x.segmento] || TAB.casa;
+    const t = x.segmento === "solar" || (x.segmento === "servicos_casa" && /solar/i.test(x.termo || "")) ? TAB.solar : CASA.includes(x.segmento) ? TAB.casa : TAB[x.segmento] || TAB.casa;
     const a = +x.avaliacoes || 0, r = +x.rating || 0;
     let f = 1, porte = "médio";
     if (a >= 300) { f = 1.25; porte = "grande"; } else if (a >= 100) { f = 1.1; porte = "médio-grande"; } else if (a < 30) { f = 0.75; porte = "pequeno"; }
@@ -316,7 +335,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     const abre = `Olá! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nVi ${x.site_tipo === "proprio" ? "o site" : "o perfil"} da ${nm} no Google e fiz uma análise rápida, um raio-x.${r ? ` Vocês têm nota ${nota} com ${n(a)} avaliações` : ""}${x.pos_cidade && x.pos_cidade > 1 ? `${r ? " e" : " Vocês"} hoje aparecem em ${x.pos_cidade}º quando alguém procura ${segTxt} em ${cid}` : ""}${r || (x.pos_cidade && x.pos_cidade > 1) ? "." : ""}\n\nVocês têm tudo para ser o primeiro de ${cid}, mas para isso precisam ajustar algumas coisas.`;
     const fecha = "\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.";
     const L = [];
-    const ps = preco(x), sf = score(x);
+    const ps = preco(x), sf = score(x), rc = recomendacao(x);
     const ref = x.site_tipo === "proprio";
     if (ps && sf > 0) L.push({ id: "site", nome: ref ? "Reforma do site" : ps.plano, fit: ref ? sf * 0.5 : sf, porque: ref ? (x.site_check === "link_quebrado" ? "Já tem site, mas o link do Google está quebrado: dá para oferecer uma reforma junto com o conserto." : "Já tem site próprio: só vale oferecer reforma se o atual estiver ultrapassado (abra o site antes).") : motivos(x)[0] || "Sem site próprio no Google.", faixa: [ps.min, ps.max], alvo: ps.alvo, mensal: `${R$(ps.men)}/mês de manutenção`, prazo: "5 a 10 dias", entrega: ps.inclui, extra: ps, msg: mensagem(x),
       passos: ["Pedir pelo WhatsApp: logo, fotos, serviços, horário e endereço", "Montar a partir de um modelo do segmento (eu te ajudo a montar)", "Registrar o domínio .com.br no nome do cliente (Registro.br, cerca de R$ 40 por ano)", "Publicar e trocar o link no perfil do Google", "Mostrar ao cliente e combinar como pedir alterações"] });
@@ -338,13 +357,13 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
         entrega: ["Link curto que abre direto a tela de avaliar no Google", "Placa com QR code para o balcão (arquivo pronto para imprimir)", "Mensagem pronta de WhatsApp para mandar depois do atendimento", "Modelo de resposta para as avaliações"],
         passos: ["Pegar o link de \"Pedir avaliações\" no perfil do Google (o dono acha em 1 minuto)", "Gerar o link curto e o QR code e montar a placa (eu monto o arquivo)", "Escrever a mensagem pós-atendimento no tom da empresa", "Combinar com o dono de mandar para os clientes atendidos na semana", "Depois de 30 dias, mostrar quantas avaliações entraram"],
         msg: `${abre}\n\n${r >= 4.5 ? "A nota de vocês é ótima, mas o número de avaliações ainda é pequeno" : "Dá para aumentar bastante o número de avaliações de vocês"} — e muita gente escolhe ${segTxt} pela quantidade de avaliações.\n\nMonto um kit simples: QR code para o balcão e mensagem pronta para o cliente avaliar depois do atendimento. Em poucas semanas o número sobe.${fecha}` }); }
-    if (["estetica", "servicos_casa", "dentista", "advogado", "fisioterapeuta", "nutricionista", "personal", "psicologo", "medico", "fotografo"].includes(x.segmento)) { const soc = SOCIAL.includes(x.site_tipo), sg = soc ? 40 : x.site_tipo === "nenhum" ? 25 : 0;
+    if (CASA.includes(x.segmento) || ["estetica", "dentista", "advogado", "fisioterapeuta", "nutricionista", "personal", "psicologo", "medico", "fotografo", "pilates", "quiropraxia", "multidisciplinar", "fono", "estetica_auto", "martelinho", "idiomas", "cursos", "buffet", "despachante", "contabilidade", "seguros"].includes(x.segmento)) { const soc = SOCIAL.includes(x.site_tipo), sg = soc ? 40 : x.site_tipo === "nenhum" ? 25 : 0;
       const onde = { instagram: "o Instagram", whatsapp: "um link de WhatsApp", facebook: "o Facebook", link_bio: "um link de bio" }[x.site_tipo];
       if (sg) L.push({ id: "pagina", nome: "Página de serviços com botão de WhatsApp", fit: sg + notaPts(r) + volPts(a) / 2 + cel + sw / 2, porque: soc ? `Hoje o link do Google leva para ${onde}. Uma página própria mostra serviços, fotos e localização num lugar só e leva direto ao WhatsApp.` : "Sem nenhum link no Google: uma página simples já resolve e custa pouco.", faixa: [350, 600], mensal: "R$ 29/mês de hospedagem e domínio", prazo: "2 a 3 dias",
         entrega: ["Uma página só, feita para o celular, com serviços e fotos (preços se quiser)", "Botão de WhatsApp com mensagem pronta para cada serviço", "Endereço com mapa e horário", "Serve também como link da bio do Instagram"],
         passos: ["Pedir serviços, fotos, horário e (se quiser mostrar) preços", "Montar a página a partir do modelo (eu te ajudo)", "Publicar com domínio próprio", "Trocar o link do perfil do Google e da bio do Instagram", "Mostrar ao cliente"],
         msg: `${abre}\n\nReparei que ${soc ? `o link do Google de vocês leva para ${onde}` : "o perfil de vocês no Google não tem link nenhum"}. Faço uma página simples, só de vocês, com os serviços, fotos e um botão que já abre o WhatsApp com a mensagem pronta — serve para o Google e para a bio do Instagram.${fecha}` }); }
-    { const pl = PLAN[x.segmento]; let sg = a >= 200 ? 40 : a >= 80 ? 30 : a >= 30 ? 15 : 0; if (sg && x.site_tipo === "proprio") sg += 5;
+    { const pl = PLAN[CASA.includes(x.segmento) ? "servicos_casa" : x.segmento]; let sg = a >= 200 ? 40 : a >= 80 ? 30 : a >= 30 ? 15 : 0; if (sg && x.site_tipo === "proprio") sg += 5;
       if (pl && sg) L.push({ id: "planilha", nome: pl[0], fit: sg + notaPts(r) / 2 + cel + sw, porque: `${n(a)} avaliações indicam bastante movimento. A planilha ajuda a ${pl[2]}.`, faixa: [250, 500], mensal: "opcional: R$ 49/mês de suporte e ajustes", prazo: "2 a 3 dias",
         entrega: [`Planilha no Google Planilhas com ${pl[1]}`, "Painel com os números do mês", "Funciona no celular", "30 minutos de treinamento por chamada de vídeo"],
         passos: ["Conversar 20 minutos: como controlam hoje (caderno, papel ou nada)", "Adaptar o modelo do segmento (eu te ajudo a montar)", "Copiar para o Google Drive do cliente", "Treinar por chamada de vídeo", "Voltar em 15 dias para ajustar"],
@@ -354,7 +373,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
         entrega: ["Perfil comercial com endereço, horário e catálogo de serviços", "Mensagem de boas-vindas e de ausência", "Respostas rápidas para as perguntas mais comuns", "Etiquetas para organizar os clientes (novo, orçamento, fechado)"],
         passos: ["Confirmar se já usa o WhatsApp Business (se não, migrar sem perder as conversas)", "Levantar as 10 perguntas que mais chegam", "Configurar catálogo, mensagens automáticas e respostas rápidas", "Criar as etiquetas e mostrar como usar"],
         msg: `${abre}\n\nVocês atendem pelo WhatsApp, né? Configuro o WhatsApp Business de vocês com catálogo de serviços, resposta automática fora do horário e respostas prontas para as perguntas que mais chegam. O cliente é atendido na hora, mesmo quando vocês estão ocupados.${fecha}` }); }
-    if (x.segmento === "servicos_casa" || x.segmento === "oficina") { const solar = /solar/i.test(x.termo || "") || /solar|energia/i.test(x.nome), sg = x.segmento === "servicos_casa" ? (solar ? 40 : 35) : 20;
+    if (CASA.includes(x.segmento) || x.segmento === "oficina") { const solar = x.segmento === "solar" || /solar/i.test(x.termo || "") || /solar|energia/i.test(x.nome), sg = CASA.includes(x.segmento) ? (solar ? 40 : 35) : 20;
       L.push({ id: "orcamento", nome: solar ? "Modelo de proposta com simulação de economia" : "Modelo de orçamento profissional", fit: sg + notaPts(r) + volPts(a) / 2 + cel, porque: solar ? "Energia solar se vende por proposta: uma proposta caprichada, com a economia estimada, fecha mais." : x.segmento === "oficina" ? "Orçamento organizado, com peças e mão de obra separadas, passa confiança e é aprovado mais rápido." : "Orçamento com a marca da empresa passa confiança e substitui o orçamento no papel ou no áudio.", faixa: [300, 500], mensal: null, prazo: "2 dias",
         entrega: [solar ? "Modelo de proposta com simulação de economia na conta de luz" : "Modelo de orçamento com logo, itens, prazo e garantia", "Gera PDF pelo celular para mandar no WhatsApp", "Numeração e controle dos orçamentos enviados", "Texto de garantia e condições de pagamento"],
         passos: ["Pegar um orçamento que eles já mandaram e o logo", "Montar o modelo (planilha que vira PDF; eu te ajudo)", "Testar com um orçamento real junto com o dono", "Mostrar como gerar o PDF no celular e mandar no WhatsApp"],
@@ -367,7 +386,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     profissional: ["Profissional", "129", "site completo com uma ferramenta sob medida para o negócio, avaliações do Google no site e ajustes todo mês"], gestao: ["Gestão", "249", "tudo do Profissional, mais a gestão do perfil no Google e um resumo mensal de visitas e contatos"] };
   function planoDe(o, x) {
     const a = +x.avaliacoes || 0;
-    if (o.id === "site") return a >= 300 ? "gestao" : (a >= 100 || ["pousada", "veterinario", "dentista"].includes(x.segmento)) ? "profissional" : a < 30 ? "vitrine" : "essencial";
+    if (o.id === "site") return recomendacao(x).plano || "essencial";
     return { pagina: "vitrine", perfil: "gestao", avaliacoes: "profissional", planilha: "profissional", orcamento: "profissional", whatsapp: "essencial" }[o.id] || "essencial";
   }
   const INCLUSO = { perfil: "A gestão do perfil no Google faz parte do plano Gestão (ou vai de cortesia por 3 meses no Profissional).", avaliacoes: "O kit de avaliações entra no plano Profissional, junto com as avaliações do Google no site.", planilha: "A ferramenta sob medida faz parte do plano Profissional.", orcamento: "O modelo de orçamento entra como ferramenta sob medida do plano Profissional.", whatsapp: "A configuração do WhatsApp Business vai de bônus em qualquer plano." };
@@ -421,7 +440,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       return `<button type="button" class="row" data-id="${esc(x.place_id)}"><span class="score ${nivel(x._s)}" title="Índice de oportunidade">${x._s}</span>
         <span class="rinfo"><span class="rtitle">${esc(x.nome)}</span>
         <span class="rmeta"><span class="estrela">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"}</span><span>${n(x.avaliacoes)} avaliações</span><span>${esc(x.bairro || "")}${!$("fCidade").value ? " · " + esc(x.cidade) : ""}</span>${x.pos_cidade ? `<span>${x.pos_cidade}º no Google</span>` : ""}</span>
-        <span class="chips">${x._of[0] ? `<span class="chip acc">Oferecer: ${esc(x._of[0].curto)}</span>` : ""}${x.site_check === "link_quebrado" ? '<span class="chip mid">Link do Google quebrado</span>' : ""}${PILOTO[x.place_id] ? `<span class="chip pil">Piloto · Lote ${PILOTO[x.place_id][1]}</span>` : ""}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span>${x.instagram ? '<span class="chip">Tem Instagram</span>' : ""}<span class="chip">${esc((SEG[x.segmento] || [x.segmento])[0])}</span></span></span></button>`;
+        <span class="chips">${x._rec.plano ? `<span class="chip acc">Recomendado: ${esc(PLANOS[x._rec.plano][0])}</span>` : `<span class="chip">Não prospectar</span>`}${x.site_check === "link_quebrado" ? '<span class="chip mid">Link do Google quebrado</span>' : ""}${PILOTO[x.place_id] ? `<span class="chip pil">Piloto · Lote ${PILOTO[x.place_id][1]}</span>` : ""}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span>${x.instagram ? '<span class="chip">Tem Instagram</span>' : ""}<span class="chip">${esc((SEG[x.segmento] || [x.segmento])[0])}</span></span></span></button>`;
     }).join("") : `<div class="empty">Nenhuma empresa com esses filtros.</div>`;
     $("more").hidden = r.length <= shown;
   }
@@ -459,13 +478,14 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       <div class="ptop"><div><span class="eyebrow">${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.tipo_nome || "")}</span><h2 id="dT">${esc(x.nome)}</h2></div><button class="close" data-close="1" type="button" aria-label="Fechar">×</button></div>
       <div class="facts">
         <div class="fact"><span class="k">Índice de oportunidade</span><span class="v">${x._s} de 100</span></div>
+        <div class="fact"><span class="k">Recomendação</span><span class="v">${esc(x._rec.txt)}${x._rec.plano ? ` · R$ ${PLANOS[x._rec.plano][1]}/mês` : ""}</span></div>
         <div class="fact"><span class="k">Nota no Google</span><span class="v">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} · ${n(x.avaliacoes)} avaliações</span></div>
         <div class="fact"><span class="k">Posição na busca da cidade</span><span class="v">${x.pos_cidade ? x.pos_cidade + "º" : "não aparece na busca geral"}</span></div>
-        <div class="fact"><span class="k">Site</span><span class="v">${st[0]}</span></div>
+        <div class="fact"><span class="k">Site</span><span class="v">${st[0]}${x.site_tipo === "proprio" && x.site_check === "sem_https" ? " (sem HTTPS)" : x.site_tipo === "proprio" && x.site_check === "lento" ? " (lento)" : ""}</span></div>
         <div class="fact"><span class="k">Telefone</span><span class="v">${esc(x.telefone || "–")}</span></div>
         <div class="fact"><span class="k">Bairro</span><span class="v">${esc(x.bairro || "–")}</span></div>
       </div>
-      <div class="porque"><h3>O que o radar viu</h3><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
+      <div class="porque"><h3>O que o radar viu</h3><p class="dica">${fora(x) ? "Rede, franquia ou órgão público: índice zerado." : `Pontos: digital ${digitalPts(x)}/35 · avaliações ${avalPts(+x.avaliacoes || 0)}/25 · nota ${repPts(+x.rating || 0)}/15 · ticket do segmento ${ticketPts(x)}/15 · contato ${contatoPts(x)}/10`}</p><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
       <div class="porque oferta"><h3>O que oferecer</h3>
         ${x._of.length ? `<p class="dica">Em ordem de encaixe com essa empresa. Serviço barato abre a porta; depois de entregar bem, ofereça o próximo.</p>${x._of.slice(0, 3).map(o => cardOf(o, ofSel)).join("")}${x._of.length > 3 ? `<details class="mais"><summary>Outros serviços (${x._of.length - 3})</summary>${x._of.slice(3).map(o => cardOf(o, ofSel)).join("")}</details>` : ""}` : `<p class="dica">Rede, franquia ou órgão público: fora do foco do radar.</p>`}</div>
       <div class="pactions">${PILOTO[x.place_id] ? `<a class="btn" href="${esc(PILOTO[x.place_id][0])}" target="_blank" rel="noopener">Ver piloto (Lote ${PILOTO[x.place_id][1]})</a>` : ""}${x.maps_url ? `<a class="btn" href="${esc(x.maps_url)}" target="_blank" rel="noopener">Ver no Google Maps</a>` : ""}${x.site ? `<a class="btn" href="${esc(x.site)}" target="_blank" rel="noopener">Abrir o link do site</a>` : ""}${x.instagram && x.site_tipo !== "instagram" ? `<a class="btn" href="${esc(x.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}</div>
@@ -530,7 +550,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   function porCidade() {
     const c = $("fCidade").value; ALL = c ? RAW.filter(x => x.cidade === c) : RAW.slice();
     MED = {}; Object.keys(SEG).forEach(k => { const v = ALL.filter(x => x.segmento === k).map(x => +x.avaliacoes || 0).sort((a, b) => a - b); MED[k] = v.length ? v[Math.floor(v.length / 2)] : 0; });
-    ALL.forEach(x => { x._of = ofertas(x); x._s = (x._of[0] || {}).fit || 0; });
+    ALL.forEach(x => { x._of = ofertas(x); x._s = score(x); x._rec = recomendacao(x); });
     const bairros = [...new Set(ALL.map(x => x.bairro).filter(Boolean))].sort((a, b) => a.localeCompare(b, "pt-BR"));
     $("fBairro").innerHTML = `<option value="">Todos os bairros</option>` + bairros.map(b => `<option>${esc(b)}</option>`).join("");
     const ult = ALL.reduce((m, x) => x.visto_em > m ? x.visto_em : m, "");
