@@ -180,15 +180,21 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
 .ct .sts{display:flex;gap:4px;flex-wrap:wrap}.ct .sts button{font:inherit;font-size:12px;border:1px solid var(--line,#ddd);background:none;border-radius:8px;padding:5px 9px;cursor:pointer}
 .ct .sts button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-weight:600;z-index:30}
+details.maisf{border-top:1px solid var(--line);padding-top:10px}
+details.maisf summary,details.analise summary,details.foot-d summary{cursor:pointer;font-weight:600;font-size:14px;color:var(--muted);padding:6px 0}
+details.maisf[open]{display:flex;flex-direction:column;gap:12px}
+details.analise{border-top:1px solid var(--line);padding-top:10px;margin-top:6px}
+details.analise[open]{display:flex;flex-direction:column;gap:14px}
+details.foot-d{margin-top:28px}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <span class="eyebrow">Negócios locais no Google · prospecção de sites</span>
+      <span class="eyebrow">Prospecção · Hélice</span>
       <h1>Radar Negócios Locais</h1>
-      <p>Empresas que aparecem no Google Maps, com nota, avaliações, posição na busca, site e Instagram. O radar aponta quem tem clientes e boa reputação, mas ainda não tem um site próprio.</p>
+      <p>Empresas da cidade no Google, das melhores oportunidades para as menores. Toque numa empresa e chame no WhatsApp.</p>
     </div>
     <nav class="lotes" aria-label="Atalhos"><button class="btn pri" type="button" id="bContatos">Meus contatos</button><span class="eu" id="eu" hidden></span></nav>
     <label class="cidade" for="fCidade">Cidade <select id="fCidade"></select></label>
@@ -199,7 +205,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   <div class="funil" id="funil"></div>
   <nav class="segs" id="segs" aria-label="Segmentos"></nav>
 
-  <section class="painel">
+  <section class="painel" style="display:none">
     <div class="card"><h2>Quem tem site próprio</h2><p class="sub">Para onde aponta o link do site no perfil do Google, por segmento.</p><div class="barras" id="barSite"></div>
       <div class="legenda"><span><i style="background:var(--good)"></i>Site próprio</span><span><i style="background:var(--mid)"></i>Só Instagram, WhatsApp ou Facebook</span><span><i style="background:var(--hot)"></i>Nenhum link</span><span><i style="background:var(--low)"></i>Rede, plataforma ou fora do ar</span></div></div>
     <div class="card"><h2>Bairros com mais leads quentes</h2><p class="sub">Empresas com 60 pontos ou mais no índice de oportunidade.</p><div class="barras" id="barBairro"></div></div>
@@ -209,8 +215,8 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     <button class="btn tfiltros" id="tFiltros" type="button" aria-expanded="false" aria-controls="filtros">Filtros</button>
     <aside class="filters" id="filtros" aria-label="Filtros">
       <div class="f"><label for="fAbord">Abordagem</label><select id="fAbord"><option value="nao" selected>Ainda não abordadas</option><option value="andamento">Em andamento</option><option value="fechou">Fechadas</option><option value="sem_interesse">Sem interesse</option><option value="">Todas</option></select></div>
-      <div class="f"><label for="fOf">O que oferecer</label><select id="fOf"><option value="">Qualquer serviço</option><option value="site">Site</option><option value="pagina">Página de serviços</option><option value="perfil">Perfil no Google</option><option value="avaliacoes">Kit de avaliações</option><option value="whatsapp">WhatsApp Business</option><option value="planilha">Planilha de controle</option><option value="orcamento">Modelo de orçamento</option></select></div>
       <div class="f"><label for="fBusca">Buscar</label><input id="fBusca" type="search" placeholder="Nome ou bairro"></div>
+      <details class="maisf"><summary>Mais filtros</summary><div class="f"><label for="fOf">O que oferecer</label><select id="fOf"><option value="">Qualquer serviço</option><option value="site">Site</option><option value="pagina">Página de serviços</option><option value="perfil">Perfil no Google</option><option value="avaliacoes">Kit de avaliações</option><option value="whatsapp">WhatsApp Business</option><option value="planilha">Planilha de controle</option><option value="orcamento">Modelo de orçamento</option></select></div>
       <div class="f"><label for="fSite">Site</label><select id="fSite">
         <option value="" selected>Qualquer situação</option><option value="semproprio">Sem site próprio</option><option value="nenhum">Nenhum link</option>
         <option value="social">Só Instagram, WhatsApp ou Facebook</option><option value="fora">Site fora do ar</option><option value="quebrado">Link do Google quebrado</option><option value="proprio">Com site próprio</option></select></div>
@@ -218,6 +224,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       <div class="f"><label for="fAval">Avaliações mínimas</label><select id="fAval"><option value="0">Qualquer</option><option value="10" selected>10 ou mais</option><option value="50">50 ou mais</option><option value="150">150 ou mais</option></select></div>
       <div class="f"><label for="fBairro">Bairro</label><select id="fBairro"></select></div>
       <label class="check"><input type="checkbox" id="fCel" checked> Só com celular (dá para chamar no WhatsApp)</label>
+      </details>
       <button class="reset" id="reset" type="button">Limpar filtros</button>
     </aside>
     <section aria-label="Empresas">
@@ -228,14 +235,14 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     </section>
   </div>
 
-  <footer class="foot">
+  <details class="foot-d"><summary>Como o radar funciona</summary><footer class="foot">
     <span><b>Fonte:</b> Google Maps (Places API), lido pelo radar. Posição = ordem em que o Google mostra a empresa na busca "segmento + cidade"; o que cada pessoa vê pode variar com a localização dela.</span>
     <span><b>Índice de oportunidade (0 a 100):</b> situação digital até 35 (só Instagram/WhatsApp/link de bio 35, site fora do ar ou link quebrado 32, sem site 28, site próprio sem HTTPS ou lento 10, site próprio funcionando 0) · avaliações até 25 (15 a 80 = 25, mais de 80 = 20, 5 a 14 = 12, menos de 5 = 5) · nota até 15 (4,7+ = 15, 4,3 a 4,6 = 12, 4,0 a 4,2 = 8, abaixo = 3) · ticket do segmento até 15 (alto 15, médio 10, menor 6) · contato até 10 (celular 10, fixo 4). Redes e franquias (mesmo site ou mesmo nome em 3 ou mais unidades) ficam com zero. "Fora do ar" só é marcado quando o erro se repete em duas tentativas; site que só bloqueia robô conta como site próprio.</span>
     <span><b>O que oferecer:</b> além do site, o radar sugere serviços simples (perfil no Google, kit de avaliações, página de serviços, WhatsApp Business, planilha de controle e modelo de orçamento), em ordem de encaixe com os dados de cada empresa. O índice da empresa é o do serviço que mais se encaixa.</span>
     <span><b>Quanto cobrar:</b> faixa de preço por segmento, pensada para São Luís, ajustada pelo tamanho da empresa (avaliações) e pela nota. Os valores são uma referência para negociar, não uma tabela fixa.</span>
     <span>Os dados do Google são atualizados todo mês; empresas que o Google deixa de mostrar por mais de 45 dias saem do radar. Suas abordagens ficam guardadas e só aparecem para quem tem o link com a chave.</span>
     <span>Dados públicos das empresas no Google. Use para prospecção com bom senso: uma mensagem por empresa, sem insistência.</span>
-  </footer>
+  </footer></details>
 </div>
 <div id="contatos" hidden></div>
 <div id="detail" hidden></div>
@@ -392,8 +399,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
   const INCLUSO = { perfil: "A gestão do perfil no Google faz parte do plano Gestão (ou vai de cortesia por 3 meses no Profissional).", avaliacoes: "O kit de avaliações entra no plano Profissional, junto com as avaliações do Google no site.", planilha: "A ferramenta sob medida faz parte do plano Profissional.", orcamento: "O modelo de orçamento entra como ferramenta sob medida do plano Profissional.", whatsapp: "A configuração do WhatsApp Business vai de bônus em qualquer plano." };
   function helice(o, x) {
     const k = planoDe(o, x), P = PLANOS[k];
-    const corpo = String(o.msg || "").replace(/\n\n(Posso te (mostrar|mandar)[^\n]*|Quer que eu te mostre\?)\s*$/, "");
-    const msg = `${corpo}\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.`;
+    const msg = mensagem(x);
     return { ...o, plano: k, msg };
   }
 
@@ -440,7 +446,7 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
       return `<button type="button" class="row" data-id="${esc(x.place_id)}"><span class="score ${nivel(x._s)}" title="Índice de oportunidade">${x._s}</span>
         <span class="rinfo"><span class="rtitle">${esc(x.nome)}</span>
         <span class="rmeta"><span class="estrela">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"}</span><span>${n(x.avaliacoes)} avaliações</span><span>${esc(x.bairro || "")}${!$("fCidade").value ? " · " + esc(x.cidade) : ""}</span>${x.pos_cidade ? `<span>${x.pos_cidade}º no Google</span>` : ""}</span>
-        <span class="chips">${x._rec.plano ? `<span class="chip acc">Recomendado: ${esc(PLANOS[x._rec.plano][0])}</span>` : `<span class="chip">Não prospectar</span>`}${x.site_check === "link_quebrado" ? '<span class="chip mid">Link do Google quebrado</span>' : ""}${PILOTO[x.place_id] ? `<span class="chip pil">Piloto · Lote ${PILOTO[x.place_id][1]}</span>` : ""}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span>${x.instagram ? '<span class="chip">Tem Instagram</span>' : ""}<span class="chip">${esc((SEG[x.segmento] || [x.segmento])[0])}</span></span></span></button>`;
+        <span class="chips">${x._rec.plano ? `<span class="chip acc">${esc(PLANOS[x._rec.plano][0])}</span>` : `<span class="chip">Não prospectar</span>`}${x.ab_status ? `<span class="chip st-${x.ab_status}">${ST[x.ab_status]}</span>` : ""}<span class="chip ${st[1]}">${st[0]}</span></span></span></button>`;
     }).join("") : `<div class="empty">Nenhuma empresa com esses filtros.</div>`;
     $("more").hidden = r.length <= shown;
   }
@@ -460,11 +466,9 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     return m;
   }
   function mensagem(x) {
-    const nome = x.nome.split(/[|\-–]/)[0].trim(), cid = x.cidade || "São Luís";
-    const ondeVai = { instagram: "hoje o link do Google leva só para o Instagram", whatsapp: "hoje o link do Google leva direto para o WhatsApp, sem um site para apresentar o negócio", facebook: "hoje o link do Google leva só para o Facebook", link_bio: "hoje o link do Google leva para um link de bio", nenhum: "não aparece nenhum site no perfil do Google", fora_do_ar: "o site que está no Google não está abrindo" }[x.site_tipo] || "dá para melhorar bastante a presença de vocês no Google";
-    const seg = (SEG[x.segmento] || [, "empresa"])[1];
-    const pos = x.pos_cidade && x.pos_cidade > 1 ? ` e hoje aparecem em ${x.pos_cidade}º quando alguém procura ${seg} em ${cid}` : "";
-    return `Olá! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nVi ${x.site_tipo === "proprio" ? "o site" : "o perfil"} da ${nome} no Google e fiz uma análise rápida, um raio-x.${x.rating ? ` Vocês têm nota ${x.rating.toLocaleString("pt-BR")} com ${n(x.avaliacoes)} avaliações${pos}.` : ""}\n\nVocês têm tudo para ser o primeiro de ${cid}, mas para isso precisam ajustar algumas coisas. A principal: ${ondeVai}.\n\nPosso te mandar uma amostra do que poderíamos fazer? É sem compromisso.`;
+    const nome = nomeCurto(x), cid = x.cidade || "São Luís", r = +x.rating || 0, a = +x.avaliacoes || 0;
+    const base = r >= 4.5 && a >= 10 ? `\n\nVocês já têm uma base muito boa (nota ${r.toLocaleString("pt-BR")} com ${n(a)} avaliações), e dá para tirar bem mais proveito disso.` : x.pos_cidade && x.pos_cidade <= 20 ? `\n\nVocês já aparecem bem na busca da cidade, e dá para tirar bem mais proveito disso.` : "";
+    return `Olá! Tudo bem? Aqui é ${QUEM}, da Hélice.\n\nFiz uma análise da ${nome} aqui em ${cid}: como vocês aparecem no Google, o que os clientes falam nas avaliações e como estão em relação aos concorrentes.${base}\n\nMontei um pequeno estudo com o que encontrei e alguns pontos para posicionar vocês ainda melhor. Posso compartilhar com você? É rapidinho e sem compromisso.`;
   }
   const PILOTO = {"ChIJb2e-FFiP9gcREUyK8edmQ6s": ["https://helicesites.com.br/lote1/joao-guilherme-fernandes/", "1"], "ChIJVevFZM2P9gcRFqHp-mjG_p4": ["https://helicesites.com.br/lote1/renan-carneiro-advogado/", "1"], "ChIJBaWVZA2N9gcRVD0MJFWRq5Y": ["https://helicesites.com.br/lote1/nayara-couto-advocacia/", "1"], "ChIJb82D56KT9gcR_GMlYXyfyPY": ["https://helicesites.com.br/lote1/ricardo-aragao-advogado/", "1"], "ChIJSY6dtKeN9gcRWfsb8LCgCu4": ["https://helicesites.com.br/lote1/kenny-braga-fisioterapeuta/", "1"], "ChIJ16JpRraT9gcRD4wa5ZkfkXM": ["https://helicesites.com.br/lote1/wal-pinheiro-fisioterapia/", "1"], "ChIJHfAKTACN9gcR3k_0Be0EdU0": ["https://helicesites.com.br/lote1/filipe-fontoura-osteopatia/", "1"], "ChIJaRoOLK2N9gcRMCnLeYPJtTg": ["https://helicesites.com.br/lote1/juliana-torres-fisioterapia-pelvica/", "1"], "ChIJ78_I6VaN9gcRGbAaKX0GrRE": ["https://helicesites.com.br/lote1/daniel-amaral-nutricionista/", "1"], "ChIJ__3aTFeR9gcR_hB-M4PhJcE": ["https://helicesites.com.br/lote1/danielle-lima-nutricionista/", "1"], "ChIJhdfP5euN9gcRzjnR2GYT-p0": ["https://helicesites.com.br/lote1/saul-campos-nutricionista/", "1"], "ChIJIahsYy-N9gcRig5MrrLbZvs": ["https://helicesites.com.br/lote1/wilson-serrao-nutricionista/", "1"], "ChIJC26unNaN9gcRr_Mhv0eHB68": ["https://helicesites.com.br/lote1/daiana-rabelo-personal/", "1"], "ChIJT13d0b6N9gcRBX9W0HjbeNw": ["https://helicesites.com.br/lote1/airton-gondim-personal/", "1"], "ChIJU2C7G66R9gcRNnc_UQoKT34": ["https://helicesites.com.br/lote1/pedro-salgado-personal/", "1"], "ChIJ-2VURIKN9gcRi120yhrlsko": ["https://helicesites.com.br/lote1/felipe-mendes-personal/", "1"], "ChIJ630uAGab9gcR-3BwcGHonz4": ["https://helicesites.com.br/lote1/consuelo-schliebe-psicologa/", "1"], "ChIJAesXXyuP9gcRzFEHYbA32sw": ["https://helicesites.com.br/lote1/jaime-silva-psicologo/", "1"], "ChIJ19YFpK2N9gcR4mSv43Yt2rg": ["https://helicesites.com.br/lote1/sofia-ravinny-psicologa/", "1"], "ChIJSWctoSSR9gcRe6yU75N5gI4": ["https://helicesites.com.br/lote1/anderson-bastos-psicologo/", "1"], "ChIJR0pwKwqP9gcRZRif-Jp8uIc": ["https://helicesites.com.br/lote2/luana-paiva-advogada/", "2"], "ChIJDzGQVgqN9gcRVjV8iglFmx4": ["https://helicesites.com.br/lote2/eduardo-mercon-advogado/", "2"], "ChIJl88qOcmN9gcR_fPzLGm9nOU": ["https://helicesites.com.br/lote2/felipe-assuncao-advogado/", "2"], "ChIJXXkO8riP9gcRDEEydzbZbaQ": ["https://helicesites.com.br/lote2/mauro-campos-advogado/", "2"], "ChIJM9bglm6R9gcRTuMGRvhEzoA": ["https://helicesites.com.br/lote2/caio-mattos-advogado/", "2"], "ChIJda8vv0qR9gcRvEdgxDagIFg": ["https://helicesites.com.br/lote2/juliana-moraes-fisioterapia/", "2"], "ChIJt-27-JqT9gcRp0jYF_o8Wx4": ["https://helicesites.com.br/lote2/angelo-thiago-fisioterapeuta/", "2"], "ChIJQ4NJRVKR9gcR9OfktXdazWA": ["https://helicesites.com.br/lote2/juliana-ferreira-fisioterapia/", "2"], "ChIJsQEDOWmb9gcRs0hWMqk0Hmg": ["https://helicesites.com.br/lote2/anderson-castro-fisioterapia/", "2"], "ChIJj2U8YDCb9gcR99lPInAxwac": ["https://helicesites.com.br/lote2/patricia-nunes-fisioterapeuta/", "2"], "ChIJEZiXtwCN9gcRqN6Efj9M_OQ": ["https://helicesites.com.br/lote2/michelle-balltaglini-nutricionista/", "2"], "ChIJE6sIT6ON9gcR0XMpE_2ZsLs": ["https://helicesites.com.br/lote2/karine-baldez-nutricionista/", "2"], "ChIJ5X8BXHmN9gcRuaJ8OuRNGMg": ["https://helicesites.com.br/lote2/luna-araujo-nutricionista/", "2"], "ChIJQ49kOkuN9gcRGTHqjGRuE3M": ["https://helicesites.com.br/lote2/roberta-carvalho-nutricionista/", "2"], "ChIJVzzChr2N9gcRGEkgpXVfU8Y": ["https://helicesites.com.br/lote2/nayra-pinheiro-nutricionista/", "2"], "ChIJaxEcwPGN9gcRZhsWjzfopvM": ["https://helicesites.com.br/lote2/lorena-bessani-nutricionista/", "2"], "ChIJUVF_Iq2P9gcRy4MOFkBfOgY": ["https://helicesites.com.br/lote2/nathalia-pinto-psicologa/", "2"], "ChIJ_9_p2-GN9gcRM0YYvDzpPvI": ["https://helicesites.com.br/lote2/simone-santos-psicologa/", "2"], "ChIJAQ93SX6P9gcR6udMmf0lICc": ["https://helicesites.com.br/lote2/ivan-almeida-psicologo/", "2"], "ChIJWfL6Kr-R9gcR8Zos0-hCV0w": ["https://helicesites.com.br/lote2/karen-viegas-psicologa/", "2"]};
   function abrir(x) {
@@ -477,18 +481,13 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     $("detail").innerHTML = `<div class="scrim" data-close="1"></div><aside class="panel" role="dialog" aria-modal="true" aria-labelledby="dT">
       <div class="ptop"><div><span class="eyebrow">${esc((SEG[x.segmento] || [x.segmento])[0])} · ${esc(x.tipo_nome || "")}</span><h2 id="dT">${esc(x.nome)}</h2></div><button class="close" data-close="1" type="button" aria-label="Fechar">×</button></div>
       <div class="facts">
-        <div class="fact"><span class="k">Índice de oportunidade</span><span class="v">${x._s} de 100</span></div>
-        <div class="fact"><span class="k">Recomendação</span><span class="v">${esc(x._rec.txt)}${x._rec.plano ? ` · R$ ${PLANOS[x._rec.plano][1]}/mês` : ""}</span></div>
         <div class="fact"><span class="k">Nota no Google</span><span class="v">★ ${x.rating ? x.rating.toLocaleString("pt-BR") : "–"} · ${n(x.avaliacoes)} avaliações</span></div>
         <div class="fact"><span class="k">Posição na busca da cidade</span><span class="v">${x.pos_cidade ? x.pos_cidade + "º" : "não aparece na busca geral"}</span></div>
         <div class="fact"><span class="k">Site</span><span class="v">${st[0]}${x.site_tipo === "proprio" && x.site_check === "sem_https" ? " (sem HTTPS)" : x.site_tipo === "proprio" && x.site_check === "lento" ? " (lento)" : ""}</span></div>
-        <div class="fact"><span class="k">Telefone</span><span class="v">${esc(x.telefone || "–")}</span></div>
         <div class="fact"><span class="k">Bairro</span><span class="v">${esc(x.bairro || "–")}</span></div>
       </div>
-      <div class="porque"><h3>O que o radar viu</h3><p class="dica">${fora(x) ? "Rede, franquia ou órgão público: índice zerado." : `Pontos: digital ${digitalPts(x)}/35 · avaliações ${avalPts(+x.avaliacoes || 0)}/25 · nota ${repPts(+x.rating || 0)}/15 · ticket do segmento ${ticketPts(x)}/15 · contato ${contatoPts(x)}/10`}</p><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
-      <div class="porque oferta"><h3>O que oferecer</h3>
-        ${x._of.length ? `<p class="dica">Em ordem de encaixe com essa empresa. Serviço barato abre a porta; depois de entregar bem, ofereça o próximo.</p>${x._of.slice(0, 3).map(o => cardOf(o, ofSel)).join("")}${x._of.length > 3 ? `<details class="mais"><summary>Outros serviços (${x._of.length - 3})</summary>${x._of.slice(3).map(o => cardOf(o, ofSel)).join("")}</details>` : ""}` : `<p class="dica">Rede, franquia ou órgão público: fora do foco do radar.</p>`}</div>
-      <div class="pactions">${PILOTO[x.place_id] ? `<a class="btn" href="${esc(PILOTO[x.place_id][0])}" target="_blank" rel="noopener">Ver piloto (Lote ${PILOTO[x.place_id][1]})</a>` : ""}${x.maps_url ? `<a class="btn" href="${esc(x.maps_url)}" target="_blank" rel="noopener">Ver no Google Maps</a>` : ""}${x.site ? `<a class="btn" href="${esc(x.site)}" target="_blank" rel="noopener">Abrir o link do site</a>` : ""}${x.instagram && x.site_tipo !== "instagram" ? `<a class="btn" href="${esc(x.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}</div>
+      <div class="porque"><h3 id="msgH">Mensagem de abertura</h3><div class="msg" id="msgTxt">${esc(msg)}</div></div>
+      <div class="pactions">${x.telefone ? `<a class="btn zap" id="zap" href="https://wa.me/${tel}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Abrir no WhatsApp</a>` : ""}<button class="btn" type="button" id="cp">Copiar mensagem</button></div>
       <div class="porque abord"><h3>Sua abordagem</h3>
         <div class="stbtns" id="stb">${Object.entries(ST).map(([k, l]) => `<button type="button" data-st="${k}" aria-pressed="${x.ab_status === k}">${l}</button>`).join("")}</div>
         <select id="abServ" aria-label="Serviço oferecido"><option value="">Serviço oferecido: não informado</option>${Object.entries(SERV).map(([k, l]) => `<option value="${k}" ${k === (x.ab_servico || ofSel) ? "selected" : ""}>Serviço oferecido: ${l}</option>`).join("")}</select>
@@ -496,9 +495,18 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
         <input id="abValor" aria-label="Valor mensal da assinatura em reais" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Valor mensal da assinatura (R$)" value="${x.ab_valor ?? ""}" ${x.ab_status === "fechou" ? "" : "hidden"}>
         <div class="pactions" style="margin-top:8px"><button class="btn pri" type="button" id="abSalvar">Salvar</button>${x.ab_status ? `<button class="btn" type="button" id="abLimpar">Desmarcar</button>` : ""}</div>
         ${x.ab_em ? `<p class="quando">Atualizado em ${new Date(x.ab_em).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" })}</p>` : ""}</div>
-      <div class="porque"><h3 id="msgH">Mensagem · ${esc(SERV[ofSel] || "Site")}</h3><div class="msg" id="msgTxt">${esc(msg)}</div></div>
-      <div class="pactions">${x.telefone ? `<a class="btn zap" id="zap" href="https://wa.me/${tel}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Abrir no WhatsApp</a>` : ""}<button class="btn" type="button" id="cp">Copiar mensagem</button></div>
-      <p class="sub" style="font-size:12.5px;color:var(--muted);margin:0">${esc(x.endereco || "")}</p></aside>`;
+      <details class="analise"><summary>Ver análise completa</summary>
+      <div class="facts">
+        <div class="fact"><span class="k">Índice de oportunidade</span><span class="v">${x._s} de 100</span></div>
+        <div class="fact"><span class="k">Recomendação</span><span class="v">${esc(x._rec.txt)}${x._rec.plano ? ` · R$ ${PLANOS[x._rec.plano][1]}/mês` : ""}</span></div>
+        <div class="fact"><span class="k">Telefone</span><span class="v">${esc(x.telefone || "–")}</span></div>
+      </div>
+      <div class="porque"><h3>O que o radar viu</h3><p class="dica">${fora(x) ? "Rede, franquia ou órgão público: índice zerado." : `Pontos: digital ${digitalPts(x)}/35 · avaliações ${avalPts(+x.avaliacoes || 0)}/25 · nota ${repPts(+x.rating || 0)}/15 · ticket do segmento ${ticketPts(x)}/15 · contato ${contatoPts(x)}/10`}</p><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
+      <div class="porque oferta"><h3>O que oferecer</h3>
+        ${x._of.length ? `<p class="dica">Em ordem de encaixe com essa empresa. Serviço barato abre a porta; depois de entregar bem, ofereça o próximo.</p>${x._of.slice(0, 3).map(o => cardOf(o, ofSel)).join("")}${x._of.length > 3 ? `<details class="mais"><summary>Outros serviços (${x._of.length - 3})</summary>${x._of.slice(3).map(o => cardOf(o, ofSel)).join("")}</details>` : ""}` : `<p class="dica">Rede, franquia ou órgão público: fora do foco do radar.</p>`}</div>
+      <div class="pactions">${PILOTO[x.place_id] ? `<a class="btn" href="${esc(PILOTO[x.place_id][0])}" target="_blank" rel="noopener">Ver piloto (Lote ${PILOTO[x.place_id][1]})</a>` : ""}${x.maps_url ? `<a class="btn" href="${esc(x.maps_url)}" target="_blank" rel="noopener">Ver no Google Maps</a>` : ""}${x.site ? `<a class="btn" href="${esc(x.site)}" target="_blank" rel="noopener">Abrir o link do site</a>` : ""}${x.instagram && x.site_tipo !== "instagram" ? `<a class="btn" href="${esc(x.instagram)}" target="_blank" rel="noopener">Instagram</a>` : ""}</div>
+      <p class="sub" style="font-size:12.5px;color:var(--muted);margin:0">${esc(x.endereco || "")}</p></details>
+      </aside>`;
     $("detail").hidden = false; $("detail").querySelector(".close").focus();
     $("detail").onclick = e => { if (e.target.dataset.close) fechar(); };
     let stSel = x.ab_status || null;
@@ -507,11 +515,11 @@ h1,h2,h3{font-family:var(--display);font-stretch:85%;margin:0;text-wrap:balance;
     if ($("abLimpar")) $("abLimpar").onclick = () => marcar(x, null, "", "", true, null);
     if ($("zap")) $("zap").addEventListener("click", () => { if (!x.ab_status) marcar(x, "chamei", x.ab_nota || "", "", false, ofSel); });
     $("detail").querySelectorAll("[data-usar]").forEach(b => b.onclick = () => {
-      ofSel = b.dataset.usar; msg = msgDe(ofSel); $("msgTxt").textContent = msg; $("msgH").textContent = "Mensagem · " + SERV[ofSel];
+      ofSel = b.dataset.usar; msg = msgDe(ofSel); $("msgTxt").textContent = msg;
       if ($("zap")) $("zap").href = `https://wa.me/${tel}?text=${encodeURIComponent(msg)}`;
       $("detail").querySelectorAll(".of").forEach(c => c.classList.toggle("sel", c.dataset.of === ofSel));
       if (!x.ab_status) $("abServ").value = ofSel;
-      $("msgTxt").scrollIntoView({ behavior: "smooth", block: "center" }); toast("Mensagem trocada para " + SERV[ofSel]);
+      $("msgTxt").scrollIntoView({ behavior: "smooth", block: "center" }); toast("Serviço marcado: " + SERV[ofSel]);
     });
     $("cp").onclick = () => { try { navigator.clipboard.writeText(msg).then(() => toast("Mensagem copiada"), () => sel()); } catch (_) { sel(); } };
   }
