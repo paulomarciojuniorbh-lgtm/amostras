@@ -485,6 +485,7 @@ details.foot-d{margin-top:28px}
         <div class="fact"><span class="k">Posição na busca da cidade</span><span class="v">${x.pos_cidade ? x.pos_cidade + "º" : "não aparece na busca geral"}</span></div>
         <div class="fact"><span class="k">Site</span><span class="v">${st[0]}${x.site_tipo === "proprio" && x.site_check === "sem_https" ? " (sem HTTPS)" : x.site_tipo === "proprio" && x.site_check === "lento" ? " (lento)" : ""}</span></div>
         <div class="fact"><span class="k">Bairro</span><span class="v">${esc(x.bairro || "–")}</span></div>
+        <div class="fact" style="grid-column:1/-1"><span class="k">${celular(x.telefone) ? "WhatsApp" : "Telefone"}</span><span class="v">${x.telefone ? `<a href="${celular(x.telefone) ? `https://wa.me/${tel}` : `tel:${tel}`}" target="_blank" rel="noopener" style="color:inherit">${esc(x.telefone)}</a>` : "–"}</span></div>
       </div>
       <div class="porque"><h3 id="msgH">Mensagem de abertura</h3><div class="msg" id="msgTxt">${esc(msg)}</div></div>
       <div class="pactions">${x.telefone ? `<a class="btn zap" id="zap" href="https://wa.me/${tel}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Abrir no WhatsApp</a>` : ""}<button class="btn" type="button" id="cp">Copiar mensagem</button></div>
@@ -499,7 +500,6 @@ details.foot-d{margin-top:28px}
       <div class="facts">
         <div class="fact"><span class="k">Índice de oportunidade</span><span class="v">${x._s} de 100</span></div>
         <div class="fact"><span class="k">Recomendação</span><span class="v">${esc(x._rec.txt)}${x._rec.plano ? ` · R$ ${PLANOS[x._rec.plano][1]}/mês` : ""}</span></div>
-        <div class="fact"><span class="k">Telefone</span><span class="v">${esc(x.telefone || "–")}</span></div>
       </div>
       <div class="porque"><h3>O que o radar viu</h3><p class="dica">${fora(x) ? "Rede, franquia ou órgão público: índice zerado." : `Pontos: digital ${digitalPts(x)}/35 · avaliações ${avalPts(+x.avaliacoes || 0)}/25 · nota ${repPts(+x.rating || 0)}/15 · ticket do segmento ${ticketPts(x)}/15 · contato ${contatoPts(x)}/10`}</p><ul>${motivos(x).map(t => `<li>${esc(t)}</li>`).join("")}</ul></div>
       <div class="porque oferta"><h3>O que oferecer</h3>
