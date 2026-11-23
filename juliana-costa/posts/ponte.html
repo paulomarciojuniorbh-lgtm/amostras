@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex"><title>ponte</title><p id="s">carregando…</p>
+<script>
+(async()=>{const q=new URLSearchParams(location.search),arq=(q.get('f')||'').split(',').filter(Boolean),s=document.getElementById('s');
+ try{const files=[];for(const n of arq){const r=await fetch(n);const b=await r.arrayBuffer();files.push({n,b})}
+  if(!window.opener){s.textContent='sem janela de origem';return}
+  window.opener.postMessage({tipo:'claude-ponte',files},'https://business.facebook.com',files.map(f=>f.b));s.textContent='enviado '+files.length;setTimeout(()=>window.close(),800)}
+ catch(e){s.textContent='erro '+e.message}})();
+</script>
