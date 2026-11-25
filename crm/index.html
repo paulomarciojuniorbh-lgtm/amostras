@@ -440,6 +440,8 @@ function graficoVendas(V,id){
   return `<div class="gv" id="${id}"><div class="sn" style="display:inline-flex;margin-bottom:8px"><button type="button" data-met="valor" aria-pressed="${k==='valor'}" style="padding:6px 12px;min-width:0">R$ vendas</button><button type="button" data-met="kg" aria-pressed="${k==='kg'}" style="padding:6px 12px;min-width:0">Toneladas</button></div>
   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
    ${chip('Acumulado '+Y+' (jan–'+(P?P.dia+'/'+nomeMes(UM):nomeMes(UM))+')',fator!=null?fator-1:null,fmt(sa)+' × '+fmt(sb))}
+   ${(()=>{let n=0,sY=0,nA=0,sA=0;for(let m=1;m<=UM;m++){const r=val(mk(Y,m)),q=val(mk(Y-1,m)),w=P&&m===UM?P.f:1;if(r!=null){sY+=r;n+=w}if(q!=null){sA+=q*fa(Y-1,m);nA+=w}}const md=n?sY/n:null,mA=nA?sA/nA:null,d=md!=null&&mA?md/mA-1:null;
+     return `<div style="flex:1;min-width:140px;background:var(--fundo);border-radius:10px;padding:8px 10px"><div class="muted" style="font-size:12px">${k==='valor'?'Faturamento':'Volume'} médio/mês ${Y}</div><div style="font-weight:700">${md==null?'—':fmt(md)}</div><div class="muted" style="font-size:11px">${mA?(Y-1)+': '+fmt(mA)+(d!=null?` <b style="color:${d>=0?'var(--ok)':'var(--ruim)'}">${d>=0?'▲':'▼'} ${pct(d)}</b>`:''):'sem base do ano anterior'}</div></div>`})()}
    ${chip('Últimos 3 meses',a3?r3/a3-1:null,'vs mesmos meses de '+(Y-1))}
    ${chip('Projeção '+Y+' fechado',totA?tot/totA-1:null,fmt(tot)+(totA?' × '+fmt(totA)+' em '+(Y-1):''))}
   </div>
