@@ -230,7 +230,7 @@ async function carregar(){
   $('#eu').innerHTML=`<b>${esc(D.eu.nome)}</b><span class="perf">${PERF[D.eu.perfil]} · </span><a href="#" id="minha-senha" style="color:#b8c3e6">senha</a> · <a href="#" id="sair" style="color:#b8c3e6">sair</a>`;
   $('#sair').onclick=async e=>{e.preventDefault();if(confirm('Sair deste aparelho?')){await rpc('crm_sair',{p_token:TOK}).catch(()=>{});try{localStorage.removeItem('helice_crm_tok')}catch(x){}location.reload()}};
   $('#minha-senha').onclick=e=>{e.preventDefault();trocarSenha()};
-  const abas=D.eu.perfil==='promotor'?[]:GERENTE(D.eu.perfil)?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências']]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa do negócio'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
+  const abas=D.eu.perfil==='promotor'?[]:GERENTE(D.eu.perfil)?[['painel','Painel'],['lojas','Mapa do negócio'],['skus','Top SKUs'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências']]:D.eu.perfil==='exec'?[['painel','Painel'],['lojas','Mapa do negócio'],['skus','Top SKUs'],['vis','Visitas JVC'],['equipe','Equipe e acessos'],['band','Bandeiras'],['pend','Pendências'],['imp','Importar dados']]:[['painel','Painel'],['lojas','Mapa do negócio'],['skus','Top SKUs'],['vis','Visitas JVC'],['band','Bandeiras'],['pend','Pendências']];
   const n=$('#nav');n.hidden=!abas.length;n.innerHTML=abas.map(([k,t])=>`<button data-a="${k}" ${k===aba?'aria-current="page"':''}>${t}</button>`).join('');
   n.querySelectorAll('button').forEach(b=>b.onclick=()=>{aba=b.dataset.a;n.querySelectorAll('button').forEach(x=>x.toggleAttribute('aria-current',x===b));if(b.hasAttribute('aria-current'))b.setAttribute('aria-current','page');render();scrollTo(0,0)});
   render();
@@ -246,8 +246,8 @@ function gate(msg){$('#app').innerHTML=`<div class="gate login"><div class="eyeb
   return;$('#app').innerHTML=`<div class="gate"><h1>Hélice CRM</h1><p class="sub">${msg||''}</p></div>`}
 function render(){
   if(D.eu.perfil==='promotor'){$('#app').innerHTML=vPromotor();ligarPromotor();return}
-  $('#app').innerHTML=({painel:vPainel,lojas:vLojas,vis:vVis,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
-  ({lojas:ligarLojas,vis:ligarVis,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
+  $('#app').innerHTML=({painel:vPainel,skus:vSkus,lojas:vLojas,vis:vVis,equipe:vEquipe,pend:vPend,band:vBand,imp:vImp})[aba]();
+  ({skus:ligarSkus,lojas:ligarLojas,vis:ligarVis,equipe:ligarEquipe,pend:ligarPend,painel:ligarPainel,band:ligarBand,imp:ligarImp})[aba]?.();
 }
 const comProm=()=>D.lojas.filter(l=>l.promotor_id);
 const media=a=>a.length?Math.round(a.reduce((s,x)=>s+x,0)/a.length*10)/10:null;
@@ -523,8 +523,40 @@ function riscoHTML(I,comLoja){const tot=I.reduce((a,x)=>a+(+x.perda||0),0),nl=ne
   <p class="muted" style="margin:10px 0 0;font-size:12px">Normal = média das leituras de estoque dos últimos 6 meses da mesma loja e categoria. Perda estimada = 13,8% da venda média dos últimos 3 meses: é quanto, no histórico, uma categoria com metade do estoque de costume cresceu a menos no mês seguinte. É uma estimativa para priorizar, não um valor exato. CDs ficam de fora.</p></div>`}
 function preencherRisco(){const b=$('#risco-box');if(!b)return;carregarRisco().then(R=>{const box=$('#risco-box');if(!box)return;const ids=box.dataset.l?[+box.dataset.l]:RISCO_IDS;const I=(R.itens||[]).filter(x=>!ids||ids.includes(x.l));box.innerHTML=riscoHTML(I,!box.dataset.l);box.querySelectorAll('[data-rl]').forEach(t=>t.onclick=()=>abrirLoja(+t.dataset.rl,'estoque'))})}
 const TOPS={};
+let TS={l:[],uf:'',cat:'',top:3,q:''};
+function tsIds(){if(TS.l.length)return TS.l;if(TS.uf)return D.lojas.filter(l=>l.uf===TS.uf).map(l=>l.id);return null}
+function tsDados(){const ids=tsIds(),k='T'+(ids?ids.join(','):'*');return TOPS[k]||(TOPS[k]=rpc('crm_top_skus',{p_token:TOK,p_lojas:ids,p_top:1000}).then(r=>r&&r.ok?r:null).catch(()=>{delete TOPS[k];return null}))}
+function vSkus(){const ufs=[...new Set(D.lojas.map(l=>l.uf).filter(Boolean))].sort(),LB=TS.uf?D.lojas.filter(l=>l.uf===TS.uf):D.lojas;
+  return `<div class="eyebrow">Mondelez × Grupo Mateus</div><h1 style="margin:0 0 4px">Top SKUs</h1><p class="sub" style="margin:0 0 14px">O que mais vende nos últimos 30 dias, por categoria, com código do produto. Filtre por estado ou loja.</p>
+  <div class="card"><div class="chips-seg" style="flex-wrap:wrap"><button type="button" data-tsuf="" aria-pressed="${!TS.uf}">Todos os estados</button>${ufs.map(u=>`<button type="button" data-tsuf="${u}" aria-pressed="${TS.uf===u}">${u}</button>`).join('')}</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="ts-loja" list="ts-lojas" placeholder="🔎 Filtrar por loja: nome ou número" autocomplete="off" style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--linha,#dfe3ea);border-radius:10px;font-size:15px"><datalist id="ts-lojas">${LB.filter(l=>!/\bcd ?\d|industria/i.test(l.nome)).map(l=>`<option value="#${l.id} · ${esc(l.nome)}">${esc(nomeB(l.bandeira))} · ${esc(l.cidade||'')} ${l.uf||''}</option>`).join('')}</datalist>
+   ${TS.l.map(id=>{const l=D.lojas.find(x=>x.id===id);return l?`<button type="button" class="pill p-az" data-tsl="${id}" style="border:0;cursor:pointer;padding:6px 10px">${esc(l.nome)} ✕</button>`:''}).join('')}</div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="ts-q" type="search" value="${esc(TS.q)}" placeholder="Buscar produto ou código: oreo, 6993…" autocomplete="off" style="flex:1;min-width:220px;padding:10px 12px;border:1px solid var(--linha,#dfe3ea);border-radius:10px;font-size:15px">
+   <select id="ts-top" style="padding:10px;border-radius:10px;border:1px solid var(--linha,#dfe3ea)">${[3,5,10,1000].map(n=>`<option value="${n}" ${TS.top===n?'selected':''}>${n===1000?'Todos os SKUs':'Top '+n+' por categoria'}</option>`).join('')}</select></div></div>
+  <div id="ts-res"><div class="card"><p class="muted" style="margin:0">Carregando…</p></div></div>`}
+function tsTabela(){const box=$('#ts-res');if(!box)return;const k=tsIds();tsDados().then(R=>{if(!$('#ts-res')||String(tsIds())!==String(k))return;
+  if(!R){box.innerHTML='<div class="card"><p style="margin:0">Não consegui carregar agora. Tente de novo.</p></div>';return}
+  const N=R.lojas,n0=v=>Math.round(+v||0).toLocaleString('pt-BR'),cats=[...new Set(R.itens.map(x=>x.c))],q=norm(TS.q);
+  const okQ=x=>!q||q.split(/\s+/).every(w=>norm(x.p+' '+(x.cod||'')+' '+(x.ean||'')+' '+x.c).includes(w));
+  const I=R.itens.filter(x=>(!TS.cat||x.c===TS.cat)&&okQ(x)&&(q||x.rk<=TS.top));
+  const chips=`<div class="chips-seg" style="flex-wrap:wrap"><button type="button" data-tsc="" aria-pressed="${!TS.cat}">Todas as categorias</button>${cats.map(c=>`<button type="button" data-tsc="${esc(c)}" aria-pressed="${TS.cat===c}">${esc(c)}</button>`).join('')}</div>`;
+  let ult='';const rows=I.map(x=>{const nova=x.c!==ult;ult=x.c;const baixa=N>=5&&x.lv<N*0.6,dde=x.v>0?Math.round(x.e/(x.v/30)):null;
+    return `${nova?`<tr><td colspan="8" style="background:var(--fundo);font-weight:700;padding-top:10px">${esc(x.c)} <span class="muted" style="font-weight:400">· ${n0(x.tc)} un. em 30 dias</span></td></tr>`:''}<tr><td class="num" style="text-align:left">${x.rk}º</td><td><b style="font-weight:600">${esc(x.cod||'—')}</b>${x.ean?`<div class="muted" style="font-size:11px">EAN ${esc(x.ean)}</div>`:''}</td><td>${esc(x.p)}</td><td class="num">${n0(x.v)}</td><td class="num">${x.tc?Math.round(x.v/x.tc*100):0}%</td><td class="num">${n0(x.e)}</td><td class="num">${dde==null?'—':n0(dde)}</td><td class="num">${baixa?`<span class="pill p-med" title="Vende em menos de 60% das lojas">${x.lv} de ${N}</span>`:`${x.lv} de ${N}`}</td></tr>`}).join('');
+  const rot=TS.l.length?TS.l.map(id=>(D.lojas.find(l=>l.id===id)||{}).nome).join(' + '):TS.uf||'todas as lojas';
+  box.innerHTML=`<div class="card"><h2>${esc(rot)} · leitura de ${dataBR(R.data)} · ${N} loja${N>1?'s':''}</h2>${chips}
+   ${I.length?`<div class="tab-scroll" style="max-height:640px"><table><thead><tr><th>#</th><th>Código</th><th>Produto</th><th class="num">Venda 30d</th><th class="num">% da cat.</th><th class="num">Estoque</th><th class="num">DDE</th><th class="num">Lojas vendendo</th></tr></thead><tbody>${rows}</tbody></table></div>`:`<div class="vazio">Nenhum produto ${TS.q?`com “${esc(TS.q)}”`:'aqui'}.</div>`}
+   <p class="muted" style="margin:10px 0 0;font-size:12px">Venda e estoque em unidades. DDE = dias de estoque no ritmo dos últimos 30 dias. <span class="pill p-med">laranja</span> = vende em menos de 60% das lojas do filtro (oportunidade de positivação). CDs e indústrias ficam de fora.</p></div>`;
+  box.querySelectorAll('[data-tsc]').forEach(b=>b.onclick=()=>{TS.cat=b.dataset.tsc;tsTabela()})})}
+function ligarSkus(){const re=()=>{render()};
+  document.querySelectorAll('[data-tsuf]').forEach(b=>b.onclick=()=>{TS.uf=b.dataset.tsuf;TS.l=[];re()});
+  document.querySelectorAll('[data-tsl]').forEach(b=>b.onclick=()=>{TS.l=TS.l.filter(x=>x!==+b.dataset.tsl);re()});
+  const li=$('#ts-loja'),pega=()=>{const v=li.value.trim();if(!v)return;const m=v.match(/^#(\d+)/);let l=m?D.lojas.find(x=>x.id===+m[1]):null;if(!l){const c=D.lojas.filter(x=>norm(x.nome).includes(norm(v)));if(c.length===1)l=c[0]}if(l){if(!TS.l.includes(l.id))TS.l=[...TS.l,l.id];re()}};
+  li.addEventListener('change',pega);li.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();pega()}});
+  $('#ts-top').onchange=e=>{TS.top=+e.target.value;tsTabela()};
+  let t;$('#ts-q').addEventListener('input',e=>{TS.q=e.target.value;clearTimeout(t);t=setTimeout(tsTabela,200)});
+  tsTabela()}
 function preencherTops(){const b=$('#tops-box');if(!b)return;const ids=RISCO_IDS,k=ids?ids.join(','):'*';
-  const p=TOPS[k]||(TOPS[k]=rpc('crm_top_skus',{p_token:TOK,p_lojas:ids}).then(r=>r&&r.ok?r:null).catch(()=>{delete TOPS[k];return null}));
+  const p=TOPS[k]||(TOPS[k]=rpc('crm_top_skus',{p_token:TOK,p_lojas:ids,p_top:3}).then(r=>r&&r.ok?r:null).catch(()=>{delete TOPS[k];return null}));
   p.then(R=>{const box=$('#tops-box');if(!box||(RISCO_IDS?RISCO_IDS.join(','):'*')!==k)return;if(!R||!R.itens.length){box.innerHTML='';return}
     const N=R.lojas,nf0=v=>Math.round(+v||0).toLocaleString('pt-BR');let ult='';
     const rows=R.itens.map(x=>{const nova=x.c!==ult;ult=x.c;const baixa=N>=5&&x.lv<N*0.6;
