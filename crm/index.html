@@ -522,6 +522,17 @@ function riscoHTML(I,comLoja){const tot=I.reduce((a,x)=>a+(+x.perda||0),0),nl=ne
   ${I.length>15?`<details style="margin-top:8px"><summary class="muted" style="cursor:pointer">Ver as outras ${I.length-15}</summary><div class="tab-scroll" style="max-height:420px"><table>${cab}<tbody>${I.slice(15).map(linha).join('')}</tbody></table></div></details>`:''}
   <p class="muted" style="margin:10px 0 0;font-size:12px">Normal = média das leituras de estoque dos últimos 6 meses da mesma loja e categoria. Perda estimada = 13,8% da venda média dos últimos 3 meses: é quanto, no histórico, uma categoria com metade do estoque de costume cresceu a menos no mês seguinte. É uma estimativa para priorizar, não um valor exato. CDs ficam de fora.</p></div>`}
 function preencherRisco(){const b=$('#risco-box');if(!b)return;carregarRisco().then(R=>{const box=$('#risco-box');if(!box)return;const ids=box.dataset.l?[+box.dataset.l]:RISCO_IDS;const I=(R.itens||[]).filter(x=>!ids||ids.includes(x.l));box.innerHTML=riscoHTML(I,!box.dataset.l);box.querySelectorAll('[data-rl]').forEach(t=>t.onclick=()=>abrirLoja(+t.dataset.rl,'estoque'))})}
+const TOPS={};
+function preencherTops(){const b=$('#tops-box');if(!b)return;const ids=RISCO_IDS,k=ids?ids.join(','):'*';
+  const p=TOPS[k]||(TOPS[k]=rpc('crm_top_skus',{p_token:TOK,p_lojas:ids}).then(r=>r&&r.ok?r:null).catch(()=>{delete TOPS[k];return null}));
+  p.then(R=>{const box=$('#tops-box');if(!box||(RISCO_IDS?RISCO_IDS.join(','):'*')!==k)return;if(!R||!R.itens.length){box.innerHTML='';return}
+    const N=R.lojas,nf0=v=>Math.round(+v||0).toLocaleString('pt-BR');let ult='';
+    const rows=R.itens.map(x=>{const nova=x.c!==ult;ult=x.c;const baixa=N>=5&&x.lv<N*0.6;
+      return `<tr style="${nova?'border-top:2px solid var(--linha,#dfe3ea)':''}"><td>${nova?`<b>${esc(x.c)}</b><div class="muted">${nf0(x.tc)} un.</div>`:''}</td><td>${x.rk}º · ${esc(x.p)}</td><td class="num">${nf0(x.v)}</td><td class="num">${x.tc?Math.round(x.v/x.tc*100):0}%</td><td class="num">${baixa?`<span class="pill p-med" title="Vende em menos de 60% das lojas">${x.lv} de ${N}</span>`:`${x.lv} de ${N}`}</td></tr>`}).join('');
+    box.innerHTML=`<div class="card"><h2>Top SKUs por categoria · últimos 30 dias</h2>
+    <p class="muted" style="margin:0 0 10px">Venda em unidades na leitura de estoque de ${dataBR(R.data)}, em ${N} loja${N>1?'s':''} do recorte. <span class="pill p-med">laranja</span> = SKU forte que vende em menos de 60% das lojas: oportunidade de positivação.</p>
+    <div class="tab-scroll" style="max-height:520px"><table><thead><tr><th>Categoria</th><th>SKU</th><th class="num">Venda 30d</th><th class="num">% da categoria</th><th class="num">Lojas vendendo</th></tr></thead><tbody>${rows}</tbody></table></div>
+    <p class="muted" style="margin:10px 0 0;font-size:12px">CDs e indústrias ficam de fora. Mostra os 3 SKUs que mais vendem em cada categoria.</p></div>`})}
 function cardRuptura(LS,rot){const C=LS.filter(l=>l.mixn);if(!C.length)return '';
   const rup=C.reduce((a,l)=>a+(+l.rup||0),0),mix=C.reduce((a,l)=>a+(+l.mixn||0),0),par=C.reduce((a,l)=>a+(+l.par||0),0),T=[...C].sort((a,b)=>(b.rup/b.mixn)-(a.rup/a.mixn)).slice(0,8);
   return `<div class="card"><h2>Ruptura de mix · leitura de ${dataBR(D.est_data)}${rot?' · '+esc(rot):''}</h2>
@@ -557,7 +568,7 @@ function vPainel(){
   </div>
   ${cardVendas(S,rot,LS)}
   ${cardComparativo(LB,LS)}
-  ${cardRuptura(LS,rot)}${(RISCO_IDS=(PL.length||rot)?LS.map(l=>l.id):null,setTimeout(preencherRisco,0),'')}${['exec','coord','ga','gr'].includes(D.eu.perfil)?'<div id="risco-box"><div class="card"><h2>Risco de perda de venda</h2><p class="muted" style="margin:0">Calculando…</p></div></div>':''}
+  ${cardRuptura(LS,rot)}${(RISCO_IDS=(PL.length||rot)?LS.map(l=>l.id):null,setTimeout(preencherRisco,0),'')}${['exec','coord','ga','gr'].includes(D.eu.perfil)?'<div id="risco-box"><div class="card"><h2>Risco de perda de venda</h2><p class="muted" style="margin:0">Calculando…</p></div></div><div id="tops-box"></div>':''}${(setTimeout(preencherTops,0),'')}
   <div class="grid2">
     <div class="card"><h2>Próximas ações</h2>${ac.length?`<table><tbody>${ac.map(a=>`<tr class="clic" data-loja="${a.loja_id}"><td><b>${esc(a.proxima_acao)}</b><div class="muted">${esc(a.loja)}${a.quem?' · '+esc(a.quem):''}</div></td><td class="num">${a.prazo?`<span class="pill ${a.prazo<D.hoje?'p-ruim':a.prazo===D.hoje?'p-med':'p-nd'}">${dataBR(a.prazo)}</span>`:''}</td></tr>`).join('')}</tbody></table>`:'<div class="vazio">Nenhuma ação em aberto. Registre próximos passos na ficha de cada loja.</div>'}</div>
     ${cardAniv().replace('🎂 ','')}
